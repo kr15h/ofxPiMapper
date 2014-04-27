@@ -1,5 +1,5 @@
-MyAddon (rename to your addon's name)
-=====================================
+ofxPiMapper
+===========
 
 Introduction
 ------------
