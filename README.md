@@ -27,6 +27,10 @@ None so far.
 
 Version history
 ------------
+None version yet. Will be updated as soon first working code is uploaded. Tasks for version 0.1:
++ ofxPiMapper source with a triangle surface
++ simple example source
+
 It make sense to include a version history here (newest releases first), describing new features and changes to the addon. Use [git tags](http://learn.github.com/p/tagging.html) to mark release points in your repo, too!
 
 ### Version 0.1 (Date):
