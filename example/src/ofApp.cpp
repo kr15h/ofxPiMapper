@@ -2,7 +2,8 @@
 
 void ofApp::setup()
 {
-	cout << "Hello World!" << endl;
+    // Create a triangle surface
+    triangleSurface.setup( ofVec2f(30,40), ofVec2f(500,500), ofVec2f(0,600) );
 }
 
 void ofApp::update()
@@ -12,7 +13,7 @@ void ofApp::update()
 
 void ofApp::draw()
 {
-	ofRect(100, 100, ofGetWidth()-200, ofGetHeight()-200);
+    triangleSurface.draw();
 }
 
 void ofApp::keyPressed(int key)
