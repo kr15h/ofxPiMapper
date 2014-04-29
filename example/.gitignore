@@ -4,3 +4,4 @@ obj
 *.plist
 *.xcconfig
 *~
+config.make

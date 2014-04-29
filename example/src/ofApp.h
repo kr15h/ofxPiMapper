@@ -2,6 +2,7 @@
 #define H_OF_APP
 
 #include "ofMain.h"
+#include "ofxPiMapper.h"
 
 class ofApp : public ofBaseApp
 {
