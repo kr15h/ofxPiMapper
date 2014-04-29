@@ -1,0 +1,5 @@
+bin
+*.xcodeproj
+*.plist
+*.xcconfig
+*~
