@@ -51,3 +51,13 @@ void ofxTriangleSurface::draw()
     mesh.draw();
     texture->unbind();
 }
+
+void ofxTriangleSurface::setVertex(int index, ofVec2f p)
+{
+    if ( index > 2 ) {
+        ofLog() << "Vertex with this index does not exist: " << index << endl;
+        return;
+    }
+    
+    mesh.setVertex(index, p);
+}

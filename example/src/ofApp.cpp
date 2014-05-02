@@ -12,6 +12,11 @@ void ofApp::setup()
 void ofApp::update()
 {
 	ofBackground(0);
+    
+    ofVec2f p;
+    p.x = ofRandomWidth();
+    p.y = ofRandomHeight();
+    triangleSurface.setVertex(0, p);
 }
 
 void ofApp::draw()
