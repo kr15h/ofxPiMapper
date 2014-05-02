@@ -61,3 +61,13 @@ void ofxTriangleSurface::setVertex(int index, ofVec2f p)
     
     mesh.setVertex(index, p);
 }
+
+void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
+{
+    if ( index > 2 ) {
+        ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
+        return;
+    }
+    
+    mesh.setTexCoord(index, t);
+}

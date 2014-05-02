@@ -16,7 +16,12 @@ void ofApp::update()
     ofVec2f p;
     p.x = ofRandomWidth();
     p.y = ofRandomHeight();
-    triangleSurface.setVertex(0, p);
+    //triangleSurface.setVertex(0, p);
+    
+    ofVec2f t;
+    t.x = ofRandomuf();
+    t.y = ofRandomuf();
+    triangleSurface.setTexCoord(0, t);
 }
 
 void ofApp::draw()
