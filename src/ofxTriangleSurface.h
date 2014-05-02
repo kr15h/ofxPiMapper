@@ -11,7 +11,7 @@ public:
 	~ofxTriangleSurface();
     
     void setup();
-    void setup( ofVec2f p1, ofVec2f p2, ofVec2f p3 );
+    void setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr );
     void draw();
 };
 

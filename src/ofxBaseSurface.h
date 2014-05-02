@@ -6,6 +6,7 @@
 class ofxBaseSurface
 {
 public:
+    ofxBaseSurface();
     virtual void setup(){};
     virtual void draw(){};
     
