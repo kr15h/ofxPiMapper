@@ -13,6 +13,9 @@ public:
 protected:
     ofMesh mesh;
     ofTexture* texture;
+    ofTexture defaultTexture;
+    
+    void createDefaultTexture();
 };
 
 #endif
