@@ -48,6 +48,9 @@ void ofxSurfaceGui::mouseDragged(int x, int y, int button)
 {
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].mouseDragged(x, y, button);
+        if ( joints[i].isDragged() ) {
+            surface->setVertex(i, joints[i].position);
+        }
     }
 }
 
