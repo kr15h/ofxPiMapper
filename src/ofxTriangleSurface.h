@@ -15,6 +15,7 @@ public:
     void draw();
     void setVertex( int index, ofVec2f p );
     void setTexCoord( int index, ofVec2f t );
+    ofVec2f getVertex(int index);
 };
 
 #endif

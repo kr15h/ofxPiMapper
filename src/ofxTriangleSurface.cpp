@@ -71,3 +71,14 @@ void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
     
     mesh.setTexCoord(index, t);
 }
+
+ofVec2f ofxTriangleSurface::getVertex(int index)
+{
+    if ( index > 2 ) {
+        ofLog() << "Vertex with this index does not exist: " << index << endl;
+        throw std::runtime_error("Index out of bounds.");
+    }
+    
+    ofVec3f vert = mesh.getVertex(index);
+    return ofVec2f(vert.x, vert.y);
+}
