@@ -21,7 +21,7 @@ void ofApp::update()
     ofVec2f t;
     t.x = ofRandomuf();
     t.y = ofRandomuf();
-    triangleSurface.setTexCoord(0, t);
+    //triangleSurface.setTexCoord(0, t);
 }
 
 void ofApp::draw()
