@@ -13,14 +13,14 @@ public:
     bool visible;
     bool selected;
     
-    void mousePressed(ofMouseEventArgs& args);
-    void mouseReleased(ofMouseEventArgs& args);
-    void mouseDragged(ofMouseEventArgs& args);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void mouseDragged(int x, int y, int button);
     void startDrag();
     void stopDrag();
     
-    virtual void update(ofEventArgs& args){};
-    virtual void draw(ofEventArgs& args){};
+    virtual void update(){};
+    virtual void draw(){};
     virtual bool hitTest(ofVec2f position){};
     
 protected:
@@ -33,10 +33,6 @@ protected:
 private:
     void setDefaultColors();
     void setDefaultProperties();
-    void registerAppEvents();
-    void unregisterAppEvents();
-    void registerMouseEvents();
-    void unregisterMouseEvents();
 };
 
 #endif

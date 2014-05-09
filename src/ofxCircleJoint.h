@@ -9,8 +9,8 @@ class ofxCircleJoint : public ofxBaseJoint
 public:
     ofxCircleJoint();
     
-    void update(ofEventArgs& args);
-    void draw(ofEventArgs& args);
+    void update();
+    void draw();
     bool hitTest(ofVec2f position);
     
 private:

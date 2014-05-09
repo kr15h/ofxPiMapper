@@ -12,11 +12,15 @@ public:
     ~ofxSurfaceGui();
     
     void setup(ofxTriangleSurface& surfaceForGui);
+    void update();
+    void draw();
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void mouseDragged(int x, int y, int button);
     
 private:
     ofxTriangleSurface* surface;
-    ofxCircleJoint joints[100];
-    int jointCounter;
+    vector<ofxCircleJoint> joints;
     
     void addJoint();
     void addNumJoints(int num);

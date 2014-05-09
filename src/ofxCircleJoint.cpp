@@ -5,12 +5,12 @@ ofxCircleJoint::ofxCircleJoint()
     setDefaultProperties();
 }
 
-void ofxCircleJoint::update(ofEventArgs& args)
+void ofxCircleJoint::update()
 {
     if (!enabled) return;
 }
 
-void ofxCircleJoint::draw(ofEventArgs& args)
+void ofxCircleJoint::draw()
 {
     if (!visible) return;
     if (!enabled) return;

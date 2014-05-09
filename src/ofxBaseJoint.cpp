@@ -4,33 +4,30 @@ ofxBaseJoint::ofxBaseJoint()
 {
     setDefaultColors();
     setDefaultProperties();
-    registerAppEvents();
-    registerMouseEvents();
 }
 
 ofxBaseJoint::~ofxBaseJoint()
 {
-    unregisterAppEvents();
-    unregisterMouseEvents();
+
 }
 
-void ofxBaseJoint::mousePressed(ofMouseEventArgs &args)
+void ofxBaseJoint::mousePressed(int x, int y, int button)
 {
-    if ( hitTest(ofVec2f(args.x, args.y)) ) {
-        clickDistance = position - ofVec2f(args.x, args.y);
+    if ( hitTest(ofVec2f(x, y)) ) {
+        clickDistance = position - ofVec2f(x, y);
         startDrag();
     }
 }
 
-void ofxBaseJoint::mouseReleased(ofMouseEventArgs &args)
+void ofxBaseJoint::mouseReleased(int x, int y, int button)
 {
     stopDrag();
 }
 
-void ofxBaseJoint::mouseDragged(ofMouseEventArgs &args)
+void ofxBaseJoint::mouseDragged(int x, int y, int button)
 {
     if ( !dragging ) return;    
-    position = ofVec2f(args.x, args.y) + clickDistance;
+    position = ofVec2f(x, y) + clickDistance;
 }
 
 void ofxBaseJoint::startDrag()
@@ -58,30 +55,4 @@ void ofxBaseJoint::setDefaultProperties()
     dragging = false;
     selected = false;
     strokeWidth = 1.5f;
-}
-
-void ofxBaseJoint::registerAppEvents()
-{
-    ofAddListener(ofEvents().update, this, &ofxBaseJoint::update);
-    ofAddListener(ofEvents().draw, this, &ofxBaseJoint::draw);
-}
-
-void ofxBaseJoint::unregisterAppEvents()
-{
-    ofRemoveListener(ofEvents().update, this, &ofxBaseJoint::update);
-    ofRemoveListener(ofEvents().draw, this, &ofxBaseJoint::draw);
-}
-
-void ofxBaseJoint::registerMouseEvents()
-{
-    ofAddListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
-    ofAddListener(ofEvents().mouseReleased, this, &ofxBaseJoint::mouseReleased);
-    ofAddListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
-}
-
-void ofxBaseJoint::unregisterMouseEvents()
-{
-    ofRemoveListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
-    ofRemoveListener(ofEvents().mouseReleased, this, &ofxBaseJoint::mouseReleased);
-    ofRemoveListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
 }

@@ -25,11 +25,14 @@ void ofApp::update()
     t.x = ofRandomuf();
     t.y = ofRandomuf();
     //triangleSurface.setTexCoord(0, t);
+    
+    gui.update();
 }
 
 void ofApp::draw()
 {
     triangleSurface.draw();
+    gui.draw();
 }
 
 void ofApp::keyPressed(int key)
@@ -39,15 +42,18 @@ void ofApp::keyPressed(int key)
 
 void ofApp::mousePressed(int x, int y, int button)
 {
-    cout << "Mouse pressed." << endl;
+    //cout << "Mouse pressed." << endl;
+    gui.mousePressed(x, y, button);
 }
 
 void ofApp::mouseReleased(int x, int y, int button)
 {
-    cout << "Mouse released." << endl;
+    //cout << "Mouse released." << endl;
+    gui.mouseReleased(x, y, button);
 }
 
 void ofApp::mouseDragged(int x, int y, int button)
 {
     //
+    gui.mouseDragged(x, y, button);
 }
