@@ -40,6 +40,11 @@ void ofxBaseJoint::stopDrag()
     dragging = false;
 }
 
+bool ofxBaseJoint::isDragged()
+{
+    return dragging;
+}
+
 void ofxBaseJoint::setDefaultColors()
 {
     fillColor = ofColor(0,255,255);

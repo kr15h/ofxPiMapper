@@ -18,6 +18,7 @@ public:
     void mouseDragged(int x, int y, int button);
     void startDrag();
     void stopDrag();
+    bool isDragged();
     
     virtual void update(){};
     virtual void draw(){};
