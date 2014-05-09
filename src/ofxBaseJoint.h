@@ -26,6 +26,7 @@ public:
 protected:
     ofColor fillColor;
     ofColor strokeColor;
+    float strokeWidth;
     ofVec2f clickDistance;
     bool dragging;
     

@@ -2,6 +2,7 @@
 
 void ofApp::setup()
 {
+    //ofGetCurrentRenderer()->setLineSmoothing(true);
     // Load test pattern image
     image.loadImage("TestPatternInvert.jpg");
     

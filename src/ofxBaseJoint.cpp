@@ -57,6 +57,7 @@ void ofxBaseJoint::setDefaultProperties()
     clickDistance = ofVec2f(0.0f, 0.0f);
     dragging = false;
     selected = false;
+    strokeWidth = 1.5f;
 }
 
 void ofxBaseJoint::registerAppEvents()

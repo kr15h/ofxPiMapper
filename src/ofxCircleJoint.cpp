@@ -21,6 +21,7 @@ void ofxCircleJoint::draw(ofEventArgs& args)
     ofCircle(position.x, position.y, radius);
     ofNoFill();
     ofSetColor(strokeColor);
+    ofSetLineWidth(strokeWidth);
     ofCircle(position.x, position.y, radius);
     ofPopStyle();
 }
