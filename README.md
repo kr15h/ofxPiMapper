@@ -1,9 +1,11 @@
 ofxPiMapper
 ===========
 
+This project is an attempt to create optimized version of an openFrameworks projection mapping addon for the Raspberry Pi. 
+
 Introduction
 ------------
-openFrameworks addon for doing projection mapping with the Raspberry Pi. This is a placeholder. The addon itself is work in progress. Comming soon!
+ofxPiMapper is mainly intended for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and at last get's an offer to exhibit them in an art or any other kind of gallery. 10 Mac computers? No! PiMapper is here to save you!
 
 Licence
 -------
@@ -11,7 +13,12 @@ ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki
 
 Installation
 ------------
-To be added here...
+Clone this into your `openFrameworks/addons` folder. If your openFrameworks installation on the Pi resides in the home directory, you have to type the following in the terminal:
+
+```bash
+cd ~/openFrameworks/addons
+git clone https://github.com/kr15h/ofxPiMapper.git
+```
 
 Dependencies
 ------------
@@ -27,13 +34,8 @@ None so far.
 
 Version history
 ------------
-None version yet. Will be updated as soon first working code is uploaded. Tasks for version 0.1:
-+ ofxPiMapper source with a triangle surface
-+ simple example source
 
-It make sense to include a version history here (newest releases first), describing new features and changes to the addon. Use [git tags](http://learn.github.com/p/tagging.html) to mark release points in your repo, too!
-
-### Version 0.1 (Date):
-Describe relevant changes etc.
-
-
+### Version 0.1 (2014-05-09):
+First usable version. For now there is a triangle surface class that you can use to map an ofTexture object. 
+ - Added triangle surface
+ - Added simple example
