@@ -8,8 +8,10 @@ public:
     ofxBaseJoint();
     ~ofxBaseJoint();
     
+    ofVec2f position;
     bool enabled;
     bool visible;
+    bool selected;
     
     void mousePressed(ofMouseEventArgs& args);
     void mouseReleased(ofMouseEventArgs& args);
@@ -24,7 +26,6 @@ public:
 protected:
     ofColor fillColor;
     ofColor strokeColor;
-    ofVec2f position;
     ofVec2f clickDistance;
     bool dragging;
     

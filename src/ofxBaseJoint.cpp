@@ -29,7 +29,7 @@ void ofxBaseJoint::mouseReleased(ofMouseEventArgs &args)
 
 void ofxBaseJoint::mouseDragged(ofMouseEventArgs &args)
 {
-    if ( !dragging ) return;
+    if ( !dragging ) return;    
     position = ofVec2f(args.x, args.y) + clickDistance;
 }
 
@@ -56,6 +56,7 @@ void ofxBaseJoint::setDefaultProperties()
     position = ofVec2f(20.0f, 20.0f);
     clickDistance = ofVec2f(0.0f, 0.0f);
     dragging = false;
+    selected = false;
 }
 
 void ofxBaseJoint::registerAppEvents()
