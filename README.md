@@ -35,6 +35,13 @@ None so far.
 Version history
 ------------
 
+### Version 0.1.1
+Create simple mapping specific GUI elements:
+ - Joint class
+ - Circle joint
+ - Square joint
+ - Add GUI layer to the triangle surface
+
 ### Version 0.1 (2014-05-09):
 First usable version. For now there is a triangle surface class that you can use to map an ofTexture object. 
  - Added triangle surface
