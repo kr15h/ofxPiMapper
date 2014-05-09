@@ -8,12 +8,33 @@ public:
     ofxBaseJoint();
     ~ofxBaseJoint();
     
+    bool enabled;
+    bool visible;
+    
+    void mousePressed(ofMouseEventArgs& args);
+    void mouseReleased(ofMouseEventArgs& args);
+    void mouseDragged(ofMouseEventArgs& args);
+    void startDrag();
+    void stopDrag();
+    
+    virtual void update(ofEventArgs& args){};
+    virtual void draw(ofEventArgs& args){};
+    virtual bool hitTest(ofVec2f position){};
+    
+protected:
+    ofColor fillColor;
+    ofColor strokeColor;
+    ofVec2f position;
+    ofVec2f clickDistance;
+    bool dragging;
+    
+private:
+    void setDefaultColors();
+    void setDefaultProperties();
+    void registerAppEvents();
+    void unregisterAppEvents();
     void registerMouseEvents();
     void unregisterMouseEvents();
-    
-    virtual void mousePressed(ofMouseEventArgs& args){};
-    virtual void mouseReleased(ofMouseEventArgs& args){};
-    virtual void mouseDragged(ofMouseEventArgs& args){};
 };
 
 #endif

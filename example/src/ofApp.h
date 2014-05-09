@@ -4,6 +4,8 @@
 #include "ofMain.h"
 #include "ofxPiMapper.h"
 
+#include "ofxCircleJoint.h"
+
 class ofApp : public ofBaseApp
 {
 public: 
@@ -18,6 +20,8 @@ public:
     
     ofxTriangleSurface triangleSurface;
     ofImage image;
+    
+    ofxCircleJoint joint;
 };
 
 #endif

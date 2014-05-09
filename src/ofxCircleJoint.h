@@ -7,9 +7,16 @@
 class ofxCircleJoint : public ofxBaseJoint
 {
 public:
-    void mousePressed(ofMouseEventArgs& args);
-    void mouseReleased(ofMouseEventArgs& args);
-    void mouseDragged(ofMouseEventArgs& args);
+    ofxCircleJoint();
+    
+    void update(ofEventArgs& args);
+    void draw(ofEventArgs& args);
+    bool hitTest(ofVec2f position);
+    
+private:
+    float radius;
+    
+    void setDefaultProperties();
 };
 
 #endif

@@ -1,16 +1,38 @@
 #include "ofxCircleJoint.h"
 
-void ofxCircleJoint::mousePressed(ofMouseEventArgs &args)
+ofxCircleJoint::ofxCircleJoint()
 {
-    cout << "mouse pressed" << endl;
+    setDefaultProperties();
 }
 
-void ofxCircleJoint::mouseReleased(ofMouseEventArgs &args)
+void ofxCircleJoint::update(ofEventArgs& args)
 {
-    cout << "mouse released" << endl;
+    if (!enabled) return;
 }
 
-void ofxCircleJoint::mouseDragged(ofMouseEventArgs &args)
+void ofxCircleJoint::draw(ofEventArgs& args)
 {
-    cout << "mouse dragged" << endl;
+    if (!visible) return;
+    if (!enabled) return;
+    
+    ofPushStyle();
+    ofFill();
+    ofSetColor(fillColor);
+    ofCircle(position.x, position.y, radius);
+    ofNoFill();
+    ofSetColor(strokeColor);
+    ofCircle(position.x, position.y, radius);
+    ofPopStyle();
+}
+
+void ofxCircleJoint::setDefaultProperties()
+{
+    radius = 10.0f;
+}
+
+bool ofxCircleJoint::hitTest(ofVec2f pos)
+{
+    float distance = position.distance(pos);
+    if ( distance < radius ) return true;
+    else return false;
 }
