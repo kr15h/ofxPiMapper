@@ -9,6 +9,8 @@ void ofApp::setup()
                           &image.getTextureReference());
     
     gui.setup(triangleSurface);
+    
+    bShowInfo = true;
 }
 
 void ofApp::update()
@@ -52,6 +54,19 @@ void ofApp::draw()
     }
     
     gui.draw();
+    
+    if ( bShowInfo ) {
+        // Draw instructions
+        stringstream ss;
+        ss << "There are 3 modes:\n\n";
+        ss << " 1. Presentation mode\n";
+        ss << " 2. Texture mapping mode\n";
+        ss << " 3. Projection mapping mode\n\n";
+        ss << "You can switch between the modes by using <1>, <2> and <3> keys on the keyboard.\n\n";
+        ss << "Hit <i> to hide this message.";
+        
+        ofDrawBitmapStringHighlight(ss.str(), 10, 20, ofColor(0,0,0,100), ofColor(255,255,255,200));
+    }
 }
 
 void ofApp::keyPressed(int key)
@@ -62,6 +77,7 @@ void ofApp::keyPressed(int key)
         case '1': gui.setMode(ofxSurfaceGui::NONE); break;
         case '2': gui.setMode(ofxSurfaceGui::TEXTURE_MAPPING); break;
         case '3': gui.setMode(ofxSurfaceGui::PROJECTION_MAPPING); break;
+        case 'i': bShowInfo = !bShowInfo; break;
         default: break;
     }
 }

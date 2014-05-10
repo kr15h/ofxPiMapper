@@ -42,10 +42,27 @@ void ofxSurfaceGui::draw()
     if (mode == NONE) return;
     
     if (mode == PROJECTION_MAPPING) {
+        ofPolyline line;
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            line.addVertex( ofPoint(projectionMappingJoints[i].position.x,
+                                    projectionMappingJoints[i].position.y) );
+        }
+        line.close();
+        line.draw();
+        
         for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
             projectionMappingJoints[i].draw();
         }
+        
     } else if (mode == TEXTURE_MAPPING) {
+        ofPolyline line;
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            line.addVertex( ofPoint(textureMappingJoints[i].position.x,
+                                    textureMappingJoints[i].position.y) );
+        }
+        line.close();
+        line.draw();
+        
         for ( int i=0; i<textureMappingJoints.size(); i++ ) {
             textureMappingJoints[i].draw();
         }

@@ -22,6 +22,7 @@ public:
     ofImage image;
     
     ofxSurfaceGui gui;
+    bool bShowInfo;
 };
 
 #endif
