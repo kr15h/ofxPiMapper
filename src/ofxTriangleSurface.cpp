@@ -76,9 +76,18 @@ ofVec2f ofxTriangleSurface::getVertex(int index)
 {
     if ( index > 2 ) {
         ofLog() << "Vertex with this index does not exist: " << index << endl;
-        throw std::runtime_error("Index out of bounds.");
+        throw std::runtime_error("Vertex index out of bounds.");
     }
     
     ofVec3f vert = mesh.getVertex(index);
     return ofVec2f(vert.x, vert.y);
+}
+
+ofVec2f ofxTriangleSurface::getTexCoord(int index)
+{
+    if (index > 2) {
+        throw std::runtime_error("Texture coordinate index out of bounds.");
+    }
+    
+    return mesh.getTexCoord(index);
 }

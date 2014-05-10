@@ -16,6 +16,7 @@ public:
     void setVertex( int index, ofVec2f p );
     void setTexCoord( int index, ofVec2f t );
     ofVec2f getVertex(int index);
+    ofVec2f getTexCoord(int index);
 };
 
 #endif
