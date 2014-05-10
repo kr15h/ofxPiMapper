@@ -12,6 +12,8 @@ public:
     virtual void setVertex(int index, ofVec2f p){};
     virtual void setTexCoord(int index, ofVec2f t){};
     
+    ofTexture* getTexture();
+    
 protected:
     ofMesh mesh;
     ofTexture* texture;

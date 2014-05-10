@@ -37,3 +37,8 @@ void ofxBaseSurface::createDefaultTexture()
     // Assign default texture to texture pointer
     texture = &defaultTexture;
 }
+
+ofTexture* ofxBaseSurface::getTexture()
+{
+    return texture;
+}

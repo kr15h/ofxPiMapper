@@ -32,7 +32,7 @@ private:
     ofxTriangleSurface* surface;
     
     vector<ofxCircleJoint> projectionMappingJoints;
-    vector<ofxCircleJoint> textureMappingJoings;
+    vector<ofxCircleJoint> textureMappingJoints;
     
     void addProjectionMappingJoint();
     void addNumProjectionMappingJoints(int num);

@@ -3,7 +3,7 @@
 ofxSurfaceGui::ofxSurfaceGui()
 {
     surface = NULL;
-    mode = PROJECTION_MAPPING;
+    mode = TEXTURE_MAPPING;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -23,8 +23,14 @@ void ofxSurfaceGui::update()
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionMappingJoints[i].update();
+    if (mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].update();
+        }
+    } else if (mode == TEXTURE_MAPPING) {
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].update();
+        }
     }
 }
 
@@ -33,8 +39,14 @@ void ofxSurfaceGui::draw()
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionMappingJoints[i].draw();
+    if (mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].draw();
+        }
+    } else if (mode == TEXTURE_MAPPING) {
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].draw();
+        }
     }
 }
 
@@ -43,8 +55,14 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionMappingJoints[i].mousePressed(x, y, button);
+    if (mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].mousePressed(x, y, button);
+        }
+    } else if (mode == TEXTURE_MAPPING) {
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].mousePressed(x, y, button);
+        }
     }
 }
 
@@ -53,8 +71,14 @@ void ofxSurfaceGui::mouseReleased(int x, int y, int button)
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionMappingJoints[i].mouseReleased(x, y, button);
+    if (mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].mouseReleased(x, y, button);
+        }
+    } else if (mode == TEXTURE_MAPPING) {
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].mouseReleased(x, y, button);
+        }
     }
 }
 
@@ -63,10 +87,20 @@ void ofxSurfaceGui::mouseDragged(int x, int y, int button)
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionMappingJoints[i].mouseDragged(x, y, button);
-        if ( projectionMappingJoints[i].isDragged() ) {
-            surface->setVertex(i, projectionMappingJoints[i].position);
+    if (mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].mouseDragged(x, y, button);
+            if ( projectionMappingJoints[i].isDragged() ) {
+                surface->setVertex(i, projectionMappingJoints[i].position);
+            }
+        }
+    } else if (mode == TEXTURE_MAPPING) {
+        ofVec2f textureSize = ofVec2f( surface->getTexture()->getWidth(), surface->getTexture()->getHeight() );
+        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].mouseDragged(x, y, button);
+            if ( textureMappingJoints[i].isDragged() ) {
+                surface->setTexCoord(i, textureMappingJoints[i].position/textureSize);
+            }
         }
     }
 }
@@ -100,8 +134,9 @@ void ofxSurfaceGui::addNumProjectionMappingJoints(int num)
 
 void ofxSurfaceGui::addTextureMappingJoint()
 {
-    textureMappingJoings.push_back(ofxCircleJoint());
-    //textureMappingJoings.back().position = surface->getTex
+    textureMappingJoints.push_back(ofxCircleJoint());
+    ofVec2f textureSize = ofVec2f(surface->getTexture()->getWidth(), surface->getTexture()->getHeight());
+    textureMappingJoints.back().position = surface->getTexCoord(textureMappingJoints.size()-1) * textureSize;
 }
 
 void ofxSurfaceGui::addNumTextureMappingJoints(int num)
