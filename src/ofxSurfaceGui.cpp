@@ -2,7 +2,7 @@
 
 ofxSurfaceGui::ofxSurfaceGui()
 {
-    
+    surface = NULL;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -18,6 +18,8 @@ void ofxSurfaceGui::setup(ofxTriangleSurface& surfaceForGui)
 
 void ofxSurfaceGui::update()
 {
+    if (surface == NULL) return;
+    
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].update();
     }
@@ -25,6 +27,7 @@ void ofxSurfaceGui::update()
 
 void ofxSurfaceGui::draw()
 {
+    if (surface == NULL) return;
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].draw();
     }
@@ -32,6 +35,7 @@ void ofxSurfaceGui::draw()
 
 void ofxSurfaceGui::mousePressed(int x, int y, int button)
 {
+    if (surface == NULL) return;
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].mousePressed(x, y, button);
     }
@@ -39,6 +43,7 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
 
 void ofxSurfaceGui::mouseReleased(int x, int y, int button)
 {
+    if (surface == NULL) return;
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].mouseReleased(x, y, button);
     }
@@ -46,6 +51,7 @@ void ofxSurfaceGui::mouseReleased(int x, int y, int button)
 
 void ofxSurfaceGui::mouseDragged(int x, int y, int button)
 {
+    if (surface == NULL) return;
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i].mouseDragged(x, y, button);
         if ( joints[i].isDragged() ) {
