@@ -14,9 +14,9 @@ ofxBaseJoint::~ofxBaseJoint()
 void ofxBaseJoint::mousePressed(int x, int y, int button)
 {
     if ( hitTest(ofVec2f(x, y)) ) {
-        selected = true;
+        //selected = true;
         clickDistance = position - ofVec2f(x, y);
-        startDrag();
+        //startDrag();
     }
 }
 

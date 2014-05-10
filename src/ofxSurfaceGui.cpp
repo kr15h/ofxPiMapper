@@ -4,6 +4,8 @@ ofxSurfaceGui::ofxSurfaceGui()
 {
     surface = NULL;
     mode = NONE;
+    bProjectionMappingJointSelected = false;
+    bTextureMappingJointSelected = false;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -56,14 +58,26 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
     if (mode == NONE) return;
     
     if (mode == PROJECTION_MAPPING) {
+        bProjectionMappingJointSelected = false;
         for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
             projectionMappingJoints[i].selected = false;
             projectionMappingJoints[i].mousePressed(x, y, button);
+            if ( !isProjectionMappingJointSelected() && projectionMappingJoints[i].hitTest(ofVec2f(x, y)) ) {
+                projectionMappingJoints[i].selected = true;
+                projectionMappingJoints[i].startDrag();
+                bProjectionMappingJointSelected = true;
+            }
         }
     } else if (mode == TEXTURE_MAPPING) {
+        bTextureMappingJointSelected = false;
         for ( int i=0; i<textureMappingJoints.size(); i++ ) {
             textureMappingJoints[i].selected = false;
             textureMappingJoints[i].mousePressed(x, y, button);
+            if ( !isTextureMappingJointSelected() && textureMappingJoints[i].hitTest(ofVec2f(x, y)) ) {
+                textureMappingJoints[i].selected = true;
+                textureMappingJoints[i].startDrag();
+                bTextureMappingJointSelected = true;
+            }
         }
     }
 }
@@ -148,4 +162,14 @@ void ofxSurfaceGui::addNumTextureMappingJoints(int num)
     for ( int i=0; i<num; i++ ) {
         addTextureMappingJoint();
     }
+}
+
+bool ofxSurfaceGui::isProjectionMappingJointSelected()
+{
+    return bProjectionMappingJointSelected;
+}
+
+bool ofxSurfaceGui::isTextureMappingJointSelected()
+{
+    return bTextureMappingJointSelected;
 }

@@ -34,6 +34,11 @@ private:
     vector<ofxCircleJoint> projectionMappingJoints;
     vector<ofxCircleJoint> textureMappingJoints;
     
+    bool bTextureMappingJointSelected;
+    bool bProjectionMappingJointSelected;
+    bool isProjectionMappingJointSelected();
+    bool isTextureMappingJointSelected();
+    
     void addProjectionMappingJoint();
     void addNumProjectionMappingJoints(int num);
     void addTextureMappingJoint();
