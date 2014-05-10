@@ -27,8 +27,10 @@ public:
 protected:
     ofColor fillColor;
     ofColor strokeColor;
+    ofColor fillColorSelected;
+    ofColor strokeColorSelected;
     float strokeWidth;
-    ofVec2f clickDistance;
+    ofVec2f clickDistance; // How far from the center of the joint the user has clicked?
     bool dragging;
     
 private:

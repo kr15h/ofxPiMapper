@@ -14,6 +14,7 @@ ofxBaseJoint::~ofxBaseJoint()
 void ofxBaseJoint::mousePressed(int x, int y, int button)
 {
     if ( hitTest(ofVec2f(x, y)) ) {
+        selected = true;
         clickDistance = position - ofVec2f(x, y);
         startDrag();
     }
@@ -47,8 +48,10 @@ bool ofxBaseJoint::isDragged()
 
 void ofxBaseJoint::setDefaultColors()
 {
-    fillColor = ofColor(0,255,255);
-    strokeColor = ofColor(255,255,255);
+    fillColor = ofColor(0, 255, 255);
+    strokeColor = ofColor(255, 255, 255);
+    fillColorSelected = ofColor(255, 255, 0);
+    strokeColorSelected = ofColor(255, 0, 0);
 }
 
 void ofxBaseJoint::setDefaultProperties()

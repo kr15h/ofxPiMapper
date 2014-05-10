@@ -17,10 +17,22 @@ void ofxCircleJoint::draw()
     
     ofPushStyle();
     ofFill();
-    ofSetColor(fillColor);
+    
+    if ( selected ) {
+        ofSetColor(fillColorSelected);
+    } else {
+        ofSetColor(fillColor);
+    }
+    
     ofCircle(position.x, position.y, radius);
     ofNoFill();
-    ofSetColor(strokeColor);
+    
+    if ( selected ) {
+        ofSetColor(strokeColorSelected);
+    } else {
+        ofSetColor(strokeColor);
+    }
+    
     ofSetLineWidth(strokeWidth);
     ofCircle(position.x, position.y, radius);
     ofPopStyle();

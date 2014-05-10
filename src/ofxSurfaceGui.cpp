@@ -57,10 +57,12 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
     
     if (mode == PROJECTION_MAPPING) {
         for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].selected = false;
             projectionMappingJoints[i].mousePressed(x, y, button);
         }
     } else if (mode == TEXTURE_MAPPING) {
         for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+            textureMappingJoints[i].selected = false;
             textureMappingJoints[i].mousePressed(x, y, button);
         }
     }
