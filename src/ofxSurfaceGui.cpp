@@ -3,7 +3,7 @@
 ofxSurfaceGui::ofxSurfaceGui()
 {
     surface = NULL;
-    mode = TEXTURE_MAPPING;
+    mode = NONE;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -107,11 +107,13 @@ void ofxSurfaceGui::mouseDragged(int x, int y, int button)
 
 void ofxSurfaceGui::setMode(ofxSurfaceGui::editMode newMode)
 {
-    if (mode != NONE ||
-        mode != PROJECTION_MAPPING ||
+    if (mode != NONE &&
+        mode != PROJECTION_MAPPING &&
         mode != TEXTURE_MAPPING) {
         throw std::runtime_error("Trying to set invalid mode.");
     };
+    
+    mode = newMode;
 }
 
 ofxSurfaceGui::editMode ofxSurfaceGui::getMode()

@@ -2,12 +2,11 @@
 
 void ofApp::setup()
 {
-    //ofGetCurrentRenderer()->setLineSmoothing(true);
-    // Load test pattern image
     image.loadImage("TestPatternInvert.jpg");
     
-    // Create a triangle surface
-    //triangleSurface.setup( ofVec2f(30,40), ofVec2f(500,500), ofVec2f(0,600), ofVec2f(0,0), ofVec2f(1,1), ofVec2f(0,1), &image.getTextureReference() );
+    triangleSurface.setup(ofVec2f(30,40), ofVec2f(500,500), ofVec2f(0,600),
+                          ofVec2f(0,0), ofVec2f(1,1), ofVec2f(0,1),
+                          &image.getTextureReference());
     
     gui.setup(triangleSurface);
 }
@@ -38,6 +37,13 @@ void ofApp::draw()
 void ofApp::keyPressed(int key)
 {
 	cout << "Key pressed: " << static_cast<char>(key) << endl;
+    
+    switch (key) {
+        case '1': gui.setMode(ofxSurfaceGui::NONE); break;
+        case '2': gui.setMode(ofxSurfaceGui::TEXTURE_MAPPING); break;
+        case '3': gui.setMode(ofxSurfaceGui::PROJECTION_MAPPING); break;
+        default: break;
+    }
 }
 
 void ofApp::mousePressed(int x, int y, int button)
