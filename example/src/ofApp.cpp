@@ -30,7 +30,27 @@ void ofApp::update()
 
 void ofApp::draw()
 {
+    // Check GUI mode - we want to see the texture that we are editing
+    // together with the actual surface being projection mapped.
+    
+    ofxSurfaceGui::editMode mode = gui.getMode();
+    if ( mode == ofxSurfaceGui::TEXTURE_MAPPING ) {
+        // Draw texture of the surface in the background
+        //triangleSurface.getTexture()->draw(ofPoint(0,0));
+        triangleSurface.drawTexture(ofVec2f(0, 0));
+        
+        // Make the triangle surface transparent but still visible
+        // while we map the texture coordinates.
+        ofPushStyle();
+        ofSetColor(255, 255, 255, 200);
+    }
+    
     triangleSurface.draw();
+    
+    if ( mode == ofxSurfaceGui::TEXTURE_MAPPING ) {
+        ofPopStyle();
+    }
+    
     gui.draw();
 }
 

@@ -38,6 +38,24 @@ void ofxBaseSurface::createDefaultTexture()
     texture = &defaultTexture;
 }
 
+void  ofxBaseSurface::drawTexture(ofVec2f position)
+{
+    ofMesh texMesh;
+    texMesh.addVertex(position);
+    texMesh.addVertex(position + ofVec2f(texture->getWidth(), 0.0f));
+    texMesh.addVertex(position + ofVec2f(texture->getWidth(), texture->getHeight()));
+    texMesh.addVertex(position + ofVec2f(0.0f, texture->getHeight()));
+    texMesh.addTriangle(0, 2, 3);
+    texMesh.addTriangle(0, 1, 2);
+    texMesh.addTexCoord(ofVec2f(0.0f, 0.0f));
+    texMesh.addTexCoord(ofVec2f(1.0f, 0.0f));
+    texMesh.addTexCoord(ofVec2f(1.0f, 1.0f));
+    texMesh.addTexCoord(ofVec2f(0.0f, 1.0f));
+    texture->bind();
+    texMesh.draw();
+    texture->unbind();
+}
+
 ofTexture* ofxBaseSurface::getTexture()
 {
     return texture;
