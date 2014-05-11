@@ -25,7 +25,6 @@ public:
     void selectSurface(int index);
     void unselectAllSurfaces();
     int size();
-    // TODO: add simple surface
     
 private:
     deque<ofxTriangleSurface*> triangleSurfaces;

@@ -27,6 +27,8 @@ public:
     void select();
     void unselect();
     bool hitTest(float x, float y);
+    bool hitTestTextureArea(float x, float y);
+    bool hitTestProjectionArea(float x, float y);
     bool isSelected();
     
     editMode getMode();
@@ -50,6 +52,7 @@ private:
     bool isProjectionMappingJointSelected();
     bool isTextureMappingJointSelected();
     bool projectionAreaExists();
+    bool textureAreaExists();
     
     void addProjectionMappingJoint();
     void addNumProjectionMappingJoints(int num);

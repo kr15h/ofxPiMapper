@@ -67,9 +67,14 @@ void ofxSurfaceManager::mousePressed(int x, int y, int button)
 {
     bool bSurfaceSelected = false;
     for ( int i=0; i<surfaceGuis.size(); i++ ) {
-        if ( surfaceGuis[i]->hitTest(x, y) ) {
-            selectSurface(i);
-            bSurfaceSelected = true;
+        // check only if in projection mapping mode
+        if ( surfaceGuis[i]->getMode() == ofxSurfaceGui::PROJECTION_MAPPING ) {
+            if ( surfaceGuis[i]->hitTest(x, y) ) {
+                selectSurface(i);
+                bSurfaceSelected = true;
+            }
+        } else {
+            bSurfaceSelected = true; // Hackish - we will need a lot of refractoring here later
         }
         surfaceGuis[i]->mousePressed(x, y, button);
     }

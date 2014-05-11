@@ -215,15 +215,50 @@ void ofxSurfaceGui::unselect()
 
 bool ofxSurfaceGui::hitTest(float x, float y)
 {
-    if ( projectionAreaExists() ) {
-        if ( projectionHitarea.inside(x, y) ) {
+    if (mode == PROJECTION_MAPPING){
+        return hitTestProjectionArea(x, y);
+    } else if (mode == TEXTURE_MAPPING) {
+        return hitTestTextureArea(x, y);
+    }
+}
+
+bool ofxSurfaceGui::hitTestTextureArea(float x, float y)
+{
+    if ( textureAreaExists() ) {
+        if ( textureHitarea.inside(x, y) ) {
             return true;
         } else {
+            // are we hitting texture mapping joints?
+            for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+                if ( textureMappingJoints[i].hitTest(ofVec2f(x, y)) ) {
+                    return true;
+                }
+            }
             return false;
         }
     } else {
         return false;
-    }
+    } // textureAreaExists()
+}
+
+bool ofxSurfaceGui::hitTestProjectionArea(float x, float y)
+{
+    if ( projectionAreaExists() ) {
+        if ( projectionHitarea.inside(x, y) ) {
+            return true;
+        } else {
+            // hitting one of the projection mappting joints also counts,
+            // so let's check that
+            for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+                if ( projectionMappingJoints[i].hitTest(ofVec2f(x, y)) ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    } else {
+        return false;
+    } // projectionAreaExists()
 }
 
 bool ofxSurfaceGui::isSelected()
@@ -312,6 +347,15 @@ bool ofxSurfaceGui::isTextureMappingJointSelected()
 bool ofxSurfaceGui::projectionAreaExists()
 {
     if ( projectionHitarea.size() > 2 ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool ofxSurfaceGui::textureAreaExists()
+{
+    if ( textureHitarea.size() > 2 ) {
         return true;
     } else {
         return false;
