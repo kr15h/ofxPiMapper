@@ -8,6 +8,7 @@ ofxSurfaceGui::ofxSurfaceGui()
     bTextureMappingJointSelected = false;
     bTextureDragging = false;
     bProjectionDragging = false;
+    bSelected = false;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -43,20 +44,8 @@ void ofxSurfaceGui::draw()
     if (surface == NULL) return;
     if (mode == NONE) return;
     
-    if (mode == PROJECTION_MAPPING) {
-        ofPolyline line;
-        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-            line.addVertex( ofPoint(projectionMappingJoints[i].position.x,
-                                    projectionMappingJoints[i].position.y) );
-        }
-        line.close();
-        line.draw();
-        
-        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-            projectionMappingJoints[i].draw();
-        }
-        
-    } else if (mode == TEXTURE_MAPPING) {
+    // This has to be on bottom, so is drawn first
+    if (bSelected && mode == TEXTURE_MAPPING) {
         ofPolyline line;
         for ( int i=0; i<textureMappingJoints.size(); i++ ) {
             line.addVertex( ofPoint(textureMappingJoints[i].position.x,
@@ -69,12 +58,31 @@ void ofxSurfaceGui::draw()
             textureMappingJoints[i].draw();
         }
     }
+    
+    // Draw line around projection surface always when selected
+    if ( bSelected ) {
+        ofPolyline line;
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            line.addVertex( ofPoint(projectionMappingJoints[i].position.x,
+                                    projectionMappingJoints[i].position.y) );
+        }
+        line.close();
+        line.draw();
+    }
+    
+    // Draw projection surface joints
+    if (bSelected && mode == PROJECTION_MAPPING) {
+        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+            projectionMappingJoints[i].draw();
+        }
+    }
 }
 
 void ofxSurfaceGui::mousePressed(int x, int y, int button)
 {
     if (surface == NULL) return;
     if (mode == NONE) return;
+    if (!bSelected) return;
     
     if (mode == PROJECTION_MAPPING) {
         bProjectionMappingJointSelected = false;
@@ -140,6 +148,7 @@ void ofxSurfaceGui::mouseDragged(int x, int y, int button)
 {
     if (surface == NULL) return;
     if (mode == NONE) return;
+    if (!bSelected) return;
     
     if (mode == PROJECTION_MAPPING) {
         if ( bProjectionDragging ) {
@@ -192,6 +201,34 @@ void ofxSurfaceGui::setMode(ofxSurfaceGui::editMode newMode)
     };
     
     mode = newMode;
+}
+
+void ofxSurfaceGui::select()
+{
+    bSelected = true;
+}
+
+void ofxSurfaceGui::unselect()
+{
+    bSelected = false;
+}
+
+bool ofxSurfaceGui::hitTest(float x, float y)
+{
+    if ( projectionAreaExists() ) {
+        if ( projectionHitarea.inside(x, y) ) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+bool ofxSurfaceGui::isSelected()
+{
+    return bSelected;
 }
 
 ofxSurfaceGui::editMode ofxSurfaceGui::getMode()
@@ -270,4 +307,13 @@ bool ofxSurfaceGui::isProjectionMappingJointSelected()
 bool ofxSurfaceGui::isTextureMappingJointSelected()
 {
     return bTextureMappingJointSelected;
+}
+
+bool ofxSurfaceGui::projectionAreaExists()
+{
+    if ( projectionHitarea.size() > 2 ) {
+        return true;
+    } else {
+        return false;
+    }
 }

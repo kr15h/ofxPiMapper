@@ -24,6 +24,10 @@ public:
     void mouseReleased(int x, int y, int button);
     void mouseDragged(int x, int y, int button);
     void setMode(editMode newMode);
+    void select();
+    void unselect();
+    bool hitTest(float x, float y);
+    bool isSelected();
     
     editMode getMode();
     
@@ -41,9 +45,11 @@ private:
     bool bProjectionMappingJointSelected;
     bool bTextureDragging;
     bool bProjectionDragging;
+    bool bSelected;
     
     bool isProjectionMappingJointSelected();
     bool isTextureMappingJointSelected();
+    bool projectionAreaExists();
     
     void addProjectionMappingJoint();
     void addNumProjectionMappingJoints(int num);

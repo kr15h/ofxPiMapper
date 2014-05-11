@@ -4,8 +4,6 @@
 #include "ofMain.h"
 #include "ofxPiMapper.h"
 
-#include "ofxSurfaceGui.h"
-
 class ofApp : public ofBaseApp
 {
 public: 
@@ -18,10 +16,8 @@ public:
 	void mouseReleased(int x, int y, int button);
 	void mouseDragged(int x, int y, int button);
     
-    ofxTriangleSurface triangleSurface;
     ofImage image;
-    
-    ofxSurfaceGui gui;
+    ofxSurfaceManager surfaceManager;
     bool bShowInfo;
 };
 
