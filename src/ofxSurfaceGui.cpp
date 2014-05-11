@@ -6,6 +6,8 @@ ofxSurfaceGui::ofxSurfaceGui()
     mode = NONE;
     bProjectionMappingJointSelected = false;
     bTextureMappingJointSelected = false;
+    bTextureDragging = false;
+    bProjectionDragging = false;
 }
 
 ofxSurfaceGui::~ofxSurfaceGui()
@@ -85,6 +87,15 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
                 bProjectionMappingJointSelected = true;
             }
         }
+        
+        if ( !bProjectionMappingJointSelected ) {
+            // Check if we are hitting projection hitarea
+            if ( projectionHitarea.inside(x, y) ) {
+                clickPosition = ofVec2f(x, y);
+                stopDrag();
+                dragProjectionArea();
+            }
+        }
     } else if (mode == TEXTURE_MAPPING) {
         bTextureMappingJointSelected = false;
         for ( int i=0; i<textureMappingJoints.size(); i++ ) {
@@ -96,12 +107,22 @@ void ofxSurfaceGui::mousePressed(int x, int y, int button)
                 bTextureMappingJointSelected = true;
             }
         }
+        
+        if ( !bTextureMappingJointSelected ) {
+            // Check  if we are hitting the texture mapping hitarea
+            if ( textureHitarea.inside(x, y) ) {
+                clickPosition = ofVec2f(x, y);
+                stopDrag();
+                dragTextureArea();
+            }
+        }
     }
 }
 
 void ofxSurfaceGui::mouseReleased(int x, int y, int button)
 {
     if (surface == NULL) return;
+    stopDrag();
     if (mode == NONE) return;
     
     if (mode == PROJECTION_MAPPING) {
@@ -121,21 +142,45 @@ void ofxSurfaceGui::mouseDragged(int x, int y, int button)
     if (mode == NONE) return;
     
     if (mode == PROJECTION_MAPPING) {
-        for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-            projectionMappingJoints[i].mouseDragged(x, y, button);
-            if ( projectionMappingJoints[i].isDragged() ) {
+        if ( bProjectionDragging ) {
+            ofVec2f curPos = ofVec2f(x, y);
+            ofVec2f dist = curPos - clickPosition;
+            for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+                projectionMappingJoints[i].position += dist;
                 surface->setVertex(i, projectionMappingJoints[i].position);
             }
-        }
+            updateProjectionHitarea();
+            clickPosition = curPos;
+        } else {
+            for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+                projectionMappingJoints[i].mouseDragged(x, y, button);
+                if ( projectionMappingJoints[i].isDragged() ) {
+                    surface->setVertex(i, projectionMappingJoints[i].position);
+                    updateProjectionHitarea();
+                }
+            } // for
+        } // if ( bProjectionDragging
     } else if (mode == TEXTURE_MAPPING) {
         ofVec2f textureSize = ofVec2f( surface->getTexture()->getWidth(), surface->getTexture()->getHeight() );
-        for ( int i=0; i<textureMappingJoints.size(); i++ ) {
-            textureMappingJoints[i].mouseDragged(x, y, button);
-            if ( textureMappingJoints[i].isDragged() ) {
+        if ( bTextureDragging ) {
+            ofVec2f curPos = ofVec2f(x, y);
+            ofVec2f dist = curPos - clickPosition;
+            for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+                textureMappingJoints[i].position += dist;
                 surface->setTexCoord(i, textureMappingJoints[i].position/textureSize);
             }
-        }
-    }
+            updateTextureHitarea();
+            clickPosition = curPos;
+        } else {
+            for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+                textureMappingJoints[i].mouseDragged(x, y, button);
+                if ( textureMappingJoints[i].isDragged() ) {
+                    surface->setTexCoord(i, textureMappingJoints[i].position/textureSize);
+                    updateTextureHitarea();
+                }
+            } // for
+        } // if ( bTextureDragging
+    } // if (mode
 }
 
 void ofxSurfaceGui::setMode(ofxSurfaceGui::editMode newMode)
@@ -158,6 +203,7 @@ void ofxSurfaceGui::addProjectionMappingJoint()
 {
     projectionMappingJoints.push_back(ofxCircleJoint());
     projectionMappingJoints.back().position = surface->getVertex(projectionMappingJoints.size()-1);
+    updateProjectionHitarea();
 }
 
 void ofxSurfaceGui::addNumProjectionMappingJoints(int num)
@@ -172,6 +218,7 @@ void ofxSurfaceGui::addTextureMappingJoint()
     textureMappingJoints.push_back(ofxCircleJoint());
     ofVec2f textureSize = ofVec2f(surface->getTexture()->getWidth(), surface->getTexture()->getHeight());
     textureMappingJoints.back().position = surface->getTexCoord(textureMappingJoints.size()-1) * textureSize;
+    updateTextureHitarea();
 }
 
 void ofxSurfaceGui::addNumTextureMappingJoints(int num)
@@ -179,6 +226,40 @@ void ofxSurfaceGui::addNumTextureMappingJoints(int num)
     for ( int i=0; i<num; i++ ) {
         addTextureMappingJoint();
     }
+}
+
+void ofxSurfaceGui::updateTextureHitarea()
+{
+    textureHitarea.clear();
+    for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+        textureHitarea.addVertex( ofPoint(textureMappingJoints[i].position.x,
+                                          textureMappingJoints[i].position.y) );
+    }
+}
+
+void ofxSurfaceGui::updateProjectionHitarea()
+{
+    projectionHitarea.clear();
+    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+        projectionHitarea.addVertex( ofPoint(projectionMappingJoints[i].position.x,
+                                             projectionMappingJoints[i].position.y) );
+    }
+}
+
+void ofxSurfaceGui::dragTextureArea()
+{
+    bTextureDragging = true;
+}
+
+void ofxSurfaceGui::dragProjectionArea()
+{
+    bProjectionDragging = true;
+}
+
+void ofxSurfaceGui::stopDrag()
+{
+    bTextureDragging = false;
+    bProjectionDragging = false;
 }
 
 bool ofxSurfaceGui::isProjectionMappingJointSelected()

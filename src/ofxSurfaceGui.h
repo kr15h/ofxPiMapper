@@ -30,12 +30,18 @@ public:
 private:
     editMode mode;
     ofxTriangleSurface* surface;
+    ofPolyline textureHitarea;
+    ofPolyline projectionHitarea;
+    ofVec2f clickPosition;
     
     vector<ofxCircleJoint> projectionMappingJoints;
     vector<ofxCircleJoint> textureMappingJoints;
     
     bool bTextureMappingJointSelected;
     bool bProjectionMappingJointSelected;
+    bool bTextureDragging;
+    bool bProjectionDragging;
+    
     bool isProjectionMappingJointSelected();
     bool isTextureMappingJointSelected();
     
@@ -43,6 +49,11 @@ private:
     void addNumProjectionMappingJoints(int num);
     void addTextureMappingJoint();
     void addNumTextureMappingJoints(int num);
+    void updateTextureHitarea();
+    void updateProjectionHitarea();
+    void dragTextureArea();
+    void dragProjectionArea();
+    void stopDrag();
 };
 
 #endif
