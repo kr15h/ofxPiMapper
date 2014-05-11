@@ -5,8 +5,6 @@
 #include "ofxTriangleSurface.h"
 #include "ofxSurfaceGui.h"
 
-#define MAX_SURFACE_COUNT 25
-
 class ofxSurfaceManager
 {
 public:
@@ -30,8 +28,6 @@ public:
     // TODO: add simple surface
     
 private:
-    ofxTriangleSurface aTriangleSurfaces[MAX_SURFACE_COUNT];
-    ofxSurfaceGui aSurfaceGuis[MAX_SURFACE_COUNT];
     deque<ofxTriangleSurface*> triangleSurfaces;
     deque<ofxSurfaceGui*> surfaceGuis;
     

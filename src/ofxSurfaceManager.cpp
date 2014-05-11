@@ -7,7 +7,16 @@ ofxSurfaceManager::ofxSurfaceManager()
 
 ofxSurfaceManager::~ofxSurfaceManager()
 {
+    // delete all extra allocations from the heap
+    while ( triangleSurfaces.size() ) {
+        delete triangleSurfaces.back();
+        triangleSurfaces.pop_back();
+    }
     
+    while ( surfaceGuis.size() ) {
+        delete surfaceGuis.back();
+        surfaceGuis.pop_back();
+    }
 }
 
 void ofxSurfaceManager::setup()
@@ -96,7 +105,9 @@ void ofxSurfaceManager::removeSurface(int index)
         return;
     }
     
+    delete surfaceGuis[index];
     surfaceGuis.erase( surfaceGuis.begin()+index );
+    delete triangleSurfaces[index];
     triangleSurfaces.erase( triangleSurfaces.begin()+index );
 }
 
@@ -130,8 +141,8 @@ int ofxSurfaceManager::size()
 
 void ofxSurfaceManager::addTriangleSurface()
 {
-    triangleSurfaces.push_back( &aTriangleSurfaces[triangleSurfaces.size()] );
-    surfaceGuis.push_back( &aSurfaceGuis[surfaceGuis.size()] );
+    triangleSurfaces.push_back( new ofxTriangleSurface() );
+    surfaceGuis.push_back( new ofxSurfaceGui() );
     surfaceGuis.back()->setup( *triangleSurfaces.back() );
 }
 
