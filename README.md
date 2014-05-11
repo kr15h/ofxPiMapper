@@ -37,9 +37,10 @@ Version history
 
 ### Version 0.1.2:
 TODO: 
- - Possibility to add multiple surfaces with a kind of layer management utility.
+ -/+ Possibility to add multiple surfaces with a kind of layer management utility.
+ - Add GUI for surface manager instead per surface
  + Ability to select and drag whole surfaces
- - Select / deselect surfaces
+ + Select / deselect surfaces
  - Example with video source. Maybe one example with different surfaces and sources.
  - How to switch between sources?
 
