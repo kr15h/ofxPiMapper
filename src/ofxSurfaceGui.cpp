@@ -213,6 +213,45 @@ void ofxSurfaceGui::unselect()
     bSelected = false;
 }
 
+void ofxSurfaceGui::updateTextureHitarea()
+{
+    textureHitarea.clear();
+    for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+        textureHitarea.addVertex( ofPoint(textureMappingJoints[i].position.x,
+                                          textureMappingJoints[i].position.y) );
+    }
+}
+
+void ofxSurfaceGui::updateProjectionHitarea()
+{
+    projectionHitarea.clear();
+    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+        projectionHitarea.addVertex( ofPoint(projectionMappingJoints[i].position.x,
+                                             projectionMappingJoints[i].position.y) );
+    }
+}
+
+void ofxSurfaceGui::updateHitarea()
+{
+    updateProjectionHitarea();
+    updateTextureHitarea();
+}
+
+void ofxSurfaceGui::updateJoints()
+{
+    // move joints to their positions
+    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
+        projectionMappingJoints[i].position = surface->getVertex(i);
+    }
+    updateProjectionHitarea();
+    
+    ofVec2f textureSize = ofVec2f(surface->getTexture()->getWidth(), surface->getTexture()->getHeight());
+    for ( int i=0; i<textureMappingJoints.size(); i++ ) {
+        textureMappingJoints[i].position = surface->getTexCoord(i) * textureSize;
+    }
+    updateTextureHitarea();
+}
+
 bool ofxSurfaceGui::hitTest(float x, float y)
 {
     if (mode == PROJECTION_MAPPING){
@@ -297,24 +336,6 @@ void ofxSurfaceGui::addNumTextureMappingJoints(int num)
 {
     for ( int i=0; i<num; i++ ) {
         addTextureMappingJoint();
-    }
-}
-
-void ofxSurfaceGui::updateTextureHitarea()
-{
-    textureHitarea.clear();
-    for ( int i=0; i<textureMappingJoints.size(); i++ ) {
-        textureHitarea.addVertex( ofPoint(textureMappingJoints[i].position.x,
-                                          textureMappingJoints[i].position.y) );
-    }
-}
-
-void ofxSurfaceGui::updateProjectionHitarea()
-{
-    projectionHitarea.clear();
-    for ( int i=0; i<projectionMappingJoints.size(); i++ ) {
-        projectionHitarea.addVertex( ofPoint(projectionMappingJoints[i].position.x,
-                                             projectionMappingJoints[i].position.y) );
     }
 }
 

@@ -26,6 +26,11 @@ public:
     void setMode(editMode newMode);
     void select();
     void unselect();
+    void updateTextureHitarea();
+    void updateProjectionHitarea();
+    void updateHitarea(); // update both
+    void updateJoints();
+    
     bool hitTest(float x, float y);
     bool hitTestTextureArea(float x, float y);
     bool hitTestProjectionArea(float x, float y);
@@ -58,8 +63,6 @@ private:
     void addNumProjectionMappingJoints(int num);
     void addTextureMappingJoint();
     void addNumTextureMappingJoints(int num);
-    void updateTextureHitarea();
-    void updateProjectionHitarea();
     void dragTextureArea();
     void dragProjectionArea();
     void stopDrag();

@@ -184,10 +184,12 @@ void ofxSurfaceManager::addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, o
 {
     addTriangleSurface();
     triangleSurfaces.back()->setup(v1, v2, v3, t1, t2, t3, triangleSurfaces.back()->getTexture());
+    surfaceGuis.back()->updateJoints();
 }
 
 void ofxSurfaceManager::addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr)
 {
     addTriangleSurface();
     triangleSurfaces.back()->setup(v1, v2, v3, t1, t2, t3, texturePtr);
+    surfaceGuis.back()->updateJoints();
 }
