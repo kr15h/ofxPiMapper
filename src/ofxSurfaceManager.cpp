@@ -35,7 +35,7 @@ void ofxSurfaceManager::draw()
 {
     // Check GUI mode - we want to see the texture that we are editing
     // together with the actual surface being projection mapped.
-    for ( int i=0; i<surfaceGuis.size(); i++ ) {
+    for ( int i=surfaceGuis.size()-1; i>=0; i-- ) {
         
         bool bDrawTexture = false;
         if ( surfaceGuis[i]->isSelected() && surfaceGuis[i]->getMode() == ofxSurfaceGui::TEXTURE_MAPPING ) {
@@ -70,12 +70,18 @@ void ofxSurfaceManager::mousePressed(int x, int y, int button)
         // check only if in projection mapping mode
         if ( surfaceGuis[i]->getMode() == ofxSurfaceGui::PROJECTION_MAPPING ) {
             if ( surfaceGuis[i]->hitTest(x, y) ) {
+                unselectAllSurfaces();
                 selectSurface(i);
                 bSurfaceSelected = true;
+                break; // we need to select just one surface
             }
         } else {
             bSurfaceSelected = true; // Hackish - we will need a lot of refractoring here later
         }
+    }
+    
+    // execute mouse pressed events for surface GUIs
+    for ( int i=0; i<surfaceGuis.size(); i++ ) {
         surfaceGuis[i]->mousePressed(x, y, button);
     }
     

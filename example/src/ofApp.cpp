@@ -6,6 +6,7 @@ void ofApp::setup()
     bShowInfo = false;
     
     surfaceManager.addSurface();
+    surfaceManager.addSurface();
 }
 
 void ofApp::update()
