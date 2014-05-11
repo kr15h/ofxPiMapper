@@ -38,7 +38,7 @@ void ofxBaseSurface::createDefaultTexture()
     texture = &defaultTexture;
 }
 
-void  ofxBaseSurface::drawTexture(ofVec2f position)
+void ofxBaseSurface::drawTexture(ofVec2f position)
 {
     ofMesh texMesh;
     texMesh.addVertex(position);
@@ -54,6 +54,11 @@ void  ofxBaseSurface::drawTexture(ofVec2f position)
     texture->bind();
     texMesh.draw();
     texture->unbind();
+}
+
+void ofxBaseSurface::setTexture(ofTexture *texturePtr)
+{
+    texture = texturePtr;
 }
 
 ofTexture* ofxBaseSurface::getTexture()

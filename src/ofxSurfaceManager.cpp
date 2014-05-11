@@ -109,6 +109,23 @@ void ofxSurfaceManager::addSurface()
     addTriangleSurface();
 }
 
+void ofxSurfaceManager::addSurface(ofTexture* texturePtr)
+{
+    addTriangleSurface(texturePtr);
+}
+
+void ofxSurfaceManager::addSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3)
+{
+    addTriangleSurface(v1, v2, v3, t1, t2, t3);
+}
+
+void ofxSurfaceManager::addSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3,
+                                   ofVec2f t1, ofVec2f t2, ofVec2f t3,
+                                   ofTexture *texturePtr)
+{
+    addTriangleSurface(v1, v2, v3, t1, t2, t3, texturePtr);
+}
+
 void ofxSurfaceManager::removeSurface(int index)
 {
     if ( index >= surfaceGuis.size() ) {
@@ -155,6 +172,18 @@ void ofxSurfaceManager::addTriangleSurface()
     triangleSurfaces.push_back( new ofxTriangleSurface() );
     surfaceGuis.push_back( new ofxSurfaceGui() );
     surfaceGuis.back()->setup( *triangleSurfaces.back() );
+}
+
+void ofxSurfaceManager::addTriangleSurface(ofTexture* texturePtr)
+{
+    addTriangleSurface();
+    triangleSurfaces.back()->setTexture(texturePtr);
+}
+
+void ofxSurfaceManager::addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3)
+{
+    addTriangleSurface();
+    triangleSurfaces.back()->setup(v1, v2, v3, t1, t2, t3, triangleSurfaces.back()->getTexture());
 }
 
 void ofxSurfaceManager::addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr)

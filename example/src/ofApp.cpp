@@ -6,7 +6,10 @@ void ofApp::setup()
     bShowInfo = false;
     
     surfaceManager.addSurface();
-    surfaceManager.addSurface();
+    surfaceManager.addSurface( &image.getTextureReference() );
+    surfaceManager.addSurface(ofVec2f(10,10), ofVec2f(300, 20), ofVec2f(200, 300),
+                              ofVec2f(0.1f, 0.1f), ofVec2f(0.5f, 0.2f), ofVec2f(0.4f, 0.9f),
+                              &image.getTextureReference());
 }
 
 void ofApp::update()

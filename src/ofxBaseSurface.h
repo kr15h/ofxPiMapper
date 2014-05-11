@@ -14,6 +14,7 @@ public:
     
     // Draws a texture using ofMesh
     void drawTexture(ofVec2f position);
+    void setTexture(ofTexture* texturePtr);
     
     ofTexture* getTexture();
     
