@@ -10,13 +10,22 @@ public:
     ofxProjectionEditor();
     ~ofxProjectionEditor();
     
+    void registerAppEvents();
+    void unregisterAppEvents();
+    void registerMouseEvents();
+    void unregisterMouseEvents();
+    
+    void update(ofEventArgs& args);
     void draw();
+    void mouseDragged(ofMouseEventArgs& args);
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void clearJoints();
     void createJoints();
     void updateJoints();
     void moveSelectedSurface(ofVec2f by);
-    bool hitTestJoints(ofVec2f pos);
+    void stopDragJoints();
+    void updateVertices();
+    ofxCircleJoint* hitTestJoints(ofVec2f pos);
     
 private:
     ofxSurfaceManager* surfaceManager;

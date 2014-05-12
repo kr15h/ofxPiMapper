@@ -3,21 +3,61 @@
 ofxProjectionEditor::ofxProjectionEditor()
 {
     surfaceManager = NULL;
+    registerAppEvents();
+    registerMouseEvents();
 }
 
 ofxProjectionEditor::~ofxProjectionEditor()
 {
     clearJoints();
     surfaceManager = NULL;
+    unregisterAppEvents();
+    unregisterMouseEvents();
+}
+
+void ofxProjectionEditor::registerAppEvents()
+{
+    ofAddListener(ofEvents().update, this, &ofxProjectionEditor::update);
+}
+
+void ofxProjectionEditor::unregisterAppEvents()
+{
+    ofRemoveListener(ofEvents().update, this, &ofxProjectionEditor::update);
+}
+
+void ofxProjectionEditor::registerMouseEvents()
+{
+    ofAddListener(ofEvents().mouseDragged, this, &ofxProjectionEditor::mouseDragged);
+}
+
+void ofxProjectionEditor::unregisterMouseEvents()
+{
+    ofRemoveListener(ofEvents().mouseDragged, this, &ofxProjectionEditor::mouseDragged);
+}
+
+void ofxProjectionEditor::update(ofEventArgs &args)
+{
+    // update surface if one of the joints is being dragged
+    for ( int i=0; i<joints.size(); i++ ) {
+        if ( joints[i]->isDragged() ) {
+            // update vertex to new location
+            surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
+            break;
+        }
+    }
 }
 
 void ofxProjectionEditor::draw()
 {
     if ( surfaceManager == NULL ) return;
-    cout << "ofxProjectionEditor::draw()" << endl;
     if ( surfaceManager->getSelectedSurface() == NULL ) return;
     if ( joints.size() <= 0 ) createJoints();
     drawJoints();
+}
+
+void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
+{
+    //
 }
 
 void ofxProjectionEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
@@ -70,19 +110,25 @@ void ofxProjectionEditor::moveSelectedSurface(ofVec2f by)
     updateJoints();
 }
 
-bool ofxProjectionEditor::hitTestJoints(ofVec2f pos)
+void ofxProjectionEditor::stopDragJoints()
+{
+    for (int i=0; i<joints.size(); i++){
+        joints[i]->stopDrag();
+    }
+}
+
+ofxCircleJoint* ofxProjectionEditor::hitTestJoints(ofVec2f pos)
 {
     for ( int i=0; i<joints.size(); i++ ) {
         if ( joints[i]->hitTest(pos) ){
-            return true;
+            return joints[i];
         }
     }
-    return false;
+    return NULL;
 }
 
 void ofxProjectionEditor::drawJoints()
 {
-    cout << "draw joints" << endl;
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i]->draw();
     }

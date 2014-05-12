@@ -74,22 +74,29 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
     } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
         return;
     } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
-        // attempt to select surface, loop from end to beginning
+        
         bool bSurfaceSelected = false;
-        for ( int i=surfaceManager->size()-1; i>=0; i-- ) {
-            if ( surfaceManager->getSurface(i)->hitTest( ofVec2f(args.x, args.y) ) ) {
-                projectionEditor.clearJoints();
-                surfaceManager->selectSurface(i);
-                projectionEditor.createJoints();
-                bSurfaceSelected = true;
-                break;
+        
+        ofxCircleJoint* hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
+        if ( hitJoint != NULL ) {
+            hitJoint->startDrag();
+            bSurfaceSelected = true;
+        }
+        
+        // attempt to select surface, loop from end to beginning
+        if ( !bSurfaceSelected ){
+            for ( int i=surfaceManager->size()-1; i>=0; i-- ) {
+                if ( surfaceManager->getSurface(i)->hitTest( ofVec2f(args.x, args.y) ) ) {
+                    projectionEditor.clearJoints();
+                    surfaceManager->selectSurface(i);
+                    projectionEditor.createJoints();
+                    bSurfaceSelected = true;
+                    break;
+                }
             }
         }
         
-        // Check if hitting one of the joints as that also counts as hit when surface is selected
-        if ( projectionEditor.hitTestJoints(ofVec2f(args.x, args.y)) ) {
-            bSurfaceSelected = true;
-        } else if ( bSurfaceSelected ) {
+        if ( bSurfaceSelected && hitJoint == NULL ) {
             // if not hitting the joints, start drag only if we have a selected surface
             clickPosition = ofVec2f(args.x, args.y);
             startDrag();
@@ -106,6 +113,7 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
 void ofxSurfaceManagerGui::mouseReleased(ofMouseEventArgs &args)
 {
     stopDrag();
+    projectionEditor.stopDragJoints();
 }
 
 void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)

@@ -4,18 +4,31 @@ ofxBaseJoint::ofxBaseJoint()
 {
     setDefaultColors();
     setDefaultProperties();
+    registerMouseEvents();
 }
 
 ofxBaseJoint::~ofxBaseJoint()
 {
-
+    unregisterMouseEvents();
 }
 
-void ofxBaseJoint::mousePressed(int x, int y, int button)
+void ofxBaseJoint::registerMouseEvents()
 {
-    if ( hitTest(ofVec2f(x, y)) ) {
+    ofAddListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
+    ofAddListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
+}
+
+void ofxBaseJoint::unregisterMouseEvents()
+{
+    ofRemoveListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
+    ofRemoveListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
+}
+
+void ofxBaseJoint::mousePressed(ofMouseEventArgs& args)
+{
+    if ( hitTest(ofVec2f(args.x, args.y)) ) {
         //selected = true;
-        clickDistance = position - ofVec2f(x, y);
+        clickDistance = position - ofVec2f(args.x, args.y);
         //startDrag();
     }
 }
@@ -25,25 +38,25 @@ void ofxBaseJoint::mouseReleased(int x, int y, int button)
     stopDrag();
 }
 
-void ofxBaseJoint::mouseDragged(int x, int y, int button)
+void ofxBaseJoint::mouseDragged(ofMouseEventArgs& args)
 {
-    if ( !dragging ) return;    
-    position = ofVec2f(x, y) + clickDistance;
+    if ( !bDrag ) return;
+    position = ofVec2f(args.x, args.y) + clickDistance;
 }
 
 void ofxBaseJoint::startDrag()
 {
-    dragging = true;
+    bDrag = true;
 }
 
 void ofxBaseJoint::stopDrag()
 {
-    dragging = false;
+    bDrag = false;
 }
 
 bool ofxBaseJoint::isDragged()
 {
-    return dragging;
+    return bDrag;
 }
 
 void ofxBaseJoint::setDefaultColors()
@@ -60,7 +73,7 @@ void ofxBaseJoint::setDefaultProperties()
     visible = true;
     position = ofVec2f(20.0f, 20.0f);
     clickDistance = ofVec2f(0.0f, 0.0f);
-    dragging = false;
+    bDrag = false;
     selected = false;
     strokeWidth = 1.5f;
 }
