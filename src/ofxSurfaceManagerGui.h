@@ -5,6 +5,7 @@
 #include "ofxSurfaceManager.h"
 #include "ofxTextureEditor.h"
 #include "ofxProjectionEditor.h"
+#include "ofxGuiMode.h"
 
 class ofxSurfaceManagerGui
 {
@@ -19,6 +20,7 @@ private:
     ofxSurfaceManager* surfaceManager;
     ofxTextureEditor textureEditor;
     ofxProjectionEditor projectionEditor;
+    int guiMode;
 };
 
 #endif

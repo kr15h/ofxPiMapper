@@ -3,6 +3,7 @@
 ofxSurfaceManagerGui::ofxSurfaceManagerGui()
 {
     surfaceManager = NULL;
+    guiMode = ofxGuiMode::NONE;
 }
 
 ofxSurfaceManagerGui::ofxSurfaceManagerGui(ofxSurfaceManager* newSurfaceManager)
