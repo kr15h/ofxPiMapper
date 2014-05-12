@@ -63,6 +63,7 @@ void ofApp::keyPressed(int key)
         case '2': gui.setMode(ofxGuiMode::TEXTURE_MAPPING); break;
         case '3': gui.setMode(ofxGuiMode::PROJECTION_MAPPING); break;
         case 'i': bShowInfo = !bShowInfo; break;
+        case 'r': addRandomSurface(); break;
         default: break;
     }
 }
@@ -83,4 +84,18 @@ void ofApp::mouseDragged(int x, int y, int button)
 {
     //
     //surfaceManager.mouseDragged(x, y, button);
+}
+
+void ofApp::addRandomSurface()
+{
+    int surfaceType = ofxSurfaceType::TRIANGLE_SURFACE;
+    vector<ofVec2f> vertices;
+    vertices.push_back( ofVec2f( ofRandomWidth(), ofRandomHeight() ) );
+    vertices.push_back( ofVec2f( ofRandomWidth(), ofRandomHeight() ) );
+    vertices.push_back( ofVec2f( ofRandomWidth(), ofRandomHeight() ) );
+    vector<ofVec2f> texCoords;
+    texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
+    texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
+    texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
+    surfaceManager.addSurface(surfaceType, vertices, texCoords);
 }

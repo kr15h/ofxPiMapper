@@ -15,6 +15,9 @@ public:
     
     void draw();
     void addSurface(int surfaceType);
+    void addSurface(int surfaceType, ofTexture* texturePtr);
+    void addSurface(int surfaceType, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
+    void addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
     ofxBaseSurface* getSurface(int index);
     int size();
     ofxBaseSurface* selectSurface(int index);
