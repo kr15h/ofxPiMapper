@@ -114,11 +114,7 @@ void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
         ofVec2f mousePosition = ofVec2f(args.x, args.y);
         ofVec2f distance = mousePosition - clickPosition;
         // add this distance to all vertices in surface
-        vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
-        for ( int i=0; i<vertices.size(); i++ ) {
-            vertices[i] += distance;
-        }
-        projectionEditor.updateJoints();
+        projectionEditor.moveSelectedSurface(distance);
         clickPosition = mousePosition;
     }
 }

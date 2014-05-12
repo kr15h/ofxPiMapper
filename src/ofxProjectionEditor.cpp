@@ -59,6 +59,17 @@ void ofxProjectionEditor::updateJoints()
     }
 }
 
+void ofxProjectionEditor::moveSelectedSurface(ofVec2f by)
+{
+    if ( surfaceManager == NULL ) return;
+    if ( surfaceManager->getSelectedSurface() == NULL ) return;
+    vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
+    for (int i=0; i<vertices.size(); i++) {
+        vertices[i] += by;
+    }
+    updateJoints();
+}
+
 bool ofxProjectionEditor::hitTestJoints(ofVec2f pos)
 {
     for ( int i=0; i<joints.size(); i++ ) {

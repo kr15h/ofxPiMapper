@@ -15,6 +15,7 @@ public:
     void clearJoints();
     void createJoints();
     void updateJoints();
+    void moveSelectedSurface(ofVec2f by);
     bool hitTestJoints(ofVec2f pos);
     
 private:
