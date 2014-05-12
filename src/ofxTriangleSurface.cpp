@@ -119,3 +119,9 @@ ofPolyline ofxTriangleSurface::getHitArea()
     
     return line;
 }
+
+vector<ofVec3f>& ofxTriangleSurface::getVertices()
+{
+    // return only joint vertices
+    return mesh.getVertices();
+}

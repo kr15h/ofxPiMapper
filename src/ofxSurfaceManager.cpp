@@ -30,6 +30,25 @@ void ofxSurfaceManager::addSurface(int surfaceType)
     }
 }
 
+ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
+{
+    if ( index >= surfaces.size() ) {
+        throw std::runtime_error("Surface index out of bounds.");
+    }
+    
+    selectedSurface = surfaces[index];
+}
+
+ofxBaseSurface* ofxSurfaceManager::getSelectedSurface()
+{    
+    return selectedSurface;
+}
+
+void ofxSurfaceManager::deselectSurface()
+{
+    selectedSurface = NULL;
+}
+
 ofxBaseSurface* ofxSurfaceManager::getSurface(int index)
 {
     if ( index >= surfaces.size() ) {
@@ -44,3 +63,4 @@ int ofxSurfaceManager::size()
 {
     return surfaces.size();
 }
+

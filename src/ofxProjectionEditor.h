@@ -1,6 +1,9 @@
 #ifndef H_OFX_PROJECTION_EDITOR
 #define H_OFX_PROJECTION_EDITOR
 
+#include "ofxSurfaceManager.h"
+#include "ofxCircleJoint.h"
+
 class ofxProjectionEditor
 {
 public:
@@ -8,6 +11,16 @@ public:
     ~ofxProjectionEditor();
     
     void draw();
+    void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
+    void clearJoints();
+    void createJoints();
+    bool hitTestJoints(ofVec2f pos);
+    
+private:
+    ofxSurfaceManager* surfaceManager;
+    vector<ofxCircleJoint*> joints;
+    
+    void drawJoints();
 };
 
 #endif

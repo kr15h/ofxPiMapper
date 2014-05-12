@@ -22,9 +22,13 @@ public:
     void addSurface(int surfaceType);
     ofxBaseSurface* getSurface(int index);
     int size();
+    ofxBaseSurface* selectSurface(int index);
+    ofxBaseSurface* getSelectedSurface();
+    void deselectSurface();
     
 private:
     vector<ofxBaseSurface*> surfaces;
+    ofxBaseSurface* selectedSurface;
 };
 
 #endif

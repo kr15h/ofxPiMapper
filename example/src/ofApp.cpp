@@ -13,7 +13,6 @@ void ofApp::setup()
     surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
     
     gui.setSurfaceManager( &surfaceManager );
-    gui.selectSurface(1);
 }
 
 void ofApp::update()

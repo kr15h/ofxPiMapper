@@ -4,7 +4,6 @@ ofxSurfaceManagerGui::ofxSurfaceManagerGui()
 {
     surfaceManager = NULL;
     guiMode = ofxGuiMode::NONE;
-    selectedSurface = NULL;
     registerMouseEvents();
 }
 
@@ -33,8 +32,8 @@ void ofxSurfaceManagerGui::draw()
     } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
         
         // draw the texture of the selected surface
-        if ( selectedSurface != NULL ) {
-            selectedSurface->drawTexture( ofVec2f(0,0) );
+        if ( surfaceManager->getSelectedSurface() != NULL ) {
+            surfaceManager->getSelectedSurface()->drawTexture( ofVec2f(0,0) );
         }
         
         // draw surfaces with opacity
@@ -71,11 +70,26 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
         
     } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
         // attempt to select surface, loop from end to beginning
+        bool bSurfaceSelected = false;
         for ( int i=surfaceManager->size()-1; i>=0; i-- ) {
             if ( surfaceManager->getSurface(i)->hitTest( ofVec2f(args.x, args.y) ) ) {
-                selectSurface(i);
+                projectionEditor.clearJoints();
+                surfaceManager->selectSurface(i);
+                projectionEditor.createJoints();
+                bSurfaceSelected = true;
                 break;
             }
+        }
+        
+        // Check if hitting one of the joints as that also couts as hit when surface is selected
+        if ( projectionEditor.hitTestJoints(ofVec2f(args.x, args.y)) ) {
+            bSurfaceSelected = true;
+        }
+        
+        if ( !bSurfaceSelected ) {
+            // unselect if no surface selected
+            projectionEditor.clearJoints();
+            surfaceManager->deselectSurface();
         }
     }
 }
@@ -83,6 +97,7 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
 void ofxSurfaceManagerGui::setSurfaceManager(ofxSurfaceManager* newSurfaceManager)
 {
     surfaceManager = newSurfaceManager;
+    projectionEditor.setSurfaceManager( surfaceManager );
 }
 
 void ofxSurfaceManagerGui::setMode(int newGuiMode)
@@ -96,25 +111,11 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     guiMode = newGuiMode;
 }
 
-ofxBaseSurface* ofxSurfaceManagerGui::selectSurface(int index)
-{
-    if ( index >= surfaceManager->size() ) {
-        throw std::runtime_error("Surface index out of bounds.");
-    }
-    
-    selectedSurface = surfaceManager->getSurface(index);
-}
-
-void ofxSurfaceManagerGui::deselectSurface()
-{
-    selectedSurface = NULL;
-}
-
 void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
 {
-    if ( selectedSurface == NULL ) return;
+    if ( surfaceManager->getSelectedSurface() == NULL ) return;
     
-    ofPolyline line = selectedSurface->getHitArea();
+    ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
     
     ofPushStyle();
     ofSetLineWidth(1);

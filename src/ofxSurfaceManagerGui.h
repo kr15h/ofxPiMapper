@@ -20,8 +20,6 @@ public:
     void mousePressed(ofMouseEventArgs& args);
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void setMode(int newGuiMode);
-    ofxBaseSurface* selectSurface(int index);
-    void deselectSurface();
     void drawSelectedSurfaceHighlight();
     
 private:
@@ -29,7 +27,6 @@ private:
     ofxTextureEditor textureEditor;
     ofxProjectionEditor projectionEditor;
     int guiMode;
-    ofxBaseSurface* selectedSurface;
 };
 
 #endif

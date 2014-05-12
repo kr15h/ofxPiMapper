@@ -22,6 +22,7 @@ public:
     ofVec2f getVertex(int index);
     ofVec2f getTexCoord(int index);
     ofPolyline getHitArea();
+    vector<ofVec3f>& getVertices();
 };
 
 #endif
