@@ -15,6 +15,8 @@ public:
     virtual void setVertex(int index, ofVec2f p){};
     virtual void setTexCoord(int index, ofVec2f t){};
     virtual int getType(){};
+    virtual bool hitTest(ofVec2f p){};
+    virtual ofPolyline getHitArea(){};
     
     // Draws a texture using ofMesh
     void drawTexture(ofVec2f position);

@@ -18,6 +18,7 @@ public:
     
     ofImage image;
     ofxSurfaceManager surfaceManager;
+    ofxSurfaceManagerGui gui;
     bool bShowInfo;
 };
 

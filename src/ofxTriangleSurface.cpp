@@ -77,6 +77,18 @@ int ofxTriangleSurface::getType()
     return ofxSurfaceType::TRIANGLE_SURFACE;
 }
 
+bool ofxTriangleSurface::hitTest(ofVec2f p)
+{
+    // Construct ofPolyline from vertices
+    ofPolyline line = getHitArea();
+    
+    if ( line.inside(p.x, p.y) ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 ofVec2f ofxTriangleSurface::getVertex(int index)
 {
     if ( index > 2 ) {
@@ -95,4 +107,15 @@ ofVec2f ofxTriangleSurface::getTexCoord(int index)
     }
     
     return mesh.getTexCoord(index);
+}
+
+ofPolyline ofxTriangleSurface::getHitArea()
+{
+    ofPolyline line;
+    line.addVertex( ofPoint( mesh.getVertex(0).x, mesh.getVertex(0).y ) );
+    line.addVertex( ofPoint( mesh.getVertex(1).x, mesh.getVertex(1).y ) );
+    line.addVertex( ofPoint( mesh.getVertex(2).x, mesh.getVertex(2).y ) );
+    line.close();
+    
+    return line;
 }

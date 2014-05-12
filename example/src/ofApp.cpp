@@ -11,6 +11,9 @@ void ofApp::setup()
     surfaceManager.getSurface(1)->setVertex(0, ofVec2f(10, 10));
     surfaceManager.getSurface(1)->setVertex(1, ofVec2f(400, 20));
     surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
+    
+    gui.setSurfaceManager( &surfaceManager );
+    gui.selectSurface(1);
 }
 
 void ofApp::update()
@@ -20,11 +23,13 @@ void ofApp::update()
     ofVec2f p;
     p.x = ofRandomWidth();
     p.y = ofRandomHeight();
+    //surfaceManager.getSurface(1)->setVertex(0, p);
     //triangleSurface.setVertex(0, p);
     
     ofVec2f t;
     t.x = ofRandomuf();
     t.y = ofRandomuf();
+    //surfaceManager.getSurface(1)->setTexCoord(0, t);
     //triangleSurface.setTexCoord(0, t);
     
     //surfaceManager.update();
@@ -32,7 +37,9 @@ void ofApp::update()
 
 void ofApp::draw()
 {
-    surfaceManager.draw();
+    //surfaceManager.draw();
+    // if using gui - use ofxSurfaceManagerGui::draw() instead of surfaceManager::draw()
+    gui.draw();
     
     if ( bShowInfo ) {
         // Draw instructions
@@ -53,9 +60,9 @@ void ofApp::keyPressed(int key)
 	cout << "Key pressed: " << static_cast<char>(key) << endl;
     
     switch (key) {
-        //case '1': surfaceManager.setGuiMode(ofxSurfaceGui::NONE); break;
-        //case '2': surfaceManager.setGuiMode(ofxSurfaceGui::TEXTURE_MAPPING); break;
-        //case '3': surfaceManager.setGuiMode(ofxSurfaceGui::PROJECTION_MAPPING); break;
+        case '1': gui.setMode(ofxGuiMode::NONE); break;
+        case '2': gui.setMode(ofxGuiMode::TEXTURE_MAPPING); break;
+        case '3': gui.setMode(ofxGuiMode::PROJECTION_MAPPING); break;
         case 'i': bShowInfo = !bShowInfo; break;
         default: break;
     }

@@ -6,6 +6,8 @@ class ofxProjectionEditor
 public:
     ofxProjectionEditor();
     ~ofxProjectionEditor();
+    
+    void draw();
 };
 
 #endif

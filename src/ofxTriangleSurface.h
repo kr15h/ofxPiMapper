@@ -18,9 +18,10 @@ public:
     void setTexCoord( int index, ofVec2f t );
     
     int getType();
-    
+    bool hitTest(ofVec2f p);
     ofVec2f getVertex(int index);
     ofVec2f getTexCoord(int index);
+    ofPolyline getHitArea();
 };
 
 #endif
