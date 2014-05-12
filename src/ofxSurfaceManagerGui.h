@@ -3,6 +3,8 @@
 
 #include "ofMain.h"
 #include "ofxSurfaceManager.h"
+#include "ofxTextureEditor.h"
+#include "ofxProjectionEditor.h"
 
 class ofxSurfaceManagerGui
 {
@@ -15,6 +17,8 @@ public:
     
 private:
     ofxSurfaceManager* surfaceManager;
+    ofxTextureEditor textureEditor;
+    ofxProjectionEditor projectionEditor;
 };
 
 #endif
