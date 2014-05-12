@@ -2,6 +2,9 @@
 #define H_OFX_BASE_SURFACE
 
 #include "ofMain.h"
+#include <string>
+
+using namespace std;
 
 class ofxBaseSurface
 {
@@ -11,6 +14,7 @@ public:
     virtual void draw(){};
     virtual void setVertex(int index, ofVec2f p){};
     virtual void setTexCoord(int index, ofVec2f t){};
+    virtual int getType(){};
     
     // Draws a texture using ofMesh
     void drawTexture(ofVec2f position);

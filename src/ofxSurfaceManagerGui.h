@@ -14,6 +14,8 @@ public:
     ofxSurfaceManagerGui(ofxSurfaceManager* newSurfaceManager);
     ~ofxSurfaceManagerGui();
     
+    void draw();
+    
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     
 private:

@@ -3,6 +3,7 @@
 
 #include "ofMain.h"
 #include "ofxBaseSurface.h"
+#include "ofxSurfaceType.h"
 
 class ofxTriangleSurface : public ofxBaseSurface
 {
@@ -15,6 +16,9 @@ public:
     void draw();
     void setVertex( int index, ofVec2f p );
     void setTexCoord( int index, ofVec2f t );
+    
+    int getType();
+    
     ofVec2f getVertex(int index);
     ofVec2f getTexCoord(int index);
 };

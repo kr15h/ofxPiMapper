@@ -1,9 +1,16 @@
 #ifndef H_OFX_SURFACE_MANAGER
 #define H_OFX_SURFACE_MANAGER
 
-#include "ofMain.h"
+/*
+ Used ofxStateMachine by Neil Mendoza as example for this part of the addon.
+ https://github.com/neilmendoza/ofxStateMachine
+ */
+
+#include "ofxBaseSurface.h"
 #include "ofxTriangleSurface.h"
-#include "ofxSurfaceGui.h"
+#include "ofxSurfaceType.h"
+
+using namespace std;
 
 class ofxSurfaceManager
 {
@@ -11,33 +18,13 @@ public:
     ofxSurfaceManager();
     ~ofxSurfaceManager();
     
-    void setup();
-    void update();
     void draw();
-    
-    void mousePressed(int x, int y, int button);
-    void mouseReleased(int x, int y, int button);
-    void mouseDragged(int x, int y, int button);
-    
-    void addSurface();
-    void addSurface(ofTexture* texturePtr);
-    void addSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3);
-    void addSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr);
-    
-    void removeSurface(int index);
-    void setGuiMode(ofxSurfaceGui::editMode);
-    void selectSurface(int index);
-    void unselectAllSurfaces();
+    void addSurface(int surfaceType);
+    ofxBaseSurface* getSurface(int index);
     int size();
     
 private:
-    deque<ofxTriangleSurface*> triangleSurfaces;
-    deque<ofxSurfaceGui*> surfaceGuis;
-    
-    void addTriangleSurface();
-    void addTriangleSurface(ofTexture* texturePtr);
-    void addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3);
-    void addTriangleSurface(ofVec2f v1, ofVec2f v2, ofVec2f v3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr);
+    vector<ofxBaseSurface*> surfaces;
 };
 
 #endif

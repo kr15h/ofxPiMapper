@@ -72,6 +72,11 @@ void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
     mesh.setTexCoord(index, t);
 }
 
+int ofxTriangleSurface::getType()
+{
+    return ofxSurfaceType::TRIANGLE_SURFACE;
+}
+
 ofVec2f ofxTriangleSurface::getVertex(int index)
 {
     if ( index > 2 ) {

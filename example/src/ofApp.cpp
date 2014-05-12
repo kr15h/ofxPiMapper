@@ -5,11 +5,12 @@ void ofApp::setup()
     image.loadImage("TestPatternInvert.jpg");
     bShowInfo = false;
     
-    surfaceManager.addSurface();
-    surfaceManager.addSurface( &image.getTextureReference() );
-    surfaceManager.addSurface(ofVec2f(10,10), ofVec2f(300, 20), ofVec2f(200, 300),
-                              ofVec2f(0.1f, 0.1f), ofVec2f(0.5f, 0.2f), ofVec2f(0.4f, 0.9f),
-                              &image.getTextureReference());
+    surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
+    
+    surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
+    surfaceManager.getSurface(1)->setVertex(0, ofVec2f(10, 10));
+    surfaceManager.getSurface(1)->setVertex(1, ofVec2f(400, 20));
+    surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
 }
 
 void ofApp::update()
@@ -26,7 +27,7 @@ void ofApp::update()
     t.y = ofRandomuf();
     //triangleSurface.setTexCoord(0, t);
     
-    surfaceManager.update();
+    //surfaceManager.update();
 }
 
 void ofApp::draw()
@@ -52,9 +53,9 @@ void ofApp::keyPressed(int key)
 	cout << "Key pressed: " << static_cast<char>(key) << endl;
     
     switch (key) {
-        case '1': surfaceManager.setGuiMode(ofxSurfaceGui::NONE); break;
-        case '2': surfaceManager.setGuiMode(ofxSurfaceGui::TEXTURE_MAPPING); break;
-        case '3': surfaceManager.setGuiMode(ofxSurfaceGui::PROJECTION_MAPPING); break;
+        //case '1': surfaceManager.setGuiMode(ofxSurfaceGui::NONE); break;
+        //case '2': surfaceManager.setGuiMode(ofxSurfaceGui::TEXTURE_MAPPING); break;
+        //case '3': surfaceManager.setGuiMode(ofxSurfaceGui::PROJECTION_MAPPING); break;
         case 'i': bShowInfo = !bShowInfo; break;
         default: break;
     }
@@ -63,17 +64,17 @@ void ofApp::keyPressed(int key)
 void ofApp::mousePressed(int x, int y, int button)
 {
     //cout << "Mouse pressed." << endl;
-    surfaceManager.mousePressed(x, y, button);
+    //surfaceManager.mousePressed(x, y, button);
 }
 
 void ofApp::mouseReleased(int x, int y, int button)
 {
     //cout << "Mouse released." << endl;
-    surfaceManager.mouseReleased(x, y, button);
+    //surfaceManager.mouseReleased(x, y, button);
 }
 
 void ofApp::mouseDragged(int x, int y, int button)
 {
     //
-    surfaceManager.mouseDragged(x, y, button);
+    //surfaceManager.mouseDragged(x, y, button);
 }
