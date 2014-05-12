@@ -120,8 +120,27 @@ ofPolyline ofxTriangleSurface::getHitArea()
     return line;
 }
 
+ofPolyline ofxTriangleSurface::getTextureHitArea()
+{
+    ofPolyline line;
+    vector<ofVec2f>& texCoords = mesh.getTexCoords();
+    ofVec2f textureSize = ofVec2f(texture->getWidth(), texture->getHeight());
+    for ( int i=0; i<texCoords.size(); i++ ) {
+        line.addVertex( ofPoint( texCoords[i] * textureSize ) );
+    }
+    line.close();
+    
+    return line;
+}
+
 vector<ofVec3f>& ofxTriangleSurface::getVertices()
 {
     // return only joint vertices
     return mesh.getVertices();
+}
+
+vector<ofVec2f>& ofxTriangleSurface::getTexCoords()
+{
+    
+    return mesh.getTexCoords();
 }

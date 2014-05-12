@@ -23,6 +23,7 @@ public:
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void setMode(int newGuiMode);
     void drawSelectedSurfaceHighlight();
+    void drawSelectedSurfaceTextureHighlight();
     void startDrag();
     void stopDrag();
     

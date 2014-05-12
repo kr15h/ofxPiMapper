@@ -47,8 +47,11 @@ void ofxSurfaceManagerGui::draw()
         surfaceManager->draw();
         ofPopStyle();
         
-        // hilight selected surface
+        // highlight selected surface
         drawSelectedSurfaceHighlight();
+        
+        // hilight selected surface texture
+        drawSelectedSurfaceTextureHighlight();
         
         // draw texture editing GUI on top
         textureEditor.draw();
@@ -72,7 +75,15 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
     if ( guiMode == ofxGuiMode::NONE ) {
         return;
     } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
-        return;
+        
+        if ( surfaceManager->getSelectedSurface() != NULL ) {
+            // hittest texture area to see if we are hitting the texture surface
+            if ( surfaceManager->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y) ) {
+                clickPosition = ofVec2f(args.x, args.y);
+                startDrag();
+            }
+        }
+        
     } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
         
         bool bSurfaceSelected = false;
@@ -121,8 +132,13 @@ void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
     if (bDrag) {
         ofVec2f mousePosition = ofVec2f(args.x, args.y);
         ofVec2f distance = mousePosition - clickPosition;
-        // add this distance to all vertices in surface
-        projectionEditor.moveSelectedSurface(distance);
+        
+        if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
+            // add this distance to all vertices in surface
+            projectionEditor.moveSelectedSurface(distance);
+        } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+            textureEditor.moveTexCoords(distance);
+        }
         clickPosition = mousePosition;
     }
 }
@@ -142,6 +158,9 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     }
     
     guiMode = newGuiMode;
+    
+    // refresh texture editor surface reference
+    textureEditor.setSurface(surfaceManager->getSelectedSurface());
 }
 
 void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
@@ -155,6 +174,20 @@ void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
     ofSetColor(255, 255, 255, 255);
     line.draw();
     ofPopStyle();
+}
+
+void ofxSurfaceManagerGui::drawSelectedSurfaceTextureHighlight()
+{
+    if ( surfaceManager->getSelectedSurface() == NULL ) return;
+    
+    ofPolyline line = surfaceManager->getSelectedSurface()->getTextureHitArea();
+    
+    ofPushStyle();
+    ofSetLineWidth(1);
+    ofSetColor(255, 255, 0, 255);
+    line.draw();
+    ofPopStyle();
+
 }
 
 void ofxSurfaceManagerGui::startDrag()

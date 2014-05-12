@@ -17,7 +17,9 @@ public:
     virtual int getType(){};
     virtual bool hitTest(ofVec2f p){};
     virtual ofPolyline getHitArea(){};
+    virtual ofPolyline getTextureHitArea(){};
     virtual vector<ofVec3f>& getVertices(){};
+    virtual vector<ofVec2f>& getTexCoords(){};
     
     // Draws a texture using ofMesh
     void drawTexture(ofVec2f position);

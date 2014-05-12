@@ -22,7 +22,9 @@ public:
     ofVec2f getVertex(int index);
     ofVec2f getTexCoord(int index);
     ofPolyline getHitArea();
+    ofPolyline getTextureHitArea();
     vector<ofVec3f>& getVertices();
+    vector<ofVec2f>& getTexCoords();
 };
 
 #endif
