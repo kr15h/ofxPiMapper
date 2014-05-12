@@ -1,6 +1,7 @@
 #ifndef H_OFX_TEXTURE_EDITOR
 #define H_OFX_TEXTURE_EDITOR
 
+#include "ofEvents.h"
 #include "ofxBaseSurface.h"
 #include "ofxCircleJoint.h"
 
@@ -10,6 +11,10 @@ public:
     ofxTextureEditor();
     ~ofxTextureEditor();
     
+    void registerAppEvents();
+    void unregisterAppEvents();
+    
+    void update(ofEventArgs& args);
     void draw();
     void drawJoints();
     void setSurface(ofxBaseSurface* newSurface);
@@ -17,10 +22,12 @@ public:
     void createJoints();
     void clearJoints();
     void moveTexCoords(ofVec2f by);
+    void stopDragJoints();
+    ofxCircleJoint* hitTestJoints(ofVec2f pos);
     
 private:
     ofxBaseSurface* surface;
-    vector<ofxBaseJoint*> joints;
+    vector<ofxCircleJoint*> joints;
     
 };
 

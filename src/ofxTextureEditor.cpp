@@ -3,11 +3,38 @@
 ofxTextureEditor::ofxTextureEditor()
 {
     clear();
+    registerAppEvents();
 }
 
 ofxTextureEditor::~ofxTextureEditor()
 {
     clear();
+    unregisterAppEvents();
+}
+
+void ofxTextureEditor::registerAppEvents()
+{
+    ofAddListener(ofEvents().update, this, &ofxTextureEditor::update);
+}
+
+void ofxTextureEditor::unregisterAppEvents()
+{
+    ofRemoveListener(ofEvents().update, this, &ofxTextureEditor::update);
+}
+
+void ofxTextureEditor::update(ofEventArgs &args)
+{
+    if ( surface == NULL ) return;
+    
+    // update surface if one of the joints is being dragged
+    ofVec2f textureSize = ofVec2f( surface->getTexture()->getWidth(), surface->getTexture()->getHeight() );
+    for ( int i=0; i<joints.size(); i++ ) {
+        if ( joints[i]->isDragged() ) {
+            // update vertex to new location
+            surface->setTexCoord(i, joints[i]->position / textureSize);
+            break;
+        }
+    }
 }
 
 void ofxTextureEditor::draw()
@@ -66,4 +93,21 @@ void ofxTextureEditor::moveTexCoords(ofVec2f by)
         joints[i]->position += by;
         texCoords[i] = joints[i]->position / textureSize;
     }
+}
+
+void ofxTextureEditor::stopDragJoints()
+{
+    for (int i=0; i<joints.size(); i++){
+        joints[i]->stopDrag();
+    }
+}
+
+ofxCircleJoint* ofxTextureEditor::hitTestJoints(ofVec2f pos)
+{
+    for ( int i=0; i<joints.size(); i++ ) {
+        if ( joints[i]->hitTest(pos) ){
+            return joints[i];
+        }
+    }
+    return NULL;
 }

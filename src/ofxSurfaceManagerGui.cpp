@@ -76,7 +76,15 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
         return;
     } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
         
-        if ( surfaceManager->getSelectedSurface() != NULL ) {
+        bool bSurfaceSelected = false;
+        
+        ofxCircleJoint* hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
+        if ( hitJoint != NULL ) {
+            hitJoint->startDrag();
+            bSurfaceSelected = true;
+        }
+        
+        if ( surfaceManager->getSelectedSurface() != NULL && !bSurfaceSelected ) {
             // hittest texture area to see if we are hitting the texture surface
             if ( surfaceManager->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y) ) {
                 clickPosition = ofVec2f(args.x, args.y);
@@ -125,6 +133,7 @@ void ofxSurfaceManagerGui::mouseReleased(ofMouseEventArgs &args)
 {
     stopDrag();
     projectionEditor.stopDragJoints();
+    textureEditor.stopDragJoints();
 }
 
 void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
