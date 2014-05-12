@@ -18,15 +18,21 @@ public:
     
     void draw();
     void mousePressed(ofMouseEventArgs& args);
+    void mouseReleased(ofMouseEventArgs& args);
+    void mouseDragged(ofMouseEventArgs& args);
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void setMode(int newGuiMode);
     void drawSelectedSurfaceHighlight();
+    void startDrag();
+    void stopDrag();
     
 private:
     ofxSurfaceManager* surfaceManager;
     ofxTextureEditor textureEditor;
     ofxProjectionEditor projectionEditor;
     int guiMode;
+    bool bDrag;
+    ofVec2f clickPosition;
 };
 
 #endif

@@ -51,6 +51,14 @@ void ofxProjectionEditor::createJoints()
     }
 }
 
+void ofxProjectionEditor::updateJoints()
+{
+    vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
+    for ( int i=0; i<vertices.size(); i++ ) {
+        joints[i]->position = ofVec2f(vertices[i].x, vertices[i].y);
+    }
+}
+
 bool ofxProjectionEditor::hitTestJoints(ofVec2f pos)
 {
     for ( int i=0; i<joints.size(); i++ ) {

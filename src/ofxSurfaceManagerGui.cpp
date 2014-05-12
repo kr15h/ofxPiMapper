@@ -4,6 +4,7 @@ ofxSurfaceManagerGui::ofxSurfaceManagerGui()
 {
     surfaceManager = NULL;
     guiMode = ofxGuiMode::NONE;
+    bDrag = false;
     registerMouseEvents();
 }
 
@@ -16,11 +17,15 @@ ofxSurfaceManagerGui::~ofxSurfaceManagerGui()
 void ofxSurfaceManagerGui::registerMouseEvents()
 {
     ofAddListener(ofEvents().mousePressed, this, &ofxSurfaceManagerGui::mousePressed);
+    ofAddListener(ofEvents().mouseReleased, this, &ofxSurfaceManagerGui::mouseReleased);
+    ofAddListener(ofEvents().mouseDragged, this, &ofxSurfaceManagerGui::mouseDragged);
 }
 
 void ofxSurfaceManagerGui::unregisterMouseEvents()
 {
     ofRemoveListener(ofEvents().mousePressed, this, &ofxSurfaceManagerGui::mousePressed);
+    ofRemoveListener(ofEvents().mouseReleased, this, &ofxSurfaceManagerGui::mouseReleased);
+    ofRemoveListener(ofEvents().mouseDragged, this, &ofxSurfaceManagerGui::mouseDragged);
 }
 
 void ofxSurfaceManagerGui::draw()
@@ -67,7 +72,7 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
     if ( guiMode == ofxGuiMode::NONE ) {
         return;
     } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
-        
+        return;
     } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
         // attempt to select surface, loop from end to beginning
         bool bSurfaceSelected = false;
@@ -81,9 +86,13 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             }
         }
         
-        // Check if hitting one of the joints as that also couts as hit when surface is selected
+        // Check if hitting one of the joints as that also counts as hit when surface is selected
         if ( projectionEditor.hitTestJoints(ofVec2f(args.x, args.y)) ) {
             bSurfaceSelected = true;
+        } else if ( bSurfaceSelected ) {
+            // if not hitting the joints, start drag only if we have a selected surface
+            clickPosition = ofVec2f(args.x, args.y);
+            startDrag();
         }
         
         if ( !bSurfaceSelected ) {
@@ -91,6 +100,26 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             projectionEditor.clearJoints();
             surfaceManager->deselectSurface();
         }
+    }
+}
+
+void ofxSurfaceManagerGui::mouseReleased(ofMouseEventArgs &args)
+{
+    stopDrag();
+}
+
+void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
+{
+    if (bDrag) {
+        ofVec2f mousePosition = ofVec2f(args.x, args.y);
+        ofVec2f distance = mousePosition - clickPosition;
+        // add this distance to all vertices in surface
+        vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
+        for ( int i=0; i<vertices.size(); i++ ) {
+            vertices[i] += distance;
+        }
+        projectionEditor.updateJoints();
+        clickPosition = mousePosition;
     }
 }
 
@@ -122,4 +151,14 @@ void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
     ofSetColor(255, 255, 255, 255);
     line.draw();
     ofPopStyle();
+}
+
+void ofxSurfaceManagerGui::startDrag()
+{
+    bDrag = true;
+}
+
+void ofxSurfaceManagerGui::stopDrag()
+{
+    bDrag = false;
 }

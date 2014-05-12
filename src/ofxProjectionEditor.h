@@ -14,6 +14,7 @@ public:
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void clearJoints();
     void createJoints();
+    void updateJoints();
     bool hitTestJoints(ofVec2f pos);
     
 private:
