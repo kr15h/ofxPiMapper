@@ -35,14 +35,11 @@ None so far.
 Version history
 ------------
 
-### Version 0.1.2:
-TODO: 
- -/+ Possibility to add multiple surfaces with a kind of layer management utility.
- + Add GUI for surface manager instead per surface
- + Ability to select and drag whole surfaces
- + Select / deselect surfaces
- - Example with video source. Maybe one example with different surfaces and sources.
- - How to switch between sources?
+### Version 0.1.2 (2014-05-12):
+Restructured GUI mechanism for flexibility later.
+ - Added possibility to add multiple surfaces
+ - Add GUI for surface manager instead per surface
+ - Ability to select and drag whole surfaces as well as select/deselect surfaces
 
 ### Version 0.1.1 (2014-05-10):
 Added simple GUI with joints. Updated the example application so that it allows the user to do texture mapping, projection mapping and enter presentation mode.
