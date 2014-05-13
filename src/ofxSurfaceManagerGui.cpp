@@ -182,6 +182,8 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     
     if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
         sourcesEditor.enable();
+        string sourceName = surfaceManager->getSelectedSurfaceSourceName();
+        sourcesEditor.selectImageSourceRadioButton(sourceName);
     } else {
         sourcesEditor.disable();
     }

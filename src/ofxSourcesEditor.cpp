@@ -81,6 +81,37 @@ void ofxSourcesEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
     surfaceManager = newSurfaceManager;
 }
 
+void ofxSourcesEditor::selectImageSourceRadioButton(string name)
+{
+    vector<ofxUIWidget*> widgets = gui->getWidgets();
+    
+    // find radio list item
+    ofxUIRadio* radio;
+    for ( int i=0; i<widgets.size(); i++ ) {
+        int widgetKind = widgets[i]->getKind();
+        if ( widgetKind == OFX_UI_WIDGET_RADIO ){
+            radio = (ofxUIRadio*)widgets[i];
+            break;
+        }
+    }
+    
+    if (name == "none") {
+        ofxUIToggle* toggle = (ofxUIToggle*)radio->getActive();
+        if ( toggle != NULL ) {
+            toggle->setValue(false);
+        }
+        return;
+    } else {
+        for ( int i=0; i<widgets.size(); i++ ) {
+            string widgetName = widgets[i]->getName();
+            if ( name == widgetName ) {
+                radio->activateToggle(name);
+                return;
+            }
+        }
+    }
+}
+
 int ofxSourcesEditor::getLoadedTexCount()
 {
     return images.size();

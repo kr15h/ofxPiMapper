@@ -27,6 +27,7 @@ public:
     ofxBaseSurface* getSelectedSurface();
     void deselectSurface();
     ofTexture* loadImageSource(string name, string path);
+    string getSelectedSurfaceSourceName();
     
     
 private:

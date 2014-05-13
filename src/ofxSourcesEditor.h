@@ -23,6 +23,7 @@ public:
     void disable();
     void enable();
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
+    void selectImageSourceRadioButton(string name);
     
     int getLoadedTexCount();
     ofTexture* getTexture(int index);

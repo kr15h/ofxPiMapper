@@ -161,6 +161,22 @@ ofTexture* ofxSurfaceManager::loadImageSource(string name, string path)
     return &image->getTextureReference();
 }
 
+string ofxSurfaceManager::getSelectedSurfaceSourceName()
+{
+    if ( selectedSurface == NULL ) {
+        return "none";
+    }
+    
+    ofTexture* tex = selectedSurface->getTexture();
+    for ( int i=0; i<loadedImageSources.size(); i++ ) {
+        if (tex == &loadedImageSources[i]->getTextureReference()) {
+            return loadedImageSourceNames[i];
+        }
+    }
+    
+    return "none";
+}
+
 ofxBaseSurface* ofxSurfaceManager::getSurface(int index)
 {
     if ( index >= surfaces.size() ) {
