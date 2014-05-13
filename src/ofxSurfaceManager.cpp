@@ -7,11 +7,7 @@ ofxSurfaceManager::ofxSurfaceManager()
 
 ofxSurfaceManager::~ofxSurfaceManager()
 {
-    // delete all extra allocations from the heap
-    while ( surfaces.size() ) {
-        delete surfaces.back();
-        surfaces.pop_back();
-    }
+    clear();
 }
 
 void ofxSurfaceManager::draw()
@@ -86,6 +82,48 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
     }
 }
 
+void ofxSurfaceManager::manageMemory()
+{
+    // check if each of the sources is assigned to a surface or not
+    for ( int i=0; i<loadedImageSources.size(); i++ ) {
+        bool bAssigned = false;
+        
+        for ( int j=0; j<surfaces.size(); j++ ) {
+            if ( surfaces[j]->getTexture() == &loadedImageSources[i]->getTextureReference() ) {
+                bAssigned = true;
+                break;
+            }
+        }
+        
+        if ( !bAssigned ) {
+            // purge the image source from memory
+            delete loadedImageSources[i];
+            loadedImageSources.erase(loadedImageSources.begin()+i);
+            cout << "Deleting image source: " << loadedImageSourceNames[i] << endl;
+            loadedImageSourceNames.erase(loadedImageSourceNames.begin()+i);
+            i--;
+        }
+    }
+}
+
+void ofxSurfaceManager::clear()
+{
+    // delete all extra allocations from the heap
+    while ( surfaces.size() ) {
+        delete surfaces.back();
+        surfaces.pop_back();
+    }
+    
+    while ( loadedImageSources.size() ) {
+        delete loadedImageSources.back();
+        loadedImageSources.pop_back();
+    }
+    
+    while ( loadedImageSourceNames.size() ) {
+        loadedImageSourceNames.pop_back();
+    }
+}
+
 ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
 {
     if ( index >= surfaces.size() ) {
@@ -105,6 +143,24 @@ void ofxSurfaceManager::deselectSurface()
     selectedSurface = NULL;
 }
 
+ofTexture* ofxSurfaceManager::loadImageSource(string name, string path)
+{
+    // check if it is loaded
+    for ( int i=0; i<loadedImageSourceNames.size(); i++ ) {
+        if ( loadedImageSourceNames[i] == name ) {
+            // this image is already loaded
+            return &loadedImageSources[i]->getTextureReference();
+        }
+    }
+    
+    // not loaded - load
+    ofImage* image = new ofImage();
+    image->loadImage(path);
+    loadedImageSources.push_back(image);
+    loadedImageSourceNames.push_back(name);
+    return &image->getTextureReference();
+}
+
 ofxBaseSurface* ofxSurfaceManager::getSurface(int index)
 {
     if ( index >= surfaces.size() ) {
@@ -119,4 +175,6 @@ int ofxSurfaceManager::size()
 {
     return surfaces.size();
 }
+
+
 

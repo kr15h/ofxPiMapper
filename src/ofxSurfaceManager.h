@@ -19,15 +19,21 @@ public:
     void addSurface(int surfaceType, ofTexture* texturePtr);
     void addSurface(int surfaceType, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
     void addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
+    void manageMemory(); // deletes unasigned sources
+    void clear();
     ofxBaseSurface* getSurface(int index);
     int size();
     ofxBaseSurface* selectSurface(int index);
     ofxBaseSurface* getSelectedSurface();
     void deselectSurface();
+    ofTexture* loadImageSource(string name, string path);
+    
     
 private:
     vector<ofxBaseSurface*> surfaces;
     ofxBaseSurface* selectedSurface;
+    vector<string> loadedImageSourceNames;
+    vector<ofImage*> loadedImageSources;
 };
 
 #endif

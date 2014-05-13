@@ -4,6 +4,7 @@
 #include "ofGraphics.h"
 #include "ofEvents.h"
 #include "ofxUI.h"
+#include "ofxSurfaceManager.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/";
 
@@ -21,11 +22,13 @@ public:
     void loadImage( string name, string path );
     void disable();
     void enable();
+    void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     
     int getLoadedTexCount();
     ofTexture* getTexture(int index);
     
 private:
+    ofxSurfaceManager* surfaceManager;
     string defImgDir;
     ofxUICanvas *gui;
     void guiEvent(ofxUIEventArgs &e);

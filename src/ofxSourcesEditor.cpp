@@ -45,7 +45,7 @@ void ofxSourcesEditor::setup(ofEventArgs& args)
 	}
     
     gui->addLabel(defImgDir, OFX_UI_FONT_SMALL);
-    ofxUIRadio *radio = gui->addRadio("VR", vnames, OFX_UI_ORIENTATION_VERTICAL);
+    ofxUIRadio *radio = gui->addRadio("images", vnames, OFX_UI_ORIENTATION_VERTICAL);
     radio->activateToggle("image0.png");
     
     ofAddListener(gui->newGUIEvent,this,&ofxSourcesEditor::guiEvent);
@@ -76,6 +76,11 @@ void ofxSourcesEditor::enable()
     gui->enable();
 }
 
+void ofxSourcesEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
+{
+    surfaceManager = newSurfaceManager;
+}
+
 int ofxSourcesEditor::getLoadedTexCount()
 {
     return images.size();
@@ -100,26 +105,18 @@ void ofxSourcesEditor::guiEvent(ofxUIEventArgs &e)
         cout << name << "\t value: " << toggle->getValue() << endl;
     }
     
-    // search for matching loaded image name
-    for ( int i=0; i<images.size(); i++ ) {
-        cout << "loaded: " << imageNames[i] << endl;
-        if ( imageNames[i] == name ) {
-            // image already loaded
-            ofImage* img = images[i];
-            images.erase(images.begin()+i);
-            images.push_back(img);
-            
-            string imgName = imageNames[i];
-            imageNames.erase(imageNames.begin()+i);
-            imageNames.push_back(imgName);
-            
-            cout << "image already loaded" << endl;
-            ofSendMessage("imageLoaded");
-            return;
-        }
+    if ( surfaceManager->getSelectedSurface() == NULL ) {
+        return;
+    }
+    
+    if (name == "images") {
+        return;
     }
     
     stringstream ss;
     ss << defImgDir << name;
-    loadImage(name, ss.str());
+    cout << "attempt to load image: " << ss.str() << endl;
+    ofTexture* texture = surfaceManager->loadImageSource(name, ss.str());
+    surfaceManager->getSelectedSurface()->setTexture(texture);
+    surfaceManager->manageMemory();
 }

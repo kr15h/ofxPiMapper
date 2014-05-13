@@ -6,13 +6,11 @@ ofxSurfaceManagerGui::ofxSurfaceManagerGui()
     guiMode = ofxGuiMode::NONE;
     bDrag = false;
     registerMouseEvents();
-    ofRegisterGetMessages(this);
 }
 
 ofxSurfaceManagerGui::~ofxSurfaceManagerGui()
 {
     unregisterMouseEvents();
-    ofUnregisterGetMessages(this);
     surfaceManager = NULL;
 }
 
@@ -168,6 +166,7 @@ void ofxSurfaceManagerGui::setSurfaceManager(ofxSurfaceManager* newSurfaceManage
 {
     surfaceManager = newSurfaceManager;
     projectionEditor.setSurfaceManager( surfaceManager );
+    sourcesEditor.setSurfaceManager( surfaceManager );
 }
 
 void ofxSurfaceManagerGui::setMode(int newGuiMode)
@@ -228,17 +227,4 @@ void ofxSurfaceManagerGui::startDrag()
 void ofxSurfaceManagerGui::stopDrag()
 {
     bDrag = false;
-}
-
-void ofxSurfaceManagerGui::gotMessage(ofMessage& msg)
-{
-    cout << msg.message << endl;
-    
-    if ( msg.message == "imageLoaded" ) {
-        // assign texture to selected source
-        if (surfaceManager->getSelectedSurface() == NULL){
-            return;
-        }
-        surfaceManager->getSelectedSurface()->setTexture( sourcesEditor.getTexture(sourcesEditor.getLoadedTexCount()-1) );
-    }
 }

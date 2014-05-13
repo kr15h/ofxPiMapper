@@ -10,6 +10,7 @@
 #include "ofxProjectionEditor.h"
 #include "ofxSourcesEditor.h"
 #include "ofxGuiMode.h"
+#include "ofGraphics.h"
 
 class ofxSurfaceManagerGui
 {
@@ -30,7 +31,6 @@ public:
     void drawSelectedSurfaceTextureHighlight();
     void startDrag();
     void stopDrag();
-    void gotMessage(ofMessage& msg);
     
 private:
     ofxSurfaceManager* surfaceManager;
@@ -40,6 +40,7 @@ private:
     int guiMode;
     bool bDrag;
     ofVec2f clickPosition;
+    
 };
 
 #endif
