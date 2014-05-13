@@ -46,8 +46,9 @@ void ofApp::draw()
         ss << "There are 3 modes:\n\n";
         ss << " 1. Presentation mode\n";
         ss << " 2. Texture mapping mode\n";
-        ss << " 3. Projection mapping mode\n\n";
-        ss << "You can switch between the modes by using <1>, <2> and <3> keys on the keyboard.\n\n";
+        ss << " 3. Projection mapping mode\n";
+        ss << " 4. Source selection mode\n\n";
+        ss << "You can switch between the modes by using <1>, <2>, <3> and <4> keys on the keyboard.\n\n";
         ss << "Hit <i> to hide this message.";
         
         ofDrawBitmapStringHighlight(ss.str(), 10, 20, ofColor(0,0,0,100), ofColor(255,255,255,200));
@@ -62,6 +63,7 @@ void ofApp::keyPressed(int key)
         case '1': gui.setMode(ofxGuiMode::NONE); break;
         case '2': gui.setMode(ofxGuiMode::TEXTURE_MAPPING); break;
         case '3': gui.setMode(ofxGuiMode::PROJECTION_MAPPING); break;
+        case '4': gui.setMode(ofxGuiMode::SOURCE_SELECTION); break;
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
         default: break;

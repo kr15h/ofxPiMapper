@@ -67,6 +67,8 @@ void ofxSurfaceManagerGui::draw()
         // draw projection mapping editing gui
         projectionEditor.draw();
         
+    } else if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+        sourcesEditor.draw();
     }
 }
 
@@ -126,6 +128,8 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             projectionEditor.clearJoints();
             surfaceManager->deselectSurface();
         }
+    } else if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+        
     }
 }
 
@@ -162,7 +166,8 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
 {
     if (newGuiMode != ofxGuiMode::NONE &&
         newGuiMode != ofxGuiMode::TEXTURE_MAPPING &&
-        newGuiMode != ofxGuiMode::PROJECTION_MAPPING) {
+        newGuiMode != ofxGuiMode::PROJECTION_MAPPING &&
+        newGuiMode != ofxGuiMode::SOURCE_SELECTION) {
         throw std::runtime_error("Trying to set invalid mode.");
     }
     

@@ -6,7 +6,8 @@ struct ofxGuiMode
     enum {
         NONE,
         TEXTURE_MAPPING,
-        PROJECTION_MAPPING
+        PROJECTION_MAPPING,
+        SOURCE_SELECTION
     };
 };
 

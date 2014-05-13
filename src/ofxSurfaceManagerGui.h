@@ -8,6 +8,7 @@
 #include "ofxSurfaceManager.h"
 #include "ofxTextureEditor.h"
 #include "ofxProjectionEditor.h"
+#include "ofxSourcesEditor.h"
 #include "ofxGuiMode.h"
 
 class ofxSurfaceManagerGui
@@ -34,6 +35,7 @@ private:
     ofxSurfaceManager* surfaceManager;
     ofxTextureEditor textureEditor;
     ofxProjectionEditor projectionEditor;
+    ofxSourcesEditor sourcesEditor;
     int guiMode;
     bool bDrag;
     ofVec2f clickPosition;
