@@ -35,6 +35,11 @@ None so far.
 Version history
 ------------
 
+### Version 0.1.3:
+ - Add sources view (for selected surface)
+ - Select image sources
+ - Save and load composition
+
 ### Version 0.1.2 (2014-05-12):
 Restructured GUI mechanism for flexibility later.
  - Added possibility to add multiple surfaces
