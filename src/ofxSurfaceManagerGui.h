@@ -30,6 +30,7 @@ public:
     void drawSelectedSurfaceTextureHighlight();
     void startDrag();
     void stopDrag();
+    void gotMessage(ofMessage& msg);
     
 private:
     ofxSurfaceManager* surfaceManager;

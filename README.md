@@ -22,7 +22,8 @@ git clone https://github.com/kr15h/ofxPiMapper.git
 
 Dependencies
 ------------
-None so far.
+ofxUI
+ofxXmlSettings
 
 Compatibility
 ------------

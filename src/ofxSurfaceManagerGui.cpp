@@ -6,11 +6,13 @@ ofxSurfaceManagerGui::ofxSurfaceManagerGui()
     guiMode = ofxGuiMode::NONE;
     bDrag = false;
     registerMouseEvents();
+    ofRegisterGetMessages(this);
 }
 
 ofxSurfaceManagerGui::~ofxSurfaceManagerGui()
 {
     unregisterMouseEvents();
+    ofUnregisterGetMessages(this);
     surfaceManager = NULL;
 }
 
@@ -68,6 +70,12 @@ void ofxSurfaceManagerGui::draw()
         projectionEditor.draw();
         
     } else if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+        // draw projection surfaces first
+        surfaceManager->draw();
+        
+        // highlight selected surface
+        drawSelectedSurfaceHighlight();
+        
         sourcesEditor.draw();
     }
 }
@@ -173,8 +181,16 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     
     guiMode = newGuiMode;
     
-    // refresh texture editor surface reference
-    textureEditor.setSurface(surfaceManager->getSelectedSurface());
+    if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+        sourcesEditor.enable();
+    } else {
+        sourcesEditor.disable();
+    }
+    
+    if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+        // refresh texture editor surface reference
+        textureEditor.setSurface(surfaceManager->getSelectedSurface());
+    }
 }
 
 void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
@@ -212,4 +228,17 @@ void ofxSurfaceManagerGui::startDrag()
 void ofxSurfaceManagerGui::stopDrag()
 {
     bDrag = false;
+}
+
+void ofxSurfaceManagerGui::gotMessage(ofMessage& msg)
+{
+    cout << msg.message << endl;
+    
+    if ( msg.message == "imageLoaded" ) {
+        // assign texture to selected source
+        if (surfaceManager->getSelectedSurface() == NULL){
+            return;
+        }
+        surfaceManager->getSelectedSurface()->setTexture( sourcesEditor.getTexture(sourcesEditor.getLoadedTexCount()-1) );
+    }
 }

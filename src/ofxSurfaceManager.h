@@ -4,6 +4,7 @@
 #include "ofxBaseSurface.h"
 #include "ofxTriangleSurface.h"
 #include "ofxSurfaceType.h"
+#include "ofEvents.h"
 
 using namespace std;
 
