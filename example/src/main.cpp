@@ -3,6 +3,10 @@
 
 int main()
 {
-	ofSetupOpenGL(600, 500, OF_WINDOW);
+#ifdef TARGET_RASPBERRY_PI
+	ofSetupOpenGL(600, 500, OF_FULLSCREEN);
+#else
+    ofSetupOpenGL(600, 500, OF_WINDOW);
+#endif
 	ofRunApp(new ofApp());
 }
