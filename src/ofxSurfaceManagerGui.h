@@ -1,6 +1,9 @@
 #ifndef H_OFX_SURFACE_MANAGER_GUI
 #define H_OFX_SURFACE_MANAGER_GUI
 
+// I'm starting to think, maybe we should use ofxStateMachine here.
+// Would make sense. TODO later.
+
 #include "ofEvents.h"
 #include "ofxSurfaceManager.h"
 #include "ofxTextureEditor.h"
