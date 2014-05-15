@@ -184,7 +184,85 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
 
 void ofxSurfaceManager::loadXmlSettings(string fileName)
 {
+    if (!xmlSettings.loadFile(fileName)){
+        ofLog(OF_LOG_WARNING, "Could not load XML settings.");
+        return;
+    }
     
+    if (!xmlSettings.tagExists("surfaces")){
+        ofLog(OF_LOG_WARNING, "XML settings is empty or has wrong markup.");
+        return;
+    }
+    
+    xmlSettings.pushTag("surfaces");
+    
+    int numSurfaces = xmlSettings.getNumTags("surface");
+    for ( int i=0; i<numSurfaces; i++ ) {
+        xmlSettings.pushTag("surface", i);
+        
+        // attempt to load surface source
+        xmlSettings.pushTag("source");
+        string sourceType = xmlSettings.getValue("source-type", "image");
+        string sourceName = xmlSettings.getValue("source-name", "none");
+        ofTexture* sourceTexture = NULL;
+        if ( sourceName != "none" ) {
+            stringstream ss;
+            ss << "sources/images/" << sourceName; // TODO: reuse constants here
+            sourceTexture = loadImageSource(sourceName, ss.str());
+        }
+        xmlSettings.popTag(); // source
+        
+        // get vertices (only for triangle surface for now)
+        xmlSettings.pushTag("vertices");
+        
+        vector<ofVec2f> vertices;
+        
+        xmlSettings.pushTag("vertex", 0);
+        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.pushTag("vertex", 1);
+        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 100.0f), xmlSettings.getValue("y", 0.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.pushTag("vertex", 2);
+        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 100.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.popTag(); // vertices
+        
+        // get texture coordinates (only for triangle surfaces for now)
+        xmlSettings.pushTag("texCoords");
+        
+        vector<ofVec2f> texCoords;
+        
+        xmlSettings.pushTag("texCoord", 0);
+        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.pushTag("texCoord", 1);
+        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 1.0f), xmlSettings.getValue("y", 0.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.pushTag("texCoord", 2);
+        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 1.0f) ) );
+        xmlSettings.popTag();
+        
+        xmlSettings.popTag(); // texCoords
+        
+        
+        // now we have variables sourceName and sourceTexture
+        // by checking those we can use one or another addSurface method
+        if ( sourceName != "none" && sourceTexture != NULL ) {
+            addSurface(ofxSurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices, texCoords);
+        } else {
+            addSurface(ofxSurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+        }
+        
+        xmlSettings.popTag(); // surface
+    }
+    
+    xmlSettings.popTag(); // surfaces
 }
 
 ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
@@ -218,7 +296,9 @@ ofTexture* ofxSurfaceManager::loadImageSource(string name, string path)
     
     // not loaded - load
     ofImage* image = new ofImage();
-    image->loadImage(path);
+    if ( !image->loadImage(path) ){
+        return NULL;
+    }
     loadedImageSources.push_back(image);
     loadedImageSourceNames.push_back(name);
     return &image->getTextureReference();

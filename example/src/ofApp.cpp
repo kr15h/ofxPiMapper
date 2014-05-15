@@ -5,12 +5,16 @@ void ofApp::setup()
     image.loadImage("TestPatternInvert.jpg");
     bShowInfo = false;
     
+    /*
     surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
     
     surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
     surfaceManager.getSurface(1)->setVertex(0, ofVec2f(10, 10));
     surfaceManager.getSurface(1)->setVertex(1, ofVec2f(400, 20));
     surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
+    */
+    
+    surfaceManager.loadXmlSettings("surfaces.xml");
     
     gui.setSurfaceManager( &surfaceManager );
 }
