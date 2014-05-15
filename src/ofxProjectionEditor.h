@@ -18,6 +18,7 @@ public:
     void update(ofEventArgs& args);
     void draw();
     void mouseDragged(ofMouseEventArgs& args);
+    void gotMessage(ofMessage& msg);
     void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
     void clearJoints();
     void createJoints();

@@ -272,6 +272,9 @@ ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
     }
     
     selectedSurface = surfaces[index];
+    
+    // notify that a new surface has been selected
+    ofSendMessage("surfaceSelected");
 }
 
 ofxBaseSurface* ofxSurfaceManager::getSelectedSurface()

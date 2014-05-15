@@ -13,16 +13,19 @@ ofxProjectionEditor::~ofxProjectionEditor()
     surfaceManager = NULL;
     unregisterAppEvents();
     unregisterMouseEvents();
+    
 }
 
 void ofxProjectionEditor::registerAppEvents()
 {
     ofAddListener(ofEvents().update, this, &ofxProjectionEditor::update);
+    ofAddListener(ofEvents().messageEvent, this, &ofxProjectionEditor::gotMessage);
 }
 
 void ofxProjectionEditor::unregisterAppEvents()
 {
     ofRemoveListener(ofEvents().update, this, &ofxProjectionEditor::update);
+    ofRemoveListener(ofEvents().messageEvent, this, &ofxProjectionEditor::gotMessage);
 }
 
 void ofxProjectionEditor::registerMouseEvents()
@@ -58,6 +61,15 @@ void ofxProjectionEditor::draw()
 void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
 {
     //
+}
+
+void ofxProjectionEditor::gotMessage(ofMessage& msg)
+{
+    if (msg.message == "surfaceSelected") {
+        // refresh gui
+        clearJoints();
+        createJoints();
+    }
 }
 
 void ofxProjectionEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
