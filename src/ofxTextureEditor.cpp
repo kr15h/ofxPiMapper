@@ -84,6 +84,13 @@ void ofxTextureEditor::clearJoints()
     }
 }
 
+void ofxTextureEditor::unselectAllJoints()
+{
+    for ( int i=0; i<joints.size(); i++ ) {
+        joints[i]->unselect();
+    }
+}
+
 void ofxTextureEditor::moveTexCoords(ofVec2f by)
 {
     if ( surface == NULL ) return;

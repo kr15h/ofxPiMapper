@@ -21,6 +21,8 @@ public:
     void mouseDragged(ofMouseEventArgs& args);
     void startDrag();
     void stopDrag();
+    void select();
+    void unselect();
     bool isDragged();
     
     virtual void update(){};

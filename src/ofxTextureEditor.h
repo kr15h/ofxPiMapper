@@ -21,6 +21,7 @@ public:
     void clear();
     void createJoints();
     void clearJoints();
+    void unselectAllJoints();
     void moveTexCoords(ofVec2f by);
     void stopDragJoints();
     ofxCircleJoint* hitTestJoints(ofVec2f pos);

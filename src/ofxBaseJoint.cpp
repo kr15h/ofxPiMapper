@@ -54,6 +54,16 @@ void ofxBaseJoint::stopDrag()
     bDrag = false;
 }
 
+void ofxBaseJoint::select()
+{
+    selected = true;
+}
+
+void ofxBaseJoint::unselect()
+{
+    selected = false;
+}
+
 bool ofxBaseJoint::isDragged()
 {
     return bDrag;

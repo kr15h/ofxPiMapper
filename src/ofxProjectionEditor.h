@@ -23,6 +23,7 @@ public:
     void clearJoints();
     void createJoints();
     void updateJoints();
+    void unselectAllJoints();
     void moveSelectedSurface(ofVec2f by);
     void stopDragJoints();
     void updateVertices();

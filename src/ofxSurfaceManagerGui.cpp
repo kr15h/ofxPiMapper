@@ -88,6 +88,8 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
         
         ofxCircleJoint* hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
         if ( hitJoint != NULL ) {
+            textureEditor.unselectAllJoints();
+            hitJoint->select();
             hitJoint->startDrag();
             bSurfaceSelected = true;
         }
@@ -106,6 +108,8 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
         
         ofxCircleJoint* hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
         if ( hitJoint != NULL ) {
+            projectionEditor.unselectAllJoints();
+            hitJoint->select();
             hitJoint->startDrag();
             bSurfaceSelected = true;
         }

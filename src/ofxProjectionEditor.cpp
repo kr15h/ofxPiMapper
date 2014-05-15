@@ -111,6 +111,13 @@ void ofxProjectionEditor::updateJoints()
     }
 }
 
+void ofxProjectionEditor::unselectAllJoints()
+{
+    for ( int i=0; i<joints.size(); i++ ) {
+        joints[i]->unselect();
+    }
+}
+
 void ofxProjectionEditor::moveSelectedSurface(ofVec2f by)
 {
     if ( surfaceManager == NULL ) return;
