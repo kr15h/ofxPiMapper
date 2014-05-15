@@ -66,6 +66,7 @@ void ofApp::keyPressed(int key)
         case '4': gui.setMode(ofxGuiMode::SOURCE_SELECTION); break;
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
+        case 'f': ofToggleFullscreen(); break;
         default: break;
     }
 }
