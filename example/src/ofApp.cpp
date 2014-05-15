@@ -67,6 +67,7 @@ void ofApp::keyPressed(int key)
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
         case 'f': ofToggleFullscreen(); break;
+        case 's': surfaceManager.saveXmlSettings("surfaces.xml"); break;
         default: break;
     }
 }

@@ -5,6 +5,7 @@
 #include "ofxTriangleSurface.h"
 #include "ofxSurfaceType.h"
 #include "ofEvents.h"
+#include "ofxXmlSettings.h"
 
 using namespace std;
 
@@ -21,6 +22,9 @@ public:
     void addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
     void manageMemory(); // deletes unasigned sources
     void clear();
+    void saveXmlSettings(string fileName);
+    void loadXmlSettings(string fileName);
+    
     ofxBaseSurface* getSurface(int index);
     int size();
     ofxBaseSurface* selectSurface(int index);
@@ -28,13 +32,15 @@ public:
     void deselectSurface();
     ofTexture* loadImageSource(string name, string path);
     string getSelectedSurfaceSourceName();
-    
+    string getSurfaceSourceName( ofxBaseSurface* surface );
     
 private:
     vector<ofxBaseSurface*> surfaces;
     ofxBaseSurface* selectedSurface;
     vector<string> loadedImageSourceNames;
     vector<ofImage*> loadedImageSources;
+    ofxXmlSettings xmlSettings;
+    
 };
 
 #endif
