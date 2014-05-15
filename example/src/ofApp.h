@@ -17,6 +17,7 @@ public:
 	void mouseDragged(int x, int y, int button);
     
     void addRandomSurface();
+    void addSurface();
     
     ofImage image;
     ofxSurfaceManager surfaceManager;

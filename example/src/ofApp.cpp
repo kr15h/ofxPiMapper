@@ -70,6 +70,7 @@ void ofApp::keyPressed(int key)
         case '4': gui.setMode(ofxGuiMode::SOURCE_SELECTION); break;
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
+        case 'n': addSurface(); break;
         case 'f': ofToggleFullscreen(); break;
         case 's': surfaceManager.saveXmlSettings("surfaces.xml"); break;
         default: break;
@@ -106,4 +107,21 @@ void ofApp::addRandomSurface()
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     surfaceManager.addSurface(surfaceType, vertices, texCoords);
+}
+
+void ofApp::addSurface()
+{
+    int surfaceType = ofxSurfaceType::TRIANGLE_SURFACE;
+    vector<ofVec2f> vertices;
+    vertices.push_back( ofVec2f( (float)ofGetWidth()/2.0f, 0.0f ) );
+    vertices.push_back( ofVec2f( (float)ofGetWidth(), (float)ofGetHeight() ) );
+    vertices.push_back( ofVec2f( 0.0f, (float)ofGetHeight() ) );
+    vector<ofVec2f> texCoords;
+    texCoords.push_back( ofVec2f( 0.5f, 0.0f ) );
+    texCoords.push_back( ofVec2f( 1.0f, 1.0f ) );
+    texCoords.push_back( ofVec2f( 0.0f, 1.0f ) );
+    surfaceManager.addSurface(surfaceType, vertices, texCoords);
+    
+    // select this surface right away
+    surfaceManager.selectSurface(surfaceManager.size()-1);
 }
