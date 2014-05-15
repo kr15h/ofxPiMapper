@@ -107,6 +107,9 @@ void ofApp::addRandomSurface()
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     surfaceManager.addSurface(surfaceType, vertices, texCoords);
+    
+    // select this surface right away
+    surfaceManager.selectSurface(surfaceManager.size()-1);
 }
 
 void ofApp::addSurface()
