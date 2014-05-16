@@ -36,10 +36,13 @@ None so far.
 Version history
 ------------
 
-### Version 0.1.3:
- - Add sources view (for selected surface)
- - Select image sources
- - Save and load composition
+### Version 0.1.3 (2014-05-16):
+ - Added sources view (for selected surface)
+ - Added possibility to select image sources
+ - Save and load surfaces with image sources
+ - Joint and surface movement using arrow keys
+ - Added fullscreen toggle
+ - Adjusted the example to work with new changes
 
 ### Version 0.1.2 (2014-05-12):
 Restructured GUI mechanism for flexibility later.

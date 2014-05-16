@@ -47,12 +47,15 @@ void ofApp::draw()
     if ( bShowInfo ) {
         // Draw instructions
         stringstream ss;
-        ss << "There are 3 modes:\n\n";
+        ss << "There are 4 modes:\n\n";
         ss << " 1. Presentation mode\n";
         ss << " 2. Texture mapping mode\n";
         ss << " 3. Projection mapping mode\n";
         ss << " 4. Source selection mode\n\n";
         ss << "You can switch between the modes by using <1>, <2>, <3> and <4> keys on the keyboard.\n\n";
+        ss << "Press <r> or <n> to add random or normal surface.\n";
+        ss << "Press <s> to save the composition.\n";
+        ss << "Press <f> to toggle fullscreen.\n";
         ss << "Hit <i> to hide this message.";
         
         ofDrawBitmapStringHighlight(ss.str(), 10, 20, ofColor(0,0,0,100), ofColor(255,255,255,200));
