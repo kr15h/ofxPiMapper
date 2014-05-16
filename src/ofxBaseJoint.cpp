@@ -69,6 +69,11 @@ bool ofxBaseJoint::isDragged()
     return bDrag;
 }
 
+bool ofxBaseJoint::isSelected()
+{
+    return selected;
+}
+
 void ofxBaseJoint::setDefaultColors()
 {
     fillColor = ofColor(0, 255, 255, 0);

@@ -24,6 +24,7 @@ public:
     void select();
     void unselect();
     bool isDragged();
+    bool isSelected();
     
     virtual void update(){};
     virtual void draw(){};

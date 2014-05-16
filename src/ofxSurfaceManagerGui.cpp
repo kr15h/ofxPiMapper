@@ -93,6 +93,8 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             hitJoint->select();
             hitJoint->startDrag();
             bSurfaceSelected = true;
+        } else {
+            textureEditor.unselectAllJoints();
         }
         
         if ( surfaceManager->getSelectedSurface() != NULL && !bSurfaceSelected ) {
@@ -200,8 +202,17 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     }
     
     if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+        textureEditor.enable();
         // refresh texture editor surface reference
         textureEditor.setSurface(surfaceManager->getSelectedSurface());
+    } else {
+        textureEditor.disable();
+    }
+    
+    if (guiMode == ofxGuiMode::PROJECTION_MAPPING) {
+        projectionEditor.enable();
+    } else {
+        projectionEditor.disable();
     }
 }
 

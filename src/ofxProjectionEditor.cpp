@@ -3,17 +3,15 @@
 ofxProjectionEditor::ofxProjectionEditor()
 {
     surfaceManager = NULL;
-    registerAppEvents();
-    registerMouseEvents();
+    bShiftKeyDown = false;
+    enable();
 }
 
 ofxProjectionEditor::~ofxProjectionEditor()
 {
     clearJoints();
     surfaceManager = NULL;
-    unregisterAppEvents();
-    unregisterMouseEvents();
-    
+    disable();
 }
 
 void ofxProjectionEditor::registerAppEvents()
@@ -38,11 +36,37 @@ void ofxProjectionEditor::unregisterMouseEvents()
     ofRemoveListener(ofEvents().mouseDragged, this, &ofxProjectionEditor::mouseDragged);
 }
 
+void ofxProjectionEditor::registerKeyEvents()
+{
+    ofAddListener(ofEvents().keyPressed, this, &ofxProjectionEditor::keyPressed);
+    ofAddListener(ofEvents().keyReleased, this, &ofxProjectionEditor::keyReleased);
+}
+
+void ofxProjectionEditor::unregisterKeyEvents()
+{
+    ofRemoveListener(ofEvents().keyPressed, this, &ofxProjectionEditor::keyPressed);
+    ofRemoveListener(ofEvents().keyReleased, this, &ofxProjectionEditor::keyReleased);
+}
+
+void ofxProjectionEditor::enable()
+{
+    registerAppEvents();
+    registerMouseEvents();
+    registerKeyEvents();
+}
+
+void ofxProjectionEditor::disable()
+{
+    unregisterAppEvents();
+    unregisterMouseEvents();
+    unregisterKeyEvents();
+}
+
 void ofxProjectionEditor::update(ofEventArgs &args)
 {
     // update surface if one of the joints is being dragged
     for ( int i=0; i<joints.size(); i++ ) {
-        if ( joints[i]->isDragged() ) {
+        if ( joints[i]->isDragged() || joints[i]->isSelected() ) {
             // update vertex to new location
             surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
             break;
@@ -61,6 +85,31 @@ void ofxProjectionEditor::draw()
 void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
 {
     //
+}
+
+void ofxProjectionEditor::keyPressed(ofKeyEventArgs &args)
+{
+    int key = args.key;
+    float moveStep;
+    
+    if (bShiftKeyDown) moveStep = 10.0f;
+    else moveStep = 0.5f;
+    
+    switch (key) {
+        case OF_KEY_LEFT: moveSelection(ofVec2f(-moveStep,0.0f)); break;
+        case OF_KEY_RIGHT: moveSelection(ofVec2f(moveStep,0.0f)); break;
+        case OF_KEY_UP: moveSelection(ofVec2f(0.0f,-moveStep)); break;
+        case OF_KEY_DOWN: moveSelection(ofVec2f(0.0f,moveStep)); break;
+        case OF_KEY_SHIFT: bShiftKeyDown = true; break;
+    }
+}
+
+void ofxProjectionEditor::keyReleased(ofKeyEventArgs &args)
+{
+    int key = args.key;
+    switch (key) {
+        case OF_KEY_SHIFT: bShiftKeyDown = false; break;
+    }
 }
 
 void ofxProjectionEditor::gotMessage(ofMessage& msg)
@@ -133,6 +182,26 @@ void ofxProjectionEditor::stopDragJoints()
 {
     for (int i=0; i<joints.size(); i++){
         joints[i]->stopDrag();
+    }
+}
+
+void ofxProjectionEditor::moveSelection(ofVec2f by)
+{
+    // check if joints selected
+    bool bJointSelected = false;
+    ofxBaseJoint* selectedJoint;
+    for ( int i=0; i<joints.size(); i++ ) {
+        if (joints[i]->isSelected()) {
+            bJointSelected = true;
+            selectedJoint = joints[i];
+            break;
+        }
+    }
+    
+    if ( bJointSelected ) {
+        selectedJoint->position += by;
+    } else {
+        moveSelectedSurface(by);
     }
 }
 
