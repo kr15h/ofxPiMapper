@@ -6,6 +6,7 @@ ofxSurfaceManagerGui::ofxSurfaceManagerGui()
     guiMode = ofxGuiMode::NONE;
     bDrag = false;
     registerMouseEvents();
+    ofHideCursor();
 }
 
 ofxSurfaceManagerGui::~ofxSurfaceManagerGui()
@@ -180,6 +181,12 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
         newGuiMode != ofxGuiMode::PROJECTION_MAPPING &&
         newGuiMode != ofxGuiMode::SOURCE_SELECTION) {
         throw std::runtime_error("Trying to set invalid mode.");
+    }
+    
+    if ( newGuiMode == ofxGuiMode::NONE ) {
+        ofHideCursor();
+    } else {
+        ofShowCursor();
     }
     
     guiMode = newGuiMode;
