@@ -2,39 +2,56 @@
 
 void ofApp::setup()
 {
-    //image.loadImage("TestPatternInvert.jpg");
     bShowInfo = false;
-    
-    /*
-    surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
-    
-    surfaceManager.addSurface( ofxSurfaceType::TRIANGLE_SURFACE );
-    surfaceManager.getSurface(1)->setVertex(0, ofVec2f(10, 10));
-    surfaceManager.getSurface(1)->setVertex(1, ofVec2f(400, 20));
-    surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
-    */
     
     // check if the surfaces.xml file is there
     // if not - load defaultSurfaces.xml
-    
     if ( ofFile::doesFileExist("surfaces.xml") ) {
         surfaceManager.loadXmlSettings("surfaces.xml");
     } else {
         surfaceManager.loadXmlSettings("defaultSurfaces.xml");
     }
     
+    // Pass the surface manager to the mapper graphical user interface
     gui.setSurfaceManager( &surfaceManager );
+    
+    // Create FBO
+    fbo = new ofFbo();
+    fbo->allocate( 500, 500 );
+    setFboAsTexture();
+    
+    // Genereate rects
+    int numRects = 20; // change this to add more or less rects
+    for ( int i=0; i<numRects; i++ ) {
+        rects.push_back( ofRectangle(0, ofRandom(fbo->getHeight()), fbo->getWidth(), ofRandom(20)) );
+        rectSpeeds.push_back( (1.0f + ofRandom(5)) );
+    }
 }
 
 void ofApp::update()
 {
-	ofBackground(0);
+    // Move rects
+    for ( int i=0; i<rects.size(); i++ ) {
+        rects[i].y += rectSpeeds[i];
+        if ( rects[i].y > fbo->getHeight() ) {
+            rects[i].y = -rects[i].getHeight();
+        }
+    }
+    
+    // Fill FBO
+    fbo->begin();
+    ofClear(0);
+    ofBackground(0);
+    ofSetColor(255);
+    for ( int i=0; i<rects.size(); i++ ) {
+        ofRect( rects[i] );
+    }
+    fbo->end();
 }
 
 void ofApp::draw()
 {
-    //surfaceManager.draw();
-    // if using gui - use ofxSurfaceManagerGui::draw() instead of surfaceManager::draw()
+    // Draw the piMapper GUI
     gui.draw();
     
     if ( bShowInfo ) {
@@ -49,10 +66,17 @@ void ofApp::draw()
         ss << "Press <r> or <n> to add random or normal surface.\n";
         ss << "Press <s> to save the composition.\n";
         ss << "Press <f> to toggle fullscreen.\n";
+        ss << "Press <a> to reassign the fbo texture to the first surface\n";
         ss << "Hit <i> to hide this message.";
         
         ofDrawBitmapStringHighlight(ss.str(), 10, 20, ofColor(0,0,0,100), ofColor(255,255,255,200));
     }
+}
+
+void ofApp::exit()
+{
+    // Clear FBO from mem
+    delete fbo;
 }
 
 void ofApp::keyPressed(int key)
@@ -69,26 +93,9 @@ void ofApp::keyPressed(int key)
         case 'n': addSurface(); break;
         case 'f': ofToggleFullscreen(); break;
         case 's': surfaceManager.saveXmlSettings("surfaces.xml"); break;
+        case 'a': setFboAsTexture(); break;
         default: break;
     }
-}
-
-void ofApp::mousePressed(int x, int y, int button)
-{
-    //cout << "Mouse pressed." << endl;
-    //surfaceManager.mousePressed(x, y, button);
-}
-
-void ofApp::mouseReleased(int x, int y, int button)
-{
-    //cout << "Mouse released." << endl;
-    //surfaceManager.mouseReleased(x, y, button);
-}
-
-void ofApp::mouseDragged(int x, int y, int button)
-{
-    //
-    //surfaceManager.mouseDragged(x, y, button);
 }
 
 void ofApp::addRandomSurface()
@@ -123,4 +130,9 @@ void ofApp::addSurface()
     
     // select this surface right away
     surfaceManager.selectSurface(surfaceManager.size()-1);
+}
+
+void ofApp::setFboAsTexture()
+{
+    surfaceManager.getSurface(0)->setTexture( &fbo->getTextureReference() );
 }

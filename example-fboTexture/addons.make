@@ -1,0 +1,3 @@
+ofxPiMapper
+ofxUI
+ofxXmlSettings
