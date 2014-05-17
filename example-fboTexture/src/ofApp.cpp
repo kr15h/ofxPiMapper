@@ -94,6 +94,7 @@ void ofApp::keyPressed(int key)
         case 'f': ofToggleFullscreen(); break;
         case 's': surfaceManager.saveXmlSettings("surfaces.xml"); break;
         case 'a': setFboAsTexture(); break;
+        case OF_KEY_BACKSPACE: surfaceManager.removeSelectedSurface(); break;
         default: break;
     }
 }

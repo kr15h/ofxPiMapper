@@ -82,6 +82,20 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
     }
 }
 
+void ofxSurfaceManager::removeSelectedSurface()
+{
+    if ( selectedSurface == NULL ) return;
+    
+    for ( int i=0; i<surfaces.size(); i++ ) {
+        if ( surfaces[i] == selectedSurface ) {
+            delete surfaces[i];
+            surfaces.erase(surfaces.begin()+i);
+            selectedSurface = NULL;
+            break;
+        }
+    }
+}
+
 void ofxSurfaceManager::manageMemory()
 {
     // check if each of the sources is assigned to a surface or not

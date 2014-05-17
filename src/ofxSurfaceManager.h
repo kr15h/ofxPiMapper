@@ -20,6 +20,7 @@ public:
     void addSurface(int surfaceType, ofTexture* texturePtr);
     void addSurface(int surfaceType, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
     void addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
+    void removeSelectedSurface();
     void manageMemory(); // deletes unasigned sources
     void clear();
     void saveXmlSettings(string fileName);
