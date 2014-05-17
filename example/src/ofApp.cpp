@@ -14,7 +14,14 @@ void ofApp::setup()
     surfaceManager.getSurface(1)->setVertex(2, ofVec2f(300, 400));
     */
     
-    surfaceManager.loadXmlSettings("surfaces.xml");
+    // check if the surfaces.xml file is there
+    // if not - load defaultSurfaces.xml
+    
+    if ( ofFile::doesFileExist("surfaces.xml") ) {
+        surfaceManager.loadXmlSettings("surfaces.xml");
+    } else {
+        surfaceManager.loadXmlSettings("defaultSurfaces.xml");
+    }
     
     gui.setSurfaceManager( &surfaceManager );
 }
