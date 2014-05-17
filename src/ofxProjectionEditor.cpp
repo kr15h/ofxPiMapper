@@ -4,6 +4,7 @@ ofxProjectionEditor::ofxProjectionEditor()
 {
     surfaceManager = NULL;
     bShiftKeyDown = false;
+    fSnapDistance = 10.0f;
     enable();
 }
 
@@ -84,7 +85,36 @@ void ofxProjectionEditor::draw()
 
 void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
 {
-    //
+    ofVec2f mousePosition = ofVec2f(args.x, args.y);
+    
+    // Collect all vertices of the projection surfaces
+    vector<ofVec3f*> allVertices;
+    for ( int i=0; i<surfaceManager->size(); i++ ) {
+        ofxBaseSurface* surface = surfaceManager->getSurface(i);
+        if ( surface == surfaceManager->getSelectedSurface() ) {
+            continue; // Don't add vertices of selected surface
+        }
+        for ( int j=0; j<surface->getVertices().size(); j++ ) {
+            allVertices.push_back(&surface->getVertices()[j]);
+        }
+    }
+    
+    // Snap currently dragged joint to nearest vertex
+    for ( int i=0; i<joints.size(); i++ ) {
+        if ( joints[i]->isDragged() ) {
+            // Snap it!
+            for ( int j=0; j<allVertices.size(); j++ ) {
+                float distance = mousePosition.distance(*allVertices[j]);
+                //cout << "distance: " << distance << endl;
+                if ( distance < fSnapDistance ) {
+                    joints[i]->position = *allVertices[j];
+                    ofVec2f clickDistance = joints[i]->position - ofVec2f(args.x, args.y);
+                    joints[i]->setClickDistance(clickDistance);
+                    break;
+                }
+            }
+        }
+    }
 }
 
 void ofxProjectionEditor::keyPressed(ofKeyEventArgs &args)
@@ -203,6 +233,11 @@ void ofxProjectionEditor::moveSelection(ofVec2f by)
     } else {
         moveSelectedSurface(by);
     }
+}
+
+void ofxProjectionEditor::setSnapDistance(float newSnapDistance)
+{
+    fSnapDistance = newSnapDistance;
 }
 
 ofxCircleJoint* ofxProjectionEditor::hitTestJoints(ofVec2f pos)

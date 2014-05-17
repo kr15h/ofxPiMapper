@@ -35,12 +35,14 @@ public:
     void stopDragJoints();
     void updateVertices();
     void moveSelection(ofVec2f by);
+    void setSnapDistance(float newSnapDistance);
     ofxCircleJoint* hitTestJoints(ofVec2f pos);
     
 private:
     ofxSurfaceManager* surfaceManager;
     vector<ofxCircleJoint*> joints;
     bool bShiftKeyDown;
+    float fSnapDistance;
     
     void drawJoints();
 };

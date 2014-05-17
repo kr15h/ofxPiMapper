@@ -23,6 +23,7 @@ public:
     void stopDrag();
     void select();
     void unselect();
+    void setClickDistance(ofVec2f newClickDistance);
     bool isDragged();
     bool isSelected();
     

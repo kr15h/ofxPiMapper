@@ -64,6 +64,11 @@ void ofxBaseJoint::unselect()
     selected = false;
 }
 
+void ofxBaseJoint::setClickDistance(ofVec2f newClickDistance)
+{
+    clickDistance = newClickDistance;
+}
+
 bool ofxBaseJoint::isDragged()
 {
     return bDrag;
