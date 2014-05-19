@@ -26,7 +26,13 @@ To test the addon, you will have to compile and run it:
 
 ```bash
 cd ~/openFrameworks/addons/ofxPiMapper/example
-make && make run
+make
+```
+
+After it compiles, run it by executing it directly instead of using `make run`:
+
+```
+./bin/example
 ```
 
 It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
