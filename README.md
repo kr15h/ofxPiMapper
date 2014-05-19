@@ -3,8 +3,6 @@ ofxPiMapper
 
 This project is an attempt to create optimized version of an openFrameworks projection mapping addon for the Raspberry Pi. 
 
-Introduction
-------------
 ofxPiMapper is mainly intended for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and at last get's an offer to exhibit them in an art or any other kind of gallery. 10 Mac computers? No! PiMapper is here to save you!
 
 The addon itself is intended to be flexible as the separate components of it can be reusable. Use the full version of it to set up your mapping and then switch to no-gui version once everything is set up to save processor power and memory.
@@ -35,7 +33,7 @@ It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch
 
 Dependencies
 ------------
-[ofxUI](https://github.com/rezaali/ofxUI) - will be replaced with custom solution as it consumes a lot of processing power.
+[ofxUI](https://github.com/rezaali/ofxUI) - will be replaced with custom solution as it consumes a lot of processing power.  
 ofxXmlSettings
 
 Compatibility
@@ -44,7 +42,7 @@ Tested with 0.8.0, 0.8.1 (OS X and Raspbian)
 
 Known issues
 ------------
-None so far.
+When launching the example with `make run` keyboard and mouse input is being lost sometimes. Executing the example directly by using `./bin/example` might solve the problem. Not sure how and why.
 
 Version history
 ------------
