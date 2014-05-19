@@ -7,6 +7,10 @@ Introduction
 ------------
 ofxPiMapper is mainly intended for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and at last get's an offer to exhibit them in an art or any other kind of gallery. 10 Mac computers? No! PiMapper is here to save you!
 
+The addon itself is intended to be flexible as the separate components of it can be reusable. Use the full version of it to set up your mapping and then switch to no-gui version once everything is set up to save processor power and memory.
+
+As ofxPiMapper is optimized for the Pi, there is no doubt that it will run smoothly on other machines. It has been tested on OS X.
+
 Licence
 -------
 ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License).
@@ -20,14 +24,23 @@ cd ~/openFrameworks/addons
 git clone https://github.com/kr15h/ofxPiMapper.git
 ```
 
+To test the addon, you will have to compile and run it:
+
+```bash
+cd ~/openFrameworks/addons/ofxPiMapper/example
+make && make run
+```
+
+It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
+
 Dependencies
 ------------
-ofxUI
+[ofxUI](https://github.com/rezaali/ofxUI) - will be replaced with custom solution as it consumes a lot of processing power.
 ofxXmlSettings
 
 Compatibility
 ------------
-Tested with 0.8.0, 0.8.1
+Tested with 0.8.0, 0.8.1 (OS X and Raspbian)
 
 Known issues
 ------------
