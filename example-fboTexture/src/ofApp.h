@@ -15,6 +15,7 @@ public:
 	void keyPressed(int key);
     
     void addRandomSurface();
+    void addQuadSurface();
     void addSurface();
     void setFboAsTexture();
     
