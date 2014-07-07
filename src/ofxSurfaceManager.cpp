@@ -197,9 +197,10 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
     xmlSettings.pushTag("surfaces");
     for ( int i=0; i<surfaces.size(); i++ ) {
         
-        xmlSettings.addTag("surface");        
+        xmlSettings.addTag("surface");
         xmlSettings.pushTag("surface", i);
         ofxBaseSurface* surface = surfaces[i];
+
         xmlSettings.addTag("vertices");
         xmlSettings.pushTag("vertices");
         vector<ofVec3f>* vertices = &surface->getVertices();
@@ -254,7 +255,7 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
 
 void ofxSurfaceManager::loadXmlSettings(string fileName)
 {
-    ofLog(OF_LOG_WARNING, "A load XML settings...");
+
 
     if (!xmlSettings.loadFile(fileName)){
         ofLog(OF_LOG_WARNING, "Could not load XML settings.");
@@ -271,7 +272,6 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
     int numSurfaces = xmlSettings.getNumTags("surface");
     for ( int i=0; i<numSurfaces; i++ ) {
         xmlSettings.pushTag("surface", i);
-        
         // attempt to load surface source
         xmlSettings.pushTag("source");
         string sourceType = xmlSettings.getValue("source-type", "image");
@@ -290,18 +290,17 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
         // string surfaceType = xmlSettings.getValue("surface-type", "TRIANGLE_SURFACE");
         // xmlSettings.popTag(); // type
 
-        // get vertices (only for triangle surface for now)
+
         xmlSettings.pushTag("vertices");
-        
         vector<ofVec2f> vertices;
 
-        int vertexCount = vertices.size();
-        // int vertexCount = vertices->size()
+        int vertexCount = xmlSettings.getNumTags("vertex");
+        
 
         //it's a triangle ?
         if (vertexCount == 3)
-        // if (surfaceType == TRIANGLE_SURFACE)
         {
+            ofLog(OF_LOG_NOTICE, "create Triangle");
             xmlSettings.pushTag("vertex", 0);
             vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
             xmlSettings.popTag();
@@ -342,15 +341,11 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
             } else {
                 addSurface(ofxSurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
             }
-            
-            xmlSettings.popTag(); // surface
         }
         // it's a quad ?
         else if (vertexCount == 4)  
         // if (surface-type == QUAD_SURFACE)
         {
-            ofSendMessage("create Quad");
-
             xmlSettings.pushTag("vertex", 0);
             vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
             xmlSettings.popTag();
@@ -400,8 +395,10 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
                 addSurface(ofxSurfaceType::QUAD_SURFACE, vertices, texCoords);
             }
             
-            xmlSettings.popTag(); // surface
+            
         }
+
+        xmlSettings.popTag(); // surface
     }
     
     xmlSettings.popTag(); // surfaces
