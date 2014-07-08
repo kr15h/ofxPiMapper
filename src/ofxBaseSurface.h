@@ -26,6 +26,7 @@ public:
     void setTexture(ofTexture* texturePtr);
     
     ofTexture* getTexture();
+    ofTexture* getDefaultTexture();
     
 protected:
     ofMesh mesh;

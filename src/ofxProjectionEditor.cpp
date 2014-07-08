@@ -68,8 +68,16 @@ void ofxProjectionEditor::update(ofEventArgs &args)
     // update surface if one of the joints is being dragged
     for ( int i=0; i<joints.size(); i++ ) {
         if ( joints[i]->isDragged() || joints[i]->isSelected() ) {
-            // update vertex to new location
-            surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
+            
+            if ( surfaceManager->getSelectedSurface() != NULL ) {
+                // update vertex to new location
+                surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
+            } else {
+                // clear joints if there is no surface selected
+                // as the remove selected surface in the surface manager
+                // is not supposed to access joints here
+                joints.clear();
+            }
             break;
         }
     }

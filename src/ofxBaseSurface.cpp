@@ -65,3 +65,8 @@ ofTexture* ofxBaseSurface::getTexture()
 {
     return texture;
 }
+
+ofTexture* ofxBaseSurface::getDefaultTexture()
+{
+    return &defaultTexture;
+}
