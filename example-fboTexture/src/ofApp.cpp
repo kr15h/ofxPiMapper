@@ -64,6 +64,7 @@ void ofApp::draw()
         ss << " 4. Source selection mode\n\n";
         ss << "You can switch between the modes by using <1>, <2>, <3> and <4> keys on the keyboard.\n\n";
         ss << "Press <r> or <n> to add random or normal surface.\n";
+        ss << "Press <q> to add a new quad surface.\n";
         ss << "Press <s> to save the composition.\n";
         ss << "Press <f> to toggle fullscreen.\n";
         ss << "Press <a> to reassign the fbo texture to the first surface\n";
@@ -90,6 +91,7 @@ void ofApp::keyPressed(int key)
         case '4': gui.setMode(ofxGuiMode::SOURCE_SELECTION); break;
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
+        case 'q': addQuadSurface(); break;
         case 'n': addSurface(); break;
         case 'f': ofToggleFullscreen(); break;
         case 's': surfaceManager.saveXmlSettings("surfaces.xml"); break;
@@ -110,6 +112,29 @@ void ofApp::addRandomSurface()
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
     texCoords.push_back( ofVec2f( ofRandomuf(), ofRandomuf() ) );
+    surfaceManager.addSurface(surfaceType, vertices, texCoords);
+    
+    // select this surface right away
+    surfaceManager.selectSurface(surfaceManager.size()-1);
+}
+
+void ofApp::addQuadSurface()
+{
+    int surfaceType = ofxSurfaceType::QUAD_SURFACE;
+    vector<ofVec2f> vertices;
+
+    int border = 50;
+    vertices.push_back( ofVec2f(border, border) );
+    vertices.push_back( ofVec2f(border, ofGetHeight() - border) );
+    vertices.push_back( ofVec2f(ofGetWidth() - border, ofGetHeight() - border) );
+    vertices.push_back( ofVec2f(ofGetWidth() - border, border) );
+
+    vector<ofVec2f> texCoords;
+    texCoords.push_back( ofVec2f(ofVec2f(0.0f, 0.0f)) );
+    texCoords.push_back( ofVec2f(ofVec2f(1.0f, 0.0f)) );
+    texCoords.push_back( ofVec2f(ofVec2f(1.0f, 1.0f)) );
+    texCoords.push_back( ofVec2f(ofVec2f(0.0f, 1.0f)) );
+
     surfaceManager.addSurface(surfaceType, vertices, texCoords);
     
     // select this surface right away

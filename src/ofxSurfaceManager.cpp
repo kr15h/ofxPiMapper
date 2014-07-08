@@ -21,7 +21,11 @@ void ofxSurfaceManager::addSurface(int surfaceType)
 {
     if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
         surfaces.push_back( new ofxTriangleSurface() );
-    } else {
+    } 
+    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+        surfaces.push_back( new ofxQuadSurface() );
+    }
+    else {
         throw std::runtime_error("Attempt to add non-existing surface type.");
     }
 }
@@ -31,7 +35,12 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr)
     if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
         surfaces.push_back( new ofxTriangleSurface() );
         surfaces.back()->setTexture(texturePtr);
-    } else {
+    } 
+    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+        surfaces.push_back( new ofxQuadSurface() );
+        surfaces.back()->setTexture(texturePtr);
+    }
+    else {
         throw std::runtime_error("Attempt to add non-existing surface type.");
     }
 }
@@ -43,7 +52,7 @@ void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, ve
         if ( vertices.size() < 3 ) {
             throw std::runtime_error("There must be 3 vertices for a triangle surface.");
         } else if (texCoords.size() < 3) {
-            throw std::runtime_error("Thre must be 3 texture coordinates for a triangle surface.");
+            throw std::runtime_error("There must be 3 texture coordinates for a triangle surface.");
         }
         
         surfaces.push_back( new ofxTriangleSurface() );
@@ -53,7 +62,22 @@ void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, ve
             surfaces.back()->setTexCoord(i, texCoords[i]);
         }
         
-    } else {
+    } 
+    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+        if ( vertices.size() < 4 ) {
+            throw std::runtime_error("There must be 4 vertices for a quad surface.");
+        } else if (texCoords.size() < 4) {
+            throw std::runtime_error("There must be 4 texture coordinates for a quad surface.");
+        }
+        
+        surfaces.push_back( new ofxQuadSurface() );
+        
+        for ( int i=0; i<4; i++ ) {
+            surfaces.back()->setVertex(i, vertices[i]);
+            surfaces.back()->setTexCoord(i, texCoords[i]);
+        }
+    }
+    else {
         throw std::runtime_error("Attempt to add non-existing surface type.");
     }
 
@@ -77,7 +101,23 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
             surfaces.back()->setTexCoord(i, texCoords[i]);
         }
         
-    } else {
+    } 
+    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+        if ( vertices.size() < 4 ) {
+            throw std::runtime_error("There must be 4 vertices for a quad surface.");
+        } else if (texCoords.size() < 4) {
+            throw std::runtime_error("Thre must be 4 texture coordinates for a quad surface.");
+        }
+        
+        surfaces.push_back( new ofxQuadSurface() );
+        surfaces.back()->setTexture(texturePtr);
+        
+        for ( int i=0; i<4; i++ ) {
+            surfaces.back()->setVertex(i, vertices[i]);
+            surfaces.back()->setTexCoord(i, texCoords[i]);
+        }
+    }
+    else {
         throw std::runtime_error("Attempt to add non-existing surface type.");
     }
 }
@@ -138,6 +178,16 @@ void ofxSurfaceManager::clear()
     }
 }
 
+// String getTypeString(ofxSurfaceType e)
+// {
+//   switch e
+//   {
+//       case TRINAGLE_SURFACE: return "TRINAGLE_SURFACE";
+//       case QUAD_SURFACE: return "QUAD_SURFACE";
+//       default: throw Exception("Bad MyEnum");
+//   }
+// }
+
 void ofxSurfaceManager::saveXmlSettings(string fileName)
 {
     xmlSettings.clear();
@@ -150,7 +200,7 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
         xmlSettings.addTag("surface");
         xmlSettings.pushTag("surface", i);
         ofxBaseSurface* surface = surfaces[i];
-        
+
         xmlSettings.addTag("vertices");
         xmlSettings.pushTag("vertices");
         vector<ofVec3f>* vertices = &surface->getVertices();
@@ -186,9 +236,16 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
         xmlSettings.addValue("source-type", "image");
         xmlSettings.addValue("source-name", getSurfaceSourceName(surface));
         //xmlSettings.addValue("source-path", "/root/etc/image.jpg");
-        
         xmlSettings.popTag(); // source
-        
+
+
+        // xmlSettings.addTag("type");
+        // xmlSettings.pushTag("type");
+        // // surfaceType == ofxSurfaceType::TRIANGLE_SURFACE
+        // ofxSurfaceType surfaceType = &surface->getType();
+        // xmlSettings.addValue("surface-type", surfaceType);
+        // xmlSettings.popTag(); // type
+
         xmlSettings.popTag(); // surface
     }
     xmlSettings.popTag(); // surfaces
@@ -198,6 +255,8 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
 
 void ofxSurfaceManager::loadXmlSettings(string fileName)
 {
+
+
     if (!xmlSettings.loadFile(fileName)){
         ofLog(OF_LOG_WARNING, "Could not load XML settings.");
         return;
@@ -213,7 +272,6 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
     int numSurfaces = xmlSettings.getNumTags("surface");
     for ( int i=0; i<numSurfaces; i++ ) {
         xmlSettings.pushTag("surface", i);
-        
         // attempt to load surface source
         xmlSettings.pushTag("source");
         string sourceType = xmlSettings.getValue("source-type", "image");
@@ -225,54 +283,121 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
             sourceTexture = loadImageSource(sourceName, ss.str());
         }
         xmlSettings.popTag(); // source
-        
-        // get vertices (only for triangle surface for now)
+
+        // // attempt to load surface type
+        // ofLog(OF_LOG_WARNING, "Attempt to load surface type.");
+        // xmlSettings.pushTag("type");
+        // string surfaceType = xmlSettings.getValue("surface-type", "TRIANGLE_SURFACE");
+        // xmlSettings.popTag(); // type
+
+
         xmlSettings.pushTag("vertices");
-        
         vector<ofVec2f> vertices;
+
+        int vertexCount = xmlSettings.getNumTags("vertex");
         
-        xmlSettings.pushTag("vertex", 0);
-        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.pushTag("vertex", 1);
-        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 100.0f), xmlSettings.getValue("y", 0.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.pushTag("vertex", 2);
-        vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 100.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.popTag(); // vertices
-        
-        // get texture coordinates (only for triangle surfaces for now)
-        xmlSettings.pushTag("texCoords");
-        
-        vector<ofVec2f> texCoords;
-        
-        xmlSettings.pushTag("texCoord", 0);
-        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.pushTag("texCoord", 1);
-        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 1.0f), xmlSettings.getValue("y", 0.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.pushTag("texCoord", 2);
-        texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 1.0f) ) );
-        xmlSettings.popTag();
-        
-        xmlSettings.popTag(); // texCoords
-        
-        
-        // now we have variables sourceName and sourceTexture
-        // by checking those we can use one or another addSurface method
-        if ( sourceName != "none" && sourceTexture != NULL ) {
-            addSurface(ofxSurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices, texCoords);
-        } else {
-            addSurface(ofxSurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+
+        //it's a triangle ?
+        if (vertexCount == 3)
+        {
+            ofLog(OF_LOG_NOTICE, "create Triangle");
+            xmlSettings.pushTag("vertex", 0);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("vertex", 1);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 100.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("vertex", 2);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 100.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.popTag(); // vertices
+            
+            xmlSettings.pushTag("texCoords");
+            
+            vector<ofVec2f> texCoords;
+            
+            xmlSettings.pushTag("texCoord", 0);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("texCoord", 1);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 1.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("texCoord", 2);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 1.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.popTag(); // texCoords
+            
+            
+            // now we have variables sourceName and sourceTexture
+            // by checking those we can use one or another addSurface method
+            if ( sourceName != "none" && sourceTexture != NULL ) {
+                addSurface(ofxSurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices, texCoords);
+            } else {
+                addSurface(ofxSurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+            }
         }
-        
+        // it's a quad ?
+        else if (vertexCount == 4)  
+        // if (surface-type == QUAD_SURFACE)
+        {
+            xmlSettings.pushTag("vertex", 0);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("vertex", 1);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 100.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("vertex", 2);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 100.0f), xmlSettings.getValue("y", 100.0f) ) );
+            xmlSettings.popTag();
+
+            xmlSettings.pushTag("vertex", 3);
+            vertices.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 100.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.popTag(); // vertices
+            
+            xmlSettings.pushTag("texCoords");
+            
+            vector<ofVec2f> texCoords;
+            
+            xmlSettings.pushTag("texCoord", 0);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("texCoord", 1);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 1.0f), xmlSettings.getValue("y", 0.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.pushTag("texCoord", 2);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 1.0f), xmlSettings.getValue("y", 1.0f) ) );
+            xmlSettings.popTag();
+
+            xmlSettings.pushTag("texCoord", 3);
+            texCoords.push_back( ofVec2f( xmlSettings.getValue("x", 0.0f), xmlSettings.getValue("y", 1.0f) ) );
+            xmlSettings.popTag();
+            
+            xmlSettings.popTag(); // texCoords
+            
+            
+            // now we have variables sourceName and sourceTexture
+            // by checking those we can use one or another addSurface method
+            if ( sourceName != "none" && sourceTexture != NULL ) {
+                addSurface(ofxSurfaceType::QUAD_SURFACE, sourceTexture, vertices, texCoords);
+            } else {
+                addSurface(ofxSurfaceType::QUAD_SURFACE, vertices, texCoords);
+            }
+            
+            
+        }
+
         xmlSettings.popTag(); // surface
     }
     

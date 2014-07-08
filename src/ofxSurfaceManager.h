@@ -3,6 +3,7 @@
 
 #include "ofxBaseSurface.h"
 #include "ofxTriangleSurface.h"
+#include "ofxQuadSurface.h"
 #include "ofxSurfaceType.h"
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"

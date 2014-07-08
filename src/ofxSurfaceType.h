@@ -4,7 +4,8 @@
 struct ofxSurfaceType
 {
     enum {
-        TRIANGLE_SURFACE
+        TRIANGLE_SURFACE,
+        QUAD_SURFACE
     };
 };
 
