@@ -1,6 +1,0 @@
-obj
-*.xcodeproj
-*.plist
-*.xcconfig
-*~
-config.make
