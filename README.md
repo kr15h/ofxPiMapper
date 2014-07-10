@@ -1,13 +1,22 @@
 ofxPiMapper
 ===========
 
-This project is an attempt to create optimized version of an openFrameworks projection mapping addon for the Raspberry Pi. 
+This project is an attempt to create optimized version of an openFrameworks projection mapping addon for the Raspberry Pi. It is also my master thesis project at Aalto University, School of Arts, Design and Architecture (Helsinki Media Lab).
 
-ofxPiMapper is mainly intended for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and at last get's an offer to exhibit them in an art or any other kind of gallery. 10 Mac computers? No! PiMapper is here to save you!
+ofxPiMapper is mainly for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 Mac computers? No! PiMapper is here to save you!
 
-The addon itself is intended to be flexible as the separate components of it can be reusable. Use the full version of it to set up your mapping and then switch to no-gui version once everything is set up to save processor power and memory.
+The addon itself is intended to be flexible as the separate components of it can be reusable. The main example of the addon can be used as a standalone application for experimenting, testing as well as production state of a project. If you need to save memory and processing power, reusing ofxPiMapper classes without adding the GUI layer can help you.
 
-As ofxPiMapper is optimized for the Pi, there is no doubt that it will run smoothly on other machines. It has been tested on OS X.
+As ofxPiMapper is optimized for the Pi, there is no doubt that it will run smoothly on other machines. It has been tested on OS X so far.
+
+Development
+-----------
+
+As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
+
+Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
+
+I'm still working on boosting my understanding about the issue tracking system on GitHub, I believe that it would be the best way how to keep new feature requests and bugfixes organized.
 
 Licence
 -------
@@ -15,6 +24,10 @@ ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki
 
 Installation
 ------------
+If you don't have a clue on how to set up your Pi - go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there. I have been using Raspbian so far as well as [Satellite CCRMA](https://ccrma.stanford.edu/~eberdahl/satellite/) without problems.
+
+Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow [this guide](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html) to set it up.
+
 Clone this into your `openFrameworks/addons` folder. If your openFrameworks installation on the Pi resides in the home directory, you have to type the following in the terminal:
 
 ```bash
@@ -36,6 +49,52 @@ After it compiles, run it by executing it directly instead of using `make run`:
 ```
 
 It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
+
+Usage
+-----
+
+I'm thinking on a more clever design that would not require keyboard so much, maybe. Now the example application acts as a wrapper for the ofxPiMapper addon and anyone can re-map keyboard keys by modifying the app code.
+
+###Modes
+
+PiMapper has 4 modes:
+
+1. Presentation mode
+2. Texture mapping mode
+3. Surface editing mode
+4. Source assignment mode
+
+You can access these modes by pressing 1, 2, 3 or 4 respectively.
+
+####Presentation mode
+
+This mode is activated once the application starts up. It does not show anything else except the final projection mapping as it was saved previously.
+
+####Texture mapping mode
+
+In this mode you can adjust the texture coordinates of the surface you have selected in the surface editing mode.
+
+####Surface editing mode
+
+Here you can select, move and distort the surfaces you have created.
+
+####Souce assignment mode
+
+After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
+
+###Other shortcuts
+
+These other shortcuts that you can use while using the example app. Remember that you can assign your own by editing the app.cpp file.
+
+Key | Function
+:--- | :---
+i | Show info
+n | Add triangle surface
+q | Add quad surface
+r | Add random triangle surface
+f | Toggle fullscreen
+s | Save composition
+BACKSPACE | Delete surface
 
 Dependencies
 ------------
