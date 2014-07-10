@@ -10,19 +10,22 @@ public:
 	void setup();
 	void update();
 	void draw();
+    void exit();
 
 	void keyPressed(int key);
-	void mousePressed(int x, int y, int button);
-	void mouseReleased(int x, int y, int button);
-	void mouseDragged(int x, int y, int button);
     
     void addRandomSurface();
+    void addQuadSurface();
     void addSurface();
+    void setFboAsTexture();
     
     ofImage image;
     ofxSurfaceManager surfaceManager;
     ofxSurfaceManagerGui gui;
     bool bShowInfo;
+    ofFbo* fbo;    
+    vector<ofRectangle> rects;
+    vector<float> rectSpeeds;
 };
 
 #endif
