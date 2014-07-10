@@ -110,7 +110,16 @@ Known issues
 When launching the example with `make run` keyboard and mouse input is being lost sometimes. Executing the example directly by using `./bin/example` might solve the problem. Not sure how and why.
 
 Version history
-------------
+---------------
+
+### Version 0.1.4 (2014-07-10):
+ - Added fbo texture example
+ - Replaced the main example with the fbo texture one
+ - Added simple quad surface
+ - Fixed a couple of bugs
+ - Introduced new branching model
+ - Added joint snapping
+ - Improved README
 
 ### Version 0.1.3 (2014-05-16):
  - Added sources view (for selected surface)
