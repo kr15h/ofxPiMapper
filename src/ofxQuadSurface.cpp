@@ -72,9 +72,9 @@ void ofxQuadSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
 
 void ofxQuadSurface::draw()
 {
-    if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
+    /*if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
         calculate4dTextureCoords();
-    }
+    }*/
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
     glVertexPointer(3, GL_FLOAT, 0, quadVertices);
@@ -92,6 +92,7 @@ void ofxQuadSurface::setVertex(int index, ofVec2f p)
     }
     
     mesh.setVertex(index, p);
+    calculate4dTextureCoords();
 }
 
 void ofxQuadSurface::setTexCoord(int index, ofVec2f t)
@@ -102,6 +103,7 @@ void ofxQuadSurface::setTexCoord(int index, ofVec2f t)
     }
     
     mesh.setTexCoord(index, t);
+    calculate4dTextureCoords();
 }
 
 int ofxQuadSurface::getType()
