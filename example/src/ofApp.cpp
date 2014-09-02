@@ -124,16 +124,16 @@ void ofApp::addQuadSurface()
     vector<ofVec2f> vertices;
 
     int border = 50;
-    vertices.push_back( ofVec2f(border, border) );
-    vertices.push_back( ofVec2f(border, ofGetHeight() - border) );
-    vertices.push_back( ofVec2f(ofGetWidth() - border, ofGetHeight() - border) );
-    vertices.push_back( ofVec2f(ofGetWidth() - border, border) );
-
+    vertices.push_back(ofVec2f(border, border));
+    vertices.push_back(ofVec2f(ofGetWidth() - border, border));
+    vertices.push_back(ofVec2f(ofGetWidth() - border, ofGetHeight() - border));
+    vertices.push_back(ofVec2f(border, ofGetHeight() - border));
+    
     vector<ofVec2f> texCoords;
-    texCoords.push_back( ofVec2f(ofVec2f(0.0f, 0.0f)) );
-    texCoords.push_back( ofVec2f(ofVec2f(1.0f, 0.0f)) );
-    texCoords.push_back( ofVec2f(ofVec2f(1.0f, 1.0f)) );
-    texCoords.push_back( ofVec2f(ofVec2f(0.0f, 1.0f)) );
+    texCoords.push_back(ofVec2f(ofVec2f(0.0f, 0.0f)));
+    texCoords.push_back(ofVec2f(ofVec2f(1.0f, 0.0f)));
+    texCoords.push_back(ofVec2f(ofVec2f(1.0f, 1.0f)));
+    texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
 
     surfaceManager.addSurface(surfaceType, vertices, texCoords);
     
