@@ -52,12 +52,35 @@ void ofxQuadSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
     mesh.addTexCoord(t2);
     mesh.addTexCoord(t3);
     mesh.addTexCoord(t4);
+    
+    // Pure GL setup
+    // indices
+    quadIndices[0] = 0;
+    quadIndices[1] = 1;
+    quadIndices[2] = 2;
+    quadIndices[3] = 0;
+    quadIndices[4] = 2;
+    quadIndices[5] = 3;
+    //tex coords (those are alway 0)
+    quadTexCoordinates[2] = 0;
+    quadTexCoordinates[6] = 0;
+    quadTexCoordinates[10] = 0;
+    quadTexCoordinates[14] = 0;
+    
+    calculate4dTextureCoords();
 }
 
 void ofxQuadSurface::draw()
 {
+    if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
+        calculate4dTextureCoords();
+    }
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
+    glVertexPointer(3, GL_FLOAT, 0, quadVertices);
+    
     texture->bind();
-    mesh.draw();
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
     texture->unbind();
 }
 
@@ -153,4 +176,76 @@ vector<ofVec2f>& ofxQuadSurface::getTexCoords()
 {
     
     return mesh.getTexCoords();
+}
+
+void ofxQuadSurface::calculate4dTextureCoords()
+{
+    // Perspective Warping with OpenGL Fixed Pipeline and q coordinates
+    // see:
+    // http://www.reedbeta.com/blog/2012/05/26/quadrilateral-interpolation-part-1/
+    // for information on the technique
+    // Pue OpenGL is used because the ofMesh sadly doesn't support ofVec4f as
+    // texture coordinates.
+    // calculate intersection point
+    ofVec3f p0 = mesh.getVertex(0);
+    ofVec3f p1 = mesh.getVertex(1);
+    ofVec3f p2 = mesh.getVertex(2);
+    ofVec3f p3 = mesh.getVertex(3);
+    
+    ofVec3f t0 = mesh.getTexCoord(0);
+    ofVec3f t1 = mesh.getTexCoord(1);
+    ofVec3f t2 = mesh.getTexCoord(2);
+    ofVec3f t3 = mesh.getTexCoord(3);
+    
+    ofPoint interSect;
+    ofLineSegmentIntersection(ofPoint(p0.x, p0.y), ofPoint(p2.x, p2.y),
+                              ofPoint(p1.x, p1.y), ofPoint(p3.x, p3.y),
+                              interSect);
+    ofVec3f interSecVec = ofVec3f(interSect.x, interSect.y, 0);
+    
+    // calculate distances to intersection point
+    float d0 = interSecVec.distance(p0);
+    float d1 = interSecVec.distance(p1);
+    float d2 = interSecVec.distance(p2);
+    float d3 = interSecVec.distance(p3);
+    
+    // vertices
+    // top left corner
+    quadVertices[0] = p0.x;
+    quadVertices[1] = p0.y;
+    quadVertices[2] = 0;
+    // top right corner
+    quadVertices[3] = p1.x;
+    quadVertices[4] = p1.y;
+    quadVertices[5] = 0;
+    // bottom right corner
+    quadVertices[6] = p2.x;
+    quadVertices[7] = p2.y;
+    quadVertices[8] = 0;
+    // bottom left corner
+    quadVertices[9] = p3.x;
+    quadVertices[10] = p3.y;
+    quadVertices[11] = 0;
+    
+    float q0 = (d0 + d2) / (d2);
+    float q1 = (d1 + d3) / (d3);
+    float q2 = (d2 + d0) / (d0);
+    float q3 = (d3 + d1) / (d1);
+    
+    quadTexCoordinates[0] = t0.x;
+    quadTexCoordinates[1] = t0.y;
+    quadTexCoordinates[3] = q0;
+    
+    quadTexCoordinates[4] = t1.x * q1;
+    quadTexCoordinates[5] = t1.y;
+    quadTexCoordinates[7] = q1;
+    
+    quadTexCoordinates[8] = t2.x * q2;
+    quadTexCoordinates[9] = t2.y * q2;
+    quadTexCoordinates[11] = q2;
+    
+    quadTexCoordinates[12] = t3.x;
+    quadTexCoordinates[13] = t3.y * q3;
+    quadTexCoordinates[15] = q3;
+    
 }
