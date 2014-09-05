@@ -29,6 +29,11 @@ public:
     ofPolyline getTextureHitArea();
     vector<ofVec3f>& getVertices();
     vector<ofVec2f>& getTexCoords();
+private:
+    void calculate4dTextureCoords();
+    GLfloat quadVertices[12];
+    GLubyte quadIndices[6];
+    GLfloat quadTexCoordinates[16];
 };
 
 #endif
