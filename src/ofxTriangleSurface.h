@@ -16,6 +16,7 @@ public:
     void draw();
     void setVertex( int index, ofVec2f p );
     void setTexCoord( int index, ofVec2f t );
+    void moveBy(ofVec2f v);
     
     int getType();
     bool hitTest(ofVec2f p);

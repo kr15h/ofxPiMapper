@@ -14,6 +14,7 @@ public:
     virtual void draw(){};
     virtual void setVertex(int index, ofVec2f p){};
     virtual void setTexCoord(int index, ofVec2f t){};
+    virtual void moveBy(ofVec2f v){};
     virtual int getType(){};
     virtual bool hitTest(ofVec2f p){};
     virtual ofPolyline getHitArea(){};

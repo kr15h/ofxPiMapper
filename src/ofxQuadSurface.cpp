@@ -106,6 +106,15 @@ void ofxQuadSurface::setTexCoord(int index, ofVec2f t)
     calculate4dTextureCoords();
 }
 
+void ofxQuadSurface::moveBy(ofVec2f v)
+{
+    vector<ofVec3f>& vertices = getVertices();
+    for (int i=0; i<vertices.size(); i++) {
+        vertices[i] += v;
+    }
+    calculate4dTextureCoords();
+}
+
 int ofxQuadSurface::getType()
 {
     return ofxSurfaceType::QUAD_SURFACE;
