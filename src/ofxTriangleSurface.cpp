@@ -72,6 +72,14 @@ void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
     mesh.setTexCoord(index, t);
 }
 
+void ofxTriangleSurface::moveBy(ofVec2f v)
+{
+    vector<ofVec3f>& vertices = getVertices();
+    for (int i=0; i<vertices.size(); i++) {
+        vertices[i] += v;
+    }
+}
+
 int ofxTriangleSurface::getType()
 {
     return ofxSurfaceType::TRIANGLE_SURFACE;
