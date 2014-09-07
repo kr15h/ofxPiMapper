@@ -44,17 +44,15 @@ void ofxSourcesEditor::setup(ofEventArgs& args)
     
     gui->setup("Images", vnames);
     ofAddListener(gui->radioSelectedEvent, this, &ofxSourcesEditor::guiEvent);
-    
-    
-    //gui->addLabel(defImgDir, OFX_UI_FONT_SMALL);
-    //ofxUIRadio *radio = gui->addRadio("images", vnames, OFX_UI_ORIENTATION_VERTICAL);
-    //radio->activateToggle("image0.png");
-    
-    //ofAddListener(gui->newGUIEvent,this,&ofxSourcesEditor::guiEvent);
 }
 
 void ofxSourcesEditor::draw()
 {
+    // Don't draw if there is no source selected
+    if ( surfaceManager->getSelectedSurface() == NULL ) {
+        return;
+    }
+    
     gui->draw();
 }
 
@@ -75,6 +73,12 @@ void ofxSourcesEditor::disable()
 
 void ofxSourcesEditor::enable()
 {
+    // Don't enable if there is no surface selected
+    if ( surfaceManager->getSelectedSurface() == NULL ) {
+        cout << "No surface selected. Not enable()ing source list." << endl;
+        return;
+    }
+    
     gui->enable();
 }
 
