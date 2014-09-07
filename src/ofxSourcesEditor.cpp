@@ -28,9 +28,7 @@ void ofxSourcesEditor::unregisterAppEvents()
 
 void ofxSourcesEditor::setup(ofEventArgs& args)
 {
-    gui = new ofxUICanvas();
-    gui->disable();
-    gui->disableAppDrawCallback();
+    gui = new ofxRadioList();
     
     // read directory contents
     ofDirectory imgDir;
@@ -44,15 +42,18 @@ void ofxSourcesEditor::setup(ofEventArgs& args)
         vnames.push_back(imgDir.getName(i));
 	}
     
-    gui->addLabel(defImgDir, OFX_UI_FONT_SMALL);
-    ofxUIRadio *radio = gui->addRadio("images", vnames, OFX_UI_ORIENTATION_VERTICAL);
-    radio->activateToggle("image0.png");
-    
-    ofAddListener(gui->newGUIEvent,this,&ofxSourcesEditor::guiEvent);
+    gui->setup("Images", vnames);
+    gui->setPosition(20, 20);
+    ofAddListener(gui->radioSelectedEvent, this, &ofxSourcesEditor::guiEvent);
 }
 
 void ofxSourcesEditor::draw()
 {
+    // Don't draw if there is no source selected
+    if ( surfaceManager->getSelectedSurface() == NULL ) {
+        return;
+    }
+    
     gui->draw();
 }
 
@@ -73,6 +74,12 @@ void ofxSourcesEditor::disable()
 
 void ofxSourcesEditor::enable()
 {
+    // Don't enable if there is no surface selected
+    if ( surfaceManager->getSelectedSurface() == NULL ) {
+        cout << "No surface selected. Not enable()ing source list." << endl;
+        return;
+    }
+    
     gui->enable();
 }
 
@@ -83,29 +90,14 @@ void ofxSourcesEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
 
 void ofxSourcesEditor::selectImageSourceRadioButton(string name)
 {
-    vector<ofxUIWidget*> widgets = gui->getWidgets();
-    
-    // find radio list item
-    ofxUIRadio* radio;
-    for ( int i=0; i<widgets.size(); i++ ) {
-        int widgetKind = widgets[i]->getKind();
-        if ( widgetKind == OFX_UI_WIDGET_RADIO ){
-            radio = (ofxUIRadio*)widgets[i];
-            break;
-        }
-    }
-    
     if (name == "none") {
-        ofxUIToggle* toggle = (ofxUIToggle*)radio->getActive();
-        if ( toggle != NULL ) {
-            toggle->setValue(false);
-        }
+        gui->unselectAll();
         return;
     } else {
-        for ( int i=0; i<widgets.size(); i++ ) {
-            string widgetName = widgets[i]->getName();
-            if ( name == widgetName ) {
-                radio->activateToggle(name);
+        int i;
+        for (i = 0; i < gui->size(); i++) {
+            if (gui->getItemName(i) == name) {
+                gui->selectItem(i);
                 return;
             }
         }
@@ -126,21 +118,11 @@ ofTexture* ofxSourcesEditor::getTexture(int index)
     return &images[index]->getTextureReference();
 }
 
-void ofxSourcesEditor::guiEvent(ofxUIEventArgs &e)
+void ofxSourcesEditor::guiEvent(string &imageName)
 {
-	string name = e.widget->getName();
-	int kind = e.widget->getKind();
-    
-    if(kind == OFX_UI_WIDGET_TOGGLE){
-        ofxUIToggle *toggle = (ofxUIToggle *) e.widget;
-        cout << name << "\t value: " << toggle->getValue() << endl;
-    }
+	string name = imageName;
     
     if ( surfaceManager->getSelectedSurface() == NULL ) {
-        return;
-    }
-    
-    if (name == "images") {
         return;
     }
     

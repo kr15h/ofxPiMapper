@@ -3,8 +3,8 @@
 
 #include "ofGraphics.h"
 #include "ofEvents.h"
-#include "ofxUI.h"
 #include "ofxSurfaceManager.h"
+#include "ofxRadioList.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/";
 
@@ -30,14 +30,11 @@ public:
     
 private:
     ofxSurfaceManager* surfaceManager;
+    ofxRadioList* gui;
     string defImgDir;
-    ofxUICanvas *gui;
-    void guiEvent(ofxUIEventArgs &e);
+    void guiEvent(string &imageName);
     vector<ofImage*> images;
     vector<string> imageNames;
-    //ofxPanel imgSrcPanel;
-    
-    //void onSourceSelect(bool& value);
 };
 
 #endif
