@@ -14,7 +14,7 @@ Development
 
 As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
 
-Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
+Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
 
 I'm still working on boosting my understanding about the issue tracking system on GitHub, I believe that it would be the best way how to keep new feature requests and bugfixes organized.
 
