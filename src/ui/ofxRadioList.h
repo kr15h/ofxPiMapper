@@ -40,7 +40,6 @@ private:
     vector<string> storedLabels;
     string storedTitle;
     ofxGuiGroup guiGroup;
-    bool bHasTitle;
     int storedSelectedItem;
     
     void onToggleClicked(bool &toggleValue);
