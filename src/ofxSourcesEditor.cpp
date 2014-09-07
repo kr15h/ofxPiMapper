@@ -43,6 +43,7 @@ void ofxSourcesEditor::setup(ofEventArgs& args)
 	}
     
     gui->setup("Images", vnames);
+    gui->setPosition(20, 20);
     ofAddListener(gui->radioSelectedEvent, this, &ofxSourcesEditor::guiEvent);
 }
 

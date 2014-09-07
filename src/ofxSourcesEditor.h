@@ -35,9 +35,6 @@ private:
     void guiEvent(string &imageName);
     vector<ofImage*> images;
     vector<string> imageNames;
-    //ofxPanel imgSrcPanel;
-    
-    //void onSourceSelect(bool& value);
 };
 
 #endif
