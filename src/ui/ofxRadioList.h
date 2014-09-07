@@ -19,11 +19,17 @@ public:
     void setTitle(string title);
     void setPosition(ofPoint p);
     void setPosition(float x, float y);
+    void selectItem(int index);
+    void enable();
+    void disable();
+    void clear();
+    void unselectAll();
     ofPoint getPosition();
     float getWidth();
     float getHeight();
     string getTitle();
-    string getItem(int index);
+    string getItemName(int index);
+    int size();
     
     // This event notifies about a toggle being selected and passes it's name to the listeners.
     // Use ofAddListener(ofxRadioListInstance.radioSelectedEvent, listenerClassPtr, &listenerClass::listenerMethod)
@@ -31,9 +37,11 @@ public:
     ofEvent<string> radioSelectedEvent;
     
 private:
+    vector<string> storedLabels;
+    string storedTitle;
     ofxGuiGroup guiGroup;
     bool bHasTitle;
+    int storedSelectedItem;
     
-    void unselectAll();
     void onToggleClicked(bool &toggleValue);
 };
