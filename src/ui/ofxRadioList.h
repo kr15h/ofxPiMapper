@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofGraphics.h"
+#include "ofxGuiGroup.h"
 #include "ofxToggle.h"
 
 class ofxRadioList
@@ -12,12 +13,20 @@ public:
     
     void setup(vector<string> &labels);
     void draw();
+    void setPosition(ofPoint p);
+    void setPosition(float x, float y);
+    ofPoint getPosition();
+    float getWidth();
+    float getHeight();
+    
+    // This event notifies about a toggle being selected and passes it's name to the listeners
+    // Use ofAddListener(ofxRadioListInstance.radioSelectedEvent, listenerClassPtr, &listenerClass::listenerMethod)
+    // to listen to this. Listner method void listenerMethod(string & radioName)
+    ofEvent<string> radioSelectedEvent;
     
 private:
-    vector<ofxToggle*> toggles;
+    ofxGuiGroup guiGroup;
     
-    void addListeners();
-    void removeListeners();
     void unselectAll();
     void onToggleClicked(bool &toggleValue);
 };
