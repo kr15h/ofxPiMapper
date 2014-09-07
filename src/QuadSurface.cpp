@@ -1,17 +1,19 @@
-#include "ofxQuadSurface.h"
+#include "QuadSurface.h"
 
-ofxQuadSurface::ofxQuadSurface()
+namespace ofx{
+    namespace piMapper{
+QuadSurface::QuadSurface()
 {
-	cout << "ofxQuadSurface constructor." << endl;
+	cout << "QuadSurface constructor." << endl;
     setup();
 }
 
-ofxQuadSurface::~ofxQuadSurface()
+QuadSurface::~QuadSurface()
 {
-	cout << "ofxQuadSurface destructor." << endl;
+	cout << "QuadSurface destructor." << endl;
 }
 
-void ofxQuadSurface::setup()
+void QuadSurface::setup()
 {
     // Create 4 points for the 2 triangles
     ofVec2f p1 = ofVec2f(0, 0);
@@ -28,7 +30,7 @@ void ofxQuadSurface::setup()
     setup( p1, p2, p3, p4, t1, t2, t3, t4, texture );
 }
 
-void ofxQuadSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4, 
+void QuadSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4, 
                             ofVec2f t1, ofVec2f t2, ofVec2f t3, ofVec2f t4, ofTexture* texturePtr )
 {
     // Assign texture
@@ -70,7 +72,7 @@ void ofxQuadSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
     calculate4dTextureCoords();
 }
 
-void ofxQuadSurface::draw()
+void QuadSurface::draw()
 {
     /*if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
         calculate4dTextureCoords();
@@ -84,7 +86,7 @@ void ofxQuadSurface::draw()
     texture->unbind();
 }
 
-void ofxQuadSurface::setVertex(int index, ofVec2f p)
+void QuadSurface::setVertex(int index, ofVec2f p)
 {
     if ( index > 3 ) {
         ofLog() << "Vertex with this index does not exist: " << index << endl;
@@ -95,7 +97,7 @@ void ofxQuadSurface::setVertex(int index, ofVec2f p)
     calculate4dTextureCoords();
 }
 
-void ofxQuadSurface::setTexCoord(int index, ofVec2f t)
+void QuadSurface::setTexCoord(int index, ofVec2f t)
 {
     if ( index > 3 ) {
         ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
@@ -106,7 +108,7 @@ void ofxQuadSurface::setTexCoord(int index, ofVec2f t)
     calculate4dTextureCoords();
 }
 
-void ofxQuadSurface::moveBy(ofVec2f v)
+void QuadSurface::moveBy(ofVec2f v)
 {
     vector<ofVec3f>& vertices = getVertices();
     for (int i=0; i<vertices.size(); i++) {
@@ -115,12 +117,12 @@ void ofxQuadSurface::moveBy(ofVec2f v)
     calculate4dTextureCoords();
 }
 
-int ofxQuadSurface::getType()
+int QuadSurface::getType()
 {
-    return ofxSurfaceType::QUAD_SURFACE;
+    return SurfaceType::QUAD_SURFACE;
 }
 
-bool ofxQuadSurface::hitTest(ofVec2f p)
+bool QuadSurface::hitTest(ofVec2f p)
 {
     // Construct ofPolyline from vertices
     ofPolyline line = getHitArea();
@@ -132,7 +134,7 @@ bool ofxQuadSurface::hitTest(ofVec2f p)
     }
 }
 
-ofVec2f ofxQuadSurface::getVertex(int index)
+ofVec2f QuadSurface::getVertex(int index)
 {
     if ( index > 3 ) {
         ofLog() << "Vertex with this index does not exist: " << index << endl;
@@ -143,7 +145,7 @@ ofVec2f ofxQuadSurface::getVertex(int index)
     return ofVec2f(vert.x, vert.y);
 }
 
-ofVec2f ofxQuadSurface::getTexCoord(int index)
+ofVec2f QuadSurface::getTexCoord(int index)
 {
     if (index > 3) {
         throw std::runtime_error("Texture coordinate index out of bounds.");
@@ -152,7 +154,7 @@ ofVec2f ofxQuadSurface::getTexCoord(int index)
     return mesh.getTexCoord(index);
 }
 
-ofPolyline ofxQuadSurface::getHitArea()
+ofPolyline QuadSurface::getHitArea()
 {
     ofPolyline line;
     line.addVertex( ofPoint( mesh.getVertex(0).x, mesh.getVertex(0).y ) );
@@ -164,7 +166,7 @@ ofPolyline ofxQuadSurface::getHitArea()
     return line;
 }
 
-ofPolyline ofxQuadSurface::getTextureHitArea()
+ofPolyline QuadSurface::getTextureHitArea()
 {
     ofPolyline line;
     vector<ofVec2f>& texCoords = mesh.getTexCoords();
@@ -177,19 +179,19 @@ ofPolyline ofxQuadSurface::getTextureHitArea()
     return line;
 }
 
-vector<ofVec3f>& ofxQuadSurface::getVertices()
+vector<ofVec3f>& QuadSurface::getVertices()
 {
     // return only joint vertices
     return mesh.getVertices();
 }
 
-vector<ofVec2f>& ofxQuadSurface::getTexCoords()
+vector<ofVec2f>& QuadSurface::getTexCoords()
 {
     
     return mesh.getTexCoords();
 }
 
-void ofxQuadSurface::calculate4dTextureCoords()
+void QuadSurface::calculate4dTextureCoords()
 {
     // Perspective Warping with OpenGL Fixed Pipeline and q coordinates
     // see:
@@ -260,3 +262,5 @@ void ofxQuadSurface::calculate4dTextureCoords()
     quadTexCoordinates[15] = q3;
     
 }
+
+    }}

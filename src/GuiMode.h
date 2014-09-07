@@ -1,7 +1,8 @@
-#ifndef H_OFX_GUI_MODE
-#define H_OFX_GUI_MODE
+#pragma once
 
-struct ofxGuiMode
+namespace ofx{
+    namespace piMapper{
+struct GuiMode
 {
     enum {
         NONE,
@@ -10,5 +11,4 @@ struct ofxGuiMode
         SOURCE_SELECTION
     };
 };
-
-#endif
+    }}

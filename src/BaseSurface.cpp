@@ -1,12 +1,15 @@
-#include "ofxBaseSurface.h"
+#include "BaseSurface.h"
 
-ofxBaseSurface::ofxBaseSurface()
+namespace ofx{
+namespace piMapper{
+
+BaseSurface::BaseSurface()
 {
     ofEnableNormalizedTexCoords();
     createDefaultTexture();
 }
 
-void ofxBaseSurface::createDefaultTexture()
+void BaseSurface::createDefaultTexture()
 {
     ofPixels pixels;
     pixels.allocate(500, 500, 1);
@@ -38,7 +41,7 @@ void ofxBaseSurface::createDefaultTexture()
     texture = &defaultTexture;
 }
 
-void ofxBaseSurface::drawTexture(ofVec2f position)
+void BaseSurface::drawTexture(ofVec2f position)
 {
     ofMesh texMesh;
     texMesh.addVertex(position);
@@ -56,17 +59,19 @@ void ofxBaseSurface::drawTexture(ofVec2f position)
     texture->unbind();
 }
 
-void ofxBaseSurface::setTexture(ofTexture *texturePtr)
+void BaseSurface::setTexture(ofTexture *texturePtr)
 {
     texture = texturePtr;
 }
 
-ofTexture* ofxBaseSurface::getTexture()
+ofTexture* BaseSurface::getTexture()
 {
     return texture;
 }
 
-ofTexture* ofxBaseSurface::getDefaultTexture()
+ofTexture* BaseSurface::getDefaultTexture()
 {
     return &defaultTexture;
 }
+
+}}

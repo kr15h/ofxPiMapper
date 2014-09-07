@@ -1,17 +1,19 @@
-#include "ofxTriangleSurface.h"
+#include "TriangleSurface.h"
 
-ofxTriangleSurface::ofxTriangleSurface()
+namespace ofx{
+    namespace piMapper{
+TriangleSurface::TriangleSurface()
 {
-	cout << "ofxTriangleSurface constructor." << endl;
+	cout << "TriangleSurface constructor." << endl;
     setup();
 }
 
-ofxTriangleSurface::~ofxTriangleSurface()
+TriangleSurface::~TriangleSurface()
 {
-	cout << "ofxTriangleSurface destructor." << endl;
+	cout << "TriangleSurface destructor." << endl;
 }
 
-void ofxTriangleSurface::setup()
+void TriangleSurface::setup()
 {
     // Create 3 points for the triangle
     ofVec2f p1 = ofVec2f(ofGetWidth()/2.0f, 0);
@@ -26,7 +28,7 @@ void ofxTriangleSurface::setup()
     setup( p1, p2, p3, t1, t2, t3, texture );
 }
 
-void ofxTriangleSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr )
+void TriangleSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr )
 {
     // Assign texture
     texture = texturePtr;
@@ -45,14 +47,14 @@ void ofxTriangleSurface::setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, 
     mesh.addTexCoord(t3);
 }
 
-void ofxTriangleSurface::draw()
+void TriangleSurface::draw()
 {
     texture->bind();
     mesh.draw();
     texture->unbind();
 }
 
-void ofxTriangleSurface::setVertex(int index, ofVec2f p)
+void TriangleSurface::setVertex(int index, ofVec2f p)
 {
     if ( index > 2 ) {
         ofLog() << "Vertex with this index does not exist: " << index << endl;
@@ -62,7 +64,7 @@ void ofxTriangleSurface::setVertex(int index, ofVec2f p)
     mesh.setVertex(index, p);
 }
 
-void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
+void TriangleSurface::setTexCoord(int index, ofVec2f t)
 {
     if ( index > 2 ) {
         ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
@@ -72,7 +74,7 @@ void ofxTriangleSurface::setTexCoord(int index, ofVec2f t)
     mesh.setTexCoord(index, t);
 }
 
-void ofxTriangleSurface::moveBy(ofVec2f v)
+void TriangleSurface::moveBy(ofVec2f v)
 {
     vector<ofVec3f>& vertices = getVertices();
     for (int i=0; i<vertices.size(); i++) {
@@ -80,12 +82,12 @@ void ofxTriangleSurface::moveBy(ofVec2f v)
     }
 }
 
-int ofxTriangleSurface::getType()
+int TriangleSurface::getType()
 {
-    return ofxSurfaceType::TRIANGLE_SURFACE;
+    return SurfaceType::TRIANGLE_SURFACE;
 }
 
-bool ofxTriangleSurface::hitTest(ofVec2f p)
+bool TriangleSurface::hitTest(ofVec2f p)
 {
     // Construct ofPolyline from vertices
     ofPolyline line = getHitArea();
@@ -97,7 +99,7 @@ bool ofxTriangleSurface::hitTest(ofVec2f p)
     }
 }
 
-ofVec2f ofxTriangleSurface::getVertex(int index)
+ofVec2f TriangleSurface::getVertex(int index)
 {
     if ( index > 2 ) {
         ofLog() << "Vertex with this index does not exist: " << index << endl;
@@ -108,7 +110,7 @@ ofVec2f ofxTriangleSurface::getVertex(int index)
     return ofVec2f(vert.x, vert.y);
 }
 
-ofVec2f ofxTriangleSurface::getTexCoord(int index)
+ofVec2f TriangleSurface::getTexCoord(int index)
 {
     if (index > 2) {
         throw std::runtime_error("Texture coordinate index out of bounds.");
@@ -117,7 +119,7 @@ ofVec2f ofxTriangleSurface::getTexCoord(int index)
     return mesh.getTexCoord(index);
 }
 
-ofPolyline ofxTriangleSurface::getHitArea()
+ofPolyline TriangleSurface::getHitArea()
 {
     ofPolyline line;
     line.addVertex( ofPoint( mesh.getVertex(0).x, mesh.getVertex(0).y ) );
@@ -128,7 +130,7 @@ ofPolyline ofxTriangleSurface::getHitArea()
     return line;
 }
 
-ofPolyline ofxTriangleSurface::getTextureHitArea()
+ofPolyline TriangleSurface::getTextureHitArea()
 {
     ofPolyline line;
     vector<ofVec2f>& texCoords = mesh.getTexCoords();
@@ -141,14 +143,16 @@ ofPolyline ofxTriangleSurface::getTextureHitArea()
     return line;
 }
 
-vector<ofVec3f>& ofxTriangleSurface::getVertices()
+vector<ofVec3f>& TriangleSurface::getVertices()
 {
     // return only joint vertices
     return mesh.getVertices();
 }
 
-vector<ofVec2f>& ofxTriangleSurface::getTexCoords()
+vector<ofVec2f>& TriangleSurface::getTexCoords()
 {
     
     return mesh.getTexCoords();
 }
+
+    }}

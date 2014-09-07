@@ -1,12 +1,14 @@
-#include "ofxSourcesEditor.h"
+#include "SourcesEditor.h"
 
-ofxSourcesEditor::ofxSourcesEditor()
+namespace ofx{
+    namespace piMapper{
+SourcesEditor::SourcesEditor()
 {
     defImgDir = DEFAULT_IMAGES_DIR;
     registerAppEvents();
 }
 
-ofxSourcesEditor::~ofxSourcesEditor()
+SourcesEditor::~SourcesEditor()
 {
     unregisterAppEvents();
     delete gui;
@@ -16,19 +18,19 @@ ofxSourcesEditor::~ofxSourcesEditor()
     }
 }
 
-void ofxSourcesEditor::registerAppEvents()
+void SourcesEditor::registerAppEvents()
 {
-    ofAddListener(ofEvents().setup, this, &ofxSourcesEditor::setup);
+    ofAddListener(ofEvents().setup, this, &SourcesEditor::setup);
 }
 
-void ofxSourcesEditor::unregisterAppEvents()
+void SourcesEditor::unregisterAppEvents()
 {
-    ofRemoveListener(ofEvents().setup, this, &ofxSourcesEditor::setup);
+    ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
 }
 
-void ofxSourcesEditor::setup(ofEventArgs& args)
+void SourcesEditor::setup(ofEventArgs& args)
 {
-    gui = new ofxRadioList();
+    gui = new RadioList();
     
     // read directory contents
     ofDirectory imgDir;
@@ -44,10 +46,10 @@ void ofxSourcesEditor::setup(ofEventArgs& args)
     
     gui->setup("Images", vnames);
     gui->setPosition(20, 20);
-    ofAddListener(gui->radioSelectedEvent, this, &ofxSourcesEditor::guiEvent);
+    ofAddListener(gui->radioSelectedEvent, this, &SourcesEditor::guiEvent);
 }
 
-void ofxSourcesEditor::draw()
+void SourcesEditor::draw()
 {
     // Don't draw if there is no source selected
     if ( surfaceManager->getSelectedSurface() == NULL ) {
@@ -57,7 +59,7 @@ void ofxSourcesEditor::draw()
     gui->draw();
 }
 
-void ofxSourcesEditor::loadImage( string name, string path )
+void SourcesEditor::loadImage( string name, string path )
 {
     images.push_back(new ofImage());
     images.back()->loadImage(path);
@@ -67,12 +69,12 @@ void ofxSourcesEditor::loadImage( string name, string path )
     ofSendMessage("imageLoaded");
 }
 
-void ofxSourcesEditor::disable()
+void SourcesEditor::disable()
 {
     gui->disable();
 }
 
-void ofxSourcesEditor::enable()
+void SourcesEditor::enable()
 {
     // Don't enable if there is no surface selected
     if ( surfaceManager->getSelectedSurface() == NULL ) {
@@ -83,12 +85,12 @@ void ofxSourcesEditor::enable()
     gui->enable();
 }
 
-void ofxSourcesEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
+void SourcesEditor::setSurfaceManager(SurfaceManager *newSurfaceManager)
 {
     surfaceManager = newSurfaceManager;
 }
 
-void ofxSourcesEditor::selectImageSourceRadioButton(string name)
+void SourcesEditor::selectImageSourceRadioButton(string name)
 {
     if (name == "none") {
         gui->unselectAll();
@@ -104,12 +106,12 @@ void ofxSourcesEditor::selectImageSourceRadioButton(string name)
     }
 }
 
-int ofxSourcesEditor::getLoadedTexCount()
+int SourcesEditor::getLoadedTexCount()
 {
     return images.size();
 }
 
-ofTexture* ofxSourcesEditor::getTexture(int index)
+ofTexture* SourcesEditor::getTexture(int index)
 {
     if (index >= images.size()){
         throw std::runtime_error("Texture index out of bounds.");
@@ -118,7 +120,7 @@ ofTexture* ofxSourcesEditor::getTexture(int index)
     return &images[index]->getTextureReference();
 }
 
-void ofxSourcesEditor::guiEvent(string &imageName)
+void SourcesEditor::guiEvent(string &imageName)
 {
 	string name = imageName;
     
@@ -133,3 +135,5 @@ void ofxSourcesEditor::guiEvent(string &imageName)
     surfaceManager->getSelectedSurface()->setTexture(texture);
     surfaceManager->manageMemory();
 }
+
+    }}

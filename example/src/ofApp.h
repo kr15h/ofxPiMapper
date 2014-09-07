@@ -1,5 +1,4 @@
-#ifndef H_OF_APP
-#define H_OF_APP
+#pragma once
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
@@ -20,12 +19,10 @@ public:
     void setFboAsTexture();
     
     ofImage image;
-    ofxSurfaceManager surfaceManager;
-    ofxSurfaceManagerGui gui;
+    ofx::piMapper::SurfaceManager surfaceManager;
+    ofx::piMapper::SurfaceManagerGui gui;
     bool bShowInfo;
     ofFbo* fbo;    
     vector<ofRectangle> rects;
     vector<float> rectSpeeds;
 };
-
-#endif

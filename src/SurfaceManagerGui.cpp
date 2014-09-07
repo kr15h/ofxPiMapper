@@ -1,41 +1,43 @@
-#include "ofxSurfaceManagerGui.h"
+#include "SurfaceManagerGui.h"
 
-ofxSurfaceManagerGui::ofxSurfaceManagerGui()
+namespace ofx{
+    namespace piMapper{
+SurfaceManagerGui::SurfaceManagerGui()
 {
     surfaceManager = NULL;
-    guiMode = ofxGuiMode::NONE;
+    guiMode = GuiMode::NONE;
     bDrag = false;
     registerMouseEvents();
     ofHideCursor();
 }
 
-ofxSurfaceManagerGui::~ofxSurfaceManagerGui()
+SurfaceManagerGui::~SurfaceManagerGui()
 {
     unregisterMouseEvents();
     surfaceManager = NULL;
 }
 
-void ofxSurfaceManagerGui::registerMouseEvents()
+void SurfaceManagerGui::registerMouseEvents()
 {
-    ofAddListener(ofEvents().mousePressed, this, &ofxSurfaceManagerGui::mousePressed);
-    ofAddListener(ofEvents().mouseReleased, this, &ofxSurfaceManagerGui::mouseReleased);
-    ofAddListener(ofEvents().mouseDragged, this, &ofxSurfaceManagerGui::mouseDragged);
+    ofAddListener(ofEvents().mousePressed, this, &SurfaceManagerGui::mousePressed);
+    ofAddListener(ofEvents().mouseReleased, this, &SurfaceManagerGui::mouseReleased);
+    ofAddListener(ofEvents().mouseDragged, this, &SurfaceManagerGui::mouseDragged);
 }
 
-void ofxSurfaceManagerGui::unregisterMouseEvents()
+void SurfaceManagerGui::unregisterMouseEvents()
 {
-    ofRemoveListener(ofEvents().mousePressed, this, &ofxSurfaceManagerGui::mousePressed);
-    ofRemoveListener(ofEvents().mouseReleased, this, &ofxSurfaceManagerGui::mouseReleased);
-    ofRemoveListener(ofEvents().mouseDragged, this, &ofxSurfaceManagerGui::mouseDragged);
+    ofRemoveListener(ofEvents().mousePressed, this, &SurfaceManagerGui::mousePressed);
+    ofRemoveListener(ofEvents().mouseReleased, this, &SurfaceManagerGui::mouseReleased);
+    ofRemoveListener(ofEvents().mouseDragged, this, &SurfaceManagerGui::mouseDragged);
 }
 
-void ofxSurfaceManagerGui::draw()
+void SurfaceManagerGui::draw()
 {
     if ( surfaceManager == NULL ) return;
     
-    if ( guiMode == ofxGuiMode::NONE ) {
+    if ( guiMode == GuiMode::NONE ) {
         surfaceManager->draw();
-    } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+    } else if ( guiMode == GuiMode::TEXTURE_MAPPING ) {
         
         // draw the texture of the selected surface
         if ( surfaceManager->getSelectedSurface() != NULL ) {
@@ -57,7 +59,7 @@ void ofxSurfaceManagerGui::draw()
         // draw texture editing GUI on top
         textureEditor.draw();
         
-    } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
+    } else if ( guiMode == GuiMode::PROJECTION_MAPPING ) {
         
         // draw projection surfaces first
         surfaceManager->draw();
@@ -68,7 +70,7 @@ void ofxSurfaceManagerGui::draw()
         // draw projection mapping editing gui
         projectionEditor.draw();
         
-    } else if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+    } else if ( guiMode == GuiMode::SOURCE_SELECTION ) {
         // draw projection surfaces first
         surfaceManager->draw();
         
@@ -79,15 +81,15 @@ void ofxSurfaceManagerGui::draw()
     }
 }
 
-void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
+void SurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
 {
-    if ( guiMode == ofxGuiMode::NONE ) {
+    if ( guiMode == GuiMode::NONE ) {
         return;
-    } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+    } else if ( guiMode == GuiMode::TEXTURE_MAPPING ) {
         
         bool bSurfaceSelected = false;
         
-        ofxCircleJoint* hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
+        CircleJoint* hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
         if ( hitJoint != NULL ) {
             textureEditor.unselectAllJoints();
             hitJoint->select();
@@ -105,11 +107,11 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             }
         }
         
-    } else if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
+    } else if ( guiMode == GuiMode::PROJECTION_MAPPING ) {
         
         bool bSurfaceSelected = false;
         
-        ofxCircleJoint* hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
+        CircleJoint* hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
         if ( hitJoint != NULL ) {
             projectionEditor.unselectAllJoints();
             hitJoint->select();
@@ -141,51 +143,51 @@ void ofxSurfaceManagerGui::mousePressed(ofMouseEventArgs &args)
             projectionEditor.clearJoints();
             surfaceManager->deselectSurface();
         }
-    } else if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+    } else if ( guiMode == GuiMode::SOURCE_SELECTION ) {
         
     }
 }
 
-void ofxSurfaceManagerGui::mouseReleased(ofMouseEventArgs &args)
+void SurfaceManagerGui::mouseReleased(ofMouseEventArgs &args)
 {
     stopDrag();
     projectionEditor.stopDragJoints();
     textureEditor.stopDragJoints();
 }
 
-void ofxSurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
+void SurfaceManagerGui::mouseDragged(ofMouseEventArgs &args)
 {
     if (bDrag) {
         ofVec2f mousePosition = ofVec2f(args.x, args.y);
         ofVec2f distance = mousePosition - clickPosition;
         
-        if ( guiMode == ofxGuiMode::PROJECTION_MAPPING ) {
+        if ( guiMode == GuiMode::PROJECTION_MAPPING ) {
             // add this distance to all vertices in surface
             projectionEditor.moveSelectedSurface(distance);
-        } else if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+        } else if ( guiMode == GuiMode::TEXTURE_MAPPING ) {
             textureEditor.moveTexCoords(distance);
         }
         clickPosition = mousePosition;
     }
 }
 
-void ofxSurfaceManagerGui::setSurfaceManager(ofxSurfaceManager* newSurfaceManager)
+void SurfaceManagerGui::setSurfaceManager(SurfaceManager* newSurfaceManager)
 {
     surfaceManager = newSurfaceManager;
     projectionEditor.setSurfaceManager( surfaceManager );
     sourcesEditor.setSurfaceManager( surfaceManager );
 }
 
-void ofxSurfaceManagerGui::setMode(int newGuiMode)
+void SurfaceManagerGui::setMode(int newGuiMode)
 {
-    if (newGuiMode != ofxGuiMode::NONE &&
-        newGuiMode != ofxGuiMode::TEXTURE_MAPPING &&
-        newGuiMode != ofxGuiMode::PROJECTION_MAPPING &&
-        newGuiMode != ofxGuiMode::SOURCE_SELECTION) {
+    if (newGuiMode != GuiMode::NONE &&
+        newGuiMode != GuiMode::TEXTURE_MAPPING &&
+        newGuiMode != GuiMode::PROJECTION_MAPPING &&
+        newGuiMode != GuiMode::SOURCE_SELECTION) {
         throw std::runtime_error("Trying to set invalid mode.");
     }
     
-    if ( newGuiMode == ofxGuiMode::NONE ) {
+    if ( newGuiMode == GuiMode::NONE ) {
         ofHideCursor();
     } else {
         ofShowCursor();
@@ -193,7 +195,7 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
     
     guiMode = newGuiMode;
     
-    if ( guiMode == ofxGuiMode::SOURCE_SELECTION ) {
+    if ( guiMode == GuiMode::SOURCE_SELECTION ) {
         sourcesEditor.enable();
         string sourceName = surfaceManager->getSelectedSurfaceSourceName();
         sourcesEditor.selectImageSourceRadioButton(sourceName);
@@ -201,7 +203,7 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
         sourcesEditor.disable();
     }
     
-    if ( guiMode == ofxGuiMode::TEXTURE_MAPPING ) {
+    if ( guiMode == GuiMode::TEXTURE_MAPPING ) {
         textureEditor.enable();
         // refresh texture editor surface reference
         textureEditor.setSurface(surfaceManager->getSelectedSurface());
@@ -209,14 +211,14 @@ void ofxSurfaceManagerGui::setMode(int newGuiMode)
         textureEditor.disable();
     }
     
-    if (guiMode == ofxGuiMode::PROJECTION_MAPPING) {
+    if (guiMode == GuiMode::PROJECTION_MAPPING) {
         projectionEditor.enable();
     } else {
         projectionEditor.disable();
     }
 }
 
-void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
+void SurfaceManagerGui::drawSelectedSurfaceHighlight()
 {
     if ( surfaceManager->getSelectedSurface() == NULL ) return;
     
@@ -229,7 +231,7 @@ void ofxSurfaceManagerGui::drawSelectedSurfaceHighlight()
     ofPopStyle();
 }
 
-void ofxSurfaceManagerGui::drawSelectedSurfaceTextureHighlight()
+void SurfaceManagerGui::drawSelectedSurfaceTextureHighlight()
 {
     if ( surfaceManager->getSelectedSurface() == NULL ) return;
     
@@ -243,12 +245,14 @@ void ofxSurfaceManagerGui::drawSelectedSurfaceTextureHighlight()
 
 }
 
-void ofxSurfaceManagerGui::startDrag()
+void SurfaceManagerGui::startDrag()
 {
     bDrag = true;
 }
 
-void ofxSurfaceManagerGui::stopDrag()
+void SurfaceManagerGui::stopDrag()
 {
     bDrag = false;
 }
+
+    }}

@@ -1,7 +1,8 @@
-#ifndef H_OFX_SURFACE_TYPE
-#define H_OFX_SURFACE_TYPE
+#pragma once
 
-struct ofxSurfaceType
+namespace ofx{
+    namespace piMapper{
+struct SurfaceType
 {
     enum {
         TRIANGLE_SURFACE,
@@ -9,4 +10,4 @@ struct ofxSurfaceType
     };
 };
 
-#endif
+    }}

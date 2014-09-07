@@ -1,53 +1,55 @@
-#include "ofxTextureEditor.h"
+#include "TextureEditor.h"
 
-ofxTextureEditor::ofxTextureEditor()
+namespace ofx{
+    namespace piMapper{
+TextureEditor::TextureEditor()
 {
     clear();
     enable();
 }
 
-ofxTextureEditor::~ofxTextureEditor()
+TextureEditor::~TextureEditor()
 {
     clear();
     disable();
 }
 
-void ofxTextureEditor::registerAppEvents()
+void TextureEditor::registerAppEvents()
 {
-    ofAddListener(ofEvents().update, this, &ofxTextureEditor::update);
+    ofAddListener(ofEvents().update, this, &TextureEditor::update);
 }
 
-void ofxTextureEditor::unregisterAppEvents()
+void TextureEditor::unregisterAppEvents()
 {
-    ofRemoveListener(ofEvents().update, this, &ofxTextureEditor::update);
+    ofRemoveListener(ofEvents().update, this, &TextureEditor::update);
 }
 
-void ofxTextureEditor::registerKeyEvents()
+void TextureEditor::registerKeyEvents()
 {
-    ofAddListener(ofEvents().keyPressed, this, &ofxTextureEditor::keyPressed);
-    ofAddListener(ofEvents().keyReleased, this, &ofxTextureEditor::keyReleased);
+    ofAddListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
+    ofAddListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
 }
 
-void ofxTextureEditor::unregisterKeyEvents()
+void TextureEditor::unregisterKeyEvents()
 {
-    ofRemoveListener(ofEvents().keyPressed, this, &ofxTextureEditor::keyPressed);
-    ofRemoveListener(ofEvents().keyReleased, this, &ofxTextureEditor::keyReleased);
+    ofRemoveListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
+    ofRemoveListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
 }
 
-void ofxTextureEditor::enable()
+void TextureEditor::enable()
 {
     registerAppEvents();
     registerKeyEvents();
     bShiftKeyDown = false;
 }
 
-void ofxTextureEditor::disable()
+void TextureEditor::disable()
 {
     unregisterAppEvents();
     unregisterKeyEvents();
 }
 
-void ofxTextureEditor::update(ofEventArgs &args)
+void TextureEditor::update(ofEventArgs &args)
 {
     if ( surface == NULL ) return;
     
@@ -62,7 +64,7 @@ void ofxTextureEditor::update(ofEventArgs &args)
     }
 }
 
-void ofxTextureEditor::keyPressed(ofKeyEventArgs &args)
+void TextureEditor::keyPressed(ofKeyEventArgs &args)
 {
     int key = args.key;
     float moveStep;
@@ -79,7 +81,7 @@ void ofxTextureEditor::keyPressed(ofKeyEventArgs &args)
     }
 }
 
-void ofxTextureEditor::keyReleased(ofKeyEventArgs &args)
+void TextureEditor::keyReleased(ofKeyEventArgs &args)
 {
     int key = args.key;
     switch (key) {
@@ -88,33 +90,33 @@ void ofxTextureEditor::keyReleased(ofKeyEventArgs &args)
 }
 
 
-void ofxTextureEditor::draw()
+void TextureEditor::draw()
 {
     if (surface == NULL) return;
     
     drawJoints();
 }
 
-void ofxTextureEditor::drawJoints()
+void TextureEditor::drawJoints()
 {
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i]->draw();
     }
 }
 
-void ofxTextureEditor::setSurface(ofxBaseSurface* newSurface)
+void TextureEditor::setSurface(BaseSurface* newSurface)
 {
     surface = newSurface;
     createJoints();
 }
 
-void ofxTextureEditor::clear()
+void TextureEditor::clear()
 {
     surface = NULL;
     clearJoints();
 }
 
-void ofxTextureEditor::createJoints()
+void TextureEditor::createJoints()
 {
     if ( surface == NULL ) return;
     clearJoints();
@@ -122,12 +124,12 @@ void ofxTextureEditor::createJoints()
     ofVec2f textureSize = ofVec2f(surface->getTexture()->getWidth(), surface->getTexture()->getHeight());
     
     for ( int i=0; i<texCoords.size(); i++ ) {
-        joints.push_back(new ofxCircleJoint());
+        joints.push_back(new CircleJoint());
         joints.back()->position = texCoords[i] * textureSize;
     }
 }
 
-void ofxTextureEditor::clearJoints()
+void TextureEditor::clearJoints()
 {
     while ( joints.size() ) {
         delete joints.back();
@@ -135,14 +137,14 @@ void ofxTextureEditor::clearJoints()
     }
 }
 
-void ofxTextureEditor::unselectAllJoints()
+void TextureEditor::unselectAllJoints()
 {
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i]->unselect();
     }
 }
 
-void ofxTextureEditor::moveTexCoords(ofVec2f by)
+void TextureEditor::moveTexCoords(ofVec2f by)
 {
     if ( surface == NULL ) return;
     vector<ofVec2f>& texCoords = surface->getTexCoords();
@@ -153,18 +155,18 @@ void ofxTextureEditor::moveTexCoords(ofVec2f by)
     }
 }
 
-void ofxTextureEditor::stopDragJoints()
+void TextureEditor::stopDragJoints()
 {
     for (int i=0; i<joints.size(); i++){
         joints[i]->stopDrag();
     }
 }
 
-void ofxTextureEditor::moveSelection(ofVec2f by)
+void TextureEditor::moveSelection(ofVec2f by)
 {
     // check if joints selected
     bool bJointSelected = false;
-    ofxBaseJoint* selectedJoint;
+    BaseJoint* selectedJoint;
     for ( int i=0; i<joints.size(); i++ ) {
         if (joints[i]->isSelected()) {
             bJointSelected = true;
@@ -180,7 +182,7 @@ void ofxTextureEditor::moveSelection(ofVec2f by)
     }
 }
 
-ofxCircleJoint* ofxTextureEditor::hitTestJoints(ofVec2f pos)
+CircleJoint* TextureEditor::hitTestJoints(ofVec2f pos)
 {
     for ( int i=0; i<joints.size(); i++ ) {
         if ( joints[i]->hitTest(pos) ){
@@ -189,3 +191,5 @@ ofxCircleJoint* ofxTextureEditor::hitTestJoints(ofVec2f pos)
     }
     return NULL;
 }
+
+    }}

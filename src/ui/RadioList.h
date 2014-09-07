@@ -5,13 +5,15 @@
 #include "ofxToggle.h"
 #include "ofxLabel.h"
 
-class ofxRadioList
+namespace ofx{
+    namespace piMapper{
+class RadioList
 {
 public:
-    ofxRadioList();
-    ofxRadioList(vector<string> &labels);
-    ofxRadioList(string title, vector<string> &labels);
-    ~ofxRadioList();
+    RadioList();
+    RadioList(vector<string> &labels);
+    RadioList(string title, vector<string> &labels);
+    ~RadioList();
     
     void setup(vector<string> &labels);
     void setup(string title, vector<string> &labels);
@@ -32,7 +34,7 @@ public:
     int size();
     
     // This event notifies about a toggle being selected and passes it's name to the listeners.
-    // Use ofAddListener(ofxRadioListInstance.radioSelectedEvent, listenerClassPtr, &listenerClass::listenerMethod)
+    // Use ofAddListener(RadioListInstance.radioSelectedEvent, listenerClassPtr, &listenerClass::listenerMethod)
     // to listen to this. Listner method void listenerMethod(string & radioName)
     ofEvent<string> radioSelectedEvent;
     
@@ -44,3 +46,5 @@ private:
     
     void onToggleClicked(bool &toggleValue);
 };
+
+    }}

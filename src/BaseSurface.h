@@ -1,15 +1,16 @@
-#ifndef H_OFX_BASE_SURFACE
-#define H_OFX_BASE_SURFACE
+#pragma once
 
 #include "ofMain.h"
 #include <string>
 
 using namespace std;
 
-class ofxBaseSurface
+namespace ofx{
+    namespace piMapper{
+class BaseSurface
 {
 public:
-    ofxBaseSurface();
+    BaseSurface();
     virtual void setup(){};
     virtual void draw(){};
     virtual void setVertex(int index, ofVec2f p){};
@@ -37,4 +38,4 @@ protected:
     void createDefaultTexture();
 };
 
-#endif
+    }}

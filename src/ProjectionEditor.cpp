@@ -1,6 +1,8 @@
-#include "ofxProjectionEditor.h"
+#include "ProjectionEditor.h"
 
-ofxProjectionEditor::ofxProjectionEditor()
+namespace ofx{
+    namespace piMapper{
+ProjectionEditor::ProjectionEditor()
 {
     surfaceManager = NULL;
     bShiftKeyDown = false;
@@ -8,62 +10,62 @@ ofxProjectionEditor::ofxProjectionEditor()
     enable();
 }
 
-ofxProjectionEditor::~ofxProjectionEditor()
+ProjectionEditor::~ProjectionEditor()
 {
     clearJoints();
     surfaceManager = NULL;
     disable();
 }
 
-void ofxProjectionEditor::registerAppEvents()
+void ProjectionEditor::registerAppEvents()
 {
-    ofAddListener(ofEvents().update, this, &ofxProjectionEditor::update);
-    ofAddListener(ofEvents().messageEvent, this, &ofxProjectionEditor::gotMessage);
+    ofAddListener(ofEvents().update, this, &ProjectionEditor::update);
+    ofAddListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }
 
-void ofxProjectionEditor::unregisterAppEvents()
+void ProjectionEditor::unregisterAppEvents()
 {
-    ofRemoveListener(ofEvents().update, this, &ofxProjectionEditor::update);
-    ofRemoveListener(ofEvents().messageEvent, this, &ofxProjectionEditor::gotMessage);
+    ofRemoveListener(ofEvents().update, this, &ProjectionEditor::update);
+    ofRemoveListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }
 
-void ofxProjectionEditor::registerMouseEvents()
+void ProjectionEditor::registerMouseEvents()
 {
-    ofAddListener(ofEvents().mouseDragged, this, &ofxProjectionEditor::mouseDragged);
+    ofAddListener(ofEvents().mouseDragged, this, &ProjectionEditor::mouseDragged);
 }
 
-void ofxProjectionEditor::unregisterMouseEvents()
+void ProjectionEditor::unregisterMouseEvents()
 {
-    ofRemoveListener(ofEvents().mouseDragged, this, &ofxProjectionEditor::mouseDragged);
+    ofRemoveListener(ofEvents().mouseDragged, this, &ProjectionEditor::mouseDragged);
 }
 
-void ofxProjectionEditor::registerKeyEvents()
+void ProjectionEditor::registerKeyEvents()
 {
-    ofAddListener(ofEvents().keyPressed, this, &ofxProjectionEditor::keyPressed);
-    ofAddListener(ofEvents().keyReleased, this, &ofxProjectionEditor::keyReleased);
+    ofAddListener(ofEvents().keyPressed, this, &ProjectionEditor::keyPressed);
+    ofAddListener(ofEvents().keyReleased, this, &ProjectionEditor::keyReleased);
 }
 
-void ofxProjectionEditor::unregisterKeyEvents()
+void ProjectionEditor::unregisterKeyEvents()
 {
-    ofRemoveListener(ofEvents().keyPressed, this, &ofxProjectionEditor::keyPressed);
-    ofRemoveListener(ofEvents().keyReleased, this, &ofxProjectionEditor::keyReleased);
+    ofRemoveListener(ofEvents().keyPressed, this, &ProjectionEditor::keyPressed);
+    ofRemoveListener(ofEvents().keyReleased, this, &ProjectionEditor::keyReleased);
 }
 
-void ofxProjectionEditor::enable()
+void ProjectionEditor::enable()
 {
     registerAppEvents();
     registerMouseEvents();
     registerKeyEvents();
 }
 
-void ofxProjectionEditor::disable()
+void ProjectionEditor::disable()
 {
     unregisterAppEvents();
     unregisterMouseEvents();
     unregisterKeyEvents();
 }
 
-void ofxProjectionEditor::update(ofEventArgs &args)
+void ProjectionEditor::update(ofEventArgs &args)
 {
     // update surface if one of the joints is being dragged
     for ( int i=0; i<joints.size(); i++ ) {
@@ -83,7 +85,7 @@ void ofxProjectionEditor::update(ofEventArgs &args)
     }
 }
 
-void ofxProjectionEditor::draw()
+void ProjectionEditor::draw()
 {
     if ( surfaceManager == NULL ) return;
     if ( surfaceManager->getSelectedSurface() == NULL ) return;
@@ -91,14 +93,14 @@ void ofxProjectionEditor::draw()
     drawJoints();
 }
 
-void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
+void ProjectionEditor::mouseDragged(ofMouseEventArgs &args)
 {
     ofVec2f mousePosition = ofVec2f(args.x, args.y);
     
     // Collect all vertices of the projection surfaces
     vector<ofVec3f*> allVertices;
     for ( int i=0; i<surfaceManager->size(); i++ ) {
-        ofxBaseSurface* surface = surfaceManager->getSurface(i);
+        BaseSurface* surface = surfaceManager->getSurface(i);
         if ( surface == surfaceManager->getSelectedSurface() ) {
             continue; // Don't add vertices of selected surface
         }
@@ -125,7 +127,7 @@ void ofxProjectionEditor::mouseDragged(ofMouseEventArgs &args)
     }
 }
 
-void ofxProjectionEditor::keyPressed(ofKeyEventArgs &args)
+void ProjectionEditor::keyPressed(ofKeyEventArgs &args)
 {
     int key = args.key;
     float moveStep;
@@ -142,7 +144,7 @@ void ofxProjectionEditor::keyPressed(ofKeyEventArgs &args)
     }
 }
 
-void ofxProjectionEditor::keyReleased(ofKeyEventArgs &args)
+void ProjectionEditor::keyReleased(ofKeyEventArgs &args)
 {
     int key = args.key;
     switch (key) {
@@ -150,7 +152,7 @@ void ofxProjectionEditor::keyReleased(ofKeyEventArgs &args)
     }
 }
 
-void ofxProjectionEditor::gotMessage(ofMessage& msg)
+void ProjectionEditor::gotMessage(ofMessage& msg)
 {
     if (msg.message == "surfaceSelected") {
         // refresh gui
@@ -159,12 +161,12 @@ void ofxProjectionEditor::gotMessage(ofMessage& msg)
     }
 }
 
-void ofxProjectionEditor::setSurfaceManager(ofxSurfaceManager *newSurfaceManager)
+void ProjectionEditor::setSurfaceManager(SurfaceManager *newSurfaceManager)
 {
     surfaceManager = newSurfaceManager;
 }
 
-void ofxProjectionEditor::clearJoints()
+void ProjectionEditor::clearJoints()
 {
     while ( joints.size() ) {
         delete joints.back();
@@ -172,7 +174,7 @@ void ofxProjectionEditor::clearJoints()
     }
 }
 
-void ofxProjectionEditor::createJoints()
+void ProjectionEditor::createJoints()
 {
     if ( surfaceManager == NULL ) return;
     clearJoints();
@@ -185,12 +187,12 @@ void ofxProjectionEditor::createJoints()
     vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
     
     for ( int i=0; i<vertices.size(); i++ ) {
-        joints.push_back( new ofxCircleJoint() );
+        joints.push_back( new CircleJoint() );
         joints.back()->position = ofVec2f(vertices[i].x, vertices[i].y);
     }
 }
 
-void ofxProjectionEditor::updateJoints()
+void ProjectionEditor::updateJoints()
 {
     vector<ofVec3f>& vertices = surfaceManager->getSelectedSurface()->getVertices();
     for ( int i=0; i<vertices.size(); i++ ) {
@@ -198,14 +200,14 @@ void ofxProjectionEditor::updateJoints()
     }
 }
 
-void ofxProjectionEditor::unselectAllJoints()
+void ProjectionEditor::unselectAllJoints()
 {
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i]->unselect();
     }
 }
 
-void ofxProjectionEditor::moveSelectedSurface(ofVec2f by)
+void ProjectionEditor::moveSelectedSurface(ofVec2f by)
 {
     if ( surfaceManager == NULL ) return;
     if ( surfaceManager->getSelectedSurface() == NULL ) return;
@@ -217,18 +219,18 @@ void ofxProjectionEditor::moveSelectedSurface(ofVec2f by)
     updateJoints();
 }
 
-void ofxProjectionEditor::stopDragJoints()
+void ProjectionEditor::stopDragJoints()
 {
     for (int i=0; i<joints.size(); i++){
         joints[i]->stopDrag();
     }
 }
 
-void ofxProjectionEditor::moveSelection(ofVec2f by)
+void ProjectionEditor::moveSelection(ofVec2f by)
 {
     // check if joints selected
     bool bJointSelected = false;
-    ofxBaseJoint* selectedJoint;
+    BaseJoint* selectedJoint;
     for ( int i=0; i<joints.size(); i++ ) {
         if (joints[i]->isSelected()) {
             bJointSelected = true;
@@ -244,12 +246,12 @@ void ofxProjectionEditor::moveSelection(ofVec2f by)
     }
 }
 
-void ofxProjectionEditor::setSnapDistance(float newSnapDistance)
+void ProjectionEditor::setSnapDistance(float newSnapDistance)
 {
     fSnapDistance = newSnapDistance;
 }
 
-ofxCircleJoint* ofxProjectionEditor::hitTestJoints(ofVec2f pos)
+CircleJoint* ProjectionEditor::hitTestJoints(ofVec2f pos)
 {
     for ( int i=0; i<joints.size(); i++ ) {
         if ( joints[i]->hitTest(pos) ){
@@ -259,9 +261,10 @@ ofxCircleJoint* ofxProjectionEditor::hitTestJoints(ofVec2f pos)
     return NULL;
 }
 
-void ofxProjectionEditor::drawJoints()
+void ProjectionEditor::drawJoints()
 {
     for ( int i=0; i<joints.size(); i++ ) {
         joints[i]->draw();
     }
 }
+    }}

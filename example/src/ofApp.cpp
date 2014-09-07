@@ -85,10 +85,10 @@ void ofApp::keyPressed(int key)
 	cout << "Key pressed: " << static_cast<char>(key) << endl;
     
     switch (key) {
-        case '1': gui.setMode(ofxGuiMode::NONE); break;
-        case '2': gui.setMode(ofxGuiMode::TEXTURE_MAPPING); break;
-        case '3': gui.setMode(ofxGuiMode::PROJECTION_MAPPING); break;
-        case '4': gui.setMode(ofxGuiMode::SOURCE_SELECTION); break;
+        case '1': gui.setMode(ofx::piMapper::GuiMode::NONE); break;
+        case '2': gui.setMode(ofx::piMapper::GuiMode::TEXTURE_MAPPING); break;
+        case '3': gui.setMode(ofx::piMapper::GuiMode::PROJECTION_MAPPING); break;
+        case '4': gui.setMode(ofx::piMapper::GuiMode::SOURCE_SELECTION); break;
         case 'i': bShowInfo = !bShowInfo; break;
         case 'r': addRandomSurface(); break;
         case 'q': addQuadSurface(); break;
@@ -103,7 +103,7 @@ void ofApp::keyPressed(int key)
 
 void ofApp::addRandomSurface()
 {
-    int surfaceType = ofxSurfaceType::TRIANGLE_SURFACE;
+    int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
     vector<ofVec2f> vertices;
     vertices.push_back( ofVec2f( ofRandomWidth(), ofRandomHeight() ) );
     vertices.push_back( ofVec2f( ofRandomWidth(), ofRandomHeight() ) );
@@ -120,7 +120,7 @@ void ofApp::addRandomSurface()
 
 void ofApp::addQuadSurface()
 {
-    int surfaceType = ofxSurfaceType::QUAD_SURFACE;
+    int surfaceType = ofx::piMapper::SurfaceType::QUAD_SURFACE;
     vector<ofVec2f> vertices;
 
     int border = 50;
@@ -143,7 +143,7 @@ void ofApp::addQuadSurface()
 
 void ofApp::addSurface()
 {
-    int surfaceType = ofxSurfaceType::TRIANGLE_SURFACE;
+    int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
     vector<ofVec2f> vertices;
     vertices.push_back( ofVec2f( (float)ofGetWidth()/2.0f, 0.0f ) );
     vertices.push_back( ofVec2f( (float)ofGetWidth(), (float)ofGetHeight() ) );

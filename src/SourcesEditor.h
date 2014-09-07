@@ -1,18 +1,19 @@
-#ifndef H_OFX_SOURCES_EDITOR
-#define H_OFX_SOURCES_EDITOR
+#pragma once
 
 #include "ofGraphics.h"
 #include "ofEvents.h"
-#include "ofxSurfaceManager.h"
-#include "ofxRadioList.h"
+#include "SurfaceManager.h"
+#include "RadioList.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/";
 
-class ofxSourcesEditor
+namespace ofx{
+    namespace piMapper{
+class SourcesEditor
 {
 public:
-    ofxSourcesEditor();
-    ~ofxSourcesEditor();
+    SourcesEditor();
+    ~SourcesEditor();
     
     void registerAppEvents();
     void unregisterAppEvents();
@@ -22,19 +23,19 @@ public:
     void loadImage( string name, string path );
     void disable();
     void enable();
-    void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
+    void setSurfaceManager(SurfaceManager* newSurfaceManager);
     void selectImageSourceRadioButton(string name);
     
     int getLoadedTexCount();
     ofTexture* getTexture(int index);
     
 private:
-    ofxSurfaceManager* surfaceManager;
-    ofxRadioList* gui;
+    SurfaceManager* surfaceManager;
+    RadioList* gui;
     string defImgDir;
     void guiEvent(string &imageName);
     vector<ofImage*> images;
     vector<string> imageNames;
 };
 
-#endif
+    }}

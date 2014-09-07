@@ -1,20 +1,23 @@
-#ifndef H_OFX_SURFACE_MANAGER
-#define H_OFX_SURFACE_MANAGER
+#pragma once
 
-#include "ofxBaseSurface.h"
-#include "ofxTriangleSurface.h"
-#include "ofxQuadSurface.h"
-#include "ofxSurfaceType.h"
+#include "BaseSurface.h"
+#include "TriangleSurface.h"
+#include "QuadSurface.h"
+#include "SurfaceType.h"
+
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
 
 using namespace std;
 
-class ofxSurfaceManager
+
+namespace ofx{
+    namespace piMapper{
+class SurfaceManager
 {
 public:
-    ofxSurfaceManager();
-    ~ofxSurfaceManager();
+    SurfaceManager();
+    ~SurfaceManager();
     
     void draw();
     void addSurface(int surfaceType);
@@ -27,22 +30,22 @@ public:
     void saveXmlSettings(string fileName);
     void loadXmlSettings(string fileName);
     
-    ofxBaseSurface* getSurface(int index);
+    BaseSurface* getSurface(int index);
     int size();
-    ofxBaseSurface* selectSurface(int index);
-    ofxBaseSurface* getSelectedSurface();
+    BaseSurface* selectSurface(int index);
+    BaseSurface* getSelectedSurface();
     void deselectSurface();
     ofTexture* loadImageSource(string name, string path);
     string getSelectedSurfaceSourceName();
-    string getSurfaceSourceName( ofxBaseSurface* surface );
+    string getSurfaceSourceName( BaseSurface* surface );
     
 private:
-    vector<ofxBaseSurface*> surfaces;
-    ofxBaseSurface* selectedSurface;
+    vector<BaseSurface*> surfaces;
+    BaseSurface* selectedSurface;
     vector<string> loadedImageSourceNames;
     vector<ofImage*> loadedImageSources;
     ofxXmlSettings xmlSettings;
     
 };
 
-#endif
+    }}

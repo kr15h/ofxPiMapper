@@ -1,16 +1,19 @@
-#include "ofxCircleJoint.h"
+#include "CircleJoint.h"
 
-ofxCircleJoint::ofxCircleJoint()
+namespace ofx{
+namespace piMapper{
+
+CircleJoint::CircleJoint()
 {
     setDefaultProperties();
 }
 
-void ofxCircleJoint::update()
+void CircleJoint::update()
 {
     if (!enabled) return;
 }
 
-void ofxCircleJoint::draw()
+void CircleJoint::draw()
 {
     if (!visible) return;
     if (!enabled) return;
@@ -38,14 +41,16 @@ void ofxCircleJoint::draw()
     ofPopStyle();
 }
 
-void ofxCircleJoint::setDefaultProperties()
+void CircleJoint::setDefaultProperties()
 {
     radius = 10.0f;
 }
 
-bool ofxCircleJoint::hitTest(ofVec2f pos)
+bool CircleJoint::hitTest(ofVec2f pos)
 {
     float distance = position.distance(pos);
     if ( distance < radius ) return true;
     else return false;
 }
+
+    }}

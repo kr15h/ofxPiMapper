@@ -1,15 +1,18 @@
-#ifndef H_OFX_TEXTURE_EDITOR
-#define H_OFX_TEXTURE_EDITOR
+#pragma once
 
 #include "ofEvents.h"
-#include "ofxBaseSurface.h"
-#include "ofxCircleJoint.h"
 
-class ofxTextureEditor
+#include "BaseSurface.h"
+#include "CircleJoint.h"
+
+
+namespace ofx{
+    namespace piMapper{
+class TextureEditor
 {
 public:
-    ofxTextureEditor();
-    ~ofxTextureEditor();
+    TextureEditor();
+    ~TextureEditor();
     
     void registerAppEvents();
     void unregisterAppEvents();
@@ -23,7 +26,7 @@ public:
     void keyReleased(ofKeyEventArgs& args);
     void draw();
     void drawJoints();
-    void setSurface(ofxBaseSurface* newSurface);
+    void setSurface(BaseSurface* newSurface);
     void clear();
     void createJoints();
     void clearJoints();
@@ -31,12 +34,12 @@ public:
     void moveTexCoords(ofVec2f by);
     void stopDragJoints();
     void moveSelection(ofVec2f by);
-    ofxCircleJoint* hitTestJoints(ofVec2f pos);
+    CircleJoint* hitTestJoints(ofVec2f pos);
     
 private:
-    ofxBaseSurface* surface;
-    vector<ofxCircleJoint*> joints;
+    BaseSurface* surface;
+    vector<CircleJoint*> joints;
     bool bShiftKeyDown;
 };
 
-#endif
+    }}

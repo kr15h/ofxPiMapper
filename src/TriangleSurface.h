@@ -1,15 +1,17 @@
-#ifndef H_OFX_TRIANGLE_SURFACE
-#define H_OFX_TRIANGLE_SURFACE
+#pragma once
 
 #include "ofMain.h"
-#include "ofxBaseSurface.h"
-#include "ofxSurfaceType.h"
+#include "BaseSurface.h"
+#include "SurfaceType.h"
 
-class ofxTriangleSurface : public ofxBaseSurface
+
+namespace ofx{
+    namespace piMapper{
+class TriangleSurface : public BaseSurface
 {
 public:
-	ofxTriangleSurface();
-	~ofxTriangleSurface();
+	TriangleSurface();
+	~TriangleSurface();
     
     void setup();
     void setup( ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, ofVec2f t2, ofVec2f t3, ofTexture* texturePtr );
@@ -28,4 +30,4 @@ public:
     vector<ofVec2f>& getTexCoords();
 };
 
-#endif
+    }}

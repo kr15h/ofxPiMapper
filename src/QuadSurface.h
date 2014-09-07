@@ -1,15 +1,16 @@
-#ifndef H_OFX_QUAD_SURFACE
-#define H_OFX_QUAD_SURFACE
+#pragma once
 
 #include "ofMain.h"
-#include "ofxBaseSurface.h"
-#include "ofxSurfaceType.h"
+#include "BaseSurface.h"
+#include "SurfaceType.h"
 
-class ofxQuadSurface : public ofxBaseSurface
+namespace ofx{
+    namespace piMapper{
+class QuadSurface : public BaseSurface
 {
 public:
-	ofxQuadSurface();
-	~ofxQuadSurface();
+	QuadSurface();
+	~QuadSurface();
     
     void setup();
 
@@ -37,4 +38,4 @@ private:
     GLfloat quadTexCoordinates[16];
 };
 
-#endif
+    }}

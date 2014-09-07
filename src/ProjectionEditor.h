@@ -1,14 +1,15 @@
-#ifndef H_OFX_PROJECTION_EDITOR
-#define H_OFX_PROJECTION_EDITOR
+#pragma once
 
-#include "ofxSurfaceManager.h"
-#include "ofxCircleJoint.h"
+#include "SurfaceManager.h"
+#include "CircleJoint.h"
 
-class ofxProjectionEditor
+namespace ofx{
+    namespace piMapper{
+class ProjectionEditor
 {
 public:
-    ofxProjectionEditor();
-    ~ofxProjectionEditor();
+    ProjectionEditor();
+    ~ProjectionEditor();
     
     void registerAppEvents();
     void unregisterAppEvents();
@@ -26,7 +27,7 @@ public:
     void keyPressed(ofKeyEventArgs& args);
     void keyReleased(ofKeyEventArgs& args);
     void gotMessage(ofMessage& msg);
-    void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
+    void setSurfaceManager(SurfaceManager* newSurfaceManager);
     void clearJoints();
     void createJoints();
     void updateJoints();
@@ -36,15 +37,15 @@ public:
     void updateVertices();
     void moveSelection(ofVec2f by);
     void setSnapDistance(float newSnapDistance);
-    ofxCircleJoint* hitTestJoints(ofVec2f pos);
+    CircleJoint* hitTestJoints(ofVec2f pos);
     
 private:
-    ofxSurfaceManager* surfaceManager;
-    vector<ofxCircleJoint*> joints;
+    SurfaceManager* surfaceManager;
+    vector<CircleJoint*> joints;
     bool bShiftKeyDown;
     float fSnapDistance;
     
     void drawJoints();
 };
 
-#endif
+    }}

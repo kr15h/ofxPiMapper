@@ -1,30 +1,33 @@
-#include "ofxBaseJoint.h"
+#include "BaseJoint.h"
 
-ofxBaseJoint::ofxBaseJoint()
+namespace ofx{
+namespace piMapper{
+    
+BaseJoint::BaseJoint()
 {
     setDefaultColors();
     setDefaultProperties();
     registerMouseEvents();
 }
 
-ofxBaseJoint::~ofxBaseJoint()
+BaseJoint::~BaseJoint()
 {
     unregisterMouseEvents();
 }
 
-void ofxBaseJoint::registerMouseEvents()
+void BaseJoint::registerMouseEvents()
 {
-    ofAddListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
-    ofAddListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
+    ofAddListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
+    ofAddListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
 }
 
-void ofxBaseJoint::unregisterMouseEvents()
+void BaseJoint::unregisterMouseEvents()
 {
-    ofRemoveListener(ofEvents().mousePressed, this, &ofxBaseJoint::mousePressed);
-    ofRemoveListener(ofEvents().mouseDragged, this, &ofxBaseJoint::mouseDragged);
+    ofRemoveListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
+    ofRemoveListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
 }
 
-void ofxBaseJoint::mousePressed(ofMouseEventArgs& args)
+void BaseJoint::mousePressed(ofMouseEventArgs& args)
 {
     if ( hitTest(ofVec2f(args.x, args.y)) ) {
         //selected = true;
@@ -33,53 +36,53 @@ void ofxBaseJoint::mousePressed(ofMouseEventArgs& args)
     }
 }
 
-void ofxBaseJoint::mouseReleased(int x, int y, int button)
+void BaseJoint::mouseReleased(int x, int y, int button)
 {
     stopDrag();
 }
 
-void ofxBaseJoint::mouseDragged(ofMouseEventArgs& args)
+void BaseJoint::mouseDragged(ofMouseEventArgs& args)
 {
     if ( !bDrag ) return;
     position = ofVec2f(args.x, args.y) + clickDistance;
 }
 
-void ofxBaseJoint::startDrag()
+void BaseJoint::startDrag()
 {
     bDrag = true;
 }
 
-void ofxBaseJoint::stopDrag()
+void BaseJoint::stopDrag()
 {
     bDrag = false;
 }
 
-void ofxBaseJoint::select()
+void BaseJoint::select()
 {
     selected = true;
 }
 
-void ofxBaseJoint::unselect()
+void BaseJoint::unselect()
 {
     selected = false;
 }
 
-void ofxBaseJoint::setClickDistance(ofVec2f newClickDistance)
+void BaseJoint::setClickDistance(ofVec2f newClickDistance)
 {
     clickDistance = newClickDistance;
 }
 
-bool ofxBaseJoint::isDragged()
+bool BaseJoint::isDragged()
 {
     return bDrag;
 }
 
-bool ofxBaseJoint::isSelected()
+bool BaseJoint::isSelected()
 {
     return selected;
 }
 
-void ofxBaseJoint::setDefaultColors()
+void BaseJoint::setDefaultColors()
 {
     fillColor = ofColor(0, 255, 255, 0);
     strokeColor = ofColor(255, 255, 255);
@@ -87,7 +90,7 @@ void ofxBaseJoint::setDefaultColors()
     strokeColorSelected = ofColor(255, 0, 0);
 }
 
-void ofxBaseJoint::setDefaultProperties()
+void BaseJoint::setDefaultProperties()
 {
     enabled = true;
     visible = true;
@@ -97,3 +100,5 @@ void ofxBaseJoint::setDefaultProperties()
     selected = false;
     strokeWidth = 1.5f;
 }
+    
+}}

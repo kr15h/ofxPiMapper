@@ -1,29 +1,31 @@
-#include "ofxRadioList.h"
+#include "RadioList.h"
 
-ofxRadioList::ofxRadioList()
+namespace ofx{
+    namespace piMapper{
+RadioList::RadioList()
 {
     storedTitle = "";
     storedSelectedItem = 0;
 }
 
-ofxRadioList::ofxRadioList(vector<string> &labels)
+RadioList::RadioList(vector<string> &labels)
 {
-    ofxRadioList();
+    RadioList();
     setup(labels);
 }
 
-ofxRadioList::ofxRadioList(string title, vector<string> &labels)
+RadioList::RadioList(string title, vector<string> &labels)
 {
-    ofxRadioList();
+    RadioList();
     setup(title, labels);
 }
 
-ofxRadioList::~ofxRadioList()
+RadioList::~RadioList()
 {
     clear();
 }
 
-void ofxRadioList::setup(vector<string> &labels)
+void RadioList::setup(vector<string> &labels)
 {
     // Copy incomming labels for later use
     storedLabels = labels;
@@ -34,14 +36,14 @@ void ofxRadioList::setup(vector<string> &labels)
         ofxToggle* toggle = new ofxToggle();
         toggle->setup(false);
         toggle->setName(labels[i]);
-        toggle->addListener(this, &ofxRadioList::onToggleClicked);
+        toggle->addListener(this, &RadioList::onToggleClicked);
         guiGroup.add(toggle);
     }
     
     cout << "num items: " << guiGroup.getNumControls() << endl;
 }
 
-void ofxRadioList::setup(string title, vector<string> &labels)
+void RadioList::setup(string title, vector<string> &labels)
 {
     // Store title for later use
     storedTitle = title;
@@ -49,28 +51,28 @@ void ofxRadioList::setup(string title, vector<string> &labels)
     setup(labels);
 }
 
-void ofxRadioList::draw()
+void RadioList::draw()
 {
     guiGroup.draw();
 }
 
-void ofxRadioList::setTitle(string title)
+void RadioList::setTitle(string title)
 {
     storedTitle = title;
     guiGroup.setName(title);
 }
 
-void ofxRadioList::setPosition(ofPoint p)
+void RadioList::setPosition(ofPoint p)
 {
     guiGroup.setPosition(p);
 }
 
-void ofxRadioList::setPosition(float x, float y)
+void RadioList::setPosition(float x, float y)
 {
     guiGroup.setPosition(x, y);
 }
 
-void ofxRadioList::selectItem(int index)
+void RadioList::selectItem(int index)
 {
     if (index >= guiGroup.getNumControls()) {
         return;
@@ -79,16 +81,16 @@ void ofxRadioList::selectItem(int index)
     unselectAll();
     
     ofxToggle* toggle = static_cast<ofxToggle*>(guiGroup.getControl(index));
-    toggle->removeListener(this, &ofxRadioList::onToggleClicked);
+    toggle->removeListener(this, &RadioList::onToggleClicked);
     *toggle = true; // Select the specific radio button
-    toggle->addListener(this, &ofxRadioList::onToggleClicked);
+    toggle->addListener(this, &RadioList::onToggleClicked);
     string name = toggle->getName();
     ofNotifyEvent(radioSelectedEvent, name, this);
     
     storedSelectedItem = index;
 }
 
-void ofxRadioList::enable()
+void RadioList::enable()
 {
     if (guiGroup.getNumControls() >= 0) {
         clear();
@@ -99,63 +101,63 @@ void ofxRadioList::enable()
     
     // Select the stored selected item without throwing an event
     ofxToggle* toggle = static_cast<ofxToggle*>(guiGroup.getControl(storedSelectedItem));
-    toggle->removeListener(this, &ofxRadioList::onToggleClicked);
+    toggle->removeListener(this, &RadioList::onToggleClicked);
     *toggle = true;
-    toggle->addListener(this, &ofxRadioList::onToggleClicked);
+    toggle->addListener(this, &RadioList::onToggleClicked);
     
     cout << "num items after enable: " << guiGroup.getNumControls() << endl;
 }
 
-void ofxRadioList::disable()
+void RadioList::disable()
 {
     // Just remove everything
     clear();
 }
 
-void ofxRadioList::clear()
+void RadioList::clear()
 {
     int i;
     for (i = 0; i < guiGroup.getNumControls(); i++) {
         ofxToggle* toggle = static_cast<ofxToggle*>(guiGroup.getControl(i));
-        toggle->removeListener(this, &ofxRadioList::onToggleClicked);
+        toggle->removeListener(this, &RadioList::onToggleClicked);
         delete toggle;
     }
     guiGroup.clear();
 }
 
-void ofxRadioList::unselectAll()
+void RadioList::unselectAll()
 {
     int i;
     for (i = 0; i < guiGroup.getNumControls(); i++) {
         ofxToggle* toggle = static_cast<ofxToggle*>(guiGroup.getControl(i));
         ofParameter<bool>* paramPtr = static_cast<ofParameter<bool>*>(&toggle->getParameter());
-        toggle->removeListener(this, &ofxRadioList::onToggleClicked);
+        toggle->removeListener(this, &RadioList::onToggleClicked);
         *toggle = false;
-        toggle->addListener(this, &ofxRadioList::onToggleClicked);
+        toggle->addListener(this, &RadioList::onToggleClicked);
     }
 }
 
-ofPoint ofxRadioList::getPosition()
+ofPoint RadioList::getPosition()
 {
     return guiGroup.getPosition();
 }
 
-float ofxRadioList::getWidth()
+float RadioList::getWidth()
 {
     return guiGroup.getWidth();
 }
 
-float ofxRadioList::getHeight()
+float RadioList::getHeight()
 {
     return guiGroup.getHeight();
 }
 
-string ofxRadioList::getTitle()
+string RadioList::getTitle()
 {
     return guiGroup.getName();
 }
 
-string ofxRadioList::getItemName(int index)
+string RadioList::getItemName(int index)
 {
     if (index >= guiGroup.getNumControls()) {
         return "";
@@ -165,12 +167,12 @@ string ofxRadioList::getItemName(int index)
     return toggle->getName();
 }
 
-int ofxRadioList::size()
+int RadioList::size()
 {
     return guiGroup.getNumControls();
 }
 
-void ofxRadioList::onToggleClicked(bool &toggleValue)
+void RadioList::onToggleClicked(bool &toggleValue)
 {
     unselectAll();
     
@@ -186,3 +188,5 @@ void ofxRadioList::onToggleClicked(bool &toggleValue)
         }
     }
 }
+        
+    }}

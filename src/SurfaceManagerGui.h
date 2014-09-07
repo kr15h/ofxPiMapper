@@ -1,22 +1,24 @@
-#ifndef H_OFX_SURFACE_MANAGER_GUI
-#define H_OFX_SURFACE_MANAGER_GUI
+#pragma once
 
 // I'm starting to think, maybe we should use ofxStateMachine here.
 // Would make sense. TODO later.
 
 #include "ofEvents.h"
-#include "ofxSurfaceManager.h"
-#include "ofxTextureEditor.h"
-#include "ofxProjectionEditor.h"
-#include "ofxSourcesEditor.h"
-#include "ofxGuiMode.h"
 #include "ofGraphics.h"
 
-class ofxSurfaceManagerGui
+#include "SurfaceManager.h"
+#include "TextureEditor.h"
+#include "ProjectionEditor.h"
+#include "SourcesEditor.h"
+#include "GuiMode.h"
+
+namespace ofx{
+    namespace piMapper{
+class SurfaceManagerGui
 {
 public:
-    ofxSurfaceManagerGui();
-    ~ofxSurfaceManagerGui();
+    SurfaceManagerGui();
+    ~SurfaceManagerGui();
     
     void registerMouseEvents();
     void unregisterMouseEvents();
@@ -25,7 +27,7 @@ public:
     void mousePressed(ofMouseEventArgs& args);
     void mouseReleased(ofMouseEventArgs& args);
     void mouseDragged(ofMouseEventArgs& args);
-    void setSurfaceManager(ofxSurfaceManager* newSurfaceManager);
+    void setSurfaceManager(SurfaceManager* newSurfaceManager);
     void setMode(int newGuiMode);
     void drawSelectedSurfaceHighlight();
     void drawSelectedSurfaceTextureHighlight();
@@ -33,14 +35,14 @@ public:
     void stopDrag();
     
 private:
-    ofxSurfaceManager* surfaceManager;
-    ofxTextureEditor textureEditor;
-    ofxProjectionEditor projectionEditor;
-    ofxSourcesEditor sourcesEditor;
+    SurfaceManager* surfaceManager;
+    TextureEditor textureEditor;
+    ProjectionEditor projectionEditor;
+    SourcesEditor sourcesEditor;
     int guiMode;
     bool bDrag;
     ofVec2f clickPosition;
     
 };
 
-#endif
+    }}

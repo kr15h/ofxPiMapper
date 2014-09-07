@@ -1,43 +1,45 @@
-#include "ofxSurfaceManager.h"
+#include "SurfaceManager.h"
 
-ofxSurfaceManager::ofxSurfaceManager()
+namespace ofx{
+    namespace piMapper{
+SurfaceManager::SurfaceManager()
 {
     
 }
 
-ofxSurfaceManager::~ofxSurfaceManager()
+SurfaceManager::~SurfaceManager()
 {
     clear();
 }
 
-void ofxSurfaceManager::draw()
+void SurfaceManager::draw()
 {
     for ( int i=0; i<surfaces.size(); i++ ) {
         surfaces[i]->draw();
     }
 }
 
-void ofxSurfaceManager::addSurface(int surfaceType)
+void SurfaceManager::addSurface(int surfaceType)
 {
-    if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
-        surfaces.push_back( new ofxTriangleSurface() );
+    if ( surfaceType == SurfaceType::TRIANGLE_SURFACE ) {
+        surfaces.push_back( new TriangleSurface() );
     } 
-    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
-        surfaces.push_back( new ofxQuadSurface() );
+    else if (surfaceType == SurfaceType::QUAD_SURFACE ) {
+        surfaces.push_back( new QuadSurface() );
     }
     else {
         throw std::runtime_error("Attempt to add non-existing surface type.");
     }
 }
 
-void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr)
+void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr)
 {
-    if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
-        surfaces.push_back( new ofxTriangleSurface() );
+    if ( surfaceType == SurfaceType::TRIANGLE_SURFACE ) {
+        surfaces.push_back( new TriangleSurface() );
         surfaces.back()->setTexture(texturePtr);
     } 
-    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
-        surfaces.push_back( new ofxQuadSurface() );
+    else if (surfaceType == SurfaceType::QUAD_SURFACE ) {
+        surfaces.push_back( new QuadSurface() );
         surfaces.back()->setTexture(texturePtr);
     }
     else {
@@ -45,9 +47,9 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr)
     }
 }
 
-void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, vector<ofVec2f> texCoords)
+void SurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, vector<ofVec2f> texCoords)
 {
-    if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
+    if ( surfaceType == SurfaceType::TRIANGLE_SURFACE ) {
         
         if ( vertices.size() < 3 ) {
             throw std::runtime_error("There must be 3 vertices for a triangle surface.");
@@ -55,7 +57,7 @@ void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, ve
             throw std::runtime_error("There must be 3 texture coordinates for a triangle surface.");
         }
         
-        surfaces.push_back( new ofxTriangleSurface() );
+        surfaces.push_back( new TriangleSurface() );
         
         for ( int i=0; i<3; i++ ) {
             surfaces.back()->setVertex(i, vertices[i]);
@@ -63,14 +65,14 @@ void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, ve
         }
         
     } 
-    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+    else if (surfaceType == SurfaceType::QUAD_SURFACE ) {
         if ( vertices.size() < 4 ) {
             throw std::runtime_error("There must be 4 vertices for a quad surface.");
         } else if (texCoords.size() < 4) {
             throw std::runtime_error("There must be 4 texture coordinates for a quad surface.");
         }
         
-        surfaces.push_back( new ofxQuadSurface() );
+        surfaces.push_back( new QuadSurface() );
         
         for ( int i=0; i<4; i++ ) {
             surfaces.back()->setVertex(i, vertices[i]);
@@ -83,9 +85,9 @@ void ofxSurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices, ve
 
 }
 
-void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords)
+void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vector<ofVec2f> vertices, vector<ofVec2f> texCoords)
 {
-    if ( surfaceType == ofxSurfaceType::TRIANGLE_SURFACE ) {
+    if ( surfaceType == SurfaceType::TRIANGLE_SURFACE ) {
         
         if ( vertices.size() < 3 ) {
             throw std::runtime_error("There must be 3 vertices for a triangle surface.");
@@ -93,7 +95,7 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
             throw std::runtime_error("Thre must be 3 texture coordinates for a triangle surface.");
         }
         
-        surfaces.push_back( new ofxTriangleSurface() );
+        surfaces.push_back( new TriangleSurface() );
         surfaces.back()->setTexture(texturePtr);
         
         for ( int i=0; i<3; i++ ) {
@@ -102,14 +104,14 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
         }
         
     } 
-    else if (surfaceType == ofxSurfaceType::QUAD_SURFACE ) {
+    else if (surfaceType == SurfaceType::QUAD_SURFACE ) {
         if ( vertices.size() < 4 ) {
             throw std::runtime_error("There must be 4 vertices for a quad surface.");
         } else if (texCoords.size() < 4) {
             throw std::runtime_error("Thre must be 4 texture coordinates for a quad surface.");
         }
         
-        surfaces.push_back( new ofxQuadSurface() );
+        surfaces.push_back( new QuadSurface() );
         surfaces.back()->setTexture(texturePtr);
         
         for ( int i=0; i<4; i++ ) {
@@ -122,7 +124,7 @@ void ofxSurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr, vecto
     }
 }
 
-void ofxSurfaceManager::removeSelectedSurface()
+void SurfaceManager::removeSelectedSurface()
 {
     if ( selectedSurface == NULL ) return;
     
@@ -136,7 +138,7 @@ void ofxSurfaceManager::removeSelectedSurface()
     }
 }
 
-void ofxSurfaceManager::manageMemory()
+void SurfaceManager::manageMemory()
 {
     // check if each of the sources is assigned to a surface or not
     for ( int i=0; i<loadedImageSources.size(); i++ ) {
@@ -160,7 +162,7 @@ void ofxSurfaceManager::manageMemory()
     }
 }
 
-void ofxSurfaceManager::clear()
+void SurfaceManager::clear()
 {
     // delete all extra allocations from the heap
     while ( surfaces.size() ) {
@@ -178,7 +180,7 @@ void ofxSurfaceManager::clear()
     }
 }
 
-// String getTypeString(ofxSurfaceType e)
+// String getTypeString(SurfaceType e)
 // {
 //   switch e
 //   {
@@ -188,7 +190,7 @@ void ofxSurfaceManager::clear()
 //   }
 // }
 
-void ofxSurfaceManager::saveXmlSettings(string fileName)
+void SurfaceManager::saveXmlSettings(string fileName)
 {
     xmlSettings.clear();
     
@@ -199,7 +201,7 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
         
         xmlSettings.addTag("surface");
         xmlSettings.pushTag("surface", i);
-        ofxBaseSurface* surface = surfaces[i];
+        BaseSurface* surface = surfaces[i];
 
         xmlSettings.addTag("vertices");
         xmlSettings.pushTag("vertices");
@@ -241,8 +243,8 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
 
         // xmlSettings.addTag("type");
         // xmlSettings.pushTag("type");
-        // // surfaceType == ofxSurfaceType::TRIANGLE_SURFACE
-        // ofxSurfaceType surfaceType = &surface->getType();
+        // // surfaceType == SurfaceType::TRIANGLE_SURFACE
+        // SurfaceType surfaceType = &surface->getType();
         // xmlSettings.addValue("surface-type", surfaceType);
         // xmlSettings.popTag(); // type
 
@@ -253,7 +255,7 @@ void ofxSurfaceManager::saveXmlSettings(string fileName)
     xmlSettings.save(fileName);
 }
 
-void ofxSurfaceManager::loadXmlSettings(string fileName)
+void SurfaceManager::loadXmlSettings(string fileName)
 {
 
 
@@ -337,9 +339,9 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
             // now we have variables sourceName and sourceTexture
             // by checking those we can use one or another addSurface method
             if ( sourceName != "none" && sourceTexture != NULL ) {
-                addSurface(ofxSurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices, texCoords);
+                addSurface(SurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices, texCoords);
             } else {
-                addSurface(ofxSurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+                addSurface(SurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
             }
         }
         // it's a quad ?
@@ -390,9 +392,9 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
             // now we have variables sourceName and sourceTexture
             // by checking those we can use one or another addSurface method
             if ( sourceName != "none" && sourceTexture != NULL ) {
-                addSurface(ofxSurfaceType::QUAD_SURFACE, sourceTexture, vertices, texCoords);
+                addSurface(SurfaceType::QUAD_SURFACE, sourceTexture, vertices, texCoords);
             } else {
-                addSurface(ofxSurfaceType::QUAD_SURFACE, vertices, texCoords);
+                addSurface(SurfaceType::QUAD_SURFACE, vertices, texCoords);
             }
             
             
@@ -404,7 +406,7 @@ void ofxSurfaceManager::loadXmlSettings(string fileName)
     xmlSettings.popTag(); // surfaces
 }
 
-ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
+BaseSurface* SurfaceManager::selectSurface(int index)
 {
     if ( index >= surfaces.size() ) {
         throw std::runtime_error("Surface index out of bounds.");
@@ -416,17 +418,17 @@ ofxBaseSurface* ofxSurfaceManager::selectSurface(int index)
     ofSendMessage("surfaceSelected");
 }
 
-ofxBaseSurface* ofxSurfaceManager::getSelectedSurface()
+BaseSurface* SurfaceManager::getSelectedSurface()
 {    
     return selectedSurface;
 }
 
-void ofxSurfaceManager::deselectSurface()
+void SurfaceManager::deselectSurface()
 {
     selectedSurface = NULL;
 }
 
-ofTexture* ofxSurfaceManager::loadImageSource(string name, string path)
+ofTexture* SurfaceManager::loadImageSource(string name, string path)
 {
     // check if it is loaded
     for ( int i=0; i<loadedImageSourceNames.size(); i++ ) {
@@ -446,7 +448,7 @@ ofTexture* ofxSurfaceManager::loadImageSource(string name, string path)
     return &image->getTextureReference();
 }
 
-string ofxSurfaceManager::getSelectedSurfaceSourceName()
+string SurfaceManager::getSelectedSurfaceSourceName()
 {
     if ( selectedSurface == NULL ) {
         return "none";
@@ -455,7 +457,7 @@ string ofxSurfaceManager::getSelectedSurfaceSourceName()
     return getSurfaceSourceName( selectedSurface );
 }
 
-string ofxSurfaceManager::getSurfaceSourceName(ofxBaseSurface *surface)
+string SurfaceManager::getSurfaceSourceName(BaseSurface *surface)
 {
     ofTexture* tex = surface->getTexture();
     for ( int i=0; i<loadedImageSources.size(); i++ ) {
@@ -467,7 +469,7 @@ string ofxSurfaceManager::getSurfaceSourceName(ofxBaseSurface *surface)
     return "none";
 }
 
-ofxBaseSurface* ofxSurfaceManager::getSurface(int index)
+BaseSurface* SurfaceManager::getSurface(int index)
 {
     if ( index >= surfaces.size() ) {
         throw std::runtime_error("Surface index out of bounds.");
@@ -477,10 +479,10 @@ ofxBaseSurface* ofxSurfaceManager::getSurface(int index)
     return surfaces[index];
 }
 
-int ofxSurfaceManager::size()
+int SurfaceManager::size()
 {
     return surfaces.size();
 }
 
-
+    }}
 

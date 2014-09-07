@@ -1,13 +1,15 @@
-#ifndef H_OFX_CIRCLE_JOINT
-#define H_OFX_CIRCLE_JOINT
+#pragma once
 
 #include "ofMain.h"
-#include "ofxBaseJoint.h"
+#include "BaseJoint.h"
 
-class ofxCircleJoint : public ofxBaseJoint
+
+namespace ofx{
+namespace piMapper{
+class CircleJoint : public BaseJoint
 {
 public:
-    ofxCircleJoint();
+    CircleJoint();
     
     void update();
     void draw();
@@ -18,5 +20,4 @@ private:
     
     void setDefaultProperties();
 };
-
-#endif
+}}

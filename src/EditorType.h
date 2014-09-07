@@ -1,7 +1,8 @@
-#ifndef H_OFX_EDITOR_TYPE
-#define H_OFX_EDITOR_TYPE
+#pragma once
 
-struct ofxEditorType
+namespace ofx{
+   namespace piMapper{
+struct EditorType
 {
     enum {
         TEXTURE,
@@ -9,4 +10,4 @@ struct ofxEditorType
     };
 };
 
-#endif
+}}
