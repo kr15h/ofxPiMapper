@@ -16,7 +16,9 @@ As the projects gets a bit more popular, I see that people want to add missing f
 
 Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
 
-I'm still working on boosting my understanding about the issue tracking system on GitHub, I believe that it would be the best way how to keep new feature requests and bugfixes organized.
+I'm trying to organize the project by adding future release version milestones and assigning specific issues as TODO items to them. If you notice something strange or see that there is something that can be done in a better way, don't hesitate and add an issue.
+
+As of Release 0.1.5 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project.
 
 Licence
 -------
@@ -98,8 +100,9 @@ BACKSPACE | Delete surface
 
 Dependencies
 ------------
-[ofxUI](https://github.com/rezaali/ofxUI) - will be replaced with custom solution as it consumes a lot of processing power.  
+ofxGui 
 ofxXmlSettings
+ofxOMXPlayer
 
 Compatibility
 ------------
@@ -111,6 +114,14 @@ When launching the example with `make run` keyboard and mouse input is being los
 
 Version history
 ---------------
+
+### Version 0.1.4 (2014-08-xx):
+ - Added perspective warping for quad surfaces
+ - Added mesh warping to quad surfaces (TODO)
+ - Added namespaces
+ - Replaced ofxUI with ofxGui dependency
+ - Added video source (TODO)
+ - ...
 
 ### Version 0.1.4 (2014-07-10):
  - Added fbo texture example
