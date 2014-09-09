@@ -1,3 +1,5 @@
+![Pi Mapper Logo](piMapperLogo.jpg)
+
 ofxPiMapper
 ===========
 
