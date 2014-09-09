@@ -118,6 +118,7 @@ Version history
 ---------------
 
 ### Version 0.1.4 (2014-08-xx):
+ - Added logo (thanks [Irina Spicaka](http://irina.spicaka.info/))
  - Added perspective warping for quad surfaces
  - Added mesh warping to quad surfaces (TODO)
  - Added namespaces
