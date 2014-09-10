@@ -32,6 +32,7 @@ class TextureEditor {
   void moveTexCoords(ofVec2f by);
   void stopDragJoints();
   void moveSelection(ofVec2f by);
+  void constrainJointsToQuad(int selectedJointIndex);
   CircleJoint* hitTestJoints(ofVec2f pos);
 
  private:

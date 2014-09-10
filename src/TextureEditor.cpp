@@ -47,13 +47,32 @@ void TextureEditor::update(ofEventArgs& args) {
   // update surface if one of the joints is being dragged
   ofVec2f textureSize = ofVec2f(surface->getTexture()->getWidth(),
                                 surface->getTexture()->getHeight());
+  
+  // Get selected joint index
+  int selectedJointIndex = 0;
+  bool bJointSelected = false;
   for (int i = 0; i < joints.size(); i++) {
     if (joints[i]->isDragged() || joints[i]->isSelected()) {
-      // update vertex to new location
-      surface->setTexCoord(i, joints[i]->position / textureSize);
+      selectedJointIndex = i;
+      bJointSelected = true;
       break;
     }
-  }
+  } // for
+  
+  // Constrain quad texture selection
+  if (joints.size() == 4) {
+    if (bJointSelected) {
+      constrainJointsToQuad(selectedJointIndex);
+      
+      for (int i = 0; i < joints.size(); i++) {
+        surface->setTexCoord(i, joints[i]->position / textureSize);
+      }
+    } // if
+  } else {
+    if (bJointSelected) {
+      surface->setTexCoord(selectedJointIndex, joints[selectedJointIndex]->position / textureSize);
+    }
+  } // else
 }
 
 void TextureEditor::keyPressed(ofKeyEventArgs& args) {
@@ -175,6 +194,32 @@ void TextureEditor::moveSelection(ofVec2f by) {
   } else {
     moveTexCoords(by);
   }
+}
+  
+void TextureEditor::constrainJointsToQuad(int selectedJointIndex)
+{
+  switch (selectedJointIndex) {
+    case 0:
+      joints[1]->position = ofVec2f(joints[1]->position.x, joints[0]->position.y);
+      joints[2]->position = ofVec2f(joints[1]->position.x, joints[3]->position.y);
+      joints[3]->position = ofVec2f(joints[0]->position.x, joints[3]->position.y);
+      break;
+    case 1:
+      joints[0]->position = ofVec2f(joints[0]->position.x, joints[1]->position.y);
+      joints[2]->position = ofVec2f(joints[1]->position.x, joints[2]->position.y);
+      joints[3]->position = ofVec2f(joints[0]->position.x, joints[2]->position.y);
+      break;
+    case 2:
+      joints[1]->position = ofVec2f(joints[2]->position.x, joints[1]->position.y);
+      joints[3]->position = ofVec2f(joints[3]->position.x, joints[2]->position.y);
+      joints[0]->position = ofVec2f(joints[3]->position.x, joints[1]->position.y);
+      break;
+    case 3:
+      joints[0]->position = ofVec2f(joints[3]->position.x, joints[0]->position.y);
+      joints[2]->position = ofVec2f(joints[2]->position.x, joints[3]->position.y);
+      joints[1]->position = ofVec2f(joints[2]->position.x, joints[0]->position.y);
+      break;
+  } // switch
 }
 
 CircleJoint* TextureEditor::hitTestJoints(ofVec2f pos) {
