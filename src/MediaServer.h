@@ -16,6 +16,26 @@
 
 namespace ofx {
 namespace piMapper {
+
+class CustomVideoPathFilter : public ofx::IO::AbstractPathFilter {
+  CustomVideoPathFilter() {};
+  virtual ~CustomVideoPathFilter() {};
+  // TODO: Find useful filters e.g. *.mp4, etc
+  bool const accept(Poco::Path& path) const {
+    return !Poco::File(path).isHidden() &&
+           ofIsStringInString(path.toString(), "mp4");
+  }
+};
+
+class CustomImagePathFilter : public ofx::IO::AbstractPathFilter {
+  CustomImagePathFilter() {};
+  virtual ~CustomImagePathFilter() {};
+  // TODO: Find useful filters e.g. *.png,*.jpeg, etc.
+  bool const accept(Poco::Path& path) const {
+    return !Poco::File(path).isHidden() &&
+           ofIsStringInString(path.toString(), "png");
+  }
+};
 class MediaServer {
  public:
   MediaServer();
