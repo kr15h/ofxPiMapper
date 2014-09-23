@@ -1,3 +1,1 @@
 ofxPiMapper
-ofxGui
-ofxXmlSettings
