@@ -56,6 +56,7 @@ class DirectoryWatcher {
   void onDirectoryWatcherItemRemoved(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     ofSendMessage("Removed:  " + evt.item.path());
+    // TODO Remove items from Vector
   }
 
   void onDirectoryWatcherItemModified(
