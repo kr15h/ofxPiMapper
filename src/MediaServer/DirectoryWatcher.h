@@ -1,8 +1,8 @@
 //
-//  MediaServer.h
+//  DirectoryWatcher.h
 //  example
 //
-//  Created by felix on 13.09.14.
+//  Created by felix on 23.09.14.
 //
 //
 
@@ -11,39 +11,46 @@
 #include "ofMain.h"
 #include "ofxIO.h"
 
-#define DEFAULT_IMAGES_DIR "sources/images/"
-#define DEFAULT_VIDEOS_DIR "sources/videos/"
-
 namespace ofx {
 namespace piMapper {
 
-class CustomVideoPathFilter : public ofx::IO::AbstractPathFilter {
+class CustomPathFilter : public ofx::IO::AbstractPathFilter {
+ public:
+  CustomPathFilter() {};
+  virtual ~CustomPathFilter() {};
+  virtual bool accept(const Poco::Path& path) const;
+};
+class CustomVideoPathFilter : public CustomPathFilter {
+ public:
   CustomVideoPathFilter() {};
   virtual ~CustomVideoPathFilter() {};
   // TODO: Find useful filters e.g. *.mp4, etc
-  bool const accept(Poco::Path& path) const {
+  bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
            ofIsStringInString(path.toString(), "mp4");
   }
 };
 
-class CustomImagePathFilter : public ofx::IO::AbstractPathFilter {
+class CustomImagePathFilter : public CustomPathFilter {
+ public:
   CustomImagePathFilter() {};
   virtual ~CustomImagePathFilter() {};
   // TODO: Find useful filters e.g. *.png,*.jpeg, etc.
-  bool const accept(Poco::Path& path) const {
+  bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
            ofIsStringInString(path.toString(), "png");
   }
 };
-class MediaServer {
+
+class DirectoryWatcher {
  public:
-  MediaServer();
+  DirectoryWatcher(std::string path, bool video);
 
   // TODO make useful stuff with onDirectoryWatcher*
   void onDirectoryWatcherItemAdded(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     ofSendMessage("Added:    " + evt.item.path());
+    filePaths.push_back(evt.item.path());
   }
 
   void onDirectoryWatcherItemRemoved(
@@ -73,14 +80,11 @@ class MediaServer {
         << "Error: " << exc.displayText();
   }
 
- private:
-  // Video
-  ofx::IO::DirectoryWatcherManager videoWatcher;
-  ofx::IO::HiddenFileFilter videoFileFilter;
+  std::vector<std::string> filePaths;
 
-  // Images
-  ofx::IO::DirectoryWatcherManager imageWatcher;
-  ofx::IO::HiddenFileFilter imageFileFilter;
+ private:
+  ofx::IO::DirectoryWatcherManager dirWatcher;
+  CustomPathFilter filter;
 };
 }
 }
