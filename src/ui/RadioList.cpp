@@ -31,6 +31,13 @@ void RadioList::setup(vector<string>& labels) {
     toggle->setName(labels[i]);
     toggle->addListener(this, &RadioList::onToggleClicked);
     guiGroup.add(toggle);
+    
+    if ((ofGetVersionMajor() == 0 &&
+         ofGetVersionMinor() >= 8 &&
+         ofGetVersionPatch() >= 2) ||
+        ofGetVersionMajor() > 0) {
+      toggle->registerMouseEvents();
+    }
   }
 
   cout << "num items: " << guiGroup.getNumControls() << endl;
@@ -135,7 +142,8 @@ string RadioList::getItemName(int index) {
 
 int RadioList::size() { return guiGroup.getNumControls(); }
 
-void RadioList::onToggleClicked(bool& toggleValue) {
+void RadioList::onToggleClicked(bool& toggleValue)
+{
   unselectAll();
 
   // Search for the actual toggle triggering the event
