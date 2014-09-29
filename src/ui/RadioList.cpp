@@ -31,15 +31,11 @@ void RadioList::setup(vector<string>& labels) {
     toggle->setName(labels[i]);
     toggle->addListener(this, &RadioList::onToggleClicked);
     guiGroup.add(toggle);
-    
-    if ((ofGetVersionMajor() == 0 &&
-         ofGetVersionMinor() >= 8 &&
-         ofGetVersionPatch() >= 2) ||
-        ofGetVersionMajor() > 0) {
-      toggle->registerMouseEvents();
-    }
+#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 8 && OF_VERSION_PATCH >= 2
+    toggle->registerMouseEvents();
+#endif
   }
-
+  
   cout << "num items: " << guiGroup.getNumControls() << endl;
 }
 
