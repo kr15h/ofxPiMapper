@@ -20,6 +20,7 @@ class CustomPathFilter : public ofx::IO::AbstractPathFilter {
   virtual ~CustomPathFilter() {};
   virtual bool accept(const Poco::Path& path) const {};
 };
+
 class CustomVideoPathFilter : public CustomPathFilter {
  public:
   CustomVideoPathFilter() {};

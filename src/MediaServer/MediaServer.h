@@ -24,11 +24,12 @@ class MediaServer {
 
   int getNumVideos();
   int getNumImages();
+  std::vector<string>& getVideoPaths();
+  std::vector<string>& getImagePaths();
 
  private:
-  // Video
+  // Directory Watchers
   ofx::piMapper::DirectoryWatcher videoWatcher;
-  // Images
   ofx::piMapper::DirectoryWatcher imageWatcher;
 };
 }

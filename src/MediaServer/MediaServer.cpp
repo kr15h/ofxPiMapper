@@ -19,5 +19,12 @@ MediaServer::~MediaServer() {};
 
 int MediaServer::getNumImages() { return imageWatcher.filePaths.size(); }
 int MediaServer::getNumVideos() { return videoWatcher.filePaths.size(); }
+
+std::vector<std::string>& MediaServer::getImagePaths() {
+  return imageWatcher.filePaths;
+}
+std::vector<std::string>& MediaServer::getVideoPaths() {
+  return videoWatcher.filePaths;
+}
 }
 }
