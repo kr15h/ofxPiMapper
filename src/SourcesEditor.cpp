@@ -9,6 +9,24 @@ namespace piMapper {
     // we will need to clear this in the deconstr
     mediaServer = new MediaServer();
     isMediaServerExternal = false;
+    
+    cout << "numImages: " << mediaServer->getNumImages() << endl;
+    /*
+    cout << "list: " << endl;
+    for (int i = 0; i < mediaServer->getNumImages(); i++) {
+      cout << mediaServer->getImagePaths()[i] << endl;
+    }
+    */
+    
+    cout << "numVideos: " << mediaServer->getNumVideos() << endl;
+    /*
+    cout << "list: " << endl;
+    for (int i = 0; i < mediaServer->getNumVideos(); i++) {
+      cout << mediaServer->getImagePaths()[i] << endl;
+    }
+    */
+    
+    addMediaServerListeners();
   }
   
   SourcesEditor::SourcesEditor(MediaServer* externalMediaServer) {
@@ -17,6 +35,7 @@ namespace piMapper {
     // Assign external MediaServer instance pointer
     mediaServer = externalMediaServer;
     isMediaServerExternal = true;
+    addMediaServerListeners();
   }
 
   SourcesEditor::~SourcesEditor() {
@@ -27,22 +46,8 @@ namespace piMapper {
       images.pop_back();
     }
     
-    // If mediaServer is local, clear it
-    if (isMediaServerExternal) {
-      // Clear all loaded sources
-      //mediaServer->clear()
-      // Destroy the pointer and set it to NULL pointer
-      delete mediaServer;
-      mediaServer = NULL;
-    }
-  }
-  
-  // Initialize instance variables
-  void SourcesEditor::init() {
-    mediaServer = NULL;
-    isMediaServerExternal = false;
-    defImgDir = DEFAULT_IMAGES_DIR;
-    registerAppEvents();
+    removeMediaServerListeners();
+    clearMediaServer();
   }
   
   void SourcesEditor::registerAppEvents() {
@@ -53,6 +58,7 @@ namespace piMapper {
     ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
   }
 
+  // TODO Remove this
   void SourcesEditor::setup(ofEventArgs& args) {
     gui = new RadioList();
 
@@ -72,6 +78,7 @@ namespace piMapper {
     gui->setPosition(20, 20);
     ofAddListener(gui->radioSelectedEvent, this, &SourcesEditor::guiEvent);
   }
+  //
 
   void SourcesEditor::draw() {
     // Don't draw if there is no source selected
@@ -106,6 +113,19 @@ namespace piMapper {
   void SourcesEditor::setSurfaceManager(SurfaceManager* newSurfaceManager) {
     surfaceManager = newSurfaceManager;
   }
+  
+  void SourcesEditor::setMediaServer(MediaServer* newMediaServer) {
+    // If the new media server is not valid
+    if (newMediaServer == NULL) {
+      // Log an error and return from the routine
+      ofLogError("SourcesEditor::setMediaServer", "New media server is NULL");
+      return;
+    }
+    
+    // Attempt to clear existing media server and assign new one
+    clearMediaServer();
+    mediaServer = newMediaServer;
+  }
 
   void SourcesEditor::selectImageSourceRadioButton(string name) {
     if (name == "none") {
@@ -131,6 +151,41 @@ namespace piMapper {
 
     return &images[index]->getTextureReference();
   }
+  
+  void SourcesEditor::init() {
+    mediaServer = NULL; // Pointers to NULL pointer so we can check later
+    isMediaServerExternal = false;
+    defImgDir = DEFAULT_IMAGES_DIR;
+    registerAppEvents();
+  }
+  
+  void SourcesEditor::addMediaServerListeners() {
+    // Check if the media server is valid
+    if (mediaServer == NULL) {
+      ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
+      return;
+    }
+    
+    // Add listeners to custom events of the media server
+    ofAddListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
+    ofAddListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
+    ofAddListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
+    ofAddListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
+  }
+  
+  void SourcesEditor::removeMediaServerListeners() {
+    // Check if the media server is valid
+    if (mediaServer == NULL) {
+      ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
+      return;
+    }
+    
+    // Remove listeners to custom events of the media server
+    ofRemoveListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
+    ofRemoveListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
+    ofRemoveListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
+    ofRemoveListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
+  }
 
   void SourcesEditor::guiEvent(string& imageName) {
     string name = imageName;
@@ -145,6 +200,36 @@ namespace piMapper {
     ofTexture* texture = surfaceManager->loadImageSource(name, ss.str());
     surfaceManager->getSelectedSurface()->setTexture(texture);
     surfaceManager->manageMemory();
+  }
+  
+  void SourcesEditor::clearMediaServer() {
+    
+    // If mediaServer is local, clear it
+    if (isMediaServerExternal) {
+      
+      // Clear all loaded sources
+      //mediaServer->clear()
+      
+      // Destroy the pointer and set it to NULL pointer
+      delete mediaServer;
+      mediaServer = NULL;
+    }
+  }
+  
+  void SourcesEditor::handleImageAdded(string& path) {
+    cout << "image added: " << path << endl;
+  }
+  
+  void SourcesEditor::handleImageRemoved(string& path) {
+    cout << "image removed: " << path << endl;
+  }
+  
+  void SourcesEditor::handleVideoAdded(string& path) {
+    cout << "video added: " << path << endl;
+  }
+  
+  void SourcesEditor::handleVideoRemoved(string& path) {
+    cout << "video removed: " << path << endl;
   }
 }
 }

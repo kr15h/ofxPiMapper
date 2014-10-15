@@ -6,8 +6,6 @@
 #include "RadioList.h"
 #include "MediaServer.h"
 
-#define DEFAULT_IMAGES_DIR "sources/images/";
-
 namespace ofx {
 namespace piMapper {
 class SourcesEditor {
@@ -20,8 +18,6 @@ class SourcesEditor {
   SourcesEditor(MediaServer* externalMediaServer);
   ~SourcesEditor();
 
-  // Init handles variable initialization in all constructors
-  void init();
   void registerAppEvents();
   void unregisterAppEvents();
 
@@ -31,6 +27,9 @@ class SourcesEditor {
   void disable();
   void enable();
   void setSurfaceManager(SurfaceManager* newSurfaceManager);
+  
+  // Sets external MediaServer
+  void setMediaServer(MediaServer* newMediaServer);
   void selectImageSourceRadioButton(string name);
 
   int getLoadedTexCount();
@@ -38,13 +37,35 @@ class SourcesEditor {
 
  private:
   MediaServer* mediaServer;
-  bool isMediaServerExternal;
   SurfaceManager* surfaceManager;
   RadioList* gui;
   string defImgDir;
-  void guiEvent(string& imageName);
   vector<ofImage*> images;
   vector<string> imageNames;
+  
+  // Is the media server pointer local or from somewhere else?
+  // We use this to determine if we are allowed to clear media server locally.
+  bool isMediaServerExternal;
+  
+  // Init handles variable initialization in all constructors
+  void init();
+  
+  // Methods for adding and removing listeners to the media server
+  void addMediaServerListeners();
+  void removeMediaServerListeners();
+  
+  // Handles GUI event, whenever someone has clicked on a radio button
+  void guiEvent(string& imageName);
+  
+  // Careful clearing of the media server,
+  // clears only if the media server has been initialized locally
+  void clearMediaServer();
+  
+  // MediaServer event handlers
+  void handleImageAdded(string& path);
+  void handleImageRemoved(string& path);
+  void handleVideoAdded(string& path);
+  void handleVideoRemoved(string& path);
 };
 }
 }
