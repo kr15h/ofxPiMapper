@@ -14,17 +14,18 @@
 namespace ofx {
 namespace piMapper {
 
-class CustomPathFilter : public ofx::IO::AbstractPathFilter {
+  class BasePathFilter : public ofx::IO::AbstractPathFilter {
+  public:
+    BasePathFilter() {};
+    virtual ~BasePathFilter() {};
+    virtual bool accept(const Poco::Path& path) const {};
+  };
+  
+class VideoPathFilter : public BasePathFilter {
  public:
-  CustomPathFilter() {};
-  virtual ~CustomPathFilter() {};
-  virtual bool accept(const Poco::Path& path) const {};
-};
-
-class CustomVideoPathFilter : public CustomPathFilter {
- public:
-  CustomVideoPathFilter() {};
-  virtual ~CustomVideoPathFilter() {};
+  VideoPathFilter() {};
+  virtual ~VideoPathFilter() {};
+  
   // TODO: Find useful filters e.g. *.mp4, etc
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
@@ -32,10 +33,11 @@ class CustomVideoPathFilter : public CustomPathFilter {
   }
 };
 
-class CustomImagePathFilter : public CustomPathFilter {
+class ImagePathFilter : public BasePathFilter {
  public:
-  CustomImagePathFilter() {};
-  virtual ~CustomImagePathFilter() {};
+  ImagePathFilter() {};
+  virtual ~ImagePathFilter() {};
+  
   // TODO: Find useful filters e.g. *.png,*.jpeg, etc.
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
@@ -46,11 +48,18 @@ class CustomImagePathFilter : public CustomPathFilter {
 class DirectoryWatcher {
  public:
   DirectoryWatcher(std::string path, bool video);
+  ~DirectoryWatcher();
 
   // TODO make useful stuff with onDirectoryWatcher*
   void onDirectoryWatcherItemAdded(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
+    Poco::Path pocoPath = Poco::Path(path);
+    
+    if (!filter->accept(pocoPath)) {
+      return;
+    }
+    
     filePaths.push_back(path);
     ofNotifyEvent(onItemAdded, path, this);
   }
@@ -58,10 +67,14 @@ class DirectoryWatcher {
   void onDirectoryWatcherItemRemoved(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
+    Poco::Path pocoPath = Poco::Path(path);
+    
+    if (!filter->accept(pocoPath)) {
+      return;
+    }
     
     // Remove path from vector
-    int i;
-    for (i = 0; i < filePaths.size(); i++) {
+    for (int i = 0; i < filePaths.size(); i++) {
       if (path == filePaths[i]) {
         filePaths.erase(filePaths.begin() + i);
         break;
@@ -74,6 +87,11 @@ class DirectoryWatcher {
   void onDirectoryWatcherItemModified(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
+    Poco::Path pocoPath = Poco::Path(path);
+    
+    if (!filter->accept(pocoPath)) {
+      return;
+    }
     
     ofNotifyEvent(onItemModified, path, this);
   }
@@ -81,6 +99,12 @@ class DirectoryWatcher {
   void onDirectoryWatcherItemMovedFrom(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
+    Poco::Path pocoPath = Poco::Path(path);
+    
+    if (!filter->accept(pocoPath)) {
+      return;
+    }
+    
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedFrom")
         << "Moved From: " << path;
     ofNotifyEvent(onItemMovedFrom, path, this);
@@ -89,6 +113,12 @@ class DirectoryWatcher {
   void onDirectoryWatcherItemMovedTo(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
+    Poco::Path pocoPath = Poco::Path(path);
+    
+    if (!filter->accept(pocoPath)) {
+      return;
+    }
+    
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedTo")
         << "Moved To: " << path;
     ofNotifyEvent(onItemMovedTo, path, this);
@@ -111,7 +141,7 @@ class DirectoryWatcher {
 
  private:
   ofx::IO::DirectoryWatcherManager dirWatcher;
-  CustomPathFilter filter;
+  BasePathFilter* filter;
   std::vector<std::string> filePaths;
 };
 }

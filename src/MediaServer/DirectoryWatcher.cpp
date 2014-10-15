@@ -12,12 +12,23 @@ namespace ofx {
   namespace piMapper {
     DirectoryWatcher::DirectoryWatcher(std::string path, bool video) {
       if (video) {
-        filter = CustomVideoPathFilter();
+        filter = new VideoPathFilter();
       } else {
-        filter = CustomImagePathFilter();
+        filter = new ImagePathFilter();
       }
       dirWatcher.registerAllEvents(this);
-      dirWatcher.addPath(path, true, &filter);
+      
+      // For some reason the filters are not working,
+      // we leave just the path here and do the filter logic in the listeners
+      dirWatcher.addPath(path);
+      
+      // Initial directory listing. Fill the file paths vector.
+      IO::DirectoryUtils::list(path, filePaths, true, filter);
+    }
+    
+    DirectoryWatcher::~DirectoryWatcher() {
+      delete filter;
+      filter = NULL;
     }
     
     std::vector<std::string>& DirectoryWatcher::getFilePaths() {
@@ -25,4 +36,4 @@ namespace ofx {
     }
     
   } // namespace piMapper
-} // namespace ifx
+} // namespace ofx
