@@ -27,6 +27,14 @@ namespace piMapper {
     */
     
     addMediaServerListeners();
+    
+    // Test media server onImageLoaded event
+    /*
+    if (mediaServer->getNumImages()) {
+      mediaServer->loadImage(mediaServer->getImagePaths()[0]);
+    }
+    */
+    
   }
   
   SourcesEditor::SourcesEditor(MediaServer* externalMediaServer) {
@@ -171,6 +179,9 @@ namespace piMapper {
     ofAddListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
     ofAddListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
     ofAddListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
+    ofAddListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
+    ofAddListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
+    
   }
   
   void SourcesEditor::removeMediaServerListeners() {
@@ -185,6 +196,8 @@ namespace piMapper {
     ofRemoveListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
     ofRemoveListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
     ofRemoveListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
+    ofRemoveListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
+    ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
   }
 
   void SourcesEditor::guiEvent(string& imageName) {
@@ -230,6 +243,17 @@ namespace piMapper {
   
   void SourcesEditor::handleVideoRemoved(string& path) {
     cout << "video removed: " << path << endl;
+  }
+  
+  void SourcesEditor::handleImageLoaded(string& path) {
+    cout << "Image loaded: " << path << endl;
+    
+    // Test image unload
+    // mediaServer->unloadImage(path);
+  }
+  
+  void SourcesEditor::handleImageUnloaded(string& path) {
+    cout << "Image unloaded: " << path << endl;
   }
 }
 }

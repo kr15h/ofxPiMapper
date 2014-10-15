@@ -66,6 +66,8 @@ class SourcesEditor {
   void handleImageRemoved(string& path);
   void handleVideoAdded(string& path);
   void handleVideoRemoved(string& path);
+  void handleImageLoaded(string& path);
+  void handleImageUnloaded(string& path);
 };
 }
 }

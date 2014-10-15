@@ -36,6 +36,8 @@ class MediaServer {
   ofEvent<string> onImageRemoved;
   ofEvent<string> onVideoAdded;
   ofEvent<string> onVideoRemoved;
+  ofEvent<string> onImageLoaded;
+  ofEvent<string> onImageUnloaded;
 
  private:
   // Directory Watchers

@@ -37,6 +37,7 @@ namespace piMapper {
     if (image.loadImage(path)) {
       loadedImages.push_back(image);
       loadedImagePaths.push_back(path); // Save also path
+      ofNotifyEvent(onImageLoaded, path, this);
     }
   }
   
@@ -49,6 +50,7 @@ namespace piMapper {
         loadedImagePaths.erase(loadedImagePaths.begin() + i);
         loadedImages[i].clear();
         loadedImages.erase(loadedImages.begin() + i);
+        ofNotifyEvent(onImageUnloaded, path, this);
         break;
       }
     }
