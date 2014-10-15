@@ -26,10 +26,12 @@ class MediaServer {
   int getNumImages();
   std::vector<string>& getVideoPaths();
   std::vector<string>& getImagePaths();
+  std::vector<string> getImageNames();
   
   // Image loading and handling
   void loadImage(string& path);
   void unloadImage(string& path);
+  ofTexture* getImageTexture(string& path);
   
   // Custom events
   ofEvent<string> onImageAdded;

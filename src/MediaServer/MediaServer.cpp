@@ -31,6 +31,18 @@ namespace piMapper {
     return videoWatcher.getFilePaths();
   }
   
+  std::vector<std::string> MediaServer::getImageNames() {
+    std::vector<std::string> imageNames;
+    for (int i = 0; i < getNumImages(); i++) {
+      // Split image path
+      std::vector<std::string> pathParts = ofSplitString(getImagePaths()[i], "/");
+      // And get only the last piece
+      std::string name = pathParts[pathParts.size()-1];
+      imageNames.push_back(name);
+    }
+    return imageNames;
+  }
+  
   void MediaServer::loadImage(string& path) {
     // Load image and add to vector if loading success
     ofImage image;
@@ -54,6 +66,23 @@ namespace piMapper {
         break;
       }
     }
+  }
+  
+  ofTexture* MediaServer::getImageTexture(string &path) {
+    
+    // Find image index by path
+    for (int i = 0; i < loadedImagePaths.size(); i++) {
+      if (path == loadedImagePaths[i]) {
+        if (loadedImages[i].isAllocated()) {
+          return &loadedImages[i].getTextureReference();
+        }
+      }
+    }
+    
+    // If we havent returned yet, that means that there is no image
+    // and we need to sort this out somehow
+    ofLogError("MediaServer::getImageTexture", "Image not found");
+    return NULL;
   }
   
   void MediaServer::handleImageAdded(string& path) {

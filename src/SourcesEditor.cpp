@@ -71,6 +71,7 @@ namespace piMapper {
     gui = new RadioList();
 
     // read directory contents
+    /*
     ofDirectory imgDir;
     imgDir.listDir(defImgDir);
     imgDir.sort();
@@ -81,7 +82,10 @@ namespace piMapper {
       // images[i].loadImage(imgDir.getPath(i));
       vnames.push_back(imgDir.getName(i));
     }
-
+    */
+    
+    // Get only image names from media server image paths
+    vector<string> vnames = mediaServer->getImageNames();
     gui->setup("Images", vnames);
     gui->setPosition(20, 20);
     ofAddListener(gui->radioSelectedEvent, this, &SourcesEditor::guiEvent);
