@@ -24,7 +24,4 @@ class ofApp : public ofBaseApp {
   ofFbo* fbo;
   vector<ofRectangle> rects;
   vector<float> rectSpeeds;
-
-  // Debug
-  ofx::piMapper::MediaServer mediaServer;
 };

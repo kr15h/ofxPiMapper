@@ -26,14 +26,6 @@ void ofApp::setup() {
                                 ofRandom(20)));
     rectSpeeds.push_back((1.0f + ofRandom(5)));
   }
-  ofLog() << "Number of Images: " << mediaServer.getNumImages();
-  ofLog() << "Number of Videos: " << mediaServer.getNumVideos();
-  for (auto s : mediaServer.getImagePaths()) {
-    ofLog() << s;
-  }
-  for (auto s : mediaServer.getVideoPaths()) {
-    ofLog() << s;
-  }
 }
 
 void ofApp::update() {
