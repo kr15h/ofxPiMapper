@@ -32,22 +32,26 @@ namespace piMapper {
   }
   
   void MediaServer::handleImageAdded(string& path) {
+    /*
     cout << "onImageAdded: " << path << endl;
     cout << "numImages: " << getNumImages() << endl;
+    */
     ofNotifyEvent(onImageAdded, path, this);
   }
   void MediaServer::handleImageRemoved(string& path) {
+    /*
     cout << "onImageRemoved: " << path << endl;
     cout << "numImages: " << getNumImages() << endl;
+    */
     ofNotifyEvent(onImageRemoved, path, this);
   }
  
   void MediaServer::handleVideoAdded(string& path) {
-    cout << "onVideoAdded: " << path << endl;
+    //cout << "onVideoAdded: " << path << endl;
     ofNotifyEvent(onVideoAdded, path, this);
   }
   void MediaServer::handleVideoRemoved(string& path) {
-    cout << "onVideoRemoved: " << path << endl;
+    //cout << "onVideoRemoved: " << path << endl;
     ofNotifyEvent(onVideoRemoved, path, this);
   }
   
