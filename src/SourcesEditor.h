@@ -4,6 +4,7 @@
 #include "ofEvents.h"
 #include "SurfaceManager.h"
 #include "RadioList.h"
+#include "MediaServer.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/";
 
@@ -11,9 +12,16 @@ namespace ofx {
 namespace piMapper {
 class SourcesEditor {
  public:
+  // Default contructor that initializes media server locally,
+  // thus requiring to delete the media server from memory on deconstr
   SourcesEditor();
+  
+  // Alternative constructor that allows to assign external media server
+  SourcesEditor(MediaServer* externalMediaServer);
   ~SourcesEditor();
 
+  // Init handles variable initialization in all constructors
+  void init();
   void registerAppEvents();
   void unregisterAppEvents();
 
@@ -29,6 +37,8 @@ class SourcesEditor {
   ofTexture* getTexture(int index);
 
  private:
+  MediaServer* mediaServer;
+  bool isMediaServerExternal;
   SurfaceManager* surfaceManager;
   RadioList* gui;
   string defImgDir;
