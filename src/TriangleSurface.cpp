@@ -3,13 +3,10 @@
 namespace ofx {
 namespace piMapper {
 TriangleSurface::TriangleSurface() {
-  cout << "TriangleSurface constructor." << endl;
   setup();
 }
 
-TriangleSurface::~TriangleSurface() {
-  cout << "TriangleSurface destructor." << endl;
-}
+TriangleSurface::~TriangleSurface() {}
 
 void TriangleSurface::setup() {
   // Create 3 points for the triangle
