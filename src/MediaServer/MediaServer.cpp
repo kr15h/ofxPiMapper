@@ -17,14 +17,14 @@ MediaServer::MediaServer()
 
 MediaServer::~MediaServer() {};
 
-int MediaServer::getNumImages() { return imageWatcher.filePaths.size(); }
-int MediaServer::getNumVideos() { return videoWatcher.filePaths.size(); }
+int MediaServer::getNumImages() { return imageWatcher.getFilePaths().size(); }
+int MediaServer::getNumVideos() { return videoWatcher.getFilePaths().size(); }
 
 std::vector<std::string>& MediaServer::getImagePaths() {
-  return imageWatcher.filePaths;
+  return imageWatcher.getFilePaths();
 }
 std::vector<std::string>& MediaServer::getVideoPaths() {
-  return videoWatcher.filePaths;
+  return videoWatcher.getFilePaths();
 }
 }
 }

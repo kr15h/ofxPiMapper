@@ -26,6 +26,9 @@ class MediaServer {
   int getNumImages();
   std::vector<string>& getVideoPaths();
   std::vector<string>& getImagePaths();
+  
+  // Custom events
+  //ofEvent<string> on
 
  private:
   // Directory Watchers
