@@ -34,6 +34,33 @@ class MediaServer {
   // Directory Watchers
   ofx::piMapper::DirectoryWatcher videoWatcher;
   ofx::piMapper::DirectoryWatcher imageWatcher;
+   
+  // imageWatcher event listeners
+  void onImageAdded(string& path);
+  void onImageRemoved(string& path);
+  // TODO rest of listeners
+  /*
+  void onImageModified();
+  void onImageMovedFrom();
+  void onImageMovedTo();
+  */
+  
+  // videoWatcher event listeners
+  void onVideoAdded(string& path);
+  void onVideoRemoved(string& path);
+  // TODO rest of listeners
+  /*
+   void onVideoModified();
+   void onVideoMovedFrom();
+   void onVideoMovedTo();
+   */
+   
+  // Add/remove event listeners.
+  // Add event listeners to image and video watcher events.
+  void addWatcherListeners();
+  
+  // Remove event listeners to image and video watcher events
+  void removeWatcherListeners();
 };
-}
-}
+} // namespace piMapper
+} // namespace ofx
