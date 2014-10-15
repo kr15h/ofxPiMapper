@@ -59,7 +59,14 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     
-    // TODO Remove items from Vector
+    // Remove path from vector
+    int i;
+    for (i = 0; i < filePaths.size(); i++) {
+      if (path == filePaths[i]) {
+        filePaths.erase(filePaths.begin() + i);
+        break;
+      }
+    }
     
     ofNotifyEvent(onItemRemoved, path, this);
   }
