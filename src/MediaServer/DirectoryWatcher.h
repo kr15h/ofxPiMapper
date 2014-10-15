@@ -29,7 +29,8 @@ class VideoPathFilter : public BasePathFilter {
   // TODO: Find useful filters e.g. *.mp4, etc
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
-           ofIsStringInString(path.toString(), "mp4");
+           (ofIsStringInString(path.toString(), ".mp4") ||
+            ofIsStringInString(path.toString(), ".h264"));
   }
 };
 
@@ -41,7 +42,9 @@ class ImagePathFilter : public BasePathFilter {
   // TODO: Find useful filters e.g. *.png,*.jpeg, etc.
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
-           ofIsStringInString(path.toString(), "png");
+           (ofIsStringInString(path.toString(), ".png") ||
+            ofIsStringInString(path.toString(), ".jpg") ||
+            ofIsStringInString(path.toString(), ".jpeg"));
   }
 };
 
