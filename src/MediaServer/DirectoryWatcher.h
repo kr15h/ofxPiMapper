@@ -50,31 +50,41 @@ class DirectoryWatcher {
   // TODO make useful stuff with onDirectoryWatcher*
   void onDirectoryWatcherItemAdded(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
-    ofSendMessage("Added:    " + evt.item.path());
-    filePaths.push_back(evt.item.path());
+    string path = evt.item.path();
+    filePaths.push_back(path);
+    ofNotifyEvent(onItemAdded, path, this);
   }
 
   void onDirectoryWatcherItemRemoved(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
-    ofSendMessage("Removed:  " + evt.item.path());
+    string path = evt.item.path();
+    
     // TODO Remove items from Vector
+    
+    ofNotifyEvent(onItemRemoved, path, this);
   }
 
   void onDirectoryWatcherItemModified(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
-    ofSendMessage("Modified: " + evt.item.path());
+    string path = evt.item.path();
+    
+    ofNotifyEvent(onItemModified, path, this);
   }
 
   void onDirectoryWatcherItemMovedFrom(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
+    string path = evt.item.path();
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedFrom")
-        << "Moved From: " << evt.item.path();
+        << "Moved From: " << path;
+    ofNotifyEvent(onItemMovedFrom, path, this);
   }
 
   void onDirectoryWatcherItemMovedTo(
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
+    string path = evt.item.path();
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedTo")
-        << "Moved To: " << evt.item.path();
+        << "Moved To: " << path;
+    ofNotifyEvent(onItemMovedTo, path, this);
   }
 
   void onDirectoryWatcherError(const Poco::Exception& exc) {
@@ -83,6 +93,13 @@ class DirectoryWatcher {
   }
 
   std::vector<std::string> filePaths;
+  
+  // Custom events
+  ofEvent<string> onItemAdded;
+  ofEvent<string> onItemRemoved;
+  ofEvent<string> onItemModified;
+  ofEvent<string> onItemMovedFrom;
+  ofEvent<string> onItemMovedTo;
 
  private:
   ofx::IO::DirectoryWatcherManager dirWatcher;
