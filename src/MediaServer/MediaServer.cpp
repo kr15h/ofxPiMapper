@@ -31,6 +31,29 @@ namespace piMapper {
     return videoWatcher.getFilePaths();
   }
   
+  void MediaServer::loadImage(string& path) {
+    // Load image and add to vector if loading success
+    ofImage image;
+    if (image.loadImage(path)) {
+      loadedImages.push_back(image);
+      loadedImagePaths.push_back(path); // Save also path
+    }
+  }
+  
+  void MediaServer::unloadImage(string& path) {
+    // Search for given path in loaded image paths
+    for (int i = 0; i < loadedImagePaths.size(); i++) {
+      // If found
+      if (loadedImagePaths[i] == path) {
+        // Remove path and unload image as well as remove it from storage
+        loadedImagePaths.erase(loadedImagePaths.begin() + i);
+        loadedImages[i].clear();
+        loadedImages.erase(loadedImages.begin() + i);
+        break;
+      }
+    }
+  }
+  
   void MediaServer::handleImageAdded(string& path) {
     /*
     cout << "onImageAdded: " << path << endl;

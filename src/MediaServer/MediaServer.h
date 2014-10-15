@@ -27,6 +27,10 @@ class MediaServer {
   std::vector<string>& getVideoPaths();
   std::vector<string>& getImagePaths();
   
+  // Image loading and handling
+  void loadImage(string& path);
+  void unloadImage(string& path);
+  
   // Custom events
   ofEvent<string> onImageAdded;
   ofEvent<string> onImageRemoved;
@@ -37,6 +41,10 @@ class MediaServer {
   // Directory Watchers
   ofx::piMapper::DirectoryWatcher videoWatcher;
   ofx::piMapper::DirectoryWatcher imageWatcher;
+  
+  // Loaded media
+  vector<ofImage> loadedImages;
+  vector<string> loadedImagePaths;
    
   // imageWatcher event listeners
   void handleImageAdded(string& path);
