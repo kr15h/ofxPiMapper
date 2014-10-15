@@ -279,7 +279,7 @@ void SurfaceManager::loadXmlSettings(string fileName) {
 
     // it's a triangle ?
     if (vertexCount == 3) {
-      ofLog(OF_LOG_NOTICE, "create Triangle");
+      //ofLog(OF_LOG_NOTICE, "create Triangle");
       xmlSettings.pushTag("vertex", 0);
       vertices.push_back(ofVec2f(xmlSettings.getValue("x", 0.0f),
                                  xmlSettings.getValue("y", 0.0f)));
