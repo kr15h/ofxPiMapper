@@ -99,7 +99,8 @@ class DirectoryWatcher {
         << "Error: " << exc.displayText();
   }
 
-  std::vector<std::string> filePaths;
+  // Getters
+  std::vector<std::string>& getFilePaths();
   
   // Custom events
   ofEvent<string> onItemAdded;
@@ -111,6 +112,7 @@ class DirectoryWatcher {
  private:
   ofx::IO::DirectoryWatcherManager dirWatcher;
   CustomPathFilter filter;
+  std::vector<std::string> filePaths;
 };
 }
 }

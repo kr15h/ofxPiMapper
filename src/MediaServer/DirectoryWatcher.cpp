@@ -9,15 +9,20 @@
 #include "DirectoryWatcher.h"
 
 namespace ofx {
-namespace piMapper {
-DirectoryWatcher::DirectoryWatcher(std::string path, bool video) {
-  if (video) {
-    filter = CustomVideoPathFilter();
-  } else {
-    filter = CustomImagePathFilter();
-  }
-  dirWatcher.registerAllEvents(this);
-  dirWatcher.addPath(path, true, &filter);
-}
-}
-}
+  namespace piMapper {
+    DirectoryWatcher::DirectoryWatcher(std::string path, bool video) {
+      if (video) {
+        filter = CustomVideoPathFilter();
+      } else {
+        filter = CustomImagePathFilter();
+      }
+      dirWatcher.registerAllEvents(this);
+      dirWatcher.addPath(path, true, &filter);
+    }
+    
+    std::vector<std::string>& DirectoryWatcher::getFilePaths() {
+      return filePaths;
+    }
+    
+  } // namespace piMapper
+} // namespace ifx
