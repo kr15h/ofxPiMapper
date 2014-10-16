@@ -55,7 +55,7 @@ class SourcesEditor {
   void removeMediaServerListeners();
   
   // Handles GUI event, whenever someone has clicked on a radio button
-  void guiEvent(string& imageName);
+  void handleRadioSelected(string& sourcePath);
   
   // Careful clearing of the media server,
   // clears only if the media server has been initialized locally

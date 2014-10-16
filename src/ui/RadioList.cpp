@@ -7,21 +7,22 @@ RadioList::RadioList() {
   storedSelectedItem = 0;
 }
 
-RadioList::RadioList(vector<string>& labels) {
+RadioList::RadioList(vector<string>& labels, vector<string>& values) {
   RadioList();
-  setup(labels);
+  setup(labels, values);
 }
 
-RadioList::RadioList(string title, vector<string>& labels) {
+RadioList::RadioList(string title, vector<string>& labels, vector<string>& values) {
   RadioList();
-  setup(title, labels);
+  setup(title, labels, values);
 }
 
 RadioList::~RadioList() { clear(); }
 
-void RadioList::setup(vector<string>& labels) {
+void RadioList::setup(vector<string>& labels, vector<string>& values) {
   // Copy incomming labels for later use
   storedLabels = labels;
+  storedValues = values;
 
   // Create toggles with labels from the labels arg
   int i;
@@ -36,11 +37,11 @@ void RadioList::setup(vector<string>& labels) {
   cout << "num items: " << guiGroup.getNumControls() << endl;
 }
 
-void RadioList::setup(string title, vector<string>& labels) {
+void RadioList::setup(string title, vector<string>& labels, vector<string>& values) {
   // Store title for later use
   storedTitle = title;
   guiGroup.setName(title);
-  setup(labels);
+  setup(labels, values);
 }
 
 void RadioList::draw() { guiGroup.draw(); }
@@ -65,9 +66,10 @@ void RadioList::selectItem(int index) {
   toggle->removeListener(this, &RadioList::onToggleClicked);
   *toggle = true;  // Select the specific radio button
   toggle->addListener(this, &RadioList::onToggleClicked);
-  string name = toggle->getName();
-  ofNotifyEvent(radioSelectedEvent, name, this);
-
+  //string name = toggle->getName();
+  // Throw event with value that is image path instead of name
+  string value = storedValues[index];
+  ofNotifyEvent(onRadioSelected, value, this);
   storedSelectedItem = index;
 }
 
@@ -77,7 +79,7 @@ void RadioList::enable() {
   }
 
   // Rebuild everyting
-  setup(storedTitle, storedLabels);
+  setup(storedTitle, storedLabels, storedValues);
 
   // Select the stored selected item without throwing an event
   ofxToggle* toggle =

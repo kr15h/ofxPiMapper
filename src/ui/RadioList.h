@@ -10,12 +10,12 @@ namespace piMapper {
 class RadioList {
  public:
   RadioList();
-  RadioList(vector<string> &labels);
-  RadioList(string title, vector<string> &labels);
+  RadioList(vector<string>& labels, vector<string>& values);
+  RadioList(string title, vector<string>& labels, vector<string>& values);
   ~RadioList();
 
-  void setup(vector<string> &labels);
-  void setup(string title, vector<string> &labels);
+  void setup(vector<string> &labels, vector<string>& values);
+  void setup(string title, vector<string>& labels, vector<string>& values);
   void draw();
   void setTitle(string title);
   void setPosition(ofPoint p);
@@ -37,10 +37,11 @@ class RadioList {
   // Use ofAddListener(RadioListInstance.radioSelectedEvent, listenerClassPtr,
   // &listenerClass::listenerMethod)
   // to listen to this. Listner method void listenerMethod(string & radioName)
-  ofEvent<string> radioSelectedEvent;
+  ofEvent<string> onRadioSelected;
 
  private:
   vector<string> storedLabels;
+  vector<string> storedValues;
   string storedTitle;
   ofxGuiGroup guiGroup;
   int storedSelectedItem;

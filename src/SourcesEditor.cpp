@@ -66,38 +66,21 @@ namespace piMapper {
     ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
   }
 
-  // TODO Remove this
   void SourcesEditor::setup(ofEventArgs& args) {
     gui = new RadioList();
-
-    // read directory contents
-    /*
-    ofDirectory imgDir;
-    imgDir.listDir(defImgDir);
-    imgDir.sort();
-
-    vector<string> vnames;
-
-    for (int i = 0; i < (int)imgDir.size(); i++) {
-      // images[i].loadImage(imgDir.getPath(i));
-      vnames.push_back(imgDir.getName(i));
-    }
-    */
-    
-    // Get only image names from media server image paths
+    // Get image names from media server
     vector<string> vnames = mediaServer->getImageNames();
-    gui->setup("Images", vnames);
+    gui->setup("Images", vnames, mediaServer->getImagePaths());
     gui->setPosition(20, 20);
-    ofAddListener(gui->radioSelectedEvent, this, &SourcesEditor::guiEvent);
+    // Add radio selected event listener so we can load sources
+    ofAddListener(gui->onRadioSelected, this, &SourcesEditor::handleRadioSelected);
   }
-  //
 
   void SourcesEditor::draw() {
     // Don't draw if there is no source selected
     if (surfaceManager->getSelectedSurface() == NULL) {
       return;
     }
-
     gui->draw();
   }
 
@@ -204,19 +187,13 @@ namespace piMapper {
     ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
   }
 
-  void SourcesEditor::guiEvent(string& imageName) {
-    string name = imageName;
-
+  void SourcesEditor::handleRadioSelected(string& sourcePath) {
     if (surfaceManager->getSelectedSurface() == NULL) {
       return;
     }
 
-    stringstream ss;
-    ss << defImgDir << name;
-    cout << "attempt to load image: " << ss.str() << endl;
-    ofTexture* texture = surfaceManager->loadImageSource(name, ss.str());
-    surfaceManager->getSelectedSurface()->setTexture(texture);
-    surfaceManager->manageMemory();
+    cout << "Attempt to load image: " << sourcePath << endl;
+    mediaServer->loadImage(sourcePath);
   }
   
   void SourcesEditor::clearMediaServer() {
@@ -254,6 +231,9 @@ namespace piMapper {
     
     // Test image unload
     // mediaServer->unloadImage(path);
+    
+    ofTexture* texture = mediaServer->getImageTexture(path);
+    surfaceManager->getSelectedSurface()->setTexture(texture);
   }
   
   void SourcesEditor::handleImageUnloaded(string& path) {
