@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 #include "ofxIO.h"
+#include "MediaType.h"
 
 namespace ofx {
 namespace piMapper {
@@ -26,7 +27,6 @@ class VideoPathFilter : public BasePathFilter {
   VideoPathFilter() {};
   virtual ~VideoPathFilter() {};
   
-  // TODO: Find useful filters e.g. *.mp4, etc
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
            (ofIsStringInString(path.toString(), ".mp4") ||
@@ -39,7 +39,6 @@ class ImagePathFilter : public BasePathFilter {
   ImagePathFilter() {};
   virtual ~ImagePathFilter() {};
   
-  // TODO: Find useful filters e.g. *.png,*.jpeg, etc.
   bool accept(const Poco::Path& path) const {
     return !Poco::File(path).isHidden() &&
            (ofIsStringInString(path.toString(), ".png") ||
@@ -50,7 +49,7 @@ class ImagePathFilter : public BasePathFilter {
 
 class DirectoryWatcher {
  public:
-  DirectoryWatcher(std::string path, bool video);
+  DirectoryWatcher(std::string path, int watcherMediaType);
   ~DirectoryWatcher();
 
   // TODO make useful stuff with onDirectoryWatcher*
@@ -58,11 +57,9 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     Poco::Path pocoPath = Poco::Path(path);
-    
     if (!filter->accept(pocoPath)) {
       return;
     }
-    
     filePaths.push_back(path);
     ofNotifyEvent(onItemAdded, path, this);
   }
@@ -71,11 +68,9 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     Poco::Path pocoPath = Poco::Path(path);
-    
     if (!filter->accept(pocoPath)) {
       return;
     }
-    
     // Remove path from vector
     for (int i = 0; i < filePaths.size(); i++) {
       if (path == filePaths[i]) {
@@ -83,7 +78,6 @@ class DirectoryWatcher {
         break;
       }
     }
-    
     ofNotifyEvent(onItemRemoved, path, this);
   }
 
@@ -91,11 +85,9 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     Poco::Path pocoPath = Poco::Path(path);
-    
     if (!filter->accept(pocoPath)) {
       return;
     }
-    
     ofNotifyEvent(onItemModified, path, this);
   }
 
@@ -103,11 +95,9 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     Poco::Path pocoPath = Poco::Path(path);
-    
     if (!filter->accept(pocoPath)) {
       return;
     }
-    
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedFrom")
         << "Moved From: " << path;
     ofNotifyEvent(onItemMovedFrom, path, this);
@@ -117,11 +107,9 @@ class DirectoryWatcher {
       const ofx::IO::DirectoryWatcherManager::DirectoryEvent& evt) {
     string path = evt.item.path();
     Poco::Path pocoPath = Poco::Path(path);
-    
     if (!filter->accept(pocoPath)) {
       return;
     }
-    
     ofLogNotice("ofApp::onDirectoryWatcherItemMovedTo")
         << "Moved To: " << path;
     ofNotifyEvent(onItemMovedTo, path, this);
@@ -134,6 +122,7 @@ class DirectoryWatcher {
 
   // Getters
   std::vector<std::string>& getFilePaths();
+  int getMediaType();
   
   // Custom events
   ofEvent<string> onItemAdded;
@@ -146,6 +135,7 @@ class DirectoryWatcher {
   ofx::IO::DirectoryWatcherManager dirWatcher;
   BasePathFilter* filter;
   std::vector<std::string> filePaths;
+  int mediaType;
 };
 }
 }

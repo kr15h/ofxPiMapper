@@ -12,9 +12,9 @@ namespace ofx {
 namespace piMapper {
 
   MediaServer::MediaServer():
-    videoWatcher(ofToDataPath(DEFAULT_VIDEOS_DIR, true), true),
-    imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), false) {
-      addWatcherListeners();
+  videoWatcher(ofToDataPath(DEFAULT_VIDEOS_DIR, true), MediaType::MEDIA_TYPE_VIDEO),
+  imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), MediaType::MEDIA_TYPE_IMAGE) {
+    addWatcherListeners();
   }
 
   MediaServer::~MediaServer() {

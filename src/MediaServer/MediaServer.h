@@ -10,6 +10,7 @@
 
 #include "ofMain.h"
 #include "DirectoryWatcher.h"
+#include "MediaType.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/"
 #define DEFAULT_VIDEOS_DIR "sources/videos/"

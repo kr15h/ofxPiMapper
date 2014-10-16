@@ -10,18 +10,21 @@
 
 namespace ofx {
   namespace piMapper {
-    DirectoryWatcher::DirectoryWatcher(std::string path, bool video) {
-      if (video) {
+    DirectoryWatcher::DirectoryWatcher(std::string path, int watcherMediaType) {
+      mediaType = watcherMediaType;
+      // Decide what filter we need depending on media type
+      if (mediaType == MediaType::MEDIA_TYPE_VIDEO) {
         filter = new VideoPathFilter();
-      } else {
+      } else if (mediaType == MediaType::MEDIA_TYPE_IMAGE) {
         filter = new ImagePathFilter();
+      } else {
+        ofLogFatalError("DirectoryWatcher::DirectoryWatcher", "Unkonwn media type");
+        std::exit(EXIT_FAILURE);
       }
       dirWatcher.registerAllEvents(this);
-      
       // For some reason the filters are not working,
       // we leave just the path here and do the filter logic in the listeners
       dirWatcher.addPath(path);
-      
       // Initial directory listing. Fill the file paths vector.
       IO::DirectoryUtils::list(path, filePaths, true, filter);
     }
@@ -33,6 +36,10 @@ namespace ofx {
     
     std::vector<std::string>& DirectoryWatcher::getFilePaths() {
       return filePaths;
+    }
+    
+    int DirectoryWatcher::getMediaType() {
+      return mediaType;
     }
     
   } // namespace piMapper
