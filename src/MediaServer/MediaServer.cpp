@@ -44,12 +44,33 @@ namespace piMapper {
   }
   
   void MediaServer::loadImage(string& path) {
-    // Load image and add to vector if loading success
-    ofImage image;
-    if (image.loadImage(path)) {
-      loadedImages.push_back(image);
-      loadedImagePaths.push_back(path); // Save also path
+    // Check if this image is already loaded
+    bool isImageLoaded = false;
+    for (int i = 0; i < loadedImagePaths.size(); i++) {
+      if (path == loadedImagePaths[i]) {
+        isImageLoaded = true;
+        break;
+      }
+    }
+    // If image is loaded
+    if (isImageLoaded) {
+      // Notify objects registered to onImageLoaded event
+      std::stringstream ss;
+      ss << "Image " << path << " already loaded";
+      ofLogNotice("MediaServer") << ss.str();
       ofNotifyEvent(onImageLoaded, path, this);
+    } else {
+      // Load image and add to vector if loading success
+      ofImage image;
+      if (image.loadImage(path)) {
+        loadedImages.push_back(image);
+        loadedImagePaths.push_back(path); // Save also path
+        // Notify objects registered to onImageLoaded event
+        ofNotifyEvent(onImageLoaded, path, this);
+      } else {
+        ofLogFatalError("MediaServer") << "Failed to load image";
+        std::exit(EXIT_FAILURE);
+      }
     }
   }
   
