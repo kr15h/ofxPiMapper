@@ -1,1 +1,4 @@
 ofxPiMapper
+ofxIO
+ofxXmlSettings
+ofxGui
