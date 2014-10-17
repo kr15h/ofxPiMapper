@@ -4,42 +4,15 @@ namespace ofx {
 namespace piMapper {
   SourcesEditor::SourcesEditor() {
     init();
-    
     // Create new MediaServer instance,
     // we will need to clear this in the deconstr
     mediaServer = new MediaServer();
     isMediaServerExternal = false;
-    
-    cout << "numImages: " << mediaServer->getNumImages() << endl;
-    /*
-    cout << "list: " << endl;
-    for (int i = 0; i < mediaServer->getNumImages(); i++) {
-      cout << mediaServer->getImagePaths()[i] << endl;
-    }
-    */
-    
-    cout << "numVideos: " << mediaServer->getNumVideos() << endl;
-    /*
-    cout << "list: " << endl;
-    for (int i = 0; i < mediaServer->getNumVideos(); i++) {
-      cout << mediaServer->getImagePaths()[i] << endl;
-    }
-    */
-    
     addMediaServerListeners();
-    
-    // Test media server onImageLoaded event
-    /*
-    if (mediaServer->getNumImages()) {
-      mediaServer->loadImage(mediaServer->getImagePaths()[0]);
-    }
-    */
-    
   }
   
   SourcesEditor::SourcesEditor(MediaServer* externalMediaServer) {
     init();
-    
     // Assign external MediaServer instance pointer
     mediaServer = externalMediaServer;
     isMediaServerExternal = true;
@@ -48,12 +21,8 @@ namespace piMapper {
 
   SourcesEditor::~SourcesEditor() {
     unregisterAppEvents();
-    delete gui;
-    while (images.size()) {
-      delete images.back();
-      images.pop_back();
-    }
-    
+    delete imageSelector;
+    delete videoSelector;
     removeMediaServerListeners();
     clearMediaServer();
   }
@@ -67,40 +36,48 @@ namespace piMapper {
   }
 
   void SourcesEditor::setup(ofEventArgs& args) {
-    gui = new RadioList();
+    imageSelector = new RadioList();
+    videoSelector = new RadioList();
     // Get image names from media server
-    vector<string> vnames = mediaServer->getImageNames();
-    gui->setup("Images", vnames, mediaServer->getImagePaths());
-    gui->setPosition(20, 20);
-    // Add radio selected event listener so we can load sources
-    ofAddListener(gui->onRadioSelected, this, &SourcesEditor::handleRadioSelected);
+    vector<string> imageNames = mediaServer->getImageNames();
+    imageSelector->setup("Images", imageNames, mediaServer->getImagePaths());
+    imageSelector->setPosition(20, 20);
+    ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditor::handleImageSelected);
+    vector<string> videoNames = mediaServer->getVideoNames();
+    cout << "list video names: " << endl;
+    for (int i = 0; i < videoNames.size(); i++) {
+      cout << videoNames[i] << endl;
+    }
+    videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
+    videoSelector->setPosition(250, 20);
+    ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
   }
 
   void SourcesEditor::draw() {
     // Don't draw if there is no source selected
     if (surfaceManager->getSelectedSurface() == NULL) {
+      ofLogNotice("SourcesEditor") << "No surface selected";
       return;
     }
-    gui->draw();
+    imageSelector->draw();
+    videoSelector->draw();
   }
 
-  void SourcesEditor::loadImage(string name, string path) {
-    images.push_back(new ofImage());
-    images.back()->loadImage(path);
-    imageNames.push_back(name);
-    ofSendMessage("imageLoaded");
+  void SourcesEditor::disable() {
+    imageSelector->disable();
+    videoSelector->disable();
   }
-
-  void SourcesEditor::disable() { gui->disable(); }
 
   void SourcesEditor::enable() {
     // Don't enable if there is no surface selected
     if (surfaceManager->getSelectedSurface() == NULL) {
-      cout << "No surface selected. Not enable()ing source list." << endl;
+      ofLogNotice("SourcesEditor") << "No surface selected. Not enabling and not showing source list.";
       return;
     }
-
-    gui->enable();
+    imageSelector->enable();
+    videoSelector->enable();
+    BaseSource* source = surfaceManager->getSelectedSurface()->getSource();
+    selectSourceRadioButton(source->getPath());
   }
 
   void SourcesEditor::setSurfaceManager(SurfaceManager* newSurfaceManager) {
@@ -122,35 +99,27 @@ namespace piMapper {
     isMediaServerExternal = true;
   }
 
-  void SourcesEditor::selectImageSourceRadioButton(string name) {
-    if (name == "none") {
-      gui->unselectAll();
+  void SourcesEditor::selectSourceRadioButton(std::string& sourcePath) {
+    if (sourcePath == "") {
+      ofLogNotice("SourcesEditor") << "Path is empty";
+      imageSelector->unselectAll();
+      videoSelector->unselectAll();
       return;
     } else {
-      int i;
-      for (i = 0; i < gui->size(); i++) {
-        if (gui->getItemName(i) == name) {
-          gui->selectItem(i);
-          return;
-        }
+      // Check image selector first
+      bool imageRadioSelected = imageSelector->selectItemByValue(sourcePath);
+      bool videoRadioSelected = videoSelector->selectItemByValue(sourcePath);
+      if (imageRadioSelected || videoRadioSelected) {
+        return;
       }
+      // Log warning if we are still here
+      ofLogWarning("SourcesEditor") << "Could not find option in any of the source lists";
     }
-  }
-
-  int SourcesEditor::getLoadedTexCount() { return images.size(); }
-
-  ofTexture* SourcesEditor::getTexture(int index) {
-    if (index >= images.size()) {
-      throw std::runtime_error("Texture index out of bounds.");
-    }
-
-    return &images[index]->getTextureReference();
   }
   
   void SourcesEditor::init() {
     mediaServer = NULL; // Pointers to NULL pointer so we can check later
     isMediaServerExternal = false;
-    defImgDir = DEFAULT_IMAGES_DIR;
     registerAppEvents();
   }
   
@@ -160,7 +129,6 @@ namespace piMapper {
       ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
       return;
     }
-    
     // Add listeners to custom events of the media server
     ofAddListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
     ofAddListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
@@ -177,7 +145,6 @@ namespace piMapper {
       ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
       return;
     }
-    
     // Remove listeners to custom events of the media server
     ofRemoveListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
     ofRemoveListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
@@ -187,16 +154,38 @@ namespace piMapper {
     ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
   }
 
-  void SourcesEditor::handleRadioSelected(string& sourcePath) {
+  void SourcesEditor::handleImageSelected(string& imagePath) {
+    // Unselect video item if any selected
+    videoSelector->unselectAll();
     BaseSurface* surface = surfaceManager->getSelectedSurface();
     if (surface == NULL) {
+      ofLogNotice("SourcesEditor") << "No surface selected";
       return;
     }
+    // Unload old media
     BaseSource* source = surface->getSource();
     if (source->isLoadable()) {
       mediaServer->unloadMedia(source->getPath());
     }
-    surface->setSource(mediaServer->loadImage(sourcePath));
+    // Load new image
+    surface->setSource(mediaServer->loadImage(imagePath));
+  }
+  
+  void SourcesEditor::handleVideoSelected(string& videoPath) {
+    // Unselect image item if any selected
+    imageSelector->unselectAll();
+    BaseSurface* surface = surfaceManager->getSelectedSurface();
+    if (surface == NULL) {
+      ofLogNotice("SourcesEditor") << "No surface selected";
+      return;
+    }
+    // Unload old media
+    BaseSource* source = surface->getSource();
+    if (source->isLoadable()) {
+      mediaServer->unloadMedia(source->getPath());
+    }
+    // Load new video
+    surface->setSource(mediaServer->loadVideo(videoPath));
   }
   
   void SourcesEditor::clearMediaServer() {
@@ -232,8 +221,8 @@ namespace piMapper {
     // Test image unload
     // mediaServer->unloadImage(path);
     
-    BaseSource* source = mediaServer->getSourceByPath(path);
-    surfaceManager->getSelectedSurface()->setSource(source);
+    //BaseSource* source = mediaServer->getSourceByPath(path);
+    //surfaceManager->getSelectedSurface()->setSource(source);
   }
   
   void SourcesEditor::handleImageUnloaded(string& path) {

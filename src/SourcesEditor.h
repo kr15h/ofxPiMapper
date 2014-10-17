@@ -30,7 +30,8 @@ class SourcesEditor {
   
   // Sets external MediaServer
   void setMediaServer(MediaServer* newMediaServer);
-  void selectImageSourceRadioButton(string name);
+  //void selectImageSourceRadioButton(string name);
+  void selectSourceRadioButton(std::string& sourcePath);
 
   int getLoadedTexCount();
   ofTexture* getTexture(int index);
@@ -38,10 +39,8 @@ class SourcesEditor {
  private:
   MediaServer* mediaServer;
   SurfaceManager* surfaceManager;
-  RadioList* gui;
-  string defImgDir;
-  vector<ofImage*> images;
-  vector<string> imageNames;
+  RadioList* imageSelector;
+  RadioList* videoSelector;
   
   // Is the media server pointer local or from somewhere else?
   // We use this to determine if we are allowed to clear media server locally.
@@ -55,7 +54,8 @@ class SourcesEditor {
   void removeMediaServerListeners();
   
   // Handles GUI event, whenever someone has clicked on a radio button
-  void handleRadioSelected(string& sourcePath);
+  void handleImageSelected(string& imagePath);
+  void handleVideoSelected(string& videoPath);
   
   // Careful clearing of the media server,
   // clears only if the media server has been initialized locally

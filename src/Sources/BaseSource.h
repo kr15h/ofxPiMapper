@@ -10,6 +10,7 @@ namespace ofx {
     public:
       BaseSource();
       BaseSource(ofTexture* newTexture); // Only one clean way of passing the texture
+      ~BaseSource();
       ofTexture* getTexture();
       std::string& getName();
       bool isLoadable(); // Maybe the loading features shoud go to a derrived class

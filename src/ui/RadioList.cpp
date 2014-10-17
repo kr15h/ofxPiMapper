@@ -72,6 +72,30 @@ void RadioList::selectItem(int index) {
   ofNotifyEvent(onRadioSelected, value, this);
   storedSelectedItem = index;
 }
+  
+  bool RadioList::selectItemByValue(std::string itemValue) {
+    if (itemValue == "") {
+      ofLogNotice("RadioList") << "Item value empty";
+      return false;
+    }
+    unselectAll();
+    int itemIndex = -1;
+    for (int i = 0; i < storedValues.size(); i++) {
+      if (itemValue == storedValues[i]) {
+        itemIndex = i;
+        break;
+      }
+    }
+    if (itemIndex >= 0) {
+      ofxToggle* toggle = static_cast<ofxToggle*>(guiGroup.getControl(itemIndex));
+      toggle->removeListener(this, &RadioList::onToggleClicked);
+      *toggle = true;  // Select the specific radio button
+      toggle->addListener(this, &RadioList::onToggleClicked);
+      return true;
+    }
+    ofLogNotice("RadioList") << "Item with value " << itemValue << " not found";
+    return false;
+  }
 
 void RadioList::enable() {
   if (guiGroup.getNumControls() >= 0) {

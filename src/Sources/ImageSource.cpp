@@ -9,9 +9,7 @@ namespace ofx {
       type = SourceType::SOURCE_TYPE_IMAGE;
     }
     
-    ImageSource::~ImageSource() {
-      clear();
-    }
+    ImageSource::~ImageSource() {}
     
     void ImageSource::loadImage(std::string& filePath) {
       path = filePath;
@@ -32,8 +30,8 @@ namespace ofx {
       image->clear();
       delete image;
       image = NULL;
-      path = "";
-      name = "";
+      //path = "";
+      //name = "";
       loaded = false;
     }
     

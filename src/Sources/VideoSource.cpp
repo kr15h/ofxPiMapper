@@ -3,14 +3,14 @@
 namespace ofx {
   namespace piMapper {
     VideoSource::VideoSource() {
+      cout << "VideoSource constr" << endl;
       loadable = true;
       loaded = false;
       type = SourceType::SOURCE_TYPE_VIDEO;
+      videoPlayer = NULL;
     }
     
-    VideoSource::~VideoSource() {
-      clear();
-    }
+    VideoSource::~VideoSource() {}
     
     void VideoSource::loadVideo(std::string& filePath) {
       path = filePath;
@@ -47,8 +47,8 @@ namespace ofx {
       delete videoPlayer;
       videoPlayer = NULL;
 #endif
-      path = "";
-      name = "";
+      //path = "";
+      //name = "";
       loaded = false;
     }
     
@@ -59,7 +59,9 @@ namespace ofx {
       // probably needs updating as well
       //
 #else
-      videoPlayer->update();
+      if (videoPlayer != NULL) {
+        videoPlayer->update();
+      }
 #endif
     }
   }

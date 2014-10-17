@@ -12,6 +12,10 @@ namespace ofx {
       texture = newTexture;
     }
     
+    BaseSource::~BaseSource() {
+      cout << "BaseSource destr" << endl;
+    }
+    
     ofTexture* BaseSource::getTexture() {
       return texture;
     }

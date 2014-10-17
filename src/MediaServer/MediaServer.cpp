@@ -28,9 +28,6 @@ namespace piMapper {
   std::vector<std::string>& MediaServer::getImagePaths() {
     return imageWatcher.getFilePaths();
   }
-  std::vector<std::string>& MediaServer::getVideoPaths() {
-    return videoWatcher.getFilePaths();
-  }
   
   std::vector<std::string> MediaServer::getImageNames() {
     std::vector<std::string> imageNames;
@@ -43,6 +40,25 @@ namespace piMapper {
     }
     return imageNames;
   }
+  
+  std::vector<std::string>& MediaServer::getVideoPaths() {
+    return videoWatcher.getFilePaths();
+  }
+  
+  std::vector<std::string> MediaServer::getVideoNames() {
+    cout << "nuVideos: " << getNumVideos() << endl;
+    std::vector<std::string> videoNames;
+    for (int i = 0; i < getNumVideos(); i++) {
+      // Split video path
+      std::vector<std::string> pathParts = ofSplitString(getVideoPaths()[i], "/");
+      // And get only the last piece
+      std::string name = pathParts[pathParts.size()-1];
+      videoNames.push_back(name);
+    }
+    return videoNames;
+  }
+  
+  
   
   BaseSource* MediaServer::loadMedia(string &path, int mediaType) {
     // Chose load method depending on type
@@ -97,13 +113,11 @@ namespace piMapper {
   }
   
   void MediaServer::unloadImage(string& path) {
-    
     ImageSource* source = static_cast<ImageSource*>(getSourceByPath(path));
-    // Decrease reference count of the image
-    //referenceCount[path]--;
+    ofLogNotice("MediaServer") << "Unload image, current reference count: " << source->referenceCount;
     source->referenceCount--;
     // Unload only if reference count is less or equal to 0
-    cout << "referenceCount: " << source->referenceCount << endl;
+    ofLogNotice("MediaServer") << "New reference count: " << source->referenceCount;
     if (source->referenceCount > 0) {
       ofLogNotice("MediaServer") << "Not unloading image as it is being referenced elsewhere";
       return;
@@ -114,9 +128,12 @@ namespace piMapper {
     ofLogNotice("MediaServer") << ss.str();
     // Destroy image source
     if (loadedSources.count(path)) {
-      //loadedSources[path]->clear();
-      delete loadedSources[path];
-      loadedSources.erase(path);
+      ofLogNotice("MediaServer") << "Source count BEFORE image removal: " << loadedSources.size() << endl;
+      loadedSources[path]->clear();
+      std::map<std::string, BaseSource*>::iterator it = loadedSources.find(path);
+      delete it->second;
+      loadedSources.erase(it);
+      ofLogNotice("MediaServer") << "Source count AFTER image removal: " << loadedSources.size() << endl;
       ofNotifyEvent(onImageUnloaded, path, this);
       return;
     }
@@ -139,7 +156,6 @@ namespace piMapper {
     // If is loaded
     if (isVideoLoaded) {
       // Increase reference count of this source
-      //referenceCount[path]++;
       videoSource->referenceCount++;
       std::stringstream refss;
       refss << "Current reference count for " << path << " = " << videoSource->referenceCount;
@@ -175,14 +191,15 @@ namespace piMapper {
       return;
     }
     // Reference count 0 or less, let's unload the video
-    std::stringstream ss;
-    ss << "Removing video " << path;
-    ofLogNotice("MediaServer") << ss.str();
+    ofLogNotice("MediaServer") << "Removing video " << path;
     // Distroy video source
     if (loadedSources.count(path)) {
-      loadedSources[path]->clear();
-      delete loadedSources[path];
-      loadedSources.erase(path);
+      ofLogNotice("MediaServer") << "Source count before video removal: " << loadedSources.size() << endl;
+      videoSource->clear();
+      std::map<std::string, BaseSource*>::iterator it = loadedSources.find(path);
+      delete it->second;
+      loadedSources.erase(it);
+      ofLogNotice("MediaServer") << "Source count after video removal: " << loadedSources.size() << endl;
       ofNotifyEvent(onVideoUnloaded, path, this);
       return;
     }
@@ -223,7 +240,6 @@ namespace piMapper {
   }
   
   BaseSource* MediaServer::getSourceByPath(std::string& mediaPath) {
-    cout << "num loaded sources: " << loadedSources.size() << endl;
     if (loadedSources.count(mediaPath)) {
       return loadedSources[mediaPath];
     }

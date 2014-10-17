@@ -28,9 +28,18 @@ class VideoPathFilter : public BasePathFilter {
   virtual ~VideoPathFilter() {};
   
   bool accept(const Poco::Path& path) const {
+#ifdef TARGET_RASPBERRY_PI
     return !Poco::File(path).isHidden() &&
            (ofIsStringInString(path.toString(), ".mp4") ||
             ofIsStringInString(path.toString(), ".h264"));
+#else 
+    return !Poco::File(path).isHidden() &&
+    (ofIsStringInString(path.toString(), ".mp4") ||
+     ofIsStringInString(path.toString(), ".h264")||
+     ofIsStringInString(path.toString(), ".mov") ||
+     ofIsStringInString(path.toString(), ".avi") ||
+     ofIsStringInString(path.toString(), ".mpeg"));
+#endif
   }
 };
 

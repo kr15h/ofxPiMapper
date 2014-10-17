@@ -28,9 +28,10 @@ class MediaServer {
 
   int getNumVideos();
   int getNumImages();
-  std::vector<string>& getVideoPaths();
-  std::vector<string>& getImagePaths();
-  std::vector<string> getImageNames();
+  std::vector<std::string>& getVideoPaths();
+  std::vector<std::string>  getVideoNames();
+  std::vector<std::string>& getImagePaths();
+  std::vector<std::string>  getImageNames();
   
   BaseSource* loadMedia(string& path, int mediaType);
   BaseSource* loadImage(string& path);
