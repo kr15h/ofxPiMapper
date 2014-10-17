@@ -1,6 +1,6 @@
 #pragma once
 
-#import "ofLog.h"
+#include "ofLog.h"
 
 #define SOURCE_TYPE_NAME_NONE "none"
 #define SOURCE_TYPE_NAME_IMAGE "image"
