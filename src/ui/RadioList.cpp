@@ -34,7 +34,7 @@ void RadioList::setup(vector<string>& labels, vector<string>& values) {
     guiGroup.add(toggle);
   }
 
-  cout << "num items: " << guiGroup.getNumControls() << endl;
+  //cout << "num items: " << guiGroup.getNumControls() << endl;
 }
 
 void RadioList::setup(string title, vector<string>& labels, vector<string>& values) {

@@ -3,7 +3,7 @@
 namespace ofx {
   namespace piMapper {
     VideoSource::VideoSource() {
-      cout << "VideoSource constr" << endl;
+      //cout << "VideoSource constr" << endl;
       loadable = true;
       loaded = false;
       type = SourceType::SOURCE_TYPE_VIDEO;

@@ -13,9 +13,9 @@ namespace ofx {
     
     void ImageSource::loadImage(std::string& filePath) {
       path = filePath;
-      cout << "loading image: " << filePath << endl;
+      //cout << "loading image: " << filePath << endl;
       setNameFromPath(filePath);
-      cout << "path: " << path << endl;
+      //cout << "path: " << path << endl;
       image = new ofImage();
       if (!image->loadImage(filePath)) {
         ofLogFatalError("ImageSource") << "Could not load image";

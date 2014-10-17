@@ -18,7 +18,6 @@ namespace piMapper {
   }
 
   MediaServer::~MediaServer() {
-    cout << "Media server is over" << endl;
     removeWatcherListeners();
   };
 
@@ -46,7 +45,6 @@ namespace piMapper {
   }
   
   std::vector<std::string> MediaServer::getVideoNames() {
-    cout << "nuVideos: " << getNumVideos() << endl;
     std::vector<std::string> videoNames;
     for (int i = 0; i < getNumVideos(); i++) {
       // Split video path
@@ -145,7 +143,6 @@ namespace piMapper {
   }
   
   BaseSource* MediaServer::loadVideo(string& path) {
-    cout << "loading video: " << path << endl;
     VideoSource* videoSource = NULL;
     // Check if this video is already loaded
     bool isVideoLoaded = false;
@@ -272,26 +269,16 @@ namespace piMapper {
   }
   
   void MediaServer::handleImageAdded(string& path) {
-    /*
-    cout << "onImageAdded: " << path << endl;
-    cout << "numImages: " << getNumImages() << endl;
-    */
     ofNotifyEvent(onImageAdded, path, this);
   }
   void MediaServer::handleImageRemoved(string& path) {
-    /*
-    cout << "onImageRemoved: " << path << endl;
-    cout << "numImages: " << getNumImages() << endl;
-    */
     ofNotifyEvent(onImageRemoved, path, this);
   }
  
   void MediaServer::handleVideoAdded(string& path) {
-    //cout << "onVideoAdded: " << path << endl;
     ofNotifyEvent(onVideoAdded, path, this);
   }
   void MediaServer::handleVideoRemoved(string& path) {
-    //cout << "onVideoRemoved: " << path << endl;
     ofNotifyEvent(onVideoRemoved, path, this);
   }
   

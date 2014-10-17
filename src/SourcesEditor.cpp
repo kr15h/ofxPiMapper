@@ -44,10 +44,6 @@ namespace piMapper {
     imageSelector->setPosition(20, 20);
     ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditor::handleImageSelected);
     vector<string> videoNames = mediaServer->getVideoNames();
-    cout << "list video names: " << endl;
-    for (int i = 0; i < videoNames.size(); i++) {
-      cout << videoNames[i] << endl;
-    }
     videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
     videoSelector->setPosition(250, 20);
     ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
@@ -93,8 +89,8 @@ namespace piMapper {
     }
     // Attempt to clear existing media server and assign new one
     clearMediaServer();
-    cout << "old ms addr: " << mediaServer << endl;
-    cout << "new ms addr: " << newMediaServer << endl;
+    //cout << "old ms addr: " << mediaServer << endl;
+    //cout << "new ms addr: " << newMediaServer << endl;
     mediaServer = newMediaServer;
     isMediaServerExternal = true;
   }
