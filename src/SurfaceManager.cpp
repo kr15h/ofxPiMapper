@@ -2,7 +2,10 @@
 
 namespace ofx {
 namespace piMapper {
-SurfaceManager::SurfaceManager() {}
+  SurfaceManager::SurfaceManager() {
+    // Init variables
+    mediaServer = NULL;
+  }
 
 SurfaceManager::~SurfaceManager() { clear(); }
 
@@ -18,19 +21,21 @@ void SurfaceManager::addSurface(int surfaceType) {
   } else if (surfaceType == SurfaceType::QUAD_SURFACE) {
     surfaces.push_back(new QuadSurface());
   } else {
-    throw std::runtime_error("Attempt to add non-existing surface type.");
+    ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
+    std::exit(EXIT_FAILURE);
   }
 }
 
-void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr) {
+void SurfaceManager::addSurface(int surfaceType, BaseSource* newSource) {
   if (surfaceType == SurfaceType::TRIANGLE_SURFACE) {
     surfaces.push_back(new TriangleSurface());
-    surfaces.back()->setTexture(texturePtr);
+    surfaces.back()->setSource(newSource);
   } else if (surfaceType == SurfaceType::QUAD_SURFACE) {
     surfaces.push_back(new QuadSurface());
-    surfaces.back()->setTexture(texturePtr);
+    surfaces.back()->setSource(newSource);
   } else {
-    throw std::runtime_error("Attempt to add non-existing surface type.");
+    ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
+    std::exit(EXIT_FAILURE);
   }
 }
 
@@ -67,11 +72,12 @@ void SurfaceManager::addSurface(int surfaceType, vector<ofVec2f> vertices,
       surfaces.back()->setTexCoord(i, texCoords[i]);
     }
   } else {
-    throw std::runtime_error("Attempt to add non-existing surface type.");
+    ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
+    std::exit(EXIT_FAILURE);
   }
 }
 
-void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr,
+void SurfaceManager::addSurface(int surfaceType, BaseSource* newSource,
                                 vector<ofVec2f> vertices,
                                 vector<ofVec2f> texCoords) {
   if (surfaceType == SurfaceType::TRIANGLE_SURFACE) {
@@ -84,7 +90,7 @@ void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr,
     }
 
     surfaces.push_back(new TriangleSurface());
-    surfaces.back()->setTexture(texturePtr);
+    surfaces.back()->setSource(newSource);
 
     for (int i = 0; i < 3; i++) {
       surfaces.back()->setVertex(i, vertices[i]);
@@ -100,20 +106,22 @@ void SurfaceManager::addSurface(int surfaceType, ofTexture* texturePtr,
     }
 
     surfaces.push_back(new QuadSurface());
-    surfaces.back()->setTexture(texturePtr);
+    surfaces.back()->setSource(newSource);
 
     for (int i = 0; i < 4; i++) {
       surfaces.back()->setVertex(i, vertices[i]);
       surfaces.back()->setTexCoord(i, texCoords[i]);
     }
   } else {
-    throw std::runtime_error("Attempt to add non-existing surface type.");
+    ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
+    std::exit(EXIT_FAILURE);
   }
 }
 
 void SurfaceManager::removeSelectedSurface() {
-  if (selectedSurface == NULL) return;
-
+  if (selectedSurface == NULL) {
+    return;
+  }
   for (int i = 0; i < surfaces.size(); i++) {
     if (surfaces[i] == selectedSurface) {
       delete surfaces[i];
@@ -124,61 +132,23 @@ void SurfaceManager::removeSelectedSurface() {
   }
 }
 
-void SurfaceManager::manageMemory() {
-  // check if each of the sources is assigned to a surface or not
-  for (int i = 0; i < loadedImageSources.size(); i++) {
-    bool bAssigned = false;
-
-    for (int j = 0; j < surfaces.size(); j++) {
-      if (surfaces[j]->getTexture() ==
-          &loadedImageSources[i]->getTextureReference()) {
-        bAssigned = true;
-        break;
-      }
-    }
-
-    if (!bAssigned) {
-      // purge the image source from memory
-      delete loadedImageSources[i];
-      loadedImageSources.erase(loadedImageSources.begin() + i);
-      cout << "Deleting image source: " << loadedImageSourceNames[i] << endl;
-      loadedImageSourceNames.erase(loadedImageSourceNames.begin() + i);
-      i--;
-    }
-  }
-}
-
 void SurfaceManager::clear() {
   // delete all extra allocations from the heap
   while (surfaces.size()) {
     delete surfaces.back();
     surfaces.pop_back();
   }
-
-  while (loadedImageSources.size()) {
-    delete loadedImageSources.back();
-    loadedImageSources.pop_back();
-  }
-
-  while (loadedImageSourceNames.size()) {
-    loadedImageSourceNames.pop_back();
-  }
 }
 
-// String getTypeString(SurfaceType e)
-// {
-//   switch e
-//   {
-//       case TRINAGLE_SURFACE: return "TRINAGLE_SURFACE";
-//       case QUAD_SURFACE: return "QUAD_SURFACE";
-//       default: throw Exception("Bad MyEnum");
-//   }
-// }
-
 void SurfaceManager::saveXmlSettings(string fileName) {
+  // Exit if mediaServer not set
+  if (mediaServer == NULL) {
+    ofLogFatalError("SurfaceManager") << "Media server not set";
+    std::exit(EXIT_FAILURE);
+  }
+  // We need a fresh copy of the xml settings object
   xmlSettings.clear();
-
-  // save surfaces
+  // Save surfaces
   xmlSettings.addTag("surfaces");
   xmlSettings.pushTag("surfaces");
   for (int i = 0; i < surfaces.size(); i++) {
@@ -214,37 +184,31 @@ void SurfaceManager::saveXmlSettings(string fileName) {
       xmlSettings.popTag();  // texCoord
     }
     xmlSettings.popTag();  // texCoords
-
     xmlSettings.addTag("source");
     xmlSettings.pushTag("source");
-
-    xmlSettings.addValue("source-type", "image");
-    xmlSettings.addValue("source-name", getSurfaceSourceName(surface));
-    // xmlSettings.addValue("source-path", "/root/etc/image.jpg");
+    string sourceTypeName = SourceType::GetSourceTypeName(surface->getSource()->getType());
+    cout << "sourceTypeName: " << sourceTypeName << endl;
+    xmlSettings.addValue("source-type", sourceTypeName);
+    xmlSettings.addValue("source-name", surface->getSource()->getName());
     xmlSettings.popTag();  // source
-
-    // xmlSettings.addTag("type");
-    // xmlSettings.pushTag("type");
-    // // surfaceType == SurfaceType::TRIANGLE_SURFACE
-    // SurfaceType surfaceType = &surface->getType();
-    // xmlSettings.addValue("surface-type", surfaceType);
-    // xmlSettings.popTag(); // type
-
     xmlSettings.popTag();  // surface
   }
   xmlSettings.popTag();  // surfaces
-
   xmlSettings.save(fileName);
 }
 
 void SurfaceManager::loadXmlSettings(string fileName) {
+  // Exit if there is no media server
+  if (mediaServer == NULL) {
+    ofLogFatalError("SurfaceManager") << "Media server not set";
+    std::exit(EXIT_FAILURE);
+  }
   if (!xmlSettings.loadFile(fileName)) {
-    ofLog(OF_LOG_WARNING, "Could not load XML settings.");
+    ofLogWarning("SurfaceManager") << "Could not load XML settings";
     return;
   }
-
   if (!xmlSettings.tagExists("surfaces")) {
-    ofLog(OF_LOG_WARNING, "XML settings is empty or has wrong markup.");
+    ofLogWarning("SurfaceManager") << "XML settings is empty or has wrong markup";
     return;
   }
 
@@ -255,31 +219,27 @@ void SurfaceManager::loadXmlSettings(string fileName) {
     xmlSettings.pushTag("surface", i);
     // attempt to load surface source
     xmlSettings.pushTag("source");
-    string sourceType = xmlSettings.getValue("source-type", "image");
-    string sourceName = xmlSettings.getValue("source-name", "none");
-    ofTexture* sourceTexture = NULL;
-    if (sourceName != "none") {
-      stringstream ss;
-      ss << "sources/images/" << sourceName;  // TODO: reuse constants here
-      sourceTexture = loadImageSource(sourceName, ss.str());
+    string sourceType = xmlSettings.getValue("source-type", "");
+    string sourceName = xmlSettings.getValue("source-name", "");
+    BaseSource* source = NULL;
+    if (sourceName != "" && sourceName != "none" && sourceType != "") {
+      // Load source depending on type
+      int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
+      // Construct full path
+      string dir = mediaServer->getDefaultMediaDir(typeEnum);
+      std::stringstream pathss;
+      pathss << ofToDataPath(dir, true) << sourceName;
+      string sourcePath = pathss.str();
+      // Load media by using full path
+      source = mediaServer->loadMedia(sourcePath, typeEnum);
     }
     xmlSettings.popTag();  // source
-
-    // // attempt to load surface type
-    // ofLog(OF_LOG_WARNING, "Attempt to load surface type.");
-    // xmlSettings.pushTag("type");
-    // string surfaceType = xmlSettings.getValue("surface-type",
-    // "TRIANGLE_SURFACE");
-    // xmlSettings.popTag(); // type
-
     xmlSettings.pushTag("vertices");
     vector<ofVec2f> vertices;
-
     int vertexCount = xmlSettings.getNumTags("vertex");
-
     // it's a triangle ?
     if (vertexCount == 3) {
-      ofLog(OF_LOG_NOTICE, "create Triangle");
+      //ofLog(OF_LOG_NOTICE, "create Triangle");
       xmlSettings.pushTag("vertex", 0);
       vertices.push_back(ofVec2f(xmlSettings.getValue("x", 0.0f),
                                  xmlSettings.getValue("y", 0.0f)));
@@ -320,8 +280,8 @@ void SurfaceManager::loadXmlSettings(string fileName) {
 
       // now we have variables sourceName and sourceTexture
       // by checking those we can use one or another addSurface method
-      if (sourceName != "none" && sourceTexture != NULL) {
-        addSurface(SurfaceType::TRIANGLE_SURFACE, sourceTexture, vertices,
+      if (sourceName != "none" && source != NULL) {
+        addSurface(SurfaceType::TRIANGLE_SURFACE, source, vertices,
                    texCoords);
       } else {
         addSurface(SurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
@@ -381,8 +341,8 @@ void SurfaceManager::loadXmlSettings(string fileName) {
 
       // now we have variables sourceName and sourceTexture
       // by checking those we can use one or another addSurface method
-      if (sourceName != "none" && sourceTexture != NULL) {
-        addSurface(SurfaceType::QUAD_SURFACE, sourceTexture, vertices,
+      if (sourceName != "none" && source != NULL) {
+        addSurface(SurfaceType::QUAD_SURFACE, source, vertices,
                    texCoords);
       } else {
         addSurface(SurfaceType::QUAD_SURFACE, vertices, texCoords);
@@ -394,6 +354,10 @@ void SurfaceManager::loadXmlSettings(string fileName) {
 
   xmlSettings.popTag();  // surfaces
 }
+  
+  void SurfaceManager::setMediaServer(MediaServer* newMediaServer) {
+    mediaServer = newMediaServer;
+  }
 
 BaseSurface* SurfaceManager::selectSurface(int index) {
   if (index >= surfaces.size()) {
@@ -406,46 +370,12 @@ BaseSurface* SurfaceManager::selectSurface(int index) {
   ofSendMessage("surfaceSelected");
 }
 
-BaseSurface* SurfaceManager::getSelectedSurface() { return selectedSurface; }
-
-void SurfaceManager::deselectSurface() { selectedSurface = NULL; }
-
-ofTexture* SurfaceManager::loadImageSource(string name, string path) {
-  // check if it is loaded
-  for (int i = 0; i < loadedImageSourceNames.size(); i++) {
-    if (loadedImageSourceNames[i] == name) {
-      // this image is already loaded
-      return &loadedImageSources[i]->getTextureReference();
-    }
-  }
-
-  // not loaded - load
-  ofImage* image = new ofImage();
-  if (!image->loadImage(path)) {
-    return NULL;
-  }
-  loadedImageSources.push_back(image);
-  loadedImageSourceNames.push_back(name);
-  return &image->getTextureReference();
+BaseSurface* SurfaceManager::getSelectedSurface() {
+  return selectedSurface;
 }
 
-string SurfaceManager::getSelectedSurfaceSourceName() {
-  if (selectedSurface == NULL) {
-    return "none";
-  }
-
-  return getSurfaceSourceName(selectedSurface);
-}
-
-string SurfaceManager::getSurfaceSourceName(BaseSurface* surface) {
-  ofTexture* tex = surface->getTexture();
-  for (int i = 0; i < loadedImageSources.size(); i++) {
-    if (tex == &loadedImageSources[i]->getTextureReference()) {
-      return loadedImageSourceNames[i];
-    }
-  }
-
-  return "none";
+void SurfaceManager::deselectSurface() {
+  selectedSurface = NULL;
 }
 
 BaseSurface* SurfaceManager::getSurface(int index) {

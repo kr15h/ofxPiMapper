@@ -2,6 +2,12 @@
 
 void ofApp::setup() {
   bShowInfo = false;
+  
+  // Pass pointers to our media server instance to both:
+  // surface manager and it's gui, only then we will be able to
+  // load surface data from xml settings files
+  surfaceManager.setMediaServer(&mediaServer);
+  gui.setMediaServer(&mediaServer);
 
   // check if the surfaces.xml file is there
   // if not - load defaultSurfaces.xml
@@ -17,7 +23,8 @@ void ofApp::setup() {
   // Create FBO
   fbo = new ofFbo();
   fbo->allocate(500, 500);
-  setFboAsTexture();
+  fboSource = new ofx::piMapper::BaseSource(&fbo->getTextureReference());
+  setFboAsSource();
 
   // Genereate rects
   int numRects = 20;  // change this to add more or less rects
@@ -114,7 +121,7 @@ void ofApp::keyPressed(int key) {
       surfaceManager.saveXmlSettings("surfaces.xml");
       break;
     case 'a':
-      setFboAsTexture();
+      setFboAsSource();
       break;
     case OF_KEY_BACKSPACE:
       surfaceManager.removeSelectedSurface();
@@ -178,6 +185,6 @@ void ofApp::addSurface() {
   surfaceManager.selectSurface(surfaceManager.size() - 1);
 }
 
-void ofApp::setFboAsTexture() {
-  surfaceManager.getSurface(0)->setTexture(&fbo->getTextureReference());
+void ofApp::setFboAsSource() {
+  surfaceManager.getSurface(0)->setSource(fboSource);
 }

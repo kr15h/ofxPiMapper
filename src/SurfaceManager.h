@@ -4,6 +4,9 @@
 #include "TriangleSurface.h"
 #include "QuadSurface.h"
 #include "SurfaceType.h"
+#include "MediaServer.h"
+#include "BaseSource.h"
+#include "SourceType.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
@@ -19,32 +22,28 @@ class SurfaceManager {
 
   void draw();
   void addSurface(int surfaceType);
-  void addSurface(int surfaceType, ofTexture* texturePtr);
+  void addSurface(int surfaceType, BaseSource* newSource);
   void addSurface(int surfaceType, vector<ofVec2f> vertices,
                   vector<ofVec2f> texCoords);
-  void addSurface(int surfaceType, ofTexture* texturePtr,
+  void addSurface(int surfaceType, BaseSource* newSource,
                   vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
   void removeSelectedSurface();
-  void manageMemory();  // deletes unasigned sources
   void clear();
   void saveXmlSettings(string fileName);
   void loadXmlSettings(string fileName);
+  void setMediaServer(MediaServer* newMediaServer);
 
   BaseSurface* getSurface(int index);
   int size();
   BaseSurface* selectSurface(int index);
   BaseSurface* getSelectedSurface();
   void deselectSurface();
-  ofTexture* loadImageSource(string name, string path);
-  string getSelectedSurfaceSourceName();
-  string getSurfaceSourceName(BaseSurface* surface);
 
  private:
-  vector<BaseSurface*> surfaces;
+  std::vector<BaseSurface*> surfaces;
   BaseSurface* selectedSurface;
-  vector<string> loadedImageSourceNames;
-  vector<ofImage*> loadedImageSources;
   ofxXmlSettings xmlSettings;
+  MediaServer* mediaServer;
 };
 }
 }

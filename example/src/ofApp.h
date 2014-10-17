@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
+#include "BaseSource.h"
 
 class ofApp : public ofBaseApp {
  public:
@@ -15,13 +16,15 @@ class ofApp : public ofBaseApp {
   void addRandomSurface();
   void addQuadSurface();
   void addSurface();
-  void setFboAsTexture();
+  void setFboAsSource();
 
   ofImage image;
+  ofx::piMapper::MediaServer mediaServer;
   ofx::piMapper::SurfaceManager surfaceManager;
   ofx::piMapper::SurfaceManagerGui gui;
   bool bShowInfo;
   ofFbo* fbo;
+  ofx::piMapper::BaseSource* fboSource;
   vector<ofRectangle> rects;
   vector<float> rectSpeeds;
 };

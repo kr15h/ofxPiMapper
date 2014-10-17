@@ -1,3 +1,5 @@
 ofxPiMapper
-ofxGui
+ofxIO
 ofxXmlSettings
+ofxGui
+ofxOMXPlayer
