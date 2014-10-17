@@ -46,13 +46,13 @@ namespace ofx {
     }
     
     void VideoSource::clear() {
-      ofRemoveListener(ofEvents().update, this, &VideoSource::update);
       texture = NULL;
 #ifdef TARGET_RASPBERRY_PI
       omxPlayer->close();
       delete omxPlayer;
       omxPlayer = NULL;
 #else
+      ofRemoveListener(ofEvents().update, this, &VideoSource::update);
       videoPlayer->stop();
       videoPlayer->close();
       delete videoPlayer;
