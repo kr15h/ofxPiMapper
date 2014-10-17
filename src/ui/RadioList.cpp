@@ -159,7 +159,7 @@ string RadioList::getItemName(int index) {
   return toggle->getName();
 }
 
-int RadioList::size() { return guiGroup.getNumControls(); }
+int RadioList::size() { return storedValues.size(); }
 
 void RadioList::onToggleClicked(bool& toggleValue) {
   unselectAll();

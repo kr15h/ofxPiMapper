@@ -18,8 +18,8 @@ namespace ofx {
       //cout << "path: " << path << endl;
       image = new ofImage();
       if (!image->loadImage(filePath)) {
-        ofLogFatalError("ImageSource") << "Could not load image";
-        std::exit(EXIT_FAILURE);
+        ofLogWarning("ImageSource") << "Could not load image";
+        //std::exit(EXIT_FAILURE);
       }
       texture = &image->getTextureReference();
       loaded = true;

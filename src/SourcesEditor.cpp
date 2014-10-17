@@ -38,15 +38,35 @@ namespace piMapper {
   void SourcesEditor::setup(ofEventArgs& args) {
     imageSelector = new RadioList();
     videoSelector = new RadioList();
-    // Get image names from media server
-    vector<string> imageNames = mediaServer->getImageNames();
-    imageSelector->setup("Images", imageNames, mediaServer->getImagePaths());
-    imageSelector->setPosition(20, 20);
-    ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditor::handleImageSelected);
-    vector<string> videoNames = mediaServer->getVideoNames();
-    videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
-    videoSelector->setPosition(250, 20);
-    ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
+    
+    // Get media count
+    int numImages = mediaServer->getNumImages();
+    int numVideos = mediaServer->getNumVideos();
+    
+    // Depending on media count, decide what to load and initialize
+    if (numImages) {
+      // Get image names from media server
+      vector<string> imageNames = mediaServer->getImageNames();
+      imageSelector->setup("Images", imageNames, mediaServer->getImagePaths());
+      ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditor::handleImageSelected);
+    }
+    if (numVideos) {
+      vector<string> videoNames = mediaServer->getVideoNames();
+      videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
+      ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
+    }
+    
+    if (numImages) {
+      imageSelector->setPosition(20, 20);
+      if (numVideos) {
+        videoSelector->setPosition(250, 20);
+      }
+    } else {
+      if (numVideos) {
+        videoSelector->setPosition(20, 20);
+      }
+    }
+    
   }
 
   void SourcesEditor::draw() {
@@ -55,13 +75,22 @@ namespace piMapper {
       ofLogNotice("SourcesEditor") << "No surface selected";
       return;
     }
-    imageSelector->draw();
-    videoSelector->draw();
+    if (imageSelector->size()) {
+      imageSelector->draw();
+    }
+    if (videoSelector->size()) {
+      videoSelector->draw();
+    }
+    
   }
 
   void SourcesEditor::disable() {
-    imageSelector->disable();
-    videoSelector->disable();
+    if (imageSelector->size()) {
+      imageSelector->disable();
+    }
+    if (videoSelector->size()) {
+      videoSelector->disable();
+    }
   }
 
   void SourcesEditor::enable() {
@@ -70,8 +99,12 @@ namespace piMapper {
       ofLogNotice("SourcesEditor") << "No surface selected. Not enabling and not showing source list.";
       return;
     }
-    imageSelector->enable();
-    videoSelector->enable();
+    if (imageSelector->size()) {
+      imageSelector->enable();
+    }
+    if (videoSelector->size()) {
+      videoSelector->enable();
+    }
     BaseSource* source = surfaceManager->getSelectedSurface()->getSource();
     selectSourceRadioButton(source->getPath());
   }
@@ -98,13 +131,23 @@ namespace piMapper {
   void SourcesEditor::selectSourceRadioButton(std::string& sourcePath) {
     if (sourcePath == "") {
       ofLogNotice("SourcesEditor") << "Path is empty";
-      imageSelector->unselectAll();
-      videoSelector->unselectAll();
+      if (imageSelector->size()) {
+        imageSelector->unselectAll();
+      }
+      if (videoSelector->size()) {
+        videoSelector->unselectAll();
+      }
       return;
     } else {
       // Check image selector first
-      bool imageRadioSelected = imageSelector->selectItemByValue(sourcePath);
-      bool videoRadioSelected = videoSelector->selectItemByValue(sourcePath);
+      bool imageRadioSelected = false;
+      bool videoRadioSelected = false;
+      if (imageSelector->size()) {
+        imageRadioSelected = imageSelector->selectItemByValue(sourcePath);
+      }
+      if (videoSelector->size()) {
+        videoRadioSelected = videoSelector->selectItemByValue(sourcePath);
+      }
       if (imageRadioSelected || videoRadioSelected) {
         return;
       }
