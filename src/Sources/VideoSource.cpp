@@ -7,7 +7,12 @@ namespace ofx {
       loadable = true;
       loaded = false;
       type = SourceType::SOURCE_TYPE_VIDEO;
+#ifdef TARGET_RASPBERRY_PI
+      omxPlayer = NULL;
+#else
       videoPlayer = NULL;
+
+#endif
     }
     
     VideoSource::~VideoSource() {}
@@ -17,10 +22,17 @@ namespace ofx {
       //cout << "loading video: " << filePath << endl;
       setNameFromPath(filePath);
 #ifdef TARGET_RASPBERRY_PI
-      // TODO: do omx player
-      //
-      //
-      //
+      // Do things with the OMX player
+      ofxOMXPlayerSettings settings;
+      settings.videoPath = filePath;
+      settings.useHDMIForAudio = true;	//default true
+      settings.enableTexture = true;		//default true
+      settings.enableLooping = true;		//default true
+      settings.enableAudio = false;		//default true, save resources by disabling
+      //settings.doFlipTexture = true;		//default false
+      omxPlayer = new ofxOMXPlayer();
+      omxPlayer->setup(settings);
+      texture = &(omxPlayer->getTextureReference());
 #else
       // regular ofVideoPlayer
       videoPlayer = new ofVideoPlayer();
@@ -37,10 +49,10 @@ namespace ofx {
       ofRemoveListener(ofEvents().update, this, &VideoSource::update);
       texture = NULL;
 #ifdef TARGET_RASPBERRY_PI
-      // TODO: do omx player
-      //
-      //
-      //
+      omxPlayer->stop();
+      omxPlayer->close();
+      delete omxPlayer;
+      omxPlayer = NULL;
 #else
       videoPlayer->stop();
       videoPlayer->close();
@@ -52,17 +64,12 @@ namespace ofx {
       loaded = false;
     }
     
+#ifndef TARGET_RASPBERRY_PI
     void VideoSource::update(ofEventArgs &args) {
-#ifdef TARGET_RASPBERRY_PI
-      // TODO: do omx player
-      //
-      // probably needs updating as well
-      //
-#else
       if (videoPlayer != NULL) {
         videoPlayer->update();
       }
-#endif
     }
+#endif
   }
 }

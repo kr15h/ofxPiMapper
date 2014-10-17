@@ -15,13 +15,13 @@ namespace ofx {
       std::string& getPath();
       void loadVideo(std::string& path);
       void clear();
+#ifndef TARGET_RASPBERRY_PI
       void update(ofEventArgs& args);
+#endif
+      
     private:
 #ifdef TARGET_RASPBERRY_PI
-      // TODO: implement ofxOMXPlayer
-      //
-      //
-      //
+      ofxOMXPlayer* omxPlayer; // Naming different for less confusion
 #else 
       // Go with ofVideoPlayer or
       // TODO: High Performance Video player on newer Macs
