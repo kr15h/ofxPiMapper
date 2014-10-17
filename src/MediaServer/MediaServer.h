@@ -10,7 +10,10 @@
 
 #include "ofMain.h"
 #include "DirectoryWatcher.h"
-#include "MediaType.h"
+#include "BaseSource.h"
+#include "ImageSource.h"
+#include "VideoSource.h"
+#include "SourceType.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/"
 #define DEFAULT_VIDEOS_DIR "sources/videos/"
@@ -29,10 +32,17 @@ class MediaServer {
   std::vector<string>& getImagePaths();
   std::vector<string> getImageNames();
   
-  // Image loading and handling
-  void loadImage(string& path);
+  BaseSource* loadMedia(string& path, int mediaType);
+  BaseSource* loadImage(string& path);
   void unloadImage(string& path);
-  ofTexture* getImageTexture(string& path);
+  BaseSource* loadVideo(string& path);
+  void unloadVideo(string& path);
+  void unloadMedia(string& path);
+  void clear(); // Force all loaded source unload
+  BaseSource* getSourceByPath(std::string& mediaPath);
+  std::string getDefaultImageDir();
+  std::string getDefaultVideoDir();
+  std::string getDefaultMediaDir(int sourceType);
   
   // Custom events
   ofEvent<string> onImageAdded;
@@ -41,16 +51,14 @@ class MediaServer {
   ofEvent<string> onVideoRemoved;
   ofEvent<string> onImageLoaded;
   ofEvent<string> onImageUnloaded;
+  ofEvent<string> onVideoLoaded;
+  ofEvent<string> onVideoUnloaded;
 
  private:
   // Directory Watchers
   ofx::piMapper::DirectoryWatcher videoWatcher;
   ofx::piMapper::DirectoryWatcher imageWatcher;
-  
-  // Loaded media
-  vector<ofImage> loadedImages;
-  vector<string> loadedImagePaths;
-   
+  std::map<std::string, BaseSource*> loadedSources;
   // imageWatcher event listeners
   void handleImageAdded(string& path);
   void handleImageRemoved(string& path);

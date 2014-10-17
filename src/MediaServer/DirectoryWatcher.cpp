@@ -13,9 +13,9 @@ namespace ofx {
     DirectoryWatcher::DirectoryWatcher(std::string path, int watcherMediaType) {
       mediaType = watcherMediaType;
       // Decide what filter we need depending on media type
-      if (mediaType == MediaType::MEDIA_TYPE_VIDEO) {
+      if (mediaType == SourceType::SOURCE_TYPE_VIDEO) {
         filter = new VideoPathFilter();
-      } else if (mediaType == MediaType::MEDIA_TYPE_IMAGE) {
+      } else if (mediaType == SourceType::SOURCE_TYPE_IMAGE) {
         filter = new ImagePathFilter();
       } else {
         ofLogFatalError("DirectoryWatcher::DirectoryWatcher", "Unkonwn media type");

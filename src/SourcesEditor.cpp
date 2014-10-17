@@ -87,9 +87,7 @@ namespace piMapper {
   void SourcesEditor::loadImage(string name, string path) {
     images.push_back(new ofImage());
     images.back()->loadImage(path);
-
     imageNames.push_back(name);
-
     ofSendMessage("imageLoaded");
   }
 
@@ -113,13 +111,15 @@ namespace piMapper {
     // If the new media server is not valid
     if (newMediaServer == NULL) {
       // Log an error and return from the routine
-      ofLogError("SourcesEditor::setMediaServer", "New media server is NULL");
-      return;
+      ofLogFatalError("SourcesEditor") << "New media server is NULL";
+      std::exit(EXIT_FAILURE);
     }
-    
     // Attempt to clear existing media server and assign new one
     clearMediaServer();
+    cout << "old ms addr: " << mediaServer << endl;
+    cout << "new ms addr: " << newMediaServer << endl;
     mediaServer = newMediaServer;
+    isMediaServerExternal = true;
   }
 
   void SourcesEditor::selectImageSourceRadioButton(string name) {
@@ -188,22 +188,22 @@ namespace piMapper {
   }
 
   void SourcesEditor::handleRadioSelected(string& sourcePath) {
-    if (surfaceManager->getSelectedSurface() == NULL) {
+    BaseSurface* surface = surfaceManager->getSelectedSurface();
+    if (surface == NULL) {
       return;
     }
-
-    cout << "Attempt to load image: " << sourcePath << endl;
-    mediaServer->loadImage(sourcePath);
+    BaseSource* source = surface->getSource();
+    if (source->isLoadable()) {
+      mediaServer->unloadMedia(source->getPath());
+    }
+    surface->setSource(mediaServer->loadImage(sourcePath));
   }
   
   void SourcesEditor::clearMediaServer() {
-    
     // If mediaServer is local, clear it
-    if (isMediaServerExternal) {
-      
+    if (!isMediaServerExternal) {
       // Clear all loaded sources
-      //mediaServer->clear()
-      
+      mediaServer->clear();
       // Destroy the pointer and set it to NULL pointer
       delete mediaServer;
       mediaServer = NULL;
@@ -232,8 +232,8 @@ namespace piMapper {
     // Test image unload
     // mediaServer->unloadImage(path);
     
-    ofTexture* texture = mediaServer->getImageTexture(path);
-    surfaceManager->getSelectedSurface()->setTexture(texture);
+    BaseSource* source = mediaServer->getSourceByPath(path);
+    surfaceManager->getSelectedSurface()->setSource(source);
   }
   
   void SourcesEditor::handleImageUnloaded(string& path) {

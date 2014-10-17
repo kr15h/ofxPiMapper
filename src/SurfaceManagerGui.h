@@ -27,6 +27,7 @@ class SurfaceManagerGui {
   void mouseReleased(ofMouseEventArgs& args);
   void mouseDragged(ofMouseEventArgs& args);
   void setSurfaceManager(SurfaceManager* newSurfaceManager);
+  void setMediaServer(MediaServer* newMediaServer);
   void setMode(int newGuiMode);
   void drawSelectedSurfaceHighlight();
   void drawSelectedSurfaceTextureHighlight();
@@ -35,6 +36,7 @@ class SurfaceManagerGui {
 
  private:
   SurfaceManager* surfaceManager;
+  MediaServer* mediaServer;
   TextureEditor textureEditor;
   ProjectionEditor projectionEditor;
   SourcesEditor sourcesEditor;

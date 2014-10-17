@@ -10,7 +10,7 @@
 
 #include "ofMain.h"
 #include "ofxIO.h"
-#include "MediaType.h"
+#include "SourceType.h"
 
 namespace ofx {
 namespace piMapper {
