@@ -80,7 +80,7 @@ In this mode you can adjust the texture coordinates of the surface you have sele
 
 Here you can select, move and distort the surfaces you have created.
 
-####Souce assignment mode
+####Source assignment mode
 
 After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
 
