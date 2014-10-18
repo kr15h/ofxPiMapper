@@ -1,31 +1,30 @@
-#ifndef H_OF_APP
-#define H_OF_APP
+#pragma once
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
+#include "BaseSource.h"
 
-class ofApp : public ofBaseApp
-{
-public: 
-	void setup();
-	void update();
-	void draw();
-    void exit();
+class ofApp : public ofBaseApp {
+ public:
+  void setup();
+  void update();
+  void draw();
+  void exit();
 
-	void keyPressed(int key);
-    
-    void addRandomSurface();
-    void addQuadSurface();
-    void addSurface();
-    void setFboAsTexture();
-    
-    ofImage image;
-    ofxSurfaceManager surfaceManager;
-    ofxSurfaceManagerGui gui;
-    bool bShowInfo;
-    ofFbo* fbo;    
-    vector<ofRectangle> rects;
-    vector<float> rectSpeeds;
+  void keyPressed(int key);
+
+  void addRandomSurface();
+  void addQuadSurface();
+  void addSurface();
+  void setFboAsSource();
+
+  ofImage image;
+  ofx::piMapper::MediaServer mediaServer;
+  ofx::piMapper::SurfaceManager surfaceManager;
+  ofx::piMapper::SurfaceManagerGui gui;
+  bool bShowInfo;
+  ofFbo* fbo;
+  ofx::piMapper::BaseSource* fboSource;
+  vector<ofRectangle> rects;
+  vector<float> rectSpeeds;
 };
-
-#endif

@@ -1,7 +1,6 @@
-#ifndef H_OFX_PI_MAPPER
-#define H_OFX_PI_MAPPER
+#pragma once
 
-#include "ofxSurfaceManager.h"
-#include "ofxSurfaceManagerGui.h"
+#include "SurfaceManager.h"
+#include "SurfaceManagerGui.h"
 
-#endif
+#include "MediaServer.h"
