@@ -20,7 +20,7 @@ Currently I have decided to use [A successful Git branching model](http://nvie.c
 
 I'm trying to organize the project by adding future release version milestones and assigning specific issues as TODO items to them. If you notice something strange or see that there is something that can be done in a better way, don't hesitate and add an issue.
 
-As of Release 0.1.5 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project.
+As of Release 0.2.0 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project. Still improving on the overal structure.
 
 Licence
 -------
@@ -39,6 +39,8 @@ cd ~/openFrameworks/addons
 git clone https://github.com/kr15h/ofxPiMapper.git
 ```
 
+Before moving on, make sure that you have all the dependencies installed. Refer to the **Dependencies** section to see what you need. 
+
 To test the addon, you will have to compile and run it:
 
 ```bash
@@ -46,11 +48,7 @@ cd ~/openFrameworks/addons/ofxPiMapper/example
 make
 ```
 
-After it compiles, run it by executing it directly instead of using `make run`:
-
-```
-./bin/example
-```
+After it compiles, run it with either `make run` or `./bin/example`
 
 It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
 
@@ -102,29 +100,74 @@ BACKSPACE | Delete surface
 
 Dependencies
 ------------
-ofxGui 
-ofxXmlSettings
-ofxOMXPlayer
+ - ofxGui 
+ - ofxXmlSettings
+ - [ofxIO](https://github.com/bakercp/ofxIO)
+ - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer)
+
+To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
+
+```
+git clone https://github.com/jvcleave/ofxOMXPlayer.git
+... many lines inbetween
+git clone https://github.com/bakercp/ofxIO.git
+... many lines here as well
+```
+
+And you are good to go!
 
 Compatibility
 ------------
-Tested with 0.8.0, 0.8.1 (OS X and Raspbian)
+Tested with 0.8.1 - 0.8.4 (OS X and Raspbian)
 
 Known issues
 ------------
-When launching the example with `make run` keyboard and mouse input is being lost sometimes. Executing the example directly by using `./bin/example` might solve the problem. Not sure how and why.
+Keyboard and mouse input is being lost sometimes on the Raspberry Pi. Not sure how and why. Probably because of bad drivers and it seems that Raspberry Pi keyboard and mouse code in openFrameworks is not quite ready yet. Some claim that the following commands solves the issue:
+
+```
+sudo apt-get update && sudo apt-get dist-upgrade  
+sudo rpi-update
+```
+
+[ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) has an issue, it throws an error when compiling:
+
+```
+fatal error: libavcodec/opt.h: No such file or directory
+```
+
+To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/libavcodec/` with the following contents: 
+
+**opt.h**
+
+```
+#ifndef AVCODEC_OPT_H
+#define AVCODEC_OPT_H
+#include "libavcodec/version.h"
+#if FF_API_OPT_H
+#include "libavutil/opt.h"
+#endif
+#endif // AVCODEC_OPT_H
+```
+   
+More about this issue [here](https://github.com/jvcleave/ofxOMXPlayer/issues/34). 
 
 Version history
 ---------------
+###TODO
+A short wishlist for the next releases:
 
-### Version 0.1.4 (2014-08-xx):
+ - Refined directoryWatcher mechanism, source lists should react on added and removed files
+ - OSC remote control module
+ - Even better structure
+
+### Version 0.2.0 (2014-10-18):
  - Added logo (thanks [Irina Spicaka](http://irina.spicaka.info/))
- - Added perspective warping for quad surfaces
- - Added mesh warping to quad surfaces (TODO)
+ - Added perspective warping for quad surfaces (thanks [aspeteRakete](https://github.com/aspeteRakete))
  - Added namespaces
- - Replaced ofxUI with ofxGui dependency
- - Added video source (TODO)
- - ...
+ - Replaced ofxUI with ofxGui
+ - Added media server (thanks [aspeteRakete](https://github.com/aspeteRakete))
+ - Added source types and reworked all relevant classes to support them instead of ofTexture directly
+ - Added video source (based on [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer))
 
 ### Version 0.1.4 (2014-07-10):
  - Added fbo texture example
