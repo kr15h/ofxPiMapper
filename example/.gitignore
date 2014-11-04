@@ -1,6 +1,5 @@
 obj
-*.xcodeproj
-*.plist
-*.xcconfig
+*.xcworkspace
+*.xcuserdatad
 *~
 config.make
