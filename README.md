@@ -91,9 +91,8 @@ These other shortcuts that you can use while using the example app. Remember tha
 Key | Function
 :--- | :---
 i | Show info
-n | Add triangle surface
+t | Add triangle surface
 q | Add quad surface
-r | Add random triangle surface
 f | Toggle fullscreen
 s | Save composition
 BACKSPACE | Delete surface
