@@ -5,24 +5,16 @@
 #include "BaseSource.h"
 
 class ofApp : public ofBaseApp {
- public:
+public:
   void setup();
   void update();
   void draw();
   void exit();
 
-  void keyPressed(int key);
-
-  void addRandomSurface();
-  void addQuadSurface();
-  void addSurface();
-  void setFboAsSource();
-
+  ofxPiMapper piMapper;
+  
+  // Custom FBO surface variables
   ofImage image;
-  ofx::piMapper::MediaServer mediaServer;
-  ofx::piMapper::SurfaceManager surfaceManager;
-  ofx::piMapper::SurfaceManagerGui gui;
-  bool bShowInfo;
   ofFbo* fbo;
   ofx::piMapper::BaseSource* fboSource;
   vector<ofRectangle> rects;

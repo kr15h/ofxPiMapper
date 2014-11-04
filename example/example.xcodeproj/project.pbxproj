@@ -19,6 +19,7 @@
 		3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CD19BB87BD000ACA55 /* ofxSlider.cpp */; };
 		3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CF19BB87BD000ACA55 /* ofxSliderGroup.cpp */; };
 		3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */; };
+		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		39C1243319EE9589005DF557 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 39C123EA19EE9589005DF557 /* lz4.c */; };
 		39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1241219EE9589005DF557 /* Base64Encoding.cpp */; };
 		39C1243519EE9589005DF557 /* ByteBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1241319EE9589005DF557 /* ByteBuffer.cpp */; };
@@ -136,6 +137,7 @@
 		3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		3933D5D219BB87BD000ACA55 /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPiMapper.h; sourceTree = "<group>"; };
+		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		39C123E719EE9589005DF557 /* alphanum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = alphanum.hpp; sourceTree = "<group>"; };
 		39C123EA19EE9589005DF557 /* lz4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = lz4.c; sourceTree = "<group>"; };
 		39C123EB19EE9589005DF557 /* lz4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lz4.h; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				39C1245619F086A9005DF557 /* Sources */,
 				39C1244C19EE95DD005DF557 /* MediaServer */,
 				39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */,
+				397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */,
 			);
 			name = src;
 			path = ../src;
@@ -828,6 +831,7 @@
 				39C1244A19EE9589005DF557 /* snappy-stubs-internal.cc in Sources */,
 				39C1245F19F08965005DF557 /* VideoSource.cpp in Sources */,
 				39C1244119EE9589005DF557 /* HexBinaryEncoding.cpp in Sources */,
+				397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */,
 				39C1244219EE9589005DF557 /* HiddenFileFilter.cpp in Sources */,
 				39C1244819EE9589005DF557 /* SearchPath.cpp in Sources */,
 				39C1248019F187D5005DF557 /* SourcesEditor.cpp in Sources */,
