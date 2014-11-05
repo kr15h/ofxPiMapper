@@ -167,7 +167,7 @@ void TextureEditor::moveTexCoords(ofVec2f by) {
                                 surface->getSource()->getTexture()->getHeight());
   for (int i = 0; i < texCoords.size(); i++) {
     joints[i]->position += by;
-    texCoords[i] = joints[i]->position / textureSize;
+    surface->setTexCoord(i, joints[i]->position / textureSize);
   }
 }
 
