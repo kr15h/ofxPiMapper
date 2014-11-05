@@ -5,11 +5,18 @@ ofxPiMapper
 
 This project is an attempt to create optimized version of an openFrameworks projection mapping addon for the Raspberry Pi. It is also my master thesis project at Aalto University, School of Arts, Design and Architecture (Helsinki Media Lab).
 
-ofxPiMapper is mainly for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 Mac computers? No! PiMapper is here to save you!
+ofxPiMapper is mainly for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! PiMapper is here to save you!
 
-The addon itself is intended to be flexible as the separate components of it can be reusable. The main example of the addon can be used as a standalone application for experimenting, testing as well as production state of a project. If you need to save memory and processing power, reusing ofxPiMapper classes without adding the GUI layer can help you.
+ofxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
 
-As ofxPiMapper is optimized for the Pi, there is no doubt that it will run smoothly on other machines. It has been tested on OS X so far.
+```
+ofxPiMapper* mapper = new ofxPiMapper();
+CustomSource* source = new CustomSource();
+mapper.addFboSource(source);
+mapper.setup(); // Setup must be run after adding the FBO source
+```
+
+Since version 0.2.0 ofxPiMapper supports video sources.
 
 Development
 -----------
@@ -80,7 +87,7 @@ In this mode you can adjust the texture coordinates of the surface you have sele
 
 Here you can select, move and distort the surfaces you have created.
 
-####Souce assignment mode
+####Source assignment mode
 
 After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
 
@@ -91,9 +98,8 @@ These other shortcuts that you can use while using the example app. Remember tha
 Key | Function
 :--- | :---
 i | Show info
-n | Add triangle surface
+t | Add triangle surface
 q | Add quad surface
-r | Add random triangle surface
 f | Toggle fullscreen
 s | Save composition
 BACKSPACE | Delete surface
@@ -108,10 +114,7 @@ Dependencies
 To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
 
 ```
-git clone https://github.com/jvcleave/ofxOMXPlayer.git
-... many lines inbetween
-git clone https://github.com/bakercp/ofxIO.git
-... many lines here as well
+git clone https://github.com/jvcleave/ofxOMXPlayer.git && git clone https://github.com/bakercp/ofxIO.git
 ```
 
 And you are good to go!
@@ -158,7 +161,17 @@ A short wishlist for the next releases:
 
  - Refined directoryWatcher mechanism, source lists should react on added and removed files
  - OSC remote control module
+ - Webserver with simple interface for remote mapping
+ - Syphon source for Mac
+ - Spout source for Win
+ - Streaming source for RPi (fb sharing, network streams...)
  - Even better structure
+ 
+### Version 0.2.1 (2014-11-05):
+ - Added single instance feature. Now you can use ofxPiMapper as single object for your project.
+ - Added FBO source. You can create a custom openFrameworks application for piMapper by extending the FboSource class. Add/register your custom object as source in piMapper and you will be able to select it in the source editor. Source is saved and loaded from the settings as well.
+ - Fixed issue #15
+ - Added -f (fullscreen) flag for the Raspberry Pi version. Use `./yourApp -f` to launch it fullscreen on start.
 
 ### Version 0.2.0 (2014-10-18):
  - Added logo (thanks [Irina Spicaka](http://irina.spicaka.info/))
@@ -172,7 +185,7 @@ A short wishlist for the next releases:
 ### Version 0.1.4 (2014-07-10):
  - Added fbo texture example
  - Replaced the main example with the fbo texture one
- - Added simple quad surface
+ - Added simple quad surface (thanks [sebllll](https://github.com/sebllll))
  - Fixed a couple of bugs
  - Introduced new branching model
  - Added joint snapping

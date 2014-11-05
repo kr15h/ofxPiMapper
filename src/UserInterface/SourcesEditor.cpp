@@ -11,6 +11,12 @@ namespace piMapper {
     addMediaServerListeners();
   }
   
+  void SourcesEditor::init() {
+    mediaServer = NULL; // Pointers to NULL pointer so we can check later
+    isMediaServerExternal = false;
+    registerAppEvents();
+  }
+  
   SourcesEditor::SourcesEditor(MediaServer* externalMediaServer) {
     init();
     // Assign external MediaServer instance pointer
@@ -23,6 +29,7 @@ namespace piMapper {
     unregisterAppEvents();
     delete imageSelector;
     delete videoSelector;
+    delete fboSelector;
     removeMediaServerListeners();
     clearMediaServer();
   }
@@ -38,10 +45,12 @@ namespace piMapper {
   void SourcesEditor::setup(ofEventArgs& args) {
     imageSelector = new RadioList();
     videoSelector = new RadioList();
+    fboSelector = new RadioList();
     
     // Get media count
     int numImages = mediaServer->getNumImages();
     int numVideos = mediaServer->getNumVideos();
+    int numFbos = mediaServer->getNumFboSources();
     
     // Depending on media count, decide what to load and initialize
     if (numImages) {
@@ -55,16 +64,25 @@ namespace piMapper {
       videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
       ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
     }
+    if (numFbos) {
+      std::vector<std::string> fboNames = mediaServer->getFboSourceNames();
+      fboSelector->setup("FBOs", fboNames, fboNames);
+      ofAddListener(fboSelector->onRadioSelected, this, &SourcesEditor::handleFboSelected);
+    }
     
+    // Align menus
+    int menuPosX = 20;
+    int distX = 230;
     if (numImages) {
-      imageSelector->setPosition(20, 20);
-      if (numVideos) {
-        videoSelector->setPosition(250, 20);
-      }
-    } else {
-      if (numVideos) {
-        videoSelector->setPosition(20, 20);
-      }
+      imageSelector->setPosition(menuPosX, 20);
+      menuPosX += distX;
+    }
+    if (numVideos) {
+      videoSelector->setPosition(menuPosX, 20);
+      menuPosX += distX;
+    }
+    if (numFbos) {
+      fboSelector->setPosition(menuPosX, 20);
     }
     
   }
@@ -81,6 +99,9 @@ namespace piMapper {
     if (videoSelector->size()) {
       videoSelector->draw();
     }
+    if (fboSelector->size()) {
+      fboSelector->draw();
+    }
     
   }
 
@@ -90,6 +111,9 @@ namespace piMapper {
     }
     if (videoSelector->size()) {
       videoSelector->disable();
+    }
+    if (fboSelector->size()) {
+      fboSelector->disable();
     }
   }
 
@@ -104,6 +128,9 @@ namespace piMapper {
     }
     if (videoSelector->size()) {
       videoSelector->enable();
+    }
+    if (fboSelector->size()) {
+      fboSelector->enable();
     }
     BaseSource* source = surfaceManager->getSelectedSurface()->getSource();
     selectSourceRadioButton(source->getPath());
@@ -137,29 +164,30 @@ namespace piMapper {
       if (videoSelector->size()) {
         videoSelector->unselectAll();
       }
+      if (fboSelector->size()) {
+        fboSelector->unselectAll();
+      }
       return;
     } else {
       // Check image selector first
       bool imageRadioSelected = false;
       bool videoRadioSelected = false;
+      bool fboRadioSelected = false;
       if (imageSelector->size()) {
         imageRadioSelected = imageSelector->selectItemByValue(sourcePath);
       }
       if (videoSelector->size()) {
         videoRadioSelected = videoSelector->selectItemByValue(sourcePath);
       }
-      if (imageRadioSelected || videoRadioSelected) {
+      if (fboSelector->size()) {
+        fboRadioSelected = fboSelector->selectItemByValue(sourcePath);
+      }
+      if (imageRadioSelected || videoRadioSelected || fboRadioSelected) {
         return;
       }
       // Log warning if we are still here
       ofLogWarning("SourcesEditor") << "Could not find option in any of the source lists";
     }
-  }
-  
-  void SourcesEditor::init() {
-    mediaServer = NULL; // Pointers to NULL pointer so we can check later
-    isMediaServerExternal = false;
-    registerAppEvents();
   }
   
   void SourcesEditor::addMediaServerListeners() {
@@ -176,6 +204,11 @@ namespace piMapper {
     ofAddListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
     ofAddListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
     
+    ofAddListener(mediaServer->onFboSourceAdded, this, &SourcesEditor::handleFboSourceAdded);
+    ofAddListener(mediaServer->onFboSourceRemoved, this, &SourcesEditor::handleFboSourceRemoved);
+    ofAddListener(mediaServer->onFboSourceLoaded, this, &SourcesEditor::handleFboSourceLoaded);
+    ofAddListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditor::handleFboSourceUnloaded);
+    
   }
   
   void SourcesEditor::removeMediaServerListeners() {
@@ -191,40 +224,79 @@ namespace piMapper {
     ofRemoveListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
     ofRemoveListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
     ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
+    ofRemoveListener(mediaServer->onFboSourceAdded, this, &SourcesEditor::handleFboSourceAdded);
+    ofRemoveListener(mediaServer->onFboSourceRemoved, this, &SourcesEditor::handleFboSourceRemoved);
+    ofRemoveListener(mediaServer->onFboSourceLoaded, this, &SourcesEditor::handleFboSourceLoaded);
+    ofRemoveListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditor::handleFboSourceUnloaded);
   }
 
   void SourcesEditor::handleImageSelected(string& imagePath) {
-    // Unselect video item if any selected
+    // Unselect selected items
     videoSelector->unselectAll();
+    fboSelector->unselectAll();
+    
     BaseSurface* surface = surfaceManager->getSelectedSurface();
     if (surface == NULL) {
-      ofLogNotice("SourcesEditor") << "No surface selected";
+      ofLogWarning("SourcesEditor") << "No surface selected";
       return;
     }
+    
     // Unload old media
     BaseSource* source = surface->getSource();
     if (source->isLoadable()) {
       mediaServer->unloadMedia(source->getPath());
+    } else {
+      mediaServer->unloadMedia(source->getName());
     }
+
     // Load new image
     surface->setSource(mediaServer->loadImage(imagePath));
   }
   
   void SourcesEditor::handleVideoSelected(string& videoPath) {
-    // Unselect image item if any selected
+    // Unselect any selected items
+    fboSelector->unselectAll();
     imageSelector->unselectAll();
+    
     BaseSurface* surface = surfaceManager->getSelectedSurface();
     if (surface == NULL) {
-      ofLogNotice("SourcesEditor") << "No surface selected";
+      ofLogWarning("SourcesEditor") << "No surface selected";
       return;
     }
+    
     // Unload old media
     BaseSource* source = surface->getSource();
     if (source->isLoadable()) {
       mediaServer->unloadMedia(source->getPath());
+    } else {
+      mediaServer->unloadMedia(source->getName());
     }
+    
     // Load new video
     surface->setSource(mediaServer->loadVideo(videoPath));
+  }
+  
+  void SourcesEditor::handleFboSelected(string &fboName) {
+    videoSelector->unselectAll();
+    imageSelector->unselectAll();
+    
+    // Get selected surface
+    BaseSurface* surface = surfaceManager->getSelectedSurface();
+    if (surface == NULL) {
+      ofLogWarning("SourcesEditor") << "No surface selected";
+      return;
+    }
+    
+    // Unload old media
+    BaseSource* source = surface->getSource();
+    if (source->isLoadable()) {
+      mediaServer->unloadMedia(source->getPath());
+    } else {
+      mediaServer->unloadMedia(source->getName());
+    }
+    
+    // Load new FBO
+    surface->setSource(mediaServer->loadFboSource(fboName));
   }
   
   void SourcesEditor::clearMediaServer() {
@@ -238,34 +310,16 @@ namespace piMapper {
     }
   }
   
-  void SourcesEditor::handleImageAdded(string& path) {
-    cout << "image added: " << path << endl;
-  }
+  void SourcesEditor::handleImageAdded(std::string& path) {}
+  void SourcesEditor::handleImageRemoved(std::string& path) {}
+  void SourcesEditor::handleVideoAdded(std::string& path) {}
+  void SourcesEditor::handleVideoRemoved(std::string& path) {}
+  void SourcesEditor::handleImageLoaded(std::string& path) {}
+  void SourcesEditor::handleImageUnloaded(std::string& path) {}
+  void SourcesEditor::handleFboSourceAdded(std::string& name) {}
+  void SourcesEditor::handleFboSourceRemoved(std::string& name) {}
+  void SourcesEditor::handleFboSourceLoaded(std::string& name) {}
+  void SourcesEditor::handleFboSourceUnloaded(std::string& name) {}
   
-  void SourcesEditor::handleImageRemoved(string& path) {
-    cout << "image removed: " << path << endl;
-  }
-  
-  void SourcesEditor::handleVideoAdded(string& path) {
-    cout << "video added: " << path << endl;
-  }
-  
-  void SourcesEditor::handleVideoRemoved(string& path) {
-    cout << "video removed: " << path << endl;
-  }
-  
-  void SourcesEditor::handleImageLoaded(string& path) {
-    cout << "Image loaded: " << path << endl;
-    
-    // Test image unload
-    // mediaServer->unloadImage(path);
-    
-    //BaseSource* source = mediaServer->getSourceByPath(path);
-    //surfaceManager->getSelectedSurface()->setSource(source);
-  }
-  
-  void SourcesEditor::handleImageUnloaded(string& path) {
-    cout << "Image unloaded: " << path << endl;
-  }
 }
 }
