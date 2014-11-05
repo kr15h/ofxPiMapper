@@ -23,6 +23,7 @@ namespace piMapper {
 
   int MediaServer::getNumImages() { return imageWatcher.getFilePaths().size(); }
   int MediaServer::getNumVideos() { return videoWatcher.getFilePaths().size(); }
+  int MediaServer::getNumFboSources() { return fboSources.size(); }
 
   std::vector<std::string>& MediaServer::getImagePaths() {
     return imageWatcher.getFilePaths();
@@ -38,6 +39,14 @@ namespace piMapper {
       imageNames.push_back(name);
     }
     return imageNames;
+  }
+  
+  std::vector<std::string> MediaServer::getFboSourceNames() {
+    std::vector<std::string> fboSourceNames;
+    for (int i = 0; i < fboSources.size(); i++) {
+      fboSourceNames.push_back(fboSources[i]->getName());
+    }
+    return fboSourceNames;
   }
   
   std::vector<std::string>& MediaServer::getVideoPaths() {
@@ -56,14 +65,14 @@ namespace piMapper {
     return videoNames;
   }
   
-  
-  
   BaseSource* MediaServer::loadMedia(string &path, int mediaType) {
     // Chose load method depending on type
     if (mediaType == SourceType::SOURCE_TYPE_IMAGE) {
       return loadImage(path);
     } else if (mediaType == SourceType::SOURCE_TYPE_VIDEO) {
       return loadVideo(path);
+    } else if (mediaType == SourceType::SOURCE_TYPE_FBO) {
+      return loadFboSource(path);
     } else {
       std::stringstream ss;
       ss << "Can not load media of unknown type: " << mediaType;
@@ -214,16 +223,15 @@ namespace piMapper {
         unloadImage(path);
       } else if (mediaSource->getType() == SourceType::SOURCE_TYPE_VIDEO) {
         unloadVideo(path);
+      } else if (mediaSource->getType() == SourceType::SOURCE_TYPE_FBO) {
+        unloadFboSource(path);
       } else {
         // Oh my god, what to do!? Relax and exit.
         ofLogFatalError("MediaServer") << "Attempt to unload media of unknown type";
         std::exit(EXIT_FAILURE);
       }
     } else {
-      std:stringstream ss;
-      ss << "Media with path " << path << " is not loaded and thus can't be unloaded";
-      ofLogFatalError("MediaServer") << ss.str();
-      std::exit(EXIT_FAILURE);
+      ofLogNotice("MediaServer") << "Nothing to unload";
     }
   }
   
@@ -231,11 +239,15 @@ namespace piMapper {
   void MediaServer::clear() {
     typedef std::map<std::string, BaseSource*>::iterator it_type;
     for (it_type i = loadedSources.begin(); i != loadedSources.end(); i++) {
-      delete i->second;
+      // Do not delete FBO source pointers as they are (and should be) initialized elsewhere
+      if (i->second->getType() != SourceType::SOURCE_TYPE_FBO) {
+        delete i->second;
+      }
     }
     loadedSources.clear();
   }
   
+  // TODO: getLoadedSourceByPath
   BaseSource* MediaServer::getSourceByPath(std::string& mediaPath) {
     if (loadedSources.count(mediaPath)) {
       return loadedSources[mediaPath];
@@ -267,6 +279,76 @@ namespace piMapper {
       std::exit(EXIT_FAILURE);
     }
   }
+  
+  void MediaServer::addFboSource(ofx::piMapper::FboSource &fboSource) {
+    ofLogNotice("MediaServer") << "Attempting to add FBO source with name " << fboSource.getName();
+    // FBO source has to be with unique name
+    for (int i = 0; i < fboSources.size(); i++) {
+      if (fboSources[i]->getName() == fboSource.getName()) {
+        ofLogWarning("MediaServer") << "Attempt to add FBO source with duplicate name";
+        ofExit(EXIT_FAILURE); // Here we definitely need to fail to avoid confusion
+      }
+    }
+    ofLogNotice("MediaServer") << "Source new, adding";
+    fboSources.push_back(&fboSource);
+  } // addFboSource
+  
+  BaseSource* MediaServer::loadFboSource(std::string &fboSourceName) {
+    ofLogNotice("MediaServer") << "Attempting to load FBO source with name " << fboSourceName;
+    // Search for FBO source name in our storage
+    FboSource* source = NULL;
+    for (int i = 0; i < fboSources.size(); i++) {
+      if (fboSources[i]->getName() == fboSourceName) {
+        source = fboSources[i];
+        break;
+      }
+    }
+    // Panic if not in storage
+    if (source == NULL) {
+      ofLogError("MediaServer") << "Attempt to load non existing FBO source: " << fboSourceName;
+      ofExit(EXIT_FAILURE);
+    }
+    // Check if it is loaded/activated
+    if (loadedSources.count(fboSourceName)) {
+      // Is loaded, increase reference count and return existing
+      loadedSources[fboSourceName]->referenceCount++;
+      ofLogNotice("MediaServer") << "Current " << fboSourceName << "reference count: " << loadedSources[fboSourceName]->referenceCount;
+      return loadedSources[fboSourceName];
+    }
+    // else
+    // Not loaded, add to loaded sources and activate
+    // source var should be set by now
+    source->addAppListeners();
+    source->referenceCount = 1;
+    ofLogNotice("MediaServer") << "Current " << fboSourceName << " reference count: " << source->referenceCount;
+    loadedSources[fboSourceName] = source;
+    return loadedSources[fboSourceName];
+  } // loadFboSource
+  
+  void MediaServer::unloadFboSource(std::string &fboSourceName) {
+    ofLogNotice("MediaServer") << "Attempt to unload FBO source " << fboSourceName;
+    // Check if loaded at all
+    if (!loadedSources.count(fboSourceName)) {
+      ofLogWarning("MediaServer") << "FBO source not loaded";
+      return;
+    }
+    // TODO: remove static cast, make the sources handle reference counting,
+    // enabling and disabling by themselves
+    FboSource* source = static_cast<FboSource*>(loadedSources[fboSourceName]);
+    // else decrease reference count
+    source->referenceCount--;
+    ofLogNotice("MediaServer") << "Current " << fboSourceName << "reference count: " << loadedSources[fboSourceName]->referenceCount;
+    // If no references left, disable
+    if (source->referenceCount <= 0) {
+      ofLogNotice("MediaServer") << fboSourceName << " reference count <= 0, removing from loaded sources";
+      source->referenceCount = 0;
+      source->removeAppListeners();
+      std::map<std::string, BaseSource*>::iterator it = loadedSources.find(fboSourceName);
+      loadedSources.erase(it);
+      ofLogNotice("MediaServer") << "Source count after FBO source removal: " << loadedSources.size() << endl;
+      ofNotifyEvent(onFboSourceUnloaded, fboSourceName, this);
+    }
+  } // unloadFboSource
   
   void MediaServer::handleImageAdded(string& path) {
     ofNotifyEvent(onImageAdded, path, this);

@@ -6,6 +6,9 @@
 //
 //
 
+// TODO: move reference counting, enabling and disabling of sources
+//       to source classes themselves
+
 #pragma once
 
 #include "ofMain.h"
@@ -13,6 +16,7 @@
 #include "BaseSource.h"
 #include "ImageSource.h"
 #include "VideoSource.h"
+#include "FboSource.h"
 #include "SourceType.h"
 
 #define DEFAULT_IMAGES_DIR "sources/images/"
@@ -28,10 +32,12 @@ class MediaServer {
 
   int getNumVideos();
   int getNumImages();
+  int getNumFboSources(); // new
   std::vector<std::string>& getVideoPaths();
   std::vector<std::string>  getVideoNames();
   std::vector<std::string>& getImagePaths();
   std::vector<std::string>  getImageNames();
+  std::vector<std::string>  getFboSourceNames(); // new
   
   BaseSource* loadMedia(string& path, int mediaType);
   BaseSource* loadImage(string& path);
@@ -45,15 +51,25 @@ class MediaServer {
   std::string getDefaultVideoDir();
   std::string getDefaultMediaDir(int sourceType);
   
-  // Custom events
-  ofEvent<string> onImageAdded;
-  ofEvent<string> onImageRemoved;
-  ofEvent<string> onVideoAdded;
-  ofEvent<string> onVideoRemoved;
-  ofEvent<string> onImageLoaded;
-  ofEvent<string> onImageUnloaded;
-  ofEvent<string> onVideoLoaded;
-  ofEvent<string> onVideoUnloaded;
+  // Do things with FBO sources
+  void addFboSource(FboSource& fboSource);
+  BaseSource* loadFboSource(std::string& fboSourceName);
+  void unloadFboSource(std::string& fboSourceName);
+  
+  // Custom events, add/remove
+  ofEvent<std::string> onImageAdded;
+  ofEvent<std::string> onImageRemoved;
+  ofEvent<std::string> onVideoAdded;
+  ofEvent<std::string> onVideoRemoved;
+  ofEvent<std::string> onFboSourceAdded;
+  ofEvent<std::string> onFboSourceRemoved;
+  // load/unload
+  ofEvent<std::string> onImageLoaded;
+  ofEvent<std::string> onImageUnloaded;
+  ofEvent<std::string> onVideoLoaded;
+  ofEvent<std::string> onVideoUnloaded;
+  ofEvent<std::string> onFboSourceLoaded;
+  ofEvent<std::string> onFboSourceUnloaded;
 
  private:
   // Directory Watchers
@@ -86,6 +102,9 @@ class MediaServer {
   
   // Remove event listeners to image and video watcher events
   void removeWatcherListeners();
+  
+  // FBO source storage before they go to loadedSources
+  std::vector<FboSource*> fboSources; // FBO source storage
 };
 } // namespace piMapper
 } // namespace ofx
