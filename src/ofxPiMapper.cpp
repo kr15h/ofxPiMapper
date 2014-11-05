@@ -3,16 +3,14 @@
 ofxPiMapper::ofxPiMapper():
 bShowInfo(false),
 isSetUp(false){
-  ofAddListener(ofEvents().setup, this, &ofxPiMapper::setup, OF_EVENT_ORDER_BEFORE_APP);
   ofAddListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
 }
 
 ofxPiMapper::~ofxPiMapper() {
-  ofRemoveListener(ofEvents().setup, this, &ofxPiMapper::setup, OF_EVENT_ORDER_BEFORE_APP);
   ofRemoveListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
 }
 
-void ofxPiMapper::setup(ofEventArgs& args) {
+void ofxPiMapper::setup() {
   ofLogNotice("ofxPiMapper") << "Setting up...";
   
   // Assign media server to other pi mapper components
@@ -104,6 +102,10 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args) {
       break;
   }
 } // keyPressed
+
+void ofxPiMapper::addFboSource(ofx::piMapper::FboSource &fboSource) {
+  mediaServer.addFboSource(fboSource);
+} // addFboSource
 
 void ofxPiMapper::addTriangleSurface() {
   int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;

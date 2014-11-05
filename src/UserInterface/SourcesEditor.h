@@ -41,6 +41,7 @@ class SourcesEditor {
   SurfaceManager* surfaceManager;
   RadioList* imageSelector;
   RadioList* videoSelector;
+  RadioList* fboSelector;
   
   // Is the media server pointer local or from somewhere else?
   // We use this to determine if we are allowed to clear media server locally.
@@ -56,18 +57,24 @@ class SourcesEditor {
   // Handles GUI event, whenever someone has clicked on a radio button
   void handleImageSelected(string& imagePath);
   void handleVideoSelected(string& videoPath);
+  void handleFboSelected(string& fboName);
   
   // Careful clearing of the media server,
   // clears only if the media server has been initialized locally
   void clearMediaServer();
   
   // MediaServer event handlers
-  void handleImageAdded(string& path);
-  void handleImageRemoved(string& path);
-  void handleVideoAdded(string& path);
-  void handleVideoRemoved(string& path);
-  void handleImageLoaded(string& path);
-  void handleImageUnloaded(string& path);
+  void handleImageAdded(std::string& path);
+  void handleImageRemoved(std::string& path);
+  void handleVideoAdded(std::string& path);
+  void handleVideoRemoved(std::string& path);
+  void handleImageLoaded(std::string& path);
+  void handleImageUnloaded(std::string& path);
+  void handleFboSourceAdded(std::string& name);
+  void handleFboSourceRemoved(std::string& name);
+  void handleFboSourceLoaded(std::string& name);
+  void handleFboSourceUnloaded(std::string& name);
+  
 };
 }
 }

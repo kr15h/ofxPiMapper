@@ -18,6 +18,9 @@ namespace ofx {
       int getType();
       std::string& getPath();
       virtual void clear() {};
+      
+      // TODO: add virtual increaseReferenceCount and decreaseReferenceCount methods
+      // and make the variable protected
       int referenceCount;
       
     private:

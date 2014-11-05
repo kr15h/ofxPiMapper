@@ -225,13 +225,18 @@ void SurfaceManager::loadXmlSettings(string fileName) {
     if (sourceName != "" && sourceName != "none" && sourceType != "") {
       // Load source depending on type
       int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
-      // Construct full path
-      string dir = mediaServer->getDefaultMediaDir(typeEnum);
-      std::stringstream pathss;
-      pathss << ofToDataPath(dir, true) << sourceName;
-      string sourcePath = pathss.str();
-      // Load media by using full path
-      source = mediaServer->loadMedia(sourcePath, typeEnum);
+      if (typeEnum == SourceType::SOURCE_TYPE_FBO) {
+        // Load FBO source using sourceName
+        source = mediaServer->loadMedia(sourceName, typeEnum);
+      } else {
+        // Construct full path
+        string dir = mediaServer->getDefaultMediaDir(typeEnum);
+        std::stringstream pathss;
+        pathss << ofToDataPath(dir, true) << sourceName;
+        string sourcePath = pathss.str();
+        // Load media by using full path
+        source = mediaServer->loadMedia(sourcePath, typeEnum);
+      }
     }
     xmlSettings.popTag();  // source
     xmlSettings.pushTag("vertices");

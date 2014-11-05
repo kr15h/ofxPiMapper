@@ -4,6 +4,7 @@
 #include "SurfaceManager.h"
 #include "SurfaceManagerGui.h"
 #include "MediaServer.h"
+#include "FboSource.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -13,11 +14,14 @@ public:
   ofxPiMapper();
   ~ofxPiMapper();
   
-  void setup(ofEventArgs& args);
+  void setup();
   void draw(); // Called manually to make custom layering possible
   void keyPressed(ofKeyEventArgs& args);
   
-  // TODO: Move these methods to SurfaceManager
+  // Use this to add custom FBO source
+  void addFboSource(ofx::piMapper::FboSource& fboSource);
+  
+  // TODO: Copy/move these methods to SurfaceManager
   void addTriangleSurface();
   void addQuadSurface();
   

@@ -2,21 +2,16 @@
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
-#include "BaseSource.h"
+#include "CustomSource.h"
 
 class ofApp : public ofBaseApp {
 public:
   void setup();
-  void update();
   void draw();
-  void exit();
 
   ofxPiMapper piMapper;
   
-  // Custom FBO surface variables
-  ofImage image;
-  ofFbo* fbo;
-  ofx::piMapper::BaseSource* fboSource;
-  vector<ofRectangle> rects;
-  vector<float> rectSpeeds;
+  // By using a custom source that is derived from FboSource
+  // you will be able to see the source listed in sources editor
+  CustomSource customSource;
 };
