@@ -3,16 +3,14 @@
 ofxPiMapper::ofxPiMapper():
 bShowInfo(false),
 isSetUp(false){
-  ofAddListener(ofEvents().setup, this, &ofxPiMapper::setup, OF_EVENT_ORDER_BEFORE_APP);
   ofAddListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
 }
 
 ofxPiMapper::~ofxPiMapper() {
-  ofRemoveListener(ofEvents().setup, this, &ofxPiMapper::setup, OF_EVENT_ORDER_BEFORE_APP);
   ofRemoveListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
 }
 
-void ofxPiMapper::setup(ofEventArgs& args) {
+void ofxPiMapper::setup() {
   ofLogNotice("ofxPiMapper") << "Setting up...";
   
   // Assign media server to other pi mapper components

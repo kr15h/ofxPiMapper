@@ -3,12 +3,15 @@
 void ofApp::setup() {
   ofBackground(0);
   
-  // The ofxPiMapper is being set up automatically before the first
-  // ofApp setup call
-  piMapper.showInfo(); // The info layer is hidden by default, press <i> to toggle
-
   // Add our CustomSource to list of fbo sources of the piMapper
+  // FBO sources should be added before piMapper.setup() so the
+  // piMapper is able to load the source if it is assigned to
+  // a surface in XML settings.
   piMapper.getMediaServer().addFboSource(customSource);
+  piMapper.setup();
+  
+  // The info layer is hidden by default, press <i> to toggle
+  piMapper.showInfo();
 }
 
 void ofApp::draw() {

@@ -13,7 +13,7 @@ public:
   ofxPiMapper();
   ~ofxPiMapper();
   
-  void setup(ofEventArgs& args);
+  void setup();
   void draw(); // Called manually to make custom layering possible
   void keyPressed(ofKeyEventArgs& args);
   
