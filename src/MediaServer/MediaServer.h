@@ -52,7 +52,7 @@ class MediaServer {
   std::string getDefaultMediaDir(int sourceType);
   
   // Do things with FBO sources
-  void addFboSource(FboSource& fboSource);
+  void addFboSource(FboSource& fboSource); // could be called also as register FBO source
   BaseSource* loadFboSource(std::string& fboSourceName);
   void unloadFboSource(std::string& fboSourceName);
   

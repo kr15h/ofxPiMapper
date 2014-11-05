@@ -7,7 +7,7 @@ void ofApp::setup() {
   // FBO sources should be added before piMapper.setup() so the
   // piMapper is able to load the source if it is assigned to
   // a surface in XML settings.
-  piMapper.getMediaServer().addFboSource(customSource);
+  piMapper.addFboSource(customSource);
   piMapper.setup();
   
   // The info layer is hidden by default, press <i> to toggle

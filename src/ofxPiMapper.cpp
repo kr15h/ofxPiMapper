@@ -103,6 +103,10 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args) {
   }
 } // keyPressed
 
+void ofxPiMapper::addFboSource(ofx::piMapper::FboSource &fboSource) {
+  mediaServer.addFboSource(fboSource);
+} // addFboSource
+
 void ofxPiMapper::addTriangleSurface() {
   int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
   
