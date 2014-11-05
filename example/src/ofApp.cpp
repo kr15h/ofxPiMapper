@@ -11,7 +11,7 @@ void ofApp::setup() {
   piMapper.setup();
   
   // The info layer is hidden by default, press <i> to toggle
-  piMapper.showInfo();
+  // piMapper.showInfo();
 }
 
 void ofApp::draw() {
