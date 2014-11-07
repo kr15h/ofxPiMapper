@@ -3,7 +3,6 @@
 namespace ofx {
 namespace piMapper {
 QuadSurface::QuadSurface() {
-  cout << "QuadSurface constructor." << endl;
   setup();
 }
 
