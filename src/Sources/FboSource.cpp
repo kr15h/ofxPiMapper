@@ -3,7 +3,7 @@
 namespace ofx {
   namespace piMapper {
     FboSource::FboSource() : fbo(NULL) {
-      name = PIMAPPER_DEF_FBO_SOURCE_NAME;
+      name = PIMAPPER_FBO_SOURCE_DEF_NAME;
       loadable = false;
       loaded = false;
       type = SourceType::SOURCE_TYPE_FBO;
@@ -32,6 +32,13 @@ namespace ofx {
     void FboSource::onAppSetup(ofEventArgs &args) {
       ofRemoveListener(ofEvents().setup, this, &FboSource::onAppSetup, OF_EVENT_ORDER_BEFORE_APP);
       setup();
+      
+      // Check if FBO was allocated in user defined setup
+      // If not, show warning and alocate to avoid panic
+      if (!fbo->isAllocated()) {
+        ofLogWarning("FboSource::onAppSetup") << "FBO not allocated, allocating with default values";
+        allocate(PIMAPPER_FBO_SOURCE_DEF_WIDTH, PIMAPPER_FBO_SOURCE_DEF_HEIGHT);
+      }
     }
     
     void FboSource::onAppUpdate(ofEventArgs &args) {
