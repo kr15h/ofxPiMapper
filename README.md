@@ -138,7 +138,7 @@ sudo rpi-update
 fatal error: libavcodec/opt.h: No such file or directory
 ```
 
-To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/libavcodec/` with the following contents: 
+To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/include/libavcodec/` with the following contents: 
 
 **opt.h**
 
