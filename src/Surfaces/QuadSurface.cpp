@@ -3,7 +3,6 @@
 namespace ofx {
 namespace piMapper {
 QuadSurface::QuadSurface() {
-  cout << "QuadSurface constructor." << endl;
   setup();
 }
 
@@ -76,12 +75,18 @@ void QuadSurface::draw() {
   /*if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
       calculate4dTextureCoords();
   }*/
+  /*
   glEnableClientState(GL_TEXTURE_COORD_ARRAY);
   glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
   glVertexPointer(3, GL_FLOAT, 0, quadVertices);
 
   source->getTexture()->bind();
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
+  source->getTexture()->unbind();
+  */
+  
+  source->getTexture()->bind();
+  mesh.draw();
   source->getTexture()->unbind();
 }
 

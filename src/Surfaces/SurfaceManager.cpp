@@ -2,10 +2,9 @@
 
 namespace ofx {
 namespace piMapper {
-  SurfaceManager::SurfaceManager() {
-    // Init variables
-    mediaServer = NULL;
-  }
+  SurfaceManager::SurfaceManager() :
+  mediaServer(NULL),
+  selectedSurface(NULL) {}
 
 SurfaceManager::~SurfaceManager() { clear(); }
 

@@ -10,7 +10,9 @@ class YourGenerativeSource : public FboSource {
 #include "ofMain.h"
 #include "BaseSource.h"
 
-#define PIMAPPER_DEF_FBO_SOURCE_NAME "FBO Source"
+#define PIMAPPER_FBO_SOURCE_DEF_NAME "FBO Source"
+#define PIMAPPER_FBO_SOURCE_DEF_WIDTH 500
+#define PIMAPPER_FBO_SOURCE_DEF_HEIGHT 500
 
 namespace ofx {
   namespace piMapper {
@@ -38,12 +40,15 @@ namespace ofx {
       virtual void draw() {}; // But this is the only place where you shoud do drawing
       virtual void exit() {};
       
-      // Use these to set up FBo itself
-      void allocate(int width, int height);
-      void clear(); // The only method from BaseSource to be overriden
+      // The only method from BaseSource to be overriden
+      void clear();
       
     protected:
       ofFbo* fbo;
+      
+      // Use this instead fbo->allocate as it sets other source related settings
+      // It is protected to force the user to create derived FBO sources from this
+      void allocate(int width, int height);
     };
   } // namespace piMapper
 } // namespace ofx

@@ -138,7 +138,7 @@ sudo rpi-update
 fatal error: libavcodec/opt.h: No such file or directory
 ```
 
-To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/libavcodec/` with the following contents: 
+To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/include/libavcodec/` with the following contents: 
 
 **opt.h**
 
@@ -165,13 +165,19 @@ A short wishlist for the next releases:
  - Syphon source for Mac
  - Spout source for Win
  - Streaming source for RPi (fb sharing, network streams...)
- - Even better structure
- 
+ - Even better code structure
+
+### Version 0.2.2 (2014-11-17): 
+ - Remove perspective warping in favour of doing mesh warping first and then adding proper perspective warping as a wrapper of the mesh warp
+ - Fixed issue 24 (selected surface FBO source not checked in the sources editor view)
+ - Fix OMX player workaround instructions
+
 ### Version 0.2.1 (2014-11-05):
  - Added single instance feature. Now you can use ofxPiMapper as single object for your project.
  - Added FBO source. You can create a custom openFrameworks application for piMapper by extending the FboSource class. Add/register your custom object as source in piMapper and you will be able to select it in the source editor. Source is saved and loaded from the settings as well.
  - Fixed issue #15
  - Added -f (fullscreen) flag for the Raspberry Pi version. Use `./yourApp -f` to launch it fullscreen on start.
+ - Added XCode project file to example.
 
 ### Version 0.2.0 (2014-10-18):
  - Added logo (thanks [Irina Spicaka](http://irina.spicaka.info/))

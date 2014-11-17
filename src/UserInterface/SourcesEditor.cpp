@@ -133,7 +133,14 @@ namespace piMapper {
       fboSelector->enable();
     }
     BaseSource* source = surfaceManager->getSelectedSurface()->getSource();
-    selectSourceRadioButton(source->getPath());
+    
+    // TODO: getPath should be replaced with something like getId() as now we
+    //       use paths for loadable sources and names for FBOs
+    if (source->getType() == SourceType::SOURCE_TYPE_FBO) {
+      selectSourceRadioButton(source->getName());
+    } else {
+      selectSourceRadioButton(source->getPath());
+    }
   }
 
   void SourcesEditor::setSurfaceManager(SurfaceManager* newSurfaceManager) {
