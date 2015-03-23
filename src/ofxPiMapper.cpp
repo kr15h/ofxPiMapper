@@ -32,6 +32,10 @@ void ofxPiMapper::setup() {
   isSetUp = true;
   
   ofLogNotice("ofxPiMapper") << "Done setting up";
+	
+	// Initialize TestCommand
+	ofxPiMapper * app = this;
+	aTestCommand = new TestCommand(app);
 }
 
 void ofxPiMapper::draw() {
@@ -98,6 +102,10 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args) {
     case OF_KEY_BACKSPACE:
       surfaceManager.removeSelectedSurface();
       break;
+		// TODO: Remove the following case when Command test done.
+		case '0':
+			aTestCommand->execute();
+			break;
     default:
       break;
   }
@@ -157,4 +165,9 @@ ofx::piMapper::MediaServer& ofxPiMapper::getMediaServer() {
 
 ofx::piMapper::SurfaceManager& ofxPiMapper::getSurfaceManager() {
   return surfaceManager;
+}
+
+// TODO: remove this when done testing and everything works
+void ofxPiMapper::testCommand(string name){
+	ofLogNotice("ofxPiMapper", name);
 }
