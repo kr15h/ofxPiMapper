@@ -1,6 +1,4 @@
-// TestCommand class, extends Command base class. Used for Command design pattern implementation
-// pre-tests. Will be removed as soon as possible.
-// Created by Krisjanis Rijnieks 2015-03-23
+// Created by Krisjanis Rijnieks 2015-03-25
 
 #pragma once
 
@@ -12,14 +10,16 @@ class ofxPiMapper;
 namespace ofx{
     namespace piMapper{
         
-        class TestCommand : public BaseCommand{
+        class TestUndoCommand : public BaseUndoableCommand{
         
             public:
-                TestCommand(ofxPiMapper * a);
+                TestUndoCommand(ofxPiMapper * a);
                 void execute();
+                void undo();
     
             private:
                 ofxPiMapper * _application;
+                int increase;
         };
         
     } // namespace piMapper

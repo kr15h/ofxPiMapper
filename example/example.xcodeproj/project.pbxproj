@@ -63,6 +63,9 @@
 		39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1247A19F187D5005DF557 /* TextureEditor.cpp */; };
 		39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248319F1EB75005DF557 /* SurfaceManager.cpp */; };
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
+		39C787BD1AC2111B00691393 /* CommandManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CommandManager.cpp */; };
+		39C787C11AC2BBAE00691393 /* TestUndoCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BF1AC2BBAE00691393 /* TestUndoCommand.cpp */; };
+		39FDD9EE1AC00EAE00262205 /* TestCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FDD9EC1AC00EAE00262205 /* TestCommand.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -246,6 +249,13 @@
 		39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManagerGui.cpp; sourceTree = "<group>"; };
 		39C1248619F1EB75005DF557 /* SurfaceManagerGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceManagerGui.h; sourceTree = "<group>"; };
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
+		39C787BB1AC20D2400691393 /* CommandManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommandManager.h; path = Commands/CommandManager.h; sourceTree = "<group>"; };
+		39C787BC1AC2111B00691393 /* CommandManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CommandManager.cpp; path = Commands/CommandManager.cpp; sourceTree = "<group>"; };
+		39C787BF1AC2BBAE00691393 /* TestUndoCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestUndoCommand.cpp; path = Commands/TestUndoCommand.cpp; sourceTree = "<group>"; };
+		39C787C01AC2BBAE00691393 /* TestUndoCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestUndoCommand.h; path = Commands/TestUndoCommand.h; sourceTree = "<group>"; };
+		39FDD9EA1AC007BF00262205 /* BaseCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCommand.h; path = Commands/BaseCommand.h; sourceTree = "<group>"; };
+		39FDD9EC1AC00EAE00262205 /* TestCommand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TestCommand.cpp; path = Commands/TestCommand.cpp; sourceTree = "<group>"; };
+		39FDD9ED1AC00EAE00262205 /* TestCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCommand.h; path = Commands/TestCommand.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -364,6 +374,7 @@
 		396E8A2F190FEDD900705899 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				39FDD9E81AC0076200262205 /* Commands */,
 				39C1246D19F187D5005DF557 /* UserInterface */,
 				39C1246219F0AB96005DF557 /* Surfaces */,
 				39C1245619F086A9005DF557 /* Sources */,
@@ -628,6 +639,20 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
+		39FDD9E81AC0076200262205 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				39FDD9EA1AC007BF00262205 /* BaseCommand.h */,
+				39C787BB1AC20D2400691393 /* CommandManager.h */,
+				39C787BC1AC2111B00691393 /* CommandManager.cpp */,
+				39FDD9ED1AC00EAE00262205 /* TestCommand.h */,
+				39FDD9EC1AC00EAE00262205 /* TestCommand.cpp */,
+				39C787C01AC2BBAE00691393 /* TestUndoCommand.h */,
+				39C787BF1AC2BBAE00691393 /* TestUndoCommand.cpp */,
+			);
+			name = Commands;
+			sourceTree = "<group>";
+		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +832,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */,
+				39C787BD1AC2111B00691393 /* CommandManager.cpp in Sources */,
 				39C1247E19F187D5005DF557 /* ProjectionEditor.cpp in Sources */,
 				39C1244619EE9589005DF557 /* RecursiveDirectoryIteratorStategies.cpp in Sources */,
 				39C1243A19EE9589005DF557 /* Compression.cpp in Sources */,
@@ -823,7 +849,9 @@
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				39C1244719EE9589005DF557 /* RegexPathFilter.cpp in Sources */,
+				39C787C11AC2BBAE00691393 /* TestUndoCommand.cpp in Sources */,
 				39C1247C19F187D5005DF557 /* BaseJoint.cpp in Sources */,
+				39FDD9EE1AC00EAE00262205 /* TestCommand.cpp in Sources */,
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
 				39C1243D19EE9589005DF557 /* DirectoryUtils.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
