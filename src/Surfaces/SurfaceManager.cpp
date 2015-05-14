@@ -370,16 +370,28 @@ void SurfaceManager::loadXmlSettings(string fileName) {
     mediaServer = newMediaServer;
   }
 
-BaseSurface* SurfaceManager::selectSurface(int index) {
-  if (index >= surfaces.size()) {
-    throw std::runtime_error("Surface index out of bounds.");
-  }
+        BaseSurface * SurfaceManager::selectSurface(int index) {
+            if (index >= surfaces.size()) {
+                throw std::runtime_error("Surface index out of bounds.");
+            }
+            selectedSurface = surfaces[index];
 
-  selectedSurface = surfaces[index];
+            // notify that a new surface has been selected
+            ofSendMessage("surfaceSelected");
+            return selectedSurface;
+        }
 
-  // notify that a new surface has been selected
-  ofSendMessage("surfaceSelected");
-}
+        BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
+            for (auto i = 0; i < surfaces.size(); i++) {
+                if (surfaces[i] == surface){
+                    selectedSurface = surface;
+                    ofSendMessage("surfaceSelected");
+                    return selectedSurface;
+                }
+            }
+            deselectSurface();
+            return 0;
+        }
 
 BaseSurface* SurfaceManager::getSelectedSurface() {
   return selectedSurface;

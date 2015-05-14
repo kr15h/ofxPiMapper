@@ -120,18 +120,19 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs& args) {
       bSurfaceSelected = true;
     }
 
-    // attempt to select surface, loop from end to beginning
-    if (!bSurfaceSelected) {
-      for (int i = surfaceManager->size() - 1; i >= 0; i--) {
-        if (surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))) {
-          projectionEditor.clearJoints();
-          surfaceManager->selectSurface(i);
-          projectionEditor.createJoints();
-          bSurfaceSelected = true;
-          break;
-        }
+      // attempt to select surface, loop from end to beginning
+      if (!bSurfaceSelected) {
+          for (int i = surfaceManager->size() - 1; i >= 0; i--) {
+              if (surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))) {
+                  _commandManager->exec(new SelectSurfaceCommand(
+                      surfaceManager,
+                      surfaceManager->getSurface(i),
+                      &projectionEditor));
+                  bSurfaceSelected = true;
+                  break;
+              }
+          }
       }
-    }
 
     if (bSurfaceSelected && hitJoint == NULL) {
       // if not hitting the joints, start drag only if we have a selected

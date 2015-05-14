@@ -13,6 +13,7 @@
 #include "GuiMode.h"
 #include "CommandManager.h"
 #include "MoveSurfaceCommand.h"
+#include "SelectSurfaceCommand.h"
 
 namespace ofx {
 namespace piMapper {

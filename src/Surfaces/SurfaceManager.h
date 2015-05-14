@@ -42,6 +42,7 @@ class SurfaceManager {
   BaseSurface* getSurface(int index);
   int size();
   BaseSurface* selectSurface(int index);
+  BaseSurface* selectSurface(BaseSurface * surface);
   BaseSurface* getSelectedSurface();
   void deselectSurface();
 
