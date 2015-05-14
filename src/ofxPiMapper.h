@@ -54,12 +54,12 @@ class ofxPiMapper{
         void testUndoableCommand(int increase);
         int undoTestValue;
         ofx::piMapper::CommandManager commandManager;
+        ofx::piMapper::SurfaceManager surfaceManager;
     
     private:
         bool isSetUp;
         bool bShowInfo;
         ofx::piMapper::MediaServer mediaServer;
-        ofx::piMapper::SurfaceManager surfaceManager;
 
         // Discussion: Here now the GUI points only to surface manager, 
         // maybe it should be as a separate layer?
