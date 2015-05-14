@@ -64,7 +64,8 @@ void ofxPiMapper::draw(){
                                                                 ofColor(255, 255, 255, 200));
     }
     
-    ofDrawBitmapStringHighlight(ofToString(undoTestValue), 200, 200);
+    // TODO: remove undo test completely
+    //ofDrawBitmapStringHighlight(ofToString(undoTestValue), 200, 200);
     
 } // draw
 
