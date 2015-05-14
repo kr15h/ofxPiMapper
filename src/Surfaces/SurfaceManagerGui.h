@@ -14,42 +14,43 @@
 #include "CommandManager.h"
 #include "MoveSurfaceCommand.h"
 #include "SelectSurfaceCommand.h"
+#include "MoveSurfaceVertexCommand.h"
 
 namespace ofx {
-namespace piMapper {
-class SurfaceManagerGui {
- public:
-  SurfaceManagerGui();
-  ~SurfaceManagerGui();
-
-  void registerMouseEvents();
-  void unregisterMouseEvents();
-
-  void draw();
-  void mousePressed(ofMouseEventArgs& args);
-  void mouseReleased(ofMouseEventArgs& args);
-  void mouseDragged(ofMouseEventArgs& args);
-  
-  void setSurfaceManager(SurfaceManager* newSurfaceManager);
-  void setMediaServer(MediaServer* newMediaServer);
-  void setCommandManager(CommandManager * commandManager);
-  
-  void setMode(int newGuiMode);
-  void drawSelectedSurfaceHighlight();
-  void drawSelectedSurfaceTextureHighlight();
-  void startDrag();
-  void stopDrag();
-
- private:
-  SurfaceManager* surfaceManager;
-  MediaServer* mediaServer;
-  TextureEditor textureEditor;
-  ProjectionEditor projectionEditor;
-  SourcesEditor sourcesEditor;
-  int guiMode;
-  bool bDrag;
-  ofVec2f clickPosition;
-  CommandManager * _commandManager;
-};
-}
+    namespace piMapper {
+        class SurfaceManagerGui {
+        public:
+            SurfaceManagerGui();
+            ~SurfaceManagerGui();
+            
+            void registerMouseEvents();
+            void unregisterMouseEvents();
+            
+            void draw();
+            void mousePressed(ofMouseEventArgs& args);
+            void mouseReleased(ofMouseEventArgs& args);
+            void mouseDragged(ofMouseEventArgs& args);
+            
+            void setSurfaceManager(SurfaceManager* newSurfaceManager);
+            void setMediaServer(MediaServer* newMediaServer);
+            void setCommandManager(CommandManager * commandManager);
+            
+            void setMode(int newGuiMode);
+            void drawSelectedSurfaceHighlight();
+            void drawSelectedSurfaceTextureHighlight();
+            void startDrag();
+            void stopDrag();
+            
+        private:
+            SurfaceManager* surfaceManager;
+            MediaServer* mediaServer;
+            TextureEditor textureEditor;
+            ProjectionEditor projectionEditor;
+            SourcesEditor sourcesEditor;
+            int guiMode;
+            bool bDrag;
+            ofVec2f clickPosition;
+            CommandManager * _commandManager;
+        };
+    }
 }

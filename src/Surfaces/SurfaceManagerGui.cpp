@@ -87,9 +87,8 @@ namespace ofx {
                 return;
             } else if (guiMode == GuiMode::TEXTURE_MAPPING) {
                 bool bSurfaceSelected = false;
-                
                 CircleJoint* hitJoint =
-                textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
+                    textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
                 if (hitJoint != NULL) {
                     textureEditor.unselectAllJoints();
                     hitJoint->select();
@@ -112,11 +111,22 @@ namespace ofx {
                 bool bSurfaceSelected = false;
                 
                 CircleJoint* hitJoint =
-                projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
+                    projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
                 if (hitJoint != NULL) {
                     projectionEditor.unselectAllJoints();
                     hitJoint->select();
                     hitJoint->startDrag();
+                    int jointVertIndex = 0;
+                    for (auto i = 0; i < projectionEditor.getJoints()->size(); i++) {
+                        if ((*projectionEditor.getJoints())[i] == hitJoint) {
+                            jointVertIndex = i;
+                            break;
+                        }
+                    }
+                    _commandManager->exec(new MoveSurfaceVertexCommand(
+                        jointVertIndex,
+                        surfaceManager->getSelectedSurface(),
+                        &projectionEditor));
                     bSurfaceSelected = true;
                 }
                 

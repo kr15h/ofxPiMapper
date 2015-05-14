@@ -12,11 +12,13 @@ namespace ofx{
         }
 
         void MoveSurfaceCommand::exec(){
+            ofLogNotice("MoveSurfaceCommand", "exec");
             _previousVertices = _surface->getVertices();
             _surface->setMoved(false);
         }
         
         void MoveSurfaceCommand::undo(){
+            ofLogNotice("MoveSurfaceCommand", "undo");
             _surface->moveBy(_previousVertices[0] - _surface->getVertices()[0]);
             _projectionEditor->updateJoints();
             _previousVertices.clear();
