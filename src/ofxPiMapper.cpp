@@ -14,6 +14,7 @@ void ofxPiMapper::setup(){
     // Assign media server to other pi mapper components
     surfaceManager.setMediaServer(&mediaServer);
     gui.setMediaServer(&mediaServer);
+    gui.setCommandManager(&commandManager);
     
     // Check if we have user surfaces defined, if not - load default
     if (ofFile::doesFileExist(PIMAPPER_USER_SURFACES_XML_FILE)){

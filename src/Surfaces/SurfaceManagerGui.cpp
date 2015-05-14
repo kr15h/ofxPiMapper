@@ -8,11 +8,13 @@ SurfaceManagerGui::SurfaceManagerGui() {
   bDrag = false;
   registerMouseEvents();
   ofHideCursor();
+  _commandManager = 0;
 }
 
 SurfaceManagerGui::~SurfaceManagerGui() {
   unregisterMouseEvents();
   surfaceManager = NULL;
+  _commandManager = 0;
 }
 
 void SurfaceManagerGui::registerMouseEvents() {
@@ -136,6 +138,11 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs& args) {
       // surface
       clickPosition = ofVec2f(args.x, args.y);
       startDrag();
+      
+      _commandManager->exec(
+        new MoveSurfaceCommand(
+            surfaceManager->getSelectedSurface(),
+            &projectionEditor));
     }
 
     if (!bSurfaceSelected) {
@@ -179,6 +186,10 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager* newSurfaceManager) {
     mediaServer = newMediaServer;
     // Set the media server of the sources editor here
     sourcesEditor.setMediaServer(mediaServer);
+  }
+  
+  void SurfaceManagerGui::setCommandManager(CommandManager * commandManager){
+    _commandManager = commandManager;
   }
   
 void SurfaceManagerGui::setMode(int newGuiMode) {

@@ -11,6 +11,8 @@
 #include "ProjectionEditor.h"
 #include "SourcesEditor.h"
 #include "GuiMode.h"
+#include "CommandManager.h"
+#include "MoveSurfaceCommand.h"
 
 namespace ofx {
 namespace piMapper {
@@ -26,8 +28,11 @@ class SurfaceManagerGui {
   void mousePressed(ofMouseEventArgs& args);
   void mouseReleased(ofMouseEventArgs& args);
   void mouseDragged(ofMouseEventArgs& args);
+  
   void setSurfaceManager(SurfaceManager* newSurfaceManager);
   void setMediaServer(MediaServer* newMediaServer);
+  void setCommandManager(CommandManager * commandManager);
+  
   void setMode(int newGuiMode);
   void drawSelectedSurfaceHighlight();
   void drawSelectedSurfaceTextureHighlight();
@@ -43,6 +48,7 @@ class SurfaceManagerGui {
   int guiMode;
   bool bDrag;
   ofVec2f clickPosition;
+  CommandManager * _commandManager;
 };
 }
 }
