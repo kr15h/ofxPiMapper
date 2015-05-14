@@ -125,12 +125,15 @@ namespace ofx {
                     for (int i = surfaceManager->size() - 1; i >= 0; i--) {
                         if (surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))) {
                             
-                            // TODO: Do not repeat this command if attempting to select an
+                            // Do not repeat this command if attempting to select an
                             // already selected surface.
-                            _commandManager->exec(new SelectSurfaceCommand(
-                                                                           surfaceManager,
-                                                                           surfaceManager->getSurface(i),
-                                                                           &projectionEditor));
+                            if (surfaceManager->getSelectedSurface() != surfaceManager->getSurface(i)){
+                                _commandManager->exec(new SelectSurfaceCommand(
+                                    surfaceManager,
+                                    surfaceManager->getSurface(i),
+                                    &projectionEditor));
+                            }
+                            
                             bSurfaceSelected = true;
                             break;
                         }
@@ -138,16 +141,16 @@ namespace ofx {
                 }
                 
                 if (bSurfaceSelected && hitJoint == NULL) {
-                    // if not hitting the joints, start drag only if we have a selected
-                    // surface
+                    
+                    // if not hitting the joints, start drag only if
+                    // we have a selected surface
                     clickPosition = ofVec2f(args.x, args.y);
                     startDrag();
                     
-                    // TODO: Undo this command if surface not moved on mouse release
                     _commandManager->exec(
-                                          new MoveSurfaceCommand(
-                                                                 surfaceManager->getSelectedSurface(),
-                                                                 &projectionEditor));
+                        new MoveSurfaceCommand(
+                            surfaceManager->getSelectedSurface(),
+                            &projectionEditor));
                 }
                 
                 if (!bSurfaceSelected) {
