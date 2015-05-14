@@ -16,6 +16,7 @@
 #include "TestCommand.h" // TODO: Remove this line when done testing
 #include "TestUndoCommand.h"
 #include "CommandManager.h"
+#include "RemoveSurfaceCommand.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"

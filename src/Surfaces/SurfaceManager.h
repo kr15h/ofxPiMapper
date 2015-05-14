@@ -21,12 +21,18 @@ class SurfaceManager {
   ~SurfaceManager();
 
   void draw();
+  
+  // TODO: These should be renamed to createSurface
   void addSurface(int surfaceType);
   void addSurface(int surfaceType, BaseSource* newSource);
   void addSurface(int surfaceType, vector<ofVec2f> vertices,
                   vector<ofVec2f> texCoords);
   void addSurface(int surfaceType, BaseSource* newSource,
                   vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
+    
+    // Except this, as it adds existing surface
+    void addSurface(BaseSurface * surface);
+    
   void removeSelectedSurface();
   void clear();
   void saveXmlSettings(string fileName);

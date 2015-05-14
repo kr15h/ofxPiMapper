@@ -117,18 +117,25 @@ void SurfaceManager::addSurface(int surfaceType, BaseSource* newSource,
   }
 }
 
-void SurfaceManager::removeSelectedSurface() {
-  if (selectedSurface == NULL) {
-    return;
-  }
-  for (int i = 0; i < surfaces.size(); i++) {
-    if (surfaces[i] == selectedSurface) {
-      delete surfaces[i];
-      surfaces.erase(surfaces.begin() + i);
-      selectedSurface = NULL;
-      break;
+// Add existing surface
+void SurfaceManager::addSurface(BaseSurface * surface){
+    surfaces.push_back(surface);
+}
+
+void SurfaceManager::removeSelectedSurface(){
+    if (selectedSurface == NULL){
+        return;
     }
-  }
+    for (int i = 0; i < surfaces.size(); i++){
+        if (surfaces[i] == selectedSurface){
+            // Do not delete pointer as we are storing the
+            // surface in the RemoveSurfaceCommand.
+            //delete surfaces[i];
+            surfaces.erase(surfaces.begin() + i);
+            selectedSurface = NULL;
+            break;
+        }
+    }
 }
 
 void SurfaceManager::clear() {

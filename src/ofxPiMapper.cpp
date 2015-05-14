@@ -100,7 +100,8 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
             surfaceManager.saveXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
             break;
         case OF_KEY_BACKSPACE:
-            surfaceManager.removeSelectedSurface();
+            //surfaceManager.removeSelectedSurface();
+            commandManager.exec(new ofx::piMapper::RemoveSurfaceCommand((ofxPiMapper *)this));
             break;
         // TODO: Remove the following case when Command test done.
         case '9':
