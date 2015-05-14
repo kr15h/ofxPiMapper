@@ -3,8 +3,8 @@
 namespace ofx{
     namespace piMapper{
         
-        void CommandManager::executeCommand(BaseCommand * cmd){
-            cmd->execute();
+        void CommandManager::exec(BaseCommand * cmd){
+            cmd->exec();
             if (cmd->isUndoable()){
                 commandStack.push_back(static_cast<BaseUndoableCommand *>(cmd));
             }
@@ -15,11 +15,11 @@ namespace ofx{
                 BaseUndoableCommand * cmd = commandStack.back();
                 cmd->undo();
                 
-                // Delete last command for now
-                // TODO: Enable redo func and that means we do not destroy last command,
-                //       we move the stack pointer instead.
+                // Delete last command now, change this when implementing redo.
                 delete commandStack.back();
                 commandStack.pop_back();
+            } else {
+                ofLogNotice("CommandManager", "Nothing to undo");
             }
         }
         

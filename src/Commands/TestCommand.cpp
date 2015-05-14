@@ -7,7 +7,7 @@ namespace ofx{
             _application = a;
         }
 
-        void TestCommand::execute(){
+        void TestCommand::exec(){
             string name = "Hugo";
             _application->testCommand(name);
         }

@@ -1,22 +1,19 @@
 #pragma once
 
-#import <deque>
+#import <vector>
 #import "BaseCommand.h"
+#import "ofLog.h"
 
 namespace ofx{
     namespace piMapper{
-
+        
         class CommandManager{
-            
             public:
-                void executeCommand(BaseCommand * cmd);
+                void exec(BaseCommand * cmd);
                 void undo();
-                // TODO: Add redo
-            
+                
             private:
-                std::deque<BaseUndoableCommand *> commandStack;
-                // TODO: Add redo stack
-                //       Maybe use vector instead of deque...
+                std::vector<BaseUndoableCommand *> commandStack;
         };
         
     } // namespace piMapper

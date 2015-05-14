@@ -104,12 +104,12 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
             break;
         // TODO: Remove the following case when Command test done.
         case '9':
-            commandManager.executeCommand(new ofx::piMapper::TestUndoCommand((ofxPiMapper *)this));
+            commandManager.exec(new ofx::piMapper::TestUndoCommand((ofxPiMapper *)this));
             break;
         case '0':
-            commandManager.executeCommand(new ofx::piMapper::TestCommand((ofxPiMapper *)this));
+            commandManager.exec(new ofx::piMapper::TestCommand((ofxPiMapper *)this));
             break;
-        case 'u':
+        case 'z':
             // undo
             commandManager.undo();
             break;

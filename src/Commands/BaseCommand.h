@@ -3,6 +3,9 @@
 
 // Good example
 // http://gameprogrammingpatterns.com/command.html
+// This file contains declarations of both:
+//  - non-undoable command base class
+//  - undoable command base class
 
 #pragma once
 
@@ -11,19 +14,21 @@ namespace ofx{
 
         // Base class for all commands
         class BaseCommand{
-        
             public:
                 virtual ~BaseCommand(){};
-                virtual void execute() = 0;
+                virtual void exec() = 0;
+            
+                // By default a command is not undo
                 virtual bool isUndoable(){return false;}
                 
             protected:
+                // In order to avoid using this class directly,
+                // we make the constructor protected.
                 BaseCommand(){};
         };
 
         // Base class for all undoable commands
         class BaseUndoableCommand : public BaseCommand{
-            
             public:
                 virtual void undo() = 0;
                 virtual bool isUndoable(){return true;}

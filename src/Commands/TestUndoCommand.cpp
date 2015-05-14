@@ -7,7 +7,7 @@ namespace ofx{
             _application = a;
         }
 
-        void TestUndoCommand::execute(){
+        void TestUndoCommand::exec(){
             increase = 2;
             _application->testUndoableCommand(increase);
         }

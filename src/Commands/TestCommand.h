@@ -16,7 +16,7 @@ namespace ofx{
         
             public:
                 TestCommand(ofxPiMapper * a);
-                void execute();
+                void exec();
     
             private:
                 ofxPiMapper * _application;

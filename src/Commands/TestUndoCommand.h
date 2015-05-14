@@ -14,7 +14,7 @@ namespace ofx{
         
             public:
                 TestUndoCommand(ofxPiMapper * a);
-                void execute();
+                void exec();
                 void undo();
     
             private:
