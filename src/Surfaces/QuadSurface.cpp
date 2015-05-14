@@ -117,6 +117,7 @@ void QuadSurface::moveBy(ofVec2f v) {
     vertices[i] += v;
   }
   calculate4dTextureCoords();
+  setMoved(true);
 }
 
 int QuadSurface::getType() { return SurfaceType::QUAD_SURFACE; }

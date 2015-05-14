@@ -76,6 +76,7 @@ void TriangleSurface::moveBy(ofVec2f v) {
   for (int i = 0; i < vertices.size(); i++) {
     vertices[i] += v;
   }
+  setMoved(true);
 }
 
 int TriangleSurface::getType() { return SurfaceType::TRIANGLE_SURFACE; }
