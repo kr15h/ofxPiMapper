@@ -13,6 +13,10 @@
 
 #include "ofMain.h"
 #include "DirectoryWatcher.h"
+
+/* Discussion: This could be the right place for a Factory Method or
+ * Abstract Factory design pattern - replace all these includes with a
+ * SourceFactory that can create sources with the interfaces below. */
 #include "BaseSource.h"
 #include "ImageSource.h"
 #include "VideoSource.h"

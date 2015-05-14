@@ -1,6 +1,3 @@
-// CommandManager class to keep a stack of commands for undo functionality
-// Created by Krisjanis Rijnieks 2015-03-24
-
 #pragma once
 
 #import <deque>
@@ -14,9 +11,12 @@ namespace ofx{
             public:
                 void executeCommand(BaseCommand * cmd);
                 void undo();
+                // TODO: Add redo
             
             private:
                 std::deque<BaseUndoableCommand *> commandStack;
+                // TODO: Add redo stack
+                //       Maybe use vector instead of deque...
         };
         
     } // namespace piMapper

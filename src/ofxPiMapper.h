@@ -1,12 +1,5 @@
-/* ofxPiMapper
- *
- * Description: 
- * Main ofxPiMapper class. Holds instances of all necessary parts of the tool:
- *  - MediaServer
- *  - SurfaceManager
- *  - SurfaceManagerGui (this asks for a different architecture)
- *
- * Author: Krisjanis Rijnieks */
+// ofxPiMapper
+// Author: Krisjanis Rijnieks
 
 // On using prefixes like m or p (mMemberVariable, pMyPointer)
 // http://stackoverflow.com/questions/1228161/why-use-prefixes-on-member-variables-in-c-classes
