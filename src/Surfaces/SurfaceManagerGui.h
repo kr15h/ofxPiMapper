@@ -36,6 +36,7 @@ namespace ofx {
             void setCmdManager(CmdManager * cmdManager);
             
             void setMode(int newGuiMode);
+            int getMode();
             void drawSelectedSurfaceHighlight();
             void drawSelectedSurfaceTextureHighlight();
             void startDrag();

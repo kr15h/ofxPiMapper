@@ -72,16 +72,28 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
     switch (args.key) {
         
         case '1':
-            gui.setMode(ofx::piMapper::GuiMode::NONE);
+            if (gui.getMode() != ofx::piMapper::GuiMode::NONE) {
+                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
+                    ofx::piMapper::GuiMode::NONE));
+            }
             break;
         case '2':
-            gui.setMode(ofx::piMapper::GuiMode::TEXTURE_MAPPING);
+            if (gui.getMode() != ofx::piMapper::GuiMode::TEXTURE_MAPPING) {
+                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
+                    ofx::piMapper::GuiMode::TEXTURE_MAPPING));
+            }
             break;
         case '3':
-            gui.setMode(ofx::piMapper::GuiMode::PROJECTION_MAPPING);
+            if (gui.getMode() != ofx::piMapper::GuiMode::PROJECTION_MAPPING) {
+                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
+                    ofx::piMapper::GuiMode::PROJECTION_MAPPING));
+            }
             break;
         case '4':
-            gui.setMode(ofx::piMapper::GuiMode::SOURCE_SELECTION);
+            if (gui.getMode() != ofx::piMapper::GuiMode::SOURCE_SELECTION) {
+                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
+                    ofx::piMapper::GuiMode::SOURCE_SELECTION));
+            }
             break;
         case 'i':
             bShowInfo = !bShowInfo;

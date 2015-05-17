@@ -16,6 +16,7 @@
 #include "BaseCmd.h"
 #include "CmdManager.h"
 #include "RmSurfaceCmd.h"
+#include "SetGuiModeCmd.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"

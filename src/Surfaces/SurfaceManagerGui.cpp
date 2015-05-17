@@ -254,6 +254,10 @@ namespace ofx {
             }
         }
         
+        int SurfaceManagerGui::getMode(){
+            return guiMode;
+        }
+        
         void SurfaceManagerGui::drawSelectedSurfaceHighlight() {
             if (surfaceManager->getSelectedSurface() == NULL) return;
             ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
