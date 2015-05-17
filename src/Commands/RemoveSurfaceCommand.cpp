@@ -21,6 +21,7 @@ namespace ofx{
                 ofLogError("RemoveSurfaceCommand", "No surface stored");
             }
             _app->surfaceManager.addSurface(_surface);
+            _app->surfaceManager.selectSurface(_surface);
             _surface = 0;
         }
         
