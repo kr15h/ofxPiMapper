@@ -1,24 +1,24 @@
-#include "RemoveSurfaceCommand.h"
+#include "RmSurfaceCmd.h"
 
 namespace ofx{
     namespace piMapper{
         
-        RemoveSurfaceCommand::RemoveSurfaceCommand(ofxPiMapper * app){
+        RmSurfaceCmd::RmSurfaceCmd(ofxPiMapper * app){
             _app = app;
             _surface = 0;
         }
 
-        void RemoveSurfaceCommand::exec(){
+        void RmSurfaceCmd::exec(){
             // Store the surface, this implies that the surfaceManager's
             // removeSelectedSurface does not destroy the surface.
             _surface = _app->surfaceManager.getSelectedSurface();
             _app->surfaceManager.removeSelectedSurface();
         }
         
-        void RemoveSurfaceCommand::undo(){
-            ofLogNotice("RemoveSurfaceCommand", "undo");
+        void RmSurfaceCmd::undo(){
+            ofLogNotice("RmSurfaceCmd", "undo");
             if (_surface == 0) {
-                ofLogError("RemoveSurfaceCommand", "No surface stored");
+                ofLogError("RmSurfaceCmd", "No surface stored");
             }
             _app->surfaceManager.addSurface(_surface);
             _app->surfaceManager.selectSurface(_surface);

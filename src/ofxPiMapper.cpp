@@ -14,7 +14,7 @@ void ofxPiMapper::setup(){
     // Assign media server to other pi mapper components
     surfaceManager.setMediaServer(&mediaServer);
     gui.setMediaServer(&mediaServer);
-    gui.setCommandManager(&commandManager);
+    gui.setCmdManager(&cmdManager);
     
     // Check if we have user surfaces defined, if not - load default
     if (ofFile::doesFileExist(PIMAPPER_USER_SURFACES_XML_FILE)){
@@ -31,9 +31,6 @@ void ofxPiMapper::setup(){
     isSetUp = true;
     
     ofLogNotice("ofxPiMapper") << "Done setting up";
-    
-    // Initialize undo test vars
-    undoTestValue = 0;
 }
 
 void ofxPiMapper::draw(){
@@ -102,19 +99,11 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
             surfaceManager.saveXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
             break;
         case OF_KEY_BACKSPACE:
-            //surfaceManager.removeSelectedSurface();
-            commandManager.exec(new ofx::piMapper::RemoveSurfaceCommand((ofxPiMapper *)this));
-            break;
-        // TODO: Remove the following case when Command test done.
-        case '9':
-            commandManager.exec(new ofx::piMapper::TestUndoCommand((ofxPiMapper *)this));
-            break;
-        case '0':
-            commandManager.exec(new ofx::piMapper::TestCommand((ofxPiMapper *)this));
+            cmdManager.exec(new ofx::piMapper::RmSurfaceCmd((ofxPiMapper *)this));
             break;
         case 'z':
-            // undo
-            commandManager.undo();
+            // Undo any undo command operation
+            cmdManager.undo();
             break;
         default:
             break;
@@ -175,13 +164,4 @@ ofx::piMapper::MediaServer& ofxPiMapper::getMediaServer(){
 
 ofx::piMapper::SurfaceManager& ofxPiMapper::getSurfaceManager(){
     return surfaceManager;
-}
-
-// TODO: remove this when done testing and everything works
-void ofxPiMapper::testCommand(string name){
-    ofLogNotice("ofxPiMapper", name);
-}
-
-void ofxPiMapper::testUndoableCommand(int increase){
-    undoTestValue += increase;
 }

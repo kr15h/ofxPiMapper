@@ -11,10 +11,10 @@
 #include "ProjectionEditor.h"
 #include "SourcesEditor.h"
 #include "GuiMode.h"
-#include "CommandManager.h"
-#include "MoveSurfaceCommand.h"
-#include "SelectSurfaceCommand.h"
-#include "MoveSurfaceVertexCommand.h"
+#include "CmdManager.h"
+#include "MvSurfaceCmd.h"
+#include "SelSurfaceCmd.h"
+#include "MvSurfaceVertCmd.h"
 
 namespace ofx {
     namespace piMapper {
@@ -33,7 +33,7 @@ namespace ofx {
             
             void setSurfaceManager(SurfaceManager* newSurfaceManager);
             void setMediaServer(MediaServer* newMediaServer);
-            void setCommandManager(CommandManager * commandManager);
+            void setCmdManager(CmdManager * cmdManager);
             
             void setMode(int newGuiMode);
             void drawSelectedSurfaceHighlight();
@@ -50,7 +50,7 @@ namespace ofx {
             int guiMode;
             bool bDrag;
             ofVec2f clickPosition;
-            CommandManager * _commandManager;
+            CmdManager * _cmdManager;
         };
     }
 }

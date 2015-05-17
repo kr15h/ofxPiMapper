@@ -12,11 +12,10 @@
 #include "MediaServer.h"
 #include "FboSource.h"
 
-#include "BaseCommand.h"
-#include "TestCommand.h" // TODO: Remove this line when done testing
-#include "TestUndoCommand.h"
-#include "CommandManager.h"
-#include "RemoveSurfaceCommand.h"
+// Command design pattern includes
+#include "BaseCmd.h"
+#include "CmdManager.h"
+#include "RmSurfaceCmd.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -49,12 +48,8 @@ class ofxPiMapper{
         // from anywhere within ofxPiMapper.
         ofx::piMapper::MediaServer& getMediaServer();
         ofx::piMapper::SurfaceManager& getSurfaceManager();
-       
-        // Test first steps of the Command design pattern implementation.
-        void testCommand(string name);
-        void testUndoableCommand(int increase);
-        int undoTestValue;
-        ofx::piMapper::CommandManager commandManager;
+    
+        ofx::piMapper::CmdManager cmdManager;
         ofx::piMapper::SurfaceManager surfaceManager;
     
     private:

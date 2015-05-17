@@ -1,29 +1,32 @@
-// MoveSurfaceCommand
-// Provides with option to undo move surface operation.
-// Created by Krisjanis Rijnieks 2015-05-14
+// MvSurfaceVertCmd
+// Provides with option to undo move surface vertex operation.
+// Created by Krisjanis Rijnieks 2015-05-15
 
 #pragma once
 
-#include "BaseCommand.h"
+#include "BaseCmd.h"
 #include "BaseSurface.h"
 #include "ProjectionEditor.h"
+#include "BaseJoint.h"
 
 namespace ofx{
     namespace piMapper{
         
-        class MoveSurfaceCommand : public BaseUndoableCommand{
+        class MvSurfaceVertCmd : public BaseUndoCmd{
         
             public:
-                MoveSurfaceCommand(
+                MvSurfaceVertCmd(
+                    int vertIndex,
                     BaseSurface * surface,
                     ProjectionEditor * projectionEditor);
                 void exec();
                 void undo();
     
             private:
+                int _vertIndex;
+                ofVec2f _prevVertPos;
                 BaseSurface * _surface;
                 ProjectionEditor * _projectionEditor;
-                vector<ofVec3f> _previousVertices;
         };
         
     } // namespace piMapper

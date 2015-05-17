@@ -1,19 +1,19 @@
 #pragma once
 
 #import <vector>
-#import "BaseCommand.h"
+#import "BaseCmd.h"
 #import "ofLog.h"
 
 namespace ofx{
     namespace piMapper{
         
-        class CommandManager{
+        class CmdManager{
             public:
-                void exec(BaseCommand * cmd);
+                void exec(BaseCmd * cmd);
                 void undo();
                 
             private:
-                std::vector<BaseUndoableCommand *> commandStack;
+                std::vector<BaseUndoCmd *> cmdStack;
         };
         
     } // namespace piMapper

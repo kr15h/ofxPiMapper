@@ -8,13 +8,13 @@ namespace ofx {
             bDrag = false;
             registerMouseEvents();
             ofHideCursor();
-            _commandManager = 0;
+            _cmdManager = 0;
         }
         
         SurfaceManagerGui::~SurfaceManagerGui() {
             unregisterMouseEvents();
             surfaceManager = NULL;
-            _commandManager = 0;
+            _cmdManager = 0;
         }
         
         void SurfaceManagerGui::registerMouseEvents() {
@@ -123,7 +123,7 @@ namespace ofx {
                             break;
                         }
                     }
-                    _commandManager->exec(new MoveSurfaceVertexCommand(
+                    _cmdManager->exec(new MvSurfaceVertCmd(
                         jointVertIndex,
                         surfaceManager->getSelectedSurface(),
                         &projectionEditor));
@@ -138,7 +138,7 @@ namespace ofx {
                             // Do not repeat this command if attempting to select an
                             // already selected surface.
                             if (surfaceManager->getSelectedSurface() != surfaceManager->getSurface(i)){
-                                _commandManager->exec(new SelectSurfaceCommand(
+                                _cmdManager->exec(new SelSurfaceCmd(
                                     surfaceManager,
                                     surfaceManager->getSurface(i),
                                     &projectionEditor));
@@ -157,8 +157,8 @@ namespace ofx {
                     clickPosition = ofVec2f(args.x, args.y);
                     startDrag();
                     
-                    _commandManager->exec(
-                        new MoveSurfaceCommand(
+                    _cmdManager->exec(
+                        new MvSurfaceCmd(
                             surfaceManager->getSelectedSurface(),
                             &projectionEditor));
                 }
@@ -179,7 +179,7 @@ namespace ofx {
             
             // Check if surface has moved
             if (!surfaceManager->getSelectedSurface()->getMoved()) {
-                _commandManager->undo();
+                _cmdManager->undo();
             }
             
         }
@@ -212,8 +212,8 @@ namespace ofx {
             sourcesEditor.setMediaServer(mediaServer);
         }
         
-        void SurfaceManagerGui::setCommandManager(CommandManager * commandManager){
-            _commandManager = commandManager;
+        void SurfaceManagerGui::setCmdManager(CmdManager * cmdManager){
+            _cmdManager = cmdManager;
         }
         
         void SurfaceManagerGui::setMode(int newGuiMode) {

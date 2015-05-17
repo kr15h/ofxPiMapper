@@ -1,9 +1,9 @@
-#include "MoveSurfaceVertexCommand.h"
+#include "MvSurfaceVertCmd.h"
 
 namespace ofx{
     namespace piMapper{
         
-        MoveSurfaceVertexCommand::MoveSurfaceVertexCommand(
+        MvSurfaceVertCmd::MvSurfaceVertCmd(
             int vertIndex,
             BaseSurface * surface,
             ProjectionEditor * projectionEditor){
@@ -13,13 +13,13 @@ namespace ofx{
             _projectionEditor = projectionEditor;
         }
 
-        void MoveSurfaceVertexCommand::exec(){
-            ofLogNotice("MoveJointCommand", "exec");
+        void MvSurfaceVertCmd::exec(){
+            ofLogNotice("MvSurfaceVertCommand", "exec");
             _prevVertPos = _surface->getVertices()[_vertIndex];
         }
         
-        void MoveSurfaceVertexCommand::undo(){
-            ofLogNotice("MoveJointCommand", "undo");
+        void MvSurfaceVertCmd::undo(){
+            ofLogNotice("MvSurfaceVertCommand", "undo");
             _surface->setVertex(_vertIndex, _prevVertPos);
             _projectionEditor->updateJoints();
             _projectionEditor = 0;

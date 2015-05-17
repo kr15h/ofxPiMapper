@@ -13,9 +13,9 @@ namespace ofx{
     namespace piMapper{
 
         // Base class for all commands
-        class BaseCommand{
+        class BaseCmd{
             public:
-                virtual ~BaseCommand(){};
+                virtual ~BaseCmd(){};
                 virtual void exec() = 0;
             
                 // By default a command is not undo
@@ -24,24 +24,18 @@ namespace ofx{
             protected:
                 // In order to avoid using this class directly,
                 // we make the constructor protected.
-                BaseCommand(){};
+                BaseCmd(){};
         };
 
         // Base class for all undoable commands
-        class BaseUndoableCommand : public BaseCommand{
+        class BaseUndoCmd : public BaseCmd{
             public:
                 virtual void undo() = 0;
                 virtual bool isUndoable(){return true;}
                 
             protected:
-                BaseUndoableCommand(){};
+                BaseUndoCmd(){};
         };
     
     } // namespace piMapper
 } // namespace ofx
-
-// Ideas for command classes
-// SelectSurfaceCommand
-// MoveSurfaceCommand
-// SelectSourceMapCommand
-// MoveSourceMapCommand

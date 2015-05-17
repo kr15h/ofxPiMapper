@@ -1,11 +1,11 @@
-// RemoveSurfaceCommand
+// RmSurfaceCmd
 // Provides with option to undo remove surface operation.
 // Created by Krisjanis Rijnieks 2015-05-14
 
 #pragma once
 
 #include "ofxPiMapper.h"
-#include "BaseCommand.h"
+#include "BaseCmd.h"
 #include "BaseSurface.h"
 
 class ofxPiMapper;
@@ -13,10 +13,10 @@ class ofxPiMapper;
 namespace ofx{
     namespace piMapper{
         
-        class RemoveSurfaceCommand : public BaseUndoableCommand{
+        class RmSurfaceCmd : public BaseUndoCmd{
         
             public:
-                RemoveSurfaceCommand(ofxPiMapper * app);
+                RmSurfaceCmd(ofxPiMapper * app);
                 void exec();
                 void undo();
     

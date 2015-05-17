@@ -1,9 +1,9 @@
-#include "SelectSurfaceCommand.h"
+#include "SelSurfaceCmd.h"
 
 namespace ofx{
     namespace piMapper{
         
-        SelectSurfaceCommand::SelectSurfaceCommand(
+        SelSurfaceCmd::SelSurfaceCmd(
             SurfaceManager * surfaceManager,
             BaseSurface * surfaceToSelect,
             ProjectionEditor * projectionEditor){
@@ -13,15 +13,15 @@ namespace ofx{
             _projectionEditor = projectionEditor;
         }
 
-        void SelectSurfaceCommand::exec(){
+        void SelSurfaceCmd::exec(){
             _prevSelectedSurface = _surfaceManager->getSelectedSurface();
             _projectionEditor->clearJoints();
             _surfaceManager->selectSurface(_surfaceToSelect);
             _projectionEditor->createJoints();
         }
         
-        void SelectSurfaceCommand::undo(){
-            ofLogNotice("SelectSurfaceCommand", "undo");
+        void SelSurfaceCmd::undo(){
+            ofLogNotice("SelSurfaceCmd", "undo");
             _projectionEditor->clearJoints();
             _surfaceManager->selectSurface(_prevSelectedSurface);
             _projectionEditor->createJoints();
