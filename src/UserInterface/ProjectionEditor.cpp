@@ -192,7 +192,7 @@ namespace ofx {
         
         void ProjectionEditor::updateJoints() {
             vector<ofVec3f>& vertices =
-            surfaceManager->getSelectedSurface()->getVertices();
+                surfaceManager->getSelectedSurface()->getVertices();
             for (int i = 0; i < vertices.size(); i++) {
                 joints[i]->position = ofVec2f(vertices[i].x, vertices[i].y);
             }

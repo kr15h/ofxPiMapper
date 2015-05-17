@@ -16,6 +16,7 @@ namespace ofx{
         }
         
         void RemoveSurfaceCommand::undo(){
+            ofLogNotice("RemoveSurfaceCommand", "undo");
             if (_surface == 0) {
                 ofLogError("RemoveSurfaceCommand", "No surface stored");
             }

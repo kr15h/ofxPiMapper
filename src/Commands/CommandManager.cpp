@@ -11,6 +11,7 @@ namespace ofx{
         }
         
         void CommandManager::undo(){
+            ofLogNotice("CommandManager", "undo");
             if (commandStack.size() > 0){
                 BaseUndoableCommand * cmd = commandStack.back();
                 cmd->undo();

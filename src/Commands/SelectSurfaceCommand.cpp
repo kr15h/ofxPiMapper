@@ -21,6 +21,7 @@ namespace ofx{
         }
         
         void SelectSurfaceCommand::undo(){
+            ofLogNotice("SelectSurfaceCommand", "undo");
             _projectionEditor->clearJoints();
             _surfaceManager->selectSurface(_prevSelectedSurface);
             _projectionEditor->createJoints();
