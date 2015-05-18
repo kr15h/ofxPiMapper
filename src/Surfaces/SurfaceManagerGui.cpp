@@ -91,6 +91,8 @@ namespace ofx {
                     textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
                 if (hitJoint != NULL) {
                     textureEditor.unselectAllJoints();
+                    // TODO: Add texture coord move command
+                    //       MvTexCoordCmd
                     hitJoint->select();
                     hitJoint->startDrag();
                     bSurfaceSelected = true;
@@ -101,9 +103,16 @@ namespace ofx {
                 if (surfaceManager->getSelectedSurface() != NULL && !bSurfaceSelected) {
                     // hittest texture area to see if we are hitting the texture surface
                     if (surfaceManager->getSelectedSurface()->getTextureHitArea().inside(
-                                                                                         args.x, args.y)) {
+                        args.x, args.y)) {
+                        
+                        // TODO: move these to a separate routine
                         clickPosition = ofVec2f(args.x, args.y);
                         startDrag();
+                        
+                        _cmdManager->exec(new MvAllTexCoordsCmd(
+                            surfaceManager->getSelectedSurface(),
+                            &textureEditor));
+                        
                     }
                 }
                 

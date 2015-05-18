@@ -15,6 +15,7 @@
 #include "MvSurfaceCmd.h"
 #include "SelSurfaceCmd.h"
 #include "MvSurfaceVertCmd.h"
+#include "MvAllTexCoordsCmd.h"
 
 namespace ofx {
     namespace piMapper {
