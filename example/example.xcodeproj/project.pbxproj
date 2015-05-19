@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		391717EF1B08FFDA00F9A484 /* SetGuiModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */; };
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
+		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -126,6 +127,8 @@
 		391717EE1B08FFDA00F9A484 /* SetGuiModeCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetGuiModeCmd.h; path = Commands/SetGuiModeCmd.h; sourceTree = "<group>"; };
 		391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvAllTexCoordsCmd.cpp; path = Commands/MvAllTexCoordsCmd.cpp; sourceTree = "<group>"; };
 		391717F21B0A8A7300F9A484 /* MvAllTexCoordsCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvAllTexCoordsCmd.h; path = Commands/MvAllTexCoordsCmd.h; sourceTree = "<group>"; };
+		391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvTexCoordCmd.cpp; path = Commands/MvTexCoordCmd.cpp; sourceTree = "<group>"; };
+		391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvTexCoordCmd.h; path = Commands/MvTexCoordCmd.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -669,6 +672,8 @@
 				391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */,
 				391717F21B0A8A7300F9A484 /* MvAllTexCoordsCmd.h */,
 				391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */,
+				391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */,
+				391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -906,6 +911,7 @@
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
+				391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				39C1244B19EE9589005DF557 /* snappy.cc in Sources */,
 				3933D5D719BB87BD000ACA55 /* ofxPanel.cpp in Sources */,

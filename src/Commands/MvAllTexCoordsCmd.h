@@ -1,6 +1,6 @@
 // MvAllTexCoordsCmd
 // Move all texture coordinates of a selected surface undoable command
-// Created by Krisjanis Rijnieks 2015-05-15
+// Created by Krisjanis Rijnieks 2015-05-18
 
 #pragma once
 

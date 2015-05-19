@@ -230,5 +230,10 @@ CircleJoint* TextureEditor::hitTestJoints(ofVec2f pos) {
   }
   return NULL;
 }
+
+    vector<CircleJoint*> & TextureEditor::getJoints(){
+        return joints;
+    }
+
 }
 }

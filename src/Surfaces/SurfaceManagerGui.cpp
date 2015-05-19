@@ -91,11 +91,23 @@ namespace ofx {
                     textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
                 if (hitJoint != NULL) {
                     textureEditor.unselectAllJoints();
-                    // TODO: Add texture coord move command
-                    //       MvTexCoordCmd
+    
                     hitJoint->select();
                     hitJoint->startDrag();
                     bSurfaceSelected = true;
+                    
+                    int jointIndex = -1;
+                    for (auto i = 0; i < textureEditor.getJoints().size(); i++) {
+                        if (textureEditor.getJoints()[i] == hitJoint) {
+                            jointIndex = i;
+                            break;
+                        }
+                    }
+                    
+                    if (jointIndex != -1) {
+                        _cmdManager->exec(new MvTexCoordCmd(jointIndex, &textureEditor));
+                    }
+                    
                 } else {
                     textureEditor.unselectAllJoints();
                 }

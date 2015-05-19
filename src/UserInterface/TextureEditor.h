@@ -34,6 +34,7 @@ class TextureEditor {
   void moveSelection(ofVec2f by);
   void constrainJointsToQuad(int selectedJointIndex);
   CircleJoint* hitTestJoints(ofVec2f pos);
+  vector<CircleJoint*> & getJoints();
 
  private:
   BaseSurface* surface;
