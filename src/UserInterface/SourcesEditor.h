@@ -5,6 +5,8 @@
 #include "SurfaceManager.h"
 #include "RadioList.h"
 #include "MediaServer.h"
+#include "CmdManager.h"
+#include "SetSourceCmd.h"
 
 namespace ofx {
 namespace piMapper {
@@ -27,6 +29,7 @@ class SourcesEditor {
   void disable();
   void enable();
   void setSurfaceManager(SurfaceManager* newSurfaceManager);
+  void setCmdManager(CmdManager * cmdManager);
   
   // Sets external MediaServer
   void setMediaServer(MediaServer* newMediaServer);
@@ -35,6 +38,11 @@ class SourcesEditor {
 
   int getLoadedTexCount();
   ofTexture* getTexture(int index);
+  
+  void setImageSource(string & imagePath);
+  void setVideoSource(string & videoPath);
+  void setFboSource(string & fboName);
+  void clearSource();
 
  private:
   MediaServer* mediaServer;
@@ -42,6 +50,7 @@ class SourcesEditor {
   RadioList* imageSelector;
   RadioList* videoSelector;
   RadioList* fboSelector;
+  CmdManager * _cmdManager;
   
   // Is the media server pointer local or from somewhere else?
   // We use this to determine if we are allowed to clear media server locally.
@@ -55,9 +64,9 @@ class SourcesEditor {
   void removeMediaServerListeners();
   
   // Handles GUI event, whenever someone has clicked on a radio button
-  void handleImageSelected(string& imagePath);
-  void handleVideoSelected(string& videoPath);
-  void handleFboSelected(string& fboName);
+  void handleImageSelected(string & imagePath);
+  void handleVideoSelected(string & videoPath);
+  void handleFboSelected(string & fboName);
   
   // Careful clearing of the media server,
   // clears only if the media server has been initialized locally

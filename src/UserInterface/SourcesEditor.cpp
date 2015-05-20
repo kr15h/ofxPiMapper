@@ -147,6 +147,10 @@ namespace piMapper {
     surfaceManager = newSurfaceManager;
   }
   
+  void SourcesEditor::setCmdManager(CmdManager * cmdManager){
+    _cmdManager = cmdManager;
+  }
+  
   void SourcesEditor::setMediaServer(MediaServer* newMediaServer) {
     // If the new media server is not valid
     if (newMediaServer == NULL) {
@@ -236,8 +240,15 @@ namespace piMapper {
     ofRemoveListener(mediaServer->onFboSourceLoaded, this, &SourcesEditor::handleFboSourceLoaded);
     ofRemoveListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditor::handleFboSourceUnloaded);
   }
+  
+  void SourcesEditor::handleImageSelected(string & imagePath){
+    _cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_IMAGE,
+        imagePath,
+        surfaceManager->getSelectedSurface(),
+        (SourcesEditor *)this));
+  }
 
-  void SourcesEditor::handleImageSelected(string& imagePath) {
+  void SourcesEditor::setImageSource(string & imagePath){
     // Unselect selected items
     videoSelector->unselectAll();
     fboSelector->unselectAll();
@@ -260,7 +271,14 @@ namespace piMapper {
     surface->setSource(mediaServer->loadImage(imagePath));
   }
   
-  void SourcesEditor::handleVideoSelected(string& videoPath) {
+  void SourcesEditor::handleVideoSelected(string & videoPath){
+    _cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_VIDEO,
+        videoPath,
+        surfaceManager->getSelectedSurface(),
+        (SourcesEditor *)this));
+  }
+  
+  void SourcesEditor::setVideoSource(string & videoPath){
     // Unselect any selected items
     fboSelector->unselectAll();
     imageSelector->unselectAll();
@@ -283,7 +301,14 @@ namespace piMapper {
     surface->setSource(mediaServer->loadVideo(videoPath));
   }
   
-  void SourcesEditor::handleFboSelected(string &fboName) {
+  void SourcesEditor::handleFboSelected(string & fboName){
+    _cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_FBO,
+        fboName,
+        surfaceManager->getSelectedSurface(),
+        (SourcesEditor *)this));
+  }
+  
+  void SourcesEditor::setFboSource(string & fboName) {
     videoSelector->unselectAll();
     imageSelector->unselectAll();
     
@@ -304,6 +329,21 @@ namespace piMapper {
     
     // Load new FBO
     surface->setSource(mediaServer->loadFboSource(fboName));
+  }
+  
+  void SourcesEditor::clearSource(){
+    BaseSurface* surface = surfaceManager->getSelectedSurface();
+    
+    // Unload old media
+    BaseSource* source = surface->getSource();
+    if (source->isLoadable()) {
+      mediaServer->unloadMedia(source->getPath());
+    } else {
+      mediaServer->unloadMedia(source->getName());
+    }
+    
+    // Reset default source
+    surface->setSource(surface->getDefaultSource());
   }
   
   void SourcesEditor::clearMediaServer() {

@@ -25,6 +25,7 @@
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
+		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
 		39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */; };
 		39A9AAEC1B053B4200AA83BC /* SelSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAEA1B053B4200AA83BC /* SelSurfaceCmd.cpp */; };
@@ -158,6 +159,8 @@
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
 		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
+		39A867941B0D312400165378 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetSourceCmd.cpp; path = Commands/SetSourceCmd.cpp; sourceTree = "<group>"; };
+		39A867951B0D312400165378 /* SetSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetSourceCmd.h; path = Commands/SetSourceCmd.h; sourceTree = "<group>"; };
 		39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RmSurfaceCmd.cpp; path = Commands/RmSurfaceCmd.cpp; sourceTree = "<group>"; };
 		39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmSurfaceCmd.h; path = Commands/RmSurfaceCmd.h; sourceTree = "<group>"; };
 		39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvSurfaceCmd.cpp; path = Commands/MvSurfaceCmd.cpp; sourceTree = "<group>"; };
@@ -674,6 +677,8 @@
 				391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */,
 				391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */,
 				391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */,
+				39A867951B0D312400165378 /* SetSourceCmd.h */,
+				39A867941B0D312400165378 /* SetSourceCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -879,6 +884,7 @@
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
 				39C1243D19EE9589005DF557 /* DirectoryUtils.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
+				39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */,
 				3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */,
 				39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */,
 				39C1244519EE9589005DF557 /* RecursiveDirectoryIterator.cpp in Sources */,

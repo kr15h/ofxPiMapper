@@ -235,6 +235,7 @@ namespace ofx {
         
         void SurfaceManagerGui::setCmdManager(CmdManager * cmdManager){
             _cmdManager = cmdManager;
+            sourcesEditor.setCmdManager(_cmdManager);
         }
         
         void SurfaceManagerGui::setMode(int newGuiMode) {
