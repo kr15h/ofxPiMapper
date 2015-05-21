@@ -199,8 +199,10 @@ namespace ofx {
             textureEditor.stopDragJoints();
             
             // Check if surface has moved
-            if (!surfaceManager->getSelectedSurface()->getMoved()) {
-                _cmdManager->undo();
+            if (surfaceManager->getSelectedSurface()){
+                if (!surfaceManager->getSelectedSurface()->getMoved()) {
+                    _cmdManager->undo();
+                }
             }
             
         }
