@@ -16,7 +16,7 @@ mapper.addFboSource(source);
 mapper.setup(); // Setup must be run after adding the FBO source
 ```
 
-Since version 0.2.0 ofxPiMapper supports video sources.
+Since version 0.2.0 ofxPiMapper supports video sources and since version 0.2.3 ofxPiMapper supports undo.
 
 Development
 -----------
@@ -102,6 +102,7 @@ t | Add triangle surface
 q | Add quad surface
 f | Toggle fullscreen
 s | Save composition
+z | Undo
 BACKSPACE | Delete surface
 
 Dependencies
@@ -166,6 +167,9 @@ A short wishlist for the next releases:
  - Spout source for Win
  - Streaming source for RPi (fb sharing, network streams...)
  - Even better code structure
+ 
+### Version 0.2.3 (2015-05-22)
+ - Add undo functionality
 
 ### Version 0.2.2 (2014-11-17): 
  - Remove perspective warping in favour of doing mesh warping first and then adding proper perspective warping as a wrapper of the mesh warp
