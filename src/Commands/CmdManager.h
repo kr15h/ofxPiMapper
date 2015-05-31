@@ -1,8 +1,8 @@
 #pragma once
 
-#import <vector>
-#import "BaseCmd.h"
-#import "ofLog.h"
+#include <vector>
+#include "BaseCmd.h"
+#include "ofLog.h"
 
 namespace ofx{
     namespace piMapper{
