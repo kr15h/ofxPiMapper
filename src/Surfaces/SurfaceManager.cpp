@@ -382,7 +382,7 @@ void SurfaceManager::loadXmlSettings(string fileName) {
         }
 
         BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
-            for (auto i = 0; i < surfaces.size(); i++) {
+            for (int i = 0; i < surfaces.size(); i++) {
                 if (surfaces[i] == surface){
                     selectedSurface = surface;
                     ofSendMessage("surfaceSelected");
