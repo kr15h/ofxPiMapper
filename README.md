@@ -37,32 +37,52 @@ Installation
 ------------
 If you don't have a clue on how to set up your Pi - go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there. I have been using Raspbian so far as well as [Satellite CCRMA](https://ccrma.stanford.edu/~eberdahl/satellite/) without problems.
 
-Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow [this guide](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html) to set it up.
+Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. There are 2 openFrameworks setup guides now as there are 2 versions of Raspberry Pi:
 
-Clone this into your `openFrameworks/addons` folder. If your openFrameworks installation on the Pi resides in the home directory, you have to type the following in the terminal:
+ - [Raspberry Pi 1 oF Setup Guide](http://openframeworks.cc/setup/raspberrypi/)  
+ - [Raspberry Pi 2 oF Setup Guide](http://forum.openframeworks.cc/t/raspberry-pi-2-setup-guide/18690)  
+
+Clone this (the ofxPiMapper) repository into your `openFrameworks/addons` folder. If your openFrameworks installation on the Pi resides in the home directory, you have to type the following in the terminal:
 
 ```bash
 cd ~/openFrameworks/addons
 git clone https://github.com/kr15h/ofxPiMapper.git
 ```
 
-Before moving on, make sure that you have all the dependencies installed. Refer to the **Dependencies** section to see what you need. 
+Dependencies
+------------
+Before moving on, make sure that you have all the dependencies installed. 
 
+ - ofxGui (available in oF by default)
+ - ofxXmlSettings (available in oF by default)
+ - [ofxIO](https://github.com/bakercp/ofxIO)
+ - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer)
+
+To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
+
+```bash
+git clone https://github.com/jvcleave/ofxOMXPlayer.git && git clone https://github.com/bakercp/ofxIO.git
+```
+
+And you are good to go!
+
+
+First Test
+----------
 To test the addon, you will have to compile and run it:
 
 ```bash
 cd ~/openFrameworks/addons/ofxPiMapper/example
-make
+make && make run
 ```
 
-After it compiles, run it with either `make run` or `./bin/example`
+After it compiles, run it with either `make run` or `./bin/example`. You can exit the application by pressing `ESC` or `Ctrl + C`.
 
-It will take a while first, but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
+It will take a while first (not so long on the RPi 2), but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
 
 Usage
 -----
-
-I'm thinking on a more clever design that would not require keyboard so much, maybe. Now the example application acts as a wrapper for the ofxPiMapper addon and anyone can re-map keyboard keys by modifying the app code.
+Right now a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
 
 ###Modes
 
@@ -105,30 +125,16 @@ s | Save composition
 z | Undo
 BACKSPACE | Delete surface
 
-Dependencies
-------------
- - ofxGui 
- - ofxXmlSettings
- - [ofxIO](https://github.com/bakercp/ofxIO)
- - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer)
-
-To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
-
-```
-git clone https://github.com/jvcleave/ofxOMXPlayer.git && git clone https://github.com/bakercp/ofxIO.git
-```
-
-And you are good to go!
 
 Compatibility
-------------
-Tested with 0.8.1 - 0.8.4 (OS X and Raspbian)
+-------------
+Tested with 0.8.4 (OS X and Raspbian)
 
 Known issues
 ------------
 Keyboard and mouse input is being lost sometimes on the Raspberry Pi. Not sure how and why. Probably because of bad drivers and it seems that Raspberry Pi keyboard and mouse code in openFrameworks is not quite ready yet. Some claim that the following commands solves the issue:
 
-```
+```bash
 sudo apt-get update && sudo apt-get dist-upgrade  
 sudo rpi-update
 ```
@@ -167,6 +173,9 @@ A short wishlist for the next releases:
  - Spout source for Win
  - Streaming source for RPi (fb sharing, network streams...)
  - Even better code structure
+ 
+### Version 0.2.4 (2015-05-31)
+ - Fix RPi compile bug
  
 ### Version 0.2.3 (2015-05-22)
  - Add undo functionality
