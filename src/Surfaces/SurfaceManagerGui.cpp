@@ -97,7 +97,7 @@ namespace ofx {
                     bSurfaceSelected = true;
                     
                     int jointIndex = -1;
-                    for (auto i = 0; i < textureEditor.getJoints().size(); i++) {
+                    for (int i = 0; i < textureEditor.getJoints().size(); i++) {
                         if (textureEditor.getJoints()[i] == hitJoint) {
                             jointIndex = i;
                             break;
@@ -138,7 +138,7 @@ namespace ofx {
                     hitJoint->select();
                     hitJoint->startDrag();
                     int jointVertIndex = 0;
-                    for (auto i = 0; i < projectionEditor.getJoints()->size(); i++) {
+                    for (int i = 0; i < projectionEditor.getJoints()->size(); i++) {
                         if ((*projectionEditor.getJoints())[i] == hitJoint) {
                             jointVertIndex = i;
                             break;
