@@ -33,6 +33,7 @@ void ofxPiMapper::setup(){
     ofLogNotice("ofxPiMapper") << "Done setting up";
     
     _mainView = new ofx::piMapper::MainView();
+    _keyboard = new ofx::piMapper::Keyboard(this);
 }
 
 void ofxPiMapper::stateSetup() {
@@ -75,10 +76,11 @@ void ofxPiMapper::draw(){
 } // draw
 
 void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
-    ofLogNotice("ofxPiMapper") << "Key pressed: " << static_cast<char>(args.key);
+    //ofLogNotice("ofxPiMapper") << "Key pressed: " << static_cast<char>(args.key);
     
     switch (args.key) {
         
+        /*
         case '1':
             if (gui.getMode() != ofx::piMapper::GuiMode::NONE) {
                 cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
@@ -103,6 +105,7 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
                     ofx::piMapper::GuiMode::SOURCE_SELECTION));
             }
             break;
+        */
         case 'i':
             bShowInfo = !bShowInfo;
             break;
@@ -177,6 +180,14 @@ void ofxPiMapper::addQuadSurface(){
     surfaceManager.selectSurface(surfaceManager.size() - 1);
     
 } // addQuadSurface
+
+ofx::piMapper::CmdManager & ofxPiMapper::getCmdManager() {
+    return cmdManager;
+}
+
+ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui() {
+    return gui;
+}
 
 ofx::piMapper::MediaServer& ofxPiMapper::getMediaServer(){
     return mediaServer;

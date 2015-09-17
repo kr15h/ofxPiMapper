@@ -26,6 +26,7 @@
 		396427961BAB3DC900A06716 /* ProjectionMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */; };
 		396427991BAB3EA600A06716 /* SourceSelectionViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */; };
 		3964279C1BAB3F2F00A06716 /* TextureMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */; };
+		3964279F1BAB446A00A06716 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3964279D1BAB446A00A06716 /* Keyboard.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
@@ -168,6 +169,8 @@
 		396427981BAB3EA600A06716 /* SourceSelectionViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceSelectionViewState.h; sourceTree = "<group>"; };
 		3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMappingViewState.cpp; sourceTree = "<group>"; };
 		3964279B1BAB3F2F00A06716 /* TextureMappingViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingViewState.h; sourceTree = "<group>"; };
+		3964279D1BAB446A00A06716 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Keyboard.cpp; path = Input/Keyboard.cpp; sourceTree = "<group>"; };
+		3964279E1BAB446A00A06716 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Keyboard.h; path = Input/Keyboard.h; sourceTree = "<group>"; };
 		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		397EFC7D1A08FE720009286E /* FboSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboSource.cpp; sourceTree = "<group>"; };
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 		396427931BAB3B4A00A06716 /* Input */ = {
 			isa = PBXGroup;
 			children = (
+				3964279E1BAB446A00A06716 /* Keyboard.h */,
+				3964279D1BAB446A00A06716 /* Keyboard.cpp */,
 			);
 			name = Input;
 			sourceTree = "<group>";
@@ -921,6 +926,7 @@
 				39C1243C19EE9589005DF557 /* DirectoryFilter.cpp in Sources */,
 				3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */,
 				39C1243619EE9589005DF557 /* ByteBufferReader.cpp in Sources */,
+				3964279F1BAB446A00A06716 /* Keyboard.cpp in Sources */,
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */,

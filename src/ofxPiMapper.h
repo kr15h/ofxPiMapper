@@ -20,9 +20,16 @@
 
 // Main view with state design pattern
 #include "MainView.h"
+#include "Keyboard.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
+
+namespace ofx {
+    namespace piMapper {
+        class Keyboard;
+    }
+}
 
 class ofxPiMapper{
     
@@ -47,6 +54,10 @@ class ofxPiMapper{
         // Toggle help / info
         void showInfo() { bShowInfo = true; };
         void hideInfo() { bShowInfo = false; };
+    
+        // Getters
+        ofx::piMapper::CmdManager & getCmdManager();
+        ofx::piMapper::SurfaceManagerGui & getGui();
         
         // Discussion:
         // Maybe these should be static as this would allow to access them
@@ -66,5 +77,7 @@ class ofxPiMapper{
         // maybe it should be as a separate layer?
         ofx::piMapper::SurfaceManagerGui gui;
     
+    
         ofx::piMapper::MainView * _mainView;
+        ofx::piMapper::Keyboard * _keyboard;
 };
