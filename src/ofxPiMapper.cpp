@@ -31,6 +31,12 @@ void ofxPiMapper::setup(){
     isSetUp = true;
     
     ofLogNotice("ofxPiMapper") << "Done setting up";
+    
+    _mainView = new ofx::piMapper::MainView();
+}
+
+void ofxPiMapper::stateSetup() {
+    // TODO: test state imp
 }
 
 void ofxPiMapper::draw(){
@@ -63,6 +69,8 @@ void ofxPiMapper::draw(){
     
     // TODO: remove undo test completely
     //ofDrawBitmapStringHighlight(ofToString(undoTestValue), 200, 200);
+    
+    _mainView->draw();
     
 } // draw
 

@@ -1,6 +1,6 @@
-// PresentationViewState
-// Presentation view state singleton
-// Created by Krisjanis Rijnieks 2015-05-24
+// SourceSelectionViewState
+// Source selection view state singleton
+// Created by Krisjanis Rijnieks 2015-09-17
 #pragma once
 
 #include "MainView.h"
@@ -11,13 +11,13 @@
 namespace ofx {
     namespace piMapper {
         
-        class PresentationViewState : public ViewState {
+        class SourceSelectionViewState : public ViewState {
             public:
-                static PresentationViewState * instance();
+                static SourceSelectionViewState * instance();
                 void draw(MainView * mv);
             
             private:
-                static PresentationViewState * _instance;
+                static SourceSelectionViewState * _instance;
         };
         
     } // namespace piMapper

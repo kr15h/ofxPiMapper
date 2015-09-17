@@ -3,26 +3,27 @@
 // Created by Krisjanis Rijnieks 2015-05-22
 #pragma once
 
-#include "ViewState.h"
 #include "ofEvents.h"
 #include "ofLog.h"
-#include "PresentationViewState.h"
-
-class ViewState;
+#include "ViewState.h"
 
 namespace ofx {
     namespace piMapper {
+        
+        class ViewState;
+    
         class MainView {
             public:
                 MainView();
-                void mousePressed(ofMouseEventArgs & args);
+                void draw();
+            
+            protected:
+                void setState(ViewState * st);
             
             private:
                 friend class ViewState;
-                void setState(ofx::piMapper::ViewState * state);
-            
-            private:
                 ViewState * _state;
         };
-    }
-}
+        
+    } // namespace piMapper
+} // namespace ofx

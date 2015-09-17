@@ -1,21 +1,21 @@
 // ViewState
-// Base class for main view states
-// Created by Krisjanis Rijnieks 2015-05-22
+// Base class for view states
+// Created by Krisjanis Rijnieks 2015-06-03
 #pragma once
 
-#include "MainView.h"
 #include "ofEvents.h"
-
-class MainView;
+#include "ofLog.h"
 
 namespace ofx {
     namespace piMapper {
+        
+        class MainView;
+        
         class ViewState {
             public:
-                virtual void mousePressed(ofMouseEventArgs & args);
-            
-            protected:
-                void setState(MainView * view, ViewState * state);
+                virtual void draw(MainView * mv){};
+                virtual void setState(MainView * mainView, ViewState * state);
         };
-    }
-}
+        
+    } // namespace piMapper
+} // namespace ofx

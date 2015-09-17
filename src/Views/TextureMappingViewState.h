@@ -1,6 +1,6 @@
-// PresentationViewState
-// Presentation view state singleton
-// Created by Krisjanis Rijnieks 2015-05-24
+// TextureMappingViewState
+// Texture mapping view state singleton
+// Created by Krisjanis Rijnieks 2015-09-17
 #pragma once
 
 #include "MainView.h"
@@ -11,13 +11,13 @@
 namespace ofx {
     namespace piMapper {
         
-        class PresentationViewState : public ViewState {
+        class TextureMappingViewState : public ViewState {
             public:
-                static PresentationViewState * instance();
+                static TextureMappingViewState * instance();
                 void draw(MainView * mv);
             
             private:
-                static PresentationViewState * _instance;
+                static TextureMappingViewState * _instance;
         };
         
     } // namespace piMapper

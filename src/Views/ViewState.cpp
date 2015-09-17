@@ -1,10 +1,12 @@
 #include "ViewState.h"
+#include "PresentationViewState.h"
 
 namespace ofx {
     namespace piMapper {
-        void ViewState::mousePressed(ofMouseEventArgs & args) { }
-        void ViewState::setState(MainView * view, ViewState * state) {
-            view->setState(state);
+    
+        void ViewState::setState(MainView * mv, ViewState * st) {
+            mv->setState(st);
         }
-    }
-}
+        
+    } // namespace piMapper
+} // namespace ofx

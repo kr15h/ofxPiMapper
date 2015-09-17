@@ -10,6 +10,7 @@
 		391717EF1B08FFDA00F9A484 /* SetGuiModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */; };
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
 		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
+		39203D351B1F9E9900280B0D /* ViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39203D331B1F9E9900280B0D /* ViewState.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -22,7 +23,9 @@
 		3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CD19BB87BD000ACA55 /* ofxSlider.cpp */; };
 		3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CF19BB87BD000ACA55 /* ofxSliderGroup.cpp */; };
 		3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */; };
-		396761841B1285EB00EA1049 /* ViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396761831B1285EB00EA1049 /* ViewState.cpp */; };
+		396427961BAB3DC900A06716 /* ProjectionMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */; };
+		396427991BAB3EA600A06716 /* SourceSelectionViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */; };
+		3964279C1BAB3F2F00A06716 /* TextureMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
@@ -133,6 +136,8 @@
 		391717F21B0A8A7300F9A484 /* MvAllTexCoordsCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvAllTexCoordsCmd.h; path = Commands/MvAllTexCoordsCmd.h; sourceTree = "<group>"; };
 		391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvTexCoordCmd.cpp; path = Commands/MvTexCoordCmd.cpp; sourceTree = "<group>"; };
 		391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvTexCoordCmd.h; path = Commands/MvTexCoordCmd.h; sourceTree = "<group>"; };
+		39203D331B1F9E9900280B0D /* ViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewState.cpp; sourceTree = "<group>"; };
+		39203D341B1F9E9900280B0D /* ViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewState.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -157,7 +162,12 @@
 		3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		3933D5D219BB87BD000ACA55 /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPiMapper.h; sourceTree = "<group>"; };
-		396761831B1285EB00EA1049 /* ViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewState.cpp; sourceTree = "<group>"; };
+		396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectionMappingViewState.cpp; sourceTree = "<group>"; };
+		396427951BAB3DC900A06716 /* ProjectionMappingViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionMappingViewState.h; sourceTree = "<group>"; };
+		396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SourceSelectionViewState.cpp; sourceTree = "<group>"; };
+		396427981BAB3EA600A06716 /* SourceSelectionViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceSelectionViewState.h; sourceTree = "<group>"; };
+		3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMappingViewState.cpp; sourceTree = "<group>"; };
+		3964279B1BAB3F2F00A06716 /* TextureMappingViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingViewState.h; sourceTree = "<group>"; };
 		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		397EFC7D1A08FE720009286E /* FboSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboSource.cpp; sourceTree = "<group>"; };
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
@@ -277,7 +287,6 @@
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
 		39C31AE51B0FDC69005E3E09 /* MainView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainView.cpp; sourceTree = "<group>"; };
 		39C31AE61B0FDC69005E3E09 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
-		39C31AE91B0FDD8C005E3E09 /* ViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewState.h; sourceTree = "<group>"; };
 		39C31AEB1B0FDFC3005E3E09 /* PresentationViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentationViewState.cpp; sourceTree = "<group>"; };
 		39C31AEC1B0FDFC3005E3E09 /* PresentationViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationViewState.h; sourceTree = "<group>"; };
 		39C787BB1AC20D2400691393 /* CmdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CmdManager.h; path = Commands/CmdManager.h; sourceTree = "<group>"; };
@@ -398,9 +407,17 @@
 			path = ../../ofxGui/src;
 			sourceTree = "<group>";
 		};
+		396427931BAB3B4A00A06716 /* Input */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Input;
+			sourceTree = "<group>";
+		};
 		396E8A2F190FEDD900705899 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				396427931BAB3B4A00A06716 /* Input */,
 				39C31AE41B0FDC69005E3E09 /* Views */,
 				39FDD9E81AC0076200262205 /* Commands */,
 				39C1246D19F187D5005DF557 /* UserInterface */,
@@ -672,10 +689,16 @@
 			children = (
 				39C31AE61B0FDC69005E3E09 /* MainView.h */,
 				39C31AE51B0FDC69005E3E09 /* MainView.cpp */,
-				39C31AE91B0FDD8C005E3E09 /* ViewState.h */,
-				396761831B1285EB00EA1049 /* ViewState.cpp */,
+				39203D341B1F9E9900280B0D /* ViewState.h */,
+				39203D331B1F9E9900280B0D /* ViewState.cpp */,
 				39C31AEC1B0FDFC3005E3E09 /* PresentationViewState.h */,
 				39C31AEB1B0FDFC3005E3E09 /* PresentationViewState.cpp */,
+				396427951BAB3DC900A06716 /* ProjectionMappingViewState.h */,
+				396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */,
+				396427981BAB3EA600A06716 /* SourceSelectionViewState.h */,
+				396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */,
+				3964279B1BAB3F2F00A06716 /* TextureMappingViewState.h */,
+				3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -894,7 +917,7 @@
 				39C1243719EE9589005DF557 /* ByteBufferUtils.cpp in Sources */,
 				3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */,
 				3933D5D319BB87BD000ACA55 /* ofxBaseGui.cpp in Sources */,
-				396761841B1285EB00EA1049 /* ViewState.cpp in Sources */,
+				39203D351B1F9E9900280B0D /* ViewState.cpp in Sources */,
 				39C1243C19EE9589005DF557 /* DirectoryFilter.cpp in Sources */,
 				3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */,
 				39C1243619EE9589005DF557 /* ByteBufferReader.cpp in Sources */,
@@ -904,10 +927,12 @@
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				39C1244719EE9589005DF557 /* RegexPathFilter.cpp in Sources */,
+				3964279C1BAB3F2F00A06716 /* TextureMappingViewState.cpp in Sources */,
 				39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */,
 				39C1247C19F187D5005DF557 /* BaseJoint.cpp in Sources */,
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
 				39C1243D19EE9589005DF557 /* DirectoryUtils.cpp in Sources */,
+				396427991BAB3EA600A06716 /* SourceSelectionViewState.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
 				39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */,
 				3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */,
@@ -954,6 +979,7 @@
 				397EFC821A09047C0009286E /* CustomSource.cpp in Sources */,
 				39C1243819EE9589005DF557 /* ByteBufferWriter.cpp in Sources */,
 				3933D5D519BB87BD000ACA55 /* ofxGuiGroup.cpp in Sources */,
+				396427961BAB3DC900A06716 /* ProjectionMappingViewState.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

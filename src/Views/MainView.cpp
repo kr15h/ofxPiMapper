@@ -1,25 +1,20 @@
 #include "MainView.h"
+#include "PresentationViewState.h"
 
 namespace ofx {
     namespace piMapper {
-        MainView::MainView(){ // MainView::MainView(MainController * mainController)
-            ofLogNotice("MainView::MainView");
-            
-            // Init connection with the main controller maybe?
-            // _mainController = mainController;
-            
-            // Init main state
+        
+        MainView::MainView(){
             setState(PresentationViewState::instance());
         }
         
-        void MainView::mousePressed(ofMouseEventArgs & args){
-            ofLogNotice("MainView::mousePressed");
-            _state->mousePressed(args);
+        void MainView::draw(){
+            _state->draw(this);
         }
         
-        void MainView::setState(ofx::piMapper::ViewState * state){
-            ofLogNotice("MainView::setState");
-            _state = state;
+        void MainView::setState(ViewState * st){
+            _state = st;
         }
-    }
-}
+        
+    } // namespace piMapper
+} // namespace ofx

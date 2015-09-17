@@ -18,6 +18,9 @@
 #include "RmSurfaceCmd.h"
 #include "SetGuiModeCmd.h"
 
+// Main view with state design pattern
+#include "MainView.h"
+
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
 
@@ -28,6 +31,7 @@ class ofxPiMapper{
         ~ofxPiMapper();
         
         void setup();
+        void stateSetup();
         void draw();
         void keyPressed(ofKeyEventArgs& args);
         
@@ -61,4 +65,6 @@ class ofxPiMapper{
         // Discussion: Here now the GUI points only to surface manager, 
         // maybe it should be as a separate layer?
         ofx::piMapper::SurfaceManagerGui gui;
+    
+        ofx::piMapper::MainView * _mainView;
 };
