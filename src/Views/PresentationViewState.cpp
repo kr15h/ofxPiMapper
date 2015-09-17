@@ -15,7 +15,7 @@ namespace ofx {
         void PresentationViewState::draw(MainView * mv) {
             ofSetColor(255, 255, 0);
             ofDrawBitmapString("Presentation View State", 10, 20);
-            ofLogNotice("PresentationViewState::draw");
+            //ofLogNotice("PresentationViewState::draw");
         }
     }
 }

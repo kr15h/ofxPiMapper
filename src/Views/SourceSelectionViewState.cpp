@@ -14,7 +14,7 @@ namespace ofx {
         
         void SourceSelectionViewState::draw(MainView * mv) {
             ofDrawBitmapString("Source Selection View State", 10, 20);
-            ofLogNotice("SourceSelectionViewState::draw");
+            //ofLogNotice("SourceSelectionViewState::draw");
         }
     }
 }

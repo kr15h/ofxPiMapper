@@ -14,7 +14,7 @@ namespace ofx {
         
         void ProjectionMappingViewState::draw(MainView * mv) {
             ofDrawBitmapString("Projection Mapping View State", 10, 20);
-            ofLogNotice("ProjectionMappingViewState::draw");
+            //ofLogNotice("ProjectionMappingViewState::draw");
         }
     }
 }

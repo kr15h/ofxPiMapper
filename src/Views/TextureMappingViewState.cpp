@@ -14,7 +14,7 @@ namespace ofx {
         
         void TextureMappingViewState::draw(MainView * mv) {
             ofDrawBitmapString("Texture Mapping View State", 10, 20);
-            ofLogNotice("TextureMappingViewState::draw");
+            //ofLogNotice("TextureMappingViewState::draw");
         }
     }
 }
