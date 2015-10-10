@@ -1,7 +1,6 @@
-#pragma once
+// TODO: Move this to the Application State system.
 
-// I'm starting to think, maybe we should use ofxStateMachine here.
-// Would make sense. TODO later.
+#pragma once
 
 #include "ofEvents.h"
 #include "ofGraphics.h"

@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		391717EF1B08FFDA00F9A484 /* SetGuiModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */; };
+		391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */; };
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
 		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
-		39203D351B1F9E9900280B0D /* ViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39203D331B1F9E9900280B0D /* ViewState.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -23,10 +22,12 @@
 		3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CD19BB87BD000ACA55 /* ofxSlider.cpp */; };
 		3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CF19BB87BD000ACA55 /* ofxSliderGroup.cpp */; };
 		3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */; };
-		396427961BAB3DC900A06716 /* ProjectionMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */; };
-		396427991BAB3EA600A06716 /* SourceSelectionViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */; };
-		3964279C1BAB3F2F00A06716 /* TextureMappingViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */; };
-		3964279F1BAB446A00A06716 /* Keyboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3964279D1BAB446A00A06716 /* Keyboard.cpp */; };
+		396841751BC91F6F009F0BAE /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841691BC91F6F009F0BAE /* Application.cpp */; };
+		396841761BC91F6F009F0BAE /* ApplicationBaseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3968416B1BC91F6F009F0BAE /* ApplicationBaseState.cpp */; };
+		396841771BC91F6F009F0BAE /* PresentationState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3968416D1BC91F6F009F0BAE /* PresentationState.cpp */; };
+		396841781BC91F6F009F0BAE /* ProjectionMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3968416F1BC91F6F009F0BAE /* ProjectionMappingState.cpp */; };
+		396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */; };
+		3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841731BC91F6F009F0BAE /* TextureMappingState.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
@@ -76,8 +77,6 @@
 		39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1247A19F187D5005DF557 /* TextureEditor.cpp */; };
 		39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248319F1EB75005DF557 /* SurfaceManager.cpp */; };
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
-		39C31AE71B0FDC69005E3E09 /* MainView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C31AE51B0FDC69005E3E09 /* MainView.cpp */; };
-		39C31AED1B0FDFC3005E3E09 /* PresentationViewState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C31AEB1B0FDFC3005E3E09 /* PresentationViewState.cpp */; };
 		39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CmdManager.cpp */; };
 		BBAB23CB13894F3D00AA2426 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
@@ -131,14 +130,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetGuiModeCmd.cpp; path = Commands/SetGuiModeCmd.cpp; sourceTree = "<group>"; };
-		391717EE1B08FFDA00F9A484 /* SetGuiModeCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetGuiModeCmd.h; path = Commands/SetGuiModeCmd.h; sourceTree = "<group>"; };
+		391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetApplicationStateCmd.cpp; path = Commands/SetApplicationStateCmd.cpp; sourceTree = "<group>"; };
+		391717EE1B08FFDA00F9A484 /* SetApplicationStateCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetApplicationStateCmd.h; path = Commands/SetApplicationStateCmd.h; sourceTree = "<group>"; };
 		391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvAllTexCoordsCmd.cpp; path = Commands/MvAllTexCoordsCmd.cpp; sourceTree = "<group>"; };
 		391717F21B0A8A7300F9A484 /* MvAllTexCoordsCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvAllTexCoordsCmd.h; path = Commands/MvAllTexCoordsCmd.h; sourceTree = "<group>"; };
 		391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvTexCoordCmd.cpp; path = Commands/MvTexCoordCmd.cpp; sourceTree = "<group>"; };
 		391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvTexCoordCmd.h; path = Commands/MvTexCoordCmd.h; sourceTree = "<group>"; };
-		39203D331B1F9E9900280B0D /* ViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewState.cpp; sourceTree = "<group>"; };
-		39203D341B1F9E9900280B0D /* ViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewState.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -163,14 +160,18 @@
 		3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		3933D5D219BB87BD000ACA55 /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPiMapper.h; sourceTree = "<group>"; };
-		396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectionMappingViewState.cpp; sourceTree = "<group>"; };
-		396427951BAB3DC900A06716 /* ProjectionMappingViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionMappingViewState.h; sourceTree = "<group>"; };
-		396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SourceSelectionViewState.cpp; sourceTree = "<group>"; };
-		396427981BAB3EA600A06716 /* SourceSelectionViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceSelectionViewState.h; sourceTree = "<group>"; };
-		3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMappingViewState.cpp; sourceTree = "<group>"; };
-		3964279B1BAB3F2F00A06716 /* TextureMappingViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingViewState.h; sourceTree = "<group>"; };
-		3964279D1BAB446A00A06716 /* Keyboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Keyboard.cpp; path = Input/Keyboard.cpp; sourceTree = "<group>"; };
-		3964279E1BAB446A00A06716 /* Keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Keyboard.h; path = Input/Keyboard.h; sourceTree = "<group>"; };
+		396841691BC91F6F009F0BAE /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
+		3968416A1BC91F6F009F0BAE /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		3968416B1BC91F6F009F0BAE /* ApplicationBaseState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationBaseState.cpp; sourceTree = "<group>"; };
+		3968416C1BC91F6F009F0BAE /* ApplicationBaseState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationBaseState.h; sourceTree = "<group>"; };
+		3968416D1BC91F6F009F0BAE /* PresentationState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentationState.cpp; sourceTree = "<group>"; };
+		3968416E1BC91F6F009F0BAE /* PresentationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationState.h; sourceTree = "<group>"; };
+		3968416F1BC91F6F009F0BAE /* ProjectionMappingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectionMappingState.cpp; sourceTree = "<group>"; };
+		396841701BC91F6F009F0BAE /* ProjectionMappingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectionMappingState.h; sourceTree = "<group>"; };
+		396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SourceSelectionState.cpp; sourceTree = "<group>"; };
+		396841721BC91F6F009F0BAE /* SourceSelectionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceSelectionState.h; sourceTree = "<group>"; };
+		396841731BC91F6F009F0BAE /* TextureMappingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMappingState.cpp; sourceTree = "<group>"; };
+		396841741BC91F6F009F0BAE /* TextureMappingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingState.h; sourceTree = "<group>"; };
 		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		397EFC7D1A08FE720009286E /* FboSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboSource.cpp; sourceTree = "<group>"; };
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
@@ -288,10 +289,6 @@
 		39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManagerGui.cpp; sourceTree = "<group>"; };
 		39C1248619F1EB75005DF557 /* SurfaceManagerGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceManagerGui.h; sourceTree = "<group>"; };
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
-		39C31AE51B0FDC69005E3E09 /* MainView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MainView.cpp; sourceTree = "<group>"; };
-		39C31AE61B0FDC69005E3E09 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
-		39C31AEB1B0FDFC3005E3E09 /* PresentationViewState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentationViewState.cpp; sourceTree = "<group>"; };
-		39C31AEC1B0FDFC3005E3E09 /* PresentationViewState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentationViewState.h; sourceTree = "<group>"; };
 		39C787BB1AC20D2400691393 /* CmdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CmdManager.h; path = Commands/CmdManager.h; sourceTree = "<group>"; };
 		39C787BC1AC2111B00691393 /* CmdManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CmdManager.cpp; path = Commands/CmdManager.cpp; sourceTree = "<group>"; };
 		39FDD9EA1AC007BF00262205 /* BaseCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCmd.h; path = Commands/BaseCmd.h; sourceTree = "<group>"; };
@@ -410,20 +407,29 @@
 			path = ../../ofxGui/src;
 			sourceTree = "<group>";
 		};
-		396427931BAB3B4A00A06716 /* Input */ = {
+		396841681BC91F6F009F0BAE /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				3964279E1BAB446A00A06716 /* Keyboard.h */,
-				3964279D1BAB446A00A06716 /* Keyboard.cpp */,
+				3968416A1BC91F6F009F0BAE /* Application.h */,
+				396841691BC91F6F009F0BAE /* Application.cpp */,
+				3968416C1BC91F6F009F0BAE /* ApplicationBaseState.h */,
+				3968416B1BC91F6F009F0BAE /* ApplicationBaseState.cpp */,
+				3968416E1BC91F6F009F0BAE /* PresentationState.h */,
+				3968416D1BC91F6F009F0BAE /* PresentationState.cpp */,
+				396841701BC91F6F009F0BAE /* ProjectionMappingState.h */,
+				3968416F1BC91F6F009F0BAE /* ProjectionMappingState.cpp */,
+				396841721BC91F6F009F0BAE /* SourceSelectionState.h */,
+				396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */,
+				396841741BC91F6F009F0BAE /* TextureMappingState.h */,
+				396841731BC91F6F009F0BAE /* TextureMappingState.cpp */,
 			);
-			name = Input;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		396E8A2F190FEDD900705899 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				396427931BAB3B4A00A06716 /* Input */,
-				39C31AE41B0FDC69005E3E09 /* Views */,
+				396841681BC91F6F009F0BAE /* Application */,
 				39FDD9E81AC0076200262205 /* Commands */,
 				39C1246D19F187D5005DF557 /* UserInterface */,
 				39C1246219F0AB96005DF557 /* Surfaces */,
@@ -689,25 +695,6 @@
 			path = UserInterface;
 			sourceTree = "<group>";
 		};
-		39C31AE41B0FDC69005E3E09 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				39C31AE61B0FDC69005E3E09 /* MainView.h */,
-				39C31AE51B0FDC69005E3E09 /* MainView.cpp */,
-				39203D341B1F9E9900280B0D /* ViewState.h */,
-				39203D331B1F9E9900280B0D /* ViewState.cpp */,
-				39C31AEC1B0FDFC3005E3E09 /* PresentationViewState.h */,
-				39C31AEB1B0FDFC3005E3E09 /* PresentationViewState.cpp */,
-				396427951BAB3DC900A06716 /* ProjectionMappingViewState.h */,
-				396427941BAB3DC900A06716 /* ProjectionMappingViewState.cpp */,
-				396427981BAB3EA600A06716 /* SourceSelectionViewState.h */,
-				396427971BAB3EA600A06716 /* SourceSelectionViewState.cpp */,
-				3964279B1BAB3F2F00A06716 /* TextureMappingViewState.h */,
-				3964279A1BAB3F2F00A06716 /* TextureMappingViewState.cpp */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		39FDD9E81AC0076200262205 /* Commands */ = {
 			isa = PBXGroup;
 			children = (
@@ -722,8 +709,8 @@
 				39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */,
 				39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */,
 				39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */,
-				391717EE1B08FFDA00F9A484 /* SetGuiModeCmd.h */,
-				391717ED1B08FFDA00F9A484 /* SetGuiModeCmd.cpp */,
+				391717EE1B08FFDA00F9A484 /* SetApplicationStateCmd.h */,
+				391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */,
 				391717F21B0A8A7300F9A484 /* MvAllTexCoordsCmd.h */,
 				391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */,
 				391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */,
@@ -913,7 +900,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */,
-				39C31AE71B0FDC69005E3E09 /* MainView.cpp in Sources */,
 				39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */,
 				39C1247E19F187D5005DF557 /* ProjectionEditor.cpp in Sources */,
 				39C1244619EE9589005DF557 /* RecursiveDirectoryIteratorStategies.cpp in Sources */,
@@ -922,35 +908,35 @@
 				39C1243719EE9589005DF557 /* ByteBufferUtils.cpp in Sources */,
 				3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */,
 				3933D5D319BB87BD000ACA55 /* ofxBaseGui.cpp in Sources */,
-				39203D351B1F9E9900280B0D /* ViewState.cpp in Sources */,
 				39C1243C19EE9589005DF557 /* DirectoryFilter.cpp in Sources */,
 				3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */,
 				39C1243619EE9589005DF557 /* ByteBufferReader.cpp in Sources */,
-				3964279F1BAB446A00A06716 /* Keyboard.cpp in Sources */,
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */,
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				39C1244719EE9589005DF557 /* RegexPathFilter.cpp in Sources */,
-				3964279C1BAB3F2F00A06716 /* TextureMappingViewState.cpp in Sources */,
 				39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */,
 				39C1247C19F187D5005DF557 /* BaseJoint.cpp in Sources */,
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
 				39C1243D19EE9589005DF557 /* DirectoryUtils.cpp in Sources */,
-				396427991BAB3EA600A06716 /* SourceSelectionViewState.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
 				39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */,
 				3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */,
+				3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */,
 				39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */,
 				39C1244519EE9589005DF557 /* RecursiveDirectoryIterator.cpp in Sources */,
 				39C1243919EE9589005DF557 /* COBSEncoding.cpp in Sources */,
 				39C1244919EE9589005DF557 /* snappy-sinksource.cc in Sources */,
 				39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */,
+				396841771BC91F6F009F0BAE /* PresentationState.cpp in Sources */,
 				39A9AAF21B054FC300AA83BC /* MvSurfaceVertCmd.cpp in Sources */,
 				39C1244319EE9589005DF557 /* LinkFilter.cpp in Sources */,
 				39C1245919F086A9005DF557 /* BaseSource.cpp in Sources */,
 				39C1244019EE9589005DF557 /* FileExtensionFilter.cpp in Sources */,
+				396841751BC91F6F009F0BAE /* Application.cpp in Sources */,
+				396841761BC91F6F009F0BAE /* ApplicationBaseState.cpp in Sources */,
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
 				39C1246919F0AB96005DF557 /* BaseSurface.cpp in Sources */,
 				39C1245E19F08965005DF557 /* ImageSource.cpp in Sources */,
@@ -963,18 +949,19 @@
 				39C1244219EE9589005DF557 /* HiddenFileFilter.cpp in Sources */,
 				39C1244819EE9589005DF557 /* SearchPath.cpp in Sources */,
 				39C1248019F187D5005DF557 /* SourcesEditor.cpp in Sources */,
-				391717EF1B08FFDA00F9A484 /* SetGuiModeCmd.cpp in Sources */,
+				391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */,
 				39C1243F19EE9589005DF557 /* DirectoryWatcherManager.cpp in Sources */,
 				39C1243519EE9589005DF557 /* ByteBuffer.cpp in Sources */,
 				39C1246B19F0AB96005DF557 /* TriangleSurface.cpp in Sources */,
+				396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */,
 				39C1244419EE9589005DF557 /* PathFilterCollection.cpp in Sources */,
 				39A9AAEC1B053B4200AA83BC /* SelSurfaceCmd.cpp in Sources */,
 				39C1243319EE9589005DF557 /* lz4.c in Sources */,
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
-				39C31AED1B0FDFC3005E3E09 /* PresentationViewState.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
 				391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */,
+				396841781BC91F6F009F0BAE /* ProjectionMappingState.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				39C1244B19EE9589005DF557 /* snappy.cc in Sources */,
 				3933D5D719BB87BD000ACA55 /* ofxPanel.cpp in Sources */,
@@ -985,7 +972,6 @@
 				397EFC821A09047C0009286E /* CustomSource.cpp in Sources */,
 				39C1243819EE9589005DF557 /* ByteBufferWriter.cpp in Sources */,
 				3933D5D519BB87BD000ACA55 /* ofxGuiGroup.cpp in Sources */,
-				396427961BAB3DC900A06716 /* ProjectionMappingViewState.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
