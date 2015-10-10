@@ -26,26 +26,34 @@ namespace ofx {
         
         // Here we handle application state changes only
         void Application::onKeyPressed(ofKeyEventArgs & args) {
+            
+            // For now we set the state of the new system and also the old
+            // before it is completely ported to the state system.
+            
             switch (args.key) {
                 case '1':
                     _ofxPiMapper->getCmdManager().exec(
                         new ofx::piMapper::SetApplicationStateCmd(
-                            this, PresentationState::instance()));
+                            this, PresentationState::instance(),
+                            &_ofxPiMapper->getGui(), GuiMode::NONE));
                     break;
                 case '2':
                     _ofxPiMapper->getCmdManager().exec(
                         new ofx::piMapper::SetApplicationStateCmd(
-                            this, TextureMappingState::instance()));
+                            this, TextureMappingState::instance(),
+                            &_ofxPiMapper->getGui(), GuiMode::TEXTURE_MAPPING));
                     break;
                 case '3':
                     _ofxPiMapper->getCmdManager().exec(
                         new ofx::piMapper::SetApplicationStateCmd(
-                            this, ProjectionMappingState::instance()));
+                            this, ProjectionMappingState::instance(),
+                            &_ofxPiMapper->getGui(), GuiMode::PROJECTION_MAPPING));
                     break;
                 case '4':
                     _ofxPiMapper->getCmdManager().exec(
                         new ofx::piMapper::SetApplicationStateCmd(
-                            this, SourceSelectionState::instance()));
+                            this, SourceSelectionState::instance(),
+                            &_ofxPiMapper->getGui(), GuiMode::SOURCE_SELECTION));
                     break;
                 default:
                     break;

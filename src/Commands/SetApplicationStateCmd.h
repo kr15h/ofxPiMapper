@@ -14,7 +14,9 @@ namespace ofx {
             public:
                 SetApplicationStateCmd(
                     Application * app,
-                    ApplicationBaseState * st);
+                    ApplicationBaseState * st,
+                    SurfaceManagerGui * gui,
+                    int mode);
 
                 void exec();
                 void undo();
@@ -23,6 +25,11 @@ namespace ofx {
                 Application * _application;
                 ApplicationBaseState * _prevApplicationState;
                 ApplicationBaseState * _applicationState;
+            
+                // TODO: Remove these after porting to app state system is done
+                SurfaceManagerGui * _gui;
+                int _prevGuiMode;
+                int _mode;
         };
         
     } // namespace piMapper

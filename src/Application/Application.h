@@ -11,6 +11,9 @@
 #include "TextureMappingState.h"
 #include "SourceSelectionState.h"
 
+// TODO: To be removed.
+#include "GuiMode.h"
+
 class ofxPiMapper;
 
 namespace ofx {
