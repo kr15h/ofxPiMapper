@@ -10,7 +10,6 @@
 #include "BaseCmd.h"
 #include "CmdManager.h"
 #include "RmSurfaceCmd.h"
-#include "SetGuiModeCmd.h"
 
 // Main view with state design pattern
 #include "Application.h" // Main application entry point
@@ -20,7 +19,7 @@
 
 namespace ofx {
     namespace piMapper {
-        class Keyboard;
+        class Application;
     }
 }
 
