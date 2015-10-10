@@ -32,7 +32,7 @@ void ofxPiMapper::setup(){
     
     ofLogNotice("ofxPiMapper") << "Done setting up";
     
-    _mainView = new ofx::piMapper::MainView();
+    _application = new ofx::piMapper::Application();
     _keyboard = new ofx::piMapper::Keyboard(this);
 }
 
@@ -71,7 +71,7 @@ void ofxPiMapper::draw(){
     // TODO: remove undo test completely
     //ofDrawBitmapStringHighlight(ofToString(undoTestValue), 200, 200);
     
-    _mainView->draw();
+    _application->draw();
     
 } // draw
 

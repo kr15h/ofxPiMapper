@@ -1,9 +1,3 @@
-// ofxPiMapper
-// Author: Krisjanis Rijnieks
-
-// On using prefixes like m or p (mMemberVariable, pMyPointer)
-// http://stackoverflow.com/questions/1228161/why-use-prefixes-on-member-variables-in-c-classes
-
 #pragma once
 
 #include "ofMain.h"
@@ -19,7 +13,7 @@
 #include "SetGuiModeCmd.h"
 
 // Main view with state design pattern
-#include "MainView.h"
+#include "Application.h" // Main application entry point
 #include "Keyboard.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
@@ -78,6 +72,6 @@ class ofxPiMapper{
         ofx::piMapper::SurfaceManagerGui gui;
     
     
-        ofx::piMapper::MainView * _mainView;
+        ofx::piMapper::Application * _application;
         ofx::piMapper::Keyboard * _keyboard;
 };
