@@ -14,7 +14,6 @@
 
 // Main view with state design pattern
 #include "Application.h" // Main application entry point
-#include "Keyboard.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -73,5 +72,4 @@ class ofxPiMapper{
     
     
         ofx::piMapper::Application * _application;
-        ofx::piMapper::Keyboard * _keyboard;
 };

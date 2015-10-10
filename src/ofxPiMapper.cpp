@@ -32,8 +32,7 @@ void ofxPiMapper::setup(){
     
     ofLogNotice("ofxPiMapper") << "Done setting up";
     
-    _application = new ofx::piMapper::Application();
-    _keyboard = new ofx::piMapper::Keyboard(this);
+    _application = new ofx::piMapper::Application(this);
 }
 
 void ofxPiMapper::stateSetup() {
