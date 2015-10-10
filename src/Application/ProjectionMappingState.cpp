@@ -15,5 +15,34 @@ namespace ofx {
         void ProjectionMappingState::draw(Application * app) {
             ofDrawBitmapString("Projection Mapping State", 10, 20);
         }
+        
+        void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args) {
+            switch (args.key) {
+                
+                case 't':
+                    app->getOfxPiMapper()->getCmdManager().exec(
+                        new AddSurfaceCmd(
+                            app->getOfxPiMapper(),
+                            SurfaceType::TRIANGLE_SURFACE)
+                    );
+                    break;
+                    
+                case 'q':
+                    app->getOfxPiMapper()->getCmdManager().exec(
+                        new AddSurfaceCmd(
+                            app->getOfxPiMapper(),
+                            SurfaceType::QUAD_SURFACE)
+                    );
+                    break;
+                    
+                case OF_KEY_BACKSPACE:
+                    app->getOfxPiMapper()->getCmdManager().exec(
+                        new RmSurfaceCmd(app->getOfxPiMapper()));
+                    break;
+                
+                default:
+                    break;
+            }
+        }
     }
 }

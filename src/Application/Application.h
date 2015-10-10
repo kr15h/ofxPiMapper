@@ -4,7 +4,9 @@
 #include "ofLog.h"
 
 #include "ofxPiMapper.h"
+
 #include "SetApplicationStateCmd.h"
+
 #include "ApplicationBaseState.h"
 #include "PresentationState.h"
 #include "ProjectionMappingState.h"
@@ -27,6 +29,7 @@ namespace ofx {
                 ~Application();
             
                 ApplicationBaseState * getState();
+                ofxPiMapper * getOfxPiMapper(); // Temporary method.
             
                 void draw();
                 void onKeyPressed(ofKeyEventArgs & args);

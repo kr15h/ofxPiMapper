@@ -28,6 +28,7 @@
 		396841781BC91F6F009F0BAE /* ProjectionMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3968416F1BC91F6F009F0BAE /* ProjectionMappingState.cpp */; };
 		396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */; };
 		3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841731BC91F6F009F0BAE /* TextureMappingState.cpp */; };
+		396841821BC93DDC009F0BAE /* AddSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
@@ -172,6 +173,8 @@
 		396841721BC91F6F009F0BAE /* SourceSelectionState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceSelectionState.h; sourceTree = "<group>"; };
 		396841731BC91F6F009F0BAE /* TextureMappingState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureMappingState.cpp; sourceTree = "<group>"; };
 		396841741BC91F6F009F0BAE /* TextureMappingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingState.h; sourceTree = "<group>"; };
+		396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddSurfaceCmd.cpp; path = Commands/AddSurfaceCmd.cpp; sourceTree = "<group>"; };
+		396841811BC93DDC009F0BAE /* AddSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddSurfaceCmd.h; path = Commands/AddSurfaceCmd.h; sourceTree = "<group>"; };
 		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		397EFC7D1A08FE720009286E /* FboSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboSource.cpp; sourceTree = "<group>"; };
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
@@ -701,6 +704,8 @@
 				39FDD9EA1AC007BF00262205 /* BaseCmd.h */,
 				39C787BB1AC20D2400691393 /* CmdManager.h */,
 				39C787BC1AC2111B00691393 /* CmdManager.cpp */,
+				396841811BC93DDC009F0BAE /* AddSurfaceCmd.h */,
+				396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */,
 				39A9AAF11B054FC300AA83BC /* MvSurfaceVertCmd.h */,
 				39A9AAF01B054FC300AA83BC /* MvSurfaceVertCmd.cpp */,
 				39A9AAEB1B053B4200AA83BC /* SelSurfaceCmd.h */,
@@ -951,6 +956,7 @@
 				39C1248019F187D5005DF557 /* SourcesEditor.cpp in Sources */,
 				391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */,
 				39C1243F19EE9589005DF557 /* DirectoryWatcherManager.cpp in Sources */,
+				396841821BC93DDC009F0BAE /* AddSurfaceCmd.cpp in Sources */,
 				39C1243519EE9589005DF557 /* ByteBuffer.cpp in Sources */,
 				39C1246B19F0AB96005DF557 /* TriangleSurface.cpp in Sources */,
 				396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */,

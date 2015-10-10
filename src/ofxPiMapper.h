@@ -35,11 +35,6 @@ class ofxPiMapper{
         void keyPressed(ofKeyEventArgs& args);
         
         void addFboSource(ofx::piMapper::FboSource& fboSource);
-        
-        // Discussion:
-        // Maybe it makes more sense to use create prefix instead of add
-        // in addTriangleSurface and so on, so we get createTriangleSurface.
-        // TODO: Copy/move these methods to SurfaceManager (not sure)
         void addTriangleSurface();
         void addQuadSurface();
         

@@ -20,6 +20,10 @@ namespace ofx {
             return _state;
         }
         
+        ofxPiMapper * Application::getOfxPiMapper() {
+            return _ofxPiMapper;
+        }
+        
         void Application::draw(){
             _state->draw(this);
         }
@@ -56,6 +60,8 @@ namespace ofx {
                             &_ofxPiMapper->getGui(), GuiMode::SOURCE_SELECTION));
                     break;
                 default:
+                    // All the other keypresses are handled by the application state onKeyPressed
+                    _state->onKeyPressed(this, args);
                     break;
             }
         }

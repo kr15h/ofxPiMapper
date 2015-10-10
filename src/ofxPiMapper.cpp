@@ -79,49 +79,14 @@ void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
     
     switch (args.key) {
         
-        /*
-        case '1':
-            if (gui.getMode() != ofx::piMapper::GuiMode::NONE) {
-                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
-                    ofx::piMapper::GuiMode::NONE));
-            }
-            break;
-        case '2':
-            if (gui.getMode() != ofx::piMapper::GuiMode::TEXTURE_MAPPING) {
-                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
-                    ofx::piMapper::GuiMode::TEXTURE_MAPPING));
-            }
-            break;
-        case '3':
-            if (gui.getMode() != ofx::piMapper::GuiMode::PROJECTION_MAPPING) {
-                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
-                    ofx::piMapper::GuiMode::PROJECTION_MAPPING));
-            }
-            break;
-        case '4':
-            if (gui.getMode() != ofx::piMapper::GuiMode::SOURCE_SELECTION) {
-                cmdManager.exec(new ofx::piMapper::SetGuiModeCmd(&gui,
-                    ofx::piMapper::GuiMode::SOURCE_SELECTION));
-            }
-            break;
-        */
         case 'i':
             bShowInfo = !bShowInfo;
-            break;
-        case 'q':
-            addQuadSurface();
-            break;
-        case 't':
-            addTriangleSurface();
             break;
         case 'f':
             ofToggleFullscreen();
             break;
         case 's':
             surfaceManager.saveXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
-            break;
-        case OF_KEY_BACKSPACE:
-            cmdManager.exec(new ofx::piMapper::RmSurfaceCmd((ofxPiMapper *)this));
             break;
         case 'z':
             // Undo any undo command operation

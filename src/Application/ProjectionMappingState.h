@@ -4,6 +4,8 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 #include "ofGraphics.h"
+#include "AddSurfaceCmd.h"
+#include "SurfaceType.h"
 
 namespace ofx {
     namespace piMapper {
@@ -12,6 +14,7 @@ namespace ofx {
             public:
                 static ProjectionMappingState * instance();
                 void draw(Application * app);
+                void onKeyPressed(Application * app, ofKeyEventArgs & args);
             
             private:
                 static ProjectionMappingState * _instance;

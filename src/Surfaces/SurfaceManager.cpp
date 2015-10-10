@@ -138,6 +138,14 @@ void SurfaceManager::removeSelectedSurface(){
     }
 }
 
+void SurfaceManager::removeSurface() {
+    if (!surfaces.size()) {
+        return;
+    }
+    delete surfaces.back();
+    surfaces.pop_back();
+}
+
 void SurfaceManager::clear() {
   // delete all extra allocations from the heap
   while (surfaces.size()) {

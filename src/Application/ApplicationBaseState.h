@@ -14,7 +14,7 @@ namespace ofx {
                 virtual void setState(Application * app, ApplicationBaseState * st);
             
                 // Event handler virtual methods
-                virtual void keyPressed(){};
+                virtual void onKeyPressed(Application * app, ofKeyEventArgs & args){};
         };
         
     } // namespace piMapper
