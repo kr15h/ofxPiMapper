@@ -12,8 +12,6 @@ namespace ofx {
             return _instance;
         }
         
-        void TextureMappingState::draw(Application * app) {
-            ofDrawBitmapString("Texture Mapping State", 10, 20);
-        }
+        void TextureMappingState::draw(Application * app) {}
     }
 }

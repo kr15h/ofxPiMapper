@@ -1,11 +1,7 @@
 #include "ofxPiMapper.h"
 
 ofxPiMapper::ofxPiMapper(): bShowInfo(false), isSetUp(false){
-    ofAddListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
-}
-
-ofxPiMapper::~ofxPiMapper(){
-    ofRemoveListener(ofEvents().keyPressed, this, &ofxPiMapper::keyPressed);
+    
 }
 
 void ofxPiMapper::setup(){
@@ -73,29 +69,6 @@ void ofxPiMapper::draw(){
     _application->draw();
     
 } // draw
-
-void ofxPiMapper::keyPressed(ofKeyEventArgs &args){
-    //ofLogNotice("ofxPiMapper") << "Key pressed: " << static_cast<char>(args.key);
-    
-    switch (args.key) {
-        
-        case 'i':
-            bShowInfo = !bShowInfo;
-            break;
-        case 'f':
-            ofToggleFullscreen();
-            break;
-        case 's':
-            surfaceManager.saveXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
-            break;
-        case 'z':
-            // Undo any undo command operation
-            cmdManager.undo();
-            break;
-        default:
-            break;
-    }
-} // keyPressed
 
 void ofxPiMapper::addFboSource(ofx::piMapper::FboSource &fboSource){
     mediaServer.addFboSource(fboSource);

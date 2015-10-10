@@ -12,9 +12,7 @@ namespace ofx {
             return _instance;
         }
         
-        void ProjectionMappingState::draw(Application * app) {
-            ofDrawBitmapString("Projection Mapping State", 10, 20);
-        }
+        void ProjectionMappingState::draw(Application * app) {}
         
         void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args) {
             switch (args.key) {

@@ -14,7 +14,6 @@ namespace ofx {
         
         void PresentationState::draw(Application * app) {
             ofSetColor(255, 255, 0);
-            ofDrawBitmapString("Presentation State", 10, 20);
         }
     }
 }

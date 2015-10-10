@@ -27,12 +27,10 @@ class ofxPiMapper{
     
     public:
         ofxPiMapper();
-        ~ofxPiMapper();
         
         void setup();
         void stateSetup();
         void draw();
-        void keyPressed(ofKeyEventArgs& args);
         
         void addFboSource(ofx::piMapper::FboSource& fboSource);
         void addTriangleSurface();
@@ -41,6 +39,7 @@ class ofxPiMapper{
         // Toggle help / info
         void showInfo() { bShowInfo = true; };
         void hideInfo() { bShowInfo = false; };
+        void toggleInfo() { bShowInfo = !bShowInfo; }
     
         // Getters
         ofx::piMapper::CmdManager & getCmdManager();

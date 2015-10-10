@@ -12,8 +12,6 @@ namespace ofx {
             return _instance;
         }
         
-        void SourceSelectionState::draw(Application * app) {
-            ofDrawBitmapString("Source Selection State", 10, 20);
-        }
+        void SourceSelectionState::draw(Application * app) {}
     }
 }
