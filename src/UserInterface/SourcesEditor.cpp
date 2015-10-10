@@ -90,7 +90,7 @@ namespace piMapper {
   void SourcesEditor::draw() {
     // Don't draw if there is no source selected
     if (surfaceManager->getSelectedSurface() == NULL) {
-      ofLogNotice("SourcesEditor") << "No surface selected";
+      //ofLogNotice("SourcesEditor") << "No surface selected";
       return;
     }
     if (imageSelector->size()) {
