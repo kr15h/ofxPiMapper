@@ -12,8 +12,6 @@ namespace ofx {
             return _instance;
         }
         
-        void PresentationState::draw(Application * app) {
-            ofSetColor(255, 255, 0);
-        }
+        void PresentationState::draw(Application * app) {}
     }
 }
