@@ -10,6 +10,7 @@ SurfaceManager::~SurfaceManager() { clear(); }
 
 void SurfaceManager::draw() {
   for (int i = 0; i < surfaces.size(); i++) {
+    ofSetColor(255, 255, 255, 255);
     surfaces[i]->draw();
   }
 }
