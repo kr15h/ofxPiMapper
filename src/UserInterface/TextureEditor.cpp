@@ -114,8 +114,10 @@ void TextureEditor::keyReleased(ofKeyEventArgs& args) {
 
 void TextureEditor::draw() {
   if (surface == NULL) return;
-
-  drawJoints();
+    
+    // Reset default color to white
+    ofSetColor(255, 255, 255, 255);
+    drawJoints();
 }
 
 void TextureEditor::drawJoints() {
