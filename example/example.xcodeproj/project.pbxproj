@@ -32,6 +32,7 @@
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
+		399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399953671BD54FF600D5B1F1 /* CrossSource.cpp */; };
 		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
 		39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */; };
@@ -180,6 +181,8 @@
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
 		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
+		399953671BD54FF600D5B1F1 /* CrossSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CrossSource.cpp; sourceTree = "<group>"; };
+		399953681BD54FF600D5B1F1 /* CrossSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossSource.h; sourceTree = "<group>"; };
 		39A867941B0D312400165378 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetSourceCmd.cpp; path = Commands/SetSourceCmd.cpp; sourceTree = "<group>"; };
 		39A867951B0D312400165378 /* SetSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetSourceCmd.h; path = Commands/SetSourceCmd.h; sourceTree = "<group>"; };
 		39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RmSurfaceCmd.cpp; path = Commands/RmSurfaceCmd.cpp; sourceTree = "<group>"; };
@@ -802,8 +805,10 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				397EFC801A09047C0009286E /* CustomSource.cpp */,
 				397EFC811A09047C0009286E /* CustomSource.h */,
+				397EFC801A09047C0009286E /* CustomSource.cpp */,
+				399953681BD54FF600D5B1F1 /* CrossSource.h */,
+				399953671BD54FF600D5B1F1 /* CrossSource.cpp */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -952,6 +957,7 @@
 				391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */,
 				397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */,
 				39C1244219EE9589005DF557 /* HiddenFileFilter.cpp in Sources */,
+				399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */,
 				39C1244819EE9589005DF557 /* SearchPath.cpp in Sources */,
 				39C1248019F187D5005DF557 /* SourcesEditor.cpp in Sources */,
 				391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */,
