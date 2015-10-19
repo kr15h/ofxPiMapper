@@ -43,6 +43,8 @@ namespace ofx {
             } else if (guiMode == GuiMode::TEXTURE_MAPPING) {
                 // draw the texture of the selected surface
                 if (surfaceManager->getSelectedSurface() != NULL) {
+                    // Reset default color to white first
+                    ofSetColor(255, 255, 255, 255);
                     surfaceManager->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
                 }
                 
