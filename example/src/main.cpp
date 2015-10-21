@@ -3,32 +3,35 @@
 #include <string>
 
 #ifdef TARGET_RASPBERRY_PI
-// Accept arguments in the Pi version
+
 int main(int argc, char* argv[]) {
   
-  bool fullscreen = false;
+    bool fullscreen = false;
   
-  if (argc > 0) {
-    std::string fullscreenFlag = "-f";
-    for (int i = 0; i < argc; i++) {
-      if (strcmp(argv[i], fullscreenFlag.c_str()) == 0) {
-        fullscreen = true;
-        break;
-      }
+    if (argc > 0) {
+        std::string fullscreenFlag = "-f";
+        for (int i = 0; i < argc; i++) {
+            if (strcmp(argv[i], fullscreenFlag.c_str()) == 0) {
+                fullscreen = true;
+                break;
+            }
+        }
     }
-  }
   
-  if (fullscreen) {
-    ofSetupOpenGL(600, 500, OF_FULLSCREEN);
-  } else {
-    ofSetupOpenGL(800, 450, OF_WINDOW);
-  }
+    if (fullscreen) {
+        ofSetupOpenGL(600, 500, OF_FULLSCREEN);
+    } else {
+        ofSetupOpenGL(800, 450, OF_WINDOW);
+    }
   
-  ofRunApp(new ofApp());
+    ofRunApp(new ofApp());
 }
+
 #else
+
 int main() {
-  ofSetupOpenGL(800, 600, OF_WINDOW);
-  ofRunApp(new ofApp());
+    ofSetupOpenGL(800, 600, OF_WINDOW);
+    ofRunApp(new ofApp());
 }
+
 #endif
