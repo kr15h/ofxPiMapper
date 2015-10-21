@@ -9,8 +9,8 @@ void ofApp::setup() {
     // a surface in XML settings.
     crossSource = new CrossSource();
     customSource = new CustomSource();
-    piMapper.addFboSource(*crossSource);
-    piMapper.addFboSource(*customSource);
+    piMapper.registerFboSource(*crossSource);
+    piMapper.registerFboSource(*customSource);
     piMapper.setup();
     
     // The info layer is hidden by default, press <i> to toggle
