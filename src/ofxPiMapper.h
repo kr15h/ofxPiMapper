@@ -5,14 +5,10 @@
 #include "SurfaceManagerGui.h"
 #include "MediaServer.h"
 #include "FboSource.h"
-
-// Command design pattern includes
 #include "BaseCmd.h"
 #include "CmdManager.h"
 #include "RmSurfaceCmd.h"
-
-// Main view with state design pattern
-#include "Application.h" // Main application entry point
+#include "Application.h" 
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -23,34 +19,23 @@ namespace ofx {
     }
 }
 
-class ofxPiMapper{
-    
+class ofxPiMapper {
     public:
         ofxPiMapper();
         
         void setup();
-        void stateSetup();
         void draw();
-        
-        void addFboSource(ofx::piMapper::FboSource& fboSource);
+        void registerFboSource(ofx::piMapper::FboSource & fboSource);
         void addTriangleSurface();
         void addQuadSurface();
-        
-        // Toggle help / info
         void showInfo() { bShowInfo = true; };
         void hideInfo() { bShowInfo = false; };
         void toggleInfo() { bShowInfo = !bShowInfo; }
     
-        // Getters
         ofx::piMapper::CmdManager & getCmdManager();
         ofx::piMapper::SurfaceManagerGui & getGui();
-        
-        // Discussion:
-        // Maybe these should be static as this would allow to access them
-        // from anywhere within ofxPiMapper.
-        ofx::piMapper::MediaServer& getMediaServer();
-        ofx::piMapper::SurfaceManager& getSurfaceManager();
-    
+        ofx::piMapper::MediaServer & getMediaServer();
+        ofx::piMapper::SurfaceManager & getSurfaceManager();
         ofx::piMapper::CmdManager cmdManager;
         ofx::piMapper::SurfaceManager surfaceManager;
     
@@ -58,11 +43,6 @@ class ofxPiMapper{
         bool isSetUp;
         bool bShowInfo;
         ofx::piMapper::MediaServer mediaServer;
-
-        // Discussion: Here now the GUI points only to surface manager, 
-        // maybe it should be as a separate layer?
         ofx::piMapper::SurfaceManagerGui gui;
-    
-    
         ofx::piMapper::Application * _application;
 };

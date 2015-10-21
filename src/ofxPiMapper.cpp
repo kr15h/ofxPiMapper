@@ -1,18 +1,17 @@
 #include "ofxPiMapper.h"
 
-ofxPiMapper::ofxPiMapper(): bShowInfo(false), isSetUp(false){
-    
+ofxPiMapper::ofxPiMapper() {
+    bShowInfo = false;
+    isSetUp = false;    
 }
 
-void ofxPiMapper::setup(){
+void ofxPiMapper::setup() {
     ofLogNotice("ofxPiMapper") << "Setting up...";
     
-    // Assign media server to other pi mapper components
     surfaceManager.setMediaServer(&mediaServer);
     gui.setMediaServer(&mediaServer);
     gui.setCmdManager(&cmdManager);
     
-    // Check if we have user surfaces defined, if not - load default
     if (ofFile::doesFileExist(PIMAPPER_USER_SURFACES_XML_FILE)){
         ofLogNotice("ofxPiMapper") << "Loading user surfaces from " << PIMAPPER_USER_SURFACES_XML_FILE;
         surfaceManager.loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
@@ -21,30 +20,20 @@ void ofxPiMapper::setup(){
         surfaceManager.loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE);
     }
     
-    // The GUI needs something to interface with
     gui.setSurfaceManager(&surfaceManager);
-    
     isSetUp = true;
-    
     ofLogNotice("ofxPiMapper") << "Done setting up";
-    
     _application = new ofx::piMapper::Application(this);
 }
 
-void ofxPiMapper::stateSetup() {
-    // TODO: test state imp
-}
-
-void ofxPiMapper::draw(){
+void ofxPiMapper::draw() {
     if (!isSetUp) {
         return;
     }
     
-    // Draw the piMapper GUI
     gui.draw();
     
     if (bShowInfo){
-        // Draw instructions
         stringstream ss;
         ss << "There are 4 modes:\n\n";
         ss << " 1. Presentation mode\n";
@@ -58,23 +47,19 @@ void ofxPiMapper::draw(){
         ss << "Press <s> to save the composition\n";
         ss << "Press <f> to toggle fullscreen\n";
         ss << "Press <i> to hide this message";
-        
-        ofDrawBitmapStringHighlight(ss.str(), 10, 20, ofColor(0, 0, 0, 100),
-                                                                ofColor(255, 255, 255, 200));
+        ofDrawBitmapStringHighlight(ss.str(), 10, 20, 
+            ofColor(0, 0, 0, 100),
+            ofColor(255, 255, 255, 200));
     }
-    
-    // TODO: remove undo test completely
-    //ofDrawBitmapStringHighlight(ofToString(undoTestValue), 200, 200);
-    
+
     _application->draw();
-    
 } // draw
 
-void ofxPiMapper::addFboSource(ofx::piMapper::FboSource &fboSource){
+void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource) {
     mediaServer.addFboSource(fboSource);
-} // addFboSource
+}
 
-void ofxPiMapper::addTriangleSurface(){
+void ofxPiMapper::addTriangleSurface() {
     int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
     
     vector<ofVec2f> vertices;
@@ -91,11 +76,9 @@ void ofxPiMapper::addTriangleSurface(){
     
     // Select this surface right away
     surfaceManager.selectSurface(surfaceManager.size() - 1);
-    
 } // addTriangleSurface
 
-void ofxPiMapper::addQuadSurface(){
-    
+void ofxPiMapper::addQuadSurface() {
     int surfaceType = ofx::piMapper::SurfaceType::QUAD_SURFACE;
     
     vector<ofVec2f> vertices;
@@ -115,7 +98,6 @@ void ofxPiMapper::addQuadSurface(){
     
     // select this surface right away
     surfaceManager.selectSurface(surfaceManager.size() - 1);
-    
 } // addQuadSurface
 
 ofx::piMapper::CmdManager & ofxPiMapper::getCmdManager() {
@@ -126,10 +108,10 @@ ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui() {
     return gui;
 }
 
-ofx::piMapper::MediaServer& ofxPiMapper::getMediaServer(){
+ofx::piMapper::MediaServer & ofxPiMapper::getMediaServer() {
     return mediaServer;
 }
 
-ofx::piMapper::SurfaceManager& ofxPiMapper::getSurfaceManager(){
+ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager() {
     return surfaceManager;
 }
