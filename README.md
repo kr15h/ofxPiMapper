@@ -31,7 +31,7 @@ As of Release 0.2.0 some refractoring has been done (thanks [aspeteRakete](https
 
 Licence
 ---
-ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE) file for further details.
+ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details.
 
 Installation
 ---
