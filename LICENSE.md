@@ -1,6 +1,6 @@
 ofxPiMapper is distributed under the [MIT License](https://secure.wikimedia.org/wikipedia/en/wiki/Mit_license). This gives everyone the freedoms to use ofxPiMapper in any context: commercial or non-commercial, public or private, open or closed source.
 
-Copyright (c) 2014, Krisjanis Rijnieks and Contributors
+**Copyright (c) 2014, Krisjanis Rijnieks and Contributors**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
