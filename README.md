@@ -133,7 +133,7 @@ Tested with 0.8.4 (OS X and Raspbian)
 
 Known issues
 ---
-Keyboard and mouse input is being lost sometimes on the Raspberry Pi. Not sure how and why. Probably because of bad drivers and it seems that Raspberry Pi keyboard and mouse code in openFrameworks is not quite ready yet. Some claim that the following commands solves the issue:
+Keyboard and mouse input is being lost sometimes when using a USB hub. Try not to use one. If problems still persist, try the following commands.
 
 ```bash
 sudo apt-get update && sudo apt-get dist-upgrade  
