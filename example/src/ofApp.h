@@ -4,6 +4,7 @@
 #include "ofxPiMapper.h"
 #include "CustomSource.h"
 #include "CrossSource.h"
+#include "VideoSource.h"
 
 class ofApp : public ofBaseApp {
     public:

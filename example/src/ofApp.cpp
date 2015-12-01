@@ -3,6 +3,9 @@
 void ofApp::setup() {
     ofBackground(0);
     
+    // Enable or disable audio for video sources globally
+    ofx::piMapper::VideoSource::enableAudio = true;
+    
     // Add our CustomSource to list of fbo sources of the piMapper
     // FBO sources should be added before piMapper.setup() so the
     // piMapper is able to load the source if it is assigned to
