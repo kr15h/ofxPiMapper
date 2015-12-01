@@ -2,6 +2,9 @@
 
 namespace ofx {
   namespace piMapper {
+    
+    bool VideoSource::enableAudio = false;
+    
     VideoSource::VideoSource() {
       //cout << "VideoSource constr" << endl;
       loadable = true;
@@ -28,7 +31,7 @@ namespace ofx {
       settings.useHDMIForAudio = true;	//default true
       settings.enableTexture = true;		//default true
       settings.enableLooping = true;		//default true
-      settings.enableAudio = false;		//default true, save resources by disabling
+      settings.enableAudio = VideoSource::enableAudio;		//default true, save resources by disabling
       //settings.doFlipTexture = true;		//default false
       omxPlayer = new ofxOMXPlayer();
       omxPlayer->setup(settings);
@@ -38,6 +41,7 @@ namespace ofx {
       videoPlayer = new ofVideoPlayer();
       videoPlayer->loadMovie(filePath);
       videoPlayer->setLoopState(OF_LOOP_NORMAL);
+      videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
       videoPlayer->play();
       texture = &(videoPlayer->getTextureReference());
       ofAddListener(ofEvents().update, this, &VideoSource::update);

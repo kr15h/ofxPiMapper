@@ -26,6 +26,11 @@ namespace ofx {
   namespace piMapper {
     class VideoSource : public BaseSource {
     public:
+      
+      // TODO: Create enableAudio() and disableAudio() methods
+      //       for live audio enabling and disabling.
+      static bool enableAudio;
+    
       VideoSource();
       ~VideoSource();
       std::string& getPath();
@@ -43,6 +48,7 @@ namespace ofx {
       // TODO: High Performance Video player on newer Macs
       ofVideoPlayer* videoPlayer;
 #endif
+      
     };
   }
 }
