@@ -27,7 +27,7 @@ namespace ofx {
             settings.useHDMIForAudio = true;
             settings.enableTexture = true;
             settings.enableLooping = true;
-            settings.enableAudio = VideoSource::enableAudio
+            settings.enableAudio = VideoSource::enableAudio;
             omxPlayer = new ofxOMXPlayer();
             omxPlayer->setup(settings);
             texture = &(omxPlayer->getTextureReference());
