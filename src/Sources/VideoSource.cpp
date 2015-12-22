@@ -33,11 +33,11 @@ namespace ofx {
             texture = &(omxPlayer->getTextureReference());
 #else
             videoPlayer = new ofVideoPlayer();
-            videoPlayer->loadMovie(filePath);
+            videoPlayer->load(filePath);
             videoPlayer->setLoopState(OF_LOOP_NORMAL);
             videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
             videoPlayer->play();
-            texture = &(videoPlayer->getTextureReference());
+            texture = &(videoPlayer->getTexture());
             ofAddListener(ofEvents().update, this, &VideoSource::update);
 #endif
             loaded = true;
