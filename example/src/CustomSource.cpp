@@ -36,7 +36,13 @@ void CustomSource::draw(){
 	ofClear(0);
 	//ofBackground(0);
 	ofSetColor(255);
-	for(int i = 0; i < rects.size(); i++){
-		ofRect(rects[i]);
-	}
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		for(int i = 0; i < rects.size(); i++){
+			ofDrawRectangle(rects[i]);
+		}
+	#else
+		for(int i = 0; i < rects.size(); i++){
+			ofRect(rects[i]);
+		}
+	#endif
 }

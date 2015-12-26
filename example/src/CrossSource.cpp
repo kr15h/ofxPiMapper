@@ -8,8 +8,11 @@ CrossSource::CrossSource(){
 void CrossSource::draw(){
 	ofClear(0);
 	ofSetColor(255, 255, 0, 255);
-	ofRect(0, 0, getWidth(), getHeight());
-
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		ofDrawRectangle(0, 0, getWidth(), getHeight());
+	#else
+		ofRect(0, 0, getWidth(), getHeight());
+	#endif
 	ofSetColor(0, 0, 0, 255);
 	ofSetLineWidth(5);
 
@@ -17,10 +20,17 @@ void CrossSource::draw(){
 
 	ofPoint startPoint = ofPoint(10, y);
 	ofPoint endPoint = ofPoint(getWidth() - 10, getHeight() - y);
-	ofLine(startPoint, endPoint);
-
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		ofDrawLine(startPoint, endPoint);
+	#else
+		ofLine(startPoint, endPoint);
+	#endif
 	float tempY = startPoint.y;
 	startPoint.y = endPoint.y;
 	endPoint.y = tempY;
-	ofLine(startPoint, endPoint);
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		ofDrawLine(startPoint, endPoint);
+	#else
+		ofLine(startPoint, endPoint);
+	#endif
 }
