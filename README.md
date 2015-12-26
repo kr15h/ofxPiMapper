@@ -133,7 +133,7 @@ BACKSPACE | Delete surface
 
 Compatibility
 ---
-Tested with 0.8.4 (OS X and Raspbian)
+Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite)
 
 Known issues
 ---
