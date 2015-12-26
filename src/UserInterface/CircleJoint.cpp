@@ -30,7 +30,11 @@ void CircleJoint::draw(){
 		ofSetColor(fillColor);
 	}
 
-	ofCircle(position.x, position.y, radius);
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		ofDrawCircle(position.x, position.y, radius);
+	#else
+		ofCircle(position.x, position.y, radius);
+	#endif
 	ofNoFill();
 
 	if(selected){
@@ -40,7 +44,11 @@ void CircleJoint::draw(){
 	}
 
 	ofSetLineWidth(strokeWidth);
-	ofCircle(position.x, position.y, radius);
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		ofDrawCircle(position.x, position.y, radius);
+	#else
+		ofCircle(position.x, position.y, radius);
+	#endif
 	ofPopStyle();
 }
 

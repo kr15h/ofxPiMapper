@@ -18,11 +18,19 @@ void ImageSource::loadImage(std::string & filePath){
 	setNameFromPath(filePath);
 	//cout << "path: " << path << endl;
 	image = new ofImage();
-	if(!image->loadImage(filePath)){
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		if(!image->load(filePath)){
+	#else
+		if(!image->loadImage(filePath)){
+	#endif
 		ofLogWarning("ImageSource") << "Could not load image";
 		//std::exit(EXIT_FAILURE);
 	}
-	texture = &image->getTextureReference();
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		texture = &image->getTexture();
+	#else
+		texture = &image->getTextureReference();
+	#endif
 	loaded = true;
 }
 

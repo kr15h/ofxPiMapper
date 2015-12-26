@@ -83,8 +83,12 @@ void FboSource::allocate(int width, int height){
 	fbo->begin();
 	ofClear(0);
 	fbo->end();
-
-	texture = &(fbo->getTextureReference());
+	
+	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
+		texture = &(fbo->getTexture());
+	#else
+		texture = &(fbo->getTextureReference());
+	#endif
 }
 
 void FboSource::clear(){
