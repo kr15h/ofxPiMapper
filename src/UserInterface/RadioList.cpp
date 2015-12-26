@@ -32,7 +32,7 @@ void RadioList::setup(vector<string>& labels, vector<string>& values) {
     toggle->setName(labels[i]);
     toggle->addListener(this, &RadioList::onToggleClicked);
     guiGroup.add(toggle);
-#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 8 && OF_VERSION_PATCH >= 2
+#if OF_VERSION_MAJOR == 0 && (OF_VERSION_MINOR >= 8 && OF_VERSION_PATCH >= 2) || (OF_VERSION_MINOR >= 9 && OF_VERSION_PATCH >= 0)
     toggle->registerMouseEvents();
 #endif
   }
