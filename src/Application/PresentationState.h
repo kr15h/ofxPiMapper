@@ -6,16 +6,18 @@
 #include "ofGraphics.h"
 
 namespace ofx {
-    namespace piMapper {
-        
-        class PresentationState : public ApplicationBaseState {
-            public:
-                static PresentationState * instance();
-                void draw(Application * app);
-            
-            private:
-                static PresentationState * _instance;
-        };
-        
-    } // namespace piMapper
+namespace piMapper {
+
+class PresentationState : public ApplicationBaseState {
+
+	public:
+		static PresentationState * instance();
+		void draw(Application * app);
+
+	private:
+		static PresentationState * _instance;
+
+};
+
+} // namespace piMapper
 } // namespace ofx

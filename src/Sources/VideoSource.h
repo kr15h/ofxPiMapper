@@ -4,39 +4,42 @@
 #include "BaseSource.h"
 
 #ifdef TARGET_RASPBERRY_PI
-    #include "ofxOMXPlayer.h"
+ #include "ofxOMXPlayer.h"
 #endif
 
 namespace ofx {
-    namespace piMapper {
-        class VideoSource : public BaseSource {
-            public:
-      
-                // TODO: Create enableAudio() and disableAudio() methods
-                //       for live audio enabling and disabling.
-                static bool enableAudio;
-    
-                VideoSource();
-                ~VideoSource();
-                
-                std::string & getPath();
-                void loadVideo(std::string & path);
-                void clear();
+namespace piMapper {
 
-#ifndef TARGET_RASPBERRY_PI
-                void update(ofEventArgs & args);
-#endif
-      
-            private:
+class VideoSource : public BaseSource {
 
-#ifdef TARGET_RASPBERRY_PI
-                ofxOMXPlayer * omxPlayer; // Naming different for less confusion
-#else 
-                // Go with ofVideoPlayer or
-                // TODO: High Performance Video player on newer Macs
-                ofVideoPlayer * videoPlayer;
-#endif
-      
-        };
-    }
-}
+	public:
+
+		// TODO: Create enableAudio() and disableAudio() methods
+		//       for live audio enabling and disabling.
+		static bool enableAudio;
+
+		VideoSource();
+		~VideoSource();
+
+		std::string & getPath();
+		void loadVideo(std::string & path);
+		void clear();
+
+		#ifndef TARGET_RASPBERRY_PI
+			void update(ofEventArgs & args);
+		#endif
+
+	private:
+
+		#ifdef TARGET_RASPBERRY_PI
+			ofxOMXPlayer * omxPlayer;     // Naming different for less confusion
+		#else
+			// Go with ofVideoPlayer or
+			// TODO: High Performance Video player on newer Macs
+			ofVideoPlayer * videoPlayer;
+		#endif
+
+};
+
+} // namespace piMapper
+} // namespace ofx

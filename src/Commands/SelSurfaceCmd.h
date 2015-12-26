@@ -9,26 +9,26 @@
 #include "SurfaceManager.h"
 #include "ProjectionEditor.h"
 
-namespace ofx{
-    namespace piMapper{
-        
-        class SelSurfaceCmd : public BaseUndoCmd{
-        
-            public:
-                SelSurfaceCmd(
-                    SurfaceManager * surfaceManager,
-                    BaseSurface * surfaceToSelect,
-                    ProjectionEditor * projectionEditor);
-                void exec();
-                void undo();
-    
-            private:
-                BaseSurface * _surfaceToSelect;
-                SurfaceManager * _surfaceManager;
-                BaseSurface * _prevSelectedSurface;
-                ProjectionEditor * _projectionEditor;
-        };
-        
-    } // namespace piMapper
+namespace ofx {
+namespace piMapper {
+
+class SelSurfaceCmd : public BaseUndoCmd {
+
+	public:
+		SelSurfaceCmd(SurfaceManager * surfaceManager,
+					  BaseSurface * surfaceToSelect,
+					  ProjectionEditor * projectionEditor);
+		void exec();
+		void undo();
+
+	private:
+		BaseSurface * _surfaceToSelect;
+		SurfaceManager * _surfaceManager;
+		BaseSurface * _prevSelectedSurface;
+		ProjectionEditor * _projectionEditor;
+
+};
+
+} // namespace piMapper
 } // namespace ofx
 

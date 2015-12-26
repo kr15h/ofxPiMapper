@@ -8,22 +8,23 @@
 #include "CircleJoint.h"
 #include "TextureEditor.h"
 
-namespace ofx{
-    namespace piMapper{
-        
-        class MvTexCoordCmd : public BaseUndoCmd{
-        
-            public:
-                MvTexCoordCmd(int jointIndex, TextureEditor * texEditor);
-                void exec();
-                void undo();
-    
-            private:
-                ofVec2f _jointPosition;
-                int _jointIndex;
-                TextureEditor * _texEditor;
-            };
-        
-    } // namespace piMapper
+namespace ofx {
+namespace piMapper {
+
+class MvTexCoordCmd : public BaseUndoCmd {
+
+	public:
+		MvTexCoordCmd(int jointIndex, TextureEditor * texEditor);
+		void exec();
+		void undo();
+
+	private:
+		ofVec2f _jointPosition;
+		int _jointIndex;
+		TextureEditor * _texEditor;
+
+};
+
+} // namespace piMapper
 } // namespace ofx
 

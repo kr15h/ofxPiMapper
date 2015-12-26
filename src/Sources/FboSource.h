@@ -8,38 +8,40 @@
 #define PIMAPPER_FBO_SOURCE_DEF_HEIGHT 500
 
 namespace ofx {
-    namespace piMapper {
+namespace piMapper {
 
-        class FboSource : public BaseSource {
-            public:
-                FboSource();
-                ~FboSource();
-      
-                // Override these in your custom FBO source
-                virtual void setup() {};
-                virtual void update() {};
-                virtual void draw() {};
-                virtual void exit() {};
+class FboSource : public BaseSource {
 
-                // The only method from BaseSource to be overriden
-                void clear();
+	public:
+		FboSource();
+		~FboSource();
 
-                // App listeners
-                void addAppListeners();
-                void removeAppListeners();
-                void onAppSetup(ofEventArgs & args);
-                void onAppUpdate(ofEventArgs & args);
-                void onAppDraw(ofEventArgs & args);
-                void onAppExit(ofEventArgs & args);
-      
-            protected:
-                ofFbo * fbo;
-                void allocate(int width, int height);
+		// Override these in your custom FBO source
+		virtual void setup(){}
+		virtual void update(){}
+		virtual void draw(){}
+		virtual void exit(){}
 
-                // Some handy getters
-                int getWidth();
-                int getHeight();
-        };
+		// The only method from BaseSource to be overriden
+		void clear();
 
-    } // namespace piMapper
+		// App listeners
+		void addAppListeners();
+		void removeAppListeners();
+		void onAppSetup(ofEventArgs & args);
+		void onAppUpdate(ofEventArgs & args);
+		void onAppDraw(ofEventArgs & args);
+		void onAppExit(ofEventArgs & args);
+
+	protected:
+		ofFbo * fbo;
+		void allocate(int width, int height);
+
+		// Some handy getters
+		int getWidth();
+		int getHeight();
+
+};
+
+} // namespace piMapper
 } // namespace ofx

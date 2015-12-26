@@ -8,17 +8,19 @@
 #include "SurfaceType.h"
 
 namespace ofx {
-    namespace piMapper {
-        
-        class ProjectionMappingState : public ApplicationBaseState {
-            public:
-                static ProjectionMappingState * instance();
-                void draw(Application * app);
-                void onKeyPressed(Application * app, ofKeyEventArgs & args);
-            
-            private:
-                static ProjectionMappingState * _instance;
-        };
-        
-    } // namespace piMapper
+namespace piMapper {
+
+class ProjectionMappingState : public ApplicationBaseState {
+
+	public:
+		static ProjectionMappingState * instance();
+		void draw(Application * app);
+		void onKeyPressed(Application * app, ofKeyEventArgs & args);
+
+	private:
+		static ProjectionMappingState * _instance;
+
+};
+
+} // namespace piMapper
 } // namespace ofx

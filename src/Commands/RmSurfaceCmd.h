@@ -10,21 +10,22 @@
 
 class ofxPiMapper;
 
-namespace ofx{
-    namespace piMapper{
-        
-        class RmSurfaceCmd : public BaseUndoCmd{
-        
-            public:
-                RmSurfaceCmd(ofxPiMapper * app);
-                void exec();
-                void undo();
-    
-            private:
-                ofxPiMapper * _app;
-                BaseSurface * _surface;
-        };
-        
-    } // namespace piMapper
+namespace ofx {
+namespace piMapper {
+
+class RmSurfaceCmd : public BaseUndoCmd {
+
+	public:
+		RmSurfaceCmd(ofxPiMapper * app);
+		void exec();
+		void undo();
+
+	private:
+		ofxPiMapper * _app;
+		BaseSurface * _surface;
+
+};
+
+} // namespace piMapper
 } // namespace ofx
 
