@@ -59,6 +59,21 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
 	mediaServer.addFboSource(fboSource);
 }
 
+bool ofxPiMapper::loadXmlSettings(string fileName){
+	/*
+	if(surfaceManager == 0){
+		ofLogNotice("ofxPiMapper::loadXmlSettings()") << "Could not load XML settings as the surfaceManager is not initialized yet.";
+		return;
+	}
+	*/
+	if(!ofFile::doesFileExist(fileName)){
+		ofLogNotice("ofxPiMapper::loadXmlSettings()") << "Settings file does not exist.";
+		return false;
+	}
+	surfaceManager.loadXmlSettings(fileName);
+	return true;
+}
+
 void ofxPiMapper::addTriangleSurface(){
 	int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
 
