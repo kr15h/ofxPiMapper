@@ -40,6 +40,7 @@ class SurfaceManager {
 
 		void clear();
 		void saveXmlSettings(string fileName);
+		// TODO: Make it bool.
 		void loadXmlSettings(string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
 
