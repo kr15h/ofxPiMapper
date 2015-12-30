@@ -133,7 +133,11 @@ BACKSPACE | Delete surface
 
 Compatibility
 ---
-Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite)
+Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite). It works.
+```
+TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
+```
+
 
 Known issues
 ---
