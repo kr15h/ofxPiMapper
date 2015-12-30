@@ -14,7 +14,7 @@ ofxPiMapper features FBO sources that allow you to create generative openFramewo
 ```
 ofxPiMapper * mapper = new ofxPiMapper();
 CustomSource * source = new CustomSource();
-mapper.addFboSource(*source);
+mapper.registerFboSource(*source);
 mapper.setup(); // Setup must be run after adding the FBO source
 ```
 
