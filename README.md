@@ -27,7 +27,7 @@ Development
 ---
 As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
 
-Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
+Currently for bigger planned features [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie) is used. For bugfixes and small improvements, changes are pushed directly to the `master` branch.
 
 I'm trying to organize the project by adding future release version milestones and assigning specific issues as TODO items to them. If you notice something strange or see that there is something that can be done in a better way, don't hesitate and add an issue.
 
