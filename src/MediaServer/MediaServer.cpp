@@ -85,11 +85,11 @@ BaseSource * MediaServer::loadMedia(string & path, int mediaType){
 		ofLogFatalError("MediaServer") << ss.str();
 		std::exit(EXIT_FAILURE);
 	}
-	return NULL;
+	return 0;
 }
 
 BaseSource * MediaServer::loadImage(string & path){
-	ImageSource * imageSource = NULL;
+	ImageSource * imageSource = 0;
 	// Check if this image is already loaded
 	bool isImageLoaded = false;
 	if(loadedSources.count(path)){
@@ -158,7 +158,7 @@ void MediaServer::unloadImage(string & path){
 }
 
 BaseSource * MediaServer::loadVideo(string & path){
-	VideoSource * videoSource = NULL;
+	VideoSource * videoSource = 0;
 	// Check if this video is already loaded
 	bool isVideoLoaded = false;
 	if(loadedSources.count(path)){
@@ -302,7 +302,7 @@ void MediaServer::addFboSource(ofx::piMapper::FboSource & fboSource){
 BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
 	ofLogNotice("MediaServer") << "Attempting to load FBO source with name " << fboSourceName;
 	// Search for FBO source name in our storage
-	FboSource * source = NULL;
+	FboSource * source = 0;
 	for(int i = 0; i < fboSources.size(); i++){
 		if(fboSources[i]->getName() == fboSourceName){
 			source = fboSources[i];
@@ -310,7 +310,7 @@ BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
 		}
 	}
 	// Panic if not in storage
-	if(source == NULL){
+	if(source == 0){
 		ofLogError("MediaServer") << "Attempt to load non existing FBO source: " << fboSourceName;
 		ofExit(EXIT_FAILURE);
 	}

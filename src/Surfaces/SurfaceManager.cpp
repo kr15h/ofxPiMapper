@@ -4,8 +4,8 @@ namespace ofx {
 namespace piMapper {
 
 SurfaceManager::SurfaceManager() :
-	mediaServer(NULL),
-	selectedSurface(NULL){}
+	mediaServer(0),
+	selectedSurface(0){}
 
 SurfaceManager::~SurfaceManager(){
 	clear();
@@ -127,7 +127,7 @@ void SurfaceManager::addSurface(BaseSurface * surface){
 }
 
 void SurfaceManager::removeSelectedSurface(){
-	if(selectedSurface == NULL){
+	if(selectedSurface == 0){
 		return;
 	}
 	for(int i = 0; i < surfaces.size(); i++){
@@ -136,7 +136,7 @@ void SurfaceManager::removeSelectedSurface(){
 			// surface in the RemoveSurfaceCommand.
 			//delete surfaces[i];
 			surfaces.erase(surfaces.begin() + i);
-			selectedSurface = NULL;
+			selectedSurface = 0;
 			break;
 		}
 	}
@@ -160,7 +160,7 @@ void SurfaceManager::clear(){
 
 void SurfaceManager::saveXmlSettings(string fileName){
 	// Exit if mediaServer not set
-	if(mediaServer == NULL){
+	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		std::exit(EXIT_FAILURE);
 	}
@@ -217,7 +217,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 
 void SurfaceManager::loadXmlSettings(string fileName){
 	// Exit if there is no media server
-	if(mediaServer == NULL){
+	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		std::exit(EXIT_FAILURE);
 	}
@@ -239,7 +239,7 @@ void SurfaceManager::loadXmlSettings(string fileName){
 		xmlSettings.pushTag("source");
 		string sourceType = xmlSettings.getValue("source-type", "");
 		string sourceName = xmlSettings.getValue("source-name", "");
-		BaseSource * source = NULL;
+		BaseSource * source = 0;
 		if(sourceName != "" && sourceName != "none" && sourceType != ""){
 			// Load source depending on type
 			int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
@@ -303,7 +303,7 @@ void SurfaceManager::loadXmlSettings(string fileName){
 
 			// now we have variables sourceName and sourceTexture
 			// by checking those we can use one or another addSurface method
-			if(sourceName != "none" && source != NULL){
+			if(sourceName != "none" && source != 0){
 				addSurface(SurfaceType::TRIANGLE_SURFACE, source, vertices,
 						   texCoords);
 			}else{
@@ -363,7 +363,7 @@ void SurfaceManager::loadXmlSettings(string fileName){
 
 			// now we have variables sourceName and sourceTexture
 			// by checking those we can use one or another addSurface method
-			if(sourceName != "none" && source != NULL){
+			if(sourceName != "none" && source != 0){
 				addSurface(SurfaceType::QUAD_SURFACE, source, vertices,
 						   texCoords);
 			}else{
@@ -409,13 +409,13 @@ BaseSurface * SurfaceManager::getSelectedSurface(){
 }
 
 void SurfaceManager::deselectSurface(){
-	selectedSurface = NULL;
+	selectedSurface = 0;
 }
 
 BaseSurface * SurfaceManager::getSurface(int index){
 	if(index >= surfaces.size()){
 		throw std::runtime_error("Surface index out of bounds.");
-		return NULL;
+		return 0;
 	}
 
 	return surfaces[index];

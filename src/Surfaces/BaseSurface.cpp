@@ -11,7 +11,7 @@ BaseSurface::BaseSurface(){
 
 BaseSurface::~BaseSurface(){
 	delete defaultSource;
-	defaultSource = NULL;
+	defaultSource = 0;
 	defaultTexture.clear();
 }
 
@@ -52,7 +52,7 @@ void BaseSurface::createDefaultTexture(){
 }
 
 void BaseSurface::drawTexture(ofVec2f position){
-	if(source->getTexture() == NULL){
+	if(source->getTexture() == 0){
 		ofLogWarning("BaseSurface") << "Source texture empty. Not drawing.";
 		return;
 	}

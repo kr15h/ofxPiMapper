@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-FboSource::FboSource() : fbo(NULL){
+FboSource::FboSource() : fbo(0){
 	name = PIMAPPER_FBO_SOURCE_DEF_NAME;
 	loadable = false;
 	loaded = false;
@@ -53,7 +53,7 @@ void FboSource::onAppSetup(ofEventArgs & args){
 }
 
 void FboSource::onAppUpdate(ofEventArgs & args){
-	if(fbo == NULL || !fbo->isAllocated()){
+	if(fbo == 0 || !fbo->isAllocated()){
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
@@ -61,7 +61,7 @@ void FboSource::onAppUpdate(ofEventArgs & args){
 }
 
 void FboSource::onAppDraw(ofEventArgs & args){
-	if(fbo == NULL || !fbo->isAllocated()){
+	if(fbo == 0 || !fbo->isAllocated()){
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
@@ -92,10 +92,10 @@ void FboSource::allocate(int width, int height){
 }
 
 void FboSource::clear(){
-	texture = NULL;
-	if(fbo != NULL){
+	texture = 0;
+	if(fbo != 0){
 		delete fbo;
-		fbo = NULL;
+		fbo = 0;
 	}
 }
 

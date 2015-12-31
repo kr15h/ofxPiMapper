@@ -35,10 +35,10 @@ void ImageSource::loadImage(std::string & filePath){
 }
 
 void ImageSource::clear(){
-	texture = NULL;
+	texture = 0;
 	image->clear();
 	delete image;
-	image = NULL;
+	image = 0;
 	//path = "";
 	//name = "";
 	loaded = false;

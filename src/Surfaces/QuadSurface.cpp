@@ -70,7 +70,7 @@ void QuadSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
 }
 
 void QuadSurface::draw(){
-	if(source->getTexture() == NULL){
+	if(source->getTexture() == 0){
 		ofLogWarning("QuadSurface") << "Source texture empty. Not drawing.";
 		return;
 	}

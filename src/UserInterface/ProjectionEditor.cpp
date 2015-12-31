@@ -4,7 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 ProjectionEditor::ProjectionEditor(){
-	surfaceManager = NULL;
+	surfaceManager = 0;
 	bShiftKeyDown = false;
 	fSnapDistance = 10.0f;
 	enable();
@@ -12,7 +12,7 @@ ProjectionEditor::ProjectionEditor(){
 
 ProjectionEditor::~ProjectionEditor(){
 	clearJoints();
-	surfaceManager = NULL;
+	surfaceManager = 0;
 	disable();
 }
 
@@ -63,7 +63,7 @@ void ProjectionEditor::update(ofEventArgs & args){
 	// update surface if one of the joints is being dragged
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->isDragged() || joints[i]->isSelected()){
-			if(surfaceManager->getSelectedSurface() != NULL){
+			if(surfaceManager->getSelectedSurface() != 0){
 				// update vertex to new location
 				surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
 			}else{
@@ -78,10 +78,10 @@ void ProjectionEditor::update(ofEventArgs & args){
 }
 
 void ProjectionEditor::draw(){
-	if(surfaceManager == NULL){
+	if(surfaceManager == 0){
 		return;
 	}
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
 	if(joints.size() <= 0){
@@ -185,12 +185,12 @@ void ProjectionEditor::clearJoints(){
 }
 
 void ProjectionEditor::createJoints(){
-	if(surfaceManager == NULL){
+	if(surfaceManager == 0){
 		return;
 	}
 	clearJoints();
 
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		ofLog(OF_LOG_WARNING, "Trying to create joints while no surface selected.");
 		return;
 	}
@@ -222,10 +222,10 @@ void ProjectionEditor::unselectAllJoints(){
 }
 
 void ProjectionEditor::moveSelectedSurface(ofVec2f by){
-	if(surfaceManager == NULL){
+	if(surfaceManager == 0){
 		return;
 	}
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
 	surfaceManager->getSelectedSurface()->moveBy(by);
@@ -272,7 +272,7 @@ CircleJoint * ProjectionEditor::hitTestJoints(ofVec2f pos){
 			return joints[i];
 		}
 	}
-	return NULL;
+	return 0;
 }
 
 vector <CircleJoint *> * ProjectionEditor::getJoints(){

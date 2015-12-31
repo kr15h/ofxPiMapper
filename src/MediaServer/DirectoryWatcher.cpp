@@ -32,7 +32,7 @@ DirectoryWatcher::DirectoryWatcher(std::string path, int watcherMediaType){
 
 DirectoryWatcher::~DirectoryWatcher(){
 	delete filter;
-	filter = NULL;
+	filter = 0;
 }
 
 std::vector <std::string> & DirectoryWatcher::getFilePaths(){

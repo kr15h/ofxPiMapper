@@ -13,7 +13,7 @@ SourcesEditor::SourcesEditor(){
 }
 
 void SourcesEditor::init(){
-	mediaServer = NULL; // Pointers to NULL pointer so we can check later
+	mediaServer = 0; // Pointers to 0 pointer so we can check later
 	isMediaServerExternal = false;
 	registerAppEvents();
 }
@@ -90,7 +90,7 @@ void SourcesEditor::setup(ofEventArgs & args){
 
 void SourcesEditor::draw(){
 	// Don't draw if there is no source selected
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		//ofLogNotice("SourcesEditor") << "No surface selected";
 		return;
 	}
@@ -120,7 +120,7 @@ void SourcesEditor::disable(){
 
 void SourcesEditor::enable(){
 	// Don't enable if there is no surface selected
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		ofLogNotice("SourcesEditor") << "No surface selected. Not enabling and not showing source list.";
 		return;
 	}
@@ -154,9 +154,9 @@ void SourcesEditor::setCmdManager(CmdManager * cmdManager){
 
 void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
 	// If the new media server is not valid
-	if(newMediaServer == NULL){
+	if(newMediaServer == 0){
 		// Log an error and return from the routine
-		ofLogFatalError("SourcesEditor") << "New media server is NULL";
+		ofLogFatalError("SourcesEditor") << "New media server is 0";
 		std::exit(EXIT_FAILURE);
 	}
 	// Attempt to clear existing media server and assign new one
@@ -204,7 +204,7 @@ void SourcesEditor::selectSourceRadioButton(std::string & sourcePath){
 
 void SourcesEditor::addMediaServerListeners(){
 	// Check if the media server is valid
-	if(mediaServer == NULL){
+	if(mediaServer == 0){
 		ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
 		return;
 	}
@@ -225,7 +225,7 @@ void SourcesEditor::addMediaServerListeners(){
 
 void SourcesEditor::removeMediaServerListeners(){
 	// Check if the media server is valid
-	if(mediaServer == NULL){
+	if(mediaServer == 0){
 		ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
 		return;
 	}
@@ -255,7 +255,7 @@ void SourcesEditor::setImageSource(string & imagePath){
 	fboSelector->unselectAll();
 
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
-	if(surface == NULL){
+	if(surface == 0){
 		ofLogWarning("SourcesEditor") << "No surface selected";
 		return;
 	}
@@ -285,7 +285,7 @@ void SourcesEditor::setVideoSource(string & videoPath){
 	imageSelector->unselectAll();
 
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
-	if(surface == NULL){
+	if(surface == 0){
 		ofLogWarning("SourcesEditor") << "No surface selected";
 		return;
 	}
@@ -315,7 +315,7 @@ void SourcesEditor::setFboSource(string & fboName){
 
 	// Get selected surface
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
-	if(surface == NULL){
+	if(surface == 0){
 		ofLogWarning("SourcesEditor") << "No surface selected";
 		return;
 	}
@@ -352,9 +352,9 @@ void SourcesEditor::clearMediaServer(){
 	if(!isMediaServerExternal){
 		// Clear all loaded sources
 		mediaServer->clear();
-		// Destroy the pointer and set it to NULL pointer
+		// Destroy the pointer and set it to 0 pointer
 		delete mediaServer;
-		mediaServer = NULL;
+		mediaServer = 0;
 	}
 }
 

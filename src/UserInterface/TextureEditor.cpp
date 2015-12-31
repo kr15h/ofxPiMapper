@@ -43,7 +43,7 @@ void TextureEditor::disable(){
 }
 
 void TextureEditor::update(ofEventArgs & args){
-	if(surface == NULL){
+	if(surface == 0){
 		return;
 	}
 
@@ -121,7 +121,7 @@ void TextureEditor::keyReleased(ofKeyEventArgs & args){
 }
 
 void TextureEditor::draw(){
-	if(surface == NULL){
+	if(surface == 0){
 		return;
 	}
 
@@ -142,12 +142,12 @@ void TextureEditor::setSurface(BaseSurface * newSurface){
 }
 
 void TextureEditor::clear(){
-	surface = NULL;
+	surface = 0;
 	clearJoints();
 }
 
 void TextureEditor::createJoints(){
-	if(surface == NULL){
+	if(surface == 0){
 		return;
 	}
 	clearJoints();
@@ -175,7 +175,7 @@ void TextureEditor::unselectAllJoints(){
 }
 
 void TextureEditor::moveTexCoords(ofVec2f by){
-	if(surface == NULL){
+	if(surface == 0){
 		return;
 	}
 	vector <ofVec2f> & texCoords = surface->getTexCoords();
@@ -246,7 +246,7 @@ CircleJoint * TextureEditor::hitTestJoints(ofVec2f pos){
 			return joints[i];
 		}
 	}
-	return NULL;
+	return 0;
 }
 
 vector <CircleJoint *> & TextureEditor::getJoints(){

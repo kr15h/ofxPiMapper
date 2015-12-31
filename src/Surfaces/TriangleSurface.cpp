@@ -43,7 +43,7 @@ void TriangleSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1,
 }
 
 void TriangleSurface::draw(){
-	if(source->getTexture() == NULL){
+	if(source->getTexture() == 0){
 		ofLogWarning("TriangleSurface") << "Source texture is empty. Not drawing.";
 		return;
 	}

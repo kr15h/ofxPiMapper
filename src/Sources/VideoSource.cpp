@@ -10,9 +10,9 @@ VideoSource::VideoSource(){
 	loaded = false;
 	type = SourceType::SOURCE_TYPE_VIDEO;
 	#ifdef TARGET_RASPBERRY_PI
-		omxPlayer = NULL;
+		omxPlayer = 0;
 	#else
-		videoPlayer = NULL;
+		videoPlayer = 0;
 	#endif
 }
 
@@ -44,24 +44,24 @@ void VideoSource::loadVideo(std::string & filePath){
 }
 
 void VideoSource::clear(){
-	texture = NULL;
+	texture = 0;
 	#ifdef TARGET_RASPBERRY_PI
 		omxPlayer->close();
 		delete omxPlayer;
-		omxPlayer = NULL;
+		omxPlayer = 0;
 	#else
 		ofRemoveListener(ofEvents().update, this, &VideoSource::update);
 		videoPlayer->stop();
 		videoPlayer->close();
 		delete videoPlayer;
-		videoPlayer = NULL;
+		videoPlayer = 0;
 	#endif
 	loaded = false;
 }
 
 #ifndef TARGET_RASPBERRY_PI
 	void VideoSource::update(ofEventArgs & args){
-		if(videoPlayer != NULL){
+		if(videoPlayer != 0){
 			videoPlayer->update();
 		}
 	}

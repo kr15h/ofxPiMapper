@@ -40,7 +40,7 @@ std::string & BaseSource::getPath(){
 }
 
 void BaseSource::init(){
-	texture = NULL;
+	texture = 0;
 	name = "";
 	path = "";
 	loadable = false;

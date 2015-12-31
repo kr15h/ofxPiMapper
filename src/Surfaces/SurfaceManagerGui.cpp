@@ -4,7 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 SurfaceManagerGui::SurfaceManagerGui(){
-	surfaceManager = NULL;
+	surfaceManager = 0;
 	guiMode = GuiMode::NONE;
 	bDrag = false;
 	registerMouseEvents();
@@ -14,7 +14,7 @@ SurfaceManagerGui::SurfaceManagerGui(){
 
 SurfaceManagerGui::~SurfaceManagerGui(){
 	unregisterMouseEvents();
-	surfaceManager = NULL;
+	surfaceManager = 0;
 	_cmdManager = 0;
 }
 
@@ -37,7 +37,7 @@ void SurfaceManagerGui::unregisterMouseEvents(){
 }
 
 void SurfaceManagerGui::draw(){
-	if(surfaceManager == NULL){
+	if(surfaceManager == 0){
 		return;
 	}
 
@@ -45,7 +45,7 @@ void SurfaceManagerGui::draw(){
 		surfaceManager->draw();
 	}else if(guiMode == GuiMode::TEXTURE_MAPPING){
 		// draw the texture of the selected surface
-		if(surfaceManager->getSelectedSurface() != NULL){
+		if(surfaceManager->getSelectedSurface() != 0){
 			// Reset default color to white first
 			ofSetColor(255, 255, 255, 255);
 			surfaceManager->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
@@ -94,7 +94,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		bool bSurfaceSelected = false;
 		CircleJoint * hitJoint =
 			textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
-		if(hitJoint != NULL){
+		if(hitJoint != 0){
 			textureEditor.unselectAllJoints();
 
 			hitJoint->select();
@@ -117,7 +117,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			textureEditor.unselectAllJoints();
 		}
 
-		if(surfaceManager->getSelectedSurface() != NULL && !bSurfaceSelected){
+		if(surfaceManager->getSelectedSurface() != 0 && !bSurfaceSelected){
 			// hittest texture area to see if we are hitting the texture surface
 			if(surfaceManager->getSelectedSurface()->getTextureHitArea().inside(
 				   args.x, args.y)){
@@ -138,7 +138,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 
 		CircleJoint * hitJoint =
 			projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
-		if(hitJoint != NULL){
+		if(hitJoint != 0){
 			projectionEditor.unselectAllJoints();
 			hitJoint->select();
 			hitJoint->startDrag();
@@ -176,7 +176,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			}
 		}
 
-		if(bSurfaceSelected && hitJoint == NULL){
+		if(bSurfaceSelected && hitJoint == 0){
 
 			// if not hitting the joints, start drag only if
 			// we have a selected surface
@@ -287,7 +287,7 @@ int SurfaceManagerGui::getMode(){
 }
 
 void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
 	ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
@@ -299,7 +299,7 @@ void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
 }
 
 void SurfaceManagerGui::drawSelectedSurfaceTextureHighlight(){
-	if(surfaceManager->getSelectedSurface() == NULL){
+	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
 	ofPolyline line = surfaceManager->getSelectedSurface()->getTextureHitArea();
