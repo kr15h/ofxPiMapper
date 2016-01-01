@@ -17,7 +17,7 @@ class SourceType {
 			SOURCE_TYPE_NONE, SOURCE_TYPE_IMAGE, SOURCE_TYPE_VIDEO, SOURCE_TYPE_FBO
 		};
 
-		static std::string GetSourceTypeName(int sourceTypeEnum){
+		static string GetSourceTypeName(int sourceTypeEnum){
 			if(sourceTypeEnum == SOURCE_TYPE_IMAGE){
 				return SOURCE_TYPE_NAME_IMAGE;
 			}else if(sourceTypeEnum == SOURCE_TYPE_VIDEO){
@@ -27,14 +27,14 @@ class SourceType {
 			}else if(sourceTypeEnum == SOURCE_TYPE_FBO){
 				return SOURCE_TYPE_NAME_FBO;
 			}else{
-				std::stringstream ss;
+				stringstream ss;
 				ss << "Invalid source type: " << sourceTypeEnum;
 				ofLogFatalError("SourceType") << ss.str();
-				std::exit(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 		}
 
-		static int GetSourceTypeEnum(std::string sourceTypeName){
+		static int GetSourceTypeEnum(string sourceTypeName){
 			if(sourceTypeName == SOURCE_TYPE_NAME_IMAGE){
 				return SOURCE_TYPE_IMAGE;
 			}else if(sourceTypeName == SOURCE_TYPE_NAME_VIDEO){
@@ -44,10 +44,10 @@ class SourceType {
 			}else if(sourceTypeName == SOURCE_TYPE_NAME_FBO){
 				return SOURCE_TYPE_FBO;
 			}else{
-				std::stringstream ss;
+				stringstream ss;
 				ss << "Invalid source type name: " << sourceTypeName;
 				ofLogFatalError("SourceType") << ss.str();
-				std::exit(EXIT_FAILURE);
+				exit(EXIT_FAILURE);
 			}
 		}
 

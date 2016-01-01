@@ -52,7 +52,7 @@ class SurfaceManager {
 		void deselectSurface();
 
 	private:
-		std::vector <BaseSurface *> surfaces;
+		vector <BaseSurface *> surfaces;
 		BaseSurface * selectedSurface;
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;

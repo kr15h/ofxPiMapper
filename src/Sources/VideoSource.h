@@ -21,8 +21,8 @@ class VideoSource : public BaseSource {
 		VideoSource();
 		~VideoSource();
 
-		std::string & getPath();
-		void loadVideo(std::string & path);
+		string & getPath();
+		void loadVideo(string & path);
 		void clear();
 
 		#ifndef TARGET_RASPBERRY_PI

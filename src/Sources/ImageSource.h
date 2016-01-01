@@ -10,8 +10,8 @@ class ImageSource : public BaseSource {
 	public:
 		ImageSource();
 		~ImageSource();
-		std::string & getPath();
-		void loadImage(std::string & filePath);
+		string & getPath();
+		void loadImage(string & filePath);
 		void clear();
 	private:
 		ofImage * image;

@@ -12,7 +12,7 @@ ImageSource::ImageSource(){
 
 ImageSource::~ImageSource(){}
 
-void ImageSource::loadImage(std::string & filePath){
+void ImageSource::loadImage(string & filePath){
 	path = filePath;
 	//cout << "loading image: " << filePath << endl;
 	setNameFromPath(filePath);
@@ -24,7 +24,7 @@ void ImageSource::loadImage(std::string & filePath){
 		if(!image->loadImage(filePath)){
 	#endif
 		ofLogWarning("ImageSource") << "Could not load image";
-		//std::exit(EXIT_FAILURE);
+		//exit(EXIT_FAILURE);
 	}
 	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
 		texture = &image->getTexture();

@@ -31,41 +31,41 @@ int MediaServer::getNumFboSources(){
 	return fboSources.size();
 }
 
-std::vector <std::string> & MediaServer::getImagePaths(){
+vector <string> & MediaServer::getImagePaths(){
 	return imageWatcher.getFilePaths();
 }
 
-std::vector <std::string> MediaServer::getImageNames(){
-	std::vector <std::string> imageNames;
+vector <string> MediaServer::getImageNames(){
+	vector <string> imageNames;
 	for(int i = 0; i < getNumImages(); i++){
 		// Split image path
-		std::vector <std::string> pathParts = ofSplitString(getImagePaths()[i], "/");
+		vector <string> pathParts = ofSplitString(getImagePaths()[i], "/");
 		// And get only the last piece
-		std::string name = pathParts[pathParts.size() - 1];
+		string name = pathParts[pathParts.size() - 1];
 		imageNames.push_back(name);
 	}
 	return imageNames;
 }
 
-std::vector <std::string> MediaServer::getFboSourceNames(){
-	std::vector <std::string> fboSourceNames;
+vector <string> MediaServer::getFboSourceNames(){
+	vector <string> fboSourceNames;
 	for(int i = 0; i < fboSources.size(); i++){
 		fboSourceNames.push_back(fboSources[i]->getName());
 	}
 	return fboSourceNames;
 }
 
-std::vector <std::string> & MediaServer::getVideoPaths(){
+vector <string> & MediaServer::getVideoPaths(){
 	return videoWatcher.getFilePaths();
 }
 
-std::vector <std::string> MediaServer::getVideoNames(){
-	std::vector <std::string> videoNames;
+vector <string> MediaServer::getVideoNames(){
+	vector <string> videoNames;
 	for(int i = 0; i < getNumVideos(); i++){
 		// Split video path
-		std::vector <std::string> pathParts = ofSplitString(getVideoPaths()[i], "/");
+		vector <string> pathParts = ofSplitString(getVideoPaths()[i], "/");
 		// And get only the last piece
-		std::string name = pathParts[pathParts.size() - 1];
+		string name = pathParts[pathParts.size() - 1];
 		videoNames.push_back(name);
 	}
 	return videoNames;
@@ -80,10 +80,10 @@ BaseSource * MediaServer::loadMedia(string & path, int mediaType){
 	}else if(mediaType == SourceType::SOURCE_TYPE_FBO){
 		return loadFboSource(path);
 	}else{
-		std::stringstream ss;
+		stringstream ss;
 		ss << "Can not load media of unknown type: " << mediaType;
 		ofLogFatalError("MediaServer") << ss.str();
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	return 0;
 }
@@ -101,11 +101,11 @@ BaseSource * MediaServer::loadImage(string & path){
 		// Increase reference count of this source
 		//referenceCount[path]++;
 		imageSource->referenceCount++;
-		std::stringstream refss;
+		stringstream refss;
 		refss << "Current reference count for " << path << " = " << imageSource->referenceCount;
 		ofLogNotice("MediaServer") << refss.str();
 		// Notify objects registered to onImageLoaded event
-		std::stringstream ss;
+		stringstream ss;
 		ss << "Image " << path << " already loaded";
 		ofLogNotice("MediaServer") << ss.str();
 		ofNotifyEvent(onImageLoaded, path, this);
@@ -117,7 +117,7 @@ BaseSource * MediaServer::loadImage(string & path){
 	loadedSources[path] = imageSource;
 	// Set reference count of this image path to 1
 	//referenceCount[path] = 1;
-	std::stringstream refss;
+	stringstream refss;
 	refss << "Initialized reference count of " << path << " to " << imageSource->referenceCount;
 	ofLogNotice("MediaServer") << refss.str();
 	// Notify objects registered to onImageLoaded event
@@ -136,14 +136,14 @@ void MediaServer::unloadImage(string & path){
 		return;
 	}
 	// Reference count 0 or less, unload image
-	std::stringstream ss;
+	stringstream ss;
 	ss << "Removing image " << path;
 	ofLogNotice("MediaServer") << ss.str();
 	// Destroy image source
 	if(loadedSources.count(path)){
 		ofLogNotice("MediaServer") << "Source count BEFORE image removal: " << loadedSources.size() << endl;
 		loadedSources[path]->clear();
-		std::map <std::string, BaseSource *>::iterator it = loadedSources.find(path);
+		map <string, BaseSource *>::iterator it = loadedSources.find(path);
 		delete it->second;
 		loadedSources.erase(it);
 		ofLogNotice("MediaServer") << "Source count AFTER image removal: " << loadedSources.size() << endl;
@@ -151,10 +151,10 @@ void MediaServer::unloadImage(string & path){
 		return;
 	}
 	// Something wrong here, we should be out of the routine by now
-	std::stringstream failss;
+	stringstream failss;
 	failss << "Failed to remove image source: " << path;
 	ofLogFatalError("MediaServer") << failss.str();
-	std::exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 BaseSource * MediaServer::loadVideo(string & path){
@@ -169,11 +169,11 @@ BaseSource * MediaServer::loadVideo(string & path){
 	if(isVideoLoaded){
 		// Increase reference count of this source
 		videoSource->referenceCount++;
-		std::stringstream refss;
+		stringstream refss;
 		refss << "Current reference count for " << path << " = " << videoSource->referenceCount;
 		ofLogNotice("MediaServer") << refss.str();
 		// Notify objects registered to onImageLoaded event
-		std::stringstream ss;
+		stringstream ss;
 		ss << "Video " << path << " already loaded";
 		ofLogNotice("MediaServer") << ss.str();
 		ofNotifyEvent(onVideoLoaded, path, this);
@@ -185,7 +185,7 @@ BaseSource * MediaServer::loadVideo(string & path){
 	loadedSources[path] = videoSource;
 	// Set reference count of this image path to 1
 	//referenceCount[path] = 1;
-	std::stringstream refss;
+	stringstream refss;
 	refss << "Initialized reference count of " << path << " to " << videoSource->referenceCount;
 	ofLogNotice("MediaServer") << refss.str();
 	ofNotifyEvent(onVideoLoaded, path, this);
@@ -208,7 +208,7 @@ void MediaServer::unloadVideo(string & path){
 	if(loadedSources.count(path)){
 		ofLogNotice("MediaServer") << "Source count before video removal: " << loadedSources.size() << endl;
 		videoSource->clear();
-		std::map <std::string, BaseSource *>::iterator it = loadedSources.find(path);
+		map <string, BaseSource *>::iterator it = loadedSources.find(path);
 		delete it->second;
 		loadedSources.erase(it);
 		ofLogNotice("MediaServer") << "Source count after video removal: " << loadedSources.size() << endl;
@@ -216,10 +216,10 @@ void MediaServer::unloadVideo(string & path){
 		return;
 	}
 	// Something wrong here, we should be out of the routine by now
-	std::stringstream failss;
+	stringstream failss;
 	failss << "Failed to remove video source: " << path;
 	ofLogFatalError("MediaServer") << failss.str();
-	std::exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
 void MediaServer::unloadMedia(string & path){
@@ -234,7 +234,7 @@ void MediaServer::unloadMedia(string & path){
 		}else{
 			// Oh my god, what to do!? Relax and exit.
 			ofLogFatalError("MediaServer") << "Attempt to unload media of unknown type";
-			std::exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 		}
 	}else{
 		ofLogNotice("MediaServer") << "Nothing to unload";
@@ -243,7 +243,7 @@ void MediaServer::unloadMedia(string & path){
 
 // Clear all loaded media
 void MediaServer::clear(){
-	typedef std::map <std::string, BaseSource *>::iterator it_type;
+	typedef map <string, BaseSource *>::iterator it_type;
 	for(it_type i = loadedSources.begin(); i != loadedSources.end(); i++){
 		// Do not delete FBO source pointers as they are (and should be) initialized elsewhere
 		if(i->second->getType() != SourceType::SOURCE_TYPE_FBO){
@@ -254,35 +254,35 @@ void MediaServer::clear(){
 }
 
 // TODO: getLoadedSourceByPath
-BaseSource * MediaServer::getSourceByPath(std::string & mediaPath){
+BaseSource * MediaServer::getSourceByPath(string & mediaPath){
 	if(loadedSources.count(mediaPath)){
 		return loadedSources[mediaPath];
 	}
 	// Source not found, exit with error
-	std::stringstream ss;
+	stringstream ss;
 	ss << "Could not find source by path: " << mediaPath;
 	ofLogFatalError("MediaServer") << ss.str();
-	std::exit(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
-std::string MediaServer::getDefaultImageDir(){
+string MediaServer::getDefaultImageDir(){
 	return DEFAULT_IMAGES_DIR;
 }
 
-std::string MediaServer::getDefaultVideoDir(){
+string MediaServer::getDefaultVideoDir(){
 	return DEFAULT_VIDEOS_DIR;
 }
 
-std::string MediaServer::getDefaultMediaDir(int sourceType){
+string MediaServer::getDefaultMediaDir(int sourceType){
 	if(sourceType == SourceType::SOURCE_TYPE_IMAGE){
 		return getDefaultImageDir();
 	}else if(sourceType == SourceType::SOURCE_TYPE_VIDEO){
 		return getDefaultVideoDir();
 	}else{
-		std::stringstream ss;
+		stringstream ss;
 		ss << "Could not get default media dir. Unknown source type: " << sourceType;
 		ofLogFatalError("MediaServer") << ss.str();
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -299,7 +299,7 @@ void MediaServer::addFboSource(ofx::piMapper::FboSource & fboSource){
 	fboSources.push_back(&fboSource);
 }   // addFboSource
 
-BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
+BaseSource * MediaServer::loadFboSource(string & fboSourceName){
 	ofLogNotice("MediaServer") << "Attempting to load FBO source with name " << fboSourceName;
 	// Search for FBO source name in our storage
 	FboSource * source = 0;
@@ -331,7 +331,7 @@ BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
 	return loadedSources[fboSourceName];
 }   // loadFboSource
 
-void MediaServer::unloadFboSource(std::string & fboSourceName){
+void MediaServer::unloadFboSource(string & fboSourceName){
 	ofLogNotice("MediaServer") << "Attempt to unload FBO source " << fboSourceName;
 	// Check if loaded at all
 	if(!loadedSources.count(fboSourceName)){
@@ -349,7 +349,7 @@ void MediaServer::unloadFboSource(std::string & fboSourceName){
 		ofLogNotice("MediaServer") << fboSourceName << " reference count <= 0, removing from loaded sources";
 		source->referenceCount = 0;
 		source->removeAppListeners();
-		std::map <std::string, BaseSource *>::iterator it = loadedSources.find(fboSourceName);
+		map <string, BaseSource *>::iterator it = loadedSources.find(fboSourceName);
 		loadedSources.erase(it);
 		ofLogNotice("MediaServer") << "Source count after FBO source removal: " << loadedSources.size() << endl;
 		ofNotifyEvent(onFboSourceUnloaded, fboSourceName, this);

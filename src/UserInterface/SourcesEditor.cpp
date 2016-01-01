@@ -66,7 +66,7 @@ void SourcesEditor::setup(ofEventArgs & args){
 		ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
 	}
 	if(numFbos){
-		std::vector <std::string> fboNames = mediaServer->getFboSourceNames();
+		vector <string> fboNames = mediaServer->getFboSourceNames();
 		fboSelector->setup("FBOs", fboNames, fboNames);
 		ofAddListener(fboSelector->onRadioSelected, this, &SourcesEditor::handleFboSelected);
 	}
@@ -157,7 +157,7 @@ void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
 	if(newMediaServer == 0){
 		// Log an error and return from the routine
 		ofLogFatalError("SourcesEditor") << "New media server is 0";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	// Attempt to clear existing media server and assign new one
 	clearMediaServer();
@@ -167,7 +167,7 @@ void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
 	isMediaServerExternal = true;
 }
 
-void SourcesEditor::selectSourceRadioButton(std::string & sourcePath){
+void SourcesEditor::selectSourceRadioButton(string & sourcePath){
 	if(sourcePath == ""){
 		ofLogNotice("SourcesEditor") << "Path is empty";
 		if(imageSelector->size()){
@@ -358,16 +358,16 @@ void SourcesEditor::clearMediaServer(){
 	}
 }
 
-void SourcesEditor::handleImageAdded(std::string & path){}
-void SourcesEditor::handleImageRemoved(std::string & path){}
-void SourcesEditor::handleVideoAdded(std::string & path){}
-void SourcesEditor::handleVideoRemoved(std::string & path){}
-void SourcesEditor::handleImageLoaded(std::string & path){}
-void SourcesEditor::handleImageUnloaded(std::string & path){}
-void SourcesEditor::handleFboSourceAdded(std::string & name){}
-void SourcesEditor::handleFboSourceRemoved(std::string & name){}
-void SourcesEditor::handleFboSourceLoaded(std::string & name){}
-void SourcesEditor::handleFboSourceUnloaded(std::string & name){}
+void SourcesEditor::handleImageAdded(string & path){}
+void SourcesEditor::handleImageRemoved(string & path){}
+void SourcesEditor::handleVideoAdded(string & path){}
+void SourcesEditor::handleVideoRemoved(string & path){}
+void SourcesEditor::handleImageLoaded(string & path){}
+void SourcesEditor::handleImageUnloaded(string & path){}
+void SourcesEditor::handleFboSourceAdded(string & name){}
+void SourcesEditor::handleFboSourceRemoved(string & name){}
+void SourcesEditor::handleFboSourceLoaded(string & name){}
+void SourcesEditor::handleFboSourceUnloaded(string & name){}
 
 } // namespace piMapper
 } // namespace ofx

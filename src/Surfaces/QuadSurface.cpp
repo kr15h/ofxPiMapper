@@ -141,7 +141,7 @@ bool QuadSurface::hitTest(ofVec2f p){
 ofVec2f QuadSurface::getVertex(int index){
 	if(index > 3){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
-		throw std::runtime_error("Vertex index out of bounds.");
+		throw runtime_error("Vertex index out of bounds.");
 	}
 
 	ofVec3f vert = mesh.getVertex(index);
@@ -150,7 +150,7 @@ ofVec2f QuadSurface::getVertex(int index){
 
 ofVec2f QuadSurface::getTexCoord(int index){
 	if(index > 3){
-		throw std::runtime_error("Texture coordinate index out of bounds.");
+		throw runtime_error("Texture coordinate index out of bounds.");
 	}
 
 	return mesh.getTexCoord(index);

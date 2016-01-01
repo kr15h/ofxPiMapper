@@ -98,7 +98,7 @@ bool TriangleSurface::hitTest(ofVec2f p){
 ofVec2f TriangleSurface::getVertex(int index){
 	if(index > 2){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
-		throw std::runtime_error("Vertex index out of bounds.");
+		throw runtime_error("Vertex index out of bounds.");
 	}
 
 	ofVec3f vert = mesh.getVertex(index);
@@ -107,7 +107,7 @@ ofVec2f TriangleSurface::getVertex(int index){
 
 ofVec2f TriangleSurface::getTexCoord(int index){
 	if(index > 2){
-		throw std::runtime_error("Texture coordinate index out of bounds.");
+		throw runtime_error("Texture coordinate index out of bounds.");
 	}
 
 	return mesh.getTexCoord(index);

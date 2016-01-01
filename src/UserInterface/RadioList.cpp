@@ -85,7 +85,7 @@ void RadioList::selectItem(int index){
 	storedSelectedItem = index;
 }
 
-bool RadioList::selectItemByValue(std::string itemValue){
+bool RadioList::selectItemByValue(string itemValue){
 	if(itemValue == ""){
 		ofLogNotice("RadioList") << "Item value empty";
 		return false;

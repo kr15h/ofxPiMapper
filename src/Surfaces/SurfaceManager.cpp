@@ -25,7 +25,7 @@ void SurfaceManager::addSurface(int surfaceType){
 		surfaces.push_back(new QuadSurface());
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -38,7 +38,7 @@ void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource){
 		surfaces.back()->setSource(newSource);
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -46,10 +46,10 @@ void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
 								vector <ofVec2f> texCoords){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
 		if(vertices.size() < 3){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "There must be 3 vertices for a triangle surface.");
 		}else if(texCoords.size() < 3){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "There must be 3 texture coordinates for a triangle surface.");
 		}
 
@@ -62,9 +62,9 @@ void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
 
 	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
 		if(vertices.size() < 4){
-			throw std::runtime_error("There must be 4 vertices for a quad surface.");
+			throw runtime_error("There must be 4 vertices for a quad surface.");
 		}else if(texCoords.size() < 4){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "There must be 4 texture coordinates for a quad surface.");
 		}
 
@@ -76,7 +76,7 @@ void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
 		}
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -85,10 +85,10 @@ void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource,
 								vector <ofVec2f> texCoords){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
 		if(vertices.size() < 3){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "There must be 3 vertices for a triangle surface.");
 		}else if(texCoords.size() < 3){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "Thre must be 3 texture coordinates for a triangle surface.");
 		}
 
@@ -102,9 +102,9 @@ void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource,
 
 	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
 		if(vertices.size() < 4){
-			throw std::runtime_error("There must be 4 vertices for a quad surface.");
+			throw runtime_error("There must be 4 vertices for a quad surface.");
 		}else if(texCoords.size() < 4){
-			throw std::runtime_error(
+			throw runtime_error(
 					  "Thre must be 4 texture coordinates for a quad surface.");
 		}
 
@@ -117,7 +117,7 @@ void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource,
 		}
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 }
 
@@ -162,7 +162,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 	// Exit if mediaServer not set
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	// We need a fresh copy of the xml settings object
 	xmlSettings.clear();
@@ -219,7 +219,7 @@ void SurfaceManager::loadXmlSettings(string fileName){
 	// Exit if there is no media server
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
-		std::exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	if(!xmlSettings.loadFile(fileName)){
 		ofLogWarning("SurfaceManager") << "Could not load XML settings";
@@ -249,7 +249,7 @@ void SurfaceManager::loadXmlSettings(string fileName){
 			}else{
 				// Construct full path
 				string dir = mediaServer->getDefaultMediaDir(typeEnum);
-				std::stringstream pathss;
+				stringstream pathss;
 				pathss << ofToDataPath(dir, true) << sourceName;
 				string sourcePath = pathss.str();
 				// Load media by using full path
@@ -383,7 +383,7 @@ void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
 
 BaseSurface * SurfaceManager::selectSurface(int index){
 	if(index >= surfaces.size()){
-		throw std::runtime_error("Surface index out of bounds.");
+		throw runtime_error("Surface index out of bounds.");
 	}
 	selectedSurface = surfaces[index];
 
@@ -414,7 +414,7 @@ void SurfaceManager::deselectSurface(){
 
 BaseSurface * SurfaceManager::getSurface(int index){
 	if(index >= surfaces.size()){
-		throw std::runtime_error("Surface index out of bounds.");
+		throw runtime_error("Surface index out of bounds.");
 		return 0;
 	}
 

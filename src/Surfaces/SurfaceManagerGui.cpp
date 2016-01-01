@@ -248,7 +248,7 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 	if(newGuiMode != GuiMode::NONE && newGuiMode != GuiMode::TEXTURE_MAPPING &&
 	   newGuiMode != GuiMode::PROJECTION_MAPPING &&
 	   newGuiMode != GuiMode::SOURCE_SELECTION){
-		throw std::runtime_error("Trying to set invalid mode.");
+		throw runtime_error("Trying to set invalid mode.");
 	}
 
 	if(newGuiMode == GuiMode::NONE){

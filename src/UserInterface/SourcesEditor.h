@@ -35,7 +35,7 @@ class SourcesEditor {
 		// Sets external MediaServer
 		void setMediaServer(MediaServer * newMediaServer);
 		//void selectImageSourceRadioButton(string name);
-		void selectSourceRadioButton(std::string & sourcePath);
+		void selectSourceRadioButton(string & sourcePath);
 
 		int getLoadedTexCount();
 		ofTexture * getTexture(int index);
@@ -74,16 +74,16 @@ class SourcesEditor {
 		void clearMediaServer();
 
 		// MediaServer event handlers
-		void handleImageAdded(std::string & path);
-		void handleImageRemoved(std::string & path);
-		void handleVideoAdded(std::string & path);
-		void handleVideoRemoved(std::string & path);
-		void handleImageLoaded(std::string & path);
-		void handleImageUnloaded(std::string & path);
-		void handleFboSourceAdded(std::string & name);
-		void handleFboSourceRemoved(std::string & name);
-		void handleFboSourceLoaded(std::string & name);
-		void handleFboSourceUnloaded(std::string & name);
+		void handleImageAdded(string & path);
+		void handleImageRemoved(string & path);
+		void handleVideoAdded(string & path);
+		void handleVideoRemoved(string & path);
+		void handleImageLoaded(string & path);
+		void handleImageUnloaded(string & path);
+		void handleFboSourceAdded(string & name);
+		void handleFboSourceRemoved(string & name);
+		void handleFboSourceLoaded(string & name);
+		void handleFboSourceUnloaded(string & name);
 
 };
 

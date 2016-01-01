@@ -22,7 +22,7 @@ class RadioList {
 		void setPosition(ofPoint p);
 		void setPosition(float x, float y);
 		void selectItem(int index);
-		bool selectItemByValue(std::string itemValue);
+		bool selectItemByValue(string itemValue);
 		void enable();
 		void disable();
 		void clear();

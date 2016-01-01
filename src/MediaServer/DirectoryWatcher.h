@@ -52,7 +52,7 @@ class ImagePathFilter : public BasePathFilter {
 
 class DirectoryWatcher {
 	public:
-		DirectoryWatcher(std::string path, int watcherMediaType);
+		DirectoryWatcher(string path, int watcherMediaType);
 		~DirectoryWatcher();
 
 		// TODO make useful stuff with onDirectoryWatcher*
@@ -119,7 +119,7 @@ class DirectoryWatcher {
 		}
 
 		// Getters
-		std::vector <std::string> & getFilePaths();
+		vector <string> & getFilePaths();
 		int getMediaType();
 
 		// Custom events
@@ -132,7 +132,7 @@ class DirectoryWatcher {
 	private:
 		ofx::IO::DirectoryWatcherManager dirWatcher;
 		BasePathFilter * filter;
-		std::vector <std::string> filePaths;
+		vector <string> filePaths;
 		int mediaType;
 };
 

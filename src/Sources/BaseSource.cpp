@@ -19,7 +19,7 @@ ofTexture * BaseSource::getTexture(){
 	return texture;
 }
 
-std::string & BaseSource::getName(){
+string & BaseSource::getName(){
 	return name;
 }
 
@@ -35,7 +35,7 @@ int BaseSource::getType(){
 	return type;
 }
 
-std::string & BaseSource::getPath(){
+string & BaseSource::getPath(){
 	return path;
 }
 
@@ -49,8 +49,8 @@ void BaseSource::init(){
 	referenceCount = 1;   // We have one instance on init
 }
 
-void BaseSource::setNameFromPath(std::string & fullPath){
-	std::vector <string> pathParts;
+void BaseSource::setNameFromPath(string & fullPath){
+	vector <string> pathParts;
 	//cout << "fullPath: " << fullPath << endl;
 	pathParts = ofSplitString(fullPath, "/");   // Maybe on win "/" is "\", have to test
 	//cout << "lastPathPart: " << pathParts[pathParts.size() - 1] << endl;
