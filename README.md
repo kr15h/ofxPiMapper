@@ -137,35 +137,3 @@ Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite). It works.
 ```
 TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
 ```
-
-
-Known issues
----
-Keyboard and mouse input is being lost sometimes when using a USB hub. Try not to use one. If problems still persist, try the following commands.
-
-```bash
-sudo apt-get update && sudo apt-get dist-upgrade  
-sudo rpi-update
-```
-
-[ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) has an issue, it throws an error when compiling:
-
-```
-fatal error: libavcodec/opt.h: No such file or directory
-```
-
-To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/include/libavcodec/` with the following contents: 
-
-**opt.h**
-
-```
-#ifndef AVCODEC_OPT_H
-#define AVCODEC_OPT_H
-#include "libavcodec/version.h"
-#if FF_API_OPT_H
-#include "libavutil/opt.h"
-#endif
-#endif // AVCODEC_OPT_H
-```
-   
-More about this issue [here](https://github.com/jvcleave/ofxOMXPlayer/issues/34). 
