@@ -5,20 +5,69 @@ ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This project is an attempt to create optimized version of an openFrameworks projection mapping add-on for the Raspberry Pi. It is also my master thesis project at Aalto University, School of Arts, Design and Architecture (Helsinki Media Lab).
+Projection mapping tool that runs on the Raspberry Pi. 
 
-ofxPiMapper is mainly for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! PiMapper is here to save you!
+OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
-ofxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
+The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
+
+Features
+---
+
+The following is a list of key features ofxPiMapper has.
+
+ - **Open Source**  
+   You can use ofxPiMapper free of charge, the only requirement being adding reference to the authors of the project somewhere. Consult the [LICENSE.md](LICENSE.md) file.
+ - **Simple User Interface**  
+   The user interface of ofxPiMapper has been designed by keeping in mind that there is only one screen, a keyboard and a mouse.
+ - **Out of the Box**  
+   You can use the example project for simple projection mapping projects with image or video sources out of the box.
+ - **Customizable**  
+   Use ofxPiMapper as an addon and enjoy the power of custom generative sources by extending the `FboSource` class. 
+ - **Undoable**  
+   Since version 0.2.3 ofxPiMapper supports undo. 
+ - **More to Come**  
+   Expect more conventional projection mapping software features to be implemented.
+
+
+Using as an Addon
+--- 
+
+The following is the minimal openFrameworks application code needed for a basic ofxPiMapper application.
+
+**ofApp.h**
+```c++
+#include "ofMain.h"
+#include "ofxPiMapper.h"
+#include "CustomSource.h"
+
+class ofApp : public ofBaseApp {
+    public:
+        void setup();
+        void draw();
+
+        ofxPiMapper * mapper;
+};
 ```
-ofxPiMapper * mapper = new ofxPiMapper();
-CustomSource * source = new CustomSource();
-mapper.registerFboSource(*source);
-mapper.setup(); // Setup must be run after adding the FBO source
+
+**ofApp.cpp**
+```c++
+#include "ofApp.h"
+
+void ofApp::setup(){
+    mapper = new ofxPiMapper();
+    CustomSource * source = new CustomSource();
+    mapper.registerFboSource(*source);
+    mapper.setup(); // Setup must be run after adding the FBO source
+}
+
+void ofApp::draw(){
+    mapper->draw();
+}
 ```
 
-Since version 0.2.0 ofxPiMapper supports video sources and since version 0.2.3 ofxPiMapper supports undo.
+OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
 
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
