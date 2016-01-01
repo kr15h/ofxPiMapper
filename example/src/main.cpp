@@ -9,7 +9,7 @@
 		bool fullscreen = false;
 
 		if(argc > 0){
-			std::string fullscreenFlag = "-f";
+			string fullscreenFlag = "-f";
 			for(int i = 0; i < argc; i++){
 				if(strcmp(argv[i], fullscreenFlag.c_str()) == 0){
 					fullscreen = true;
