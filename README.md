@@ -56,40 +56,15 @@ make
 Using as an Addon
 --- 
 
-The following is the minimal openFrameworks application code needed for a basic ofxPiMapper application.
-
-**ofApp.h**
-```c++
-#include "ofMain.h"
-#include "ofxPiMapper.h"
-#include "CustomSource.h"
-
-class ofApp : public ofBaseApp {
-    public:
-        void setup();
-        void draw();
-
-        ofxPiMapper * mapper;
-};
-```
-
-**ofApp.cpp**
-```c++
-#include "ofApp.h"
-
-void ofApp::setup(){
-    mapper = new ofxPiMapper();
-    CustomSource * source = new CustomSource();
-    mapper.registerFboSource(*source);
-    mapper.setup(); // Setup must be run after adding the FBO source
-}
-
-void ofApp::draw(){
-    mapper->draw();
-}
-```
-
 OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
+
+Reuse the `example` app by copying it to your `apps` directory.
+
+```bash
+cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
+cd openFrameworks/apps/myApps
+mv example myOfxPiMapperApp
+```
 
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
