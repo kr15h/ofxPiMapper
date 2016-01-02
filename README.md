@@ -11,6 +11,8 @@ OfxPiMapper is there for people who want to use the Raspberry Pi to create stand
 
 The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
+Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
+
 
 Features
 ---
@@ -64,8 +66,6 @@ cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
 cd openFrameworks/apps/myApps
 mv example myOfxPiMapperApp
 ```
-
-Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
 
 Development
