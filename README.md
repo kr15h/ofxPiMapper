@@ -40,15 +40,14 @@ You can use the example application of the addon for simple projection mapping p
 
 2. Compile and run the example project.  
 
-   ```
-cd example
-make
-./bin/example
+   ```bash
+cd openFrameworks/addons/ofxPiMapper/example
+make && make run
    ```
 
 3. Use the `-f` flag to launch it fullscreen.  
 
-   ```
+   ```bash
 ./bin/example -f
    ```
 
