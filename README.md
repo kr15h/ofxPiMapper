@@ -5,7 +5,7 @@ ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Projection mapping tool that runs on the Raspberry Pi. 
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
 OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
@@ -29,6 +29,28 @@ The following is a list of key features ofxPiMapper has.
    Since version 0.2.3 ofxPiMapper supports undo. 
  - **More to Come**  
    Expect more conventional projection mapping software features to be implemented.
+
+
+Basic Usage
+---
+
+You can use the example application of the addon for simple projection mapping projects where static images or videos have to be projection mapped. 
+
+1. Put your own sources in the `example/bin/data/sources` directory. Consult the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) documentation on how to encode your videos.
+
+2. Compile and run the example project.  
+
+   ```
+cd example
+make
+./bin/example
+   ```
+
+3. Use the `-f` flag to launch it fullscreen.  
+
+   ```
+./bin/example -f
+   ```
 
 
 Using as an Addon
