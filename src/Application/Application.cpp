@@ -72,7 +72,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 's':
-		 _ofxPiMapper->getSurfaceManager().saveXmlSettings(
+		 _ofxPiMapper->getSurfaceManager()->saveXmlSettings(
 			 PIMAPPER_USER_SURFACES_XML_FILE);
 		 break;
 

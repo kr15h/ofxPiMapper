@@ -6,13 +6,14 @@ ofxPiMapper::ofxPiMapper(){
 	_gui = new ofx::piMapper::SurfaceManagerGui();
 	_cmdManager = new ofx::piMapper::CmdManager();
 	_mediaServer = new ofx::piMapper::MediaServer();
+	_surfaceManager = new ofx::piMapper::SurfaceManager();
 	_info = new ofx::piMapper::Info();
 }
 
 void ofxPiMapper::setup(){
 	ofLogNotice("ofxPiMapper") << "Setting up...";
 
-	surfaceManager.setMediaServer(_mediaServer);
+	_surfaceManager->setMediaServer(_mediaServer);
 	_gui->setMediaServer(_mediaServer);
 	_gui->setCmdManager(_cmdManager);
 
@@ -24,7 +25,7 @@ void ofxPiMapper::setup(){
 		}
 	}
 
-	_gui->setSurfaceManager(&surfaceManager);
+	_gui->setSurfaceManager(_surfaceManager);
 	isSetUp = true;
 	ofLogNotice("ofxPiMapper") << "Done setting up";
 	_application = new ofx::piMapper::Application(this);
@@ -48,7 +49,7 @@ bool ofxPiMapper::loadXmlSettings(string fileName){
 		ofLogError("ofxPiMapper::loadXmlSettings()") << fileName << " does not exist";
 		return false;
 	}
-	if(!surfaceManager.loadXmlSettings(fileName)){
+	if(!_surfaceManager->loadXmlSettings(fileName)){
 		ofLogError("ofxPiMapper::loadXmlSettings()") << "Failed to load " << fileName << endl;
 		return false;
 	}
@@ -63,8 +64,8 @@ ofx::piMapper::SurfaceManagerGui * ofxPiMapper::getGui(){
 	return _gui;
 }
 
-ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager(){
-	return surfaceManager;
+ofx::piMapper::SurfaceManager * ofxPiMapper::getSurfaceManager(){
+	return _surfaceManager;
 }
 
 ofx::piMapper::Info * ofxPiMapper::getInfo(){

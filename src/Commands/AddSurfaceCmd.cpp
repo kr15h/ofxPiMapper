@@ -18,7 +18,7 @@ void AddSurfaceCmd::exec(){
 
 void AddSurfaceCmd::undo(){
 	ofLogNotice("AddSurfaceCmd", "undo");
-	_app->getSurfaceManager().removeSurface();
+	_app->getSurfaceManager()->removeSurface();
 }
 
 void AddSurfaceCmd::addTriangleSurface(){
@@ -34,7 +34,7 @@ void AddSurfaceCmd::addTriangleSurface(){
 	texCoords.push_back(ofVec2f(0.5f, 0.0f));
 	texCoords.push_back(ofVec2f(1.0f, 1.0f));
 	texCoords.push_back(ofVec2f(0.0f, 1.0f));
-	_app->getSurfaceManager().createSurface(surfaceType, vertices, texCoords);
+	_app->getSurfaceManager()->createSurface(surfaceType, vertices, texCoords);
 }
 
 void AddSurfaceCmd::addQuadSurface(){
@@ -53,7 +53,7 @@ void AddSurfaceCmd::addQuadSurface(){
 	texCoords.push_back(ofVec2f(ofVec2f(1.0f, 1.0f)));
 	texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
 
-	_app->getSurfaceManager().createSurface(surfaceType, vertices, texCoords);
+	_app->getSurfaceManager()->createSurface(surfaceType, vertices, texCoords);
 }
 
 } // namespace piMapper

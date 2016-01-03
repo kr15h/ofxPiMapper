@@ -11,8 +11,8 @@ RmSurfaceCmd::RmSurfaceCmd(ofxPiMapper * app){
 void RmSurfaceCmd::exec(){
 	// Store the surface, this implies that the surfaceManager's
 	// removeSelectedSurface does not destroy the surface.
-	_surface = _app->surfaceManager.getSelectedSurface();
-	_app->surfaceManager.removeSelectedSurface();
+	_surface = _app->getSurfaceManager()->getSelectedSurface();
+	_app->getSurfaceManager()->removeSelectedSurface();
 }
 
 void RmSurfaceCmd::undo(){
@@ -20,8 +20,8 @@ void RmSurfaceCmd::undo(){
 	if(_surface == 0){
 		ofLogError("RmSurfaceCmd", "No surface stored");
 	}
-	_app->surfaceManager.addSurface(_surface);
-	_app->surfaceManager.selectSurface(_surface);
+	_app->getSurfaceManager()->addSurface(_surface);
+	_app->getSurfaceManager()->selectSurface(_surface);
 	_surface = 0;
 }
 
