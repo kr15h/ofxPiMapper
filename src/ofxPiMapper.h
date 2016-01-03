@@ -16,7 +16,7 @@
 
 namespace ofx {
 namespace piMapper {
-class Application;
+	class Application;
 }
 }
 
@@ -27,6 +27,7 @@ class ofxPiMapper {
 
 		void setup();
 		void draw();
+	
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		bool loadXmlSettings(string fileName);
 
@@ -34,9 +35,17 @@ class ofxPiMapper {
 		ofx::piMapper::SurfaceManagerGui * getGui();
 		ofx::piMapper::SurfaceManager * getSurfaceManager();
 		ofx::piMapper::Info * getInfo();
+	
+		// TODO: Redesign ofxPiMapper so that there is a separation between
+		// data structures like triangle and quad surfaces and their GUIs.
+		// Trianlge and quad surfaces should be still able to draw themselves
+		// by using their individual draw methods. The GUI layer would consume
+		// triangle and quad surface lists to construct interactive user
+		// interface on top of them.
 
 	private:
 		bool _setupComplete;
+	
 		ofx::piMapper::CmdManager * _cmdManager;
 		ofx::piMapper::MediaServer * _mediaServer;
 		ofx::piMapper::SurfaceManager * _surfaceManager;
