@@ -61,10 +61,6 @@ ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui(){
 	return gui;
 }
 
-ofx::piMapper::MediaServer * ofxPiMapper::getMediaServer(){
-	return _mediaServer;
-}
-
 ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager(){
 	return surfaceManager;
 }

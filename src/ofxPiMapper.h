@@ -32,7 +32,6 @@ class ofxPiMapper {
 
 		ofx::piMapper::CmdManager & getCmdManager();
 		ofx::piMapper::SurfaceManagerGui & getGui();
-		ofx::piMapper::MediaServer * getMediaServer();
 		ofx::piMapper::SurfaceManager & getSurfaceManager();
 		ofx::piMapper::CmdManager cmdManager;
 		ofx::piMapper::SurfaceManager surfaceManager;
