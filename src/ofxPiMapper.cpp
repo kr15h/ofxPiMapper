@@ -3,6 +3,7 @@
 ofxPiMapper::ofxPiMapper(){
 	bShowInfo = false;
 	isSetUp = false;
+	_cmdManager = new ofx::piMapper::CmdManager();
 	_mediaServer = new ofx::piMapper::MediaServer();
 	_info = new ofx::piMapper::Info();
 }
@@ -12,7 +13,7 @@ void ofxPiMapper::setup(){
 
 	surfaceManager.setMediaServer(_mediaServer);
 	gui.setMediaServer(_mediaServer);
-	gui.setCmdManager(&cmdManager);
+	gui.setCmdManager(_cmdManager);
 
 	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
 		ofLogWarning("ofxPiMapper::setup()") << "Failed to load user settings, go with default" << endl;
@@ -53,8 +54,8 @@ bool ofxPiMapper::loadXmlSettings(string fileName){
 	return true;
 }
 
-ofx::piMapper::CmdManager & ofxPiMapper::getCmdManager(){
-	return cmdManager;
+ofx::piMapper::CmdManager * ofxPiMapper::getCmdManager(){
+	return _cmdManager;
 }
 
 ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui(){

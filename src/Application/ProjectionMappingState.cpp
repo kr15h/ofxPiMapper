@@ -18,7 +18,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 	switch(args.key){
 
 	 case 't':
-		 app->getOfxPiMapper()->getCmdManager().exec(
+		 app->getOfxPiMapper()->getCmdManager()->exec(
 			 new AddSurfaceCmd(
 				 app->getOfxPiMapper(),
 				 SurfaceType::TRIANGLE_SURFACE)
@@ -26,7 +26,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 break;
 
 	 case 'q':
-		 app->getOfxPiMapper()->getCmdManager().exec(
+		 app->getOfxPiMapper()->getCmdManager()->exec(
 			 new AddSurfaceCmd(
 				 app->getOfxPiMapper(),
 				 SurfaceType::QUAD_SURFACE)
@@ -34,7 +34,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 break;
 
 	 case OF_KEY_BACKSPACE:
-		 app->getOfxPiMapper()->getCmdManager().exec(
+		 app->getOfxPiMapper()->getCmdManager()->exec(
 			 new RmSurfaceCmd(app->getOfxPiMapper()));
 		 break;
 

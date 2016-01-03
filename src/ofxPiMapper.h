@@ -30,16 +30,16 @@ class ofxPiMapper {
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		bool loadXmlSettings(string fileName);
 
-		ofx::piMapper::CmdManager & getCmdManager();
+		ofx::piMapper::CmdManager * getCmdManager();
 		ofx::piMapper::SurfaceManagerGui & getGui();
 		ofx::piMapper::SurfaceManager & getSurfaceManager();
-		ofx::piMapper::CmdManager cmdManager;
 		ofx::piMapper::SurfaceManager surfaceManager;
 		ofx::piMapper::Info * getInfo();
 
 	private:
 		bool isSetUp;
 		bool bShowInfo;
+		ofx::piMapper::CmdManager * _cmdManager;
 		ofx::piMapper::MediaServer * _mediaServer;
 		ofx::piMapper::SurfaceManagerGui gui;
 		ofx::piMapper::Application * _application;
