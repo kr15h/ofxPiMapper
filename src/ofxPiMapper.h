@@ -31,7 +31,7 @@ class ofxPiMapper {
 		bool loadXmlSettings(string fileName);
 
 		ofx::piMapper::CmdManager * getCmdManager();
-		ofx::piMapper::SurfaceManagerGui & getGui();
+		ofx::piMapper::SurfaceManagerGui * getGui();
 		ofx::piMapper::SurfaceManager & getSurfaceManager();
 		ofx::piMapper::SurfaceManager surfaceManager;
 		ofx::piMapper::Info * getInfo();
@@ -41,7 +41,7 @@ class ofxPiMapper {
 		bool bShowInfo;
 		ofx::piMapper::CmdManager * _cmdManager;
 		ofx::piMapper::MediaServer * _mediaServer;
-		ofx::piMapper::SurfaceManagerGui gui;
+		ofx::piMapper::SurfaceManagerGui * _gui;
 		ofx::piMapper::Application * _application;
 		ofx::piMapper::Info * _info;
 };

@@ -39,28 +39,28 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 _ofxPiMapper->getCmdManager()->exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, PresentationState::instance(),
-				 &_ofxPiMapper->getGui(), GuiMode::NONE));
+				 _ofxPiMapper->getGui(), GuiMode::NONE));
 		 break;
 
 	 case '2':
 		 _ofxPiMapper->getCmdManager()->exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, TextureMappingState::instance(),
-				 &_ofxPiMapper->getGui(), GuiMode::TEXTURE_MAPPING));
+				 _ofxPiMapper->getGui(), GuiMode::TEXTURE_MAPPING));
 		 break;
 
 	 case '3':
 		 _ofxPiMapper->getCmdManager()->exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, ProjectionMappingState::instance(),
-				 &_ofxPiMapper->getGui(), GuiMode::PROJECTION_MAPPING));
+				 _ofxPiMapper->getGui(), GuiMode::PROJECTION_MAPPING));
 		 break;
 
 	 case '4':
 		 _ofxPiMapper->getCmdManager()->exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, SourceSelectionState::instance(),
-				 &_ofxPiMapper->getGui(), GuiMode::SOURCE_SELECTION));
+				 _ofxPiMapper->getGui(), GuiMode::SOURCE_SELECTION));
 		 break;
 
 	 case 'f':
