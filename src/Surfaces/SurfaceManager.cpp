@@ -18,17 +18,6 @@ void SurfaceManager::draw(){
 	}
 }
 
-void SurfaceManager::addSurface(int surfaceType){
-	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
-		surfaces.push_back(new TriangleSurface());
-	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
-		surfaces.push_back(new QuadSurface());
-	}else{
-		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		exit(EXIT_FAILURE);
-	}
-}
-
 void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
 		surfaces.push_back(new TriangleSurface());

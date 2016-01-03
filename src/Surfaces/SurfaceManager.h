@@ -25,7 +25,6 @@ class SurfaceManager {
 		void draw();
 
 		// TODO: These should be renamed to createSurface
-		void addSurface(int surfaceType);
 		void addSurface(int surfaceType, BaseSource * newSource);
 		void addSurface(int surfaceType, vector <ofVec2f> vertices,
 						vector <ofVec2f> texCoords);
