@@ -4,7 +4,7 @@ ofxPiMapper::ofxPiMapper(){
 	bShowInfo = false;
 	isSetUp = false;
 	_mediaServer = new ofx::piMapper::MediaServer();
-	_info = 0;
+	_info = new ofx::piMapper::Info();
 }
 
 void ofxPiMapper::setup(){
@@ -26,7 +26,6 @@ void ofxPiMapper::setup(){
 	isSetUp = true;
 	ofLogNotice("ofxPiMapper") << "Done setting up";
 	_application = new ofx::piMapper::Application(this);
-	_info = new ofx::piMapper::Info();
 }
 
 void ofxPiMapper::draw(){
