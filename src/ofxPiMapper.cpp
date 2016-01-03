@@ -3,6 +3,7 @@
 ofxPiMapper::ofxPiMapper(){
 	bShowInfo = false;
 	isSetUp = false;
+	_info = 0;
 }
 
 void ofxPiMapper::setup(){
@@ -24,36 +25,17 @@ void ofxPiMapper::setup(){
 	isSetUp = true;
 	ofLogNotice("ofxPiMapper") << "Done setting up";
 	_application = new ofx::piMapper::Application(this);
+	_info = new ofx::piMapper::Info();
 }
 
 void ofxPiMapper::draw(){
 	if(!isSetUp){
 		return;
 	}
-
 	gui.draw();
-
-	if(bShowInfo){
-		stringstream ss;
-		ss << "There are 4 modes:\n\n";
-		ss << " 1. Presentation mode\n";
-		ss << " 2. Texture mapping mode\n";
-		ss << " 3. Projection mapping mode\n";
-		ss << " 4. Source selection mode\n\n";
-		ss << "You can switch between the modes by using <1>, <2>, <3> and <4> "
-			"keys on the keyboard.\n\n";
-		ss << "Press <t> to add new triangle surface\n";
-		ss << "Press <q> to add new quad surface\n";
-		ss << "Press <s> to save the composition\n";
-		ss << "Press <f> to toggle fullscreen\n";
-		ss << "Press <i> to hide this message";
-		ofDrawBitmapStringHighlight(ss.str(), 10, 20,
-									ofColor(0, 0, 0, 100),
-									ofColor(255, 255, 255, 200));
-	}
-
 	_application->draw();
-} // draw
+	_info->draw();
+}
 
 void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
 	mediaServer.addFboSource(fboSource);
@@ -85,4 +67,8 @@ ofx::piMapper::MediaServer & ofxPiMapper::getMediaServer(){
 
 ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager(){
 	return surfaceManager;
+}
+
+ofx::piMapper::Info * ofxPiMapper::getInfo(){
+	return _info;
 }

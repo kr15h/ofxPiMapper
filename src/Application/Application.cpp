@@ -68,7 +68,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'i':
-		 _ofxPiMapper->toggleInfo();
+		 _ofxPiMapper->getInfo()->toggle();
 		 break;
 
 	 case 's':

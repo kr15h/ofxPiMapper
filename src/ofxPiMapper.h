@@ -9,6 +9,7 @@
 #include "CmdManager.h"
 #include "RmSurfaceCmd.h"
 #include "Application.h"
+#include "Info.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -28,15 +29,6 @@ class ofxPiMapper {
 		void draw();
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		bool loadXmlSettings(string fileName);
-		void showInfo(){
-			bShowInfo = true;
-		}
-		void hideInfo(){
-			bShowInfo = false;
-		}
-		void toggleInfo(){
-			bShowInfo = !bShowInfo;
-		}
 
 		ofx::piMapper::CmdManager & getCmdManager();
 		ofx::piMapper::SurfaceManagerGui & getGui();
@@ -44,6 +36,7 @@ class ofxPiMapper {
 		ofx::piMapper::SurfaceManager & getSurfaceManager();
 		ofx::piMapper::CmdManager cmdManager;
 		ofx::piMapper::SurfaceManager surfaceManager;
+		ofx::piMapper::Info * getInfo();
 
 	private:
 		bool isSetUp;
@@ -51,5 +44,5 @@ class ofxPiMapper {
 		ofx::piMapper::MediaServer mediaServer;
 		ofx::piMapper::SurfaceManagerGui gui;
 		ofx::piMapper::Application * _application;
-
+		ofx::piMapper::Info * _info;
 };
