@@ -12,12 +12,12 @@ void ofxPiMapper::setup(){
 	gui.setMediaServer(&mediaServer);
 	gui.setCmdManager(&cmdManager);
 
-	if(ofFile::doesFileExist(PIMAPPER_USER_SURFACES_XML_FILE)){
-		ofLogNotice("ofxPiMapper") << "Loading user surfaces from " << PIMAPPER_USER_SURFACES_XML_FILE;
-		surfaceManager.loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
-	}else{
-		ofLogNotice("ofxPiMapper") << "Loading default surfaces from " << PIMAPPER_DEF_SURFACES_XML_FILE;
-		surfaceManager.loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE);
+	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
+		ofLogWarning("ofxPiMapper::setup()") << "Failed to load user settings, go with default" << endl;
+		if(!loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE)){
+			ofLogError("ofxPiMapper::setup()") << "Failed to load default settings, exit" << endl;
+			ofExit(EXIT_FAILURE);
+		}
 	}
 
 	gui.setSurfaceManager(&surfaceManager);
@@ -60,17 +60,14 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
 }
 
 bool ofxPiMapper::loadXmlSettings(string fileName){
-	/*
-	if(surfaceManager == 0){
-		ofLogNotice("ofxPiMapper::loadXmlSettings()") << "Could not load XML settings as the surfaceManager is not initialized yet.";
-		return;
-	}
-	*/
 	if(!ofFile::doesFileExist(fileName)){
-		ofLogNotice("ofxPiMapper::loadXmlSettings()") << "Settings file does not exist.";
+		ofLogError("ofxPiMapper::loadXmlSettings()") << fileName << " does not exist";
 		return false;
 	}
-	surfaceManager.loadXmlSettings(fileName);
+	if(!surfaceManager.loadXmlSettings(fileName)){
+		ofLogError("ofxPiMapper::loadXmlSettings()") << "Failed to load " << fileName << endl;
+		return false;
+	}
 	return true;
 }
 

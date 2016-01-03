@@ -37,8 +37,7 @@ class SurfaceManager {
 
 		void clear();
 		void saveXmlSettings(string fileName);
-		// TODO: Make it bool.
-		void loadXmlSettings(string fileName);
+		bool loadXmlSettings(string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
 
 		BaseSurface * getSurface(int index);

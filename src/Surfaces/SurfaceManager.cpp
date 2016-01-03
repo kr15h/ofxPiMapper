@@ -192,7 +192,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 	xmlSettings.save(fileName);
 }
 
-void SurfaceManager::loadXmlSettings(string fileName){
+bool SurfaceManager::loadXmlSettings(string fileName){
 	// Exit if there is no media server
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
@@ -200,11 +200,11 @@ void SurfaceManager::loadXmlSettings(string fileName){
 	}
 	if(!xmlSettings.loadFile(fileName)){
 		ofLogWarning("SurfaceManager") << "Could not load XML settings";
-		return;
+		return false;
 	}
 	if(!xmlSettings.tagExists("surfaces")){
 		ofLogWarning("SurfaceManager") << "XML settings is empty or has wrong markup";
-		return;
+		return false;
 	}
 
 	xmlSettings.pushTag("surfaces");
@@ -352,6 +352,8 @@ void SurfaceManager::loadXmlSettings(string fileName){
 	}
 
 	xmlSettings.popTag(); // surfaces
+	
+	return true;
 }
 
 void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
