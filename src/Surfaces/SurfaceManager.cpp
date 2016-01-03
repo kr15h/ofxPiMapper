@@ -19,19 +19,6 @@ void SurfaceManager::draw(){
 	}
 }
 
-void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource){
-	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
-		surfaces.push_back(new TriangleSurface());
-		surfaces.back()->setSource(newSource);
-	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
-		surfaces.push_back(new QuadSurface());
-		surfaces.back()->setSource(newSource);
-	}else{
-		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		exit(EXIT_FAILURE);
-	}
-}
-
 void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
 								vector <ofVec2f> texCoords){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
