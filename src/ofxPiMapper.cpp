@@ -1,7 +1,6 @@
 #include "ofxPiMapper.h"
 
 ofxPiMapper::ofxPiMapper(){
-	bShowInfo = false;
 	_setupComplete = false;
 	_gui = new ofx::piMapper::SurfaceManagerGui();
 	_cmdManager = new ofx::piMapper::CmdManager();
