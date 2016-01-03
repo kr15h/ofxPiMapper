@@ -29,6 +29,7 @@
 		396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */; };
 		3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841731BC91F6F009F0BAE /* TextureMappingState.cpp */; };
 		396841821BC93DDC009F0BAE /* AddSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */; };
+		397C46BA1C3971CD002689E2 /* Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397C46B81C3971CD002689E2 /* Info.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
@@ -174,6 +175,8 @@
 		396841741BC91F6F009F0BAE /* TextureMappingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingState.h; sourceTree = "<group>"; };
 		396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddSurfaceCmd.cpp; path = Commands/AddSurfaceCmd.cpp; sourceTree = "<group>"; };
 		396841811BC93DDC009F0BAE /* AddSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddSurfaceCmd.h; path = Commands/AddSurfaceCmd.h; sourceTree = "<group>"; };
+		397C46B81C3971CD002689E2 /* Info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Info.cpp; sourceTree = "<group>"; };
+		397C46B91C3971CD002689E2 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPiMapper.cpp; sourceTree = "<group>"; };
 		397EFC7D1A08FE720009286E /* FboSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FboSource.cpp; sourceTree = "<group>"; };
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
@@ -439,6 +442,7 @@
 				39C1246219F0AB96005DF557 /* Surfaces */,
 				39C1245619F086A9005DF557 /* Sources */,
 				39C1244C19EE95DD005DF557 /* MediaServer */,
+				397C46B71C3971CD002689E2 /* Info */,
 				39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */,
 				397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */,
 			);
@@ -452,6 +456,15 @@
 				396E8A2F190FEDD900705899 /* src */,
 			);
 			name = ofxPiMapper;
+			sourceTree = "<group>";
+		};
+		397C46B71C3971CD002689E2 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				397C46B91C3971CD002689E2 /* Info.h */,
+				397C46B81C3971CD002689E2 /* Info.cpp */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		39C123E319EE9576005DF557 /* ofxIO */ = {
@@ -956,6 +969,7 @@
 				397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */,
 				39C1244219EE9589005DF557 /* HiddenFileFilter.cpp in Sources */,
 				399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */,
+				397C46BA1C3971CD002689E2 /* Info.cpp in Sources */,
 				39C1244819EE9589005DF557 /* SearchPath.cpp in Sources */,
 				39C1248019F187D5005DF557 /* SourcesEditor.cpp in Sources */,
 				391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */,
