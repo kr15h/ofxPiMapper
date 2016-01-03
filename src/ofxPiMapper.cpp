@@ -2,7 +2,7 @@
 
 ofxPiMapper::ofxPiMapper(){
 	bShowInfo = false;
-	isSetUp = false;
+	_setupComplete = false;
 	_gui = new ofx::piMapper::SurfaceManagerGui();
 	_cmdManager = new ofx::piMapper::CmdManager();
 	_mediaServer = new ofx::piMapper::MediaServer();
@@ -26,13 +26,14 @@ void ofxPiMapper::setup(){
 	}
 
 	_gui->setSurfaceManager(_surfaceManager);
-	isSetUp = true;
-	ofLogNotice("ofxPiMapper") << "Done setting up";
 	_application = new ofx::piMapper::Application(this);
+	
+	_setupComplete = true;
+	ofLogNotice("ofxPiMapper") << "Setup complete";
 }
 
 void ofxPiMapper::draw(){
-	if(!isSetUp){
+	if(!_setupComplete){
 		return;
 	}
 	_gui->draw();

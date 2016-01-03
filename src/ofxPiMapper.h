@@ -36,7 +36,7 @@ class ofxPiMapper {
 		ofx::piMapper::Info * getInfo();
 
 	private:
-		bool isSetUp;
+		bool _setupComplete;
 		bool bShowInfo;
 		ofx::piMapper::CmdManager * _cmdManager;
 		ofx::piMapper::MediaServer * _mediaServer;
