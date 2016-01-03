@@ -32,7 +32,7 @@ class ofxPiMapper {
 
 		ofx::piMapper::CmdManager & getCmdManager();
 		ofx::piMapper::SurfaceManagerGui & getGui();
-		ofx::piMapper::MediaServer & getMediaServer();
+		ofx::piMapper::MediaServer * getMediaServer();
 		ofx::piMapper::SurfaceManager & getSurfaceManager();
 		ofx::piMapper::CmdManager cmdManager;
 		ofx::piMapper::SurfaceManager surfaceManager;
@@ -41,7 +41,7 @@ class ofxPiMapper {
 	private:
 		bool isSetUp;
 		bool bShowInfo;
-		ofx::piMapper::MediaServer mediaServer;
+		ofx::piMapper::MediaServer * _mediaServer;
 		ofx::piMapper::SurfaceManagerGui gui;
 		ofx::piMapper::Application * _application;
 		ofx::piMapper::Info * _info;

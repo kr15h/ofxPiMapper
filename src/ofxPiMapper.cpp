@@ -3,14 +3,15 @@
 ofxPiMapper::ofxPiMapper(){
 	bShowInfo = false;
 	isSetUp = false;
+	_mediaServer = new ofx::piMapper::MediaServer();
 	_info = 0;
 }
 
 void ofxPiMapper::setup(){
 	ofLogNotice("ofxPiMapper") << "Setting up...";
 
-	surfaceManager.setMediaServer(&mediaServer);
-	gui.setMediaServer(&mediaServer);
+	surfaceManager.setMediaServer(_mediaServer);
+	gui.setMediaServer(_mediaServer);
 	gui.setCmdManager(&cmdManager);
 
 	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
@@ -38,7 +39,7 @@ void ofxPiMapper::draw(){
 }
 
 void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
-	mediaServer.addFboSource(fboSource);
+	_mediaServer->addFboSource(fboSource);
 }
 
 bool ofxPiMapper::loadXmlSettings(string fileName){
@@ -61,8 +62,8 @@ ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui(){
 	return gui;
 }
 
-ofx::piMapper::MediaServer & ofxPiMapper::getMediaServer(){
-	return mediaServer;
+ofx::piMapper::MediaServer * ofxPiMapper::getMediaServer(){
+	return _mediaServer;
 }
 
 ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager(){
