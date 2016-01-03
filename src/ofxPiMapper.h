@@ -28,8 +28,6 @@ class ofxPiMapper {
 		void draw();
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		bool loadXmlSettings(string fileName);
-		void addTriangleSurface();
-		void addQuadSurface();
 		void showInfo(){
 			bShowInfo = true;
 		}

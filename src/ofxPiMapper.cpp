@@ -71,47 +71,6 @@ bool ofxPiMapper::loadXmlSettings(string fileName){
 	return true;
 }
 
-void ofxPiMapper::addTriangleSurface(){
-	int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
-
-	vector <ofVec2f> vertices;
-	float margin = 50.0f;
-	vertices.push_back(ofVec2f((float)ofGetWidth() / 2.0f, margin));
-	vertices.push_back(ofVec2f((float)ofGetWidth() - margin, (float)ofGetHeight() - margin));
-	vertices.push_back(ofVec2f(margin, (float)ofGetHeight() - margin));
-
-	vector <ofVec2f> texCoords;
-	texCoords.push_back(ofVec2f(0.5f, 0.0f));
-	texCoords.push_back(ofVec2f(1.0f, 1.0f));
-	texCoords.push_back(ofVec2f(0.0f, 1.0f));
-	surfaceManager.createSurface(surfaceType, vertices, texCoords);
-
-	// Select this surface right away
-	surfaceManager.selectSurface(surfaceManager.size() - 1);
-} // addTriangleSurface
-
-void ofxPiMapper::addQuadSurface(){
-	int surfaceType = ofx::piMapper::SurfaceType::QUAD_SURFACE;
-
-	vector <ofVec2f> vertices;
-	float margin = 50.0f;
-	vertices.push_back(ofVec2f(margin, margin));
-	vertices.push_back(ofVec2f((float)ofGetWidth() - margin, margin));
-	vertices.push_back(ofVec2f((float)ofGetWidth() - margin, (float)ofGetHeight() - margin));
-	vertices.push_back(ofVec2f(margin, (float)ofGetHeight() - margin));
-
-	vector <ofVec2f> texCoords;
-	texCoords.push_back(ofVec2f(ofVec2f(0.0f, 0.0f)));
-	texCoords.push_back(ofVec2f(ofVec2f(1.0f, 0.0f)));
-	texCoords.push_back(ofVec2f(ofVec2f(1.0f, 1.0f)));
-	texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
-
-	surfaceManager.createSurface(surfaceType, vertices, texCoords);
-
-	// select this surface right away
-	surfaceManager.selectSurface(surfaceManager.size() - 1);
-} // addQuadSurface
-
 ofx::piMapper::CmdManager & ofxPiMapper::getCmdManager(){
 	return cmdManager;
 }
