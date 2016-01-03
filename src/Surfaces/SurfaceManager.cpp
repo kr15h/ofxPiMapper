@@ -19,7 +19,7 @@ void SurfaceManager::draw(){
 	}
 }
 
-void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
+void SurfaceManager::createSurface(int surfaceType, vector <ofVec2f> vertices,
 								vector <ofVec2f> texCoords){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
 		if(vertices.size() < 3){
@@ -57,7 +57,7 @@ void SurfaceManager::addSurface(int surfaceType, vector <ofVec2f> vertices,
 	}
 }
 
-void SurfaceManager::addSurface(int surfaceType, BaseSource * newSource,
+void SurfaceManager::createSurface(int surfaceType, BaseSource * newSource,
 								vector <ofVec2f> vertices,
 								vector <ofVec2f> texCoords){
 	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
@@ -281,10 +281,10 @@ void SurfaceManager::loadXmlSettings(string fileName){
 			// now we have variables sourceName and sourceTexture
 			// by checking those we can use one or another addSurface method
 			if(sourceName != "none" && source != 0){
-				addSurface(SurfaceType::TRIANGLE_SURFACE, source, vertices,
+				createSurface(SurfaceType::TRIANGLE_SURFACE, source, vertices,
 						   texCoords);
 			}else{
-				addSurface(SurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+				createSurface(SurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
 			}
 		}
 		// it's a quad ?
@@ -341,10 +341,10 @@ void SurfaceManager::loadXmlSettings(string fileName){
 			// now we have variables sourceName and sourceTexture
 			// by checking those we can use one or another addSurface method
 			if(sourceName != "none" && source != 0){
-				addSurface(SurfaceType::QUAD_SURFACE, source, vertices,
+				createSurface(SurfaceType::QUAD_SURFACE, source, vertices,
 						   texCoords);
 			}else{
-				addSurface(SurfaceType::QUAD_SURFACE, vertices, texCoords);
+				createSurface(SurfaceType::QUAD_SURFACE, vertices, texCoords);
 			}
 		}
 

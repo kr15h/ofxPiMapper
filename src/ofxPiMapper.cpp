@@ -87,7 +87,7 @@ void ofxPiMapper::addTriangleSurface(){
 	texCoords.push_back(ofVec2f(0.5f, 0.0f));
 	texCoords.push_back(ofVec2f(1.0f, 1.0f));
 	texCoords.push_back(ofVec2f(0.0f, 1.0f));
-	surfaceManager.addSurface(surfaceType, vertices, texCoords);
+	surfaceManager.createSurface(surfaceType, vertices, texCoords);
 
 	// Select this surface right away
 	surfaceManager.selectSurface(surfaceManager.size() - 1);
@@ -109,7 +109,7 @@ void ofxPiMapper::addQuadSurface(){
 	texCoords.push_back(ofVec2f(ofVec2f(1.0f, 1.0f)));
 	texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
 
-	surfaceManager.addSurface(surfaceType, vertices, texCoords);
+	surfaceManager.createSurface(surfaceType, vertices, texCoords);
 
 	// select this surface right away
 	surfaceManager.selectSurface(surfaceManager.size() - 1);
