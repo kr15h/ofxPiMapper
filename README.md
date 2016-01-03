@@ -33,7 +33,7 @@ The following is a list of key features ofxPiMapper has.
    Expect more conventional projection mapping software features to be implemented.
 
 
-Basic Usage
+Running the Example
 ---
 
 You can use the example application of the addon for simple projection mapping projects where static images or videos have to be projection mapped. 
