@@ -3,9 +3,10 @@
 namespace ofx {
 namespace piMapper {
 
-SurfaceManager::SurfaceManager() :
-	mediaServer(0),
-	selectedSurface(0){}
+SurfaceManager::SurfaceManager(){
+	mediaServer = 0;
+	selectedSurface = 0;
+}
 
 SurfaceManager::~SurfaceManager(){
 	clear();
