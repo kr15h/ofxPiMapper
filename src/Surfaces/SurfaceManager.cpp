@@ -27,10 +27,14 @@ SurfaceManager::~SurfaceManager(){
 }
 
 void SurfaceManager::draw(){
+	_surfaces.draw();
+	
+	/*
 	for(int i = 0; i < surfaces.size(); i++){
 		ofSetColor(255, 255, 255, 255);
 		surfaces[i]->draw();
 	}
+	*/
 }
 
 void SurfaceManager::createSurface(int surfaceType, vector <ofVec2f> vertices,
@@ -44,11 +48,17 @@ void SurfaceManager::createSurface(int surfaceType, vector <ofVec2f> vertices,
 					  "There must be 3 texture coordinates for a triangle surface.");
 		}
 
-		surfaces.push_back(new TriangleSurface());
+		_surfaces.push_back(new TriangleSurface());
+		//surfaces.push_back(new TriangleSurface());
 
 		for(int i = 0; i < 3; i++){
+			_surfaces.back()->setVertex(i, vertices[i]);
+			_surfaces.back()->setTexCoord(i, texCoords[i]);
+			
+			/*
 			surfaces.back()->setVertex(i, vertices[i]);
 			surfaces.back()->setTexCoord(i, texCoords[i]);
+			*/
 		}
 
 	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
@@ -59,11 +69,17 @@ void SurfaceManager::createSurface(int surfaceType, vector <ofVec2f> vertices,
 					  "There must be 4 texture coordinates for a quad surface.");
 		}
 
-		surfaces.push_back(new QuadSurface());
+		_surfaces.push_back(new QuadSurface());
+		//surfaces.push_back(new QuadSurface());
 
 		for(int i = 0; i < 4; i++){
+			_surfaces.back()->setVertex(i, vertices[i]);
+			_surfaces.back()->setTexCoord(i, texCoords[i]);
+			
+			/*
 			surfaces.back()->setVertex(i, vertices[i]);
 			surfaces.back()->setTexCoord(i, texCoords[i]);
+			*/
 		}
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
@@ -82,13 +98,23 @@ void SurfaceManager::createSurface(int surfaceType, BaseSource * newSource,
 			throw runtime_error(
 					  "Thre must be 3 texture coordinates for a triangle surface.");
 		}
-
+		
+		_surfaces.push_back(new TriangleSurface());
+		_surfaces.back()->setSource(newSource);
+		
+		/*
 		surfaces.push_back(new TriangleSurface());
 		surfaces.back()->setSource(newSource);
+		*/
 
 		for(int i = 0; i < 3; i++){
+			_surfaces.back()->setVertex(i, vertices[i]);
+			_surfaces.back()->setTexCoord(i, texCoords[i]);
+			
+			/*
 			surfaces.back()->setVertex(i, vertices[i]);
 			surfaces.back()->setTexCoord(i, texCoords[i]);
+			*/
 		}
 
 	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
@@ -99,12 +125,22 @@ void SurfaceManager::createSurface(int surfaceType, BaseSource * newSource,
 					  "Thre must be 4 texture coordinates for a quad surface.");
 		}
 
+		_surfaces.push_back(new QuadSurface());
+		_surfaces.back()->setSource(newSource);
+		
+		/*
 		surfaces.push_back(new QuadSurface());
 		surfaces.back()->setSource(newSource);
+		*/
 
 		for(int i = 0; i < 4; i++){
+			_surfaces.back()->setVertex(i, vertices[i]);
+			_surfaces.back()->setTexCoord(i, texCoords[i]);
+			
+			/*
 			surfaces.back()->setVertex(i, vertices[i]);
 			surfaces.back()->setTexCoord(i, texCoords[i]);
+			*/
 		}
 	}else{
 		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
@@ -114,13 +150,24 @@ void SurfaceManager::createSurface(int surfaceType, BaseSource * newSource,
 
 // Add existing surface
 void SurfaceManager::addSurface(BaseSurface * surface){
-	surfaces.push_back(surface);
+	_surfaces.push_back(surface);
+	//surfaces.push_back(surface);
 }
 
 void SurfaceManager::removeSelectedSurface(){
 	if(selectedSurface == 0){
 		return;
 	}
+	
+	for(int i = 0; i < _surfaces.size(); i++){
+		if(_surfaces[i] == selectedSurface){
+			_surfaces.erase(i);
+			selectedSurface = 0;
+			break;
+		}
+	}
+	
+	/*
 	for(int i = 0; i < surfaces.size(); i++){
 		if(surfaces[i] == selectedSurface){
 			// Do not delete pointer as we are storing the
@@ -131,22 +178,38 @@ void SurfaceManager::removeSelectedSurface(){
 			break;
 		}
 	}
+	*/
 }
 
 void SurfaceManager::removeSurface(){
+	if(_surfaces.size() <= 0){
+		return;
+	}
+	delete _surfaces.back();
+	_surfaces.pop_back();
+	
+	/*
 	if(!surfaces.size()){
 		return;
 	}
 	delete surfaces.back();
 	surfaces.pop_back();
+	*/
 }
 
 void SurfaceManager::clear(){
 	// delete all extra allocations from the heap
+	while(_surfaces.size()){
+		delete _surfaces.back();
+		_surfaces.pop_back();
+	}
+	
+	/*
 	while(surfaces.size()){
 		delete surfaces.back();
 		surfaces.pop_back();
 	}
+	*/
 }
 
 void SurfaceManager::saveXmlSettings(string fileName){
@@ -375,10 +438,17 @@ void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
 }
 
 BaseSurface * SurfaceManager::selectSurface(int index){
+	if(index >= _surfaces.size()){
+		throw runtime_error("Surface index out of bounds.");
+	}
+	selectedSurface = _surfaces[index];
+	
+	/*
 	if(index >= surfaces.size()){
 		throw runtime_error("Surface index out of bounds.");
 	}
 	selectedSurface = surfaces[index];
+	*/
 
 	// notify that a new surface has been selected
 	ofSendMessage("surfaceSelected");
@@ -386,6 +456,15 @@ BaseSurface * SurfaceManager::selectSurface(int index){
 }
 
 BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
+	for(int i = 0; i < _surfaces.size(); i++){
+		if(_surfaces[i] == surface){
+			selectedSurface = surface;
+			ofSendMessage("surfaceSelected");
+			return selectedSurface;
+		}
+	}
+	
+	/*
 	for(int i = 0; i < surfaces.size(); i++){
 		if(surfaces[i] == surface){
 			selectedSurface = surface;
@@ -393,6 +472,7 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 			return selectedSurface;
 		}
 	}
+	*/
 	deselectSurface();
 	return 0;
 }
@@ -406,16 +486,25 @@ void SurfaceManager::deselectSurface(){
 }
 
 BaseSurface * SurfaceManager::getSurface(int index){
+	if(index >= _surfaces.size()){
+		throw runtime_error("Surface index out of bounds.");
+		return 0;
+	}
+	
+	/*
 	if(index >= surfaces.size()){
 		throw runtime_error("Surface index out of bounds.");
 		return 0;
 	}
+	*/
 
-	return surfaces[index];
+	return _surfaces[index];
+	//return surfaces[index];
 }
 
 int SurfaceManager::size(){
-	return surfaces.size();
+	return _surfaces.size();
+	//return surfaces.size();
 }
 
 } // namespace piMapper
