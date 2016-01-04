@@ -11,18 +11,17 @@ class SurfaceStack {
 	public:
 		SurfaceStack();
 
-		void push_back(BaseSurface & s);
-		void pop_back();
-		void erase(int pos);
-		void swap(BaseSurface * a, BaseSurface * b);
+		void push_back(BaseSurface * s);
+		void erase(int i);
+		void swap(int a, int b);
 		void draw();
 	
 		int size();
-	
-		BaseSurface * at(int pos);
+
+		BaseSurface * operator[](int i);
 	
 	private:
-		vector<BaseSurface> _surfaces;
+		vector<BaseSurface *> _surfaces;
 };
 
 } // namespace piMapper
