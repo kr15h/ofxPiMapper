@@ -7,6 +7,7 @@
 #include "MediaServer.h"
 #include "BaseSource.h"
 #include "SourceType.h"
+#include "SurfaceStack.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
@@ -52,6 +53,8 @@ class SurfaceManager {
 		BaseSurface * selectedSurface;
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;
+	
+		SurfaceStack _surfaces;
 
 };
 

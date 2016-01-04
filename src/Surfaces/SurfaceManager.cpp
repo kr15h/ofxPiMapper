@@ -6,6 +6,20 @@ namespace piMapper {
 SurfaceManager::SurfaceManager(){
 	mediaServer = 0;
 	selectedSurface = 0;
+	
+	// Test SurfaceStack
+	cout << "SurfaceStack.size: " << _surfaces.size() << endl;
+	_surfaces.push_back(new BaseSurface());
+	cout << "SurfaceStack.size: " << _surfaces.size() << endl;
+	_surfaces.push_back(new BaseSurface());
+	_surfaces.push_back(new BaseSurface());
+	cout << "SurfaceStack addr: " << _surfaces[0] << ", " << _surfaces[1] << ", " << _surfaces[2] << endl;
+	_surfaces.swap(0, 1);
+	cout << "SurfaceStack addr: " << _surfaces[0] << ", " << _surfaces[1] << ", " << _surfaces[2] << endl;
+	_surfaces.erase(1);
+	cout << "SurfaceStack.size: " << _surfaces.size() << endl;
+	// Should throw "index out of bounds"
+	//cout << "SurfaceStack addr: " << _surfaces[0] << ", " << _surfaces[1] << ", " << _surfaces[2] << endl;
 }
 
 SurfaceManager::~SurfaceManager(){
