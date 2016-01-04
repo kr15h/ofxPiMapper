@@ -9,8 +9,11 @@ void SurfaceStack::push_back(BaseSurface * s){
 	_surfaces.push_back(s);
 }
 
+void SurfaceStack::pop_back(){
+	_surfaces.pop_back();
+}
+
 void SurfaceStack::erase(int i){
-	delete _surfaces[i];
 	_surfaces.erase(_surfaces.begin() + i);
 }
 
@@ -33,6 +36,10 @@ BaseSurface * SurfaceStack::operator[](int i){
 		throw runtime_error("SurfaceStack index out of bounds");
 	}
 	return _surfaces[i];
+}
+
+BaseSurface * SurfaceStack::back(){
+	return _surfaces.back();
 }
 
 } // namespace piMapper

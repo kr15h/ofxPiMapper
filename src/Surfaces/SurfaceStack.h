@@ -12,6 +12,7 @@ class SurfaceStack {
 		SurfaceStack();
 
 		void push_back(BaseSurface * s);
+		void pop_back();
 		void erase(int i);
 		void swap(int a, int b);
 		void draw();
@@ -19,6 +20,7 @@ class SurfaceStack {
 		int size();
 
 		BaseSurface * operator[](int i);
+		BaseSurface * back();
 	
 	private:
 		vector<BaseSurface *> _surfaces;
