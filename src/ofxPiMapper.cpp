@@ -17,10 +17,9 @@ void ofxPiMapper::setup(){
 	_gui->setCmdManager(_cmdManager);
 
 	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
-		ofLogWarning("ofxPiMapper::setup()") << "Failed to load user settings, go with default" << endl;
+		ofLogWarning("ofxPiMapper::setup()") << "Failed to load user settings" << endl;
 		if(!loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE)){
-			ofLogError("ofxPiMapper::setup()") << "Failed to load default settings, exit" << endl;
-			ofExit(EXIT_FAILURE);
+			ofLogWarning("ofxPiMapper::setup()") << "Failed to load default settings" << endl;
 		}
 	}
 
