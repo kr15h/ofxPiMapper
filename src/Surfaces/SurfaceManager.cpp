@@ -37,117 +37,6 @@ void SurfaceManager::draw(){
 	*/
 }
 
-void SurfaceManager::createSurface(int surfaceType, vector <ofVec2f> vertices,
-								vector <ofVec2f> texCoords){
-	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
-		if(vertices.size() < 3){
-			throw runtime_error(
-					  "There must be 3 vertices for a triangle surface.");
-		}else if(texCoords.size() < 3){
-			throw runtime_error(
-					  "There must be 3 texture coordinates for a triangle surface.");
-		}
-
-		_surfaces.push_back(new TriangleSurface());
-		//surfaces.push_back(new TriangleSurface());
-
-		for(int i = 0; i < 3; i++){
-			_surfaces.back()->setVertex(i, vertices[i]);
-			_surfaces.back()->setTexCoord(i, texCoords[i]);
-			
-			/*
-			surfaces.back()->setVertex(i, vertices[i]);
-			surfaces.back()->setTexCoord(i, texCoords[i]);
-			*/
-		}
-
-	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
-		if(vertices.size() < 4){
-			throw runtime_error("There must be 4 vertices for a quad surface.");
-		}else if(texCoords.size() < 4){
-			throw runtime_error(
-					  "There must be 4 texture coordinates for a quad surface.");
-		}
-
-		_surfaces.push_back(new QuadSurface());
-		//surfaces.push_back(new QuadSurface());
-
-		for(int i = 0; i < 4; i++){
-			_surfaces.back()->setVertex(i, vertices[i]);
-			_surfaces.back()->setTexCoord(i, texCoords[i]);
-			
-			/*
-			surfaces.back()->setVertex(i, vertices[i]);
-			surfaces.back()->setTexCoord(i, texCoords[i]);
-			*/
-		}
-	}else{
-		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		exit(EXIT_FAILURE);
-	}
-}
-
-void SurfaceManager::createSurface(int surfaceType, BaseSource * newSource,
-								vector <ofVec2f> vertices,
-								vector <ofVec2f> texCoords){
-	if(surfaceType == SurfaceType::TRIANGLE_SURFACE){
-		if(vertices.size() < 3){
-			throw runtime_error(
-					  "There must be 3 vertices for a triangle surface.");
-		}else if(texCoords.size() < 3){
-			throw runtime_error(
-					  "Thre must be 3 texture coordinates for a triangle surface.");
-		}
-		
-		_surfaces.push_back(new TriangleSurface());
-		_surfaces.back()->setSource(newSource);
-		
-		/*
-		surfaces.push_back(new TriangleSurface());
-		surfaces.back()->setSource(newSource);
-		*/
-
-		for(int i = 0; i < 3; i++){
-			_surfaces.back()->setVertex(i, vertices[i]);
-			_surfaces.back()->setTexCoord(i, texCoords[i]);
-			
-			/*
-			surfaces.back()->setVertex(i, vertices[i]);
-			surfaces.back()->setTexCoord(i, texCoords[i]);
-			*/
-		}
-
-	}else if(surfaceType == SurfaceType::QUAD_SURFACE){
-		if(vertices.size() < 4){
-			throw runtime_error("There must be 4 vertices for a quad surface.");
-		}else if(texCoords.size() < 4){
-			throw runtime_error(
-					  "Thre must be 4 texture coordinates for a quad surface.");
-		}
-
-		_surfaces.push_back(new QuadSurface());
-		_surfaces.back()->setSource(newSource);
-		
-		/*
-		surfaces.push_back(new QuadSurface());
-		surfaces.back()->setSource(newSource);
-		*/
-
-		for(int i = 0; i < 4; i++){
-			_surfaces.back()->setVertex(i, vertices[i]);
-			_surfaces.back()->setTexCoord(i, texCoords[i]);
-			
-			/*
-			surfaces.back()->setVertex(i, vertices[i]);
-			surfaces.back()->setTexCoord(i, texCoords[i]);
-			*/
-		}
-	}else{
-		ofLogFatalError("SurfaceManager") << "Attempt to add non-existing surface type";
-		exit(EXIT_FAILURE);
-	}
-}
-
 // Add existing surface
 void SurfaceManager::addSurface(BaseSurface * surface){
 	_surfaces.push_back(surface);
@@ -314,9 +203,8 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 		xmlSettings.pushTag("vertices");
 		vector <ofVec2f> vertices;
 		int vertexCount = xmlSettings.getNumTags("vertex");
-		// it's a triangle ?
+		
 		if(vertexCount == 3){
-			//ofLog(OF_LOG_NOTICE, "create Triangle");
 			xmlSettings.pushTag("vertex", 0);
 			vertices.push_back(ofVec2f(xmlSettings.getValue("x", 0.0f),
 									   xmlSettings.getValue("y", 0.0f)));
@@ -355,18 +243,20 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 
 			xmlSettings.popTag(); // texCoords
 
-			// now we have variables sourceName and sourceTexture
-			// by checking those we can use one or another addSurface method
+			// Create and add a triangle surface
+			BaseSurface * triangleSurface =
+				SurfaceFactory::instance()->createSurface(
+					SurfaceType::TRIANGLE_SURFACE);
+			triangleSurface->setVertices(vertices);
+			triangleSurface->setTexCoords(texCoords);
+			
 			if(sourceName != "none" && source != 0){
-				createSurface(SurfaceType::TRIANGLE_SURFACE, source, vertices,
-						   texCoords);
-			}else{
-				createSurface(SurfaceType::TRIANGLE_SURFACE, vertices, texCoords);
+				triangleSurface->setSource(source);
 			}
-		}
-		// it's a quad ?
-		else if(vertexCount == 4){
-			// if (surface-type == QUAD_SURFACE)
+
+			addSurface(triangleSurface);
+		
+		}else if(vertexCount == 4){
 			xmlSettings.pushTag("vertex", 0);
 			vertices.push_back(ofVec2f(xmlSettings.getValue("x", 0.0f),
 									   xmlSettings.getValue("y", 0.0f)));
@@ -415,14 +305,18 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 
 			xmlSettings.popTag(); // texCoords
 
-			// now we have variables sourceName and sourceTexture
-			// by checking those we can use one or another addSurface method
+			// Create and add quad surface
+			BaseSurface * quadSurface =
+				SurfaceFactory::instance()->createSurface(
+					SurfaceType::QUAD_SURFACE);
+			quadSurface->setVertices(vertices);
+			quadSurface->setTexCoords(texCoords);
+			
 			if(sourceName != "none" && source != 0){
-				createSurface(SurfaceType::QUAD_SURFACE, source, vertices,
-						   texCoords);
-			}else{
-				createSurface(SurfaceType::QUAD_SURFACE, vertices, texCoords);
+				quadSurface->setSource(source);
 			}
+			
+			addSurface(quadSurface);
 		}
 
 		xmlSettings.popTag(); // surface

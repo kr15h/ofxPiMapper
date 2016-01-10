@@ -8,6 +8,7 @@
 #include "BaseSource.h"
 #include "SourceType.h"
 #include "SurfaceStack.h"
+#include "SurfaceFactory.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
@@ -25,12 +26,6 @@ class SurfaceManager {
 
 		void draw();
 
-		void createSurface(int surfaceType, vector <ofVec2f> vertices,
-						vector <ofVec2f> texCoords);
-		void createSurface(int surfaceType, BaseSource * newSource,
-						vector <ofVec2f> vertices, vector <ofVec2f> texCoords);
-
-		// Except this, as it adds existing surface
 		void addSurface(BaseSurface * surface);
 
 		void removeSelectedSurface();
