@@ -4,6 +4,7 @@
 #include "BaseCmd.h"
 #include "SurfaceType.h"
 #include "BaseSurface.h"
+#include "SurfaceFactory.h"
 
 class ofxPiMapper;
 
