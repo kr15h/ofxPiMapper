@@ -62,6 +62,15 @@ void TriangleSurface::setVertex(int index, ofVec2f p){
 	mesh.setVertex(index, p);
 }
 
+void TriangleSurface::setVertices(vector<ofVec2f> v){
+	if(v.size() != 3){
+		throw runtime_error("Wrong number of vertices");
+	}
+	for(int i = 0; i < 3; ++i){
+		mesh.setVertex(i, v[i]);
+	}
+}
+
 void TriangleSurface::setTexCoord(int index, ofVec2f t){
 	if(index > 2){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
@@ -70,6 +79,15 @@ void TriangleSurface::setTexCoord(int index, ofVec2f t){
 	}
 
 	mesh.setTexCoord(index, t);
+}
+
+void TriangleSurface::setTexCoords(vector<ofVec2f> t){
+	if(t.size() != 3){
+		throw runtime_error("Wrong number of texture coordinates");
+	}
+	for(int i = 0; i < 3; ++i){
+		mesh.setTexCoord(i, t[i]);
+	}
 }
 
 void TriangleSurface::moveBy(ofVec2f v){

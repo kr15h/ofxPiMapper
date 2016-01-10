@@ -18,8 +18,13 @@ class QuadSurface : public BaseSurface {
 				   ofVec2f t2, ofVec2f t3, ofVec2f t4, BaseSource * newSource);
 
 		void draw();
+	
 		void setVertex(int index, ofVec2f p);
+		void setVertices(vector<ofVec2f> v);
+	
 		void setTexCoord(int index, ofVec2f t);
+		void setTexCoords(vector<ofVec2f> t);
+	
 		void moveBy(ofVec2f v);
 
 		int getType();

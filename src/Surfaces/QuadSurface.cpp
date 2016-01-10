@@ -103,6 +103,16 @@ void QuadSurface::setVertex(int index, ofVec2f p){
 	calculate4dTextureCoords();
 }
 
+void QuadSurface::setVertices(vector<ofVec2f> v){
+	if(v.size() != 4){
+		throw runtime_error("Wrong number of vertices");
+	}
+	for(int i = 0; i < 4; ++i){
+		mesh.setVertex(i, v[i]);
+	}
+	calculate4dTextureCoords();
+}
+
 void QuadSurface::setTexCoord(int index, ofVec2f t){
 	if(index > 3){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
@@ -111,6 +121,16 @@ void QuadSurface::setTexCoord(int index, ofVec2f t){
 	}
 
 	mesh.setTexCoord(index, t);
+	calculate4dTextureCoords();
+}
+
+void QuadSurface::setTexCoords(vector<ofVec2f> t){
+	if(t.size() != 4){
+		throw runtime_error("Wrong number of vertices");
+	}
+	for(int i = 0; i < 4; ++i){
+		mesh.setTexCoord(i, t[i]);
+	}
 	calculate4dTextureCoords();
 }
 

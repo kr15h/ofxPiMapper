@@ -16,8 +16,13 @@ class TriangleSurface : public BaseSurface {
 		void setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1, ofVec2f t2,
 				   ofVec2f t3, BaseSource * newSource);
 		void draw();
+	
 		void setVertex(int index, ofVec2f p);
+		void setVertices(vector<ofVec2f> v);
+	
 		void setTexCoord(int index, ofVec2f t);
+		void setTexCoords(vector<ofVec2f> t);
+	
 		void moveBy(ofVec2f v);
 
 		int getType();

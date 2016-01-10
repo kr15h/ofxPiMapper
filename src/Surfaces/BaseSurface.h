@@ -16,8 +16,13 @@ class BaseSurface {
 		~BaseSurface();
 		virtual void setup(){}
 		virtual void draw(){}
+	
 		virtual void setVertex(int index, ofVec2f p){}
+		virtual void setVertices(vector<ofVec2f> v){}
+	
 		virtual void setTexCoord(int index, ofVec2f t){}
+		virtual void setTexCoords(vector<ofVec2f> t){}
+	
 		virtual void moveBy(ofVec2f v){}
 		virtual int getType(){}
 		virtual bool hitTest(ofVec2f p){}
