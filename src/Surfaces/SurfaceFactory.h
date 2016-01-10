@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "BaseSurface.h"
 #include "SurfaceType.h"
+#include "TriangleSurface.h"
+#include "QuadSurface.h"
 
 namespace ofx {
 namespace piMapper {
