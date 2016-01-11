@@ -88,7 +88,7 @@ Installation
 ---
 If you don't have a clue on how to set up your Pi - go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there. I have been using Raspbian so far as well as [Satellite CCRMA](https://ccrma.stanford.edu/~eberdahl/satellite/) without problems.
 
-Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. There are 2 openFrameworks setup guides now as there are 2 versions of Raspberry Pi:
+Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow the guide to set up your Raspberry Pi.
  
  - [Raspberry Pi oF Setup Guide](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html)
 
