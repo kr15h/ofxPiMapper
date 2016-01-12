@@ -16,7 +16,6 @@ void SurfaceManager::draw(){
 	_surfaces.draw();
 }
 
-// Add existing surface
 void SurfaceManager::addSurface(BaseSurface * surface){
 	_surfaces.push_back(surface);
 }
@@ -76,9 +75,8 @@ BaseSurface * SurfaceManager::selectSurface(int index){
 	if(index >= _surfaces.size()){
 		throw runtime_error("Surface index out of bounds.");
 	}
-	selectedSurface = _surfaces[index];
 
-	// notify that a new surface has been selected
+	selectedSurface = _surfaces[index];
 	ofSendMessage("surfaceSelected");
 	return selectedSurface;
 }

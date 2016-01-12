@@ -26,32 +26,29 @@ class SurfaceManager {
 		~SurfaceManager();
 
 		void draw();
-
+	
 		void addSurface(BaseSurface * surface);
-
 		void removeSelectedSurface();
 		void removeSurface();
-
-		void clear();
+		void deselectSurface();
 		void saveXmlSettings(string fileName);
-		bool loadXmlSettings(string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
-
+		void clear();
+		
+		bool loadXmlSettings(string fileName);
+	
 		BaseSurface * getSurface(int index);
-		int size();
 		BaseSurface * selectSurface(int index);
 		BaseSurface * selectSurface(BaseSurface * surface);
 		BaseSurface * getSelectedSurface();
-		void deselectSurface();
-
+	
+		int size();
+	
 	private:
-		vector <BaseSurface *> surfaces;
 		BaseSurface * selectedSurface;
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;
-	
 		SurfaceStack _surfaces;
-
 };
 
 } // namespace piMapper
