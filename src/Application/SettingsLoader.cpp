@@ -54,123 +54,22 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 				source = mediaServer.loadMedia(sourcePath, typeEnum);
 			}
 		}
+		
 		xmlSettings->popTag(); // source
 		xmlSettings->pushTag("vertices");
-		vector <ofVec2f> vertices;
 		int vertexCount = xmlSettings->getNumTags("vertex");
 		
 		if(vertexCount == 3){
-			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 100.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->popTag(); // vertices
-
-			xmlSettings->pushTag("texCoords");
-
-			vector <ofVec2f> texCoords;
-
-			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-										xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
-										xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-										xmlSettings->getValue("y", 1.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->popTag(); // texCoords
-
-			// Create and add a triangle surface
-			BaseSurface * triangleSurface =
-				SurfaceFactory::instance()->createSurface(
-					SurfaceType::TRIANGLE_SURFACE);
-			triangleSurface->setVertices(vertices);
-			triangleSurface->setTexCoords(texCoords);
-			
+			BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
 			if(sourceName != "none" && source != 0){
 				triangleSurface->setSource(source);
 			}
-
 			surfaces.push_back(triangleSurface);
-		
 		}else if(vertexCount == 4){
-			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 100.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("vertex", 3);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 100.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->popTag(); // vertices
-
-			xmlSettings->pushTag("texCoords");
-
-			vector <ofVec2f> texCoords;
-
-			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-										xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
-										xmlSettings->getValue("y", 0.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
-										xmlSettings->getValue("y", 1.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->pushTag("texCoord", 3);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-										xmlSettings->getValue("y", 1.0f)));
-			xmlSettings->popTag();
-
-			xmlSettings->popTag(); // texCoords
-
-			// Create and add quad surface
-			BaseSurface * quadSurface =
-				SurfaceFactory::instance()->createSurface(
-					SurfaceType::QUAD_SURFACE);
-			quadSurface->setVertices(vertices);
-			quadSurface->setTexCoords(texCoords);
-			
+			BaseSurface * quadSurface = getQuadSurface(xmlSettings);
 			if(sourceName != "none" && source != 0){
 				quadSurface->setSource(source);
 			}
-			
 			surfaces.push_back(quadSurface);
 		}
 
@@ -234,6 +133,118 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 	}
 	xmlSettings->popTag(); // surfaces
 	xmlSettings->save(fileName);
+}
+
+BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
+	vector <ofVec2f> vertices;
+	
+	xmlSettings->pushTag("vertex", 0);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+							   xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("vertex", 1);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+							   xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("vertex", 2);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+							   xmlSettings->getValue("y", 100.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->popTag(); // vertices
+
+	xmlSettings->pushTag("texCoords");
+
+	vector <ofVec2f> texCoords;
+
+	xmlSettings->pushTag("texCoord", 0);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("texCoord", 1);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+								xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("texCoord", 2);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								xmlSettings->getValue("y", 1.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->popTag(); // texCoords
+
+	// Create and add a triangle surface
+	BaseSurface * triangleSurface =
+		SurfaceFactory::instance()->createSurface(
+			SurfaceType::TRIANGLE_SURFACE);
+	triangleSurface->setVertices(vertices);
+	triangleSurface->setTexCoords(texCoords);
+	
+	return triangleSurface;
+}
+
+BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
+	vector <ofVec2f> vertices;
+	
+	xmlSettings->pushTag("vertex", 0);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+							   xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("vertex", 1);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+							   xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("vertex", 2);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+							   xmlSettings->getValue("y", 100.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("vertex", 3);
+	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+							   xmlSettings->getValue("y", 100.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->popTag(); // vertices
+
+	xmlSettings->pushTag("texCoords");
+
+	vector <ofVec2f> texCoords;
+
+	xmlSettings->pushTag("texCoord", 0);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("texCoord", 1);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+								xmlSettings->getValue("y", 0.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("texCoord", 2);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+								xmlSettings->getValue("y", 1.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->pushTag("texCoord", 3);
+	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								xmlSettings->getValue("y", 1.0f)));
+	xmlSettings->popTag();
+
+	xmlSettings->popTag(); // texCoords
+
+	// Create and add quad surface
+	BaseSurface * quadSurface =
+		SurfaceFactory::instance()->createSurface(
+			SurfaceType::QUAD_SURFACE);
+	quadSurface->setVertices(vertices);
+	quadSurface->setTexCoords(texCoords);
+	
+	return quadSurface;
 }
 
 } // namespace piMapper
