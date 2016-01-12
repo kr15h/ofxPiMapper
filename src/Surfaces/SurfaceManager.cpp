@@ -112,10 +112,10 @@ void SurfaceManager::saveXmlSettings(string fileName){
 	// Save surfaces
 	xmlSettings.addTag("surfaces");
 	xmlSettings.pushTag("surfaces");
-	for(int i = 0; i < surfaces.size(); i++){
+	for(int i = 0; i < _surfaces.size(); i++){
 		xmlSettings.addTag("surface");
 		xmlSettings.pushTag("surface", i);
-		BaseSurface * surface = surfaces[i];
+		BaseSurface * surface = _surfaces[i];
 
 		xmlSettings.addTag("vertices");
 		xmlSettings.pushTag("vertices");
