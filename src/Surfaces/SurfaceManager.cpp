@@ -14,19 +14,11 @@ SurfaceManager::~SurfaceManager(){
 
 void SurfaceManager::draw(){
 	_surfaces.draw();
-	
-	/*
-	for(int i = 0; i < surfaces.size(); i++){
-		ofSetColor(255, 255, 255, 255);
-		surfaces[i]->draw();
-	}
-	*/
 }
 
 // Add existing surface
 void SurfaceManager::addSurface(BaseSurface * surface){
 	_surfaces.push_back(surface);
-	//surfaces.push_back(surface);
 }
 
 void SurfaceManager::removeSelectedSurface(){
@@ -41,19 +33,6 @@ void SurfaceManager::removeSelectedSurface(){
 			break;
 		}
 	}
-	
-	/*
-	for(int i = 0; i < surfaces.size(); i++){
-		if(surfaces[i] == selectedSurface){
-			// Do not delete pointer as we are storing the
-			// surface in the RemoveSurfaceCommand.
-			//delete surfaces[i];
-			surfaces.erase(surfaces.begin() + i);
-			selectedSurface = 0;
-			break;
-		}
-	}
-	*/
 }
 
 void SurfaceManager::removeSurface(){
@@ -62,39 +41,22 @@ void SurfaceManager::removeSurface(){
 	}
 	delete _surfaces.back();
 	_surfaces.pop_back();
-	
-	/*
-	if(!surfaces.size()){
-		return;
-	}
-	delete surfaces.back();
-	surfaces.pop_back();
-	*/
 }
 
 void SurfaceManager::clear(){
-	// delete all extra allocations from the heap
 	while(_surfaces.size()){
 		delete _surfaces.back();
 		_surfaces.pop_back();
 	}
-	
-	/*
-	while(surfaces.size()){
-		delete surfaces.back();
-		surfaces.pop_back();
-	}
-	*/
 }
 
 void SurfaceManager::saveXmlSettings(string fileName){
-	// Exit if mediaServer not set
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		exit(EXIT_FAILURE);
 	}
-	// We need a fresh copy of the xml settings object
 	xmlSettings.clear();
+
 	// Save surfaces
 	xmlSettings.addTag("surfaces");
 	xmlSettings.pushTag("surfaces");
@@ -145,6 +107,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 }
 
 bool SurfaceManager::loadXmlSettings(string fileName){
+
 	// Exit if there is no media server
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
@@ -164,12 +127,14 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 	int numSurfaces = xmlSettings.getNumTags("surface");
 	for(int i = 0; i < numSurfaces; i++){
 		xmlSettings.pushTag("surface", i);
+
 		// attempt to load surface source
 		xmlSettings.pushTag("source");
 		string sourceType = xmlSettings.getValue("source-type", "");
 		string sourceName = xmlSettings.getValue("source-name", "");
 		BaseSource * source = 0;
 		if(sourceName != "" && sourceName != "none" && sourceType != ""){
+
 			// Load source depending on type
 			int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
 			if(typeEnum == SourceType::SOURCE_TYPE_FBO){
@@ -322,13 +287,6 @@ BaseSurface * SurfaceManager::selectSurface(int index){
 		throw runtime_error("Surface index out of bounds.");
 	}
 	selectedSurface = _surfaces[index];
-	
-	/*
-	if(index >= surfaces.size()){
-		throw runtime_error("Surface index out of bounds.");
-	}
-	selectedSurface = surfaces[index];
-	*/
 
 	// notify that a new surface has been selected
 	ofSendMessage("surfaceSelected");
@@ -344,15 +302,6 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 		}
 	}
 	
-	/*
-	for(int i = 0; i < surfaces.size(); i++){
-		if(surfaces[i] == surface){
-			selectedSurface = surface;
-			ofSendMessage("surfaceSelected");
-			return selectedSurface;
-		}
-	}
-	*/
 	deselectSurface();
 	return 0;
 }
@@ -371,20 +320,11 @@ BaseSurface * SurfaceManager::getSurface(int index){
 		return 0;
 	}
 	
-	/*
-	if(index >= surfaces.size()){
-		throw runtime_error("Surface index out of bounds.");
-		return 0;
-	}
-	*/
-
 	return _surfaces[index];
-	//return surfaces[index];
 }
 
 int SurfaceManager::size(){
 	return _surfaces.size();
-	//return surfaces.size();
 }
 
 } // namespace piMapper
