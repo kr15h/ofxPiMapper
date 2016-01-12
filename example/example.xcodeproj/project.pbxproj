@@ -83,7 +83,7 @@
 		39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248319F1EB75005DF557 /* SurfaceManager.cpp */; };
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
 		39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CmdManager.cpp */; };
-		39FA2B801C457606003FAB28 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FA2B7E1C457606003FAB28 /* Settings.cpp */; };
+		39FA2B801C457606003FAB28 /* SettingsLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -305,8 +305,8 @@
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
 		39C787BB1AC20D2400691393 /* CmdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CmdManager.h; path = Commands/CmdManager.h; sourceTree = "<group>"; };
 		39C787BC1AC2111B00691393 /* CmdManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CmdManager.cpp; path = Commands/CmdManager.cpp; sourceTree = "<group>"; };
-		39FA2B7E1C457606003FAB28 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
-		39FA2B7F1C457606003FAB28 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsLoader.cpp; sourceTree = "<group>"; };
+		39FA2B7F1C457606003FAB28 /* SettingsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLoader.h; sourceTree = "<group>"; };
 		39FDD9EA1AC007BF00262205 /* BaseCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCmd.h; path = Commands/BaseCmd.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -428,8 +428,8 @@
 			children = (
 				3968416A1BC91F6F009F0BAE /* Application.h */,
 				396841691BC91F6F009F0BAE /* Application.cpp */,
-				39FA2B7F1C457606003FAB28 /* Settings.h */,
-				39FA2B7E1C457606003FAB28 /* Settings.cpp */,
+				39FA2B7F1C457606003FAB28 /* SettingsLoader.h */,
+				39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */,
 				3968416C1BC91F6F009F0BAE /* ApplicationBaseState.h */,
 				3968416B1BC91F6F009F0BAE /* ApplicationBaseState.cpp */,
 				3968416E1BC91F6F009F0BAE /* PresentationState.h */,
@@ -969,7 +969,7 @@
 				39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */,
 				396841771BC91F6F009F0BAE /* PresentationState.cpp in Sources */,
 				39A9AAF21B054FC300AA83BC /* MvSurfaceVertCmd.cpp in Sources */,
-				39FA2B801C457606003FAB28 /* Settings.cpp in Sources */,
+				39FA2B801C457606003FAB28 /* SettingsLoader.cpp in Sources */,
 				39C1244319EE9589005DF557 /* LinkFilter.cpp in Sources */,
 				39C1245919F086A9005DF557 /* BaseSource.cpp in Sources */,
 				39C1244019EE9589005DF557 /* FileExtensionFilter.cpp in Sources */,

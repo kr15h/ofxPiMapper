@@ -12,6 +12,7 @@
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
+#include "SettingsLoader.h"
 
 using namespace std;
 
