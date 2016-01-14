@@ -42,14 +42,17 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 			// Load source depending on type
 			int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
 			if(typeEnum == SourceType::SOURCE_TYPE_FBO){
+				
 				// Load FBO source using sourceName
 				source = mediaServer.loadMedia(sourceName, typeEnum);
 			}else{
+				
 				// Construct full path
 				string dir = mediaServer.getDefaultMediaDir(typeEnum);
 				stringstream pathss;
 				pathss << ofToDataPath(dir, true) << sourceName;
 				string sourcePath = pathss.str();
+				
 				// Load media by using full path
 				source = mediaServer.loadMedia(sourcePath, typeEnum);
 			}
