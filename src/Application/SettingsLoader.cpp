@@ -17,12 +17,12 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
 	
 	if(!xmlSettings->loadFile(fileName)){
-		ofLogWarning("SurfaceManager") << "Could not load XML settings";
+		ofLogWarning("SettingsLoader::load()") << "Could not load XML settings";
 		return false;
 	}
 	
 	if(!xmlSettings->tagExists("surfaces")){
-		ofLogWarning("SurfaceManager") << "XML settings is empty or has wrong markup";
+		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
 		return false;
 	}
 	
