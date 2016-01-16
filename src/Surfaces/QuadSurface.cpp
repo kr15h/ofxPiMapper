@@ -74,6 +74,10 @@ void QuadSurface::draw(){
 		ofLogWarning("QuadSurface") << "Source texture empty. Not drawing.";
 		return;
 	}
+	
+	if(!source->getTexture()->isAllocated()){
+		return;
+	}
 
 	/*if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
 	    calculate4dTextureCoords();

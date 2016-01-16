@@ -47,6 +47,10 @@ void TriangleSurface::draw(){
 		ofLogWarning("TriangleSurface") << "Source texture is empty. Not drawing.";
 		return;
 	}
+	
+	if(!source->getTexture()->isAllocated()){
+		return;
+	}
 
 	source->getTexture()->bind();
 	mesh.draw();
