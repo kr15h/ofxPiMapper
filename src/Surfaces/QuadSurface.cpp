@@ -79,11 +79,11 @@ void QuadSurface::draw(){
 		return;
 	}
 
-	if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
-	    calculate4dTextureCoords();
-	}
-	
 	if(_perspectiveWarping){
+		if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
+			calculate4dTextureCoords();
+		}
+	
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
 		glVertexPointer(3, GL_FLOAT, 0, quadVertices);
