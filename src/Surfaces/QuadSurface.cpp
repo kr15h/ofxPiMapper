@@ -4,6 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 QuadSurface::QuadSurface(){
+	_perspectiveWarping = false;
 	setup();
 }
 
@@ -78,22 +79,23 @@ void QuadSurface::draw(){
 		return;
 	}
 
-	/*if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
+	if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
 	    calculate4dTextureCoords();
-	}*/
-	/*
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-	glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
-	glVertexPointer(3, GL_FLOAT, 0, quadVertices);
+	}
+	
+	if(_perspectiveWarping){
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
+		glVertexPointer(3, GL_FLOAT, 0, quadVertices);
 
-	source->getTexture()->bind();
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
-	source->getTexture()->unbind();
-	*/
-
-	source->getTexture()->bind();
-	mesh.draw();
-	source->getTexture()->unbind();
+		source->getTexture()->bind();
+		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
+		source->getTexture()->unbind();
+	}else{
+		source->getTexture()->bind();
+		mesh.draw();
+		source->getTexture()->unbind();
+	}
 }
 
 void QuadSurface::setVertex(int index, ofVec2f p){
@@ -279,6 +281,10 @@ void QuadSurface::calculate4dTextureCoords(){
 	quadTexCoordinates[12] = t3.x;
 	quadTexCoordinates[13] = t3.y * q3;
 	quadTexCoordinates[15] = q3;
+}
+
+void QuadSurface::setPerspectiveWarping(bool b){
+	_perspectiveWarping = b;
 }
 
 } // namespace piMapper
