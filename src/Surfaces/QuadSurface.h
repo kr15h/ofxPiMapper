@@ -37,6 +37,7 @@ class QuadSurface : public BaseSurface {
 		vector <ofVec2f> & getTexCoords();
 	
 		void setPerspectiveWarping(bool b);
+		bool getPerspectiveWarping();
 
 	private:
 		void calculate4dTextureCoords();

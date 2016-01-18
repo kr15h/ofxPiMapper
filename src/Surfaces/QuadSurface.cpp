@@ -287,5 +287,9 @@ void QuadSurface::setPerspectiveWarping(bool b){
 	_perspectiveWarping = b;
 }
 
+bool QuadSurface::getPerspectiveWarping(){
+	return _perspectiveWarping;
+}
+
 } // namespace piMapper
 } // namespace ofx
