@@ -37,6 +37,20 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 app->getOfxPiMapper()->getCmdManager()->exec(
 			 new RmSurfaceCmd(app->getOfxPiMapper()));
 		 break;
+	 
+	 case 'p':
+		 if(app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface() == 0){
+			break;
+		 }
+		 
+		 if(app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface()->getType() ==
+			 SurfaceType::QUAD_SURFACE){
+			 
+			 app->getOfxPiMapper()->getCmdManager()->exec(
+				 new TogglePerspectiveCmd(
+					 (QuadSurface *)app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface() ) );
+		 }
+		 break;
 
 	 default:
 		 break;
