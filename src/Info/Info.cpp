@@ -19,6 +19,7 @@ void Info::draw(){
 			"keys on the keyboard.\n\n";
 		ss << "Press <t> to add new triangle surface\n";
 		ss << "Press <q> to add new quad surface\n";
+		ss << "Press <p> to toggle perspective warping while quad surface selected\n";
 		ss << "Press <s> to save the composition\n";
 		ss << "Press <f> to toggle fullscreen\n";
 		ss << "Press <i> to hide this message";
