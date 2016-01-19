@@ -5,41 +5,90 @@ ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-This project is an attempt to create optimized version of an openFrameworks projection mapping add-on for the Raspberry Pi. It is also my master thesis project at Aalto University, School of Arts, Design and Architecture (Helsinki Media Lab).
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
-ofxPiMapper is mainly for people who want to use the Raspberry Pi as a cheaper way to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! PiMapper is here to save you!
+OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
-ofxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
+The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
+Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
+
+
+Features
+---
+
+The following is a list of key features ofxPiMapper has.
+
+ - **Open Source**  
+   You can use ofxPiMapper free of charge, the only requirement being adding reference to the authors of the project somewhere. Consult the [LICENSE.md](LICENSE.md) file.
+ - **Simple User Interface**  
+   The user interface of ofxPiMapper has been designed by keeping in mind that there is only one screen, a keyboard and a mouse.
+ - **Out of the Box**  
+   You can use the example project for simple projection mapping projects with image or video sources out of the box.
+ - **Customizable**  
+   Use ofxPiMapper as an addon and enjoy the power of custom generative sources by extending the `FboSource` class. 
+ - **Undoable**  
+   Since version 0.2.3 ofxPiMapper supports undo. 
+ - **More to Come**  
+   Expect more conventional projection mapping software features to be implemented.
+
+
+Running the Example
+---
+
+You can use the example application of the addon for simple projection mapping projects where static images or videos have to be projection mapped. 
+
+1. Put your own sources in the `example/bin/data/sources` directory. Consult the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) documentation on how to encode your videos.
+
+2. Compile and run the example project.  
+
+   ```bash
+cd openFrameworks/addons/ofxPiMapper/example
+make && make run
+   ```
+
+3. Use the `-f` flag to launch it fullscreen.  
+
+   ```bash
+./bin/example -f
+   ```
+
+
+Using as an Addon
+--- 
+
+OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
+
+Reuse the `example` app by copying it to your `apps` directory.
+
+```bash
+cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
+cd openFrameworks/apps/myApps
+mv example myOfxPiMapperApp
 ```
-ofxPiMapper * mapper = new ofxPiMapper();
-CustomSource * source = new CustomSource();
-mapper.addFboSource(*source);
-mapper.setup(); // Setup must be run after adding the FBO source
-```
 
-Since version 0.2.0 ofxPiMapper supports video sources and since version 0.2.3 ofxPiMapper supports undo.
 
 Development
 ---
-
 As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
 
-Currently I have decided to use [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie), so read this article and I do not doubt that it will help you with other Git related projects.
+Currently for bigger planned features [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie) is used. For bugfixes and small improvements, changes are pushed directly to the `master` branch.
 
 I'm trying to organize the project by adding future release version milestones and assigning specific issues as TODO items to them. If you notice something strange or see that there is something that can be done in a better way, don't hesitate and add an issue.
 
 As of Release 0.2.0 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project. Still improving on the overal structure.
 
+
 Licence
 ---
 ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details.
+
 
 Installation
 ---
 If you don't have a clue on how to set up your Pi - go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there. I have been using Raspbian so far as well as [Satellite CCRMA](https://ccrma.stanford.edu/~eberdahl/satellite/) without problems.
 
-Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. There are 2 openFrameworks setup guides now as there are 2 versions of Raspberry Pi:
+Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow the guide to set up your Raspberry Pi.
  
  - [Raspberry Pi oF Setup Guide](http://openframeworks.cc/setup/raspberrypi/Raspberry-Pi-Getting-Started.html)
 
@@ -129,35 +178,7 @@ BACKSPACE | Delete surface
 
 Compatibility
 ---
-Tested with 0.8.4 (OS X and Raspbian)
-
-Known issues
----
-Keyboard and mouse input is being lost sometimes when using a USB hub. Try not to use one. If problems still persist, try the following commands.
-
-```bash
-sudo apt-get update && sudo apt-get dist-upgrade  
-sudo rpi-update
+Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite). It works.
 ```
-
-[ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) has an issue, it throws an error when compiling:
-
+TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
 ```
-fatal error: libavcodec/opt.h: No such file or directory
-```
-
-To fix that, create a file `opt.h` in `addons/ofxOMXPlayer/libs/ffmpeg/include/libavcodec/` with the following contents: 
-
-**opt.h**
-
-```
-#ifndef AVCODEC_OPT_H
-#define AVCODEC_OPT_H
-#include "libavcodec/version.h"
-#if FF_API_OPT_H
-#include "libavutil/opt.h"
-#endif
-#endif // AVCODEC_OPT_H
-```
-   
-More about this issue [here](https://github.com/jvcleave/ofxOMXPlayer/issues/34). 

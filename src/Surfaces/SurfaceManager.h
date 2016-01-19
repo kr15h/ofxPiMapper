@@ -7,52 +7,49 @@
 #include "MediaServer.h"
 #include "BaseSource.h"
 #include "SourceType.h"
+#include "SurfaceStack.h"
+#include "SurfaceFactory.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
+#include "SettingsLoader.h"
 
 using namespace std;
 
 namespace ofx {
 namespace piMapper {
+
 class SurfaceManager {
- public:
-  SurfaceManager();
-  ~SurfaceManager();
 
-  void draw();
-  
-  // TODO: These should be renamed to createSurface
-  void addSurface(int surfaceType);
-  void addSurface(int surfaceType, BaseSource* newSource);
-  void addSurface(int surfaceType, vector<ofVec2f> vertices,
-                  vector<ofVec2f> texCoords);
-  void addSurface(int surfaceType, BaseSource* newSource,
-                  vector<ofVec2f> vertices, vector<ofVec2f> texCoords);
-    
-    // Except this, as it adds existing surface
-    void addSurface(BaseSurface * surface);
-    
-  void removeSelectedSurface();
-  void removeSurface();
-  
-  void clear();
-  void saveXmlSettings(string fileName);
-  void loadXmlSettings(string fileName);
-  void setMediaServer(MediaServer* newMediaServer);
+	public:
+		SurfaceManager();
+		~SurfaceManager();
 
-  BaseSurface* getSurface(int index);
-  int size();
-  BaseSurface* selectSurface(int index);
-  BaseSurface* selectSurface(BaseSurface * surface);
-  BaseSurface* getSelectedSurface();
-  void deselectSurface();
-
- private:
-  std::vector<BaseSurface*> surfaces;
-  BaseSurface* selectedSurface;
-  ofxXmlSettings xmlSettings;
-  MediaServer* mediaServer;
+		void draw();
+	
+		void addSurface(BaseSurface * surface);
+		void removeSelectedSurface();
+		void removeSurface();
+		void deselectSurface();
+		void saveXmlSettings(string fileName);
+		void setMediaServer(MediaServer * newMediaServer);
+		void clear();
+		
+		bool loadXmlSettings(string fileName);
+	
+		BaseSurface * getSurface(int index);
+		BaseSurface * selectSurface(int index);
+		BaseSurface * selectSurface(BaseSurface * surface);
+		BaseSurface * getSelectedSurface();
+	
+		int size();
+	
+	private:
+		BaseSurface * selectedSurface;
+		ofxXmlSettings xmlSettings;
+		MediaServer * mediaServer;
+		SurfaceStack _surfaces;
 };
-}
-}
+
+} // namespace piMapper
+} // namespace ofx

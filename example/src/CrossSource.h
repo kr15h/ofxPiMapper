@@ -4,8 +4,8 @@
 #include "FboSource.h"
 
 class CrossSource : public ofx::piMapper::FboSource {
-    public:
-        CrossSource();
+	public:
+		CrossSource();
 
-        void draw();
+		void draw();
 };

@@ -8,22 +8,23 @@
 #include "BaseSurface.h"
 #include "TextureEditor.h"
 
-namespace ofx{
-    namespace piMapper{
-        
-        class MvAllTexCoordsCmd : public BaseUndoCmd{
-        
-            public:
-                MvAllTexCoordsCmd(BaseSurface * surface, TextureEditor * texEditor);
-                void exec();
-                void undo();
-    
-            private:
-                vector<ofVec2f> _texCoords;
-                BaseSurface * _surface;
-                TextureEditor * _texEditor;
-        };
-        
-    } // namespace piMapper
+namespace ofx {
+namespace piMapper {
+
+class MvAllTexCoordsCmd : public BaseUndoCmd {
+
+	public:
+		MvAllTexCoordsCmd(BaseSurface * surface, TextureEditor * texEditor);
+		void exec();
+		void undo();
+
+	private:
+		vector <ofVec2f> _texCoords;
+		BaseSurface * _surface;
+		TextureEditor * _texEditor;
+
+};
+
+} // namespace piMapper
 } // namespace ofx
 

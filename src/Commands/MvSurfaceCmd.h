@@ -8,24 +8,24 @@
 #include "BaseSurface.h"
 #include "ProjectionEditor.h"
 
-namespace ofx{
-    namespace piMapper{
-        
-        class MvSurfaceCmd : public BaseUndoCmd{
-        
-            public:
-                MvSurfaceCmd(
-                    BaseSurface * surface,
-                    ProjectionEditor * projectionEditor);
-                void exec();
-                void undo();
-    
-            private:
-                BaseSurface * _surface;
-                ProjectionEditor * _projectionEditor;
-                vector<ofVec3f> _previousVertices;
-        };
-        
-    } // namespace piMapper
+namespace ofx {
+namespace piMapper {
+
+class MvSurfaceCmd : public BaseUndoCmd {
+
+	public:
+		MvSurfaceCmd(BaseSurface * surface,
+					 ProjectionEditor * projectionEditor);
+		void exec();
+		void undo();
+
+	private:
+		BaseSurface * _surface;
+		ProjectionEditor * _projectionEditor;
+		vector <ofVec3f> _previousVertices;
+
+};
+
+} // namespace piMapper
 } // namespace ofx
 

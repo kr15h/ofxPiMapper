@@ -1,117 +1,72 @@
 #include "ofxPiMapper.h"
 
-ofxPiMapper::ofxPiMapper() {
-    bShowInfo = false;
-    isSetUp = false;    
+ofxPiMapper::ofxPiMapper(){
+	_setupComplete = false;
+	_gui = new ofx::piMapper::SurfaceManagerGui();
+	_cmdManager = new ofx::piMapper::CmdManager();
+	_mediaServer = new ofx::piMapper::MediaServer();
+	_surfaceManager = new ofx::piMapper::SurfaceManager();
+	_info = new ofx::piMapper::Info();
 }
 
-void ofxPiMapper::setup() {
-    ofLogNotice("ofxPiMapper") << "Setting up...";
-    
-    surfaceManager.setMediaServer(&mediaServer);
-    gui.setMediaServer(&mediaServer);
-    gui.setCmdManager(&cmdManager);
-    
-    if (ofFile::doesFileExist(PIMAPPER_USER_SURFACES_XML_FILE)){
-        ofLogNotice("ofxPiMapper") << "Loading user surfaces from " << PIMAPPER_USER_SURFACES_XML_FILE;
-        surfaceManager.loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE);
-    } else {
-        ofLogNotice("ofxPiMapper") << "Loading default surfaces from " << PIMAPPER_DEF_SURFACES_XML_FILE;
-        surfaceManager.loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE);
-    }
-    
-    gui.setSurfaceManager(&surfaceManager);
-    isSetUp = true;
-    ofLogNotice("ofxPiMapper") << "Done setting up";
-    _application = new ofx::piMapper::Application(this);
+void ofxPiMapper::setup(){
+	ofLogNotice("ofxPiMapper") << "Setting up...";
+
+	_surfaceManager->setMediaServer(_mediaServer);
+	_gui->setMediaServer(_mediaServer);
+	_gui->setCmdManager(_cmdManager);
+
+	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
+		ofLogWarning("ofxPiMapper::setup()") << "Failed to load user settings" << endl;
+		if(!loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE)){
+			ofLogWarning("ofxPiMapper::setup()") << "Failed to load default settings" << endl;
+		}
+	}
+
+	_gui->setSurfaceManager(_surfaceManager);
+	_application = new ofx::piMapper::Application(this);
+	
+	_setupComplete = true;
+	ofLogNotice("ofxPiMapper") << "Setup complete";
 }
 
-void ofxPiMapper::draw() {
-    if (!isSetUp) {
-        return;
-    }
-    
-    gui.draw();
-    
-    if (bShowInfo){
-        stringstream ss;
-        ss << "There are 4 modes:\n\n";
-        ss << " 1. Presentation mode\n";
-        ss << " 2. Texture mapping mode\n";
-        ss << " 3. Projection mapping mode\n";
-        ss << " 4. Source selection mode\n\n";
-        ss << "You can switch between the modes by using <1>, <2>, <3> and <4> "
-        "keys on the keyboard.\n\n";
-        ss << "Press <t> to add new triangle surface\n";
-        ss << "Press <q> to add new quad surface\n";
-        ss << "Press <s> to save the composition\n";
-        ss << "Press <f> to toggle fullscreen\n";
-        ss << "Press <i> to hide this message";
-        ofDrawBitmapStringHighlight(ss.str(), 10, 20, 
-            ofColor(0, 0, 0, 100),
-            ofColor(255, 255, 255, 200));
-    }
-
-    _application->draw();
-} // draw
-
-void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource) {
-    mediaServer.addFboSource(fboSource);
+void ofxPiMapper::draw(){
+	if(!_setupComplete){
+		return;
+	}
+	_gui->draw();
+	_application->draw();
+	_info->draw();
 }
 
-void ofxPiMapper::addTriangleSurface() {
-    int surfaceType = ofx::piMapper::SurfaceType::TRIANGLE_SURFACE;
-    
-    vector<ofVec2f> vertices;
-    float margin = 50.0f;
-    vertices.push_back(ofVec2f((float)ofGetWidth() / 2.0f, margin));
-    vertices.push_back(ofVec2f((float)ofGetWidth() - margin, (float)ofGetHeight() - margin));
-    vertices.push_back(ofVec2f(margin, (float)ofGetHeight() - margin));
-    
-    vector<ofVec2f> texCoords;
-    texCoords.push_back(ofVec2f(0.5f, 0.0f));
-    texCoords.push_back(ofVec2f(1.0f, 1.0f));
-    texCoords.push_back(ofVec2f(0.0f, 1.0f));
-    surfaceManager.addSurface(surfaceType, vertices, texCoords);
-    
-    // Select this surface right away
-    surfaceManager.selectSurface(surfaceManager.size() - 1);
-} // addTriangleSurface
-
-void ofxPiMapper::addQuadSurface() {
-    int surfaceType = ofx::piMapper::SurfaceType::QUAD_SURFACE;
-    
-    vector<ofVec2f> vertices;
-    float margin = 50.0f;
-    vertices.push_back(ofVec2f(margin, margin));
-    vertices.push_back(ofVec2f((float)ofGetWidth() - margin, margin));
-    vertices.push_back(ofVec2f((float)ofGetWidth() - margin, (float)ofGetHeight() - margin));
-    vertices.push_back(ofVec2f(margin, (float)ofGetHeight() - margin));
-    
-    vector<ofVec2f> texCoords;
-    texCoords.push_back(ofVec2f(ofVec2f(0.0f, 0.0f)));
-    texCoords.push_back(ofVec2f(ofVec2f(1.0f, 0.0f)));
-    texCoords.push_back(ofVec2f(ofVec2f(1.0f, 1.0f)));
-    texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
-    
-    surfaceManager.addSurface(surfaceType, vertices, texCoords);
-    
-    // select this surface right away
-    surfaceManager.selectSurface(surfaceManager.size() - 1);
-} // addQuadSurface
-
-ofx::piMapper::CmdManager & ofxPiMapper::getCmdManager() {
-    return cmdManager;
+void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
+	_mediaServer->addFboSource(fboSource);
 }
 
-ofx::piMapper::SurfaceManagerGui & ofxPiMapper::getGui() {
-    return gui;
+bool ofxPiMapper::loadXmlSettings(string fileName){
+	if(!ofFile::doesFileExist(fileName)){
+		ofLogError("ofxPiMapper::loadXmlSettings()") << fileName << " does not exist";
+		return false;
+	}
+	if(!_surfaceManager->loadXmlSettings(fileName)){
+		ofLogError("ofxPiMapper::loadXmlSettings()") << "Failed to load " << fileName << endl;
+		return false;
+	}
+	return true;
 }
 
-ofx::piMapper::MediaServer & ofxPiMapper::getMediaServer() {
-    return mediaServer;
+ofx::piMapper::CmdManager * ofxPiMapper::getCmdManager(){
+	return _cmdManager;
 }
 
-ofx::piMapper::SurfaceManager & ofxPiMapper::getSurfaceManager() {
-    return surfaceManager;
+ofx::piMapper::SurfaceManagerGui * ofxPiMapper::getGui(){
+	return _gui;
+}
+
+ofx::piMapper::SurfaceManager * ofxPiMapper::getSurfaceManager(){
+	return _surfaceManager;
+}
+
+ofx::piMapper::Info * ofxPiMapper::getInfo(){
+	return _info;
 }
