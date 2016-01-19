@@ -135,6 +135,19 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 		xmlSettings->addValue("source-type", sourceTypeName);
 		xmlSettings->addValue("source-name", surface->getSource()->getName());
 		xmlSettings->popTag(); // source
+		
+		// Save surface options
+		// For now only if quad surface
+		if(surface->getType() == SurfaceType::QUAD_SURFACE){
+			QuadSurface * qs = (QuadSurface *)surface;
+			if(!xmlSettings->tagExists("properties")){
+				xmlSettings->addTag("properties");
+			}
+			xmlSettings->pushTag("properties");
+			xmlSettings->addValue("perspectiveWarping", qs->getPerspectiveWarping());
+			xmlSettings->popTag(); // properties
+		}
+		
 		xmlSettings->popTag(); // surface
 	}
 	xmlSettings->popTag(); // surfaces
