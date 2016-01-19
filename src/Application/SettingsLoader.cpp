@@ -255,13 +255,24 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	xmlSettings->popTag();
 
 	xmlSettings->popTag(); // texCoords
-
+	
 	// Create and add quad surface
 	BaseSurface * quadSurface =
 		SurfaceFactory::instance()->createSurface(
 			SurfaceType::QUAD_SURFACE);
 	quadSurface->setVertices(vertices);
 	quadSurface->setTexCoords(texCoords);
+	
+	// Read properties
+	// Only perspective warping for now
+	bool perspectiveWarping = false;
+	if(xmlSettings->tagExists("properties")){
+		xmlSettings->pushTag("properties");
+		perspectiveWarping = xmlSettings->getValue("perspectiveWarping", false);
+		xmlSettings->popTag(); // properties
+	}
+	QuadSurface * qs = (QuadSurface *)quadSurface;
+	qs->setPerspectiveWarping(perspectiveWarping);
 	
 	return quadSurface;
 }
