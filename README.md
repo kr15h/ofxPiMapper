@@ -170,6 +170,7 @@ Key | Function
 i | Show info
 t | Add triangle surface
 q | Add quad surface
+p | toggle perspective warping (quad surfaces only)
 f | Toggle fullscreen
 s | Save composition
 z | Undo
