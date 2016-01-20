@@ -41,14 +41,9 @@ class QuadSurface : public BaseSurface {
 		bool getPerspectiveWarping();
 
 	private:
-		void calculate4dTextureCoords();
 		void calculateHomography();
 	
-		GLfloat quadVertices[12];
-		GLubyte quadIndices[6];
-		GLfloat quadTexCoordinates[16];
-		//float quadTexCoordinates[16];
-		
+		float _matrix[16];
 		bool _perspectiveWarping;
 };
 

@@ -52,22 +52,6 @@ void QuadSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
 	mesh.addTexCoord(t2);
 	mesh.addTexCoord(t3);
 	mesh.addTexCoord(t4);
-
-	// Pure GL setup
-	// indices
-	quadIndices[0] = 0;
-	quadIndices[1] = 1;
-	quadIndices[2] = 2;
-	quadIndices[3] = 0;
-	quadIndices[4] = 2;
-	quadIndices[5] = 3;
-	// tex coords (those are alway 0)
-	quadTexCoordinates[2] = 0;
-	quadTexCoordinates[6] = 0;
-	quadTexCoordinates[10] = 0;
-	quadTexCoordinates[14] = 0;
-
-	calculate4dTextureCoords();
 }
 
 void QuadSurface::draw(){
@@ -81,29 +65,22 @@ void QuadSurface::draw(){
 
 	if(_perspectiveWarping){
 		if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
-			//calculate4dTextureCoords();
 			calculateHomography();
 		}
 		
-		ofPushMatrix();
-		glMultMatrixf(quadTexCoordinates);
-	
-		//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		//glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
-		//glVertexPointer(3, GL_FLOAT, 0, quadVertices);
-
 		ofMesh m = mesh;
 		m.setVertex(0, ofVec3f(0, 0, 0));
 		m.setVertex(1, ofVec3f(ofGetWidth(), 0, 0));
 		m.setVertex(2, ofVec3f(ofGetWidth(), ofGetHeight(), 0));
 		m.setVertex(3, ofVec3f(0, ofGetHeight(), 0));
-
-		source->getTexture()->bind();
-		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
-		//mesh.draw();
-		//source->getTexture()->draw(0, 0, ofGetWidth(), ofGetHeight());
-		m.draw();
-		source->getTexture()->unbind();
+		
+		ofPushMatrix();
+		if(true){
+			glMultMatrixf(_matrix);
+			source->getTexture()->bind();
+			m.draw();
+			source->getTexture()->unbind();
+		}
 		ofPopMatrix();
 	}else{
 		source->getTexture()->bind();
@@ -119,7 +96,6 @@ void QuadSurface::setVertex(int index, ofVec2f p){
 	}
 
 	mesh.setVertex(index, p);
-	calculate4dTextureCoords();
 }
 
 void QuadSurface::setVertices(vector<ofVec2f> v){
@@ -129,7 +105,6 @@ void QuadSurface::setVertices(vector<ofVec2f> v){
 	for(int i = 0; i < 4; ++i){
 		mesh.setVertex(i, v[i]);
 	}
-	calculate4dTextureCoords();
 }
 
 void QuadSurface::setTexCoord(int index, ofVec2f t){
@@ -140,7 +115,6 @@ void QuadSurface::setTexCoord(int index, ofVec2f t){
 	}
 
 	mesh.setTexCoord(index, t);
-	calculate4dTextureCoords();
 }
 
 void QuadSurface::setTexCoords(vector<ofVec2f> t){
@@ -150,7 +124,6 @@ void QuadSurface::setTexCoords(vector<ofVec2f> t){
 	for(int i = 0; i < 4; ++i){
 		mesh.setTexCoord(i, t[i]);
 	}
-	calculate4dTextureCoords();
 }
 
 void QuadSurface::moveBy(ofVec2f v){
@@ -158,7 +131,6 @@ void QuadSurface::moveBy(ofVec2f v){
 	for(int i = 0; i < vertices.size(); i++){
 		vertices[i] += v;
 	}
-	calculate4dTextureCoords();
 	setMoved(true);
 }
 
@@ -227,144 +199,9 @@ vector <ofVec2f> & QuadSurface::getTexCoords(){
 	return mesh.getTexCoords();
 }
 
-void QuadSurface::calculate4dTextureCoords(){
-	// Perspective Warping with OpenGL Fixed Pipeline and q coordinates
-	// see:
-	// http://www.reedbeta.com/blog/2012/05/26/quadrilateral-interpolation-part-1/
-	// for information on the technique
-	// Pue OpenGL is used because the ofMesh sadly doesn't support ofVec4f as
-	// texture coordinates.
-	// calculate intersection point
-	ofVec3f p0 = mesh.getVertex(0);
-	ofVec3f p1 = mesh.getVertex(1);
-	ofVec3f p2 = mesh.getVertex(2);
-	ofVec3f p3 = mesh.getVertex(3);
-
-	ofVec3f t0 = mesh.getTexCoord(0);
-	ofVec3f t1 = mesh.getTexCoord(1);
-	ofVec3f t2 = mesh.getTexCoord(2);
-	ofVec3f t3 = mesh.getTexCoord(3);
-
-	ofPoint interSect;
-	ofLineSegmentIntersection(ofPoint(p0.x, p0.y), ofPoint(p2.x, p2.y),
-							  ofPoint(p1.x, p1.y), ofPoint(p3.x, p3.y),
-							  interSect);
-	ofVec3f interSecVec = ofVec3f(interSect.x, interSect.y, 0);
-
-	// calculate distances to intersection point
-	float d0 = interSecVec.distance(p0);
-	float d1 = interSecVec.distance(p1);
-	float d2 = interSecVec.distance(p2);
-	float d3 = interSecVec.distance(p3);
-
-	// vertices
-	// top left corner
-	quadVertices[0] = p0.x;
-	quadVertices[1] = p0.y;
-	quadVertices[2] = 0;
-	// top right corner
-	quadVertices[3] = p1.x;
-	quadVertices[4] = p1.y;
-	quadVertices[5] = 0;
-	// bottom right corner
-	quadVertices[6] = p2.x;
-	quadVertices[7] = p2.y;
-	quadVertices[8] = 0;
-	// bottom left corner
-	quadVertices[9] = p3.x;
-	quadVertices[10] = p3.y;
-	quadVertices[11] = 0;
-
-	float q0 = (d0 + d2) / (d2);
-	float q1 = (d1 + d3) / (d3);
-	float q2 = (d2 + d0) / (d0);
-	float q3 = (d3 + d1) / (d1);
-
-	quadTexCoordinates[0] = t0.x;
-	quadTexCoordinates[1] = t0.y;
-	quadTexCoordinates[3] = q0;
-
-	quadTexCoordinates[4] = t1.x * q1;
-	quadTexCoordinates[5] = t1.y;
-	quadTexCoordinates[7] = q1;
-
-	quadTexCoordinates[8] = t2.x * q2;
-	quadTexCoordinates[9] = t2.y * q2;
-	quadTexCoordinates[11] = q2;
-
-	quadTexCoordinates[12] = t3.x;
-	quadTexCoordinates[13] = t3.y * q3;
-	quadTexCoordinates[15] = q3;
-}
-
 void QuadSurface::calculateHomography(){
 	float src[4][2];
     float dst[4][2];
-	
-	ofVec3f p0 = mesh.getVertex(0);
-	ofVec3f p1 = mesh.getVertex(1);
-	ofVec3f p2 = mesh.getVertex(2);
-	ofVec3f p3 = mesh.getVertex(3);
-	
-	// Build a bounding box
-	float minx = 10000.0f;
-	float maxx = 0.0f;
-	float miny = 10000.0f;
-	float maxy = 0.0f;
-	
-	for(int i = 0; i < 4; ++i){
-		float x = mesh.getVertex(i).x;
-		float y = mesh.getVertex(i).y;
-		
-		if(x < minx){
-			minx = x;
-		}
-		
-		if(x > maxx){
-			maxx = x;
-		}
-		
-		if(y < miny){
-			miny = y;
-		}
-		
-		if(y > maxy){
-			maxy = y;
-		}
-	}
-	
-	ofRectangle box = ofRectangle(minx, miny, (maxx - minx), (maxy - miny));
-	
-	ofVec3f t0 = mesh.getTexCoord(0);
-	ofVec3f t1 = mesh.getTexCoord(1);
-	ofVec3f t2 = mesh.getTexCoord(2);
-	ofVec3f t3 = mesh.getTexCoord(3);
-
-	/*
-	src[0][0] = p0.x - box.x;
-	src[0][1] = p0.y - box.y;
-	
-	src[1][0] = p1.x - box.x;
-	src[1][1] = p1.y - box.y;
-	
-	src[2][0] = p2.x - box.x;
-	src[2][1] = p2.y - box.y;
-	
-	src[3][0] = p3.x - box.x;
-	src[3][1] = p3.y - box.y;
-
-	dst[0][0] = t0.x;
-	dst[0][1] = t0.y;
-	
-	dst[1][0] = t1.x;
-	dst[1][1] = t1.y;
-	
-    dst[2][0] = t2.x;
-	dst[2][1] = t2.y;
-	
-	dst[3][0] = t3.x;
-	dst[3][1] = t3.y;
-	*/
 	
 	src[0][0] = 0;
     src[0][1] = 0;
@@ -374,6 +211,11 @@ void QuadSurface::calculateHomography(){
     src[2][1] = ofGetHeight();
     src[3][0] = 0;
     src[3][1] = ofGetHeight();
+	
+	ofVec3f p0 = mesh.getVertex(0);
+	ofVec3f p1 = mesh.getVertex(1);
+	ofVec3f p2 = mesh.getVertex(2);
+	ofVec3f p3 = mesh.getVertex(3);
 
 	dst[0][0] = p0.x;
 	dst[0][1] = p0.y;
@@ -384,7 +226,7 @@ void QuadSurface::calculateHomography(){
 	dst[3][0] = p3.x;
 	dst[3][1] = p3.y;
 	
-    ofxHomographyHelper::findHomography(src, dst, quadTexCoordinates);
+    ofxHomographyHelper::findHomography(src, dst, _matrix);
 }
 
 
