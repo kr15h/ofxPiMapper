@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "BaseSurface.h"
 #include "SurfaceType.h"
+#include "ofxHomographyHelper.h"
 
 namespace ofx {
 namespace piMapper {
@@ -41,12 +42,14 @@ class QuadSurface : public BaseSurface {
 
 	private:
 		void calculate4dTextureCoords();
+		void calculateHomography();
+	
 		GLfloat quadVertices[12];
 		GLubyte quadIndices[6];
 		GLfloat quadTexCoordinates[16];
+		//float quadTexCoordinates[16];
 		
 		bool _perspectiveWarping;
-
 };
 
 } // namespace piMapper

@@ -81,16 +81,30 @@ void QuadSurface::draw(){
 
 	if(_perspectiveWarping){
 		if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
-			calculate4dTextureCoords();
+			//calculate4dTextureCoords();
+			calculateHomography();
 		}
+		
+		ofPushMatrix();
+		glMultMatrixf(quadTexCoordinates);
 	
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
-		glVertexPointer(3, GL_FLOAT, 0, quadVertices);
+		//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		//glTexCoordPointer(4, GL_FLOAT, 0, quadTexCoordinates);
+		//glVertexPointer(3, GL_FLOAT, 0, quadVertices);
+
+		ofMesh m = mesh;
+		m.setVertex(0, ofVec3f(0, 0, 0));
+		m.setVertex(1, ofVec3f(ofGetWidth(), 0, 0));
+		m.setVertex(2, ofVec3f(ofGetWidth(), ofGetHeight(), 0));
+		m.setVertex(3, ofVec3f(0, ofGetHeight(), 0));
 
 		source->getTexture()->bind();
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
+		//glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_BYTE, quadIndices);
+		//mesh.draw();
+		//source->getTexture()->draw(0, 0, ofGetWidth(), ofGetHeight());
+		m.draw();
 		source->getTexture()->unbind();
+		ofPopMatrix();
 	}else{
 		source->getTexture()->bind();
 		mesh.draw();
@@ -282,6 +296,97 @@ void QuadSurface::calculate4dTextureCoords(){
 	quadTexCoordinates[13] = t3.y * q3;
 	quadTexCoordinates[15] = q3;
 }
+
+void QuadSurface::calculateHomography(){
+	float src[4][2];
+    float dst[4][2];
+	
+	ofVec3f p0 = mesh.getVertex(0);
+	ofVec3f p1 = mesh.getVertex(1);
+	ofVec3f p2 = mesh.getVertex(2);
+	ofVec3f p3 = mesh.getVertex(3);
+	
+	// Build a bounding box
+	float minx = 10000.0f;
+	float maxx = 0.0f;
+	float miny = 10000.0f;
+	float maxy = 0.0f;
+	
+	for(int i = 0; i < 4; ++i){
+		float x = mesh.getVertex(i).x;
+		float y = mesh.getVertex(i).y;
+		
+		if(x < minx){
+			minx = x;
+		}
+		
+		if(x > maxx){
+			maxx = x;
+		}
+		
+		if(y < miny){
+			miny = y;
+		}
+		
+		if(y > maxy){
+			maxy = y;
+		}
+	}
+	
+	ofRectangle box = ofRectangle(minx, miny, (maxx - minx), (maxy - miny));
+	
+	ofVec3f t0 = mesh.getTexCoord(0);
+	ofVec3f t1 = mesh.getTexCoord(1);
+	ofVec3f t2 = mesh.getTexCoord(2);
+	ofVec3f t3 = mesh.getTexCoord(3);
+
+	/*
+	src[0][0] = p0.x - box.x;
+	src[0][1] = p0.y - box.y;
+	
+	src[1][0] = p1.x - box.x;
+	src[1][1] = p1.y - box.y;
+	
+	src[2][0] = p2.x - box.x;
+	src[2][1] = p2.y - box.y;
+	
+	src[3][0] = p3.x - box.x;
+	src[3][1] = p3.y - box.y;
+
+	dst[0][0] = t0.x;
+	dst[0][1] = t0.y;
+	
+	dst[1][0] = t1.x;
+	dst[1][1] = t1.y;
+	
+    dst[2][0] = t2.x;
+	dst[2][1] = t2.y;
+	
+	dst[3][0] = t3.x;
+	dst[3][1] = t3.y;
+	*/
+	
+	src[0][0] = 0;
+    src[0][1] = 0;
+    src[1][0] = ofGetWidth();
+    src[1][1] = 0;
+    src[2][0] = ofGetWidth();
+    src[2][1] = ofGetHeight();
+    src[3][0] = 0;
+    src[3][1] = ofGetHeight();
+
+	dst[0][0] = p0.x;
+	dst[0][1] = p0.y;
+	dst[1][0] = p1.x;
+	dst[1][1] = p1.y;
+    dst[2][0] = p2.x;
+	dst[2][1] = p2.y;
+	dst[3][0] = p3.x;
+	dst[3][1] = p3.y;
+	
+    ofxHomographyHelper::findHomography(src, dst, quadTexCoordinates);
+}
+
 
 void QuadSurface::setPerspectiveWarping(bool b){
 	_perspectiveWarping = b;
