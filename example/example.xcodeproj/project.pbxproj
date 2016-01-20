@@ -36,6 +36,7 @@
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
+		39836CCE1C502D43006DB042 /* ofxHomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39836CCC1C502D43006DB042 /* ofxHomographyHelper.cpp */; };
 		399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399953671BD54FF600D5B1F1 /* CrossSource.cpp */; };
 		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
@@ -192,6 +193,8 @@
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
 		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
+		39836CCC1C502D43006DB042 /* ofxHomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHomographyHelper.cpp; sourceTree = "<group>"; };
+		39836CCD1C502D43006DB042 /* ofxHomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHomographyHelper.h; sourceTree = "<group>"; };
 		399953671BD54FF600D5B1F1 /* CrossSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CrossSource.cpp; sourceTree = "<group>"; };
 		399953681BD54FF600D5B1F1 /* CrossSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossSource.h; sourceTree = "<group>"; };
 		39A867941B0D312400165378 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetSourceCmd.cpp; path = Commands/SetSourceCmd.cpp; sourceTree = "<group>"; };
@@ -457,6 +460,7 @@
 				39C1245619F086A9005DF557 /* Sources */,
 				39C1244C19EE95DD005DF557 /* MediaServer */,
 				397C46B71C3971CD002689E2 /* Info */,
+				39836CC71C502108006DB042 /* Utils */,
 				39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */,
 				397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */,
 			);
@@ -479,6 +483,23 @@
 				397C46B81C3971CD002689E2 /* Info.cpp */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		39836CC71C502108006DB042 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				39836CCB1C502D43006DB042 /* ofxHomographyHelper */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		39836CCB1C502D43006DB042 /* ofxHomographyHelper */ = {
+			isa = PBXGroup;
+			children = (
+				39836CCD1C502D43006DB042 /* ofxHomographyHelper.h */,
+				39836CCC1C502D43006DB042 /* ofxHomographyHelper.cpp */,
+			);
+			path = ofxHomographyHelper;
 			sourceTree = "<group>";
 		};
 		39C123E319EE9576005DF557 /* ofxIO */ = {
@@ -955,6 +976,7 @@
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */,
+				39836CCE1C502D43006DB042 /* ofxHomographyHelper.cpp in Sources */,
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
