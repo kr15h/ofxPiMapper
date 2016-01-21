@@ -18,6 +18,10 @@ SettingsLoader * SettingsLoader::instance(){
 bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
+	string sourceType = "";
+	string sourceName = "";
+	
+	BaseSource * source = 0;
 	
 	if(!xmlSettings->loadFile(fileName)){
 		ofLogWarning("SettingsLoader::load()") << "Could not load XML settings";
@@ -27,62 +31,72 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 	if(!xmlSettings->tagExists("surfaces")){
 		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
 		return false;
-	}
-	
-	xmlSettings->pushTag("surfaces");
+	}else{
+		xmlSettings->pushTag("surfaces");
 
-	int numSurfaces = xmlSettings->getNumTags("surface");
-	for(int i = 0; i < numSurfaces; i++){
-		xmlSettings->pushTag("surface", i);
+		int numSurfaces = xmlSettings->getNumTags("surface");
+		for(int i = 0; i < numSurfaces; i++){
+			if(xmlSettings->tagExists("surface", i)){
+				xmlSettings->pushTag("surface", i);
 
-		// attempt to load surface source
-		xmlSettings->pushTag("source");
-		string sourceType = xmlSettings->getValue("source-type", "");
-		string sourceName = xmlSettings->getValue("source-name", "");
-		BaseSource * source = 0;
-		if(sourceName != "" && sourceName != "none" && sourceType != ""){
+				// attempt to load surface source
+				if(xmlSettings->tagExists("source", 0)){
+					xmlSettings->pushTag("source");
+					sourceType = xmlSettings->getValue("source-type", "");
+					sourceName = xmlSettings->getValue("source-name", "");
+					
+					if(sourceName != "" && sourceName != "none" && sourceType != ""){
 
-			// Load source depending on type
-			int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
-			if(typeEnum == SourceType::SOURCE_TYPE_FBO){
+						// Load source depending on type
+						int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
+						if(typeEnum == SourceType::SOURCE_TYPE_FBO){
 				
-				// Load FBO source using sourceName
-				source = mediaServer.loadMedia(sourceName, typeEnum);
-			}else{
+							// Load FBO source using sourceName
+							source = mediaServer.loadMedia(sourceName, typeEnum);
+						}else{
 				
-				// Construct full path
-				string dir = mediaServer.getDefaultMediaDir(typeEnum);
-				stringstream pathss;
-				pathss << ofToDataPath(dir, true) << sourceName;
-				string sourcePath = pathss.str();
+							// Construct full path
+							string dir = mediaServer.getDefaultMediaDir(typeEnum);
+							stringstream pathss;
+							pathss << ofToDataPath(dir, true) << sourceName;
+							string sourcePath = pathss.str();
 				
-				// Load media by using full path
-				source = mediaServer.loadMedia(sourcePath, typeEnum);
+							// Load media by using full path
+							source = mediaServer.loadMedia(sourcePath, typeEnum);
+						}
+					}
+		
+					xmlSettings->popTag(); // source
+				}
+				
+				if(xmlSettings->tagExists("vertices", 0)){
+					xmlSettings->pushTag("vertices");
+					int vertexCount = xmlSettings->getNumTags("vertex");
+		
+					if(vertexCount == 3){
+						BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
+						if(sourceName != "none" && source != 0){
+							triangleSurface->setSource(source);
+						}
+						surfaces.push_back(triangleSurface);
+					}else if(vertexCount == 4){
+						BaseSurface * quadSurface = getQuadSurface(xmlSettings);
+						if(sourceName != "none" && source != 0){
+							quadSurface->setSource(source);
+						}
+						surfaces.push_back(quadSurface);
+					}
+					
+					//xmlSettings->popTag(); // vertices
+					// this is done in getTriangleSurface and getQuadSurface
+				}
+
+				xmlSettings->popTag(); // surface
 			}
 		}
-		
-		xmlSettings->popTag(); // source
-		xmlSettings->pushTag("vertices");
-		int vertexCount = xmlSettings->getNumTags("vertex");
-		
-		if(vertexCount == 3){
-			BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
-			if(sourceName != "none" && source != 0){
-				triangleSurface->setSource(source);
-			}
-			surfaces.push_back(triangleSurface);
-		}else if(vertexCount == 4){
-			BaseSurface * quadSurface = getQuadSurface(xmlSettings);
-			if(sourceName != "none" && source != 0){
-				quadSurface->setSource(source);
-			}
-			surfaces.push_back(quadSurface);
-		}
 
-		xmlSettings->popTag(); // surface
+		xmlSettings->popTag(); // surfaces
 	}
-
-	xmlSettings->popTag(); // surfaces
 	
 	return true;
 }
