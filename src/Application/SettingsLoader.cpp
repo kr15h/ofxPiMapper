@@ -171,43 +171,57 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
 	
-	xmlSettings->pushTag("vertex", 0);
-	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-							   xmlSettings->getValue("y", 0.0f)));
-	xmlSettings->popTag();
+	if(xmlSettings->tagExists("vertex", 0)){
+		xmlSettings->pushTag("vertex", 0);
+		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								   xmlSettings->getValue("y", 0.0f)));
+		xmlSettings->popTag();
+	}
+	
+	if(xmlSettings->tagExists("vertex", 1)){
+		xmlSettings->pushTag("vertex", 1);
+		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+								   xmlSettings->getValue("y", 0.0f)));
+		xmlSettings->popTag();
+	}
 
-	xmlSettings->pushTag("vertex", 1);
-	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-							   xmlSettings->getValue("y", 0.0f)));
-	xmlSettings->popTag();
-
-	xmlSettings->pushTag("vertex", 2);
-	vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-							   xmlSettings->getValue("y", 100.0f)));
-	xmlSettings->popTag();
+	if(xmlSettings->tagExists("vertex", 2)){
+		xmlSettings->pushTag("vertex", 2);
+		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								   xmlSettings->getValue("y", 100.0f)));
+		xmlSettings->popTag();
+	}
 
 	xmlSettings->popTag(); // vertices
 
-	xmlSettings->pushTag("texCoords");
-
 	vector <ofVec2f> texCoords;
 
-	xmlSettings->pushTag("texCoord", 0);
-	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								xmlSettings->getValue("y", 0.0f)));
-	xmlSettings->popTag();
+	if(xmlSettings->tagExists("texCoords")){
+		xmlSettings->pushTag("texCoords");
+		
+		if(xmlSettings->tagExists("texCoord", 0)){
+			xmlSettings->pushTag("texCoord", 0);
+			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+										xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
+		
+		if(xmlSettings->tagExists("texCoord", 1)){
+			xmlSettings->pushTag("texCoord", 1);
+			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+										xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
 
-	xmlSettings->pushTag("texCoord", 1);
-	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
-								xmlSettings->getValue("y", 0.0f)));
-	xmlSettings->popTag();
+		if(xmlSettings->tagExists("texCoord", 2)){
+			xmlSettings->pushTag("texCoord", 2);
+			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+										xmlSettings->getValue("y", 1.0f)));
+			xmlSettings->popTag();
+		}
 
-	xmlSettings->pushTag("texCoord", 2);
-	texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								xmlSettings->getValue("y", 1.0f)));
-	xmlSettings->popTag();
-
-	xmlSettings->popTag(); // texCoords
+		xmlSettings->popTag(); // texCoords
+	}
 
 	// Create and add a triangle surface
 	BaseSurface * triangleSurface =
