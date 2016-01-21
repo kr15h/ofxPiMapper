@@ -69,26 +69,26 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 					xmlSettings->popTag(); // source
 				}
 				
+				int vertexCount = 0;
+				
 				if(xmlSettings->tagExists("vertices", 0)){
 					xmlSettings->pushTag("vertices");
-					int vertexCount = xmlSettings->getNumTags("vertex");
+					vertexCount = xmlSettings->getNumTags("vertex");
+					xmlSettings->popTag(); // vertices
+				}
 		
-					if(vertexCount == 3){
-						BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
-						if(sourceName != "none" && source != 0){
-							triangleSurface->setSource(source);
-						}
-						surfaces.push_back(triangleSurface);
-					}else if(vertexCount == 4){
-						BaseSurface * quadSurface = getQuadSurface(xmlSettings);
-						if(sourceName != "none" && source != 0){
-							quadSurface->setSource(source);
-						}
-						surfaces.push_back(quadSurface);
+				if(vertexCount == 3){
+					BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
+					if(sourceName != "none" && source != 0){
+						triangleSurface->setSource(source);
 					}
-					
-					//xmlSettings->popTag(); // vertices
-					// this is done in getTriangleSurface and getQuadSurface
+					surfaces.push_back(triangleSurface);
+				}else if(vertexCount == 4){
+					BaseSurface * quadSurface = getQuadSurface(xmlSettings);
+					if(sourceName != "none" && source != 0){
+						quadSurface->setSource(source);
+					}
+					surfaces.push_back(quadSurface);
 				}
 
 				xmlSettings->popTag(); // surface
@@ -171,28 +171,32 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
 	
-	if(xmlSettings->tagExists("vertex", 0)){
-		xmlSettings->pushTag("vertex", 0);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								   xmlSettings->getValue("y", 0.0f)));
-		xmlSettings->popTag();
-	}
+	if(xmlSettings->tagExists("vertices")){
+		xmlSettings->pushTag("vertices");
 	
-	if(xmlSettings->tagExists("vertex", 1)){
-		xmlSettings->pushTag("vertex", 1);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-								   xmlSettings->getValue("y", 0.0f)));
-		xmlSettings->popTag();
-	}
+		if(xmlSettings->tagExists("vertex", 0)){
+			xmlSettings->pushTag("vertex", 0);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
+	
+		if(xmlSettings->tagExists("vertex", 1)){
+			xmlSettings->pushTag("vertex", 1);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+									   xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
 
-	if(xmlSettings->tagExists("vertex", 2)){
-		xmlSettings->pushTag("vertex", 2);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								   xmlSettings->getValue("y", 100.0f)));
-		xmlSettings->popTag();
-	}
+		if(xmlSettings->tagExists("vertex", 2)){
+			xmlSettings->pushTag("vertex", 2);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 100.0f)));
+			xmlSettings->popTag();
+		}
 
-	xmlSettings->popTag(); // vertices
+		xmlSettings->popTag(); // vertices
+	}
 
 	vector <ofVec2f> texCoords;
 
@@ -236,35 +240,39 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
 	
-	if(xmlSettings->tagExists("vertex", 0)){
-		xmlSettings->pushTag("vertex", 0);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								   xmlSettings->getValue("y", 0.0f)));
-		xmlSettings->popTag();
-	}
+	if(xmlSettings->tagExists("vertices")){
+		xmlSettings->pushTag("vertices");
+	
+		if(xmlSettings->tagExists("vertex", 0)){
+			xmlSettings->pushTag("vertex", 0);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
 
-	if(xmlSettings->tagExists("vertex", 1)){
-		xmlSettings->pushTag("vertex", 1);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-							       xmlSettings->getValue("y", 0.0f)));
-		xmlSettings->popTag();
-	}
+		if(xmlSettings->tagExists("vertex", 1)){
+			xmlSettings->pushTag("vertex", 1);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+									   xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+		}
 
-	if(xmlSettings->tagExists("vertex", 2)){
-		xmlSettings->pushTag("vertex", 2);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-							       xmlSettings->getValue("y", 100.0f)));
-		xmlSettings->popTag();
-	}
+		if(xmlSettings->tagExists("vertex", 2)){
+			xmlSettings->pushTag("vertex", 2);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
+							           xmlSettings->getValue("y", 100.0f)));
+			xmlSettings->popTag();
+		}
 
-	if(xmlSettings->tagExists("vertex", 3)){
-		xmlSettings->pushTag("vertex", 3);
-		vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								   xmlSettings->getValue("y", 100.0f)));
-		xmlSettings->popTag();
-	}
+		if(xmlSettings->tagExists("vertex", 3)){
+			xmlSettings->pushTag("vertex", 3);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 100.0f)));
+			xmlSettings->popTag();
+		}
 
-	xmlSettings->popTag(); // vertices
+		xmlSettings->popTag(); // vertices
+	}
 	
 	vector <ofVec2f> texCoords;
 
