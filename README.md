@@ -114,7 +114,14 @@ To install dependencies, `cd` into `openFrameworks/addons` directory and execute
 git clone https://github.com/jvcleave/ofxOMXPlayer.git && git clone https://github.com/bakercp/ofxIO.git
 ```
 
-And you are good to go!
+The `ofxOMXPlayer` addon recommends you to use its releases. Currently the latest release is `0.9.0-compatible`. To checkout the code of the relase, go to the `ofxOMXPlayer` addon directory and checkout the relase.
+
+```
+cd openFrameworks/addons/ofxOMXPlayer
+git checkout 0.9.0-compatible
+```
+
+You can check the latest releases on the [ofxOMXPlayer GitHub repository](https://github.com/jvcleave/ofxOMXPlayer/releases).
 
 
 First Test
