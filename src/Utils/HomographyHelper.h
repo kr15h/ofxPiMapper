@@ -1,5 +1,5 @@
 /*
- *  ofxHomographyHelper.cpp
+ *  HomographyHelper
  *  Created by Elliot Woods on 26/11/2010.
  *  Edited by Krisjanis Rijnieks on 23/01/2016
  *
@@ -13,9 +13,14 @@
 
 #include "ofMatrix4x4.h"
 
-class ofxHomographyHelper {
+namespace ofx {
+namespace piMapper {
+
+class HomographyHelper {
 	public:
 		static void gaussian_elimination(float *input, int n);
 		static void findHomography(float src[4][2], float dst[4][2], float homography[16]);
 };
 
+}
+}

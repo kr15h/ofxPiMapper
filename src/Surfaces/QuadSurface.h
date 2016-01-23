@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "BaseSurface.h"
 #include "SurfaceType.h"
-#include "ofxHomographyHelper.h"
+#include "HomographyHelper.h"
 
 namespace ofx {
 namespace piMapper {

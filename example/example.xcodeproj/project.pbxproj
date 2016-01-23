@@ -14,7 +14,7 @@
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
 		39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264840192224F90008A7F5 /* tinyxmlparser.cpp */; };
-		3926516E1C54292E00C54844 /* ofxHomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926516D1C54292E00C54844 /* ofxHomographyHelper.cpp */; };
+		392651711C5429C600C54844 /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 392651701C5429C600C54844 /* HomographyHelper.cpp */; };
 		3933D5D319BB87BD000ACA55 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5C219BB87BD000ACA55 /* ofxBaseGui.cpp */; };
 		3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5C419BB87BD000ACA55 /* ofxButton.cpp */; };
 		3933D5D519BB87BD000ACA55 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5C719BB87BD000ACA55 /* ofxGuiGroup.cpp */; };
@@ -148,8 +148,8 @@
 		3926483E192224F90008A7F5 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
 		3926483F192224F90008A7F5 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
 		39264840192224F90008A7F5 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
-		3926516C1C54292E00C54844 /* ofxHomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHomographyHelper.h; sourceTree = "<group>"; };
-		3926516D1C54292E00C54844 /* ofxHomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHomographyHelper.cpp; sourceTree = "<group>"; };
+		3926516F1C5429C600C54844 /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
+		392651701C5429C600C54844 /* HomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		3933D5C219BB87BD000ACA55 /* ofxBaseGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		3933D5C319BB87BD000ACA55 /* ofxBaseGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
 		3933D5C419BB87BD000ACA55 /* ofxButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxButton.cpp; sourceTree = "<group>"; };
@@ -488,8 +488,8 @@
 		39836CC71C502108006DB042 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3926516C1C54292E00C54844 /* ofxHomographyHelper.h */,
-				3926516D1C54292E00C54844 /* ofxHomographyHelper.cpp */,
+				3926516F1C5429C600C54844 /* HomographyHelper.h */,
+				392651701C5429C600C54844 /* HomographyHelper.cpp */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -968,7 +968,6 @@
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */,
-				3926516E1C54292E00C54844 /* ofxHomographyHelper.cpp in Sources */,
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
@@ -1027,6 +1026,7 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				39C1244B19EE9589005DF557 /* snappy.cc in Sources */,
 				3933D5D719BB87BD000ACA55 /* ofxPanel.cpp in Sources */,
+				392651711C5429C600C54844 /* HomographyHelper.cpp in Sources */,
 				39C1247D19F187D5005DF557 /* CircleJoint.cpp in Sources */,
 				39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */,
 				3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */,

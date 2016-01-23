@@ -226,9 +226,8 @@ void QuadSurface::calculateHomography(){
 	dst[3][0] = p3.x;
 	dst[3][1] = p3.y;
 	
-    ofxHomographyHelper::findHomography(src, dst, _matrix);
+    HomographyHelper::findHomography(src, dst, _matrix);
 }
-
 
 void QuadSurface::setPerspectiveWarping(bool b){
 	_perspectiveWarping = b;

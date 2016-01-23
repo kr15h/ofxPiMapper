@@ -1,5 +1,5 @@
 /*
- *  ofxHomographyHelper.cpp
+ *  HomographyHelper
  *  Created by Elliot Woods on 26/11/2010.
  *  Edited by Krisjanis Rijnieks on 23/01/2016
  *
@@ -9,9 +9,12 @@
  *	http://www.openframeworks.cc/forum/viewtopic.php?f=9&t=3121
  */
 
-#include "ofxHomographyHelper.h"
+#include "HomographyHelper.h"
 
-void ofxHomographyHelper::gaussian_elimination(float *input, int n){
+namespace ofx {
+namespace piMapper {
+
+void HomographyHelper::gaussian_elimination(float *input, int n){
 	// ported to c from pseudocode in
 	// http://en.wikipedia.org/wiki/Gaussian_elimination
 	
@@ -66,7 +69,7 @@ void ofxHomographyHelper::gaussian_elimination(float *input, int n){
 }
 
 
-void ofxHomographyHelper::findHomography(float src[4][2], float dst[4][2], float homography[16]){
+void HomographyHelper::findHomography(float src[4][2], float dst[4][2], float homography[16]){
 	
 	// create the equation system to be solved
 	//
@@ -112,3 +115,6 @@ void ofxHomographyHelper::findHomography(float src[4][2], float dst[4][2], float
 	
 	for(int i=0;i<16;i++) homography[i] = aux_H[i];
 }
+
+} // namespace piMapper
+} // namespace ofx
