@@ -1,6 +1,7 @@
 /*
  *  ofxHomographyHelper.cpp
  *  Created by Elliot Woods on 26/11/2010.
+ *  Edited by Krisjanis Rijnieks on 23/01/2016
  *
  *  Based entirely on arturo castro's homography implementation
  *  Created 08/01/2010, arturo castro
@@ -10,8 +11,7 @@
 
 #include "ofxHomographyHelper.h"
 
-void ofxHomographyHelper::gaussian_elimination(float *input, int n)
-{
+void ofxHomographyHelper::gaussian_elimination(float *input, int n){
 	// ported to c from pseudocode in
 	// http://en.wikipedia.org/wiki/Gaussian_elimination
 	
@@ -111,64 +111,4 @@ void ofxHomographyHelper::findHomography(float src[4][2], float dst[4][2], float
 		P[2][8],P[5][8],0,1};      // h13  h23 0 h33
 	
 	for(int i=0;i<16;i++) homography[i] = aux_H[i];
-}
-
-ofMatrix4x4 ofxHomographyHelper::findHomography(float src[4][2], float dst[4][2]){
-	ofMatrix4x4 matrix;
-	
-	// create the equation system to be solved
-	//
-	// from: Multiple View Geometry in Computer Vision 2ed
-	//       Hartley R. and Zisserman A.
-	//
-	// x' = xH
-	// where H is the homography: a 3 by 3 matrix
-	// that transformed to inhomogeneous coordinates for each point
-	// gives the following equations for each point:
-	//
-	// x' * (h31*x + h32*y + h33) = h11*x + h12*y + h13
-	// y' * (h31*x + h32*y + h33) = h21*x + h22*y + h23
-	//
-	// as the homography is scale independent we can let h33 be 1 (indeed any of the terms)
-	// so for 4 points we have 8 equations for 8 terms to solve: h11 - h32
-	// after ordering the terms it gives the following matrix
-	// that can be solved with gaussian elimination:
-	
-	float P[8][9]={
-		{-src[0][0], -src[0][1], -1,   0,   0,  0, src[0][0]*dst[0][0], src[0][1]*dst[0][0], -dst[0][0] }, // h11
-		{  0,   0,  0, -src[0][0], -src[0][1], -1, src[0][0]*dst[0][1], src[0][1]*dst[0][1], -dst[0][1] }, // h12
-		
-		{-src[1][0], -src[1][1], -1,   0,   0,  0, src[1][0]*dst[1][0], src[1][1]*dst[1][0], -dst[1][0] }, // h13
-		{  0,   0,  0, -src[1][0], -src[1][1], -1, src[1][0]*dst[1][1], src[1][1]*dst[1][1], -dst[1][1] }, // h21
-		
-		{-src[2][0], -src[2][1], -1,   0,   0,  0, src[2][0]*dst[2][0], src[2][1]*dst[2][0], -dst[2][0] }, // h22
-		{  0,   0,  0, -src[2][0], -src[2][1], -1, src[2][0]*dst[2][1], src[2][1]*dst[2][1], -dst[2][1] }, // h23
-		
-		{-src[3][0], -src[3][1], -1,   0,   0,  0, src[3][0]*dst[3][0], src[3][1]*dst[3][0], -dst[3][0] }, // h31
-		{  0,   0,  0, -src[3][0], -src[3][1], -1, src[3][0]*dst[3][1], src[3][1]*dst[3][1], -dst[3][1] }, // h32
-	};
-	
-	gaussian_elimination(&P[0][0],9);
-	
-	matrix(0,0)=P[0][8];
-	matrix(0,1)=P[1][8];
-	matrix(0,2)=0;
-	matrix(0,3)=P[2][8];
-	
-	matrix(1,0)=P[3][8];
-	matrix(1,1)=P[4][8];
-	matrix(1,2)=0;
-	matrix(1,3)=P[5][8];
-	
-	matrix(2,0)=0;
-	matrix(2,1)=0;
-	matrix(2,2)=0;
-	matrix(2,3)=0;
-	
-	matrix(3,0)=P[6][8];
-	matrix(3,1)=P[7][8];
-	matrix(3,2)=0;
-	matrix(3,3)=1;
-	
-	return matrix;
 }
