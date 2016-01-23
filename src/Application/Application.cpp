@@ -4,28 +4,37 @@
 namespace ofx {
 namespace piMapper {
 
-Application::Application(ofxPiMapper * opm){
-	_ofxPiMapper = opm;
+Application::Application(){
+	_surfaceManager.setMediaServer(&_mediaServer);
+	_gui.setMediaServer(&_mediaServer);
+	_gui.setCmdManager(&_cmdManager);
+	_gui.setSurfaceManager(&_surfaceManager);
+	
 	setState(PresentationState::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 }
 
 Application::~Application(){
-	_ofxPiMapper = 0;
 	setState(0);
 	ofRemoveListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
+}
+
+void Application::setup(){
+	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
+		ofLogWarning("Application::setup()") << "Failed to load user settings" << endl;
+		if(!loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE)){
+			ofLogWarning("Application::setup()") << "Failed to load default settings" << endl;
+		}
+	}
 }
 
 ApplicationBaseState * Application::getState(){
 	return _state;
 }
 
-ofxPiMapper * Application::getOfxPiMapper(){
-	return _ofxPiMapper;
-}
-
 void Application::draw(){
 	_state->draw(this);
+	_info.draw();
 }
 
 // Here we handle application state changes only
@@ -36,31 +45,31 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 
 	switch(args.key){
 	 case '1':
-		 _ofxPiMapper->getCmdManager()->exec(
+		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, PresentationState::instance(),
-				 _ofxPiMapper->getGui(), GuiMode::NONE));
+				 &_gui, GuiMode::NONE));
 		 break;
 
 	 case '2':
-		 _ofxPiMapper->getCmdManager()->exec(
+		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, TextureMappingState::instance(),
-				 _ofxPiMapper->getGui(), GuiMode::TEXTURE_MAPPING));
+				 &_gui, GuiMode::TEXTURE_MAPPING));
 		 break;
 
 	 case '3':
-		 _ofxPiMapper->getCmdManager()->exec(
+		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, ProjectionMappingState::instance(),
-				 _ofxPiMapper->getGui(), GuiMode::PROJECTION_MAPPING));
+				 &_gui, GuiMode::PROJECTION_MAPPING));
 		 break;
 
 	 case '4':
-		 _ofxPiMapper->getCmdManager()->exec(
+		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
 				 this, SourceSelectionState::instance(),
-				 _ofxPiMapper->getGui(), GuiMode::SOURCE_SELECTION));
+				 &_gui, GuiMode::SOURCE_SELECTION));
 		 break;
 
 	 case 'f':
@@ -68,16 +77,16 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'i':
-		 _ofxPiMapper->getInfo()->toggle();
+		 _info.toggle();
 		 break;
 
 	 case 's':
-		 _ofxPiMapper->getSurfaceManager()->saveXmlSettings(
+		 _surfaceManager.saveXmlSettings(
 			 PIMAPPER_USER_SURFACES_XML_FILE);
 		 break;
 
 	 case 'z':
-		 _ofxPiMapper->getCmdManager()->undo();
+		 _cmdManager.undo();
 		 break;
 
 	 default:
@@ -87,8 +96,24 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	}
 }
 
+void Application::addFboSource(FboSource & fboSource){
+	_mediaServer.addFboSource(fboSource);
+}
+
 void Application::setState(ApplicationBaseState * st){
 	_state = st;
+}
+
+bool Application::loadXmlSettings(string fileName){
+	if(!ofFile::doesFileExist(fileName)){
+		ofLogError("Application::loadXmlSettings()") << fileName << " does not exist";
+		return false;
+	}
+	if(!_surfaceManager.loadXmlSettings(fileName)){
+		ofLogError("Application::loadXmlSettings()") << "Failed to load " << fileName << endl;
+		return false;
+	}
+	return true;
 }
 
 } // namespace piMapper

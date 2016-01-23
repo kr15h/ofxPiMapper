@@ -12,7 +12,9 @@ SourceSelectionState * SourceSelectionState::instance(){
 	return _instance;
 }
 
-void SourceSelectionState::draw(Application * app){}
+void SourceSelectionState::draw(Application * app){
+	app->getGui()->draw();
+}
 
 } // namespace piMapper
 } // namespace ofx

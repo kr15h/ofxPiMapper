@@ -3,8 +3,6 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 
-#include "ofxPiMapper.h"
-
 #include "SetApplicationStateCmd.h"
 
 #include "ApplicationBaseState.h"
@@ -12,11 +10,16 @@
 #include "ProjectionMappingState.h"
 #include "TextureMappingState.h"
 #include "SourceSelectionState.h"
+#include "FboSource.h"
+#include "Info.h"
+
+#include "SurfaceManagerGui.h"
 
 // TODO: To be removed.
 #include "GuiMode.h"
 
-class ofxPiMapper;
+#define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
+#define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
 
 namespace ofx {
 namespace piMapper {
@@ -26,14 +29,21 @@ class ApplicationBaseState;
 class Application {
 
 	public:
-		Application(ofxPiMapper * opm);
+		Application();
 		~Application();
 
 		ApplicationBaseState * getState();
-		ofxPiMapper * getOfxPiMapper();         // Temporary method.
 
+		void setup();
 		void draw();
 		void onKeyPressed(ofKeyEventArgs & args);
+		void addFboSource(FboSource & fboSource);
+	
+		bool loadXmlSettings(string fileName);
+	
+		SurfaceManagerGui * getGui(){ return &_gui; };
+		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; };
+		CmdManager * getCmdManager(){ return &_cmdManager; };
 
 	protected:
 		void setState(ApplicationBaseState * st);
@@ -43,7 +53,12 @@ class Application {
 		friend class SetApplicationStateCmd;
 
 		ApplicationBaseState * _state;
-		ofxPiMapper * _ofxPiMapper;
+	
+		CmdManager _cmdManager;
+		SurfaceManagerGui _gui;
+		MediaServer _mediaServer;
+		SurfaceManager _surfaceManager;
+		Info _info;
 
 };
 

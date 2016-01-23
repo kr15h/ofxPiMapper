@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "ofxPiMapper.h"
+#include "SurfaceManager.h"
 #include "BaseCmd.h"
 #include "BaseSurface.h"
 
@@ -16,12 +16,12 @@ namespace piMapper {
 class RmSurfaceCmd : public BaseUndoCmd {
 
 	public:
-		RmSurfaceCmd(ofxPiMapper * app);
+		RmSurfaceCmd(SurfaceManager * sm);
 		void exec();
 		void undo();
 
 	private:
-		ofxPiMapper * _app;
+		SurfaceManager * _surfaceManager;
 		BaseSurface * _surface;
 
 };

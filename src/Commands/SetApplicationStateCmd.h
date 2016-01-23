@@ -2,6 +2,7 @@
 
 #include "BaseCmd.h"
 #include "Application.h"
+#include "SurfaceManagerGui.h"
 
 namespace ofx {
 namespace piMapper {

@@ -3,19 +3,19 @@
 namespace ofx {
 namespace piMapper {
 
-AddSurfaceCmd::AddSurfaceCmd(ofxPiMapper * app, int surfaceType){
-	_app = app;
+AddSurfaceCmd::AddSurfaceCmd(SurfaceManager * sm, int surfaceType){
+	_surfaceManager = sm;
 	_surfaceType = surfaceType;
 }
 
 void AddSurfaceCmd::exec(){
 	BaseSurface * surface = SurfaceFactory::instance()->createSurface(_surfaceType);
-	_app->getSurfaceManager()->addSurface(surface);
+	_surfaceManager->addSurface(surface);
 }
 
 void AddSurfaceCmd::undo(){
 	ofLogNotice("AddSurfaceCmd", "undo");
-	_app->getSurfaceManager()->removeSurface();
+	_surfaceManager->removeSurface();
 }
 
 } // namespace piMapper

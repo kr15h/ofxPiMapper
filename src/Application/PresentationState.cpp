@@ -12,7 +12,9 @@ PresentationState * PresentationState::instance(){
 	return _instance;
 }
 
-void PresentationState::draw(Application * app){}
+void PresentationState::draw(Application * app){
+	app->getGui()->draw();
+}
 
 } // namespace piMapper
 } // namespace ofx

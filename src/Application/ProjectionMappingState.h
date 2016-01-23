@@ -5,6 +5,7 @@
 #include "ofLog.h"
 #include "ofGraphics.h"
 #include "AddSurfaceCmd.h"
+#include "RmSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
 

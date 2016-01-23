@@ -12,43 +12,45 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 	return _instance;
 }
 
-void ProjectionMappingState::draw(Application * app){}
+void ProjectionMappingState::draw(Application * app){
+	app->getGui()->draw();
+}
 
 void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 
 	 case 't':
-		 app->getOfxPiMapper()->getCmdManager()->exec(
+		 app->getCmdManager()->exec(
 			 new AddSurfaceCmd(
-				 app->getOfxPiMapper(),
+				 app->getSurfaceManager(),
 				 SurfaceType::TRIANGLE_SURFACE)
 			 );
 		 break;
 
 	 case 'q':
-		 app->getOfxPiMapper()->getCmdManager()->exec(
+		 app->getCmdManager()->exec(
 			 new AddSurfaceCmd(
-				 app->getOfxPiMapper(),
+				 app->getSurfaceManager(),
 				 SurfaceType::QUAD_SURFACE)
 			 );
 		 break;
 
 	 case OF_KEY_BACKSPACE:
-		 app->getOfxPiMapper()->getCmdManager()->exec(
-			 new RmSurfaceCmd(app->getOfxPiMapper()));
+		 app->getCmdManager()->exec(
+			 new RmSurfaceCmd(app->getSurfaceManager()));
 		 break;
 	 
 	 case 'p':
-		 if(app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface() == 0){
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
 			break;
 		 }
 		 
-		 if(app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface()->getType() ==
+		 if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
 			 SurfaceType::QUAD_SURFACE){
 			 
-			 app->getOfxPiMapper()->getCmdManager()->exec(
+			 app->getCmdManager()->exec(
 				 new TogglePerspectiveCmd(
-					 (QuadSurface *)app->getOfxPiMapper()->getSurfaceManager()->getSelectedSurface() ) );
+					 (QuadSurface *)app->getSurfaceManager()->getSelectedSurface() ) );
 		 }
 		 break;
 

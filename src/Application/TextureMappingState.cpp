@@ -12,7 +12,9 @@ TextureMappingState * TextureMappingState::instance(){
 	return _instance;
 }
 
-void TextureMappingState::draw(Application * app){}
+void TextureMappingState::draw(Application * app){
+	app->getGui()->draw();
+}
 
 } // namespace piMapper
 } // namespace ofx
