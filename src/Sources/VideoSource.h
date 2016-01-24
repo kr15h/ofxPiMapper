@@ -37,6 +37,7 @@ class VideoSource : public BaseSource {
 			// Go with ofVideoPlayer or
 			// TODO: High Performance Video player on newer Macs
 			ofVideoPlayer * videoPlayer;
+			bool _initialVolumeSet;
 		#endif
 
 };

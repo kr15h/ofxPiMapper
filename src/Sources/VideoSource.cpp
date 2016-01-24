@@ -13,6 +13,7 @@ VideoSource::VideoSource(){
 		omxPlayer = 0;
 	#else
 		videoPlayer = 0;
+		_initialVolumeSet = false;
 	#endif
 }
 
@@ -35,8 +36,8 @@ void VideoSource::loadVideo(string & filePath){
 		videoPlayer = new ofVideoPlayer();
 		videoPlayer->load(filePath);
 		videoPlayer->setLoopState(OF_LOOP_NORMAL);
-		videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
 		videoPlayer->play();
+		videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
 		texture = &(videoPlayer->getTexture());
 		ofAddListener(ofEvents().update, this, &VideoSource::update);
 	#endif
@@ -62,6 +63,12 @@ void VideoSource::clear(){
 #ifndef TARGET_RASPBERRY_PI
 	void VideoSource::update(ofEventArgs & args){
 		if(videoPlayer != 0){
+			if(!_initialVolumeSet){
+				if(videoPlayer->isInitialized()){
+					videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
+					_initialVolumeSet = true;
+				}
+			}
 			videoPlayer->update();
 		}
 	}
