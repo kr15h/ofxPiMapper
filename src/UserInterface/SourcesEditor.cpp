@@ -27,11 +27,11 @@ SourcesEditor::SourcesEditor(MediaServer * externalMediaServer){
 }
 
 SourcesEditor::~SourcesEditor(){
-	unregisterAppEvents();
+	//unregisterAppEvents();
 	delete imageSelector;
 	delete videoSelector;
 	delete fboSelector;
-	removeMediaServerListeners();
+	//removeMediaServerListeners();
 	clearMediaServer();
 }
 
