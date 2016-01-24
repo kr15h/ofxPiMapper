@@ -29,5 +29,5 @@ class ofxPiMapper {
 		bool loadXmlSettings(string fileName);
 
 	private:
-		ofx::piMapper::Application * _application;
+		ofx::piMapper::Application _application;
 };
