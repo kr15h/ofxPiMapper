@@ -9,13 +9,13 @@ CameraSource::CameraSource(){
 	vector<ofVideoDevice> devices = _videoGrabber.listDevices();
 	_cameraFound = false;
 
-    for(int i = 0; i < devices.size(); i++){
-        if(devices[i].bAvailable){
-            ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
+	for(int i = 0; i < devices.size(); i++){
+		if(devices[i].bAvailable){
+			ofLogNotice() << devices[i].id << ": " << devices[i].deviceName;
 			_cameraFound = true;
 			break;
-        }
-    }
+		}
+	}
 	
 	if(_cameraFound){
 		_videoGrabber.setDeviceID(0);
