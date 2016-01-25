@@ -1,0 +1,36 @@
+<surfaces>
+    <surface>
+        <vertices>
+            <vertex>
+                <x>415.000000000</x>
+                <y>51.000000000</y>
+            </vertex>
+            <vertex>
+                <x>581.000000000</x>
+                <y>388.000000000</y>
+            </vertex>
+            <vertex>
+                <x>183.000000000</x>
+                <y>357.000000000</y>
+            </vertex>
+        </vertices>
+        <texCoords>
+            <texCoord>
+                <x>0.556249976</x>
+                <y>0.108333334</y>
+            </texCoord>
+            <texCoord>
+                <x>0.862500012</x>
+                <y>0.941666663</y>
+            </texCoord>
+            <texCoord>
+                <x>0.118749999</x>
+                <y>0.862500012</y>
+            </texCoord>
+        </texCoords>
+        <source>
+            <source-type>fbo</source-type>
+            <source-name>Camera Source</source-name>
+        </source>
+    </surface>
+</surfaces>

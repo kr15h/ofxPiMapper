@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F18B6FEBE66912B859D879DB0D93A2398D3668F4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CA29DB320F881B85D76220FC5498A4D1FA4F037C" : 0,
+    "F18B6FEBE66912B859D879DB0D93A2398D3668F4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7BBBCBAC-9A41-4C8B-9A6B-DE741AB94199",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CA29DB320F881B85D76220FC5498A4D1FA4F037C" : "ofxIO\/",
+    "F18B6FEBE66912B859D879DB0D93A2398D3668F4" : "ofxPiMapper\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "example",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "example-camera\/example.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bakercp\/ofxIO.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CA29DB320F881B85D76220FC5498A4D1FA4F037C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kr15h\/ofxPiMapper.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F18B6FEBE66912B859D879DB0D93A2398D3668F4"
+    }
+  ]
+}
