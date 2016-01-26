@@ -2,6 +2,8 @@
  * CameraSource example
  * Based on the thought that ofxPiMapper should be as bare-bones as possible, thus all the source 
  * type functionality should come from outside.
+ * Update: still thinking whether the bare-bones approach is such a good idea. The less dependencies
+ * the better, of course.
  * Created by Krisjanis Rijnieks on 25/01/2016
  */
 
