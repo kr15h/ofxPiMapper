@@ -22,6 +22,11 @@ class GridWarpSurface : public BaseSurface {
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
 
+		void setVertex(int index, ofVec2f p);
+		void setVertices(vector<ofVec2f> v);
+		vector <ofVec3f> & getVertices();
+
+
 	private:
 		int _gridCols;
 		int _gridRows;

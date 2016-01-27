@@ -34,8 +34,19 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 				 SurfaceType::QUAD_SURFACE)
 			 );
 		 break;
+		 
+	 case 'g':
+		 app->getCmdManager()->exec(
+			 new AddSurfaceCmd(
+				 app->getSurfaceManager(),
+				 SurfaceType::GRID_WARP_SURFACE)
+			 );
+		break;
 
 	 case OF_KEY_BACKSPACE:
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			break;
+		 }
 		 app->getCmdManager()->exec(
 			 new RmSurfaceCmd(app->getSurfaceManager()));
 		 break;
