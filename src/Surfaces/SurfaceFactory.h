@@ -5,6 +5,7 @@
 #include "SurfaceType.h"
 #include "TriangleSurface.h"
 #include "QuadSurface.h"
+#include "GridWarpSurface.h"
 
 namespace ofx {
 namespace piMapper {
@@ -22,6 +23,7 @@ class SurfaceFactory {
 	
 		TriangleSurface * createTriangleSurface();
 		QuadSurface * createQuadSurface();
+		GridWarpSurface * createGridWarpSurface();
 	};
 
 } // namespace piMapper

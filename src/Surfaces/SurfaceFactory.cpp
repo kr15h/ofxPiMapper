@@ -17,6 +17,8 @@ BaseSurface * SurfaceFactory::createSurface(int type){
 		return createTriangleSurface();
 	}else if(type == SurfaceType::QUAD_SURFACE){
 		return createQuadSurface();
+	}else if(type == SurfaceType::GRID_WARP_SURFACE){
+		return createGridWarpSurface();
 	}else{
 		throw runtime_error("Undefined surface type");
 	}
@@ -66,6 +68,11 @@ QuadSurface * SurfaceFactory::createQuadSurface(){
 	}
 	
 	return quadSurface;
+}
+
+GridWarpSurface * SurfaceFactory::createGridWarpSurface(){
+	GridWarpSurface * gridWarpSurface = new GridWarpSurface();
+	return gridWarpSurface;
 }
 
 } // namespace piMapper
