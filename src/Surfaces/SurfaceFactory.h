@@ -19,6 +19,9 @@ class SurfaceFactory {
 	
 	private:
 		static SurfaceFactory * _instance;
+	
+		TriangleSurface * createTriangleSurface();
+		QuadSurface * createQuadSurface();
 	};
 
 } // namespace piMapper
