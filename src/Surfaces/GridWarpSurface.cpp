@@ -24,13 +24,11 @@ void GridWarpSurface::draw(){
 }
 
 void GridWarpSurface::moveBy(ofVec2f v){
-	/*
 	vector <ofVec3f> & vertices = getVertices();
 	for(int i = 0; i < vertices.size(); i++){
 		vertices[i] += v;
 	}
 	setMoved(true);
-	*/
 }
 
 int GridWarpSurface::getType(){
