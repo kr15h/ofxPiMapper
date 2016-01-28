@@ -89,6 +89,12 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 						quadSurface->setSource(source);
 					}
 					surfaces.push_back(quadSurface);
+				}else if(vertexCount > 4){
+					BaseSurface * gridWarpSurface = getGridWarpSurface(xmlSettings);
+					if(sourceName != "none" && source != 0){
+						gridWarpSurface->setSource(source);
+					}
+					surfaces.push_back(gridWarpSurface);
 				}
 
 				xmlSettings->popTag(); // surface
@@ -330,6 +336,56 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	
 	return quadSurface;
 }
+
+BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
+	vector <ofVec2f> vertices;
+	
+	if(xmlSettings->tagExists("vertices")){
+		xmlSettings->pushTag("vertices");
+		
+		int iv = 0;
+		
+		while(xmlSettings->tagExists("vertex", iv)){
+			xmlSettings->pushTag("vertex", iv);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+			++iv;
+		}
+
+		xmlSettings->popTag(); // vertices
+	}
+	
+	vector <ofVec2f> texCoords;
+
+	if(xmlSettings->tagExists("texCoords")){
+		xmlSettings->pushTag("texCoords");
+
+		int it = 0;
+		
+		while(xmlSettings->tagExists("texCoord", it)){
+			xmlSettings->pushTag("texCoord", it);
+			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+										xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag();
+			++it;
+		}
+
+		xmlSettings->popTag(); // texCoords
+	}
+	
+	// Create and add quad surface
+	BaseSurface * gridWarpSurface =
+		SurfaceFactory::instance()->createSurface(
+			SurfaceType::GRID_WARP_SURFACE);
+	gridWarpSurface->setVertices(vertices);
+	gridWarpSurface->setTexCoords(texCoords);
+	
+	return gridWarpSurface;
+}
+
+
+
 
 } // namespace piMapper
 } // namespace ofx

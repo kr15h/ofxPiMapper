@@ -129,6 +129,10 @@ vector <ofVec3f> & GridWarpSurface::getVertices(){
 	return mesh.getVertices();
 }
 
+vector <ofVec2f> & GridWarpSurface::getTexCoords(){
+	return mesh.getTexCoords();
+}
+
 void GridWarpSurface::createGridMesh(){
 	mesh.clear();
 	
