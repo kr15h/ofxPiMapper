@@ -42,31 +42,63 @@ int GridWarpSurface::getType(){
 }
 
 bool GridWarpSurface::hitTest(ofVec2f p){
-	return false;
-	/*
-	ofPolyline line = getHitArea();
-
-	if(line.inside(p.x, p.y)){
-		return true;
-	}else{
-		return false;
+	ofPolyline pl;
+	int vertsPerCol = _gridRows + 1;
+	int vertsPerRow = _gridCols + 1;
+	
+	for(int iy = 0; iy < _gridRows; ++iy){
+		for(int ix = 0; ix < _gridCols; ++ix){
+			int a = (iy * vertsPerRow) + ix;
+			int b = (iy * vertsPerRow) + ix + 1;
+			int c = ((iy + 1) * vertsPerRow) + ix + 1;
+			int d = ((iy + 1) * vertsPerRow) + ix;
+			
+			pl.clear();
+			pl.addVertex(mesh.getVertex(a));
+			pl.addVertex(mesh.getVertex(b));
+			pl.addVertex(mesh.getVertex(c));
+			pl.addVertex(mesh.getVertex(d));
+			pl.close();
+			
+			if(pl.inside(p)){
+				return true;
+			}
+		}
 	}
-	*/
+	
+	return false;
 }
 
 ofPolyline GridWarpSurface::getHitArea(){
-	ofPolyline line;
-	return line;
-	/*
-	ofPolyline line;
-	line.addVertex(ofPoint(mesh.getVertex(0).x, mesh.getVertex(0).y));
-	line.addVertex(ofPoint(mesh.getVertex(1).x, mesh.getVertex(1).y));
-	line.addVertex(ofPoint(mesh.getVertex(2).x, mesh.getVertex(2).y));
-	line.addVertex(ofPoint(mesh.getVertex(3).x, mesh.getVertex(3).y));
-	line.close();
-
-	return line;
-	*/
+	ofPolyline pl;
+	int vertsPerCol = _gridRows + 1;
+	int vertsPerRow = _gridCols + 1;
+	
+	// Get the top border
+	for(int ix = 0; ix <= _gridCols; ++ix){
+		pl.addVertex(mesh.getVertex(ix));
+	}
+	
+	// Get right border from top down
+	for(int iy = 1; iy <= _gridRows; ++iy){
+		int i = iy * vertsPerRow + vertsPerRow - 1;
+		pl.addVertex(mesh.getVertex(i));
+	}
+	
+	// Get bottom border from right to left
+	for(int ix = _gridCols; ix >= 0; --ix){
+		int i = _gridRows * vertsPerRow + vertsPerRow - 2;
+		pl.addVertex(mesh.getVertex(i));
+	}
+	
+	// Get left border from bottom to top
+	for(int iy = _gridRows; iy > 0; --iy){
+		int i = iy * vertsPerRow;
+		pl.addVertex(mesh.getVertex(i));
+	}
+	
+	pl.close();
+	return pl;
 }
 
 ofPolyline GridWarpSurface::getTextureHitArea(){
