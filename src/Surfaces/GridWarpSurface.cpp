@@ -21,10 +21,6 @@ void GridWarpSurface::draw(){
 	source->getTexture()->bind();
 	mesh.draw();
 	source->getTexture()->unbind();
-	
-	// debug vertices
-	mesh.drawWireframe();
-	//mesh.drawVertices();
 }
 
 void GridWarpSurface::moveBy(ofVec2f v){
