@@ -125,6 +125,24 @@ void GridWarpSurface::setVertices(vector<ofVec2f> v){
 	}
 }
 
+void GridWarpSurface::setTexCoord(int index, ofVec2f t){
+	if(index >= mesh.getVertices().size()){
+		ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
+		return;
+	}
+	mesh.setTexCoord(index, t);
+}
+
+void GridWarpSurface::setTexCoords(vector<ofVec2f> t){
+	if(t.size() != mesh.getVertices().size()){
+		throw runtime_error("Wrong number of texture coordinates");
+	}
+	for(int i = 0; i < 3; ++i){
+		mesh.setTexCoord(i, t[i]);
+	}
+}
+
+
 vector <ofVec3f> & GridWarpSurface::getVertices(){
 	return mesh.getVertices();
 }

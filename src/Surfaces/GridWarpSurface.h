@@ -24,6 +24,8 @@ class GridWarpSurface : public BaseSurface {
 
 		void setVertex(int index, ofVec2f p);
 		void setVertices(vector<ofVec2f> v);
+		void setTexCoord(int index, ofVec2f t);
+		void setTexCoords(vector<ofVec2f> t);
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
 
