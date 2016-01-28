@@ -153,7 +153,8 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 		string sourceTypeName = SourceType::GetSourceTypeName(surface->getSource()->getType());
 		
 		xmlSettings->addValue("source-type", sourceTypeName);
-		xmlSettings->addValue("source-name", surface->getSource()->getName());
+		string sourceName = surface->getSource()->getName();
+		xmlSettings->addValue("source-name", (sourceName == "") ? "none" : sourceName);
 		xmlSettings->popTag(); // source
 		
 		// Save surface options
