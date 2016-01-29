@@ -3,7 +3,9 @@
 #include "ofEvents.h"
 
 #include "BaseSurface.h"
+#include "GridWarpSurface.h"
 #include "CircleJoint.h"
+#include "SurfaceType.h"
 
 namespace ofx {
 namespace piMapper {

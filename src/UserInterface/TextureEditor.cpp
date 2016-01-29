@@ -154,10 +154,36 @@ void TextureEditor::createJoints(){
 	vector <ofVec2f> & texCoords = surface->getTexCoords();
 	ofVec2f textureSize = ofVec2f(surface->getSource()->getTexture()->getWidth(),
 								  surface->getSource()->getTexture()->getHeight());
+	
+	// Select joints depending on the surface type
+	vector <ofVec2f> tc;
+	
+	if(surface->getType() == SurfaceType::TRIANGLE_SURFACE){
+		tc = texCoords;
+	}else if(surface->getType() == SurfaceType::QUAD_SURFACE){
+		tc = texCoords;
+	}else if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
+		GridWarpSurface * s = (GridWarpSurface *)surface;
+		
+		int rows = s->getGridRows();
+		int cols = s->getGridCols();
+		int vertsPerRow = cols + 1;
+		int vertsPerCol = rows + 1;
+		
+		int a = 0;
+		int b = cols;
+		int c = (rows * vertsPerCol) + (vertsPerRow - 1);
+		int d = (rows * vertsPerCol);
+		
+		tc.push_back(texCoords[a]);
+		tc.push_back(texCoords[b]);
+		tc.push_back(texCoords[c]);
+		tc.push_back(texCoords[d]);
+	}
 
-	for(int i = 0; i < texCoords.size(); i++){
+	for(int i = 0; i < tc.size(); i++){
 		joints.push_back(new CircleJoint());
-		joints.back()->position = texCoords[i] * textureSize;
+		joints.back()->position = tc[i] * textureSize;
 	}
 }
 
