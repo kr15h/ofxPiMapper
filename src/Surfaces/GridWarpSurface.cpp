@@ -117,8 +117,7 @@ ofPolyline GridWarpSurface::getTextureHitArea(){
 
 void GridWarpSurface::setVertex(int index, ofVec2f p){
 	if(index >= mesh.getVertices().size()){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
-		return;
+		throw runtime_error("Vertex with provided index does not exist");
 	}
 	mesh.setVertex(index, p);
 }
@@ -135,8 +134,7 @@ void GridWarpSurface::setVertices(vector<ofVec2f> v){
 
 void GridWarpSurface::setTexCoord(int index, ofVec2f t){
 	if(index >= mesh.getVertices().size()){
-		ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
-		return;
+		throw runtime_error("Texture coordinate with provided index does not exist");
 	}
 	mesh.setTexCoord(index, t);
 }
