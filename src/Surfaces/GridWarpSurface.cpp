@@ -107,9 +107,19 @@ ofPolyline GridWarpSurface::getTextureHitArea(){
 	ofPolyline line;
 	vector <ofVec2f> & texCoords = mesh.getTexCoords();
 	ofVec2f textureSize = ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight());
-	for(int i = 0; i < texCoords.size(); i++){
-		line.addVertex(ofPoint(texCoords[i] * textureSize));
-	}
+	
+	int vertsPerRow = _gridCols + 1;
+	int vertsPerCol = _gridRows + 1;
+	
+	int a = 0;
+	int b = _gridCols;
+	int c = (_gridRows * vertsPerRow) + (vertsPerRow - 1);
+	int d = (_gridRows * vertsPerRow);
+	
+	line.addVertex(ofPoint(texCoords[a] * textureSize));
+	line.addVertex(ofPoint(texCoords[b] * textureSize));
+	line.addVertex(ofPoint(texCoords[c] * textureSize));
+	line.addVertex(ofPoint(texCoords[d] * textureSize));
 	line.close();
 
 	return line;

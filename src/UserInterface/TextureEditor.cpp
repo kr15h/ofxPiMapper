@@ -242,9 +242,14 @@ void TextureEditor::moveTexCoords(ofVec2f by){
 	if(surface == 0){
 		return;
 	}
+
 	vector <ofVec2f> & texCoords = surface->getTexCoords();
 	ofVec2f textureSize = ofVec2f(surface->getSource()->getTexture()->getWidth(),
 								  surface->getSource()->getTexture()->getHeight());
+	
+	for(int i = 0; i < joints.size(); i++){
+		joints[i]->position += by;
+	}
 	
 	if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
 		GridWarpSurface * s = (GridWarpSurface *)surface;
@@ -281,7 +286,6 @@ void TextureEditor::moveTexCoords(ofVec2f by){
 		}
 	}else{
 		for(int i = 0; i < texCoords.size(); i++){
-			joints[i]->position += by;
 			surface->setTexCoord(i, joints[i]->position / textureSize);
 		}
 	}
