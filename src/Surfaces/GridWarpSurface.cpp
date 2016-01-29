@@ -35,6 +35,14 @@ int GridWarpSurface::getType(){
 	return SurfaceType::GRID_WARP_SURFACE;
 }
 
+int GridWarpSurface::getGridRows(){
+	return _gridRows;
+}
+
+int GridWarpSurface::getGridCols(){
+	return _gridCols;
+}
+
 bool GridWarpSurface::hitTest(ofVec2f p){
 	ofPolyline pl;
 	int vertsPerCol = _gridRows + 1;

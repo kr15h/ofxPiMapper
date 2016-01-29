@@ -16,6 +16,8 @@ class GridWarpSurface : public BaseSurface {
 		void moveBy(ofVec2f v);
 	
 		int getType();
+		int getGridRows();
+		int getGridCols();
 	
 		bool hitTest(ofVec2f p);
 	
