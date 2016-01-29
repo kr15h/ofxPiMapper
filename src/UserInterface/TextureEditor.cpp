@@ -67,8 +67,46 @@ void TextureEditor::update(ofEventArgs & args){
 		if(bJointSelected){
 			constrainJointsToQuad(selectedJointIndex);
 
-			for(int i = 0; i < joints.size(); i++){
-				surface->setTexCoord(i, joints[i]->position / textureSize);
+			if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
+				GridWarpSurface * s = (GridWarpSurface *)surface;
+				vector <ofVec2f> & texCoords = surface->getTexCoords();
+				ofVec2f textureSize = ofVec2f(surface->getSource()->getTexture()->getWidth(),
+									  surface->getSource()->getTexture()->getHeight());
+		
+				int rows = s->getGridRows();
+				int cols = s->getGridCols();
+				int vertsPerRow = cols + 1;
+				int vertsPerCol = rows + 1;
+		
+				int a = 0;
+				int b = cols;
+				int c = (rows * vertsPerRow) + (vertsPerRow - 1);
+				int d = (rows * vertsPerRow);
+				
+				// Distance between horizontal tex coords
+				float sx = joints[0]->position.x / textureSize.x;
+				float ex = joints[1]->position.x / textureSize.x;
+				float dx = (ex - sx) / (float)cols;
+		
+				// Distance between vertical tex coords
+				float sy = joints[0]->position.y / textureSize.y;
+				float ey = joints[2]->position.y / textureSize.y;
+				float dy = (ey - sy) / (float)rows;
+		
+				int i = 0;
+				for(int iy = 0; iy <= rows; ++iy){
+					for(int ix = 0; ix <= cols; ++ix){
+						ofVec2f t;
+						t.x = sx + dx * ix;
+						t.y = sy + dy * iy;
+						surface->setTexCoord(i, t);
+						++i;
+					}
+				}
+			}else{
+				for(int i = 0; i < joints.size(); i++){
+					surface->setTexCoord(i, joints[i]->position / textureSize);
+				}
 			}
 		} // if
 	}else{
@@ -172,8 +210,8 @@ void TextureEditor::createJoints(){
 		
 		int a = 0;
 		int b = cols;
-		int c = (rows * vertsPerCol) + (vertsPerRow - 1);
-		int d = (rows * vertsPerCol);
+		int c = (rows * vertsPerRow) + (vertsPerRow - 1);
+		int d = (rows * vertsPerRow);
 		
 		tc.push_back(texCoords[a]);
 		tc.push_back(texCoords[b]);
@@ -207,9 +245,45 @@ void TextureEditor::moveTexCoords(ofVec2f by){
 	vector <ofVec2f> & texCoords = surface->getTexCoords();
 	ofVec2f textureSize = ofVec2f(surface->getSource()->getTexture()->getWidth(),
 								  surface->getSource()->getTexture()->getHeight());
-	for(int i = 0; i < texCoords.size(); i++){
-		joints[i]->position += by;
-		surface->setTexCoord(i, joints[i]->position / textureSize);
+	
+	if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
+		GridWarpSurface * s = (GridWarpSurface *)surface;
+		
+		int rows = s->getGridRows();
+		int cols = s->getGridCols();
+		int vertsPerRow = cols + 1;
+		int vertsPerCol = rows + 1;
+		
+		int a = 0;
+		int b = cols;
+		int c = (rows * vertsPerRow) + (vertsPerRow - 1);
+		int d = (rows * vertsPerRow);
+		
+		// Distance between horizontal tex coords
+		float sx = joints[0]->position.x / textureSize.x;
+		float ex = joints[1]->position.x / textureSize.x;
+		float dx = (ex - sx) / (float)cols;
+		
+		// Distance between vertical tex coords
+		float sy = joints[0]->position.y / textureSize.y;
+		float ey = joints[2]->position.y / textureSize.y;
+		float dy = (ey - sy) / (float)rows;
+		
+		int i = 0;
+		for(int iy = 0; iy <= rows; ++iy){
+			for(int ix = 0; ix <= cols; ++ix){
+				ofVec2f t;
+				t.x = sx + dx * ix;
+				t.y = sy + dy * iy;
+				surface->setTexCoord(i, t);
+				++i;
+			}
+		}
+	}else{
+		for(int i = 0; i < texCoords.size(); i++){
+			joints[i]->position += by;
+			surface->setTexCoord(i, joints[i]->position / textureSize);
+		}
 	}
 }
 
