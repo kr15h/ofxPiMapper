@@ -10,6 +10,8 @@ RmGridColCmd::RmGridColCmd(GridWarpSurface * s, ProjectionEditor * e){
 }
 
 void RmGridColCmd::exec(){
+
+	// TODO: Figure out nice math to not loose existing vertex positions
 	
 	if(_surface->getGridCols() > 1){
 		_vertices = _surface->getVertices();

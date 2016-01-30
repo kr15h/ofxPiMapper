@@ -10,6 +10,8 @@ RmGridRowCmd::RmGridRowCmd(GridWarpSurface * s, ProjectionEditor * e){
 }
 
 void RmGridRowCmd::exec(){
+
+	// TODO: Figure out nice math to not loose existing vertex positions
 	
 	if(_surface->getGridRows() > 1){
 		_vertices = _surface->getVertices();

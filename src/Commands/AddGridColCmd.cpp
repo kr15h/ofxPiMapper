@@ -9,6 +9,8 @@ AddGridColCmd::AddGridColCmd(GridWarpSurface * s, ProjectionEditor * e){
 }
 
 void AddGridColCmd::exec(){
+
+	// TODO: Figure out nice math to not loose existing vertex positions
 	_vertices = _surface->getVertices();
 	_texCoords = _surface->getTexCoords();
 	_surface->setGridCols(_surface->getGridCols() + 1);

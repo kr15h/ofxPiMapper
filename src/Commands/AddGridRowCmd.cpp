@@ -9,6 +9,8 @@ AddGridRowCmd::AddGridRowCmd(GridWarpSurface * s, ProjectionEditor * e){
 }
 
 void AddGridRowCmd::exec(){
+
+	// TODO: Figure out nice math to not loose existing vertex positions
 	_vertices = _surface->getVertices();
 	_texCoords = _surface->getTexCoords();
 	_surface->setGridRows(_surface->getGridRows() + 1);
