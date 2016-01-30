@@ -7,6 +7,7 @@
 #include "AddSurfaceCmd.h"
 #include "RmSurfaceCmd.h"
 #include "AddGridRowCmd.h"
+#include "RmGridRowCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
 
