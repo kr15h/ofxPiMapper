@@ -109,6 +109,22 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 }
 		 break;
 		 
+	 case '[':
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
+				SurfaceType::GRID_WARP_SURFACE){
+				
+				if(((GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface())->getGridCols() > 1){
+					// TODO: The command should not require projection editor pointer
+					app->getCmdManager()->exec(
+						new RmGridColCmd(
+							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface(),
+							app->getGui()->getProjectionEditor() ));
+				}
+			}
+		 }
+		 break;
+		 
 	 default:
 		 break;
 	}
