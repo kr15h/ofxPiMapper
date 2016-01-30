@@ -87,6 +87,7 @@
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
 		39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CmdManager.cpp */; };
 		39EB5E321C5D2BC80020AD31 /* AddGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */; };
+		39EB5E351C5D390B0020AD31 /* RmGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E341C5D390B0020AD31 /* RmGridRowCmd.cpp */; };
 		39FA2B801C457606003FAB28 /* SettingsLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
@@ -317,6 +318,8 @@
 		39C787BC1AC2111B00691393 /* CmdManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CmdManager.cpp; path = Commands/CmdManager.cpp; sourceTree = "<group>"; };
 		39EB5E301C5D2BC80020AD31 /* AddGridRowCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddGridRowCmd.h; path = Commands/AddGridRowCmd.h; sourceTree = "<group>"; };
 		39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddGridRowCmd.cpp; path = Commands/AddGridRowCmd.cpp; sourceTree = "<group>"; };
+		39EB5E331C5D390B0020AD31 /* RmGridRowCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmGridRowCmd.h; path = Commands/RmGridRowCmd.h; sourceTree = "<group>"; };
+		39EB5E341C5D390B0020AD31 /* RmGridRowCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RmGridRowCmd.cpp; path = Commands/RmGridRowCmd.cpp; sourceTree = "<group>"; };
 		39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsLoader.cpp; sourceTree = "<group>"; };
 		39FA2B7F1C457606003FAB28 /* SettingsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLoader.h; sourceTree = "<group>"; };
 		39FDD9EA1AC007BF00262205 /* BaseCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCmd.h; path = Commands/BaseCmd.h; sourceTree = "<group>"; };
@@ -759,6 +762,8 @@
 				39C787BC1AC2111B00691393 /* CmdManager.cpp */,
 				39EB5E301C5D2BC80020AD31 /* AddGridRowCmd.h */,
 				39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */,
+				39EB5E331C5D390B0020AD31 /* RmGridRowCmd.h */,
+				39EB5E341C5D390B0020AD31 /* RmGridRowCmd.cpp */,
 				396841811BC93DDC009F0BAE /* AddSurfaceCmd.h */,
 				396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */,
 				39A9AAF11B054FC300AA83BC /* MvSurfaceVertCmd.h */,
@@ -1033,6 +1038,7 @@
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
+				39EB5E351C5D390B0020AD31 /* RmGridRowCmd.cpp in Sources */,
 				391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */,
 				396841781BC91F6F009F0BAE /* ProjectionMappingState.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
