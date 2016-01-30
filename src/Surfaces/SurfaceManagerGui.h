@@ -44,6 +44,8 @@ class SurfaceManagerGui {
 		void drawSelectedSurfaceTextureHighlight();
 		void startDrag();
 		void stopDrag();
+	
+		ProjectionEditor * getProjectionEditor();
 
 	private:
 		SurfaceManager * surfaceManager;

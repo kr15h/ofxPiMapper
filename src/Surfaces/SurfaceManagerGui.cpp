@@ -318,5 +318,9 @@ void SurfaceManagerGui::stopDrag(){
 	bDrag = false;
 }
 
+ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
+	return &projectionEditor;
+}
+
 } // namespace piMapper
 } // namespace ofx
