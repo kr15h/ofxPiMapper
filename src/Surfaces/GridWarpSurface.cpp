@@ -43,6 +43,16 @@ int GridWarpSurface::getGridCols(){
 	return _gridCols;
 }
 
+int GridWarpSurface::setGridRows(int r){
+	_gridRows = r;
+	createGridMesh();
+}
+
+int GridWarpSurface::setGridCols(int c){
+	_gridCols = c;
+	createGridMesh();
+}
+
 bool GridWarpSurface::hitTest(ofVec2f p){
 	ofPolyline pl;
 	int vertsPerCol = _gridRows + 1;
@@ -153,7 +163,7 @@ void GridWarpSurface::setTexCoords(vector<ofVec2f> t){
 	if(t.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
-	for(int i = 0; i < 3; ++i){
+	for(int i = 0; i < t.size(); ++i){
 		mesh.setTexCoord(i, t[i]);
 	}
 }
@@ -209,6 +219,8 @@ void GridWarpSurface::createGridMesh(){
 			mesh.addTexCoord(ofVec2f(xc, yc));
 		}
 	}
+	
+	
 }
 
 

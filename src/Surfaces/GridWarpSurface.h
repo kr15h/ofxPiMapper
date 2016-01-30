@@ -18,6 +18,8 @@ class GridWarpSurface : public BaseSurface {
 		int getType();
 		int getGridRows();
 		int getGridCols();
+		int setGridRows(int r);
+		int setGridCols(int c);
 	
 		bool hitTest(ofVec2f p);
 	
@@ -30,7 +32,6 @@ class GridWarpSurface : public BaseSurface {
 		void setTexCoords(vector<ofVec2f> t);
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
-
 
 	private:
 		int _gridCols;
