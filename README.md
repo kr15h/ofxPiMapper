@@ -170,14 +170,19 @@ After you select a surface in surface editing mode, activate this mode to be abl
 
 ### Other shortcuts
 
-These other shortcuts that you can use while using the example app. Remember that you can assign your own by editing the app.cpp file.
+These other shortcuts that you can use while using the example app. 
 
 Key | Function
 :--- | :---
 i | Show info
 t | Add triangle surface
 q | Add quad surface
+g | Add grid warp surface
 p | toggle perspective warping (quad surfaces only)
+] | add columns to grid surface (grid warp surfaces only)
+[ | remove columns from grid surface (grid warp surfaces only)
+} | add rows to grid surface (grid warp surfaces only)
+{ | remove rows from grid surface (grid warp surfaces only)
 f | Toggle fullscreen
 s | Save composition
 z | Undo
