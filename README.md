@@ -86,7 +86,7 @@ ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki
 
 Installation
 ---
-If you don't have a clue on how to set up your Pi - go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there. I have been using Raspbian so far as well as [Satellite CCRMA](https://ccrma.stanford.edu/~eberdahl/satellite/) without problems.
+To set up your Raspberry Pi, go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there.
 
 Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow the guide to set up your Raspberry Pi.
  
