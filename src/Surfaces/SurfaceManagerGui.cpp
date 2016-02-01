@@ -290,12 +290,17 @@ void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
 	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
-	ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
-	ofPushStyle();
-	ofSetLineWidth(1);
-	ofSetColor(255, 255, 255, 255);
-	line.draw();
-	ofPopStyle();
+	
+	if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
+		surfaceManager->getSelectedSurface()->getMesh().drawWireframe();
+	} else {
+		ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
+		ofPushStyle();
+		ofSetLineWidth(1);
+		ofSetColor(255, 255, 255, 255);
+		line.draw();
+		ofPopStyle();
+	}
 }
 
 void SurfaceManagerGui::drawSelectedSurfaceTextureHighlight(){
