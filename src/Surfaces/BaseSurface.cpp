@@ -96,5 +96,9 @@ bool BaseSurface::getMoved(){
 	return _moved;
 }
 
+ofMesh BaseSurface::getMesh(){
+	return mesh;
+}
+
 } // namespace piMapper
 } // namespace ofx

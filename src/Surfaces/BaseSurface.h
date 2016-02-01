@@ -38,6 +38,8 @@ class BaseSurface {
 
 		void setMoved(bool moved);
 		bool getMoved();
+	
+		ofMesh getMesh();
 
 	protected:
 		ofMesh mesh;
