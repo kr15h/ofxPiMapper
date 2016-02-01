@@ -291,15 +291,16 @@ void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
 		return;
 	}
 	
-	if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
-		surfaceManager->getSelectedSurface()->getMesh().drawWireframe();
-	} else {
+	if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::QUAD_SURFACE &&
+		((QuadSurface *)surfaceManager->getSelectedSurface())->getPerspectiveWarping()){
 		ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
 		ofPushStyle();
 		ofSetLineWidth(1);
 		ofSetColor(255, 255, 255, 255);
 		line.draw();
 		ofPopStyle();
+	}else{
+		surfaceManager->getSelectedSurface()->getMesh().drawWireframe();
 	}
 }
 
