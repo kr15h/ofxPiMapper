@@ -40,6 +40,8 @@ class BaseSurface {
 		bool getMoved();
 	
 		ofMesh getMesh();
+	
+		// TODO: The surface should emit an event once vertex has changed
 
 	protected:
 		ofMesh mesh;
