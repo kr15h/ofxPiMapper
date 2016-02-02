@@ -96,15 +96,20 @@ void QuadSurface::setVertex(int index, ofVec2f p){
 	}
 
 	mesh.setVertex(index, p);
+	ofVec3f v = mesh.getVertex(index);
+	ofNotifyEvent(vertexChangedEvent, v, this);
 }
 
 void QuadSurface::setVertices(vector<ofVec2f> v){
 	if(v.size() != 4){
 		throw runtime_error("Wrong number of vertices");
 	}
+	
 	for(int i = 0; i < 4; ++i){
 		mesh.setVertex(i, v[i]);
 	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 void QuadSurface::setTexCoord(int index, ofVec2f t){
@@ -128,10 +133,13 @@ void QuadSurface::setTexCoords(vector<ofVec2f> t){
 
 void QuadSurface::moveBy(ofVec2f v){
 	vector <ofVec3f> & vertices = getVertices();
+	
 	for(int i = 0; i < vertices.size(); i++){
 		vertices[i] += v;
 	}
+	
 	setMoved(true);
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 int QuadSurface::getType(){

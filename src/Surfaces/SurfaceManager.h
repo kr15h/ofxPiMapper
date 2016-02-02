@@ -23,7 +23,6 @@ class SurfaceManager {
 
 	public:
 		SurfaceManager();
-		~SurfaceManager();
 
 		void draw();
 	
@@ -43,6 +42,12 @@ class SurfaceManager {
 		BaseSurface * getSelectedSurface();
 	
 		int size();
+	
+		ofEvent <ofVec3f> vertexChangedEvent;
+		ofEvent <vector<ofVec3f>> verticesChangedEvent;
+	
+		void onVertexChanged(ofVec3f & vertex);
+		void onVerticesChanged(vector<ofVec3f> & vertices);
 	
 	private:
 		BaseSurface * selectedSurface;

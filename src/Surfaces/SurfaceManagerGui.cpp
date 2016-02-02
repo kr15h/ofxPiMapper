@@ -228,6 +228,10 @@ void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 
 void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	surfaceManager = newSurfaceManager;
+	
+	ofAddListener(newSurfaceManager->vertexChangedEvent, this, &SurfaceManagerGui::onVertexChanged);
+	ofAddListener(newSurfaceManager->verticesChangedEvent, this, &SurfaceManagerGui::onVerticesChanged);
+	
 	projectionEditor.setSurfaceManager(surfaceManager);
 	sourcesEditor.setSurfaceManager(surfaceManager);
 }
@@ -326,6 +330,15 @@ void SurfaceManagerGui::stopDrag(){
 
 ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
 	return &projectionEditor;
+}
+
+void SurfaceManagerGui::onVertexChanged(ofVec3f & vertex){
+	//cout << "VERTEX CHANGED: " << vertex.x << ", " << vertex.y << endl;
+}
+
+void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){
+	//cout << "VERTICES CHANGED: " << vertices.size() << endl;
+	projectionEditor.createJoints();
 }
 
 } // namespace piMapper

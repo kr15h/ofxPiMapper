@@ -61,17 +61,22 @@ void TriangleSurface::setVertex(int index, ofVec2f p){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
 		return;
 	}
-
+	
 	mesh.setVertex(index, p);
+	ofVec3f v = mesh.getVertex(index);
+	ofNotifyEvent(vertexChangedEvent, v, this);
 }
 
 void TriangleSurface::setVertices(vector<ofVec2f> v){
 	if(v.size() != 3){
 		throw runtime_error("Wrong number of vertices");
 	}
+	
 	for(int i = 0; i < 3; ++i){
 		mesh.setVertex(i, v[i]);
 	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 void TriangleSurface::setTexCoord(int index, ofVec2f t){
@@ -95,10 +100,13 @@ void TriangleSurface::setTexCoords(vector<ofVec2f> t){
 
 void TriangleSurface::moveBy(ofVec2f v){
 	vector <ofVec3f> & vertices = getVertices();
+	
 	for(int i = 0; i < vertices.size(); i++){
 		vertices[i] += v;
 	}
+	
 	setMoved(true);
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 int TriangleSurface::getType(){

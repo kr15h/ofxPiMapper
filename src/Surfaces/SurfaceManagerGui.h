@@ -46,6 +46,9 @@ class SurfaceManagerGui {
 		void stopDrag();
 	
 		ProjectionEditor * getProjectionEditor();
+	
+		void onVertexChanged(ofVec3f & vertex);
+		void onVerticesChanged(vector<ofVec3f> & vertices);
 
 	private:
 		SurfaceManager * surfaceManager;

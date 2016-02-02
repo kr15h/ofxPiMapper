@@ -25,10 +25,13 @@ void GridWarpSurface::draw(){
 
 void GridWarpSurface::moveBy(ofVec2f v){
 	vector <ofVec3f> & vertices = getVertices();
+	
 	for(int i = 0; i < vertices.size(); i++){
 		vertices[i] += v;
 	}
+	
 	setMoved(true);
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 int GridWarpSurface::getType(){
@@ -139,7 +142,10 @@ void GridWarpSurface::setVertex(int index, ofVec2f p){
 	if(index >= mesh.getVertices().size()){
 		throw runtime_error("Vertex with provided index does not exist");
 	}
+	
 	mesh.setVertex(index, p);
+	ofVec3f v = mesh.getVertex(index);
+	ofNotifyEvent(vertexChangedEvent, v, this);
 }
 
 void GridWarpSurface::setVertices(vector<ofVec2f> v){
@@ -150,6 +156,8 @@ void GridWarpSurface::setVertices(vector<ofVec2f> v){
 	for(int i = 0; i < v.size(); ++i){
 		mesh.setVertex(i, v[i]);
 	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 void GridWarpSurface::setTexCoord(int index, ofVec2f t){
@@ -220,7 +228,7 @@ void GridWarpSurface::createGridMesh(){
 		}
 	}
 	
-	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 

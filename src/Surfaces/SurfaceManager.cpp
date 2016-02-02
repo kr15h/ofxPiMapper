@@ -6,10 +6,8 @@ namespace piMapper {
 SurfaceManager::SurfaceManager(){
 	mediaServer = 0;
 	selectedSurface = 0;
-}
-
-SurfaceManager::~SurfaceManager(){
-	clear();
+	ofAddListener(_surfaces.vertexChangedEvent, this, &SurfaceManager::onVertexChanged);
+	ofAddListener(_surfaces.verticesChangedEvent, this, &SurfaceManager::onVerticesChanged);
 }
 
 void SurfaceManager::draw(){
@@ -113,6 +111,14 @@ BaseSurface * SurfaceManager::getSurface(int index){
 
 int SurfaceManager::size(){
 	return _surfaces.size();
+}
+
+void SurfaceManager::onVertexChanged(ofVec3f & vertex){
+	ofNotifyEvent(vertexChangedEvent, vertex, this);
+}
+
+void SurfaceManager::onVerticesChanged(vector<ofVec3f> & vertices){
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 } // namespace piMapper

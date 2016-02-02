@@ -6,14 +6,20 @@ namespace piMapper {
 SurfaceStack::SurfaceStack(){}
 
 void SurfaceStack::push_back(BaseSurface * s){
+	ofAddListener(s->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
+	ofAddListener(s->vertexChangedEvent, this, &SurfaceStack::onVertexChanged);
 	_surfaces.push_back(s);
 }
 
 void SurfaceStack::pop_back(){
+	ofRemoveListener(_surfaces.back()->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
+	ofRemoveListener(_surfaces.back()->vertexChangedEvent, this, &SurfaceStack::onVertexChanged);
 	_surfaces.pop_back();
 }
 
 void SurfaceStack::erase(int i){
+	ofRemoveListener(_surfaces[i]->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
+	ofRemoveListener(_surfaces[i]->vertexChangedEvent, this, &SurfaceStack::onVertexChanged);
 	_surfaces.erase(_surfaces.begin() + i);
 }
 
@@ -40,6 +46,14 @@ BaseSurface * SurfaceStack::operator[](int i){
 
 BaseSurface * SurfaceStack::back(){
 	return _surfaces.back();
+}
+
+void SurfaceStack::onVerticesChanged(vector<ofVec3f> & vertices){
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
+}
+
+void SurfaceStack::onVertexChanged(ofVec3f & vertex){
+	ofNotifyEvent(vertexChangedEvent, vertex, this);
 }
 
 } // namespace piMapper
