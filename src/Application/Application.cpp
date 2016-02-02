@@ -14,11 +14,6 @@ Application::Application(){
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 }
 
-Application::~Application(){
-	setState(0);
-	ofRemoveListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
-}
-
 void Application::setup(){
 	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
 		ofLogWarning("Application::setup()") << "Failed to load user settings" << endl;

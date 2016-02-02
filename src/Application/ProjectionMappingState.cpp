@@ -73,8 +73,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 				// TODO: The command should not require projection editor pointer
 				app->getCmdManager()->exec(
 					new AddGridRowCmd(
-						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface(),
-						app->getGui()->getProjectionEditor() ));
+						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
 			}
 		 }
 		 break;
@@ -88,8 +87,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 					// TODO: The command should not require projection editor pointer
 					app->getCmdManager()->exec(
 						new RmGridRowCmd(
-							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface(),
-							app->getGui()->getProjectionEditor() ));
+							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
 				}
 			}
 		 }
@@ -103,8 +101,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 				// TODO: The command should not require projection editor pointer
 				app->getCmdManager()->exec(
 					new AddGridColCmd(
-						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface(),
-						app->getGui()->getProjectionEditor() ));
+						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
 			}
 		 }
 		 break;
@@ -118,8 +115,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 					// TODO: The command should not require projection editor pointer
 					app->getCmdManager()->exec(
 						new RmGridColCmd(
-							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface(),
-							app->getGui()->getProjectionEditor() ));
+							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
 				}
 			}
 		 }

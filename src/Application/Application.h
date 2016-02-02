@@ -30,7 +30,6 @@ class Application {
 
 	public:
 		Application();
-		~Application();
 
 		ApplicationBaseState * getState();
 
