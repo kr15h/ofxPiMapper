@@ -13,7 +13,7 @@ namespace piMapper {
 class RmGridRowCmd : public BaseUndoCmd {
 
 	public:
-		RmGridRowCmd(GridWarpSurface * s, ProjectionEditor * e);
+		RmGridRowCmd(GridWarpSurface * s);
 		void exec();
 		void undo();
 
@@ -21,7 +21,6 @@ class RmGridRowCmd : public BaseUndoCmd {
 		vector <ofVec3f> _vertices;
 		vector <ofVec2f> _texCoords;
 		GridWarpSurface * _surface;
-		ProjectionEditor * _editor;
 		bool _doNotUndo;
 
 };

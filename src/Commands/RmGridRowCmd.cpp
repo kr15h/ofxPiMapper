@@ -3,9 +3,8 @@
 namespace ofx {
 namespace piMapper {
 
-RmGridRowCmd::RmGridRowCmd(GridWarpSurface * s, ProjectionEditor * e){
+RmGridRowCmd::RmGridRowCmd(GridWarpSurface * s){
 	_surface = s;
-	_editor = e;
 	_doNotUndo = false;
 }
 
@@ -17,7 +16,6 @@ void RmGridRowCmd::exec(){
 		_vertices = _surface->getVertices();
 		_texCoords = _surface->getTexCoords();
 		_surface->setGridRows(_surface->getGridRows() - 1);
-		_editor->createJoints();
 	}else{
 		_doNotUndo = true;
 	}
@@ -40,7 +38,6 @@ void RmGridRowCmd::undo(){
 	
 	_surface->setVertices(v);
 	_surface->setTexCoords(_texCoords);
-	_editor->createJoints();
 }
 
 } // namespace piMapper

@@ -13,7 +13,7 @@ namespace piMapper {
 class AddGridColCmd : public BaseUndoCmd {
 
 	public:
-		AddGridColCmd(GridWarpSurface * s, ProjectionEditor * e);
+		AddGridColCmd(GridWarpSurface * s);
 		void exec();
 		void undo();
 
@@ -21,7 +21,6 @@ class AddGridColCmd : public BaseUndoCmd {
 		vector <ofVec3f> _vertices;
 		vector <ofVec2f> _texCoords;
 		GridWarpSurface * _surface;
-		ProjectionEditor * _editor;
 
 };
 

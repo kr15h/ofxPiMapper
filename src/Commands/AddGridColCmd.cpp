@@ -3,9 +3,8 @@
 namespace ofx {
 namespace piMapper {
 
-AddGridColCmd::AddGridColCmd(GridWarpSurface * s, ProjectionEditor * e){
+AddGridColCmd::AddGridColCmd(GridWarpSurface * s){
 	_surface = s;
-	_editor = e;
 }
 
 void AddGridColCmd::exec(){
@@ -14,7 +13,6 @@ void AddGridColCmd::exec(){
 	_vertices = _surface->getVertices();
 	_texCoords = _surface->getTexCoords();
 	_surface->setGridCols(_surface->getGridCols() + 1);
-	_editor->createJoints();
 }
 
 void AddGridColCmd::undo(){
@@ -26,7 +24,6 @@ void AddGridColCmd::undo(){
 	}
 	_surface->setVertices(v);
 	_surface->setTexCoords(_texCoords);
-	_editor->createJoints();
 }
 
 } // namespace piMapper
