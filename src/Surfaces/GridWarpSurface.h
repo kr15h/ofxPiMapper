@@ -32,12 +32,12 @@ class GridWarpSurface : public BaseSurface {
 		void setTexCoords(vector<ofVec2f> t);
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
+	
+		void createGridMesh();
 
 	private:
 		int _gridCols;
 		int _gridRows;
-	
-		void createGridMesh();
 };
 
 } // namespace piMapper

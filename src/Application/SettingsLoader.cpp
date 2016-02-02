@@ -167,6 +167,15 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 			xmlSettings->pushTag("properties");
 			xmlSettings->addValue("perspectiveWarping", qs->getPerspectiveWarping());
 			xmlSettings->popTag(); // properties
+		}else if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
+			GridWarpSurface * gws = (GridWarpSurface *)surface;
+			if(!xmlSettings->tagExists("properties")){
+				xmlSettings->addTag("properties");
+			}
+			xmlSettings->pushTag("properties");
+			xmlSettings->addValue("gridCols", gws->getGridCols());
+			xmlSettings->addValue("gridRows", gws->getGridRows());
+			xmlSettings->popTag();
 		}
 		
 		xmlSettings->popTag(); // surface
@@ -375,10 +384,24 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // texCoords
 	}
 	
+	// Read properties
+	// Only perspective warping for now
+	int gridCols = 0;
+	int gridRows = 0;
+	if(xmlSettings->tagExists("properties")){
+		xmlSettings->pushTag("properties");
+		gridCols = xmlSettings->getValue("gridCols", 0);
+		gridRows = xmlSettings->getValue("gridRows", 0);
+		xmlSettings->popTag(); // properties
+	}
+	
 	// Create and add quad surface
 	BaseSurface * gridWarpSurface =
 		SurfaceFactory::instance()->createSurface(
 			SurfaceType::GRID_WARP_SURFACE);
+	((GridWarpSurface *)gridWarpSurface)->setGridCols(gridCols);
+	((GridWarpSurface *)gridWarpSurface)->setGridRows(gridRows);
+	((GridWarpSurface *)gridWarpSurface)->createGridMesh();
 	gridWarpSurface->setVertices(vertices);
 	gridWarpSurface->setTexCoords(texCoords);
 	
