@@ -5,7 +5,7 @@ namespace piMapper {
 
 GridWarpSurface::GridWarpSurface(){
 	_gridCols = 2;
-	_gridRows = 3;
+	_gridRows = 2;
 	createGridMesh();
 }
 
