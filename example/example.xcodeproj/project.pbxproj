@@ -38,6 +38,8 @@
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
+		3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */; };
+		3993058D1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */; };
 		399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399953671BD54FF600D5B1F1 /* CrossSource.cpp */; };
 		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
@@ -202,6 +204,10 @@
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
 		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
+		399305881C62935700A4B01D /* SelNextSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelNextSurfaceCmd.h; path = Commands/SelNextSurfaceCmd.h; sourceTree = "<group>"; };
+		399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelNextSurfaceCmd.cpp; path = Commands/SelNextSurfaceCmd.cpp; sourceTree = "<group>"; };
+		3993058B1C62993A00A4B01D /* SelPrevSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelPrevSurfaceCmd.h; path = Commands/SelPrevSurfaceCmd.h; sourceTree = "<group>"; };
+		3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelPrevSurfaceCmd.cpp; path = Commands/SelPrevSurfaceCmd.cpp; sourceTree = "<group>"; };
 		399953671BD54FF600D5B1F1 /* CrossSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CrossSource.cpp; sourceTree = "<group>"; };
 		399953681BD54FF600D5B1F1 /* CrossSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossSource.h; sourceTree = "<group>"; };
 		39A867941B0D312400165378 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetSourceCmd.cpp; path = Commands/SetSourceCmd.cpp; sourceTree = "<group>"; };
@@ -780,6 +786,10 @@
 				39A9AAF01B054FC300AA83BC /* MvSurfaceVertCmd.cpp */,
 				39A9AAEB1B053B4200AA83BC /* SelSurfaceCmd.h */,
 				39A9AAEA1B053B4200AA83BC /* SelSurfaceCmd.cpp */,
+				399305881C62935700A4B01D /* SelNextSurfaceCmd.h */,
+				399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */,
+				3993058B1C62993A00A4B01D /* SelPrevSurfaceCmd.h */,
+				3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */,
 				39A9AAE81B0518FC00AA83BC /* MvSurfaceCmd.h */,
 				39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */,
 				39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */,
@@ -1045,6 +1055,7 @@
 				396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */,
 				39C1244419EE9589005DF557 /* PathFilterCollection.cpp in Sources */,
 				39A9AAEC1B053B4200AA83BC /* SelSurfaceCmd.cpp in Sources */,
+				3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */,
 				39C1243319EE9589005DF557 /* lz4.c in Sources */,
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
@@ -1053,6 +1064,7 @@
 				391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */,
 				39EB5E381C5D3B100020AD31 /* AddGridColCmd.cpp in Sources */,
 				396841781BC91F6F009F0BAE /* ProjectionMappingState.cpp in Sources */,
+				3993058D1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				39C1244B19EE9589005DF557 /* snappy.cc in Sources */,
 				3933D5D719BB87BD000ACA55 /* ofxPanel.cpp in Sources */,
