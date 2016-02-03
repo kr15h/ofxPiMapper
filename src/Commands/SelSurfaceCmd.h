@@ -7,7 +7,6 @@
 #include "BaseCmd.h"
 #include "BaseSurface.h"
 #include "SurfaceManager.h"
-#include "ProjectionEditor.h"
 
 namespace ofx {
 namespace piMapper {
