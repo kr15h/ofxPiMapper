@@ -121,6 +121,9 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 }
 		 break;
 		 
+	 case OF_KEY_TAB:
+		 break;
+		 
 	 default:
 		 break;
 	}
