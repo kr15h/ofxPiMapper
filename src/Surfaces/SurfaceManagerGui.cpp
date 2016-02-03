@@ -166,8 +166,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 					if(surfaceManager->getSelectedSurface() != surfaceManager->getSurface(i)){
 						_cmdManager->exec(new SelSurfaceCmd(
 											  surfaceManager,
-											  surfaceManager->getSurface(i),
-											  &projectionEditor));
+											  surfaceManager->getSurface(i) ));
 					}
 
 					bSurfaceSelected = true;
@@ -231,6 +230,7 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	
 	ofAddListener(newSurfaceManager->vertexChangedEvent, this, &SurfaceManagerGui::onVertexChanged);
 	ofAddListener(newSurfaceManager->verticesChangedEvent, this, &SurfaceManagerGui::onVerticesChanged);
+	ofAddListener(newSurfaceManager->surfaceSelectedEvent, this, &SurfaceManagerGui::onSurfaceSelected);
 	
 	projectionEditor.setSurfaceManager(surfaceManager);
 	sourcesEditor.setSurfaceManager(surfaceManager);
@@ -338,6 +338,10 @@ void SurfaceManagerGui::onVertexChanged(ofVec3f & vertex){
 
 void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){
 	//cout << "VERTICES CHANGED: " << vertices.size() << endl;
+	projectionEditor.createJoints();
+}
+
+void SurfaceManagerGui::onSurfaceSelected(int & surfaceIndex){
 	projectionEditor.createJoints();
 }
 
