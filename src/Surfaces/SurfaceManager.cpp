@@ -84,6 +84,7 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 		if(_surfaces[i] == surface){
 			selectedSurface = surface;
 			ofSendMessage("surfaceSelected");
+			ofNotifyEvent(surfaceSelectedEvent, i, this);
 			return selectedSurface;
 		}
 	}
