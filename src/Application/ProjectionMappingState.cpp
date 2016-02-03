@@ -121,7 +121,12 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 }
 		 break;
 		 
-	 case OF_KEY_TAB:
+	 case '.':
+		 app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
+		 break;
+		 
+	 case ',':
+		 app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
 		 break;
 		 
 	 default:
