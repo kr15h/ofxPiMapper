@@ -15,9 +15,7 @@ namespace piMapper {
 class SelSurfaceCmd : public BaseUndoCmd {
 
 	public:
-		SelSurfaceCmd(SurfaceManager * surfaceManager,
-					  BaseSurface * surfaceToSelect,
-					  ProjectionEditor * projectionEditor);
+		SelSurfaceCmd(SurfaceManager * surfaceManager, BaseSurface * surfaceToSelect);
 		void exec();
 		void undo();
 
@@ -25,7 +23,6 @@ class SelSurfaceCmd : public BaseUndoCmd {
 		BaseSurface * _surfaceToSelect;
 		SurfaceManager * _surfaceManager;
 		BaseSurface * _prevSelectedSurface;
-		ProjectionEditor * _projectionEditor;
 
 };
 
