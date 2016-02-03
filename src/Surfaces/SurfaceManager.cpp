@@ -93,6 +93,60 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 	return 0;
 }
 
+BaseSurface * SurfaceManager::selectNextSurface(){
+	int next;
+	
+	if(selectedSurface == 0){
+		next = 0;
+		selectedSurface = selectSurface(next);
+		ofNotifyEvent(surfaceSelectedEvent, next, this);
+		return selectedSurface;
+	}
+	
+	for(int i = 0; i < _surfaces.size(); ++i){
+		if(_surfaces[i] == selectedSurface){
+			if(i < _surfaces.size() - 1){
+				next = i + 1;
+			}else{
+				next = 0;
+			}
+			
+			selectedSurface = _surfaces[next];
+			ofNotifyEvent(surfaceSelectedEvent, next, this);
+			return selectedSurface;
+		}
+	}
+	
+	return 0;
+}
+
+BaseSurface * SurfaceManager::selectPrevSurface(){
+	int prev;
+	
+	if(selectedSurface == 0){
+		prev = _surfaces.size() - 1;
+		selectedSurface = selectSurface(prev);
+		ofNotifyEvent(surfaceSelectedEvent, prev, this);
+		return selectedSurface;
+	}
+	
+	for(int i = 0; i < _surfaces.size(); ++i){
+		if(_surfaces[i] == selectedSurface){
+			if(i > 0){
+				prev = i - 1;
+			}else{
+				prev = _surfaces.size() - 1;
+			}
+			
+			selectedSurface = _surfaces[prev];
+			ofNotifyEvent(surfaceSelectedEvent, prev, this);
+			return selectedSurface;
+		}
+	}
+	
+	return 0;
+}
+
 BaseSurface * SurfaceManager::getSelectedSurface(){
 	return selectedSurface;
 }
