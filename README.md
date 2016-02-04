@@ -185,6 +185,8 @@ p | toggle perspective warping (quad surfaces only)
 [ | remove columns from grid surface (grid warp surfaces only)
 } | add rows to grid surface (grid warp surfaces only)
 { | remove rows from grid surface (grid warp surfaces only)
+. | select next surface (projection mapping mode only)
+, | select previous surface (projection mapping mode only)
 f | Toggle fullscreen
 s | Save composition
 z | Undo
