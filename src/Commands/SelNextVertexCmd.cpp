@@ -3,17 +3,17 @@
 namespace ofx {
 namespace piMapper {
 
-SelNextVertexCmd::SelNextVertexCmd(BaseSurface * s){
-	_surface = s;
+SelNextVertexCmd::SelNextVertexCmd(SurfaceManager * sm){
+	_surfaceManager = sm;
 }
 
 void SelNextVertexCmd::exec(){
-
+	_surfaceManager->selectNextVertex();
 }
 
 void SelNextVertexCmd::undo(){
 	ofLogNotice("SelNextVertexCmd", "undo");
-	
+	_surfaceManager->selectPrevVertex();
 }
 
 } // namespace piMapper
