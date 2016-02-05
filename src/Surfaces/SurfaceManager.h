@@ -44,14 +44,15 @@ class SurfaceManager {
 		BaseSurface * getSelectedSurface();
 	
 		// These should trigger an event for the GUI layer to catch
-		int selectNextVertex();
-		int selectPrevVertex();
+		void selectNextVertex();
+		void selectPrevVertex();
 	
 		int size();
 	
 		ofEvent <ofVec3f> vertexChangedEvent;
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
+		ofEvent <int> vertexSelectedEvent;
 
 		void onVertexChanged(ofVec3f & vertex);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
@@ -61,6 +62,8 @@ class SurfaceManager {
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;
 		SurfaceStack _surfaces;
+	
+		int _selectedVertexIndex;
 };
 
 } // namespace piMapper

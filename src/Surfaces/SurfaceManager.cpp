@@ -8,6 +8,7 @@ SurfaceManager::SurfaceManager(){
 	selectedSurface = 0;
 	ofAddListener(_surfaces.vertexChangedEvent, this, &SurfaceManager::onVertexChanged);
 	ofAddListener(_surfaces.verticesChangedEvent, this, &SurfaceManager::onVerticesChanged);
+	_selectedVertexIndex = 0;
 }
 
 void SurfaceManager::draw(){
@@ -151,12 +152,38 @@ BaseSurface * SurfaceManager::getSelectedSurface(){
 	return selectedSurface;
 }
 
-int SurfaceManager::selectNextVertex(){
-	//
+// TODO: select vertex should be implemented ad BaseSurface level
+void SurfaceManager::selectNextVertex(){
+	if(selectedSurface == 0){
+		return;
+	}
+	
+	int numVertices = selectedSurface->getVertices().size();
+	
+	if(_selectedVertexIndex < numVertices - 1){
+		_selectedVertexIndex += 1;
+	}else{
+		_selectedVertexIndex = 0;
+	}
+	
+	ofNotifyEvent(vertexSelectedEvent, _selectedVertexIndex, this);
 }
 
-int SurfaceManager::selectPrevVertex(){
-	//
+// TODO: select vertex should be implemented at BaseSurface level
+void SurfaceManager::selectPrevVertex(){
+	if(selectedSurface == 0){
+		return;
+	}
+	
+	int numVertices = selectedSurface->getVertices().size();
+	
+	if(_selectedVertexIndex > 0){
+		_selectedVertexIndex -= 1;
+	}else{
+		_selectedVertexIndex = numVertices - 1;
+	}
+	
+	ofNotifyEvent(vertexSelectedEvent, _selectedVertexIndex, this);
 }
 
 void SurfaceManager::deselectSurface(){
