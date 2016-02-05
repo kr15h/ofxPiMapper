@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseCmd.h"
-#include "BaseSurface.h"
+#include "SurfaceManager.h"
 
 class ofxPiMapper;
 
@@ -11,12 +11,12 @@ namespace piMapper {
 class SelPrevVertexCmd : public BaseUndoCmd {
 
 	public:
-		SelPrevVertexCmd(BaseSurface * s);
+		SelPrevVertexCmd(SurfaceManager * sm);
 		void exec();
 		void undo();
 
 	private:
-		BaseSurface * _surface;
+		SurfaceManager * _surfaceManager;
 
 };
 
