@@ -50,6 +50,7 @@ class SurfaceManagerGui {
 		void onVertexChanged(ofVec3f & vertex);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 		void onSurfaceSelected(int & surfaceIndex);
+		void onVertexSelected(int & vertexIndex);
 
 	private:
 		SurfaceManager * surfaceManager;
