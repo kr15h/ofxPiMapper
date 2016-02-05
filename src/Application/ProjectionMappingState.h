@@ -12,6 +12,8 @@
 #include "RmGridColCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "SelPrevSurfaceCmd.h"
+#include "SelNextVertexCmd.h"
+#include "SelPrevVertexCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
 

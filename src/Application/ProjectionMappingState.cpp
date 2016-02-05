@@ -129,6 +129,14 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
 		 break;
 		 
+	 case '>':
+		 app->getCmdManager()->exec(new SelNextVertexCmd(app->getSurfaceManager()));
+		 break;
+	 
+	 case '<':
+		 app->getCmdManager()->exec(new SelPrevVertexCmd(app->getSurfaceManager()));
+		 break;
+		 
 	 default:
 		 break;
 	}
