@@ -17,7 +17,6 @@ class SelNextVertexCmd : public BaseUndoCmd {
 
 	private:
 		BaseSurface * _surface;
-		int _prevVertexIndex;
 
 };
 
