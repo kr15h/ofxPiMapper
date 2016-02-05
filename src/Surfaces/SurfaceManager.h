@@ -43,6 +43,10 @@ class SurfaceManager {
 		BaseSurface * selectPrevSurface();
 		BaseSurface * getSelectedSurface();
 	
+		// These should trigger an event for the GUI layer to catch
+		int selectNextVertex();
+		int selectPrevVertex();
+	
 		int size();
 	
 		ofEvent <ofVec3f> vertexChangedEvent;

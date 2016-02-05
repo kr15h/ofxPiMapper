@@ -151,6 +151,14 @@ BaseSurface * SurfaceManager::getSelectedSurface(){
 	return selectedSurface;
 }
 
+int SurfaceManager::selectNextVertex(){
+	//
+}
+
+int SurfaceManager::selectPrevVertex(){
+	//
+}
+
 void SurfaceManager::deselectSurface(){
 	selectedSurface = 0;
 }
