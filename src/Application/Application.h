@@ -36,17 +36,19 @@ class Application {
 		void setup();
 		void draw();
 		void onKeyPressed(ofKeyEventArgs & args);
+		void onKeyReleased(ofKeyEventArgs & args);
 		void addFboSource(FboSource & fboSource);
 	
 		bool loadXmlSettings(string fileName);
+		bool isShiftKeyDown();
 	
 		SurfaceManagerGui * getGui(){ return &_gui; };
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; };
 		CmdManager * getCmdManager(){ return &_cmdManager; };
-
+	
 	protected:
 		void setState(ApplicationBaseState * st);
-
+	
 	private:
 		friend class ApplicationBaseState;
 		friend class SetApplicationStateCmd;
@@ -58,6 +60,8 @@ class Application {
 		MediaServer _mediaServer;
 		SurfaceManager _surfaceManager;
 		Info _info;
+	
+		bool _shiftKeyDown;
 
 };
 

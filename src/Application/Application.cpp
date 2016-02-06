@@ -12,6 +12,7 @@ Application::Application(){
 	
 	setState(PresentationState::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
+	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
 }
 
 void Application::setup(){
@@ -39,6 +40,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	// before it is completely ported to the state system.
 
 	switch(args.key){
+	 case OF_KEY_SHIFT:
+		 _shiftKeyDown = true;
+		 break;
+		 
 	 case '1':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
@@ -91,12 +96,22 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	}
 }
 
+void Application::onKeyReleased(ofKeyEventArgs & args){
+	if(args.key == OF_KEY_SHIFT){
+		_shiftKeyDown = false;
+	}
+}
+
 void Application::addFboSource(FboSource & fboSource){
 	_mediaServer.addFboSource(fboSource);
 }
 
 void Application::setState(ApplicationBaseState * st){
 	_state = st;
+}
+
+bool Application::isShiftKeyDown(){
+	return _shiftKeyDown;
 }
 
 bool Application::loadXmlSettings(string fileName){
