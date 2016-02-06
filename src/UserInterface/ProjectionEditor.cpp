@@ -258,7 +258,7 @@ void ProjectionEditor::moveSelection(ofVec2f by){
 	if(bJointSelected){
 		selectedJoint->position += by;
 	}else{
-		moveSelectedSurface(by);
+		//moveSelectedSurface(by);
 	}
 }
 
