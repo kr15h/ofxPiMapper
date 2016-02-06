@@ -18,7 +18,7 @@ void ProjectionMappingState::draw(Application * app){
 
 void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
-
+		 
 	 case 't':
 		 app->getCmdManager()->exec(
 			 new AddSurfaceCmd(
@@ -135,6 +135,38 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 	 
 	 case '<':
 		 app->getCmdManager()->exec(new SelPrevVertexCmd(app->getSurfaceManager()));
+		 break;
+	 
+	 case OF_KEY_UP:
+		 if(app->isShiftKeyDown()){
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(0.0f, -10.0f)));
+		 }else{
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(0.0f, -1.0f)));
+		 }
+		 break;
+		 
+	 case OF_KEY_DOWN:
+		 if(app->isShiftKeyDown()){
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(0.0f, 10.0f)));
+		 }else{
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(0.0f, 1.0f)));
+		 }
+		 break;
+		 
+	 case OF_KEY_LEFT:
+		 if(app->isShiftKeyDown()){
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(-10.0f, 0.0f)));
+		 }else{
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(-1.0f, 0.0f)));
+		 }
+		 break;
+	 
+	 case OF_KEY_RIGHT:
+		 if(app->isShiftKeyDown()){
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(10.0f, 0.0f)));
+		 }else{
+			app->getCmdManager()->exec(new MvSelectionCmd(app->getSurfaceManager(), ofVec2f(1.0f, 0.0f)));
+		 }
 		 break;
 		 
 	 default:

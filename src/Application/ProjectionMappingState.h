@@ -14,6 +14,7 @@
 #include "SelPrevSurfaceCmd.h"
 #include "SelNextVertexCmd.h"
 #include "SelPrevVertexCmd.h"
+#include "MvSelectionCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
 
