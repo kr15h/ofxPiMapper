@@ -187,6 +187,8 @@ p | toggle perspective warping (quad surfaces only)
 { | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
+> | select next vertex
+< | select previous vertex
 f | Toggle fullscreen
 s | Save composition
 z | Undo
