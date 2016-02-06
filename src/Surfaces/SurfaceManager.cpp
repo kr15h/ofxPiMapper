@@ -186,6 +186,16 @@ void SurfaceManager::selectPrevVertex(){
 	ofNotifyEvent(vertexSelectedEvent, _selectedVertexIndex, this);
 }
 
+void SurfaceManager::moveSelectionBy(ofVec2f v){
+	if(selectedSurface == 0){
+		return;
+	}
+	
+	selectedSurface->moveBy(v);
+	
+	// TODO: use member variable for this in the future
+}
+
 void SurfaceManager::deselectSurface(){
 	selectedSurface = 0;
 }

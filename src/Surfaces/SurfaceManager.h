@@ -47,6 +47,8 @@ class SurfaceManager {
 		void selectNextVertex();
 		void selectPrevVertex();
 	
+		void moveSelectionBy(ofVec2f v);
+	
 		int size();
 	
 		ofEvent <ofVec3f> vertexChangedEvent;
