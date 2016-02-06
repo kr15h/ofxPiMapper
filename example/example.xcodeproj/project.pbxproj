@@ -41,6 +41,7 @@
 		3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */; };
 		3993058D1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */; };
 		399953691BD54FF600D5B1F1 /* CrossSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399953671BD54FF600D5B1F1 /* CrossSource.cpp */; };
+		39A0A1D81C6628AB00C9096B /* MvSelectionCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A0A1D71C6628AB00C9096B /* MvSelectionCmd.cpp */; };
 		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
 		39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */; };
@@ -212,6 +213,8 @@
 		3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelPrevSurfaceCmd.cpp; path = Commands/SelPrevSurfaceCmd.cpp; sourceTree = "<group>"; };
 		399953671BD54FF600D5B1F1 /* CrossSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CrossSource.cpp; sourceTree = "<group>"; };
 		399953681BD54FF600D5B1F1 /* CrossSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossSource.h; sourceTree = "<group>"; };
+		39A0A1D61C6628AB00C9096B /* MvSelectionCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvSelectionCmd.h; path = Commands/MvSelectionCmd.h; sourceTree = "<group>"; };
+		39A0A1D71C6628AB00C9096B /* MvSelectionCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvSelectionCmd.cpp; path = Commands/MvSelectionCmd.cpp; sourceTree = "<group>"; };
 		39A867941B0D312400165378 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetSourceCmd.cpp; path = Commands/SetSourceCmd.cpp; sourceTree = "<group>"; };
 		39A867951B0D312400165378 /* SetSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetSourceCmd.h; path = Commands/SetSourceCmd.h; sourceTree = "<group>"; };
 		39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RmSurfaceCmd.cpp; path = Commands/RmSurfaceCmd.cpp; sourceTree = "<group>"; };
@@ -802,6 +805,8 @@
 				3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */,
 				39A9AAE81B0518FC00AA83BC /* MvSurfaceCmd.h */,
 				39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */,
+				39A0A1D61C6628AB00C9096B /* MvSelectionCmd.h */,
+				39A0A1D71C6628AB00C9096B /* MvSelectionCmd.cpp */,
 				39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */,
 				39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */,
 				391717EE1B08FFDA00F9A484 /* SetApplicationStateCmd.h */,
@@ -1013,6 +1018,7 @@
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				39C1243419EE9589005DF557 /* Base64Encoding.cpp in Sources */,
+				39A0A1D81C6628AB00C9096B /* MvSelectionCmd.cpp in Sources */,
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
 				397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
