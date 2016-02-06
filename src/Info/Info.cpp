@@ -15,6 +15,7 @@ void Info::draw(){
 		ss << " 2. Texture mapping mode\n";
 		ss << " 3. Projection mapping mode\n";
 		ss << "  - Press <,> and <.> to select previous or next surface\n";
+		ss << "  - Press \"<\" and \">\" to select previous or next vertex\n";
 		ss << "  - Press <t> to add new triangle surface\n";
 		ss << "  - Press <q> to add new quad surface\n";
 		ss << "  - Press <p> to toggle perspective warping while quad surface selected\n";
