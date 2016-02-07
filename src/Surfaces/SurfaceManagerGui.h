@@ -47,7 +47,7 @@ class SurfaceManagerGui {
 	
 		ProjectionEditor * getProjectionEditor();
 	
-		void onVertexChanged(ofVec3f & vertex);
+		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 		void onSurfaceSelected(int & surfaceIndex);
 		void onVertexSelected(int & vertexIndex);

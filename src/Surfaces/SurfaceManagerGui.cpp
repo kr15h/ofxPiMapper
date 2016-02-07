@@ -340,8 +340,10 @@ ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
 	return &projectionEditor;
 }
 
-void SurfaceManagerGui::onVertexChanged(ofVec3f & vertex){
+void SurfaceManagerGui::onVertexChanged(int & i){
 	//cout << "VERTEX CHANGED: " << vertex.x << ", " << vertex.y << endl;
+	projectionEditor.createJoints();
+	projectionEditor.getJoints()->at(i)->select();
 }
 
 void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){
