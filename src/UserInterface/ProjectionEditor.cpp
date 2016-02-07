@@ -124,6 +124,7 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 }
 
 void ProjectionEditor::keyPressed(ofKeyEventArgs & args){
+	/*
 	int key = args.key;
 	float moveStep;
 
@@ -154,15 +155,18 @@ void ProjectionEditor::keyPressed(ofKeyEventArgs & args){
 		 bShiftKeyDown = true;
 		 break;
 	}
+	*/
 }
 
 void ProjectionEditor::keyReleased(ofKeyEventArgs & args){
+	/*
 	int key = args.key;
 	switch(key){
 	 case OF_KEY_SHIFT:
 		 bShiftKeyDown = false;
 		 break;
 	}
+	*/
 }
 
 void ProjectionEditor::gotMessage(ofMessage & msg){
