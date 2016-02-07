@@ -23,10 +23,10 @@ class SurfaceStack {
 		BaseSurface * back();
 	
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
-		ofEvent <ofVec3f> vertexChangedEvent;
+		ofEvent <int> vertexChangedEvent;
 	
 		void onVerticesChanged(vector<ofVec3f> & vertices);
-		void onVertexChanged(ofVec3f & vertex);
+		void onVertexChanged(int & i);
 	
 	private:
 		vector<BaseSurface *> _surfaces;

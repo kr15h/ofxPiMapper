@@ -52,8 +52,8 @@ void SurfaceStack::onVerticesChanged(vector<ofVec3f> & vertices){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
-void SurfaceStack::onVertexChanged(ofVec3f & vertex){
-	ofNotifyEvent(vertexChangedEvent, vertex, this);
+void SurfaceStack::onVertexChanged(int & i){
+	ofNotifyEvent(vertexChangedEvent, i, this);
 }
 
 } // namespace piMapper

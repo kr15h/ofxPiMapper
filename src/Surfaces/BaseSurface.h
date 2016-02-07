@@ -43,7 +43,7 @@ class BaseSurface {
 	
 		// TODO: The surface should emit an event once vertex has changed
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
-		ofEvent <ofVec3f> vertexChangedEvent;
+		ofEvent <int> vertexChangedEvent;
 
 	protected:
 		ofMesh mesh;

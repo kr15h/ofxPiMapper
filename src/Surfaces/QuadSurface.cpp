@@ -97,7 +97,7 @@ void QuadSurface::setVertex(int index, ofVec2f p){
 
 	mesh.setVertex(index, p);
 	ofVec3f v = mesh.getVertex(index);
-	ofNotifyEvent(vertexChangedEvent, v, this);
+	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
 void QuadSurface::setVertices(vector<ofVec2f> v){

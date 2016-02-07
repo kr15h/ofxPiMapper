@@ -145,7 +145,7 @@ void GridWarpSurface::setVertex(int index, ofVec2f p){
 	
 	mesh.setVertex(index, p);
 	ofVec3f v = mesh.getVertex(index);
-	ofNotifyEvent(vertexChangedEvent, v, this);
+	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
 void GridWarpSurface::setVertices(vector<ofVec2f> v){
