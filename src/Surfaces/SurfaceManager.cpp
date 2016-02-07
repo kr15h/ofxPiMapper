@@ -193,6 +193,20 @@ void SurfaceManager::selectPrevVertex(){
 	ofNotifyEvent(vertexSelectedEvent, _selectedVertexIndex, this);
 }
 
+void SurfaceManager::selectVertex(int i){
+	if(selectedSurface == 0){
+		return;
+	}
+	
+	if(i > selectedSurface->getVertices().size() - 1){
+		ofLogError("SurfaceManager::selectVertex") << "index out of bounds" << endl;
+		return;
+	}
+	
+	_selectedVertexIndex = i;
+	ofNotifyEvent(vertexSelectedEvent, _selectedVertexIndex, this);
+}
+
 void SurfaceManager::moveSelectionBy(ofVec2f v){
 	if(selectedSurface == 0){
 		return;
@@ -224,6 +238,10 @@ BaseSurface * SurfaceManager::getSurface(int index){
 
 int SurfaceManager::size(){
 	return _surfaces.size();
+}
+
+int SurfaceManager::getSelectedVertexIndex(){
+	return _selectedVertexIndex;
 }
 
 void SurfaceManager::onVertexChanged(int & i){

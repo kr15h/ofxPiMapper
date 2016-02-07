@@ -46,10 +46,12 @@ class SurfaceManager {
 		// These should trigger an event for the GUI layer to catch
 		void selectNextVertex();
 		void selectPrevVertex();
+		void selectVertex(int i);
 	
 		void moveSelectionBy(ofVec2f v);
 	
 		int size();
+		int getSelectedVertexIndex();
 	
 		ofEvent <int> vertexChangedEvent;
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
