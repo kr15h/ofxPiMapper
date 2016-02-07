@@ -149,6 +149,9 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 					break;
 				}
 			}
+			
+			_cmdManager->exec(new SelVertexCmd(surfaceManager, jointVertIndex));
+			
 			_cmdManager->exec(new MvSurfaceVertCmd(
 								  jointVertIndex,
 								  surfaceManager->getSelectedSurface(),
@@ -342,8 +345,14 @@ ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
 
 void SurfaceManagerGui::onVertexChanged(int & i){
 	//cout << "VERTEX CHANGED: " << vertex.x << ", " << vertex.y << endl;
+	bool isDragged = projectionEditor.getJoints()->at(i)->isDragged();
 	projectionEditor.createJoints();
 	projectionEditor.getJoints()->at(i)->select();
+	if(isDragged){
+		projectionEditor.getJoints()->at(i)->startDrag();
+	}else{
+		projectionEditor.getJoints()->at(i)->stopDrag();
+	}
 }
 
 void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){

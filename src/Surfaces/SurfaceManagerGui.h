@@ -16,6 +16,7 @@
 #include "MvSurfaceVertCmd.h"
 #include "MvAllTexCoordsCmd.h"
 #include "MvTexCoordCmd.h"
+#include "SelVertexCmd.h"
 
 namespace ofx {
 namespace piMapper {
