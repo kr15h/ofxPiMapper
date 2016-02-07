@@ -36,7 +36,6 @@ class ProjectionEditor {
 		void moveSelectedSurface(ofVec2f by);
 		void stopDragJoints();
 		void updateVertices();
-		void moveSelection(ofVec2f by);
 		void setSnapDistance(float newSnapDistance);
 		CircleJoint * hitTestJoints(ofVec2f pos);
 		vector <CircleJoint *> * getJoints();

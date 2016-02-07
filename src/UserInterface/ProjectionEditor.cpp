@@ -247,24 +247,7 @@ void ProjectionEditor::stopDragJoints(){
 	}
 }
 
-void ProjectionEditor::moveSelection(ofVec2f by){
-	// check if joints selected
-	bool bJointSelected = false;
-	BaseJoint * selectedJoint;
-	for(int i = 0; i < joints.size(); i++){
-		if(joints[i]->isSelected()){
-			bJointSelected = true;
-			selectedJoint = joints[i];
-			break;
-		}
-	}
 
-	if(bJointSelected){
-		selectedJoint->position += by;
-	}else{
-		//moveSelectedSurface(by);
-	}
-}
 
 void ProjectionEditor::setSnapDistance(float newSnapDistance){
 	fSnapDistance = newSnapDistance;
