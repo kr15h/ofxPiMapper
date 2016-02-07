@@ -194,7 +194,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		if(!bSurfaceSelected){
 			// unselect if no surface selected
 			projectionEditor.clearJoints();
-			surfaceManager->deselectSurface();
+			_cmdManager->exec(new DeselectSurfaceCmd(surfaceManager));
 		}
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
 }
