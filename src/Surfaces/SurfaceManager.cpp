@@ -8,7 +8,7 @@ SurfaceManager::SurfaceManager(){
 	selectedSurface = 0;
 	ofAddListener(_surfaces.vertexChangedEvent, this, &SurfaceManager::onVertexChanged);
 	ofAddListener(_surfaces.verticesChangedEvent, this, &SurfaceManager::onVerticesChanged);
-	_selectedVertexIndex = 0;
+	_selectedVertexIndex = -1;
 }
 
 void SurfaceManager::draw(){
@@ -28,6 +28,7 @@ void SurfaceManager::removeSelectedSurface(){
 		if(_surfaces[i] == selectedSurface){
 			_surfaces.erase(i);
 			selectedSurface = 0;
+			_selectedVertexIndex = -1;
 			break;
 		}
 	}
@@ -76,6 +77,7 @@ BaseSurface * SurfaceManager::selectSurface(int index){
 	}
 
 	selectedSurface = _surfaces[index];
+	_selectedVertexIndex = -1;
 	ofSendMessage("surfaceSelected");
 	return selectedSurface;
 }
@@ -84,6 +86,7 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 	for(int i = 0; i < _surfaces.size(); i++){
 		if(_surfaces[i] == surface){
 			selectedSurface = surface;
+			_selectedVertexIndex = -1;
 			ofSendMessage("surfaceSelected");
 			ofNotifyEvent(surfaceSelectedEvent, i, this);
 			return selectedSurface;
@@ -96,6 +99,7 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 
 BaseSurface * SurfaceManager::selectNextSurface(){
 	int next;
+	_selectedVertexIndex = -1;
 	
 	if(selectedSurface == 0){
 		next = 0;
@@ -123,6 +127,7 @@ BaseSurface * SurfaceManager::selectNextSurface(){
 
 BaseSurface * SurfaceManager::selectPrevSurface(){
 	int prev;
+	_selectedVertexIndex = -1;
 	
 	if(selectedSurface == 0){
 		prev = _surfaces.size() - 1;
@@ -160,7 +165,9 @@ void SurfaceManager::selectNextVertex(){
 	
 	int numVertices = selectedSurface->getVertices().size();
 	
-	if(_selectedVertexIndex < numVertices - 1){
+	if(_selectedVertexIndex == -1){
+		_selectedVertexIndex = 0;
+	}else if(_selectedVertexIndex < numVertices - 1){
 		_selectedVertexIndex += 1;
 	}else{
 		_selectedVertexIndex = 0;
@@ -191,13 +198,19 @@ void SurfaceManager::moveSelectionBy(ofVec2f v){
 		return;
 	}
 	
-	selectedSurface->moveBy(v);
+	if(_selectedVertexIndex != -1){
+		selectedSurface->getVertices()[_selectedVertexIndex] += v;
+		ofNotifyEvent(vertexChangedEvent, _selectedVertexIndex, this);
+	}else{
+		selectedSurface->moveBy(v);
+	}
 	
 	// TODO: use member variable for this in the future
 }
 
 void SurfaceManager::deselectSurface(){
 	selectedSurface = 0;
+	_selectedVertexIndex = -1;
 }
 
 BaseSurface * SurfaceManager::getSurface(int index){
@@ -213,8 +226,8 @@ int SurfaceManager::size(){
 	return _surfaces.size();
 }
 
-void SurfaceManager::onVertexChanged(ofVec3f & vertex){
-	ofNotifyEvent(vertexChangedEvent, vertex, this);
+void SurfaceManager::onVertexChanged(int & i){
+	ofNotifyEvent(vertexChangedEvent, i, this);
 }
 
 void SurfaceManager::onVerticesChanged(vector<ofVec3f> & vertices){

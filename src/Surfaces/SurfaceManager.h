@@ -51,12 +51,12 @@ class SurfaceManager {
 	
 		int size();
 	
-		ofEvent <ofVec3f> vertexChangedEvent;
+		ofEvent <int> vertexChangedEvent;
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
 		ofEvent <int> vertexSelectedEvent;
 
-		void onVertexChanged(ofVec3f & vertex);
+		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 	
 	private:
