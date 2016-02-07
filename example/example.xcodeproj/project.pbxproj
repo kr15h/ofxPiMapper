@@ -89,6 +89,7 @@
 		39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248319F1EB75005DF557 /* SurfaceManager.cpp */; };
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
 		39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CmdManager.cpp */; };
+		39DD777A1C676DDC009EDC49 /* SelVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */; };
 		39EB5E321C5D2BC80020AD31 /* AddGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */; };
 		39EB5E351C5D390B0020AD31 /* RmGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E341C5D390B0020AD31 /* RmGridRowCmd.cpp */; };
 		39EB5E381C5D3B100020AD31 /* AddGridColCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E371C5D3B100020AD31 /* AddGridColCmd.cpp */; };
@@ -329,6 +330,8 @@
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
 		39C787BB1AC20D2400691393 /* CmdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CmdManager.h; path = Commands/CmdManager.h; sourceTree = "<group>"; };
 		39C787BC1AC2111B00691393 /* CmdManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CmdManager.cpp; path = Commands/CmdManager.cpp; sourceTree = "<group>"; };
+		39DD77781C676DDC009EDC49 /* SelVertexCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelVertexCmd.h; path = Commands/SelVertexCmd.h; sourceTree = "<group>"; };
+		39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelVertexCmd.cpp; path = Commands/SelVertexCmd.cpp; sourceTree = "<group>"; };
 		39EB5E301C5D2BC80020AD31 /* AddGridRowCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddGridRowCmd.h; path = Commands/AddGridRowCmd.h; sourceTree = "<group>"; };
 		39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddGridRowCmd.cpp; path = Commands/AddGridRowCmd.cpp; sourceTree = "<group>"; };
 		39EB5E331C5D390B0020AD31 /* RmGridRowCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmGridRowCmd.h; path = Commands/RmGridRowCmd.h; sourceTree = "<group>"; };
@@ -787,6 +790,8 @@
 				39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */,
 				39EB5E391C5D3D1A0020AD31 /* RmGridColCmd.h */,
 				39EB5E3A1C5D3D1A0020AD31 /* RmGridColCmd.cpp */,
+				39DD77781C676DDC009EDC49 /* SelVertexCmd.h */,
+				39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */,
 				39F0512B1C650D070089A36B /* SelNextVertexCmd.h */,
 				39F0512C1C650D070089A36B /* SelNextVertexCmd.cpp */,
 				39F0512E1C650E7E0089A36B /* SelPrevVertexCmd.h */,
@@ -1078,6 +1083,7 @@
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
+				39DD777A1C676DDC009EDC49 /* SelVertexCmd.cpp in Sources */,
 				39EB5E351C5D390B0020AD31 /* RmGridRowCmd.cpp in Sources */,
 				391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */,
 				39EB5E381C5D3B100020AD31 /* AddGridColCmd.cpp in Sources */,
