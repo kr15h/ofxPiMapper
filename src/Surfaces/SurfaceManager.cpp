@@ -199,7 +199,10 @@ void SurfaceManager::selectVertex(int i){
 	}
 	
 	if(i > selectedSurface->getVertices().size() - 1){
-		ofLogError("SurfaceManager::selectVertex") << "index out of bounds" << endl;
+		ofLogError("SurfaceManager::selectVertex") << "index (" << i << ") out of bounds" << endl;
+		int prevVertIndex = _selectedVertexIndex;
+		ofNotifyEvent(vertexUnselectedEvent, prevVertIndex, this);
+		_selectedVertexIndex = -1;
 		return;
 	}
 	

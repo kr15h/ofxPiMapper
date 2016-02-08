@@ -57,6 +57,7 @@ class SurfaceManager {
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
 		ofEvent <int> vertexSelectedEvent;
+		ofEvent <int> vertexUnselectedEvent;
 
 		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
