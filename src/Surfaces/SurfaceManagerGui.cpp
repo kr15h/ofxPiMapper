@@ -234,6 +234,8 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 		ofRemoveListener(newSurfaceManager->verticesChangedEvent, this, &SurfaceManagerGui::onVerticesChanged);
 		ofRemoveListener(newSurfaceManager->surfaceSelectedEvent, this, &SurfaceManagerGui::onSurfaceSelected);
 		ofRemoveListener(newSurfaceManager->vertexSelectedEvent, this, &SurfaceManagerGui::onVertexSelected);
+		ofRemoveListener(newSurfaceManager->vertexUnselectedEvent, this, &SurfaceManagerGui::onVertexUnselected);
+
 	}
 	
 	surfaceManager = newSurfaceManager;
@@ -242,6 +244,7 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	ofAddListener(newSurfaceManager->verticesChangedEvent, this, &SurfaceManagerGui::onVerticesChanged);
 	ofAddListener(newSurfaceManager->surfaceSelectedEvent, this, &SurfaceManagerGui::onSurfaceSelected);
 	ofAddListener(newSurfaceManager->vertexSelectedEvent, this, &SurfaceManagerGui::onVertexSelected);
+	ofAddListener(newSurfaceManager->vertexUnselectedEvent, this, &SurfaceManagerGui::onVertexUnselected);
 	
 	projectionEditor.setSurfaceManager(surfaceManager);
 	sourcesEditor.setSurfaceManager(surfaceManager);
@@ -371,6 +374,14 @@ void SurfaceManagerGui::onVertexSelected(int & vertexIndex){
 	
 	projectionEditor.unselectAllJoints();
 	projectionEditor.getJoints()->at(vertexIndex)->select();
+}
+
+void SurfaceManagerGui::onVertexUnselected(int & vertexIndex){
+	if(projectionEditor.getJoints()->size() == 0){
+		return;
+	}
+	
+	projectionEditor.unselectAllJoints();
 }
 
 } // namespace piMapper
