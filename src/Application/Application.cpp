@@ -13,6 +13,8 @@ Application::Application(){
 	setState(PresentationState::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
+	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
+	ofAddListener(Gui::instance()->event, this, &Application::onGuiEvent);
 }
 
 void Application::setup(){
@@ -100,6 +102,14 @@ void Application::onKeyReleased(ofKeyEventArgs & args){
 	if(args.key == OF_KEY_SHIFT){
 		_shiftKeyDown = false;
 	}
+}
+
+void Application::onMousePressed(ofMouseEventArgs & args){
+	Gui::instance()->notifyEvent(args);
+}
+
+void Application::onGuiEvent(GuiEvent & e){
+	cout << "GUI EVENT: " << e.args.x << ", " << e.args.y << ", " << e.type << endl;
 }
 
 void Application::addFboSource(FboSource & fboSource){

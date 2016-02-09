@@ -18,6 +18,8 @@
 // TODO: To be removed.
 #include "GuiMode.h"
 
+#include "Gui.h"
+
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
 
@@ -35,8 +37,15 @@ class Application {
 
 		void setup();
 		void draw();
+	
 		void onKeyPressed(ofKeyEventArgs & args);
 		void onKeyReleased(ofKeyEventArgs & args);
+	
+		// We use this to pass mouse events into the GUI layer
+		void onMousePressed(ofMouseEventArgs & args);
+		// Then we catch GUI events with this one and create commands
+		void onGuiEvent(GuiEvent & e);
+	
 		void addFboSource(FboSource & fboSource);
 	
 		bool loadXmlSettings(string fileName);
