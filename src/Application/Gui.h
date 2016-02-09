@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofEvents.h"
+#include "GuiEventType.h"
 
 namespace ofx {
 namespace piMapper {

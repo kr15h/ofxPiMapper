@@ -15,7 +15,7 @@ Gui * Gui::instance(){
 void Gui::notifyEvent(ofMouseEventArgs & args){
 	GuiEvent e;
 	e.args = args;
-	e.type = 1;
+	e.type = GuiEventType::SURFACE_HIT;
 	ofNotifyEvent(event, e, this);
 }
 

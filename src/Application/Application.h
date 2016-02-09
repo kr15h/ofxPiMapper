@@ -45,6 +45,7 @@ class Application {
 		void onMousePressed(ofMouseEventArgs & args);
 		// Then we catch GUI events with this one and create commands
 		void onGuiEvent(GuiEvent & e);
+		// Every state should have it's own GUI layer
 	
 		void addFboSource(FboSource & fboSource);
 	
