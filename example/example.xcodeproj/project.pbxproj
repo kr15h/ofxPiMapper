@@ -98,6 +98,7 @@
 		39F0512D1C650D070089A36B /* SelNextVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F0512C1C650D070089A36B /* SelNextVertexCmd.cpp */; };
 		39F051301C650E7E0089A36B /* SelPrevVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39F0512F1C650E7E0089A36B /* SelPrevVertexCmd.cpp */; };
 		39FA2B801C457606003FAB28 /* SettingsLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */; };
+		39FBE8B21C6A636900155B9E /* Gui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39FBE8B11C6A636900155B9E /* Gui.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -349,6 +350,8 @@
 		39F0512F1C650E7E0089A36B /* SelPrevVertexCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelPrevVertexCmd.cpp; path = Commands/SelPrevVertexCmd.cpp; sourceTree = "<group>"; };
 		39FA2B7E1C457606003FAB28 /* SettingsLoader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SettingsLoader.cpp; sourceTree = "<group>"; };
 		39FA2B7F1C457606003FAB28 /* SettingsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLoader.h; sourceTree = "<group>"; };
+		39FBE8B01C6A636900155B9E /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
+		39FBE8B11C6A636900155B9E /* Gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gui.cpp; sourceTree = "<group>"; };
 		39FDD9EA1AC007BF00262205 /* BaseCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCmd.h; path = Commands/BaseCmd.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -468,6 +471,8 @@
 		396841681BC91F6F009F0BAE /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				39FBE8B01C6A636900155B9E /* Gui.h */,
+				39FBE8B11C6A636900155B9E /* Gui.cpp */,
 				3968416A1BC91F6F009F0BAE /* Application.h */,
 				396841691BC91F6F009F0BAE /* Application.cpp */,
 				39FA2B7F1C457606003FAB28 /* SettingsLoader.h */,
@@ -1047,6 +1052,7 @@
 				39C1243919EE9589005DF557 /* COBSEncoding.cpp in Sources */,
 				39C1244919EE9589005DF557 /* snappy-sinksource.cc in Sources */,
 				39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */,
+				39FBE8B21C6A636900155B9E /* Gui.cpp in Sources */,
 				396841771BC91F6F009F0BAE /* PresentationState.cpp in Sources */,
 				39A9AAF21B054FC300AA83BC /* MvSurfaceVertCmd.cpp in Sources */,
 				39FA2B801C457606003FAB28 /* SettingsLoader.cpp in Sources */,
