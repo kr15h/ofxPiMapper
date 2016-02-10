@@ -1,10 +1,10 @@
 /*
  * CameraSource example
- * Based on the thought that ofxPiMapper should be as bare-bones as possible, thus all the source 
- * type functionality should come from outside.
- * Update: still thinking whether the bare-bones approach is such a good idea. The less dependencies
- * the better, of course.
+ * Can be used with the Raspberry Pi camera module or the Auvidea HDMI bridge.
+ * B101 HDMI to CSI-2 Bridge (15 pin FPC).
+ * Available at http://www.auvidea.eu/index.php/theme-styles/2014-12-30-22-32-06/b101
  * Created by Krisjanis Rijnieks on 25/01/2016
+ * Last modified on 10/02/2016
  */
 
 #pragma once
