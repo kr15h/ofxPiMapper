@@ -17,7 +17,7 @@ TerminalListener::~TerminalListener(){
 	close();
 }
 
-void TerminalListener::setup(KeyListener * listener_, int sleepTime_ = 0){
+void TerminalListener::setup(KeyListener * listener_, int sleepTime_){
 	listener = listener_;
 
 	if(sleepTime_ > 0){
@@ -39,7 +39,7 @@ void TerminalListener::setup(KeyListener * listener_, int sleepTime_ = 0){
 
 void TerminalListener::run(){
 	while (thread.isRunning()){
-		if (listener != NULL){
+		if (listener != 0){
 			int ch[8];
 			int chnum = 0;
 
@@ -67,7 +67,7 @@ void TerminalListener::run(){
 void TerminalListener::close(){
 	tcsetattr(STDIN_FILENO, TCSANOW, &orig_termios);
 	thread.tryJoin(50);
-	listener = NULL;
+	listener = 0;
 }
 
 } // namespace piMapper

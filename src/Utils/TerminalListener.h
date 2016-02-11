@@ -34,11 +34,11 @@ class TerminalListener : public Poco::Runnable {
 		TerminalListener();
 		~TerminalListener();
 	
-		void setup(KeyListener* listener_, int sleepTime_);
+		void setup(KeyListener * listener_, int sleepTime_ = 0);
 		void run();
 		void close();
 	
-		KeyListener* listener;
+		KeyListener * listener;
 		Poco::Thread thread;
 		int sleepTime;
 };
