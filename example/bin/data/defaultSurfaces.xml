@@ -2,50 +2,16 @@
     <surface>
         <vertices>
             <vertex>
-                <x>26.396118164</x>
-                <y>223.170288086</y>
+                <x>97.709846497</x>
+                <y>339.636596680</y>
             </vertex>
             <vertex>
-                <x>241.000000000</x>
-                <y>118.000000000</y>
+                <x>306.630920410</x>
+                <y>105.926849365</y>
             </vertex>
             <vertex>
-                <x>213.630920410</x>
-                <y>352.926849365</y>
-            </vertex>
-        </vertices>
-        <texCoords>
-            <texCoord>
-                <x>0.251666665</x>
-                <y>0.090000004</y>
-            </texCoord>
-            <texCoord>
-                <x>0.449999988</x>
-                <y>0.696666658</y>
-            </texCoord>
-            <texCoord>
-                <x>0.870000005</x>
-                <y>0.173333332</y>
-            </texCoord>
-        </texCoords>
-        <source>
-            <source-type>image</source-type>
-            <source-name>image5.jpg</source-name>
-        </source>
-    </surface>
-    <surface>
-        <vertices>
-            <vertex>
-                <x>84.709846497</x>
-                <y>462.636596680</y>
-            </vertex>
-            <vertex>
-                <x>293.630920410</x>
-                <y>228.926849365</y>
-            </vertex>
-            <vertex>
-                <x>33.396121979</x>
-                <y>271.170288086</y>
+                <x>41.000000000</x>
+                <y>74.000000000</y>
             </vertex>
         </vertices>
         <texCoords>
@@ -70,111 +36,132 @@
     <surface>
         <vertices>
             <vertex>
-                <x>510.148498535</x>
-                <y>97.815002441</y>
+                <x>306.630920410</x>
+                <y>105.926849365</y>
             </vertex>
             <vertex>
-                <x>372.000000000</x>
-                <y>434.000000000</y>
+                <x>368.000000000</x>
+                <y>177.000000000</y>
             </vertex>
             <vertex>
-                <x>159.000000000</x>
-                <y>158.000000000</y>
+                <x>344.000000000</x>
+                <y>299.000000000</y>
+            </vertex>
+            <vertex>
+                <x>97.709846497</x>
+                <y>339.636596680</y>
             </vertex>
         </vertices>
         <texCoords>
             <texCoord>
-                <x>0.331067860</x>
-                <y>0.732035518</y>
+                <x>0.190624997</x>
+                <y>0.126000017</y>
             </texCoord>
             <texCoord>
-                <x>0.782209992</x>
-                <y>0.181442097</y>
+                <x>0.498343766</x>
+                <y>0.126000017</y>
             </texCoord>
             <texCoord>
-                <x>0.877761841</x>
-                <y>0.894570410</y>
+                <x>0.498343766</x>
+                <y>0.562500000</y>
+            </texCoord>
+            <texCoord>
+                <x>0.190624997</x>
+                <y>0.562500000</y>
             </texCoord>
         </texCoords>
         <source>
             <source-type>video</source-type>
             <source-name>test.mov</source-name>
         </source>
+        <properties>
+            <perspectiveWarping>1</perspectiveWarping>
+        </properties>
     </surface>
     <surface>
         <vertices>
             <vertex>
-                <x>152.000000000</x>
-                <y>343.000000000</y>
+                <x>368.000000000</x>
+                <y>177.000000000</y>
             </vertex>
             <vertex>
-                <x>377.000000000</x>
-                <y>246.000000000</y>
+                <x>523.000000000</x>
+                <y>144.000000000</y>
             </vertex>
             <vertex>
-                <x>538.000000000</x>
-                <y>490.000000000</y>
+                <x>714.000000000</x>
+                <y>143.000000000</y>
             </vertex>
             <vertex>
-                <x>160.000000000</x>
-                <y>551.000000000</y>
+                <x>344.000000000</x>
+                <y>299.000000000</y>
+            </vertex>
+            <vertex>
+                <x>504.000000000</x>
+                <y>304.000000000</y>
+            </vertex>
+            <vertex>
+                <x>721.000000000</x>
+                <y>279.000000000</y>
+            </vertex>
+            <vertex>
+                <x>373.000000000</x>
+                <y>398.000000000</y>
+            </vertex>
+            <vertex>
+                <x>550.000000000</x>
+                <y>407.000000000</y>
+            </vertex>
+            <vertex>
+                <x>759.000000000</x>
+                <y>365.000000000</y>
             </vertex>
         </vertices>
         <texCoords>
             <texCoord>
-                <x>0.172656253</x>
-                <y>0.134333342</y>
+                <x>0.216666669</x>
+                <y>0.073333330</y>
             </texCoord>
             <texCoord>
-                <x>0.480374992</x>
-                <y>0.134333342</y>
+                <x>0.530833364</x>
+                <y>0.073333330</y>
             </texCoord>
             <texCoord>
-                <x>0.480374992</x>
-                <y>0.570833325</y>
+                <x>0.845000029</x>
+                <y>0.073333330</y>
             </texCoord>
             <texCoord>
-                <x>0.172656253</x>
-                <y>0.570833325</y>
+                <x>0.216666669</x>
+                <y>0.314999998</y>
+            </texCoord>
+            <texCoord>
+                <x>0.530833364</x>
+                <y>0.314999998</y>
+            </texCoord>
+            <texCoord>
+                <x>0.845000029</x>
+                <y>0.314999998</y>
+            </texCoord>
+            <texCoord>
+                <x>0.216666669</x>
+                <y>0.556666672</y>
+            </texCoord>
+            <texCoord>
+                <x>0.530833364</x>
+                <y>0.556666672</y>
+            </texCoord>
+            <texCoord>
+                <x>0.845000029</x>
+                <y>0.556666672</y>
             </texCoord>
         </texCoords>
         <source>
-            <source-type>video</source-type>
-            <source-name>test.mov</source-name>
+            <source-type>image</source-type>
+            <source-name>image4.jpg</source-name>
         </source>
-    </surface>
-    <surface>
-        <vertices>
-            <vertex>
-                <x>509.000000000</x>
-                <y>50.000000000</y>
-            </vertex>
-            <vertex>
-                <x>629.000000000</x>
-                <y>383.000000000</y>
-            </vertex>
-            <vertex>
-                <x>276.000000000</x>
-                <y>358.000000000</y>
-            </vertex>
-        </vertices>
-        <texCoords>
-            <texCoord>
-                <x>0.500000000</x>
-                <y>0.000000000</y>
-            </texCoord>
-            <texCoord>
-                <x>1.000000000</x>
-                <y>1.000000000</y>
-            </texCoord>
-            <texCoord>
-                <x>0.000000000</x>
-                <y>1.000000000</y>
-            </texCoord>
-        </texCoords>
-        <source>
-            <source-type>fbo</source-type>
-            <source-name>Custom FBO Source</source-name>
-        </source>
+        <properties>
+            <gridCols>2</gridCols>
+            <gridRows>2</gridRows>
+        </properties>
     </surface>
 </surfaces>
