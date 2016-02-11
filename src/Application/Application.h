@@ -19,6 +19,7 @@
 #include "GuiMode.h"
 
 #include "Gui.h"
+#include "TerminalListener.h"
 
 #define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
 #define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
@@ -28,7 +29,7 @@ namespace piMapper {
 
 class ApplicationBaseState;
 
-class Application {
+class Application : public KeyListener {
 
 	public:
 		Application();
@@ -55,6 +56,9 @@ class Application {
 		SurfaceManagerGui * getGui(){ return &_gui; };
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; };
 		CmdManager * getCmdManager(){ return &_cmdManager; };
+	
+		void onCharacterReceived(KeyListenerEventData & e);
+		TerminalListener consoleListener;
 	
 	protected:
 		void setState(ApplicationBaseState * st);

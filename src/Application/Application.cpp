@@ -24,6 +24,8 @@ void Application::setup(){
 			ofLogWarning("Application::setup()") << "Failed to load default settings" << endl;
 		}
 	}
+	
+	consoleListener.setup(this);
 }
 
 ApplicationBaseState * Application::getState(){
@@ -123,6 +125,13 @@ void Application::setState(ApplicationBaseState * st){
 bool Application::isShiftKeyDown(){
 	return _shiftKeyDown;
 }
+
+void Application::onCharacterReceived(KeyListenerEventData & e){
+	ofKeyEventArgs args;
+	args.key = (int)e.character;
+	cout << "TermListener: " << e.character << endl;
+	onKeyPressed(args);
+};
 
 bool Application::loadXmlSettings(string fileName){
 	if(!ofFile::doesFileExist(fileName)){
