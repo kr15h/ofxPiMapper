@@ -10,6 +10,9 @@
 #include "ofMain.h"
 #include <fcntl.h>
 
+namespace ofx {
+namespace piMapper {
+
 class KeyListenerEventData {
 	public:
 		KeyListenerEventData(char character, void * listener);
@@ -39,3 +42,6 @@ class TerminalListener : public Poco::Runnable {
 		Poco::Thread thread;
 		int sleepTime;
 };
+
+} // namespace piMapper
+} // namespace ofx

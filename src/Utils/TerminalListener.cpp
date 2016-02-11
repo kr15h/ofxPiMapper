@@ -1,5 +1,8 @@
 #include "TerminalListener.h"
 
+namespace ofx {
+namespace piMapper {
+
 KeyListenerEventData::KeyListenerEventData(char character, void * listener){
 	this->character = character;
 	this->listener = listener;
@@ -66,3 +69,6 @@ void TerminalListener::close(){
 	thread.tryJoin(50);
 	listener = NULL;
 }
+
+} // namespace piMapper
+} // namespace ofx
