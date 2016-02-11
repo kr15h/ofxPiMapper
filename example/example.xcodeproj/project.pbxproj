@@ -24,6 +24,7 @@
 		3933D5D819BB87BD000ACA55 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CD19BB87BD000ACA55 /* ofxSlider.cpp */; };
 		3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5CF19BB87BD000ACA55 /* ofxSliderGroup.cpp */; };
 		3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */; };
+		393C0E161C6CCDD700A5F586 /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 393C0E151C6CCDD700A5F586 /* TerminalListener.cpp */; };
 		394BD2431C4D63AE0089A48C /* TogglePerspectiveCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 394BD2411C4D63AE0089A48C /* TogglePerspectiveCmd.cpp */; };
 		396841751BC91F6F009F0BAE /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841691BC91F6F009F0BAE /* Application.cpp */; };
 		396841761BC91F6F009F0BAE /* ApplicationBaseState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3968416B1BC91F6F009F0BAE /* ApplicationBaseState.cpp */; };
@@ -183,6 +184,8 @@
 		3933D5D119BB87BD000ACA55 /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		3933D5D219BB87BD000ACA55 /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		39366FD519BDA95E006E5BE6 /* ofxPiMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPiMapper.h; sourceTree = "<group>"; };
+		393C0E141C6CCDD700A5F586 /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
+		393C0E151C6CCDD700A5F586 /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
 		394BD2411C4D63AE0089A48C /* TogglePerspectiveCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TogglePerspectiveCmd.cpp; path = Commands/TogglePerspectiveCmd.cpp; sourceTree = "<group>"; };
 		394BD2421C4D63AE0089A48C /* TogglePerspectiveCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TogglePerspectiveCmd.h; path = Commands/TogglePerspectiveCmd.h; sourceTree = "<group>"; };
 		396841691BC91F6F009F0BAE /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 		39836CC71C502108006DB042 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				393C0E141C6CCDD700A5F586 /* TerminalListener.h */,
+				393C0E151C6CCDD700A5F586 /* TerminalListener.cpp */,
 				3926516F1C5429C600C54844 /* HomographyHelper.h */,
 				392651701C5429C600C54844 /* HomographyHelper.cpp */,
 			);
@@ -1095,6 +1100,7 @@
 				3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */,
 				39C1243319EE9589005DF557 /* lz4.c in Sources */,
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
+				393C0E161C6CCDD700A5F586 /* TerminalListener.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
 				39DD777A1C676DDC009EDC49 /* SelVertexCmd.cpp in Sources */,
