@@ -129,6 +129,27 @@ bool Application::isShiftKeyDown(){
 void Application::onCharacterReceived(KeyListenerEventData & e){
 	ofKeyEventArgs args;
 	args.key = (int)e.character;
+	
+	// These if's have been added because we get
+	// capital letters A, B, C and D when pressing
+	// arrows on the keyboard via terminal.
+	
+	if(args.key == 'A'){
+		args.key = OF_KEY_UP;
+	}
+	
+	if(args.key == 'B'){
+		args.key = OF_KEY_DOWN;
+	}
+	
+	if(args.key == 'C'){
+		args.key = OF_KEY_RIGHT;
+	}
+	
+	if(args.key == 'D'){
+		args.key = OF_KEY_LEFT;
+	}
+	
 	cout << "TermListener: " << e.character << endl;
 	onKeyPressed(args);
 };
