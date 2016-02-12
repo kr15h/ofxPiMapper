@@ -31,6 +31,8 @@ The following is a list of key features ofxPiMapper has.
    Use ofxPiMapper as an addon and enjoy the power of custom generative sources by extending the `FboSource` class. 
  - **Undoable**  
    Since version 0.2.3 ofxPiMapper supports undo. 
+ - **Nerd Remote Control via SSH**
+   All the functions can be triggered by using the keyboard and via SSH CLI connection. See [SSH Remote Control](#ssh-remote-control) section to learn more.
  - **More to Come**  
    Expect more conventional projection mapping software features to be implemented.
 
@@ -194,6 +196,9 @@ s | Save composition
 z | Undo
 BACKSPACE | Delete surface
 
+### SSH Remote Control
+
+You can enter a SSH session with your networked Raspberry Pi, launch the ofxPiMapper executable and access all the functionality by using the keyboard. Use the same commands listed in the above table, use `/` as the replacement for the `SHIFT` key as it is not that easy to capture `SHIFT` keypress when on SSH. The `/` works as a toggle, you have to press it once to simulate `SHIFT_DOWN` and one more time to simulate `SHIFT_UP`. It is particularly important when moving surfaces and vertices over long distances. The `/` key enables 10px steps when pressing arrow buttons.
 
 Compatibility
 ---
