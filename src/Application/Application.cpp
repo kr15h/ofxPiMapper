@@ -48,6 +48,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 _shiftKeyDown = true;
 		 break;
 		 
+	 case '/':
+		 _shiftKeyDown = !_shiftKeyDown;
+		 break;
+		 
 	 case '1':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
@@ -101,8 +105,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 }
 
 void Application::onKeyReleased(ofKeyEventArgs & args){
-	if(args.key == OF_KEY_SHIFT){
+	switch(args.key){
+	 case OF_KEY_SHIFT:
 		_shiftKeyDown = false;
+		break;
 	}
 }
 
