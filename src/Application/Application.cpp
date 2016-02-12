@@ -134,20 +134,19 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 	// capital letters A, B, C and D when pressing
 	// arrows on the keyboard via terminal.
 	
-	if(args.key == 'A'){
+	switch(args.key){
+	 case 'A':
 		args.key = OF_KEY_UP;
-	}
-	
-	if(args.key == 'B'){
+		break;
+	 case 'B':
 		args.key = OF_KEY_DOWN;
-	}
-	
-	if(args.key == 'C'){
+		break;
+	 case 'C':
 		args.key = OF_KEY_RIGHT;
-	}
-	
-	if(args.key == 'D'){
+		break;
+	 case 'D':
 		args.key = OF_KEY_LEFT;
+		break;
 	}
 	
 	cout << "TermListener: " << e.character << endl;
