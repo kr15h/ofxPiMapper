@@ -18,6 +18,7 @@
 #include "MvTexCoordCmd.h"
 #include "SelVertexCmd.h"
 #include "DeselectSurfaceCmd.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {

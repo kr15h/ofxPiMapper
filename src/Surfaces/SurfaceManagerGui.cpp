@@ -146,6 +146,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			hitJoint->select();
 			hitJoint->startDrag();
 			int jointVertIndex = 0;
+			
 			for(int i = 0; i < projectionEditor.getJoints()->size(); i++){
 				if((*projectionEditor.getJoints())[i] == hitJoint){
 					jointVertIndex = i;
@@ -153,14 +154,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 				}
 			}
 			
-			// TODO: emit event through the gui singleton
-			_cmdManager->exec(new SelVertexCmd(surfaceManager, jointVertIndex));
-			
-			// TODO: emit event through the gui singleton
-			_cmdManager->exec(new MvSurfaceVertCmd(
-								  jointVertIndex,
-								  surfaceManager->getSelectedSurface(),
-								  &projectionEditor));
+			Gui::instance()->notifyJointPressed(args, jointVertIndex);
 			bSurfaceSelected = true;
 		}
 
@@ -168,17 +162,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		if(!bSurfaceSelected){
 			for(int i = surfaceManager->size() - 1; i >= 0; i--){
 				if(surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
-
-					// Do not repeat this command if attempting to select an
-					// already selected surface.
-					if(surfaceManager->getSelectedSurface() != surfaceManager->getSurface(i)){
-						
-						// TODO: emit event through gui singleton
-						_cmdManager->exec(new SelSurfaceCmd(
-											  surfaceManager,
-											  surfaceManager->getSurface(i) ));
-					}
-
+					Gui::instance()->notifySurfacePressed(args, surfaceManager->getSurface(i));
 					bSurfaceSelected = true;
 					break;
 				}
