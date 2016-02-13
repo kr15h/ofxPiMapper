@@ -110,6 +110,8 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			}
 
 			if(jointIndex != -1){
+
+				// TODO: emit event through the GUI singleton
 				_cmdManager->exec(new MvTexCoordCmd(jointIndex, &textureEditor));
 			}
 
@@ -126,6 +128,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 				clickPosition = ofVec2f(args.x, args.y);
 				startDrag();
 
+				// TODO: emit event through the gui singleton
 				_cmdManager->exec(new MvAllTexCoordsCmd(
 									  surfaceManager->getSelectedSurface(),
 									  &textureEditor));
@@ -150,8 +153,10 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 				}
 			}
 			
+			// TODO: emit event through the gui singleton
 			_cmdManager->exec(new SelVertexCmd(surfaceManager, jointVertIndex));
 			
+			// TODO: emit event through the gui singleton
 			_cmdManager->exec(new MvSurfaceVertCmd(
 								  jointVertIndex,
 								  surfaceManager->getSelectedSurface(),
@@ -167,6 +172,8 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 					// Do not repeat this command if attempting to select an
 					// already selected surface.
 					if(surfaceManager->getSelectedSurface() != surfaceManager->getSurface(i)){
+						
+						// TODO: emit event through gui singleton
 						_cmdManager->exec(new SelSurfaceCmd(
 											  surfaceManager,
 											  surfaceManager->getSurface(i) ));
@@ -185,6 +192,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			clickPosition = ofVec2f(args.x, args.y);
 			startDrag();
 
+			// TODO: emit event through the gui singleton
 			_cmdManager->exec(
 				new MvSurfaceCmd(
 					surfaceManager->getSelectedSurface(),
@@ -194,6 +202,8 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		if(!bSurfaceSelected){
 			// unselect if no surface selected
 			projectionEditor.clearJoints();
+			
+			// TODO: emit event though the gui singleton
 			_cmdManager->exec(new DeselectSurfaceCmd(surfaceManager));
 		}
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
@@ -207,6 +217,8 @@ void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
 	// Check if surface has moved
 	if(surfaceManager->getSelectedSurface()){
 		if(!surfaceManager->getSelectedSurface()->getMoved()){
+			
+			// TODO: emit event through the gui singleton
 			_cmdManager->undo();
 		}
 	}
