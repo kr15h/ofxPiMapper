@@ -14,9 +14,12 @@
 #include "SelPrevSurfaceCmd.h"
 #include "SelNextVertexCmd.h"
 #include "SelPrevVertexCmd.h"
+#include "SelVertexCmd.h"
+#include "SelSurfaceCmd.h"
 #include "MvSelectionCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
@@ -27,6 +30,8 @@ class ProjectionMappingState : public ApplicationBaseState {
 		static ProjectionMappingState * instance();
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
+		void onJointPressed(Application * app, GuiJointEvent & e);
+		void onSurfacePressed(Application * app, GuiSurfaceEvent & e);
 
 	private:
 		static ProjectionMappingState * _instance;

@@ -174,5 +174,19 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 	}
 }
 
+void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e){
+	app->getCmdManager()->exec(new SelVertexCmd(app->getSurfaceManager(), e.jointIndex));
+	app->getCmdManager()->exec(new MvSurfaceVertCmd(
+		e.jointIndex,
+		app->getSurfaceManager()->getSelectedSurface()));
+}
+
+void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
+	cout << "ProjectionMappingState::onSurfacePressed" << endl;
+	if(app->getSurfaceManager()->getSelectedSurface() != e.surface){
+		app->getCmdManager()->exec(new SelSurfaceCmd(app->getSurfaceManager(), e.surface ));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

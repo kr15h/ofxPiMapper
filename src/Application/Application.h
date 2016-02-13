@@ -46,6 +46,8 @@ class Application : public KeyListener {
 		void onMousePressed(ofMouseEventArgs & args);
 		// Then we catch GUI events with this one and create commands
 		void onGuiEvent(GuiEvent & e);
+		void onJointPressed(GuiJointEvent & e);
+		void onSurfacePressed(GuiSurfaceEvent & e);
 		// Every state should have it's own GUI layer
 	
 		void addFboSource(FboSource & fboSource);

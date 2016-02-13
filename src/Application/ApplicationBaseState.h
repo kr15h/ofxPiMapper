@@ -2,6 +2,7 @@
 
 #include "ofEvents.h"
 #include "ofLog.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
@@ -16,6 +17,8 @@ class ApplicationBaseState {
 
 		// Event handler virtual methods
 		virtual void onKeyPressed(Application * app, ofKeyEventArgs & args){}
+		virtual void onJointPressed(Application * app, GuiJointEvent & e){}
+		virtual void onSurfacePressed(Application * app, GuiSurfaceEvent & e){}
 
 };
 
