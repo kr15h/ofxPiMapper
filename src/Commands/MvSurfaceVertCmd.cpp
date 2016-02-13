@@ -3,13 +3,9 @@
 namespace ofx {
 namespace piMapper {
 
-MvSurfaceVertCmd::MvSurfaceVertCmd(int vertIndex,
-								   BaseSurface * surface,
-								   ProjectionEditor * projectionEditor){
-
+MvSurfaceVertCmd::MvSurfaceVertCmd(int vertIndex, BaseSurface * surface){
 	_vertIndex = vertIndex;
 	_surface = surface;
-	_projectionEditor = projectionEditor;
 }
 
 void MvSurfaceVertCmd::exec(){
@@ -20,9 +16,6 @@ void MvSurfaceVertCmd::exec(){
 void MvSurfaceVertCmd::undo(){
 	ofLogNotice("MvSurfaceVertCommand", "undo");
 	_surface->setVertex(_vertIndex, _prevVertPos);
-	_projectionEditor->updateJoints();
-	_projectionEditor = 0;
-	_surface = 0;
 }
 
 } // namespace piMapper

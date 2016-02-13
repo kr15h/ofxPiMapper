@@ -15,9 +15,7 @@ namespace piMapper {
 class MvSurfaceVertCmd : public BaseUndoCmd {
 
 	public:
-		MvSurfaceVertCmd(int vertIndex,
-						 BaseSurface * surface,
-						 ProjectionEditor * projectionEditor);
+		MvSurfaceVertCmd(int vertIndex, BaseSurface * surface);
 		void exec();
 		void undo();
 
@@ -25,7 +23,6 @@ class MvSurfaceVertCmd : public BaseUndoCmd {
 		int _vertIndex;
 		ofVec2f _prevVertPos;
 		BaseSurface * _surface;
-		ProjectionEditor * _projectionEditor;
 
 };
 
