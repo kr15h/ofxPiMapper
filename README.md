@@ -5,7 +5,7 @@ ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi and the Intel Compute Stick.
 
 **Very important update**: Raspberry Pi camera now can be replaced with a HDMI input board that can allow you to use the `camera-example` out of the box to projection map content that comes in from VDMX or similar software on your computer. This one: [B101 HDMI to CSI-2 Bridge (15 pin FPC)](http://www.auvidea.eu/index.php/theme-styles/2014-12-30-22-32-06/b101)
 
@@ -202,7 +202,8 @@ You can enter a SSH session with your networked Raspberry Pi, launch the ofxPiMa
 
 Compatibility
 ---
-Tested with openFrameworks 0.9.0 (OS X and Raspbian Jessie Lite). It works.
+Tested with openFrameworks 0.9.2 (OS X and Raspbian Jessie Lite). It works.
+
 ```
 TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
 ```
