@@ -17,6 +17,7 @@
 #include "SelVertexCmd.h"
 #include "SelSurfaceCmd.h"
 #include "MvSelectionCmd.h"
+#include "StartDragSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"

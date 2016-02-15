@@ -182,10 +182,11 @@ void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e
 }
 
 void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
-	cout << "ProjectionMappingState::onSurfacePressed" << endl;
 	if(app->getSurfaceManager()->getSelectedSurface() != e.surface){
 		app->getCmdManager()->exec(new SelSurfaceCmd(app->getSurfaceManager(), e.surface ));
 	}
+	
+	app->getCmdManager()->exec(new StartDragSurfaceCmd(e.surface));
 }
 
 } // namespace piMapper
