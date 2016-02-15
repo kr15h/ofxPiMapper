@@ -45,7 +45,7 @@
 		39A0A1D81C6628AB00C9096B /* MvSelectionCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A0A1D71C6628AB00C9096B /* MvSelectionCmd.cpp */; };
 		39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A867941B0D312400165378 /* SetSourceCmd.cpp */; };
 		39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */; };
-		39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */; };
+		39A9AAE91B0518FC00AA83BC /* StartDragSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAE71B0518FC00AA83BC /* StartDragSurfaceCmd.cpp */; };
 		39A9AAEC1B053B4200AA83BC /* SelSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAEA1B053B4200AA83BC /* SelSurfaceCmd.cpp */; };
 		39A9AAF21B054FC300AA83BC /* MvSurfaceVertCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39A9AAF01B054FC300AA83BC /* MvSurfaceVertCmd.cpp */; };
 		39C1243319EE9589005DF557 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 39C123EA19EE9589005DF557 /* lz4.c */; };
@@ -225,8 +225,8 @@
 		39A867951B0D312400165378 /* SetSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetSourceCmd.h; path = Commands/SetSourceCmd.h; sourceTree = "<group>"; };
 		39A9AADE1B04E78600AA83BC /* RmSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RmSurfaceCmd.cpp; path = Commands/RmSurfaceCmd.cpp; sourceTree = "<group>"; };
 		39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RmSurfaceCmd.h; path = Commands/RmSurfaceCmd.h; sourceTree = "<group>"; };
-		39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvSurfaceCmd.cpp; path = Commands/MvSurfaceCmd.cpp; sourceTree = "<group>"; };
-		39A9AAE81B0518FC00AA83BC /* MvSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvSurfaceCmd.h; path = Commands/MvSurfaceCmd.h; sourceTree = "<group>"; };
+		39A9AAE71B0518FC00AA83BC /* StartDragSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = StartDragSurfaceCmd.cpp; path = Commands/StartDragSurfaceCmd.cpp; sourceTree = "<group>"; };
+		39A9AAE81B0518FC00AA83BC /* StartDragSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartDragSurfaceCmd.h; path = Commands/StartDragSurfaceCmd.h; sourceTree = "<group>"; };
 		39A9AAEA1B053B4200AA83BC /* SelSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelSurfaceCmd.cpp; path = Commands/SelSurfaceCmd.cpp; sourceTree = "<group>"; };
 		39A9AAEB1B053B4200AA83BC /* SelSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelSurfaceCmd.h; path = Commands/SelSurfaceCmd.h; sourceTree = "<group>"; };
 		39A9AAF01B054FC300AA83BC /* MvSurfaceVertCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvSurfaceVertCmd.cpp; path = Commands/MvSurfaceVertCmd.cpp; sourceTree = "<group>"; };
@@ -823,8 +823,8 @@
 				399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */,
 				3993058B1C62993A00A4B01D /* SelPrevSurfaceCmd.h */,
 				3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */,
-				39A9AAE81B0518FC00AA83BC /* MvSurfaceCmd.h */,
-				39A9AAE71B0518FC00AA83BC /* MvSurfaceCmd.cpp */,
+				39A9AAE81B0518FC00AA83BC /* StartDragSurfaceCmd.h */,
+				39A9AAE71B0518FC00AA83BC /* StartDragSurfaceCmd.cpp */,
 				39A0A1D61C6628AB00C9096B /* MvSelectionCmd.h */,
 				39A0A1D71C6628AB00C9096B /* MvSelectionCmd.cpp */,
 				39A9AADF1B04E78600AA83BC /* RmSurfaceCmd.h */,
@@ -1045,7 +1045,7 @@
 				397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				39C1244719EE9589005DF557 /* RegexPathFilter.cpp in Sources */,
-				39A9AAE91B0518FC00AA83BC /* MvSurfaceCmd.cpp in Sources */,
+				39A9AAE91B0518FC00AA83BC /* StartDragSurfaceCmd.cpp in Sources */,
 				39C1247C19F187D5005DF557 /* BaseJoint.cpp in Sources */,
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
 				39F051301C650E7E0089A36B /* SelPrevVertexCmd.cpp in Sources */,
