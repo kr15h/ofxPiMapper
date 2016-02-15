@@ -137,57 +137,38 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		}
 
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		bool bSurfaceSelected = false;
+		CircleJoint * hitJoint = 0;
+		int hitJointIndex = -1;
+		BaseSurface * hitSurface = 0;
 
-		CircleJoint * hitJoint =
-			projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
-		if(hitJoint != 0){
-			projectionEditor.unselectAllJoints();
+		hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
+		
+		if(hitJoint){
+			for(int i = projectionEditor.getJoints()->size() - 1; i >= 0 ; --i){
+				if((*projectionEditor.getJoints())[i] == hitJoint){
+					hitJointIndex = i;
+					break;
+				}
+			}
+		}else{
+			for(int i = surfaceManager->size() - 1; i >= 0; --i){
+				if(surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
+					hitSurface = surfaceManager->getSurface(i);
+					break;
+				}
+			}
+		}
+		
+		if(hitJoint){
 			hitJoint->select();
 			hitJoint->startDrag();
-			int jointVertIndex = 0;
-			
-			for(int i = 0; i < projectionEditor.getJoints()->size(); i++){
-				if((*projectionEditor.getJoints())[i] == hitJoint){
-					jointVertIndex = i;
-					break;
-				}
-			}
-			
-			Gui::instance()->notifyJointPressed(args, jointVertIndex);
-			bSurfaceSelected = true;
-		}
-
-		// attempt to select surface, loop from end to beginning
-		if(!bSurfaceSelected){
-			for(int i = surfaceManager->size() - 1; i >= 0; i--){
-				if(surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
-					Gui::instance()->notifySurfacePressed(args, surfaceManager->getSurface(i));
-					bSurfaceSelected = true;
-					break;
-				}
-			}
-		}
-
-		if(bSurfaceSelected && hitJoint == 0){
-
-			// if not hitting the joints, start drag only if
-			// we have a selected surface
+			Gui::instance()->notifyJointPressed(args, hitJointIndex);
+		}else if(hitSurface){
 			clickPosition = ofVec2f(args.x, args.y);
-			startDrag();
-
-			// TODO: emit event through the gui singleton
-			_cmdManager->exec(
-				new MvSurfaceCmd(
-					surfaceManager->getSelectedSurface(),
-					&projectionEditor));
-		}
-
-		if(!bSurfaceSelected){
-			// unselect if no surface selected
-			projectionEditor.clearJoints();
-			
-			// TODO: emit event though the gui singleton
+			startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
+			Gui::instance()->notifySurfacePressed(args, hitSurface);
+		}else{
+			//projectionEditor.clearJoints();
 			_cmdManager->exec(new DeselectSurfaceCmd(surfaceManager));
 		}
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}

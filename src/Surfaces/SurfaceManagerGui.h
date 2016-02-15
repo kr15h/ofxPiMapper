@@ -11,7 +11,6 @@
 #include "SourcesEditor.h"
 #include "GuiMode.h"
 #include "CmdManager.h"
-#include "MvSurfaceCmd.h"
 #include "SelSurfaceCmd.h"
 #include "MvSurfaceVertCmd.h"
 #include "MvAllTexCoordsCmd.h"
