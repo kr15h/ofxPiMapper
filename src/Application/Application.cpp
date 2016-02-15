@@ -18,6 +18,7 @@ Application::Application(){
 	ofAddListener(Gui::instance()->event, this, &Application::onGuiEvent);
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
+	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
 }
 
 void Application::setup(){
@@ -129,6 +130,10 @@ void Application::onJointPressed(GuiJointEvent & e){
 
 void Application::onSurfacePressed(GuiSurfaceEvent & e){
 	_state->onSurfacePressed(this, e);
+}
+
+void Application::onBackgroundPressed(GuiBackgroundEvent & e){
+	_state->onBackgroundPressed(this, e);
 }
 
 void Application::addFboSource(FboSource & fboSource){

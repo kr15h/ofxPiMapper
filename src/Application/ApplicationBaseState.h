@@ -19,6 +19,7 @@ class ApplicationBaseState {
 		virtual void onKeyPressed(Application * app, ofKeyEventArgs & args){}
 		virtual void onJointPressed(Application * app, GuiJointEvent & e){}
 		virtual void onSurfacePressed(Application * app, GuiSurfaceEvent & e){}
+		virtual void onBackgroundPressed(Application * app, GuiBackgroundEvent & e){}
 
 };
 

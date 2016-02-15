@@ -189,5 +189,9 @@ void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent
 	app->getCmdManager()->exec(new StartDragSurfaceCmd(e.surface));
 }
 
+void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
+	app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
+}
+
 } // namespace piMapper
 } // namespace ofx

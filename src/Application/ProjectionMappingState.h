@@ -19,6 +19,7 @@
 #include "MvSelectionCmd.h"
 #include "StartDragSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
+#include "DeselectSurfaceCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 
@@ -33,6 +34,7 @@ class ProjectionMappingState : public ApplicationBaseState {
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
 		void onJointPressed(Application * app, GuiJointEvent & e);
 		void onSurfacePressed(Application * app, GuiSurfaceEvent & e);
+		void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 
 	private:
 		static ProjectionMappingState * _instance;
