@@ -168,8 +168,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
 			Gui::instance()->notifySurfacePressed(args, hitSurface);
 		}else{
-			//projectionEditor.clearJoints();
-			_cmdManager->exec(new DeselectSurfaceCmd(surfaceManager));
+			Gui::instance()->notifyBackgroundPressed(args);
 		}
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
 }
