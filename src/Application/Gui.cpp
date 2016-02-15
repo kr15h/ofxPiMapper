@@ -61,5 +61,11 @@ void Gui::notifySurfaceDragged(ofMouseEventArgs & args, BaseSurface * surface){
 	ofNotifyEvent(surfaceDraggedEvent, e, this);
 }
 
+void Gui::notifyBackgroundPressed(ofMouseEventArgs & args){
+	GuiBackgroundEvent e;
+	e.args = args;
+	ofNotifyEvent(backgroundPressedEvent, e, this);
+}
+
 } // piMapper
 } // ofx

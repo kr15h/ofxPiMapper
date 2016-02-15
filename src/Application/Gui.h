@@ -12,6 +12,13 @@ struct GuiEvent{
 	int type;
 };
 
+// TODO: compress the following structs into something like:
+// struct GuiEvent{
+//   ofMouseEventArgs args;
+//   GuiObject obj;
+// };
+// It could be then possible to check the object in question
+// to decide what to do next.
 struct GuiJointEvent{
 	ofMouseEventArgs args;
 	int jointIndex;
@@ -22,6 +29,10 @@ struct GuiSurfaceEvent{
 	BaseSurface * surface;
 };
 
+struct GuiBackgroundEvent{
+	ofMouseEventArgs args;
+};
+
 class Gui {
 	public:
 		static Gui * instance();
@@ -29,6 +40,7 @@ class Gui {
 		ofEvent <GuiEvent> event;
 		void notifyEvent(ofMouseEventArgs & args);
 	
+		// TODO: combine the following events into one
 		ofEvent <GuiJointEvent> jointPressedEvent;
 		ofEvent <GuiJointEvent> jointReleasedEvent;
 		ofEvent <GuiJointEvent> jointDraggedEvent;
@@ -44,6 +56,10 @@ class Gui {
 		void notifySurfacePressed(ofMouseEventArgs & args, BaseSurface * surface);
 		void notifySurfaceReleased(ofMouseEventArgs & args, BaseSurface * surface);
 		void notifySurfaceDragged(ofMouseEventArgs & args, BaseSurface * surface);
+	
+		ofEvent <GuiBackgroundEvent> backgroundPressedEvent;
+	
+		void notifyBackgroundPressed(ofMouseEventArgs & args);
 	
 	private:
 		static Gui * _instance;
