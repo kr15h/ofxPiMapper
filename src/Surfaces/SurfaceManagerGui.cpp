@@ -91,17 +91,20 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 	if(guiMode == GuiMode::NONE){
 		return;
 	}else if(guiMode == GuiMode::TEXTURE_MAPPING){
-		bool bSurfaceSelected = false;
-		CircleJoint * hitJoint =
-			textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
+		
+		if(surfaceManager->getSelectedSurface() == 0){
+			return;
+		}
+		
+		CircleJoint * hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
+		
 		if(hitJoint != 0){
+			
 			textureEditor.unselectAllJoints();
-
 			hitJoint->select();
 			hitJoint->startDrag();
-			bSurfaceSelected = true;
-
-			int jointIndex = -1;
+			int jointIndex;
+			
 			for(int i = 0; i < textureEditor.getJoints().size(); i++){
 				if(textureEditor.getJoints()[i] == hitJoint){
 					jointIndex = i;
@@ -109,31 +112,21 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 				}
 			}
 
-			if(jointIndex != -1){
+			_cmdManager->exec(new MvTexCoordCmd(jointIndex, &textureEditor));
+			
+		}else if(surfaceManager->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
+			
+			clickPosition = ofVec2f(args.x, args.y);
+			startDrag();
 
-				// TODO: emit event through the GUI singleton
-				_cmdManager->exec(new MvTexCoordCmd(jointIndex, &textureEditor));
-			}
+			// TODO: emit event through the gui singleton
+			_cmdManager->exec(new MvAllTexCoordsCmd(
+				surfaceManager->getSelectedSurface(),
+				&textureEditor));
 
 		}else{
+			// TODO: Create command for this
 			textureEditor.unselectAllJoints();
-		}
-
-		if(surfaceManager->getSelectedSurface() != 0 && !bSurfaceSelected){
-			// hittest texture area to see if we are hitting the texture surface
-			if(surfaceManager->getSelectedSurface()->getTextureHitArea().inside(
-				   args.x, args.y)){
-
-				// TODO: move these to a separate routine
-				clickPosition = ofVec2f(args.x, args.y);
-				startDrag();
-
-				// TODO: emit event through the gui singleton
-				_cmdManager->exec(new MvAllTexCoordsCmd(
-									  surfaceManager->getSelectedSurface(),
-									  &textureEditor));
-
-			}
 		}
 
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
