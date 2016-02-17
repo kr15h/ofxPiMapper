@@ -37,9 +37,6 @@ class Gui {
 	public:
 		static Gui * instance();
 	
-		ofEvent <GuiEvent> event;
-		void notifyEvent(ofMouseEventArgs & args);
-	
 		// TODO: combine the following events into one
 		ofEvent <GuiJointEvent> jointPressedEvent;
 		ofEvent <GuiJointEvent> jointReleasedEvent;

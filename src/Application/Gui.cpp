@@ -12,13 +12,6 @@ Gui * Gui::instance(){
 	return _instance;
 }
 
-void Gui::notifyEvent(ofMouseEventArgs & args){
-	GuiEvent e;
-	e.args = args;
-	e.type = GuiEventType::SURFACE_HIT;
-	ofNotifyEvent(event, e, this);
-}
-
 void Gui::notifyJointPressed(ofMouseEventArgs & args, int jointIndex){
 	GuiJointEvent e;
 	e.args = args;

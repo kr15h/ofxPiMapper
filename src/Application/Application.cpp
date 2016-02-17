@@ -15,7 +15,6 @@ Application::Application(){
 	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
 	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
 	
-	ofAddListener(Gui::instance()->event, this, &Application::onGuiEvent);
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
@@ -116,13 +115,7 @@ void Application::onKeyReleased(ofKeyEventArgs & args){
 	}
 }
 
-void Application::onMousePressed(ofMouseEventArgs & args){
-	Gui::instance()->notifyEvent(args);
-}
-
-void Application::onGuiEvent(GuiEvent & e){
-	cout << "GUI EVENT: " << e.args.x << ", " << e.args.y << ", " << e.type << endl;
-}
+void Application::onMousePressed(ofMouseEventArgs & args){}
 
 void Application::onJointPressed(GuiJointEvent & e){
 	_state->onJointPressed(this, e);

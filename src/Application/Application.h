@@ -44,8 +44,8 @@ class Application : public KeyListener {
 	
 		// We use this to pass mouse events into the GUI layer
 		void onMousePressed(ofMouseEventArgs & args);
+	
 		// Then we catch GUI events with this one and create commands
-		void onGuiEvent(GuiEvent & e);
 		void onJointPressed(GuiJointEvent & e);
 		void onSurfacePressed(GuiSurfaceEvent & e);
 		void onBackgroundPressed(GuiBackgroundEvent & e);
