@@ -68,11 +68,13 @@ void QuadSurface::draw(){
 			calculateHomography();
 		}
 		
+		ofRectangle box = getMeshBoundingBox();
 		ofMesh m = mesh;
+		
 		m.setVertex(0, ofVec3f(0, 0, 0));
-		m.setVertex(1, ofVec3f(ofGetWidth(), 0, 0));
-		m.setVertex(2, ofVec3f(ofGetWidth(), ofGetHeight(), 0));
-		m.setVertex(3, ofVec3f(0, ofGetHeight(), 0));
+		m.setVertex(1, ofVec3f(box.width, 0, 0));
+		m.setVertex(2, ofVec3f(box.width, box.height, 0));
+		m.setVertex(3, ofVec3f(0, box.height, 0));
 		
 		ofPushMatrix();
 		if(true){
@@ -211,14 +213,16 @@ void QuadSurface::calculateHomography(){
 	float src[4][2];
     float dst[4][2];
 	
+	ofRectangle box = getMeshBoundingBox();
+	
 	src[0][0] = 0;
     src[0][1] = 0;
-    src[1][0] = ofGetWidth();
+    src[1][0] = box.width;
     src[1][1] = 0;
-    src[2][0] = ofGetWidth();
-    src[2][1] = ofGetHeight();
+    src[2][0] = box.width;
+    src[2][1] = box.height;
     src[3][0] = 0;
-    src[3][1] = ofGetHeight();
+    src[3][1] = box.height;
 	
 	ofVec3f p0 = mesh.getVertex(0);
 	ofVec3f p1 = mesh.getVertex(1);
@@ -243,6 +247,34 @@ void QuadSurface::setPerspectiveWarping(bool b){
 
 bool QuadSurface::getPerspectiveWarping(){
 	return _perspectiveWarping;
+}
+
+ofRectangle QuadSurface::getMeshBoundingBox(){
+	float minX = 10000.0f;
+	float minY = 10000.0f;
+	float maxX = 0.0f;
+	float maxY = 0.0f;
+	
+	for(int i = 0; i < mesh.getVertices().size(); ++i){
+		if(mesh.getVertices()[i].x < minX){
+			minX = mesh.getVertices()[i].x;
+		}
+		
+		if(mesh.getVertices()[i].y < minY){
+			minY = mesh.getVertices()[i].y;
+		}
+		
+		if(mesh.getVertices()[i].x > maxX){
+			maxX = mesh.getVertices()[i].x;
+		}
+		
+		if(mesh.getVertices()[i].y > maxY){
+			maxY = mesh.getVertices()[i].y;
+		}
+	}
+	
+	ofRectangle boundingBox = ofRectangle(ofPoint(minX, minY), ofPoint(maxX, maxY));
+	return boundingBox;
 }
 
 } // namespace piMapper

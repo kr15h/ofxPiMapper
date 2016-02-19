@@ -39,6 +39,8 @@ class QuadSurface : public BaseSurface {
 	
 		void setPerspectiveWarping(bool b);
 		bool getPerspectiveWarping();
+	
+		ofRectangle getMeshBoundingBox();
 
 	private:
 		void calculateHomography();
