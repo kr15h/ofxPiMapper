@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Settings.h"
 #include "ofxPiMapper.h"
 #include "CustomSource.h"
 #include "CrossSource.h"

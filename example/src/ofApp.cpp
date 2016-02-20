@@ -19,6 +19,8 @@ void ofApp::setup(){
 
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();
+	
+	ofSetFullscreen(Settings::instance()->getFullscreen());
 }
 
 void ofApp::draw(){
