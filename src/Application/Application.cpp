@@ -92,8 +92,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 's':
-		 _surfaceManager.saveXmlSettings(
-			 PIMAPPER_USER_SURFACES_XML_FILE);
+		 _surfaceManager.saveXmlSettings(SettingsLoader::instance()->getLastLoadedFilename());
 		 break;
 
 	 case 'z':

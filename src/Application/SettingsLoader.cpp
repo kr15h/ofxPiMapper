@@ -104,6 +104,8 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 		xmlSettings->popTag(); // surfaces
 	}
 	
+	_lastLoadedFilename = fileName;
+	
 	return true;
 }
 

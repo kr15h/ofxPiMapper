@@ -17,12 +17,16 @@ class SettingsLoader {
 		bool load(SurfaceStack & surfaces, MediaServer & mediaServer, string fileName);
 		bool save(SurfaceStack & surfaces, string fileName);
 	
+		string getLastLoadedFilename(){ return _lastLoadedFilename; };
+	
 	private:
 		static SettingsLoader * _instance;
 	
 		BaseSurface * getTriangleSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getQuadSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getGridWarpSurface(ofxXmlSettings * xmlSettings);
+	
+		string _lastLoadedFilename;
 };
 
 }
