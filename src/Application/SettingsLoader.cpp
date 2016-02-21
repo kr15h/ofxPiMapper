@@ -3,9 +3,6 @@
 namespace ofx {
 namespace piMapper {
 
-// TODO: Figure out how to solve readability regarding
-//       xmlSettings->pushTag() and xmlSettings->popTag()
-
 SettingsLoader * SettingsLoader::_instance = 0;
 
 SettingsLoader * SettingsLoader::instance(){
