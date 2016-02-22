@@ -169,6 +169,10 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 }
 		 break;
 		 
+	 case ' ':
+		 app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
+		 break;
+		 
 	 default:
 		 break;
 	}
