@@ -49,6 +49,7 @@ class SurfaceManager {
 		void selectVertex(int i);
 	
 		void moveSelectionBy(ofVec2f v);
+		void moveAllSurfacesBy(ofVec2f v);
 	
 		int size();
 		int getSelectedVertexIndex();

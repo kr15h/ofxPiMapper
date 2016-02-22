@@ -212,6 +212,7 @@ void SurfaceManager::selectVertex(int i){
 
 void SurfaceManager::moveSelectionBy(ofVec2f v){
 	if(selectedSurface == 0){
+		moveAllSurfacesBy(v);
 		return;
 	}
 	
@@ -222,7 +223,15 @@ void SurfaceManager::moveSelectionBy(ofVec2f v){
 		selectedSurface->moveBy(v);
 	}
 	
-	// TODO: use member variable for this in the future
+	// TODO: instead of having single selected surface
+	// we want to have a selection of one or more.
+	// it could be implemented as vector here.
+}
+
+void SurfaceManager::moveAllSurfacesBy(ofVec2f v){
+	for(int i = 0; i < _surfaces.size(); ++i){
+		_surfaces[i]->moveBy(v);
+	}
 }
 
 void SurfaceManager::deselectSurface(){
