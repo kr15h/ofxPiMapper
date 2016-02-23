@@ -203,6 +203,8 @@ f | Toggle fullscreen
 s | Save composition
 z | Undo
 BACKSPACE | Delete surface
+SPACE | Deselect surface (projection mapping mode)
+Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
 
 ### SSH Remote Control
 
