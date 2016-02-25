@@ -12,7 +12,7 @@ void RmGridRowCmd::exec(){
 
 	// TODO: Figure out nice math to not loose existing vertex positions
 	
-	if(_surface->getGridRows() > 2){
+	if(_surface->getGridRows() > 1){
 		_vertices = _surface->getVertices();
 		_texCoords = _surface->getTexCoords();
 		_surface->setGridRows(_surface->getGridRows() - 1);
