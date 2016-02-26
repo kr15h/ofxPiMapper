@@ -33,12 +33,14 @@
 		396841791BC91F6F009F0BAE /* SourceSelectionState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841711BC91F6F009F0BAE /* SourceSelectionState.cpp */; };
 		3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841731BC91F6F009F0BAE /* TextureMappingState.cpp */; };
 		396841821BC93DDC009F0BAE /* AddSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */; };
+		3975BDB41C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3975BDB31C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp */; };
 		397C46BA1C3971CD002689E2 /* Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397C46B81C3971CD002689E2 /* Info.cpp */; };
 		397C46BD1C398D72002689E2 /* SurfaceStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397C46BB1C398D72002689E2 /* SurfaceStack.cpp */; };
 		397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397C46C01C3AE2A7002689E2 /* SurfaceFactory.cpp */; };
 		397EFC7C1A08E7680009286E /* ofxPiMapper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7B1A08E7680009286E /* ofxPiMapper.cpp */; };
 		397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC7D1A08FE720009286E /* FboSource.cpp */; };
 		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
+		39922B881C8050E800FA33AA /* SelNextTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39922B871C8050E800FA33AA /* SelNextTexCoordCmd.cpp */; };
 		3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */; };
 		3993058D1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3993058C1C62993A00A4B01D /* SelPrevSurfaceCmd.cpp */; };
 		3995C20A1C79069B00123352 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3995C2091C79069B00123352 /* Settings.cpp */; };
@@ -203,6 +205,8 @@
 		396841741BC91F6F009F0BAE /* TextureMappingState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureMappingState.h; sourceTree = "<group>"; };
 		396841801BC93DDC009F0BAE /* AddSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AddSurfaceCmd.cpp; path = Commands/AddSurfaceCmd.cpp; sourceTree = "<group>"; };
 		396841811BC93DDC009F0BAE /* AddSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddSurfaceCmd.h; path = Commands/AddSurfaceCmd.h; sourceTree = "<group>"; };
+		3975BDB21C7E0D2F00DB5E79 /* SetNextSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetNextSourceCmd.h; path = Commands/SetNextSourceCmd.h; sourceTree = "<group>"; };
+		3975BDB31C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetNextSourceCmd.cpp; path = Commands/SetNextSourceCmd.cpp; sourceTree = "<group>"; };
 		397C46B81C3971CD002689E2 /* Info.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Info.cpp; sourceTree = "<group>"; };
 		397C46B91C3971CD002689E2 /* Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Info.h; sourceTree = "<group>"; };
 		397C46BB1C398D72002689E2 /* SurfaceStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceStack.cpp; sourceTree = "<group>"; };
@@ -214,6 +218,8 @@
 		397EFC7E1A08FE720009286E /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
 		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
+		39922B861C8050E800FA33AA /* SelNextTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelNextTexCoordCmd.h; path = Commands/SelNextTexCoordCmd.h; sourceTree = "<group>"; };
+		39922B871C8050E800FA33AA /* SelNextTexCoordCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelNextTexCoordCmd.cpp; path = Commands/SelNextTexCoordCmd.cpp; sourceTree = "<group>"; };
 		399305881C62935700A4B01D /* SelNextSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelNextSurfaceCmd.h; path = Commands/SelNextSurfaceCmd.h; sourceTree = "<group>"; };
 		399305891C62935700A4B01D /* SelNextSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelNextSurfaceCmd.cpp; path = Commands/SelNextSurfaceCmd.cpp; sourceTree = "<group>"; };
 		3993058B1C62993A00A4B01D /* SelPrevSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelPrevSurfaceCmd.h; path = Commands/SelPrevSurfaceCmd.h; sourceTree = "<group>"; };
@@ -811,6 +817,8 @@
 				39DD77781C676DDC009EDC49 /* SelVertexCmd.h */,
 				39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */,
 				39F0512B1C650D070089A36B /* SelNextVertexCmd.h */,
+				39922B871C8050E800FA33AA /* SelNextTexCoordCmd.cpp */,
+				39922B861C8050E800FA33AA /* SelNextTexCoordCmd.h */,
 				39F0512C1C650D070089A36B /* SelNextVertexCmd.cpp */,
 				39F0512E1C650E7E0089A36B /* SelPrevVertexCmd.h */,
 				39F0512F1C650E7E0089A36B /* SelPrevVertexCmd.cpp */,
@@ -842,6 +850,8 @@
 				391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */,
 				39A867951B0D312400165378 /* SetSourceCmd.h */,
 				39A867941B0D312400165378 /* SetSourceCmd.cpp */,
+				3975BDB21C7E0D2F00DB5E79 /* SetNextSourceCmd.h */,
+				3975BDB31C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp */,
 				394BD2421C4D63AE0089A48C /* TogglePerspectiveCmd.h */,
 				394BD2411C4D63AE0089A48C /* TogglePerspectiveCmd.cpp */,
 			);
@@ -1106,6 +1116,7 @@
 				3993058A1C62935700A4B01D /* SelNextSurfaceCmd.cpp in Sources */,
 				39C1243319EE9589005DF557 /* lz4.c in Sources */,
 				39C1243B19EE9589005DF557 /* DeviceFilter.cpp in Sources */,
+				3975BDB41C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp in Sources */,
 				393C0E161C6CCDD700A5F586 /* TerminalListener.cpp in Sources */,
 				39C1243E19EE9589005DF557 /* DirectoryWatcher.cpp in Sources */,
 				39C1248119F187D5005DF557 /* TextureEditor.cpp in Sources */,
@@ -1126,6 +1137,7 @@
 				397EFC821A09047C0009286E /* CustomSource.cpp in Sources */,
 				39C1243819EE9589005DF557 /* ByteBufferWriter.cpp in Sources */,
 				3933D5D519BB87BD000ACA55 /* ofxGuiGroup.cpp in Sources */,
+				39922B881C8050E800FA33AA /* SelNextTexCoordCmd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
