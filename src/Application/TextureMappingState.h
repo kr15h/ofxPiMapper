@@ -5,6 +5,7 @@
 #include "ofLog.h"
 #include "ofGraphics.h"
 #include "SelNextTexCoordCmd.h"
+#include "DeselectTexCoordCmd.h"
 
 namespace ofx {
 namespace piMapper {
