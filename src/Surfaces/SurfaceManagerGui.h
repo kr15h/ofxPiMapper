@@ -48,6 +48,7 @@ class SurfaceManagerGui {
 		void stopDrag();
 	
 		ProjectionEditor * getProjectionEditor();
+		TextureEditor * getTextureEditor();
 	
 		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);

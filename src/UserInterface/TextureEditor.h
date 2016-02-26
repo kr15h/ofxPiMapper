@@ -33,6 +33,8 @@ class TextureEditor {
 		void createJoints();
 		void clearJoints();
 		void unselectAllJoints();
+		void selectNextTexCoord();
+		void selectPrevTexCoord();
 		void moveTexCoords(ofVec2f by);
 		void stopDragJoints();
 		void moveSelection(ofVec2f by);

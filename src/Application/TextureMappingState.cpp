@@ -16,5 +16,15 @@ void TextureMappingState::draw(Application * app){
 	app->getGui()->draw();
 }
 
+void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
+	switch(args.key){
+		 
+	 case '>':
+		 app->getCmdManager()->exec(
+			 new SelNextTexCoordCmd(app->getGui()->getTextureEditor()));
+		 break;
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

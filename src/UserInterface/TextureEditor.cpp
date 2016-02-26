@@ -238,6 +238,52 @@ void TextureEditor::unselectAllJoints(){
 	}
 }
 
+void TextureEditor::selectNextTexCoord(){
+	if(joints.size() <= 0){
+		return;
+	}
+	
+	// Search for current selected joint
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		if(joints[i]->isSelected()){
+			unsigned int next = i + 1;
+			if(next >= joints.size()){
+				next = 0;
+			}
+			unselectAllJoints();
+			joints[next]->select();
+			return;
+		}
+	}
+	
+	// If none found, select 0th
+	joints[0]->select();
+}
+
+void TextureEditor::selectPrevTexCoord(){
+	if(joints.size() <= 0){
+		return;
+	}
+	
+	// Search for current selected joint
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		if(joints[i]->isSelected()){
+			unsigned int prev;
+			if(i == 0){
+				prev = joints.size() - 1;
+			}else{
+				prev = i - 1;
+			}
+			unselectAllJoints();
+			joints[prev]->select();
+			return;
+		}
+	}
+	
+	// Select last if none selected
+	joints[joints.size() - 1]->select();
+}
+
 void TextureEditor::moveTexCoords(ofVec2f by){
 	if(surface == 0){
 		return;
