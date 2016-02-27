@@ -23,6 +23,11 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 app->getCmdManager()->exec(
 			 new SelNextTexCoordCmd(app->getGui()->getTextureEditor()));
 		 break;
+	 case '<':
+		 app->getCmdManager()->exec(
+			 new SelPrevTexCoordCmd(app->getGui()->getTextureEditor()));
+		 break;
+	 
 	 case ' ':
 		 app->getCmdManager()->exec(
 			new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
