@@ -11,6 +11,7 @@
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
 		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
 		39203D7D1C591A7900D6225F /* GridWarpSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39203D7C1C591A7900D6225F /* GridWarpSurface.cpp */; };
+		3921964C1C81FCA8009E169F /* SelPrevTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3921964B1C81FCA8009E169F /* SelPrevTexCoordCmd.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -162,6 +163,8 @@
 		391717F61B0BCBB500F9A484 /* MvTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvTexCoordCmd.h; path = Commands/MvTexCoordCmd.h; sourceTree = "<group>"; };
 		39203D7B1C591A7900D6225F /* GridWarpSurface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridWarpSurface.h; sourceTree = "<group>"; };
 		39203D7C1C591A7900D6225F /* GridWarpSurface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridWarpSurface.cpp; sourceTree = "<group>"; };
+		3921964A1C81FCA8009E169F /* SelPrevTexCoordCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelPrevTexCoordCmd.h; path = Commands/SelPrevTexCoordCmd.h; sourceTree = "<group>"; };
+		3921964B1C81FCA8009E169F /* SelPrevTexCoordCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelPrevTexCoordCmd.cpp; path = Commands/SelPrevTexCoordCmd.cpp; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -822,6 +825,8 @@
 				39F0512B1C650D070089A36B /* SelNextVertexCmd.h */,
 				39922B871C8050E800FA33AA /* SelNextTexCoordCmd.cpp */,
 				39922B861C8050E800FA33AA /* SelNextTexCoordCmd.h */,
+				3921964B1C81FCA8009E169F /* SelPrevTexCoordCmd.cpp */,
+				3921964A1C81FCA8009E169F /* SelPrevTexCoordCmd.h */,
 				39F0512C1C650D070089A36B /* SelNextVertexCmd.cpp */,
 				39F0512E1C650E7E0089A36B /* SelPrevVertexCmd.h */,
 				39F0512F1C650E7E0089A36B /* SelPrevVertexCmd.cpp */,
@@ -1057,6 +1062,7 @@
 				39C1243C19EE9589005DF557 /* DirectoryFilter.cpp in Sources */,
 				3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */,
 				39C1243619EE9589005DF557 /* ByteBufferReader.cpp in Sources */,
+				3921964C1C81FCA8009E169F /* SelPrevTexCoordCmd.cpp in Sources */,
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				3995C20A1C79069B00123352 /* Settings.cpp in Sources */,
