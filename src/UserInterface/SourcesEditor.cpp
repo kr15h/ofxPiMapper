@@ -167,6 +167,10 @@ void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
 	isMediaServerExternal = true;
 }
 
+MediaServer * SourcesEditor::getMediaServer(){
+	return mediaServer;
+}
+
 void SourcesEditor::selectSourceRadioButton(string & sourcePath){
 	if(sourcePath == ""){
 		ofLogNotice("SourcesEditor") << "Path is empty";

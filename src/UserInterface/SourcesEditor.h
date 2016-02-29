@@ -34,6 +34,7 @@ class SourcesEditor {
 
 		// Sets external MediaServer
 		void setMediaServer(MediaServer * newMediaServer);
+		MediaServer * getMediaServer();
 		//void selectImageSourceRadioButton(string name);
 		void selectSourceRadioButton(string & sourcePath);
 
