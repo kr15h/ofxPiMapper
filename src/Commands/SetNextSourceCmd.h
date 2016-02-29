@@ -3,30 +3,31 @@
 #include "BaseCmd.h"
 #include "BaseSurface.h"
 #include "SourcesEditor.h"
+#include "MediaServer.h"
 
 namespace ofx {
 namespace piMapper {
+
+struct SourceData {
+	int type;
+	string id;
+};
 
 class SourcesEditor;
 
 class SetNextSourceCmd : public BaseUndoCmd {
 
 	public:
-		SetNextSourceCmd(int sourceType,
-					 string sourceId,
-					 BaseSurface * surface,
-					 SourcesEditor * sourcesEditor);
+		SetNextSourceCmd(BaseSurface * surface, SourcesEditor * sourcesEditor);
 		void exec();
 		void undo();
 
 	private:
-		int _sourceType;
-		string _sourceId;
 		BaseSurface * _surface;
 		SourcesEditor * _sourcesEditor;
-
-		int _oldSourceType;
-		string _oldSourceId;
+		vector <SourceData> _sources;
+		int _sourceIndex; // Previous source index
+		int _nextSourceIndex;
 
 };
 
