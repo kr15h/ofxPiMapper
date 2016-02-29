@@ -49,6 +49,7 @@ class SurfaceManagerGui {
 	
 		ProjectionEditor * getProjectionEditor();
 		TextureEditor * getTextureEditor();
+		SourcesEditor * getSourcesEditor();
 	
 		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);

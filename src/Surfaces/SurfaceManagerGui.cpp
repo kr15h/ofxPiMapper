@@ -319,6 +319,10 @@ TextureEditor * SurfaceManagerGui::getTextureEditor(){
 	return &textureEditor;
 }
 
+SourcesEditor * SurfaceManagerGui::getSourcesEditor(){
+	return &sourcesEditor;
+}
+
 void SurfaceManagerGui::onVertexChanged(int & i){
 	//cout << "VERTEX CHANGED: " << vertex.x << ", " << vertex.y << endl;
 	bool isDragged = projectionEditor.getJoints()->at(i)->isDragged();
