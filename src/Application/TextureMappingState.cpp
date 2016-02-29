@@ -23,6 +23,7 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 app->getCmdManager()->exec(
 			 new SelNextTexCoordCmd(app->getGui()->getTextureEditor()));
 		 break;
+		 
 	 case '<':
 		 app->getCmdManager()->exec(
 			 new SelPrevTexCoordCmd(app->getGui()->getTextureEditor()));
@@ -31,6 +32,13 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 	 case ' ':
 		 app->getCmdManager()->exec(
 			new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
+		 break;
+		 
+	 case OF_KEY_TAB:
+		 app->getCmdManager()->exec(
+			new SetNextSourceCmd(
+				app->getSurfaceManager()->getSelectedSurface(),
+				app->getGui()->getSourcesEditor()));
 		 break;
 	}
 	

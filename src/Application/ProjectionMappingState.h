@@ -20,6 +20,7 @@
 #include "StartDragSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "DeselectSurfaceCmd.h"
+#include "SetNextSourceCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 
