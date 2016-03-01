@@ -33,6 +33,7 @@ class VideoPathFilter : public BasePathFilter {
 					ofIsStringInString(path.toString(), ".h264") ||
 					ofIsStringInString(path.toString(), ".mov") ||
 					ofIsStringInString(path.toString(), ".avi") ||
+					ofIsStringInString(path.toString(), ".ogv") ||
 					ofIsStringInString(path.toString(), ".mpeg"));
 		}
 };
