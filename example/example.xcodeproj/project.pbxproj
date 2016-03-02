@@ -155,6 +155,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3904C1A31C8758F70001875C /* OMXPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
+		3904C1A41C8758F70001875C /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
 		391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetApplicationStateCmd.cpp; path = Commands/SetApplicationStateCmd.cpp; sourceTree = "<group>"; };
 		391717EE1B08FFDA00F9A484 /* SetApplicationStateCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetApplicationStateCmd.h; path = Commands/SetApplicationStateCmd.h; sourceTree = "<group>"; };
 		391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvAllTexCoordsCmd.cpp; path = Commands/MvAllTexCoordsCmd.cpp; sourceTree = "<group>"; };
@@ -750,6 +752,8 @@
 		39C1245619F086A9005DF557 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3904C1A31C8758F70001875C /* OMXPlayerCache.h */,
+				3904C1A41C8758F70001875C /* OMXPlayerCache.cpp */,
 				39C1246019F089DA005DF557 /* SourceType.h */,
 				39C1245719F086A9005DF557 /* BaseSource.cpp */,
 				39C1245819F086A9005DF557 /* BaseSource.h */,
