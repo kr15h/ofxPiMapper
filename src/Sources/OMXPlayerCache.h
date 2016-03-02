@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxOMXPlayer.h"
+#include "VideoSource.h"
 
 namespace ofx {
 namespace piMapper {
