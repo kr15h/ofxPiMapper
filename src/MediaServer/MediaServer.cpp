@@ -204,17 +204,23 @@ void MediaServer::unloadVideo(string & path){
 	}
 	// Reference count 0 or less, let's unload the video
 	ofLogNotice("MediaServer") << "Removing video " << path;
+	
 	// Distroy video source
 	if(loadedSources.count(path)){
-		ofLogNotice("MediaServer") << "Source count before video removal: " << loadedSources.size() << endl;
+		ofLogNotice("MediaServer")
+			<< "Source count before video removal: "
+			<< loadedSources.size() << endl;
 		videoSource->clear();
 		map <string, BaseSource *>::iterator it = loadedSources.find(path);
 		delete it->second;
 		loadedSources.erase(it);
-		ofLogNotice("MediaServer") << "Source count after video removal: " << loadedSources.size() << endl;
+		ofLogNotice("MediaServer")
+			<< "Source count after video removal: "
+			<< loadedSources.size() << endl;
 		ofNotifyEvent(onVideoUnloaded, path, this);
 		return;
 	}
+	
 	// Something wrong here, we should be out of the routine by now
 	stringstream failss;
 	failss << "Failed to remove video source: " << path;
