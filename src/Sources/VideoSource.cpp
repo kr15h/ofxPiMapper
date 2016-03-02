@@ -23,14 +23,7 @@ void VideoSource::loadVideo(string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);
 	#ifdef TARGET_RASPBERRY_PI
-		ofxOMXPlayerSettings settings;
-		settings.videoPath = filePath;
-		settings.useHDMIForAudio = true;
-		settings.enableTexture = true;
-		settings.enableLooping = true;
-		settings.enableAudio = VideoSource::enableAudio;
-		omxPlayer = new ofxOMXPlayer();
-		omxPlayer->setup(settings);
+		omxPlayer = OMXPlayerCache::instance()->load(filePath);
 		texture = &(omxPlayer->getTextureReference());
 	#else
 		videoPlayer = new ofVideoPlayer();
@@ -47,9 +40,7 @@ void VideoSource::loadVideo(string & filePath){
 void VideoSource::clear(){
 	texture = 0;
 	#ifdef TARGET_RASPBERRY_PI
-		omxPlayer->close();
-		delete omxPlayer;
-		omxPlayer = 0;
+		OMXPlayerCache::instance()->unload(path);
 	#else
 		ofRemoveListener(ofEvents().update, this, &VideoSource::update);
 		videoPlayer->stop();

@@ -5,6 +5,7 @@
 
 #ifdef TARGET_RASPBERRY_PI
  #include "ofxOMXPlayer.h"
+ #include "OMXPlayerCache.h"
 #endif
 
 namespace ofx {
