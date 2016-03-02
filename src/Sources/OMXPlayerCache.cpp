@@ -23,7 +23,7 @@ ofxOMXPlayer * OMXPlayerCache::load(string moviePath){
 		
 		ofxOMXPlayer * p = new ofxOMXPlayer();
 		p->setup(settings);
-		_players.push_back(p);
+		_players[moviePath] = p;
 		
 		return p;
 	}
