@@ -40,6 +40,8 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 				new SetNextSourceCmd(
 					app->getSurfaceManager()->getSelectedSurface(),
 					app->getGui()->getSourcesEditor()));
+		 }else{
+			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
 		 }
 		 break;
 	}

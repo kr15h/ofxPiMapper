@@ -8,6 +8,7 @@
 #include "SelPrevTexCoordCmd.h"
 #include "DeselectTexCoordCmd.h"
 #include "SetNextSourceCmd.h"
+#include "SelNextSurfaceCmd.h"
 
 namespace ofx {
 namespace piMapper {
