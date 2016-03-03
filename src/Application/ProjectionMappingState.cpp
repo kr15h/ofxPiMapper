@@ -179,6 +179,8 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 				new SetNextSourceCmd(
 					app->getSurfaceManager()->getSelectedSurface(),
 					app->getGui()->getSourcesEditor()));
+		 }else{
+			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
 		 }
 		 break;
 		 
