@@ -174,10 +174,12 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 break;
 		 
 	 case OF_KEY_TAB:
-		 app->getCmdManager()->exec(
-			new SetNextSourceCmd(
-				app->getSurfaceManager()->getSelectedSurface(),
-				app->getGui()->getSourcesEditor()));
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			app->getCmdManager()->exec(
+				new SetNextSourceCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					app->getGui()->getSourcesEditor()));
+		 }
 		 break;
 		 
 	 default:
