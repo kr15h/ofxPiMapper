@@ -35,10 +35,12 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 break;
 		 
 	 case OF_KEY_TAB:
-		 app->getCmdManager()->exec(
-			new SetNextSourceCmd(
-				app->getSurfaceManager()->getSelectedSurface(),
-				app->getGui()->getSourcesEditor()));
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			app->getCmdManager()->exec(
+				new SetNextSourceCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					app->getGui()->getSourcesEditor()));
+		 }
 		 break;
 	}
 	
