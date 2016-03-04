@@ -20,6 +20,7 @@ class DuplicateSurfaceCmd : public BaseUndoCmd {
 
 	private:
 		BaseSurface * _surface;
+		BaseSurface * _duplicate;
 		SurfaceManager * _surfaceManager;
 
 };
