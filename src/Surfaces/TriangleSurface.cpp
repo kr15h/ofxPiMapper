@@ -79,6 +79,18 @@ void TriangleSurface::setVertices(vector<ofVec2f> v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
+void TriangleSurface::setVertices(vector<ofVec3f> v){
+	if(v.size() != 3){
+		throw runtime_error("Wrong number of vertices");
+	}
+	
+	for(int i = 0; i < 3; ++i){
+		mesh.setVertex(i, v[i]);
+	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+}
+
 void TriangleSurface::setTexCoord(int index, ofVec2f t){
 	if(index > 2){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
@@ -171,6 +183,14 @@ vector <ofVec3f> & TriangleSurface::getVertices(){
 
 vector <ofVec2f> & TriangleSurface::getTexCoords(){
 	return mesh.getTexCoords();
+}
+
+BaseSurface * TriangleSurface::clone(){
+	TriangleSurface * s = new TriangleSurface();
+	s->setVertices(getVertices());
+	s->setTexCoords(getTexCoords());
+	s->setSource(getSource());
+	return s;
 }
 
 } // namespace piMapper

@@ -114,6 +114,18 @@ void QuadSurface::setVertices(vector<ofVec2f> v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
+void QuadSurface::setVertices(vector<ofVec3f> v){
+	if(v.size() != 4){
+		throw runtime_error("Wrong number of vertices");
+	}
+	
+	for(int i = 0; i < 4; ++i){
+		mesh.setVertex(i, v[i]);
+	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+}
+
 void QuadSurface::setTexCoord(int index, ofVec2f t){
 	if(index > 3){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
@@ -275,6 +287,14 @@ ofRectangle QuadSurface::getMeshBoundingBox(){
 	
 	ofRectangle boundingBox = ofRectangle(ofPoint(minX, minY), ofPoint(maxX, maxY));
 	return boundingBox;
+}
+
+BaseSurface * QuadSurface::clone(){
+	QuadSurface * s = new QuadSurface();
+	s->setVertices(getVertices());
+	s->setTexCoords(getTexCoords());
+	s->setSource(getSource());
+	return s;
 }
 
 } // namespace piMapper

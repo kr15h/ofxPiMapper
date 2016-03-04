@@ -160,6 +160,18 @@ void GridWarpSurface::setVertices(vector<ofVec2f> v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
+void GridWarpSurface::setVertices(vector<ofVec3f> v){
+	if(v.size() != mesh.getVertices().size()){
+		throw runtime_error("Wrong number of vertices");
+	}
+	
+	for(int i = 0; i < v.size(); ++i){
+		mesh.setVertex(i, v[i]);
+	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+}
+
 void GridWarpSurface::setTexCoord(int index, ofVec2f t){
 	if(index >= mesh.getVertices().size()){
 		throw runtime_error("Texture coordinate with provided index does not exist");
@@ -231,7 +243,13 @@ void GridWarpSurface::createGridMesh(){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
-
+BaseSurface * GridWarpSurface::clone(){
+	GridWarpSurface * s = new GridWarpSurface();
+	s->setVertices(getVertices());
+	s->setTexCoords(getTexCoords());
+	s->setSource(getSource());
+	return s;
+}
 
 } // namespace piMapper
 } // namespace ofx

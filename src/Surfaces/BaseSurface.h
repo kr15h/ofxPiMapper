@@ -30,6 +30,8 @@ class BaseSurface {
 		virtual ofPolyline getTextureHitArea(){}
 		virtual vector <ofVec3f> & getVertices(){}
 		virtual vector <ofVec2f> & getTexCoords(){}
+	
+		virtual BaseSurface * clone(){}
 
 		void drawTexture(ofVec2f position);
 		void setSource(BaseSource * newSource);

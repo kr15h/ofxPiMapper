@@ -22,6 +22,7 @@ class QuadSurface : public BaseSurface {
 	
 		void setVertex(int index, ofVec2f p);
 		void setVertices(vector<ofVec2f> v);
+		void setVertices(vector<ofVec3f> v);
 	
 		void setTexCoord(int index, ofVec2f t);
 		void setTexCoords(vector<ofVec2f> t);
@@ -41,6 +42,8 @@ class QuadSurface : public BaseSurface {
 		bool getPerspectiveWarping();
 	
 		ofRectangle getMeshBoundingBox();
+	
+		BaseSurface * clone();
 
 	private:
 		void calculateHomography();
