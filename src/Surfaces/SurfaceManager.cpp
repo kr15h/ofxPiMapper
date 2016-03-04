@@ -42,6 +42,15 @@ void SurfaceManager::removeSurface(){
 	_surfaces.pop_back();
 }
 
+void SurfaceManager::deleteSurface(ofx::piMapper::BaseSurface * surface){
+	for(int i = 0; i < _surfaces.size(); ++i){
+		if(_surfaces[i] == surface){
+			_surfaces.erase(i);
+			break;
+		}
+	}
+}
+
 void SurfaceManager::clear(){
 	while(_surfaces.size()){
 		delete _surfaces.back();
@@ -155,6 +164,12 @@ BaseSurface * SurfaceManager::selectPrevSurface(){
 
 BaseSurface * SurfaceManager::getSelectedSurface(){
 	return selectedSurface;
+}
+
+BaseSurface * SurfaceManager::duplicateSurface(BaseSurface * surface){
+	BaseSurface * duplicate = surface->clone();
+	addSurface(duplicate);
+	return duplicate;
 }
 
 // TODO: select vertex should be implemented ad BaseSurface level

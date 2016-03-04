@@ -29,6 +29,7 @@ class SurfaceManager {
 		void addSurface(BaseSurface * surface);
 		void removeSelectedSurface();
 		void removeSurface();
+		void deleteSurface(BaseSurface * surface);
 		void deselectSurface();
 		void saveXmlSettings(string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
@@ -42,6 +43,7 @@ class SurfaceManager {
 		BaseSurface * selectNextSurface();
 		BaseSurface * selectPrevSurface();
 		BaseSurface * getSelectedSurface();
+		BaseSurface * duplicateSurface(BaseSurface * surface);
 	
 		// These should trigger an event for the GUI layer to catch
 		void selectNextVertex();
