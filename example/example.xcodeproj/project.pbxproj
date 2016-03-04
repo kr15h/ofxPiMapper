@@ -95,6 +95,7 @@
 		39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248319F1EB75005DF557 /* SurfaceManager.cpp */; };
 		39C1248919F1EB75005DF557 /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C1248519F1EB75005DF557 /* SurfaceManagerGui.cpp */; };
 		39C787BD1AC2111B00691393 /* CmdManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C787BC1AC2111B00691393 /* CmdManager.cpp */; };
+		39CF9C501C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39CF9C4F1C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp */; };
 		39DD777A1C676DDC009EDC49 /* SelVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */; };
 		39DD777D1C677238009EDC49 /* DeselectSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39DD777C1C677238009EDC49 /* DeselectSurfaceCmd.cpp */; };
 		39EB5E321C5D2BC80020AD31 /* AddGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39EB5E311C5D2BC80020AD31 /* AddGridRowCmd.cpp */; };
@@ -352,6 +353,8 @@
 		39C1248719F1EB75005DF557 /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
 		39C787BB1AC20D2400691393 /* CmdManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CmdManager.h; path = Commands/CmdManager.h; sourceTree = "<group>"; };
 		39C787BC1AC2111B00691393 /* CmdManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CmdManager.cpp; path = Commands/CmdManager.cpp; sourceTree = "<group>"; };
+		39CF9C4E1C8A1B2200FDE473 /* DuplicateSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DuplicateSurfaceCmd.h; path = Commands/DuplicateSurfaceCmd.h; sourceTree = "<group>"; };
+		39CF9C4F1C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DuplicateSurfaceCmd.cpp; path = Commands/DuplicateSurfaceCmd.cpp; sourceTree = "<group>"; };
 		39DD77781C676DDC009EDC49 /* SelVertexCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelVertexCmd.h; path = Commands/SelVertexCmd.h; sourceTree = "<group>"; };
 		39DD77791C676DDC009EDC49 /* SelVertexCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SelVertexCmd.cpp; path = Commands/SelVertexCmd.cpp; sourceTree = "<group>"; };
 		39DD777B1C677238009EDC49 /* DeselectSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeselectSurfaceCmd.h; path = Commands/DeselectSurfaceCmd.h; sourceTree = "<group>"; };
@@ -868,6 +871,8 @@
 				3975BDB31C7E0D2F00DB5E79 /* SetNextSourceCmd.cpp */,
 				394BD2421C4D63AE0089A48C /* TogglePerspectiveCmd.h */,
 				394BD2411C4D63AE0089A48C /* TogglePerspectiveCmd.cpp */,
+				39CF9C4E1C8A1B2200FDE473 /* DuplicateSurfaceCmd.h */,
+				39CF9C4F1C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1100,6 +1105,7 @@
 				39C1244019EE9589005DF557 /* FileExtensionFilter.cpp in Sources */,
 				396841751BC91F6F009F0BAE /* Application.cpp in Sources */,
 				396841761BC91F6F009F0BAE /* ApplicationBaseState.cpp in Sources */,
+				39CF9C501C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp in Sources */,
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
 				39C1246919F0AB96005DF557 /* BaseSurface.cpp in Sources */,
 				39C1245E19F08965005DF557 /* ImageSource.cpp in Sources */,
