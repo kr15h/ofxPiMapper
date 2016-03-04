@@ -183,6 +183,15 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
 		 }
 		 break;
+	
+	 case 'd':
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			app->getCmdManager()->exec(
+				new DuplicateSurfaceCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					app->getSurfaceManager()));
+		 }
+		 break;
 		 
 	 default:
 		 break;
