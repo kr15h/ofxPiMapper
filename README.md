@@ -190,6 +190,7 @@ i | Show info
 t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
+d | duplicate surface
 p | toggle perspective warping (quad surfaces only)
 ] | add columns to grid surface (grid warp surfaces only)
 [ | remove columns from grid surface (grid warp surfaces only)
@@ -204,6 +205,7 @@ s | Save composition
 z | Undo
 BACKSPACE | Delete surface
 SPACE | Deselect surface (projection mapping mode)
+TAB | Select next source (no need to use the source selection interface)
 Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
 
 ### SSH Remote Control
