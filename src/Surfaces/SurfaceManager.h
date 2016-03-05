@@ -43,7 +43,6 @@ class SurfaceManager {
 		BaseSurface * selectNextSurface();
 		BaseSurface * selectPrevSurface();
 		BaseSurface * getSelectedSurface();
-		BaseSurface * duplicateSurface(BaseSurface * surface);
 	
 		// These should trigger an event for the GUI layer to catch
 		void selectNextVertex();

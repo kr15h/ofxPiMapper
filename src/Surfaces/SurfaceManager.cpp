@@ -166,12 +166,6 @@ BaseSurface * SurfaceManager::getSelectedSurface(){
 	return selectedSurface;
 }
 
-BaseSurface * SurfaceManager::duplicateSurface(BaseSurface * surface){
-	BaseSurface * duplicate = surface->clone();
-	addSurface(duplicate);
-	return duplicate;
-}
-
 // TODO: select vertex should be implemented ad BaseSurface level
 void SurfaceManager::selectNextVertex(){
 	if(selectedSurface == 0){
