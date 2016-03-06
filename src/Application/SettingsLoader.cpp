@@ -34,6 +34,12 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 		int numSurfaces = xmlSettings->getNumTags("surface");
 		for(int i = 0; i < numSurfaces; i++){
 			if(xmlSettings->tagExists("surface", i)){
+			
+				int type = -1;
+				if(xmlSettings->attributeExists("surface", "type")){
+					type = xmlSettings->getAttribute("surface", "type", 0, i);
+				}
+			
 				xmlSettings->pushTag("surface", i);
 
 				// attempt to load surface source
@@ -73,20 +79,30 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 					vertexCount = xmlSettings->getNumTags("vertex");
 					xmlSettings->popTag(); // vertices
 				}
+				
+				if(type == -1){
+					if(vertexCount == 3){
+						type = SurfaceType::TRIANGLE_SURFACE;
+					}else if(vertexCount == 4){
+						type = SurfaceType::QUAD_SURFACE;
+					}else if(vertexCount > 4){
+						type = SurfaceType::GRID_WARP_SURFACE;
+					}
+				}
 		
-				if(vertexCount == 3){
+				if(type == SurfaceType::TRIANGLE_SURFACE){
 					BaseSurface * triangleSurface = getTriangleSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
 						triangleSurface->setSource(source);
 					}
 					surfaces.push_back(triangleSurface);
-				}else if(vertexCount == 4){
+				}else if(type == SurfaceType::QUAD_SURFACE){
 					BaseSurface * quadSurface = getQuadSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
 						quadSurface->setSource(source);
 					}
 					surfaces.push_back(quadSurface);
-				}else if(vertexCount > 4){
+				}else if(type == SurfaceType::GRID_WARP_SURFACE){
 					BaseSurface * gridWarpSurface = getGridWarpSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
 						gridWarpSurface->setSource(source);
@@ -114,10 +130,11 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 	xmlSettings->addTag("surfaces");
 	xmlSettings->pushTag("surfaces");
 	for(int i = 0; i < surfaces.size(); i++){
-		xmlSettings->addTag("surface");
-		xmlSettings->pushTag("surface", i);
 		BaseSurface * surface = surfaces[i];
-
+		
+		xmlSettings->addTag("surface");
+		xmlSettings->addAttribute("surface", "type", surface->getType(), i);
+		xmlSettings->pushTag("surface", i);
 		xmlSettings->addTag("vertices");
 		xmlSettings->pushTag("vertices");
 		vector <ofVec3f> * vertices = &surface->getVertices();
