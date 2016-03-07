@@ -5,17 +5,7 @@ ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi and the Intel Compute Stick.
-
-**Important note**: You are encouraged to use the release branches as currently I am using the master branch for active development and trying to add something every day. Before you compile, make sure that you checkout latest released version.
-```
-cd ~/openFrameworks/addons/ofxPiMapper
-git checkout v0.2.9
-cd ~/openFrameworks/addons/ofxPiMapper/example
-make && make run
-```
-
-**Very important update**: Raspberry Pi camera now can be replaced with a HDMI input board that can allow you to use the `camera-example` out of the box to projection map content that comes in from VDMX or similar software on your computer. This one: [B101 HDMI to CSI-2 Bridge (15 pin FPC)](http://www.auvidea.eu/index.php/theme-styles/2014-12-30-22-32-06/b101)
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
 OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
