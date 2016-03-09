@@ -36,27 +36,14 @@ void ProjectionEditor::unregisterMouseEvents(){
 					 &ProjectionEditor::mouseDragged);
 }
 
-void ProjectionEditor::registerKeyEvents(){
-	ofAddListener(ofEvents().keyPressed, this, &ProjectionEditor::keyPressed);
-	ofAddListener(ofEvents().keyReleased, this, &ProjectionEditor::keyReleased);
-}
-
-void ProjectionEditor::unregisterKeyEvents(){
-	ofRemoveListener(ofEvents().keyPressed, this, &ProjectionEditor::keyPressed);
-	ofRemoveListener(ofEvents().keyReleased, this,
-					 &ProjectionEditor::keyReleased);
-}
-
 void ProjectionEditor::enable(){
 	registerAppEvents();
 	registerMouseEvents();
-	registerKeyEvents();
 }
 
 void ProjectionEditor::disable(){
 	unregisterAppEvents();
 	unregisterMouseEvents();
-	unregisterKeyEvents();
 }
 
 void ProjectionEditor::update(ofEventArgs & args){
@@ -121,52 +108,6 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 			}
 		}
 	}
-}
-
-void ProjectionEditor::keyPressed(ofKeyEventArgs & args){
-	/*
-	int key = args.key;
-	float moveStep;
-
-	if(bShiftKeyDown){
-		moveStep = 10.0f;
-	}else{
-		moveStep = 0.5f;
-	}
-
-	switch(key){
-	 case OF_KEY_LEFT:
-		 moveSelection(ofVec2f(-moveStep, 0.0f));
-		 break;
-
-	 case OF_KEY_RIGHT:
-		 moveSelection(ofVec2f(moveStep, 0.0f));
-		 break;
-
-	 case OF_KEY_UP:
-		 moveSelection(ofVec2f(0.0f, -moveStep));
-		 break;
-
-	 case OF_KEY_DOWN:
-		 moveSelection(ofVec2f(0.0f, moveStep));
-		 break;
-
-	 case OF_KEY_SHIFT:
-		 bShiftKeyDown = true;
-		 break;
-	}
-	*/
-}
-
-void ProjectionEditor::keyReleased(ofKeyEventArgs & args){
-	/*
-	int key = args.key;
-	switch(key){
-	 case OF_KEY_SHIFT:
-		 bShiftKeyDown = false;
-		 break;
-	}
-	*/
 }
 
 void ProjectionEditor::gotMessage(ofMessage & msg){

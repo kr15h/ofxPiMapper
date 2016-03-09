@@ -16,8 +16,6 @@ class ProjectionEditor {
 		void unregisterAppEvents();
 		void registerMouseEvents();
 		void unregisterMouseEvents();
-		void registerKeyEvents();
-		void unregisterKeyEvents();
 
 		void enable();
 		void disable();
@@ -25,8 +23,6 @@ class ProjectionEditor {
 		void update(ofEventArgs & args);
 		void draw();
 		void mouseDragged(ofMouseEventArgs & args);
-		void keyPressed(ofKeyEventArgs & args);
-		void keyReleased(ofKeyEventArgs & args);
 		void gotMessage(ofMessage & msg);
 		void setSurfaceManager(SurfaceManager * newSurfaceManager);
 		void clearJoints();
