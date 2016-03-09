@@ -233,11 +233,6 @@ void ProjectionEditor::moveSelectedSurface(ofVec2f by){
 		return;
 	}
 	surfaceManager->getSelectedSurface()->moveBy(by);
-	/*vector<ofVec3f>& vertices =
-	 surfaceManager->getSelectedSurface()->getVertices();
-	 for (int i=0; i<vertices.size(); i++) {
-	 vertices[i] += by;
-	 }*/
 	updateJoints();
 }
 
@@ -246,8 +241,6 @@ void ProjectionEditor::stopDragJoints(){
 		joints[i]->stopDrag();
 	}
 }
-
-
 
 void ProjectionEditor::setSnapDistance(float newSnapDistance){
 	fSnapDistance = newSnapDistance;
