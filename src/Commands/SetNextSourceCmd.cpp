@@ -69,9 +69,14 @@ void SetNextSourceCmd::exec(){
 	}
 	
 	// Load new source
-	BaseSource * newSource = mediaServer->loadMedia(
-		_sources[_nextSourceIndex].id,
-		_sources[_nextSourceIndex].type);
+	BaseSource * newSource;
+	if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
+		newSource = mediaServer->loadImage(_sources[_nextSourceIndex].id);
+	}else{
+		newSource = mediaServer->loadMedia(
+			_sources[_nextSourceIndex].id,
+			_sources[_nextSourceIndex].type);
+	}
 	
 	_surface->setSource(newSource);
 	
