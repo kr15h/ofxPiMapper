@@ -10,7 +10,7 @@
 #include "FboSource.h"
 
 #ifdef TARGET_RASPBERRY_PI
-	#include "RPiVideoGrabber.h"
+	#include "ofxRPiCameraVideoGrabber.h"
 #endif
 
 class CameraSource : public ofx::piMapper::FboSource {
@@ -23,7 +23,8 @@ class CameraSource : public ofx::piMapper::FboSource {
 	private:
 	
 		#ifdef TARGET_RASPBERRY_PI
-			RPiVideoGrabber _videoGrabber;
+			OMXCameraSettings _omxCameraSettings;
+			ofxRPiCameraVideoGrabber _videoGrabber;
 		#else
 			ofVideoGrabber _videoGrabber;
 		#endif
