@@ -1,7 +1,7 @@
 ![Pi Mapper Logo](piMapperLogo.jpg)
 
-ofxPiMapper
-===
+
+# ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
@@ -14,8 +14,7 @@ The project started as master's thesis project by [Krisjanis Rijnieks](http://ri
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
 
-Features
----
+## Features
 
 The following is a list of key features ofxPiMapper has.
 
@@ -35,8 +34,7 @@ The following is a list of key features ofxPiMapper has.
    Expect more conventional projection mapping software features to be implemented.
 
 
-Running the Example
----
+## Running the Example
 
 You can use the example application of the addon for simple projection mapping projects where static images or videos have to be projection mapped. 
 
@@ -56,8 +54,7 @@ make && make run
    ```
 
 
-Using as an Addon
---- 
+## Using as an Addon
 
 OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
 
@@ -70,8 +67,8 @@ mv example myOfxPiMapperApp
 ```
 
 
-Development
----
+## Development
+
 As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
 
 Currently for bigger planned features [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie) is used. For bugfixes and small improvements, changes are pushed directly to the `master` branch.
@@ -81,13 +78,13 @@ I'm trying to organize the project by adding future release version milestones a
 As of Release 0.2.0 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project. Still improving on the overal structure.
 
 
-Licence
----
+## Licence
+
 ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details.
 
 
-Installation
----
+## Installation
+
 To set up your Raspberry Pi, go to the [Raspberry Pi website](http://www.raspberrypi.org/downloads/) and follow the instructions there.
 
 Another thing you need is a working [openFrameworks](http://openframeworks.cc) installation. Follow the guide to set up your Raspberry Pi.
@@ -101,8 +98,9 @@ cd ~/openFrameworks/addons
 git clone https://github.com/kr15h/ofxPiMapper.git
 ```
 
-Dependencies
----
+
+## Dependencies
+
 Before moving on, make sure that you have all the dependencies installed. 
 
  - ofxGui (available in oF by default)
@@ -126,8 +124,8 @@ git checkout 0.9.0-compatible
 You can check the latest releases on the [ofxOMXPlayer GitHub repository](https://github.com/jvcleave/ofxOMXPlayer/releases).
 
 
-First Test
----
+## First Test
+
 To test the addon, you will have to compile and run it:
 
 ```bash
@@ -139,8 +137,9 @@ After it compiles, run it with either `make run` or `./bin/example`. You can exi
 
 It will take a while first (not so long on the RPi 2), but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
 
-Usage
----
+
+## Usage
+
 Right now a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
 
 ### Modes
@@ -202,8 +201,8 @@ Arrow keys | Move selection. If no surface is selected in the projection mapping
 
 You can enter a SSH session with your networked Raspberry Pi, launch the ofxPiMapper executable and access all the functionality by using the keyboard. Use the same commands listed in the above table, use `/` as the replacement for the `SHIFT` key as it is not that easy to capture `SHIFT` keypress when on SSH. The `/` works as a toggle, you have to press it once to simulate `SHIFT_DOWN` and one more time to simulate `SHIFT_UP`. It is particularly important when moving surfaces and vertices over long distances. The `/` key enables 10px steps when pressing arrow buttons.
 
-Compatibility
----
+## Compatibility
+
 Tested with openFrameworks 0.9.2 (OS X and Raspbian Jessie Lite). It works.
 
 ```
