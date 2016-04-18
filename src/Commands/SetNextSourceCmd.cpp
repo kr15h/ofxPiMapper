@@ -60,7 +60,11 @@ void SetNextSourceCmd::exec(){
 	}
 	
 	if(_sourceIndex == -1){
-		return;
+		if(_sources.size()){
+			_nextSourceIndex = 0;
+		}else{
+			return;
+		}
 	}
 	
 	_nextSourceIndex = _sourceIndex + 1;
