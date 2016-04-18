@@ -69,13 +69,16 @@ mv example myOfxPiMapperApp
 
 ## Development
 
-As the projects gets a bit more popular, I see that people want to add missing features. I have a whole bunch of features that I want to add in future releases, but right now I'm trying to understand how to keep it more or less organized.
+The most part of development happens in the `dev` branch. Once a set of features is added, the `dev` branch is merged with the `master` branch. 
 
-Currently for bigger planned features [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) by [Vincent Driessen](https://twitter.com/nvie) is used. For bugfixes and small improvements, changes are pushed directly to the `master` branch.
+ 1. Develop in the `dev` branch.
+ 2. Merge the `dev` branch into the `master` branch once a set of features are added.
+ 3. Add a version tag.
+ 4. If there is a need for a quickfix, it can be added to the `master` branch directly. In that case a new version tag has to be made.
 
-I'm trying to organize the project by adding future release version milestones and assigning specific issues as TODO items to them. If you notice something strange or see that there is something that can be done in a better way, don't hesitate and add an issue.
+The set of features is defined per milestone. Each milestone is an increase in the minor part of the version number. Milestone examples: 0.3.0, 0.4.0, etc.
 
-As of Release 0.2.0 some refractoring has been done (thanks [aspeteRakete](https://github.com/aspeteRakete)), namespaces have been added and we are thinking about introducing a code style for this project. Still improving on the overal structure.
+The quickfixes increase the patch part of the version. 0.3.0 becomes 0.3.1 and 0.4.0 becomes 0.4.1 in the case of a quicfix.
 
 
 ## Licence
