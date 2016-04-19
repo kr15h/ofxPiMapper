@@ -195,7 +195,7 @@ p | toggle perspective warping (quad surfaces only)
 f | Toggle fullscreen
 s | Save composition
 z | Undo
-BACKSPACE | Delete surface
+BACKSPACE | Delete surface. Use "-" if controlling via SSH.
 SPACE | Deselect surface (projection mapping mode)
 TAB | Select next source (no need to use the source selection interface)
 Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
