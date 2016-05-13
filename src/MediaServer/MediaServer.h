@@ -26,6 +26,9 @@
 #define DEFAULT_IMAGES_DIR "sources/images/"
 #define DEFAULT_VIDEOS_DIR "sources/videos/"
 
+#define PI_IMAGES_DIR "/boot/ofxpimapper/sources/images"
+#define PI_VIDEOS_DIR "/boot/ofxpimapper/sources/videos"
+
 namespace ofx {
 namespace piMapper {
 
@@ -79,6 +82,12 @@ class MediaServer {
 		// Directory Watchers
 		ofx::piMapper::DirectoryWatcher videoWatcher;
 		ofx::piMapper::DirectoryWatcher imageWatcher;
+    
+        ofx::piMapper::DirectoryWatcher piVideoWatcher;
+        ofx::piMapper::DirectoryWatcher piImageWatcher;
+        vector <string> _tempImagePaths;
+        vector <string> _tempVideoPaths;
+    
 		map <string, BaseSource *> loadedSources;
 		// imageWatcher event listeners
 		void handleImageAdded(string & path);

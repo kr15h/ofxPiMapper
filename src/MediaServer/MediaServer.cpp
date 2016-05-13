@@ -13,7 +13,9 @@ namespace piMapper {
 
 MediaServer::MediaServer() :
 	videoWatcher(ofToDataPath(DEFAULT_VIDEOS_DIR, true), SourceType::SOURCE_TYPE_VIDEO),
-	imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), SourceType::SOURCE_TYPE_IMAGE){
+	imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), SourceType::SOURCE_TYPE_IMAGE),
+    piVideoWatcher(PI_IMAGES_DIR, SourceType::SOURCE_TYPE_VIDEO),
+    piImageWatcher(PI_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE){
 	addWatcherListeners();
 }
 
@@ -22,17 +24,30 @@ MediaServer::~MediaServer(){
 }
 
 int MediaServer::getNumImages(){
-	return imageWatcher.getFilePaths().size();
+    int numLocalImages = imageWatcher.getFilePaths().size();
+    int numPiImages = piImageWatcher.getFilePaths().size();
+    int sum = numLocalImages + numPiImages;
+	return sum;
 }
 int MediaServer::getNumVideos(){
-	return videoWatcher.getFilePaths().size();
+    int numLocalVideos = videoWatcher.getFilePaths().size();
+    int numPiVideos = piVideoWatcher.getFilePaths().size();
+    int sum = numLocalVideos + numPiVideos;
+	return sum;
 }
 int MediaServer::getNumFboSources(){
 	return fboSources.size();
 }
 
 vector <string> & MediaServer::getImagePaths(){
-	return imageWatcher.getFilePaths();
+    vector <string> & localPaths = imageWatcher.getFilePaths();
+    vector <string> & piPaths = piImageWatcher.getFilePaths();
+    
+    _tempImagePaths.clear();
+    _tempImagePaths.insert(_tempImagePaths.end(), localPaths.begin(), localPaths.end());
+    _tempImagePaths.insert(_tempImagePaths.end(), piPaths.begin(), piPaths.end());
+
+	return _tempImagePaths;
 }
 
 vector <string> MediaServer::getImageNames(){
@@ -56,7 +71,14 @@ vector <string> MediaServer::getFboSourceNames(){
 }
 
 vector <string> & MediaServer::getVideoPaths(){
-	return videoWatcher.getFilePaths();
+    vector <string> & localPaths = videoWatcher.getFilePaths();
+    vector <string> & piPaths = piVideoWatcher.getFilePaths();
+    
+    _tempVideoPaths.clear();
+    _tempVideoPaths.insert(_tempVideoPaths.begin(), localPaths.begin(), localPaths.end());
+    _tempVideoPaths.insert(_tempVideoPaths.begin(), piPaths.begin(), piPaths.end());
+
+	return _tempVideoPaths;
 }
 
 vector <string> MediaServer::getVideoNames(){
