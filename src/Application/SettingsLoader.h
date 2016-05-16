@@ -21,6 +21,8 @@ class SettingsLoader {
 	
 	private:
 		static SettingsLoader * _instance;
+    
+        SettingsLoader();
 	
 		BaseSurface * getTriangleSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getQuadSurface(ofxXmlSettings * xmlSettings);

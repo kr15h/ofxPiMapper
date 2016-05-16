@@ -12,6 +12,10 @@ SettingsLoader * SettingsLoader::instance(){
 	return _instance;
 }
 
+SettingsLoader::SettingsLoader(){
+    _lastLoadedFilename = "surfaces.xml";
+}
+
 bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
