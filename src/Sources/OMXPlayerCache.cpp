@@ -1,5 +1,7 @@
 #include "OMXPlayerCache.h"
 
+#ifdef TARGET_RASPBERRY_PI
+
 namespace ofx {
 namespace piMapper {
 
@@ -40,3 +42,5 @@ void OMXPlayerCache::unload(string moviePath){
 
 } // namespace piMapper
 } // namespace ofx
+
+#endif

@@ -1,8 +1,11 @@
 #pragma once
 
+#ifdef TARGET_RASPBERRY_PI
+
 #include "ofMain.h"
 #include "ofxOMXPlayer.h"
 #include "VideoSource.h"
+
 
 namespace ofx {
 namespace piMapper {
@@ -22,3 +25,5 @@ class OMXPlayerCache {
 
 } // namespace piMapper
 } // namespace ofx
+
+#endif
