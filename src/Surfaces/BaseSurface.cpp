@@ -96,7 +96,7 @@ bool BaseSurface::getMoved(){
 	return _moved;
 }
 
-ofMesh BaseSurface::getMesh(){
+ofMesh & BaseSurface::getMesh(){
 	return mesh;
 }
 

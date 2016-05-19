@@ -41,7 +41,7 @@ class BaseSurface {
 		void setMoved(bool moved);
 		bool getMoved();
 	
-		ofMesh getMesh();
+		ofMesh & getMesh();
 	
 		// TODO: The surface should emit an event once vertex has changed
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
