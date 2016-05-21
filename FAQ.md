@@ -26,80 +26,21 @@ The compiled binary of the application should appear in the `bin` directory of t
 /home/pi/openFrameworks/addons/ofxPiMapper/example/bin/example
 ```
 
-### 1.2. Set up auto login
+### 1.2. Set up Cron
 
-Edit the `inittab` file of your system.
-
-```bash
-sudo nano /etc/inittab
-```
-
-Replace the line `1:2345:respawn:/sbin/getty 115200 tty1` with the one below.
+Cron is a job scheduler on UNIX-like systems. We are going to use the super user crontab to launch ofxPiMapper on boot. Use the following command to edit the crontab.
 
 ```bash
-1:2345:respawn:/bin/login -f pi tty1 /dev/tty1 2>&1
+sudo crontab -e
 ```
 
-### 1.3. Create a startup script
+If using it for the first time, you will be prompted to choose the text editor you want to use. Select "nano". Proceed. Add the following line in the file.
 
-Execute the following commands one by one.
-
-```bash
-cd /home/pi
-touch startup.sh
-chmod a+x startup.sh
+```
+@reboot /home/pi/openFrameworks/addons/ofxPiMapper/example/bin/example
 ```
 
-Open `startup.sh` in a text editor.
+Hit `ctrl` + `x` to exit. Hit `y` to confirm changes of the file and `enter` to confirm the existing name of the file.
 
-```bash
-nano startup.sh
-```
-
-Copy and paste the following lines there.
-
-```bash
-#!/bin/bash
-
-echo "Checking SSH connection...";
-if [ -z "$SSH_CONNECTION" ]; then
-  echo "No SSH connection, launching scripts.";
-
-  # Launch the ofxPiMapper example compiled binary fullscreen
-  /home/pi/openFrameworks/addons/ofxPiMapper/example/bin/example -f
-else
-  echo "SSH connection, nothing to be launched.";
-fi
-```
-
-### 1.4. Launch `startup.sh` on auto login
-
-Open `.bashrc` in a text editor.
-
-```bash
-cd /home/pi
-sudo nano .bashrc
-```
-
-At the end of the `.bashrc` file add the path to the `startup.sh` file.
-
-```bash
-/home/pi/startup.sh
-```
-
-Restart your Pi and your application should be launched automatically.
-
-### 1.5. Preventing the screen from going blank
-
-It might happen that the screen goes blank as the system tries to save energy as there is no mouse or keyboard connected. To avoid this from happening, open `rc.local` in a text editor.
-
-```bash
-sudo nano /etc/rc.local
-```
-
-Add the following just **BEFORE** the `exit 0` line.
-
-```bash
-sh -c 'setterm -blank 0 -powersave off -powerdown 0 < /dev/console > /dev/console 2>&1'
-```
+Congratulations! OfxPiMapper should start up after next system reboot.
 
