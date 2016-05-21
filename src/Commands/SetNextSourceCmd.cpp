@@ -73,6 +73,7 @@ void SetNextSourceCmd::exec(){
 	}
 	
 	// Load new source
+    /*
 	BaseSource * newSource;
 	if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
 		newSource = mediaServer->loadImage(_sources[_nextSourceIndex].id);
@@ -86,11 +87,22 @@ void SetNextSourceCmd::exec(){
 	
 	// Unload old one
 	mediaServer->unloadMedia(sourceId);
+    */
+
+    if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_FBO){
+        _sourcesEditor->setFboSource(_sources[_nextSourceIndex].id);
+    }else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
+        _sourcesEditor->setImageSource(_sources[_nextSourceIndex].id);
+    }else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
+        _sourcesEditor->setVideoSource(_sources[_nextSourceIndex].id);
+    }
+    
 }
 
 void SetNextSourceCmd::undo(){
 	ofLogNotice("SetNextSourceCmd", "undo");
 	
+    /*
 	MediaServer * mediaServer = _sourcesEditor->getMediaServer();
 
 	// Load back old source
@@ -101,6 +113,15 @@ void SetNextSourceCmd::undo(){
 	_surface->setSource(prevSource);
 	
 	mediaServer->unloadMedia(_sources[_nextSourceIndex].id);
+    */
+    
+    if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_FBO){
+        _sourcesEditor->setFboSource(_sources[_sourceIndex].id);
+    }else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
+        _sourcesEditor->setImageSource(_sources[_sourceIndex].id);
+    }else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
+        _sourcesEditor->setVideoSource(_sources[_sourceIndex].id);
+    }
 }
 
 } // namespace piMapper
