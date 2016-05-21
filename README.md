@@ -178,6 +178,10 @@ These other shortcuts that you can use while using the example app.
 
 Key | Function
 :--- | :---
+1 | Presentation mode
+2 | Texture editing mode
+3 | Projection mapping mode, use this to select a surface first
+4 | Source selection mode
 i | Show info
 t | Add triangle surface
 q | Add quad surface
