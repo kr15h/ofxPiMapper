@@ -114,7 +114,9 @@ void Application::onKeyReleased(ofKeyEventArgs & args){
 	}
 }
 
-void Application::onMousePressed(ofMouseEventArgs & args){}
+void Application::onMousePressed(ofMouseEventArgs & args){
+    _state->onMousePressed(this, args);
+}
 
 void Application::onJointPressed(GuiJointEvent & e){
 	_state->onJointPressed(this, e);
