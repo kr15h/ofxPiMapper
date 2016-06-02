@@ -6,6 +6,8 @@
 //
 //
 
+// TODO (by Krisjanis Rijnieks 2016-06-02): Transform MediaServer into a singleton.
+
 // TODO: move reference counting, enabling and disabling of sources
 //       to source classes themselves
 
