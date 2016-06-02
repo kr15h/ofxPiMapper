@@ -143,7 +143,11 @@ bool Application::isShiftKeyDown(){
 }
 
 void Application::onCharacterReceived(KeyListenerEventData & e){
-	ofKeyEventArgs args;
+	return;
+    
+    // TODO: Check if the same char is not comming through regular key event
+    
+    ofKeyEventArgs args;
 	args.key = (int)e.character;
 	
 	// These if's have been added because we get
