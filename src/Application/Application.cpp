@@ -18,6 +18,13 @@ Application::Application(){
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
+    
+    string SSHConnection = ofSystem("if [ -z $SSH_CONNECTION ]; then echo no; else echo yes; fi");
+    if(SSHConnection == "yes"){
+        _isSSHConnection = true;
+    }else{
+        _isSSHConnection = false;
+    }
 }
 
 void Application::setup(){
@@ -28,7 +35,9 @@ void Application::setup(){
 		}
 	}
 	
-	consoleListener.setup(this);
+    if(_isSSHConnection){
+        consoleListener.setup(this);
+    }
 }
 
 ApplicationBaseState * Application::getState(){
@@ -143,10 +152,6 @@ bool Application::isShiftKeyDown(){
 }
 
 void Application::onCharacterReceived(KeyListenerEventData & e){
-	return;
-    
-    // TODO: Check if the same char is not comming through regular key event
-    
     ofKeyEventArgs args;
 	args.key = (int)e.character;
 	

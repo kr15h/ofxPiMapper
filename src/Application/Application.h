@@ -79,6 +79,7 @@ class Application : public KeyListener {
 		Info _info;
 	
 		bool _shiftKeyDown;
+        bool _isSSHConnection;
 
 };
 
