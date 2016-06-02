@@ -38,8 +38,9 @@ void SurfaceManager::removeSurface(){
 	if(_surfaces.size() <= 0){
 		return;
 	}
-	delete _surfaces.back();
+    BaseSurface * s = _surfaces.back();
 	_surfaces.pop_back();
+    delete s;
 }
 
 void SurfaceManager::deleteSurface(ofx::piMapper::BaseSurface * surface){
