@@ -247,7 +247,9 @@ BaseSurface * GridWarpSurface::clone(){
 	GridWarpSurface * s = new GridWarpSurface();
 	s->setVertices(getVertices());
 	s->setTexCoords(getTexCoords());
-	s->setSource(getSource());
+    BaseSource * src = getSource();
+    src->referenceCount++;
+	s->setSource(src);
 	return s;
 }
 

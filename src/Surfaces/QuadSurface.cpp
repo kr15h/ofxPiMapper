@@ -293,7 +293,9 @@ BaseSurface * QuadSurface::clone(){
 	QuadSurface * s = new QuadSurface();
 	s->setVertices(getVertices());
 	s->setTexCoords(getTexCoords());
-	s->setSource(getSource());
+    BaseSource * src = getSource();
+    src->referenceCount++;
+	s->setSource(src);
 	return s;
 }
 

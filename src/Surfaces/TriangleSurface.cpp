@@ -189,7 +189,9 @@ BaseSurface * TriangleSurface::clone(){
 	TriangleSurface * s = new TriangleSurface();
 	s->setVertices(getVertices());
 	s->setTexCoords(getTexCoords());
-	s->setSource(getSource());
+    BaseSource * src = getSource();
+    src->referenceCount++;
+	s->setSource(src);
 	return s;
 }
 

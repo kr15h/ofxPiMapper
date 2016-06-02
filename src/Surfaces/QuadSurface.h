@@ -14,7 +14,6 @@ class QuadSurface : public BaseSurface {
 		~QuadSurface();
 
 		void setup();
-
 		void setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4, ofVec2f t1,
 				   ofVec2f t2, ofVec2f t3, ofVec2f t4, BaseSource * newSource);
 
