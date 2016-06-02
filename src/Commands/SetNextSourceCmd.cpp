@@ -88,15 +88,16 @@ void SetNextSourceCmd::exec(){
 	// Unload old one
 	mediaServer->unloadMedia(sourceId);
     */
-
-    if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_FBO){
-        _sourcesEditor->setFboSource(_sources[_nextSourceIndex].id);
-    }else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
-        _sourcesEditor->setImageSource(_sources[_nextSourceIndex].id);
-    }else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
-        _sourcesEditor->setVideoSource(_sources[_nextSourceIndex].id);
-    }
     
+    if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
+		_sourcesEditor->setImageSource(_sources[_nextSourceIndex].id);
+	}else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
+		_sourcesEditor->setVideoSource(_sources[_nextSourceIndex].id);
+	}else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_FBO){
+		_sourcesEditor->setFboSource(_sources[_nextSourceIndex].id);
+	}else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_NONE){
+		_sourcesEditor->clearSource();
+	}
 }
 
 void SetNextSourceCmd::undo(){
@@ -115,13 +116,15 @@ void SetNextSourceCmd::undo(){
 	mediaServer->unloadMedia(_sources[_nextSourceIndex].id);
     */
     
-    if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_FBO){
-        _sourcesEditor->setFboSource(_sources[_sourceIndex].id);
-    }else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
-        _sourcesEditor->setImageSource(_sources[_sourceIndex].id);
-    }else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
-        _sourcesEditor->setVideoSource(_sources[_sourceIndex].id);
-    }
+    if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
+		_sourcesEditor->setImageSource(_sources[_sourceIndex].id);
+	}else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
+		_sourcesEditor->setVideoSource(_sources[_sourceIndex].id);
+	}else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_FBO){
+		_sourcesEditor->setFboSource(_sources[_sourceIndex].id);
+	}else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_NONE){
+		_sourcesEditor->clearSource();
+	}
 }
 
 } // namespace piMapper
