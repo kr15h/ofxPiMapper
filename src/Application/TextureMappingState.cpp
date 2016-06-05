@@ -45,7 +45,11 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 }
 		 break;
 	}
-	
+}
+
+void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
+    app->getCmdManager()->exec(
+        new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
 }
 
 } // namespace piMapper

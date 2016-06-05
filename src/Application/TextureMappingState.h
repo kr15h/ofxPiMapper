@@ -19,6 +19,7 @@ class TextureMappingState : public ApplicationBaseState {
 		static TextureMappingState * instance();
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
+        void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 
 	private:
 		static TextureMappingState * _instance;

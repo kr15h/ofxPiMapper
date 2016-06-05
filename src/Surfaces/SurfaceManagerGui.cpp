@@ -125,8 +125,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 				&textureEditor));
 
 		}else{
-			// TODO: Create command for this
-			textureEditor.unselectAllJoints();
+            Gui::instance()->notifyBackgroundPressed(args);
 		}
 
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
