@@ -2,3 +2,6 @@
 data/*.jpg
 data/settings.xml
 data/surfaces.xml
+example-camera
+libs
+readMe.txt
