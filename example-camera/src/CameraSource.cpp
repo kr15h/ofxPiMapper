@@ -10,10 +10,10 @@ CameraSource::CameraSource(){
 		_omxCameraSettings.width = _cameraWidth;
 		_omxCameraSettings.height = _cameraHeight;
 		_omxCameraSettings.framerate = 30;
-		_omxCameraSettings.isUsingTexture = true;
+		_omxCameraSettings.enableTexture = true;
 		_omxCameraSettings.doRecording = false;
 	
-		_videoGrabber.setup(omxCameraSettings);
+		_videoGrabber.setup(_omxCameraSettings);
 	#else
 		vector<ofVideoDevice> devices = _videoGrabber.listDevices();
 		_cameraFound = false;
