@@ -325,7 +325,11 @@ void MediaServer::addFboSource(ofx::piMapper::FboSource & fboSource){
 	}
 	ofLogNotice("MediaServer") << "Source new, adding";
 	fboSources.push_back(&fboSource);
-}   // addFboSource
+    
+    // It is important to run the setup of the FBO
+    // source from outside as we can see here.
+    fboSource.setup();
+}
 
 BaseSource * MediaServer::loadFboSource(string & fboSourceName){
 	ofLogNotice("MediaServer") << "Attempting to load FBO source with name " << fboSourceName;
