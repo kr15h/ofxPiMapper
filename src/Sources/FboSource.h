@@ -4,8 +4,6 @@
 #include "BaseSource.h"
 
 #define PIMAPPER_FBO_SOURCE_DEF_NAME "FBO Source"
-#define PIMAPPER_FBO_SOURCE_DEF_WIDTH 500
-#define PIMAPPER_FBO_SOURCE_DEF_HEIGHT 500
 
 namespace ofx {
 namespace piMapper {
