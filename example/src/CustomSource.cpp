@@ -1,6 +1,6 @@
 #include "CustomSource.h"
 
-CustomSource::CustomSource(){
+void CustomSource::setup(){
 	// Give our source a decent name
 	name = "Custom FBO Source";
 
