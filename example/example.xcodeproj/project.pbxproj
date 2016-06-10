@@ -36,6 +36,7 @@
 		0130C9821CE65AA600911E17 /* snappy-sinksource.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C9491CE65AA600911E17 /* snappy-sinksource.cc */; };
 		0130C9831CE65AA600911E17 /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94B1CE65AA600911E17 /* snappy-stubs-internal.cc */; };
 		0130C9841CE65AA600911E17 /* snappy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94E1CE65AA600911E17 /* snappy.cc */; };
+		0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */; };
 		391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */; };
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
 		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
@@ -225,6 +226,8 @@
 		0130C94E1CE65AA600911E17 /* snappy.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = snappy.cc; sourceTree = "<group>"; };
 		0130C94F1CE65AA600911E17 /* snappy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = snappy.h; sourceTree = "<group>"; };
 		0130C95B1CE65AA600911E17 /* ofxIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxIO.h; sourceTree = "<group>"; };
+		0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleAnimatedSourceCmd.h; path = Commands/ToggleAnimatedSourceCmd.h; sourceTree = "<group>"; };
+		0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleAnimatedSourceCmd.cpp; path = Commands/ToggleAnimatedSourceCmd.cpp; sourceTree = "<group>"; };
 		3904C1A31C8758F70001875C /* OMXPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
 		3904C1A41C8758F70001875C /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
 		391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetApplicationStateCmd.cpp; path = Commands/SetApplicationStateCmd.cpp; sourceTree = "<group>"; };
@@ -898,6 +901,8 @@
 				394BD2411C4D63AE0089A48C /* TogglePerspectiveCmd.cpp */,
 				39CF9C4E1C8A1B2200FDE473 /* DuplicateSurfaceCmd.h */,
 				39CF9C4F1C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp */,
+				0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */,
+				0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1098,6 +1103,7 @@
 				0130C96B1CE65AA600911E17 /* ByteBuffer.cpp in Sources */,
 				0130C96A1CE65AA600911E17 /* Base64Encoding.cpp in Sources */,
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
+				0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
 				3995C20A1C79069B00123352 /* Settings.cpp in Sources */,
 				39A0A1D81C6628AB00C9096B /* MvSelectionCmd.cpp in Sources */,
