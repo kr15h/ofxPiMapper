@@ -58,7 +58,6 @@ int GridWarpSurface::setGridCols(int c){
 
 bool GridWarpSurface::hitTest(ofVec2f p){
 	ofPolyline pl;
-	int vertsPerCol = _gridRows + 1;
 	int vertsPerRow = _gridCols + 1;
 	
 	for(int iy = 0; iy < _gridRows; ++iy){
@@ -86,7 +85,6 @@ bool GridWarpSurface::hitTest(ofVec2f p){
 
 ofPolyline GridWarpSurface::getHitArea(){
 	ofPolyline pl;
-	int vertsPerCol = _gridRows + 1;
 	int vertsPerRow = _gridCols + 1;
 	
 	// Get the top border
