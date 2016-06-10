@@ -22,6 +22,7 @@
 #include "DeselectSurfaceCmd.h"
 #include "SetNextSourceCmd.h"
 #include "DuplicateSurfaceCmd.h"
+#include "ToggleAnimatedSourceCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 

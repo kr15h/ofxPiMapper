@@ -25,6 +25,7 @@ class VideoSource : public BaseSource {
 		string & getPath();
 		void loadVideo(string & path);
 		void clear();
+        void togglePause();
 
 		#ifndef TARGET_RASPBERRY_PI
 			void update(ofEventArgs & args);

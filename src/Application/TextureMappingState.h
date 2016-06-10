@@ -9,6 +9,7 @@
 #include "DeselectTexCoordCmd.h"
 #include "SetNextSourceCmd.h"
 #include "SelNextSurfaceCmd.h"
+#include "ToggleAnimatedSourceCmd.h"
 
 namespace ofx {
 namespace piMapper {

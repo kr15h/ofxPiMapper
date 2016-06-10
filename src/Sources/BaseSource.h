@@ -20,6 +20,7 @@ class BaseSource {
 		int getType();
 		string & getPath();
 		virtual void clear(){}
+        virtual void togglePause(){}
 
 		// TODO: add virtual increaseReferenceCount and decreaseReferenceCount methods
 		// and make the variable protected
