@@ -24,14 +24,13 @@ class BaseSurface {
 		virtual void setTexCoords(vector<ofVec2f> t){}
 	
 		virtual void moveBy(ofVec2f v){}
-		virtual int getType(){}
-		virtual bool hitTest(ofVec2f p){}
-		virtual ofPolyline getHitArea(){}
-		virtual ofPolyline getTextureHitArea(){}
-		virtual vector <ofVec3f> & getVertices(){}
-		virtual vector <ofVec2f> & getTexCoords(){}
-	
-		virtual BaseSurface * clone(){}
+        virtual int getType(){ return 0; }
+        virtual bool hitTest(ofVec2f p){ return false; }
+        virtual ofPolyline getHitArea(){ ofPolyline p; return p; }
+        virtual ofPolyline getTextureHitArea(){ ofPolyline p; return p; }
+        virtual vector <ofVec3f> & getVertices(){ return mesh.getVertices(); }
+        virtual vector <ofVec2f> & getTexCoords(){ return mesh.getTexCoords(); }
+		virtual BaseSurface * clone(){ return 0; }
 
 		void drawTexture(ofVec2f position);
 		void setSource(BaseSource * newSource);
