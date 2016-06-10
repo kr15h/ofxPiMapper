@@ -32,7 +32,7 @@ class BaseJoint {
 
 		virtual void update(){}
 		virtual void draw(){}
-		virtual bool hitTest(ofVec2f position){}
+		virtual bool hitTest(ofVec2f position){ return false; }
 
 	protected:
 		ofColor fillColor;
