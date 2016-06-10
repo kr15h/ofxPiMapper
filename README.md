@@ -200,7 +200,7 @@ f | Toggle fullscreen
 s | Save composition
 z | Undo
 BACKSPACE ('-' via SSH) | Delete surface.
-SPACE | Deselect surface (projection mapping mode)
+SPACE | Toggle pause for video sources (texture and projection mapping modes)
 TAB | Select next source (no need to use the source selection interface)
 Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
 
