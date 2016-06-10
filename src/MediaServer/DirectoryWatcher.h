@@ -19,7 +19,7 @@ class BasePathFilter : public ofx::IO::AbstractPathFilter {
 	public:
 		BasePathFilter(){}
 		virtual ~BasePathFilter(){}
-		virtual bool accept(const Poco::Path & path) const {}
+		virtual bool accept(const Poco::Path & path) const { return false; }
 };
 
 class VideoPathFilter : public BasePathFilter {
