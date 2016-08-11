@@ -8,6 +8,7 @@ FboSource::FboSource() : fbo(0){
 	loadable = false;
 	loaded = false;
 	type = SourceType::SOURCE_TYPE_FBO;
+	_disableDraw = false;
 }
 
 FboSource::~FboSource(){
@@ -48,6 +49,11 @@ void FboSource::onAppDraw(ofEventArgs & args){
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
+	
+	if(_disableDraw){
+		return;
+	}
+	
 	fbo->begin();
 	draw();
 	fbo->end();
@@ -55,6 +61,10 @@ void FboSource::onAppDraw(ofEventArgs & args){
 
 void FboSource::onAppExit(ofEventArgs & args){
 	exit();
+}
+
+void FboSource::setDisableDraw(bool b){
+	_disableDraw = b;
 }
 
 void FboSource::allocate(int width, int height){

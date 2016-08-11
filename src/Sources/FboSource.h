@@ -30,6 +30,7 @@ class FboSource : public BaseSource {
 		void onAppUpdate(ofEventArgs & args);
 		void onAppDraw(ofEventArgs & args);
 		void onAppExit(ofEventArgs & args);
+		void setDisableDraw(bool b); // Use in cases with external ofFbo
 
 	protected:
 		ofFbo * fbo;
@@ -38,7 +39,8 @@ class FboSource : public BaseSource {
 		// Some handy getters
 		int getWidth();
 		int getHeight();
-
+	
+		bool _disableDraw;
 };
 
 } // namespace piMapper
