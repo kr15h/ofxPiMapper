@@ -5,7 +5,6 @@ namespace piMapper {
 
 BaseSurface::BaseSurface(){
 	_moved = false;
-	ofEnableNormalizedTexCoords();
 	createDefaultTexture();
 }
 

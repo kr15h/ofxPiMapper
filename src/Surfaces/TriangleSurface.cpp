@@ -50,10 +50,17 @@ void TriangleSurface::draw(){
 	if(!source->getTexture()->isAllocated()){
 		return;
 	}
+	
+	bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+	ofEnableNormalizedTexCoords();
 
 	source->getTexture()->bind();
 	mesh.draw();
 	source->getTexture()->unbind();
+	
+	if(!normalizedTexCoords){
+		ofDisableNormalizedTexCoords();
+	}
 }
 
 void TriangleSurface::setVertex(int index, ofVec2f p){

@@ -18,9 +18,16 @@ void GridWarpSurface::draw(){
 		return;
 	}
 	
+	bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+	ofEnableNormalizedTexCoords();
+	
 	source->getTexture()->bind();
 	mesh.draw();
 	source->getTexture()->unbind();
+	
+	if(!normalizedTexCoords){
+		ofDisableNormalizedTexCoords();
+	}
 }
 
 void GridWarpSurface::moveBy(ofVec2f v){

@@ -78,16 +78,30 @@ void QuadSurface::draw(){
 		
 		ofPushMatrix();
 		if(true){
+			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+			ofEnableNormalizedTexCoords();
+			
 			glMultMatrixf(_matrix);
 			source->getTexture()->bind();
 			m.draw();
 			source->getTexture()->unbind();
+			
+			if(!normalizedTexCoords){
+				ofDisableNormalizedTexCoords();
+			}
 		}
 		ofPopMatrix();
 	}else{
+		bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+		ofEnableNormalizedTexCoords();
+	
 		source->getTexture()->bind();
 		mesh.draw();
 		source->getTexture()->unbind();
+		
+		if(!normalizedTexCoords){
+			ofDisableNormalizedTexCoords();
+		}
 	}
 }
 
