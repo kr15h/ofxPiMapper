@@ -170,6 +170,10 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 break;
 		 
 	 case ' ':
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
+		 
 		 if(app->getSurfaceManager()->getSelectedSurface()->getSource()->getType() ==
             SourceType::SOURCE_TYPE_VIDEO){
             app->getCmdManager()->exec(
