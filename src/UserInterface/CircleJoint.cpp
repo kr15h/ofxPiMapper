@@ -17,9 +17,12 @@ void CircleJoint::draw(){
 	if(!visible){
 		return;
 	}
+	
 	if(!enabled){
 		return;
 	}
+	
+	ofEnableAlphaBlending();
 
 	ofPushStyle();
 	ofFill();
