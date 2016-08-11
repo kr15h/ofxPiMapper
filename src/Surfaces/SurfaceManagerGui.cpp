@@ -46,9 +46,16 @@ void SurfaceManagerGui::draw(){
 	}else if(guiMode == GuiMode::TEXTURE_MAPPING){
 		// draw the texture of the selected surface
 		if(surfaceManager->getSelectedSurface() != 0){
+			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+			ofEnableNormalizedTexCoords();
+			
 			// Reset default color to white first
 			ofSetColor(255, 255, 255, 255);
 			surfaceManager->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
+			
+			if(!normalizedTexCoords){
+				ofDisableNormalizedTexCoords();
+			}
 		}
 
 		// draw surfaces with opacity
