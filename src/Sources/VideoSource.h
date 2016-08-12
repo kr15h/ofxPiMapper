@@ -18,6 +18,7 @@ class VideoSource : public BaseSource {
 		// TODO: Create enableAudio() and disableAudio() methods
 		//       for live audio enabling and disabling.
 		static bool enableAudio;
+		static bool useHDMIForAudio;
 
 		VideoSource();
 		~VideoSource();

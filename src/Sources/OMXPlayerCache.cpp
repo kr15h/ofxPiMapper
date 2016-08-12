@@ -18,7 +18,7 @@ ofxOMXPlayer * OMXPlayerCache::load(string moviePath){
 	if(_players.find(moviePath) == _players.end()){
 		ofxOMXPlayerSettings settings;
 		settings.videoPath = moviePath;
-		settings.useHDMIForAudio = true;
+		settings.useHDMIForAudio = VideoSource::useHDMIForAudio;
 		settings.enableTexture = true;
 		settings.enableLooping = true;
 		settings.enableAudio = VideoSource::enableAudio;

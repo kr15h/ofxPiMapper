@@ -4,6 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 bool VideoSource::enableAudio = false;
+bool VideoSource::useHDMIForAudio = false;
 
 VideoSource::VideoSource(){
 	loadable = true;
