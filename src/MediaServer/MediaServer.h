@@ -62,6 +62,8 @@ class MediaServer {
 
 		// Do things with FBO sources
 		void addFboSource(FboSource & fboSource); // could be called also as register FBO source
+		void addFboSource(FboSource * fboSource);
+	
 		BaseSource * loadFboSource(string & fboSourceName);
 		void unloadFboSource(string & fboSourceName);
 

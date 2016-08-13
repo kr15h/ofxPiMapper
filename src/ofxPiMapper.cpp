@@ -14,6 +14,10 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
 	_application.addFboSource(fboSource);
 }
 
+void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource * fboSource){
+	_application.addFboSource(fboSource);
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }

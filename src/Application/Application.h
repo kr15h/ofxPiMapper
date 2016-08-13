@@ -52,6 +52,7 @@ class Application : public KeyListener {
 		// Every state should have it's own GUI layer
 	
 		void addFboSource(FboSource & fboSource);
+		void addFboSource(FboSource * fboSource);
 	
 		bool loadXmlSettings(string fileName);
 		bool isShiftKeyDown();

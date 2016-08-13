@@ -26,6 +26,7 @@ class ofxPiMapper {
 		void draw();
 	
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
+		void registerFboSource(ofx::piMapper::FboSource * fboSource);
 		bool loadXmlSettings(string fileName);
 
 	private:

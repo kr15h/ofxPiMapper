@@ -315,20 +315,27 @@ string MediaServer::getDefaultMediaDir(int sourceType){
 }
 
 void MediaServer::addFboSource(ofx::piMapper::FboSource & fboSource){
-	ofLogNotice("MediaServer") << "Attempting to add FBO source with name " << fboSource.getName();
+	addFboSource(&fboSource);
+}
+
+void MediaServer::addFboSource(FboSource * fboSource){
+	ofLogNotice("MediaServer") << "Attempting to add FBO source with name " << fboSource->getName();
+	
 	// FBO source has to be with unique name
-	for(int i = 0; i < fboSources.size(); i++){
-		if(fboSources[i]->getName() == fboSource.getName()){
+	for(int i = 0; i < fboSources.size(); ++i){
+		if(fboSources[i]->getName() == fboSource->getName()){
 			ofLogWarning("MediaServer") << "Attempt to add FBO source with duplicate name";
 			ofExit(EXIT_FAILURE); // Here we definitely need to fail to avoid confusion
+			std::exit(EXIT_FAILURE); // In case the openFrameworks function fails
 		}
 	}
+	
 	ofLogNotice("MediaServer") << "Source new, adding";
-	fboSources.push_back(&fboSource);
+	fboSources.push_back(fboSource);
     
     // It is important to run the setup of the FBO
     // source from outside as we can see here.
-    fboSource.setup();
+    fboSource->setup();
 }
 
 BaseSource * MediaServer::loadFboSource(string & fboSourceName){

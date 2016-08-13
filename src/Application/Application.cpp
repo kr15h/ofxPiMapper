@@ -143,6 +143,10 @@ void Application::addFboSource(FboSource & fboSource){
 	_mediaServer.addFboSource(fboSource);
 }
 
+void Application::addFboSource(FboSource * fboSource){
+	_mediaServer.addFboSource(fboSource);
+}
+
 void Application::setState(ApplicationBaseState * st){
 	_state = st;
 }
