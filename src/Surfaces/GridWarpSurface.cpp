@@ -9,6 +9,10 @@ GridWarpSurface::GridWarpSurface(){
 	createGridMesh();
 }
 
+void GridWarpSurface::setup(){
+	// Nothing here yet
+}
+
 void GridWarpSurface::draw(){
 	if(source->getTexture() == 0){
 		return;

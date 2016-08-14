@@ -12,6 +12,7 @@ class GridWarpSurface : public BaseSurface {
 	public:
 		GridWarpSurface();
 
+		void setup();
 		void draw();
 		void moveBy(ofVec2f v);
 	

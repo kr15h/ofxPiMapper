@@ -14,35 +14,38 @@ class BaseSurface {
 	public:
 		BaseSurface();
 		~BaseSurface();
-		virtual void setup(){}
-		virtual void draw(){}
 	
-		virtual void setVertex(int index, ofVec2f p){}
-		virtual void setVertices(vector<ofVec2f> v){}
+		virtual void setup() = 0;
+		virtual void draw() = 0;
+		virtual void setVertex(int index, ofVec2f p) = 0;
+		virtual void setVertices(vector<ofVec2f> v) = 0;
+		virtual void setTexCoord(int index, ofVec2f t) = 0;
+		virtual void setTexCoords(vector<ofVec2f> t) = 0;
+		virtual void moveBy(ofVec2f v) = 0;
 	
-		virtual void setTexCoord(int index, ofVec2f t){}
-		virtual void setTexCoords(vector<ofVec2f> t){}
+        virtual int getType() = 0;
 	
-		virtual void moveBy(ofVec2f v){}
-        virtual int getType(){ return 0; }
-        virtual bool hitTest(ofVec2f p){ return false; }
-        virtual ofPolyline getHitArea(){ ofPolyline p; return p; }
-        virtual ofPolyline getTextureHitArea(){ ofPolyline p; return p; }
-        virtual vector <ofVec3f> & getVertices(){ return mesh.getVertices(); }
-        virtual vector <ofVec2f> & getTexCoords(){ return mesh.getTexCoords(); }
-		virtual BaseSurface * clone(){ return 0; }
+		virtual bool hitTest(ofVec2f p) = 0;
+	
+		virtual ofPolyline getHitArea() = 0;
+        virtual ofPolyline getTextureHitArea() = 0;
+	
+		virtual vector <ofVec3f> & getVertices() = 0;
+        virtual vector <ofVec2f> & getTexCoords() = 0;
+	
+		virtual BaseSurface * clone() = 0;
 
 		void drawTexture(ofVec2f position);
 		void setSource(BaseSource * newSource);
+		void setMoved(bool moved);
+	
 		BaseSource * getSource();
 		BaseSource * getDefaultSource();
 
-		void setMoved(bool moved);
 		bool getMoved();
 	
 		ofMesh & getMesh();
 	
-		// TODO: The surface should emit an event once vertex has changed
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> vertexChangedEvent;
 
