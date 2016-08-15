@@ -37,6 +37,8 @@
 		0130C9831CE65AA600911E17 /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94B1CE65AA600911E17 /* snappy-stubs-internal.cc */; };
 		0130C9841CE65AA600911E17 /* snappy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94E1CE65AA600911E17 /* snappy.cc */; };
 		0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */; };
+		01F9EB1D1D624702009CA5E8 /* MvLayerDnCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */; };
+		01F9EB1E1D624702009CA5E8 /* MvLayerUpCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9EB1C1D624702009CA5E8 /* MvLayerUpCmd.cpp */; };
 		391717EF1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */; };
 		391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F11B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp */; };
 		391717F71B0BCBB500F9A484 /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 391717F51B0BCBB500F9A484 /* MvTexCoordCmd.cpp */; };
@@ -228,6 +230,10 @@
 		0130C95B1CE65AA600911E17 /* ofxIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxIO.h; sourceTree = "<group>"; };
 		0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleAnimatedSourceCmd.h; path = Commands/ToggleAnimatedSourceCmd.h; sourceTree = "<group>"; };
 		0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleAnimatedSourceCmd.cpp; path = Commands/ToggleAnimatedSourceCmd.cpp; sourceTree = "<group>"; };
+		01F9EB191D624702009CA5E8 /* MvLayerDnCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvLayerDnCmd.h; path = Commands/MvLayerDnCmd.h; sourceTree = "<group>"; };
+		01F9EB1A1D624702009CA5E8 /* MvLayerUpCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvLayerUpCmd.h; path = Commands/MvLayerUpCmd.h; sourceTree = "<group>"; };
+		01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvLayerDnCmd.cpp; path = Commands/MvLayerDnCmd.cpp; sourceTree = "<group>"; };
+		01F9EB1C1D624702009CA5E8 /* MvLayerUpCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = MvLayerUpCmd.cpp; path = Commands/MvLayerUpCmd.cpp; sourceTree = "<group>"; };
 		3904C1A31C8758F70001875C /* OMXPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
 		3904C1A41C8758F70001875C /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
 		391717ED1B08FFDA00F9A484 /* SetApplicationStateCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SetApplicationStateCmd.cpp; path = Commands/SetApplicationStateCmd.cpp; sourceTree = "<group>"; };
@@ -903,6 +909,10 @@
 				39CF9C4F1C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp */,
 				0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */,
 				0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */,
+				01F9EB1A1D624702009CA5E8 /* MvLayerUpCmd.h */,
+				01F9EB1C1D624702009CA5E8 /* MvLayerUpCmd.cpp */,
+				01F9EB191D624702009CA5E8 /* MvLayerDnCmd.h */,
+				01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1111,11 +1121,13 @@
 				0130C96F1CE65AA600911E17 /* ByteBufferWriter.cpp in Sources */,
 				0130C97E1CE65AA600911E17 /* RegexPathFilter.cpp in Sources */,
 				397C46C21C3AE2A7002689E2 /* SurfaceFactory.cpp in Sources */,
+				01F9EB1E1D624702009CA5E8 /* MvLayerUpCmd.cpp in Sources */,
 				0130C9771CE65AA600911E17 /* FileExtensionFilter.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				39A9AAE91B0518FC00AA83BC /* StartDragSurfaceCmd.cpp in Sources */,
 				39C1247C19F187D5005DF557 /* BaseJoint.cpp in Sources */,
 				39C1245219EE95DD005DF557 /* MediaServer.cpp in Sources */,
+				01F9EB1D1D624702009CA5E8 /* MvLayerDnCmd.cpp in Sources */,
 				39F051301C650E7E0089A36B /* SelPrevVertexCmd.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
 				39A867961B0D312400165378 /* SetSourceCmd.cpp in Sources */,
