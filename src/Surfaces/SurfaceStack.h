@@ -6,11 +6,13 @@
 namespace ofx {
 namespace piMapper {
 
-// One can imagine this as a layers panel in an image editor
+// One can imagine this as a layers panel in an image editor.
+// TODO: Make it singleton for easy access from commands.
+// And refactor rest of the code to use it this way.
 class SurfaceStack {
 	public:
-		SurfaceStack();
-
+		static SurfaceStack * instance();
+	
 		void push_back(BaseSurface * s);
 		void pop_back();
 		void erase(int i);
@@ -20,6 +22,7 @@ class SurfaceStack {
 		int size();
 
 		BaseSurface * operator[](int i);
+		BaseSurface * at(int i);
 		BaseSurface * back();
 	
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
@@ -29,6 +32,10 @@ class SurfaceStack {
 		void onVertexChanged(int & i);
 	
 	private:
+		SurfaceStack(){}
+	
+		static SurfaceStack * _instance;
+	
 		vector<BaseSurface *> _surfaces;
 };
 

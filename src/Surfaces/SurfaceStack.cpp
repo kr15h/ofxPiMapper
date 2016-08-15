@@ -3,7 +3,14 @@
 namespace ofx {
 namespace piMapper {
 
-SurfaceStack::SurfaceStack(){}
+SurfaceStack * SurfaceStack::_instance = 0;
+
+SurfaceStack * SurfaceStack::instance(){
+	if(_instance == 0){
+		_instance = new ofx::piMapper::SurfaceStack();
+	}
+	return _instance;
+}
 
 void SurfaceStack::push_back(BaseSurface * s){
 	ofAddListener(s->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
@@ -38,6 +45,10 @@ int SurfaceStack::size(){
 }
 
 BaseSurface * SurfaceStack::operator[](int i){
+	return at(i);
+}
+
+BaseSurface * SurfaceStack::at(int i){
 	if(i >= _surfaces.size()){
 		throw runtime_error("SurfaceStack index out of bounds");
 	}

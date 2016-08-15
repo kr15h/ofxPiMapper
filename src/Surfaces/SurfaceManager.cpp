@@ -6,17 +6,23 @@ namespace piMapper {
 SurfaceManager::SurfaceManager(){
 	mediaServer = 0;
 	selectedSurface = 0;
-	ofAddListener(_surfaces.vertexChangedEvent, this, &SurfaceManager::onVertexChanged);
-	ofAddListener(_surfaces.verticesChangedEvent, this, &SurfaceManager::onVerticesChanged);
+	ofAddListener(
+		SurfaceStack::instance()->vertexChangedEvent,
+		this,
+		&SurfaceManager::onVertexChanged);
+	ofAddListener(
+		SurfaceStack::instance()->verticesChangedEvent,
+		this,
+		&SurfaceManager::onVerticesChanged);
 	_selectedVertexIndex = -1;
 }
 
 void SurfaceManager::draw(){
-	_surfaces.draw();
+	SurfaceStack::instance()->draw();
 }
 
 void SurfaceManager::addSurface(BaseSurface * surface){
-	_surfaces.push_back(surface);
+	SurfaceStack::instance()->push_back(surface);
 }
 
 void SurfaceManager::removeSelectedSurface(){
@@ -24,9 +30,9 @@ void SurfaceManager::removeSelectedSurface(){
 		return;
 	}
 	
-	for(int i = 0; i < _surfaces.size(); i++){
-		if(_surfaces[i] == selectedSurface){
-			_surfaces.erase(i);
+	for(int i = 0; i < SurfaceStack::instance()->size(); i++){
+		if(SurfaceStack::instance()->at(i) == selectedSurface){
+			SurfaceStack::instance()->erase(i);
 			selectedSurface = 0;
 			_selectedVertexIndex = -1;
 			break;
@@ -35,27 +41,27 @@ void SurfaceManager::removeSelectedSurface(){
 }
 
 void SurfaceManager::removeSurface(){
-	if(_surfaces.size() <= 0){
+	if(SurfaceStack::instance()->size() <= 0){
 		return;
 	}
-    BaseSurface * s = _surfaces.back();
-	_surfaces.pop_back();
+    BaseSurface * s = SurfaceStack::instance()->back();
+	SurfaceStack::instance()->pop_back();
     delete s;
 }
 
 void SurfaceManager::deleteSurface(ofx::piMapper::BaseSurface * surface){
-	for(int i = 0; i < _surfaces.size(); ++i){
-		if(_surfaces[i] == surface){
-			_surfaces.erase(i);
+	for(int i = 0; i < SurfaceStack::instance()->size(); ++i){
+		if(SurfaceStack::instance()->at(i) == surface){
+			SurfaceStack::instance()->erase(i);
 			break;
 		}
 	}
 }
 
 void SurfaceManager::clear(){
-	while(_surfaces.size()){
-		delete _surfaces.back();
-		_surfaces.pop_back();
+	while(SurfaceStack::instance()->size()){
+		delete SurfaceStack::instance()->back();
+		SurfaceStack::instance()->pop_back();
 	}
 }
 
@@ -65,7 +71,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 		exit(EXIT_FAILURE);
 	}
 	
-	SettingsLoader::instance()->save(_surfaces, fileName);
+	SettingsLoader::instance()->save(*SurfaceStack::instance(), fileName);
 }
 
 bool SurfaceManager::loadXmlSettings(string fileName){
@@ -74,7 +80,7 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 		exit(EXIT_FAILURE);
 	}
 	
-	return SettingsLoader::instance()->load(_surfaces, *mediaServer, fileName);
+	return SettingsLoader::instance()->load(*SurfaceStack::instance(), *mediaServer, fileName);
 }
 
 void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
@@ -82,19 +88,19 @@ void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
 }
 
 BaseSurface * SurfaceManager::selectSurface(int index){
-	if(index >= _surfaces.size()){
+	if(index >= SurfaceStack::instance()->size()){
 		throw runtime_error("Surface index out of bounds.");
 	}
 
-	selectedSurface = _surfaces[index];
+	selectedSurface = SurfaceStack::instance()->at(index);
 	_selectedVertexIndex = -1;
 	ofSendMessage("surfaceSelected");
 	return selectedSurface;
 }
 
 BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
-	for(int i = 0; i < _surfaces.size(); i++){
-		if(_surfaces[i] == surface){
+	for(int i = 0; i < SurfaceStack::instance()->size(); i++){
+		if(SurfaceStack::instance()->at(i) == surface){
 			selectedSurface = surface;
 			_selectedVertexIndex = -1;
 			ofSendMessage("surfaceSelected");
@@ -118,15 +124,15 @@ BaseSurface * SurfaceManager::selectNextSurface(){
 		return selectedSurface;
 	}
 	
-	for(int i = 0; i < _surfaces.size(); ++i){
-		if(_surfaces[i] == selectedSurface){
-			if(i < _surfaces.size() - 1){
+	for(int i = 0; i < SurfaceStack::instance()->size(); ++i){
+		if(SurfaceStack::instance()->at(i) == selectedSurface){
+			if(i < SurfaceStack::instance()->size() - 1){
 				next = i + 1;
 			}else{
 				next = 0;
 			}
 			
-			selectedSurface = _surfaces[next];
+			selectedSurface = SurfaceStack::instance()->at(next);
 			ofNotifyEvent(surfaceSelectedEvent, next, this);
 			return selectedSurface;
 		}
@@ -140,21 +146,21 @@ BaseSurface * SurfaceManager::selectPrevSurface(){
 	_selectedVertexIndex = -1;
 	
 	if(selectedSurface == 0){
-		prev = _surfaces.size() - 1;
+		prev = SurfaceStack::instance()->size() - 1;
 		selectedSurface = selectSurface(prev);
 		ofNotifyEvent(surfaceSelectedEvent, prev, this);
 		return selectedSurface;
 	}
 	
-	for(int i = 0; i < _surfaces.size(); ++i){
-		if(_surfaces[i] == selectedSurface){
+	for(int i = 0; i < SurfaceStack::instance()->size(); ++i){
+		if(SurfaceStack::instance()->at(i) == selectedSurface){
 			if(i > 0){
 				prev = i - 1;
 			}else{
-				prev = _surfaces.size() - 1;
+				prev = SurfaceStack::instance()->size() - 1;
 			}
 			
-			selectedSurface = _surfaces[prev];
+			selectedSurface = SurfaceStack::instance()->at(prev);
 			ofNotifyEvent(surfaceSelectedEvent, prev, this);
 			return selectedSurface;
 		}
@@ -239,8 +245,8 @@ void SurfaceManager::moveSelectionBy(ofVec2f v){
 }
 
 void SurfaceManager::moveAllSurfacesBy(ofVec2f v){
-	for(int i = 0; i < _surfaces.size(); ++i){
-		_surfaces[i]->moveBy(v);
+	for(int i = 0; i < SurfaceStack::instance()->size(); ++i){
+		SurfaceStack::instance()->at(i)->moveBy(v);
 	}
 }
 
@@ -250,16 +256,16 @@ void SurfaceManager::deselectSurface(){
 }
 
 BaseSurface * SurfaceManager::getSurface(int index){
-	if(index >= _surfaces.size()){
+	if(index >= SurfaceStack::instance()->size()){
 		throw runtime_error("Surface index out of bounds.");
 		return 0;
 	}
 	
-	return _surfaces[index];
+	return SurfaceStack::instance()->at(index);
 }
 
 int SurfaceManager::size(){
-	return _surfaces.size();
+	return SurfaceStack::instance()->size();
 }
 
 int SurfaceManager::getSelectedVertexIndex(){

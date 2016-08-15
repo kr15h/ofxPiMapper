@@ -68,7 +68,6 @@ class SurfaceManager {
 		BaseSurface * selectedSurface;
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;
-		SurfaceStack _surfaces;
 	
 		int _selectedVertexIndex;
 };
