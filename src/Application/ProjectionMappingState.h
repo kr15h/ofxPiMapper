@@ -23,6 +23,8 @@
 #include "SetNextSourceCmd.h"
 #include "DuplicateSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
+#include "MvLayerUpCmd.h"
+#include "MvLayerDnCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 

@@ -241,6 +241,34 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 }
 		 break;
 		 
+	 case '0': // Move selected surface up the layer stack
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			if(app->getSurfaceManager()->getSelectedSurface() ==
+				SurfaceStack::instance()->at(SurfaceStack::instance()->size() - 1)){
+				return;
+			}
+			
+			app->getCmdManager()->exec(
+				new MvLayerUpCmd(
+					app->getSurfaceManager()->getSelectedSurface())
+			);
+		 }
+		 break;
+		
+	 case '9': // Move selected surface down the layer stack
+		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			if(app->getSurfaceManager()->getSelectedSurface() ==
+				SurfaceStack::instance()->at(0)){
+				return;
+			}
+			
+			app->getCmdManager()->exec(
+				new MvLayerDnCmd(
+					app->getSurfaceManager()->getSelectedSurface())
+			);
+		 }
+		 break;
+		 
 	 default:
 		 break;
 	}
