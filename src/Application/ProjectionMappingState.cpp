@@ -41,7 +41,7 @@ void ProjectionMappingState::draw(Application * app){
 		int offsetTop = 20;
 		int verticalSpacing = 10;
 		int layerIconX = ofGetWidth() - offsetRight - layerIconWidth;
-		int layerIconY = offsetTop + ((layerIconHeight + verticalSpacing) * (numSurfaces - i));
+		int layerIconY = offsetTop + ((layerIconHeight + verticalSpacing) * (numSurfaces - i - 1));
 		
 		ofRectangle layerIcon = ofRectangle(
 			layerIconX,
