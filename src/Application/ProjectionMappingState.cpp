@@ -35,13 +35,16 @@ void ProjectionMappingState::draw(Application * app){
 			ofNoFill();
 		}
 		
-		int layerIconWidth = 20;
+		int layerIconWidth = 45;
 		int layerIconHeight = 20;
 		int offsetRight = 20;
-		int offsetTop = 20;
+		int offsetTop = 40;
 		int verticalSpacing = 10;
 		int layerIconX = ofGetWidth() - offsetRight - layerIconWidth;
 		int layerIconY = offsetTop + ((layerIconHeight + verticalSpacing) * (numSurfaces - i - 1));
+		
+		string label = "Layers";
+		ofDrawBitmapString(label, ofGetWidth() - 66, 30);
 		
 		ofRectangle layerIcon = ofRectangle(
 			layerIconX,
