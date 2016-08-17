@@ -135,6 +135,8 @@ void TriangleSurface::moveBy(ofVec2f v){
 
 void TriangleSurface::scaleTo(float scale){
 	cout << "TriangleSurface::scaleTo()" << endl;
+	
+	
 }
 
 int TriangleSurface::getType(){

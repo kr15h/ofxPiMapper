@@ -34,6 +34,8 @@ class BaseSurface {
 		virtual vector <ofVec3f> & getVertices() = 0;
         virtual vector <ofVec2f> & getTexCoords() = 0;
 	
+		virtual ofRectangle & getBoundingBox() = 0;
+	
 		virtual BaseSurface * clone() = 0;
 
 		void drawTexture(ofVec2f position);
