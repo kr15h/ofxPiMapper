@@ -22,6 +22,7 @@ class BaseSurface {
 		virtual void setTexCoord(int index, ofVec2f t) = 0;
 		virtual void setTexCoords(vector<ofVec2f> t) = 0;
 		virtual void moveBy(ofVec2f v) = 0;
+		virtual void scaleTo(float scale) = 0;
 	
         virtual int getType() = 0;
 	

@@ -25,6 +25,7 @@ class TriangleSurface : public BaseSurface {
 		void setTexCoords(vector<ofVec2f> t);
 	
 		void moveBy(ofVec2f v);
+		void scaleTo(float scale);
 
 		int getType();
 		bool hitTest(ofVec2f p);

@@ -133,6 +133,10 @@ void TriangleSurface::moveBy(ofVec2f v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
+void TriangleSurface::scaleTo(float scale){
+	cout << "TriangleSurface::scaleTo()" << endl;
+}
+
 int TriangleSurface::getType(){
 	return SurfaceType::TRIANGLE_SURFACE;
 }
