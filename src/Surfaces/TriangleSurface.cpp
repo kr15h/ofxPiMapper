@@ -136,7 +136,14 @@ void TriangleSurface::moveBy(ofVec2f v){
 void TriangleSurface::scaleTo(float scale){
 	cout << "TriangleSurface::scaleTo()" << endl;
 	
+	ofVec3f centroid = mesh.getCentroid();
+	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
+		ofVec3f d = mesh.getVertices()[i] - centroid;
+		d *= scale;
+		mesh.getVertices()[i] = centroid + d;
+	}
 	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
 int TriangleSurface::getType(){
