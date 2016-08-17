@@ -176,7 +176,7 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 	 case 'D':
 		args.key = OF_KEY_LEFT;
 		break;
-	 case '-':
+	 case '\\':
 		args.key = OF_KEY_BACKSPACE;
 		break;
 	}
