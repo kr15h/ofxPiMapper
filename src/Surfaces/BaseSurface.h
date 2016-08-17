@@ -22,7 +22,6 @@ class BaseSurface {
 		virtual void setTexCoord(int index, ofVec2f t) = 0;
 		virtual void setTexCoords(vector<ofVec2f> t) = 0;
 		virtual void moveBy(ofVec2f v) = 0;
-		virtual void scaleTo(float scale) = 0;
 	
         virtual int getType() = 0;
 	
@@ -39,6 +38,7 @@ class BaseSurface {
 		void drawTexture(ofVec2f position);
 		void setSource(BaseSource * newSource);
 		void setMoved(bool moved);
+		void scaleTo(float scale);
 	
 		BaseSource * getSource();
 		BaseSource * getDefaultSource();

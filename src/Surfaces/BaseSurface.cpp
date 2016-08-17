@@ -91,6 +91,20 @@ BaseSource * BaseSurface::getDefaultSource(){
 void BaseSurface::setMoved(bool moved){
 	_moved = moved;
 }
+
+void BaseSurface::scaleTo(float scale){
+	cout << "TriangleSurface::scaleTo()" << endl;
+	
+	ofVec3f centroid = mesh.getCentroid();
+	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
+		ofVec3f d = mesh.getVertices()[i] - centroid;
+		d *= scale;
+		mesh.getVertices()[i] = centroid + d;
+	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+}
+
 bool BaseSurface::getMoved(){
 	return _moved;
 }
