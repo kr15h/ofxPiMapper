@@ -36,7 +36,7 @@ class GridWarpSurface : public BaseSurface {
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
 	
-		ofRectangle & getBoundingBox(){}
+		ofRectangle getBoundingBox(){}
 	
 		void createGridMesh();
 	
