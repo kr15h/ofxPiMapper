@@ -276,7 +276,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
 			app->getCmdManager()->exec(
 				new ScaleSurfaceUpCmd(
-					app->getSurfaceManager()->getSelectedSurface(), 0.1f));
+					app->getSurfaceManager()->getSelectedSurface(), 0.2f));
 		 }
 		 break;
 
@@ -284,7 +284,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
 			app->getCmdManager()->exec(
 				new ScaleSurfaceDnCmd(
-					app->getSurfaceManager()->getSelectedSurface(), 0.1f));
+					app->getSurfaceManager()->getSelectedSurface(), 0.2f));
 		 }
 		 break;
 		 
