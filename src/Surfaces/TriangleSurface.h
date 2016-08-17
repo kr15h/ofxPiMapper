@@ -36,8 +36,6 @@ class TriangleSurface : public BaseSurface {
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
 	
-		ofRectangle getBoundingBox();
-	
 		BaseSurface * clone();
 };
 

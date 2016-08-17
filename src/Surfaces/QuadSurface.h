@@ -38,8 +38,6 @@ class QuadSurface : public BaseSurface {
 		vector <ofVec3f> & getVertices();
 		vector <ofVec2f> & getTexCoords();
 	
-		ofRectangle getBoundingBox(){}
-	
 		void setPerspectiveWarping(bool b);
 		bool getPerspectiveWarping();
 	

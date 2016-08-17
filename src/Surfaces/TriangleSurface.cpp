@@ -210,38 +210,6 @@ vector <ofVec2f> & TriangleSurface::getTexCoords(){
 	return mesh.getTexCoords();
 }
 
-ofRectangle TriangleSurface::getBoundingBox(){
-	ofRectangle rect;
-	
-	// Find top left
-	rect.x = 999999;
-	rect.y = 999999;
-	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
-		if(mesh.getVertices()[i].x < rect.x){
-			rect.x = mesh.getVertices()[i].x;
-		}
-		
-		if(mesh.getVertices()[i].y < rect.y){
-			rect.y = mesh.getVertices()[i].y;
-		}
-	}
-	
-	// Find bottom right
-	rect.width = -999999;
-	rect.height = -999999;
-	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
-		if(rect.x + rect.width > mesh.getVertices()[i].x){
-			rect.width = mesh.getVertices()[i].x - rect.x;
-		}
-		
-		if(rect.y + rect.height > mesh.getVertices()[i].y){
-			rect.height = mesh.getVertices()[i].y - rect.y;
-		}
-	}
-	
-	return rect;
-}
-
 BaseSurface * TriangleSurface::clone(){
 	TriangleSurface * s = new TriangleSurface();
 	s->setVertices(getVertices());
