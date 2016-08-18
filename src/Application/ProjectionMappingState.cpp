@@ -15,6 +15,39 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 void ProjectionMappingState::draw(Application * app){
 	app->getGui()->draw();
 	
+	// Draw the new GUI with fresh elements, based on a new pattern.
+	//Gui::instance()->draw();
+	
+	/*
+		Draw scaling widgets. A handle from the center of the surface to a fraction outside
+		the bounding box.
+	*/
+	BaseSurface * selectedSurface = app->getSurfaceManager()->getSelectedSurface();
+	if(selectedSurface != 0){
+		ofVec3f centroid = selectedSurface->getMesh().getCentroid();
+		ofRectangle boundingBox = selectedSurface->getBoundingBox();
+		
+		ofPushStyle();
+		
+		ofSetColor(255, 255, 255);
+		ofNoFill();
+		
+		ofDrawCircle(centroid.x, centroid.y, 5);
+		
+		ofDrawLine(centroid.x, centroid.y, boundingBox.x + boundingBox.width + 40, boundingBox.y);
+		
+		ofRectangle handle;
+		handle.width = 20;
+		handle.height = 20;
+		handle.x = boundingBox.x + boundingBox.width + 40 - (handle.width / 2);
+		handle.y = boundingBox.y - (handle.height / 2);
+		ofSetLineWidth(2);
+		
+		ofDrawRectangle(handle);
+		
+		ofPopStyle();
+	}
+	
 	/*
 		Draw layer panel / indicator consisting of layer icons.
 		If none of the surfaces is selected, use outlines to represent all surfaces.
