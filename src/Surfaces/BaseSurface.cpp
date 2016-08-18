@@ -113,5 +113,36 @@ ofMesh & BaseSurface::getMesh(){
 	return mesh;
 }
 
+ofRectangle & BaseSurface::getBoundingBox(){
+	
+	// Get top left
+	_boundingBox.x = 999999;
+	_boundingBox.y = 999999;
+	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
+		if(mesh.getVertices()[i].x < _boundingBox.x){
+			_boundingBox.x = mesh.getVertices()[i].x;
+		}
+		
+		if(mesh.getVertices()[i].y < _boundingBox.y){
+			_boundingBox.y = mesh.getVertices()[i].y;
+		}
+	}
+	
+	// Get bottom right
+	_boundingBox.width = -999999;
+	_boundingBox.height = -999999;
+	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
+		if(mesh.getVertices()[i].x > _boundingBox.x + _boundingBox.width){
+			_boundingBox.width = mesh.getVertices()[i].x - _boundingBox.x;
+		}
+		
+		if(mesh.getVertices()[i].y > _boundingBox.y + _boundingBox.height){
+			_boundingBox.height = mesh.getVertices()[i].y - _boundingBox.y;
+		}
+	}
+
+	return _boundingBox;
+}
+
 } // namespace piMapper
 } // namespace ofx

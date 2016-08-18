@@ -46,12 +46,14 @@ class BaseSurface {
 		bool getMoved();
 	
 		ofMesh & getMesh();
+		ofRectangle & getBoundingBox();
 	
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> vertexChangedEvent;
 
 	protected:
 		ofMesh mesh;
+		ofRectangle _boundingBox;
 		ofTexture defaultTexture;
 		BaseSource * source;
 		BaseSource * defaultSource;
