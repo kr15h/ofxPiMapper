@@ -30,6 +30,8 @@
 #include "SurfaceType.h"
 #include "Gui.h"
 
+#include "ScaleWidget.h"
+
 namespace ofx {
 namespace piMapper {
 
@@ -37,15 +39,19 @@ class ProjectionMappingState : public ApplicationBaseState {
 
 	public:
 		static ProjectionMappingState * instance();
+	
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
+		void onMousePressed(Application * app, ofMouseEventArgs & args);
+		void onMouseReleased(Application * app, ofMouseEventArgs & args);
+		void onMouseDragged(Application * app, ofMouseEventArgs & args);
 		void onJointPressed(Application * app, GuiJointEvent & e);
 		void onSurfacePressed(Application * app, GuiSurfaceEvent & e);
 		void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 
 	private:
 		static ProjectionMappingState * _instance;
-
+	
 };
 
 } // namespace piMapper

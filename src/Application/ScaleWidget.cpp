@@ -34,22 +34,26 @@ void ScaleWidget::draw(){
 	ofPopStyle();
 }
 
-void ScaleWidget::onMousePressed(ofMouseEventArgs & e){
-	if(_handle.inside(e.x, e.y)){
-		std::cout << "Handle clicked" << std::endl;
+void ScaleWidget::onMousePressed(ofMouseEventArgs & args){
+	if(_handle.inside(args.x, args.y)){
+		std::cout << "ScaleWidget: Handle clicked" << std::endl;
 		_dragging = true;
 	}
 }
 
-void ScaleWidget::onMouseReleased(ofMouseEventArgs & e){
+void ScaleWidget::onMouseReleased(ofMouseEventArgs & args){
+	std::cout << "ScaleWidget: Mouse released" << std::endl;
 	_dragging = false;
 }
 
-void ScaleWidget::onMouseDragged(ofMouseEventArgs & e){
+void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
+	std::cout << "ScaleWidget: Mouse dragged" << std::endl;
 	if(_dragging){
-		_handle.x = e.x;
-		_handle.y = e.y;
+		_handle.x = args.x - (_handle.width / 2.0f);
+		_handle.y = args.y - (_handle.height / 2.0f);
 	}
+	
+	//Gui::instance()->notifyGuiWidgetEvent(args, this);
 }
 
 bool ScaleWidget::inside(float x, float y){
@@ -58,6 +62,10 @@ bool ScaleWidget::inside(float x, float y){
 }
 
 void ScaleWidget::setRect(ofRectangle rect){
+	if(_dragging){
+		return;
+	}
+	
 	ofPoint center = rect.getCenter();
 	
 	_line.getVertices()[0].x = center.x;
@@ -66,8 +74,8 @@ void ScaleWidget::setRect(ofRectangle rect){
 	_line.getVertices()[1].x = rect.x + rect.width;
 	_line.getVertices()[1].y = rect.y;
 	
-	_handle.x = rect.x + rect.width;
-	_handle.y = rect.y;
+	_handle.x = rect.x + rect.width - (_handle.width / 2.0f);
+	_handle.y = rect.y - (_handle.height / 2.0f);
 }
 
 } // namespace piMapper

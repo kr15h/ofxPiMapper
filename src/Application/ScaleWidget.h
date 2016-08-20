@@ -4,11 +4,12 @@
 #include "ofPolyline.h"
 #include "GuiBaseWidget.h"
 #include "ofGraphics.h"
+//#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
 
-class ScaleWidget : GuiBaseWidget {
+class ScaleWidget : public GuiBaseWidget {
 	public:
 		ScaleWidget();
 	
@@ -16,9 +17,9 @@ class ScaleWidget : GuiBaseWidget {
 		void update();
 		void draw();
 	
-		void onMousePressed(ofMouseEventArgs & e);
-		void onMouseReleased(ofMouseEventArgs & e);
-		void onMouseDragged(ofMouseEventArgs & e);
+		void onMousePressed(ofMouseEventArgs & args);
+		void onMouseReleased(ofMouseEventArgs & args);
+		void onMouseDragged(ofMouseEventArgs & args);
 	
 		bool inside(float x, float y);
 	

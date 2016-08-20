@@ -4,6 +4,9 @@
 #include "GuiEventType.h"
 #include "BaseSurface.h"
 
+#include "GuiBaseWidget.h"
+#include "ScaleWidget.h"
+
 namespace ofx {
 namespace piMapper {
 
@@ -33,6 +36,11 @@ struct GuiBackgroundEvent{
 	ofMouseEventArgs args;
 };
 
+struct GuiWidgetEvent{
+	ofMouseEventArgs args;
+	GuiBaseWidget * widget;
+};
+
 class Gui {
 	public:
 		static Gui * instance();
@@ -58,8 +66,18 @@ class Gui {
 	
 		void notifyBackgroundPressed(ofMouseEventArgs & args);
 	
+		ScaleWidget & getScaleWidget();
+		ofEvent <GuiWidgetEvent> guiWidgetEvent;
+		void notifyGuiWidgetEvent(ofMouseEventArgs & args, GuiBaseWidget * widget);
+	
+		void onMousePressed(ofMouseEventArgs & args);
+		void onMouseReleased(ofMouseEventArgs & args);
+		void onMouseDragged(ofMouseEventArgs & args);
+	
 	private:
 		static Gui * _instance;
+	
+		ScaleWidget _scaleWidget;
 };
 
 } // piMapper

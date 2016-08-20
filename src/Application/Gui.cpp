@@ -60,5 +60,30 @@ void Gui::notifyBackgroundPressed(ofMouseEventArgs & args){
 	ofNotifyEvent(backgroundPressedEvent, e, this);
 }
 
+void Gui::onMousePressed(ofMouseEventArgs & args){
+	_scaleWidget.onMousePressed(args);
+}
+
+void Gui::onMouseReleased(ofMouseEventArgs & args){
+	_scaleWidget.onMouseReleased(args);
+}
+
+void Gui::onMouseDragged(ofMouseEventArgs & args){
+	_scaleWidget.onMouseDragged(args);
+}
+
+void Gui::notifyGuiWidgetEvent(ofMouseEventArgs &args, ofx::piMapper::GuiBaseWidget * widget){
+	GuiWidgetEvent e;
+	e.args = args;
+	e.widget = widget;
+	ofNotifyEvent(guiWidgetEvent, e, this);
+	
+	cout << "args.Dragged: " << args.Dragged << endl;
+}
+
+ScaleWidget & Gui::getScaleWidget(){
+	return _scaleWidget;
+}
+
 } // piMapper
 } // ofx

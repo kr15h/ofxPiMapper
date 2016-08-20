@@ -14,6 +14,8 @@ Application::Application(){
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
 	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
+	ofAddListener(ofEvents().mouseReleased, this, &Application::onMouseReleased);
+	ofAddListener(ofEvents().mouseDragged, this, &Application::onMouseDragged);
 	
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
@@ -125,6 +127,14 @@ void Application::onKeyReleased(ofKeyEventArgs & args){
 
 void Application::onMousePressed(ofMouseEventArgs & args){
     _state->onMousePressed(this, args);
+}
+
+void Application::onMouseReleased(ofMouseEventArgs & args){
+	_state->onMouseReleased(this, args);
+}
+
+void Application::onMouseDragged(ofMouseEventArgs &args){
+	_state->onMouseDragged(this, args);
 }
 
 void Application::onJointPressed(GuiJointEvent & e){

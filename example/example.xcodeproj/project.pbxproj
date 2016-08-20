@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0117D70A1D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7081D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp */; };
 		0117D70B1D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7091D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp */; };
+		0117D7131D66F16C008FECEB /* ScaleWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7121D66F16C008FECEB /* ScaleWidget.cpp */; };
 		0130C9681CE65AA600911E17 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90A1CE65AA600911E17 /* README.md */; };
 		0130C9691CE65AA600911E17 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90D1CE65AA600911E17 /* lz4.c */; };
 		0130C96A1CE65AA600911E17 /* Base64Encoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0130C92E1CE65AA600911E17 /* Base64Encoding.cpp */; };
@@ -169,6 +170,9 @@
 		0117D7071D64EBB4008FECEB /* ScaleSurfaceUpCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleSurfaceUpCmd.h; path = Commands/ScaleSurfaceUpCmd.h; sourceTree = "<group>"; };
 		0117D7081D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleSurfaceDnCmd.cpp; path = Commands/ScaleSurfaceDnCmd.cpp; sourceTree = "<group>"; };
 		0117D7091D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleSurfaceUpCmd.cpp; path = Commands/ScaleSurfaceUpCmd.cpp; sourceTree = "<group>"; };
+		0117D70E1D65A8C1008FECEB /* GuiBaseWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiBaseWidget.h; sourceTree = "<group>"; };
+		0117D7111D66F16C008FECEB /* ScaleWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleWidget.h; sourceTree = "<group>"; };
+		0117D7121D66F16C008FECEB /* ScaleWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleWidget.cpp; sourceTree = "<group>"; };
 		0130C9041CE65AA600911E17 /* alphanum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = alphanum.hpp; sourceTree = "<group>"; };
 		0130C9071CE65AA600911E17 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		0130C9091CE65AA600911E17 /* LICENSE.MIT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.MIT; sourceTree = "<group>"; };
@@ -717,6 +721,9 @@
 				39FBE8B31C6A6BDF00155B9E /* GuiEventType.h */,
 				39FBE8B01C6A636900155B9E /* Gui.h */,
 				39FBE8B11C6A636900155B9E /* Gui.cpp */,
+				0117D70E1D65A8C1008FECEB /* GuiBaseWidget.h */,
+				0117D7111D66F16C008FECEB /* ScaleWidget.h */,
+				0117D7121D66F16C008FECEB /* ScaleWidget.cpp */,
 				3968416A1BC91F6F009F0BAE /* Application.h */,
 				396841691BC91F6F009F0BAE /* Application.cpp */,
 				39FA2B7F1C457606003FAB28 /* SettingsLoader.h */,
@@ -1169,6 +1176,7 @@
 				39C1245E19F08965005DF557 /* ImageSource.cpp in Sources */,
 				397C46BD1C398D72002689E2 /* SurfaceStack.cpp in Sources */,
 				3933D5D619BB87BD000ACA55 /* ofxLabel.cpp in Sources */,
+				0117D7131D66F16C008FECEB /* ScaleWidget.cpp in Sources */,
 				39C1245F19F08965005DF557 /* VideoSource.cpp in Sources */,
 				39F0512D1C650D070089A36B /* SelNextVertexCmd.cpp in Sources */,
 				391717F31B0A8A7300F9A484 /* MvAllTexCoordsCmd.cpp in Sources */,

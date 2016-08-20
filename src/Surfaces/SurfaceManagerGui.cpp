@@ -166,6 +166,8 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			clickPosition = ofVec2f(args.x, args.y);
 			startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
 			Gui::instance()->notifySurfacePressed(args, hitSurface);
+		}else if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
+			//
 		}else{
 			Gui::instance()->notifyBackgroundPressed(args);
 		}
