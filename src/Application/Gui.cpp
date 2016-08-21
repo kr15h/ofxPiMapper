@@ -12,6 +12,14 @@ Gui * Gui::instance(){
 	return _instance;
 }
 
+Gui::Gui(){
+	ofAddListener(_scaleWidget.guiWidgetEvent, this, &Gui::onScaleWidgetEvent);
+}
+
+Gui::~Gui(){
+	ofRemoveListener(_scaleWidget.guiWidgetEvent, this, &Gui::onScaleWidgetEvent);
+}
+
 void Gui::notifyJointPressed(ofMouseEventArgs & args, int jointIndex){
 	GuiJointEvent e;
 	e.args = args;
@@ -72,17 +80,18 @@ void Gui::onMouseDragged(ofMouseEventArgs & args){
 	_scaleWidget.onMouseDragged(args);
 }
 
-void Gui::notifyGuiWidgetEvent(ofMouseEventArgs &args, ofx::piMapper::GuiBaseWidget * widget){
-	GuiWidgetEvent e;
-	e.args = args;
-	e.widget = widget;
-	ofNotifyEvent(guiWidgetEvent, e, this);
-	
-	cout << "args.Dragged: " << args.Dragged << endl;
-}
-
 ScaleWidget & Gui::getScaleWidget(){
 	return _scaleWidget;
+}
+
+void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
+	if(event.args.type == event.args.Pressed){
+		cout << "ScaleWidget Pressed" << endl;
+	}else if(event.args.type == event.args.Released){
+		cout << "ScaleWidget Released" << endl;
+	}else if(event.args.type == event.args.Dragged){
+		cout << "ScaleWidget Dragged" << endl;
+	}
 }
 
 } // piMapper

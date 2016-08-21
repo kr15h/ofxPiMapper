@@ -5,6 +5,10 @@
 namespace ofx {
 namespace piMapper {
 
+struct GuiWidgetEvent{
+	ofMouseEventArgs args;
+};
+
 class GuiBaseWidget {
 	public:
 		virtual void setup() = 0;
@@ -16,6 +20,8 @@ class GuiBaseWidget {
 		virtual void onMouseDragged(ofMouseEventArgs & e) = 0;
 	
 		virtual bool inside(float x, float y) = 0;
+	
+		ofEvent <GuiWidgetEvent> guiWidgetEvent;
 };
 
 } // namespace piMapper

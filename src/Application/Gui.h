@@ -36,11 +36,6 @@ struct GuiBackgroundEvent{
 	ofMouseEventArgs args;
 };
 
-struct GuiWidgetEvent{
-	ofMouseEventArgs args;
-	GuiBaseWidget * widget;
-};
-
 class Gui {
 	public:
 		static Gui * instance();
@@ -67,14 +62,17 @@ class Gui {
 		void notifyBackgroundPressed(ofMouseEventArgs & args);
 	
 		ScaleWidget & getScaleWidget();
-		ofEvent <GuiWidgetEvent> guiWidgetEvent;
-		void notifyGuiWidgetEvent(ofMouseEventArgs & args, GuiBaseWidget * widget);
 	
 		void onMousePressed(ofMouseEventArgs & args);
 		void onMouseReleased(ofMouseEventArgs & args);
 		void onMouseDragged(ofMouseEventArgs & args);
 	
+		void onScaleWidgetEvent(GuiWidgetEvent & event);
+	
 	private:
+		Gui();
+		~Gui();
+	
 		static Gui * _instance;
 	
 		ScaleWidget _scaleWidget;

@@ -4,7 +4,6 @@
 #include "ofPolyline.h"
 #include "GuiBaseWidget.h"
 #include "ofGraphics.h"
-//#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
@@ -25,11 +24,16 @@ class ScaleWidget : public GuiBaseWidget {
 	
 		// This should be the size of the objet's bounding box
 		void setRect(ofRectangle rect);
+	
+		float getScale();
 
 	private:
 		ofRectangle _handle;
 	
 		ofPolyline _line;
+		ofPolyline _originalLine;
+	
+		float _scale;
 	
 		bool _dragging;
 };

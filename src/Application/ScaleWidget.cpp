@@ -9,6 +9,8 @@ ScaleWidget::ScaleWidget(){
 	
 	_handle.width = 20;
 	_handle.height = 20;
+	
+	_scale = 1.0f;
 }
 
 void ScaleWidget::setup(){
@@ -36,24 +38,35 @@ void ScaleWidget::draw(){
 
 void ScaleWidget::onMousePressed(ofMouseEventArgs & args){
 	if(_handle.inside(args.x, args.y)){
-		std::cout << "ScaleWidget: Handle clicked" << std::endl;
 		_dragging = true;
+		_originalLine = _line;
 	}
+	
+	GuiWidgetEvent e;
+	e.args = args;
+	ofNotifyEvent(guiWidgetEvent, e, this);
 }
 
 void ScaleWidget::onMouseReleased(ofMouseEventArgs & args){
-	std::cout << "ScaleWidget: Mouse released" << std::endl;
 	_dragging = false;
+	
+	GuiWidgetEvent e;
+	e.args = args;
+	ofNotifyEvent(guiWidgetEvent, e, this);
 }
 
 void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
-	std::cout << "ScaleWidget: Mouse dragged" << std::endl;
 	if(_dragging){
 		_handle.x = args.x - (_handle.width / 2.0f);
 		_handle.y = args.y - (_handle.height / 2.0f);
+		
+		_line[1].x = args.x;
+		_line[1].y = args.y;
 	}
 	
-	//Gui::instance()->notifyGuiWidgetEvent(args, this);
+	GuiWidgetEvent e;
+	e.args = args;
+	ofNotifyEvent(guiWidgetEvent, e, this);
 }
 
 bool ScaleWidget::inside(float x, float y){
