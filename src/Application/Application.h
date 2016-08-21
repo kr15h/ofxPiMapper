@@ -51,7 +51,8 @@ class Application : public KeyListener {
 		void onJointPressed(GuiJointEvent & e);
 		void onSurfacePressed(GuiSurfaceEvent & e);
 		void onBackgroundPressed(GuiBackgroundEvent & e);
-		// Every state should have it's own GUI layer
+	
+		void onGuiEvent(GuiEvent & e);
 	
 		void addFboSource(FboSource & fboSource);
 		void addFboSource(FboSource * fboSource);

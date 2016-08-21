@@ -68,6 +68,8 @@ class Gui {
 	
 		void onScaleWidgetEvent(GuiWidgetEvent & event);
 	
+		ofEvent <GuiEvent> guiEvent;
+	
 	private:
 		Gui();
 		~Gui();

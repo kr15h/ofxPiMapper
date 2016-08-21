@@ -20,6 +20,8 @@ Application::Application(){
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
+	
+	ofAddListener(Gui::instance()->guiEvent, this, &Application::onGuiEvent);
     
     string SSHConnection = ofSystem("if [ -z $SSH_CONNECTION ]; then echo no; else echo yes; fi");
     if(SSHConnection == "yes"){
@@ -147,6 +149,18 @@ void Application::onSurfacePressed(GuiSurfaceEvent & e){
 
 void Application::onBackgroundPressed(GuiBackgroundEvent & e){
 	_state->onBackgroundPressed(this, e);
+}
+
+void Application::onGuiEvent(GuiEvent & e){
+	if(e.widget == &Gui::instance()->getScaleWidget()){
+		if(e.args.type == e.args.Pressed){
+			cout << "Scale Pressed" << endl;
+		}else if(e.args.type == e.args.Released){
+			cout << "Scale Released" << endl;
+		}else if(e.args.type == e.args.Dragged){
+			cout << "Scale Dragged" << endl;
+		}
+	}
 }
 
 void Application::addFboSource(FboSource & fboSource){

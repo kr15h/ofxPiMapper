@@ -85,13 +85,10 @@ ScaleWidget & Gui::getScaleWidget(){
 }
 
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
-	if(event.args.type == event.args.Pressed){
-		cout << "ScaleWidget Pressed" << endl;
-	}else if(event.args.type == event.args.Released){
-		cout << "ScaleWidget Released" << endl;
-	}else if(event.args.type == event.args.Dragged){
-		cout << "ScaleWidget Dragged" << endl;
-	}
+	GuiEvent e;
+	e.args = event.args;
+	e.widget = &_scaleWidget;
+	ofNotifyEvent(guiEvent, e, this);
 }
 
 } // piMapper
