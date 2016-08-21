@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofEvents.h"
-#include "GuiEventType.h"
 #include "BaseSurface.h"
 
 #include "GuiBaseWidget.h"
@@ -12,7 +11,7 @@ namespace piMapper {
 
 struct GuiEvent{
 	ofMouseEventArgs args;
-	int type;
+	GuiBaseWidget * widget;
 };
 
 // TODO: compress the following structs into something like:

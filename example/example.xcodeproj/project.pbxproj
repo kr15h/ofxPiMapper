@@ -397,7 +397,6 @@
 		39FA2B7F1C457606003FAB28 /* SettingsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLoader.h; sourceTree = "<group>"; };
 		39FBE8B01C6A636900155B9E /* Gui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gui.h; sourceTree = "<group>"; };
 		39FBE8B11C6A636900155B9E /* Gui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gui.cpp; sourceTree = "<group>"; };
-		39FBE8B31C6A6BDF00155B9E /* GuiEventType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiEventType.h; sourceTree = "<group>"; };
 		39FDD9EA1AC007BF00262205 /* BaseCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseCmd.h; path = Commands/BaseCmd.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -718,7 +717,6 @@
 		396841681BC91F6F009F0BAE /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				39FBE8B31C6A6BDF00155B9E /* GuiEventType.h */,
 				39FBE8B01C6A636900155B9E /* Gui.h */,
 				39FBE8B11C6A636900155B9E /* Gui.cpp */,
 				0117D70E1D65A8C1008FECEB /* GuiBaseWidget.h */,
