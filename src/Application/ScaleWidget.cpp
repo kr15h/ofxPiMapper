@@ -40,19 +40,21 @@ void ScaleWidget::onMousePressed(ofMouseEventArgs & args){
 	if(_handle.inside(args.x, args.y)){
 		_dragging = true;
 		_originalLine = _line;
+		
+		GuiWidgetEvent e;
+		e.args = args;
+		ofNotifyEvent(guiWidgetEvent, e, this);
 	}
-	
-	GuiWidgetEvent e;
-	e.args = args;
-	ofNotifyEvent(guiWidgetEvent, e, this);
 }
 
 void ScaleWidget::onMouseReleased(ofMouseEventArgs & args){
-	_dragging = false;
+	if(_dragging){
+		GuiWidgetEvent e;
+		e.args = args;
+		ofNotifyEvent(guiWidgetEvent, e, this);
+	}
 	
-	GuiWidgetEvent e;
-	e.args = args;
-	ofNotifyEvent(guiWidgetEvent, e, this);
+	_dragging = false;
 }
 
 void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
@@ -62,11 +64,11 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 		
 		_line[1].x = args.x;
 		_line[1].y = args.y;
+		
+		GuiWidgetEvent e;
+		e.args = args;
+		ofNotifyEvent(guiWidgetEvent, e, this);
 	}
-	
-	GuiWidgetEvent e;
-	e.args = args;
-	ofNotifyEvent(guiWidgetEvent, e, this);
 }
 
 bool ScaleWidget::inside(float x, float y){

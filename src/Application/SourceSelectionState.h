@@ -13,6 +13,8 @@ class SourceSelectionState : public ApplicationBaseState {
 	public:
 		static SourceSelectionState * instance();
 		void draw(Application * app);
+	
+		void onGuiEvent(Application * app, GuiEvent & e){}
 
 	private:
 		static SourceSelectionState * _instance;

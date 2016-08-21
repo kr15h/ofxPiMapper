@@ -48,6 +48,8 @@ class ProjectionMappingState : public ApplicationBaseState {
 		void onJointPressed(Application * app, GuiJointEvent & e);
 		void onSurfacePressed(Application * app, GuiSurfaceEvent & e);
 		void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
+	
+		void onGuiEvent(Application * app, GuiEvent & e);
 
 	private:
 		static ProjectionMappingState * _instance;

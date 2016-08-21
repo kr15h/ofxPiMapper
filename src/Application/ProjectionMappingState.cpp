@@ -334,5 +334,17 @@ void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroun
 	app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
 }
 
+void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
+	if(e.widget == &Gui::instance()->getScaleWidget()){
+		if(e.args.type == e.args.Pressed){
+			cout << "Scale Pressed" << endl;
+		}else if(e.args.type == e.args.Released){
+			cout << "Scale Released" << endl;
+		}else if(e.args.type == e.args.Dragged){
+			cout << "Scale Dragged" << endl;
+		}
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

@@ -152,15 +152,7 @@ void Application::onBackgroundPressed(GuiBackgroundEvent & e){
 }
 
 void Application::onGuiEvent(GuiEvent & e){
-	if(e.widget == &Gui::instance()->getScaleWidget()){
-		if(e.args.type == e.args.Pressed){
-			cout << "Scale Pressed" << endl;
-		}else if(e.args.type == e.args.Released){
-			cout << "Scale Released" << endl;
-		}else if(e.args.type == e.args.Dragged){
-			cout << "Scale Dragged" << endl;
-		}
-	}
+	_state->onGuiEvent(this, e);
 }
 
 void Application::addFboSource(FboSource & fboSource){

@@ -17,6 +17,8 @@ class PresentationState : public ApplicationBaseState {
 		static PresentationState * instance();
 		void draw(Application * app);
         void onMousePressed(Application * app, ofMouseEventArgs & args);
+	
+		void onGuiEvent(Application * app, GuiEvent & e){}
 
 	private:
 		static PresentationState * _instance;

@@ -23,6 +23,8 @@ class ApplicationBaseState {
 		virtual void onJointPressed(Application * app, GuiJointEvent & e){}
 		virtual void onSurfacePressed(Application * app, GuiSurfaceEvent & e){}
 		virtual void onBackgroundPressed(Application * app, GuiBackgroundEvent & e){}
+	
+		virtual void onGuiEvent(Application * app, GuiEvent & e) = 0;
 
 };
 
