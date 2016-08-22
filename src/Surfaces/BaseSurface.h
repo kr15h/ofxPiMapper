@@ -45,6 +45,8 @@ class BaseSurface {
 
 		bool getMoved();
 	
+		float getScale(){ return _scale; }
+	
 		ofMesh & getMesh();
 		ofRectangle & getBoundingBox();
 	
@@ -53,13 +55,19 @@ class BaseSurface {
 
 	protected:
 		ofMesh mesh;
+	
 		ofRectangle _boundingBox;
+	
 		ofTexture defaultTexture;
+	
 		BaseSource * source;
 		BaseSource * defaultSource;
+	
 		void createDefaultTexture();
+	
 		bool _moved;
-
+	
+		float _scale;
 };
 
 } // namespace piMapper

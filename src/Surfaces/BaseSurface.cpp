@@ -5,6 +5,7 @@ namespace piMapper {
 
 BaseSurface::BaseSurface(){
 	_moved = false;
+	_scale = 1.0f;
 	createDefaultTexture();
 }
 
@@ -95,12 +96,14 @@ void BaseSurface::setMoved(bool moved){
 void BaseSurface::scaleTo(float scale){
 	cout << "TriangleSurface::scaleTo()" << endl;
 	
-	ofVec3f centroid = mesh.getCentroid();
+	ofPoint centroid = getBoundingBox().getCenter();
 	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
-		ofVec3f d = mesh.getVertices()[i] - centroid;
+		ofVec3f d = (mesh.getVertices()[i] - centroid) / _scale;
 		d *= scale;
 		mesh.getVertices()[i] = centroid + d;
 	}
+	
+	_scale = scale;
 	
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }

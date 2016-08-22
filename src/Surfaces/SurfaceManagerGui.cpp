@@ -158,7 +158,9 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			}
 		}
 		
-		if(hitJoint){
+		if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
+			//
+		}else if(hitJoint){
 			hitJoint->select();
 			hitJoint->startDrag();
 			Gui::instance()->notifyJointPressed(args, hitJointIndex);
@@ -166,8 +168,6 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 			clickPosition = ofVec2f(args.x, args.y);
 			startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
 			Gui::instance()->notifySurfacePressed(args, hitSurface);
-		}else if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
-			//
 		}else{
 			Gui::instance()->notifyBackgroundPressed(args);
 		}

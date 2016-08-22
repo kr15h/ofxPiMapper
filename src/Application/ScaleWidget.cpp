@@ -11,6 +11,7 @@ ScaleWidget::ScaleWidget(){
 	_handle.height = 20;
 	
 	_scale = 1.0f;
+	_surface = 0;
 }
 
 void ScaleWidget::setup(){
@@ -39,7 +40,6 @@ void ScaleWidget::draw(){
 void ScaleWidget::onMousePressed(ofMouseEventArgs & args){
 	if(_handle.inside(args.x, args.y)){
 		_dragging = true;
-		_originalLine = _line;
 		
 		GuiWidgetEvent e;
 		e.args = args;
@@ -59,11 +59,33 @@ void ScaleWidget::onMouseReleased(ofMouseEventArgs & args){
 
 void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 	if(_dragging){
-		_handle.x = args.x - (_handle.width / 2.0f);
-		_handle.y = args.y - (_handle.height / 2.0f);
+		if(_surface == 0){
+			cout << "No surface selected" << endl;
+			return;
+		}
 		
-		_line[1].x = args.x;
-		_line[1].y = args.y;
+		ofRectangle box = _surface->getBoundingBox();
+		float boxAspect = box.width / box.height;
+		
+		ofPolyline newLine = _line;
+		newLine[1].x = args.x;
+		newLine[1].y = args.y;
+		
+		_scale = _surface->getScale() /
+			_line[0].distance(_line[1]) *
+			newLine[0].distance(newLine[1]);
+		
+		float lineAspect = (newLine[1].x - newLine[0].x) / (newLine[1].y - newLine[0].y);
+		
+		if(lineAspect < boxAspect){
+			_line[1].x = args.x;
+			_line[1].y = (_line[0].y - (_line[1].x - _line[0].x) / boxAspect);
+		}
+		
+		_handle.x = _line[1].x - (_handle.width / 2.0f);
+		_handle.y = _line[1].y - (_handle.height / 2.0f);
+		
+		//_surface->scaleTo(_scale);
 		
 		GuiWidgetEvent e;
 		e.args = args;
@@ -91,6 +113,11 @@ void ScaleWidget::setRect(ofRectangle rect){
 	
 	_handle.x = rect.x + rect.width - (_handle.width / 2.0f);
 	_handle.y = rect.y - (_handle.height / 2.0f);
+}
+
+void ScaleWidget::setSurface(ofx::piMapper::BaseSurface * s){
+	_surface = s;
+	setRect(s->getBoundingBox());
 }
 
 } // namespace piMapper

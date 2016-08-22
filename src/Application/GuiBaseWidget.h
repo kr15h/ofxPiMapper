@@ -21,6 +21,8 @@ class GuiBaseWidget {
 	
 		virtual bool inside(float x, float y) = 0;
 	
+		virtual float getScale(){}
+	
 		ofEvent <GuiWidgetEvent> guiWidgetEvent;
 };
 

@@ -10,12 +10,12 @@ ScaleSurfaceUpCmd::ScaleSurfaceUpCmd(BaseSurface * selectedSurface, float by){
 
 void ScaleSurfaceUpCmd::exec(){
 	ofLogNotice("ScaleSurfaceUpCmd", "exec");
-	_selectedSurface->scaleTo(1.0f + _by);
+	_selectedSurface->scaleTo(_selectedSurface->getScale() + _by);
 }
 
 void ScaleSurfaceUpCmd::undo(){
 	ofLogNotice("ScaleSurfaceUpCmd", "undo");
-	_selectedSurface->scaleTo(1.0f / (1.0f + _by));
+	_selectedSurface->scaleTo(_selectedSurface->getScale() - _by);
 }
 
 } // namespace piMapper

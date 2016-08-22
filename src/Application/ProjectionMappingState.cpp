@@ -16,12 +16,10 @@ void ProjectionMappingState::draw(Application * app){
 	app->getGui()->draw();
 	
 	/*
-		Draw scale widget.
+		Draw scale widget. The size of the widget is being set on surface select.
 	*/
 	BaseSurface * selectedSurface = app->getSurfaceManager()->getSelectedSurface();
 	if(selectedSurface != 0){
-		ofRectangle boundingBox = selectedSurface->getBoundingBox();
-		Gui::instance()->getScaleWidget().setRect(boundingBox);
 		Gui::instance()->getScaleWidget().draw();
 	}
 	
@@ -292,6 +290,9 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 
 	 case '-': // Scale surface down
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
+			if(app->getSurfaceManager()->getSelectedSurface()->getScale() <= 0.21f){
+				break;
+			}
 			app->getCmdManager()->exec(
 				new ScaleSurfaceDnCmd(
 					app->getSurfaceManager()->getSelectedSurface(), 0.2f));
@@ -325,6 +326,7 @@ void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e
 void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
 	if(app->getSurfaceManager()->getSelectedSurface() != e.surface){
 		app->getCmdManager()->exec(new SelSurfaceCmd(app->getSurfaceManager(), e.surface ));
+		Gui::instance()->getScaleWidget().setSurface(app->getSurfaceManager()->getSelectedSurface());
 	}
 	
 	app->getCmdManager()->exec(new StartDragSurfaceCmd(e.surface));
@@ -342,6 +344,8 @@ void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
 			cout << "Scale Released" << endl;
 		}else if(e.args.type == e.args.Dragged){
 			cout << "Scale Dragged" << endl;
+			cout << "Scale: " << e.widget->getScale() << endl;
+			app->getSurfaceManager()->getSelectedSurface()->scaleTo(e.widget->getScale());
 		}
 	}
 }
