@@ -23,9 +23,20 @@ void ScaleWidget::update(){
 }
 
 void ScaleWidget::draw(){
-	// TODO: This should be handled by using GuiEvent
 	if(_surface != 0){
-		setRect(_surface->getBoundingBox());
+		ofPoint centroid = _surface->getBoundingBox().getCenter();
+		float lineLength = centroid.distance(
+			ofPoint(
+				_surface->getBoundingBox().x + _surface->getBoundingBox().width,
+				_surface->getBoundingBox().y));
+		
+		float scale = lineLength / _line[0].distance(_line[1]);
+		
+		_line[1].x = _line[0].x + (_line[1].x - _line[0].x) * scale;
+		_line[1].y = _line[0].y + (_line[1].y - _line[0].y) * scale;
+		
+		_handle.x = _line[1].x - (_handle.width / 2.0f);
+		_handle.y = _line[1].y - (_handle.height / 2.0f);
 	}
 
 	ofPushStyle();
