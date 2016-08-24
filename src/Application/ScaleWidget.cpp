@@ -23,6 +23,11 @@ void ScaleWidget::update(){
 }
 
 void ScaleWidget::draw(){
+	// TODO: This should be handled by using GuiEvent
+	if(_surface != 0){
+		setRect(_surface->getBoundingBox());
+	}
+
 	ofPushStyle();
 
 	ofSetColor(255, 255, 255);
