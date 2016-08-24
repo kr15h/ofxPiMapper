@@ -348,6 +348,10 @@ void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
 			_surfaceScaleBeforeTransform =
 				app->getSurfaceManager()->getSelectedSurface()->getScale();
 		}else if(e.args.type == e.args.Released){
+			if(app->getSurfaceManager()->getSelectedSurface() == 0){
+				return;
+			}
+			
 			if(_surfaceScaleBeforeTransform !=
 				app->getSurfaceManager()->getSelectedSurface()->getScale()){
 				
