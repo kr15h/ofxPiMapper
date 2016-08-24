@@ -30,6 +30,16 @@ void ScaleWidget::draw(){
 				_surface->getBoundingBox().x + _surface->getBoundingBox().width,
 				_surface->getBoundingBox().y));
 		
+		// Handle surface move
+		float dx = _line[0].x - centroid.x;
+		float dy = _line[0].y - centroid.y;
+		
+		_line[0].x -= dx;
+		_line[0].y -= dy;
+		_line[1].x -= dx;
+		_line[1].y -= dy;
+		
+		// Continue
 		float scale = lineLength / _line[0].distance(_line[1]);
 		
 		_line[1].x = _line[0].x + (_line[1].x - _line[0].x) * scale;
