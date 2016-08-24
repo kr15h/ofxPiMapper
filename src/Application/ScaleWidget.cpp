@@ -9,7 +9,7 @@ ScaleWidget::ScaleWidget(){
 	
 	_handle.width = 20;
 	_handle.height = 20;
-	
+
 	_scale = 1.0f;
 	_surface = 0;
 }

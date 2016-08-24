@@ -25,7 +25,7 @@ class ScaleWidget : public GuiBaseWidget {
 	
 		// This should be the size of the objet's bounding box
 		void setSurface(BaseSurface * s);
-	
+
 		float getScale(){
 			return _scale;
 		}
@@ -34,7 +34,7 @@ class ScaleWidget : public GuiBaseWidget {
 		ofRectangle _handle;
 	
 		ofPolyline _line;
-	
+
 		float _scale;
 	
 		bool _dragging;

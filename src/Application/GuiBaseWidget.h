@@ -20,7 +20,7 @@ class GuiBaseWidget {
 		virtual void onMouseDragged(ofMouseEventArgs & e) = 0;
 	
 		virtual bool inside(float x, float y) = 0;
-	
+
 		virtual float getScale(){}
 	
 		ofEvent <GuiWidgetEvent> guiWidgetEvent;

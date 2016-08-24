@@ -3,6 +3,10 @@
 namespace ofx {
 namespace piMapper {
 
+ProjectionMappingState::ProjectionMappingState(){
+	_surfaceScaleBeforeTransform = 1.0f;
+}
+
 ProjectionMappingState * ProjectionMappingState::_instance = 0;
 
 ProjectionMappingState * ProjectionMappingState::instance(){
@@ -337,14 +341,22 @@ void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroun
 }
 
 void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
+	
+	// Scale widget now. More later.
 	if(e.widget == &Gui::instance()->getScaleWidget()){
 		if(e.args.type == e.args.Pressed){
-			cout << "Scale Pressed" << endl;
+			_surfaceScaleBeforeTransform =
+				app->getSurfaceManager()->getSelectedSurface()->getScale();
 		}else if(e.args.type == e.args.Released){
-			cout << "Scale Released" << endl;
+			if(_surfaceScaleBeforeTransform !=
+				app->getSurfaceManager()->getSelectedSurface()->getScale()){
+				
+				app->getCmdManager()->exec(new ScaleSurfaceFromToCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					_surfaceScaleBeforeTransform,
+					app->getSurfaceManager()->getSelectedSurface()->getScale()));
+			}
 		}else if(e.args.type == e.args.Dragged){
-			cout << "Scale Dragged" << endl;
-			cout << "Scale: " << e.widget->getScale() << endl;
 			app->getSurfaceManager()->getSelectedSurface()->scaleTo(e.widget->getScale());
 		}
 	}

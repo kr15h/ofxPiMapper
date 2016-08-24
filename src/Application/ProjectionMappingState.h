@@ -27,6 +27,7 @@
 #include "MvLayerDnCmd.h"
 #include "ScaleSurfaceUpCmd.h"
 #include "ScaleSurfaceDnCmd.h"
+#include "ScaleSurfaceFromToCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 
@@ -52,7 +53,11 @@ class ProjectionMappingState : public ApplicationBaseState {
 		void onGuiEvent(Application * app, GuiEvent & e);
 
 	private:
+		ProjectionMappingState();
+	
 		static ProjectionMappingState * _instance;
+	
+		float _surfaceScaleBeforeTransform;
 	
 };
 
