@@ -75,12 +75,14 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 			_line[0].distance(_line[1]) *
 			newLine[0].distance(newLine[1]);
 		
-		float lineAspect = (newLine[1].x - newLine[0].x) / (newLine[1].y - newLine[0].y);
+		//float lineAspect = (newLine[1].x - newLine[0].x) / (newLine[1].y - newLine[0].y);
 		
-		if(lineAspect < boxAspect){
-			_line[1].x = args.x;
-			_line[1].y = (_line[0].y - (_line[1].x - _line[0].x) / boxAspect);
-		}
+		//if(lineAspect < boxAspect){
+		//	_line[1].x = args.x;
+		//	_line[1].y = (_line[0].y - (_line[1].x - _line[0].x) / boxAspect);
+		//}
+		
+		_line = newLine;
 		
 		_handle.x = _line[1].x - (_handle.width / 2.0f);
 		_handle.y = _line[1].y - (_handle.height / 2.0f);
