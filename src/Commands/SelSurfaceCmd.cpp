@@ -11,11 +11,15 @@ SelSurfaceCmd::SelSurfaceCmd(SurfaceManager * surfaceManager, BaseSurface * surf
 void SelSurfaceCmd::exec(){
 	_prevSelectedSurface = _surfaceManager->getSelectedSurface();
 	_surfaceManager->selectSurface(_surfaceToSelect);
+	Gui::instance()->getScaleWidget().setSurface(_surfaceToSelect);
 }
 
 void SelSurfaceCmd::undo(){
 	ofLogNotice("SelSurfaceCmd", "undo");
 	_surfaceManager->selectSurface(_prevSelectedSurface);
+	if(_prevSelectedSurface != 0){
+		Gui::instance()->getScaleWidget().setSurface(_prevSelectedSurface);
+	}
 	_surfaceToSelect = 0;
 	_prevSelectedSurface = 0;
 }
