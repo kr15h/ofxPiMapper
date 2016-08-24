@@ -35,6 +35,7 @@ void SurfaceStack::swap(int a, int b){
 }
 
 void SurfaceStack::draw(){
+	ofEnableAlphaBlending();
 	for(int i = 0; i < _surfaces.size(); ++i){
 		_surfaces[i]->draw();
 	}
