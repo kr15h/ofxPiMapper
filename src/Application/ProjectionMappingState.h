@@ -25,8 +25,6 @@
 #include "ToggleAnimatedSourceCmd.h"
 #include "MvLayerUpCmd.h"
 #include "MvLayerDnCmd.h"
-#include "ScaleSurfaceUpCmd.h"
-#include "ScaleSurfaceDnCmd.h"
 #include "ScaleSurfaceFromToCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"

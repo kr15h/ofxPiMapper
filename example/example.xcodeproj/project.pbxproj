@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0117D70A1D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7081D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp */; };
-		0117D70B1D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7091D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp */; };
 		0117D7131D66F16C008FECEB /* ScaleWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0117D7121D66F16C008FECEB /* ScaleWidget.cpp */; };
 		0130C9681CE65AA600911E17 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90A1CE65AA600911E17 /* README.md */; };
 		0130C9691CE65AA600911E17 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90D1CE65AA600911E17 /* lz4.c */; };
@@ -167,10 +165,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0117D7061D64EBB4008FECEB /* ScaleSurfaceDnCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleSurfaceDnCmd.h; path = Commands/ScaleSurfaceDnCmd.h; sourceTree = "<group>"; };
-		0117D7071D64EBB4008FECEB /* ScaleSurfaceUpCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleSurfaceUpCmd.h; path = Commands/ScaleSurfaceUpCmd.h; sourceTree = "<group>"; };
-		0117D7081D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleSurfaceDnCmd.cpp; path = Commands/ScaleSurfaceDnCmd.cpp; sourceTree = "<group>"; };
-		0117D7091D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleSurfaceUpCmd.cpp; path = Commands/ScaleSurfaceUpCmd.cpp; sourceTree = "<group>"; };
 		0117D70E1D65A8C1008FECEB /* GuiBaseWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuiBaseWidget.h; sourceTree = "<group>"; };
 		0117D7111D66F16C008FECEB /* ScaleWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleWidget.h; sourceTree = "<group>"; };
 		0117D7121D66F16C008FECEB /* ScaleWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScaleWidget.cpp; sourceTree = "<group>"; };
@@ -927,10 +921,6 @@
 				01F9EB1C1D624702009CA5E8 /* MvLayerUpCmd.cpp */,
 				01F9EB191D624702009CA5E8 /* MvLayerDnCmd.h */,
 				01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */,
-				0117D7071D64EBB4008FECEB /* ScaleSurfaceUpCmd.h */,
-				0117D7091D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp */,
-				0117D7061D64EBB4008FECEB /* ScaleSurfaceDnCmd.h */,
-				0117D7081D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp */,
 				01CD67851D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.h */,
 				01CD67861D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp */,
 			);
@@ -1135,7 +1125,6 @@
 				39C1246A19F0AB96005DF557 /* QuadSurface.cpp in Sources */,
 				0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */,
 				39C1247F19F187D5005DF557 /* RadioList.cpp in Sources */,
-				0117D70B1D64EBB4008FECEB /* ScaleSurfaceUpCmd.cpp in Sources */,
 				3995C20A1C79069B00123352 /* Settings.cpp in Sources */,
 				39A0A1D81C6628AB00C9096B /* MvSelectionCmd.cpp in Sources */,
 				397EFC7F1A08FE720009286E /* FboSource.cpp in Sources */,
@@ -1175,7 +1164,6 @@
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
 				39C1246919F0AB96005DF557 /* BaseSurface.cpp in Sources */,
 				0130C9731CE65AA600911E17 /* DirectoryFilter.cpp in Sources */,
-				0117D70A1D64EBB4008FECEB /* ScaleSurfaceDnCmd.cpp in Sources */,
 				39C1245E19F08965005DF557 /* ImageSource.cpp in Sources */,
 				397C46BD1C398D72002689E2 /* SurfaceStack.cpp in Sources */,
 				3933D5D619BB87BD000ACA55 /* ofxLabel.cpp in Sources */,

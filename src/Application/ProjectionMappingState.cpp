@@ -287,8 +287,10 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 	 case '+': // Scale surface up
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
 			app->getCmdManager()->exec(
-				new ScaleSurfaceUpCmd(
-					app->getSurfaceManager()->getSelectedSurface(), 0.2f));
+				new ScaleSurfaceFromToCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					app->getSurfaceManager()->getSelectedSurface()->getScale(),
+					app->getSurfaceManager()->getSelectedSurface()->getScale() + 0.2f));
 		 }
 		 break;
 
@@ -298,8 +300,10 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 				break;
 			}
 			app->getCmdManager()->exec(
-				new ScaleSurfaceDnCmd(
-					app->getSurfaceManager()->getSelectedSurface(), 0.2f));
+				new ScaleSurfaceFromToCmd(
+					app->getSurfaceManager()->getSelectedSurface(),
+					app->getSurfaceManager()->getSelectedSurface()->getScale(),
+					app->getSurfaceManager()->getSelectedSurface()->getScale() - 0.2f));
 		 }
 		 break;
 		 
