@@ -317,6 +317,7 @@ BaseSurface * QuadSurface::clone(){
 	QuadSurface * s = new QuadSurface();
 	s->setVertices(getVertices());
 	s->setTexCoords(getTexCoords());
+	s->setPerspectiveWarping(getPerspectiveWarping());
     BaseSource * src = getSource();
     src->referenceCount++;
 	s->setSource(src);
