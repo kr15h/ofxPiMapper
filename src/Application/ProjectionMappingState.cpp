@@ -341,7 +341,9 @@ void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent
 }
 
 void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
-	app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
+	}
 }
 
 void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
