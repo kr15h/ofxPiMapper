@@ -38,6 +38,7 @@
 		0130C9831CE65AA600911E17 /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94B1CE65AA600911E17 /* snappy-stubs-internal.cc */; };
 		0130C9841CE65AA600911E17 /* snappy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94E1CE65AA600911E17 /* snappy.cc */; };
 		0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */; };
+		017D05641D72D775002EBBFD /* ClearSurfacesCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017D05621D72D775002EBBFD /* ClearSurfacesCmd.cpp */; };
 		01CD67871D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CD67861D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp */; };
 		01F9EB1D1D624702009CA5E8 /* MvLayerDnCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */; };
 		01F9EB1E1D624702009CA5E8 /* MvLayerUpCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01F9EB1C1D624702009CA5E8 /* MvLayerUpCmd.cpp */; };
@@ -235,6 +236,8 @@
 		0130C95B1CE65AA600911E17 /* ofxIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxIO.h; sourceTree = "<group>"; };
 		0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleAnimatedSourceCmd.h; path = Commands/ToggleAnimatedSourceCmd.h; sourceTree = "<group>"; };
 		0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleAnimatedSourceCmd.cpp; path = Commands/ToggleAnimatedSourceCmd.cpp; sourceTree = "<group>"; };
+		017D05621D72D775002EBBFD /* ClearSurfacesCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClearSurfacesCmd.cpp; path = Commands/ClearSurfacesCmd.cpp; sourceTree = "<group>"; };
+		017D05631D72D775002EBBFD /* ClearSurfacesCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ClearSurfacesCmd.h; path = Commands/ClearSurfacesCmd.h; sourceTree = "<group>"; };
 		01CD67851D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScaleSurfaceFromToCmd.h; path = Commands/ScaleSurfaceFromToCmd.h; sourceTree = "<group>"; };
 		01CD67861D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ScaleSurfaceFromToCmd.cpp; path = Commands/ScaleSurfaceFromToCmd.cpp; sourceTree = "<group>"; };
 		01F9EB191D624702009CA5E8 /* MvLayerDnCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MvLayerDnCmd.h; path = Commands/MvLayerDnCmd.h; sourceTree = "<group>"; };
@@ -923,6 +926,8 @@
 				01F9EB1B1D624702009CA5E8 /* MvLayerDnCmd.cpp */,
 				01CD67851D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.h */,
 				01CD67861D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp */,
+				017D05631D72D775002EBBFD /* ClearSurfacesCmd.h */,
+				017D05621D72D775002EBBFD /* ClearSurfacesCmd.cpp */,
 			);
 			name = Commands;
 			sourceTree = "<group>";
@@ -1147,6 +1152,7 @@
 				3968417A1BC91F6F009F0BAE /* TextureMappingState.cpp in Sources */,
 				39A9AAE01B04E78600AA83BC /* RmSurfaceCmd.cpp in Sources */,
 				0130C9791CE65AA600911E17 /* HiddenFileFilter.cpp in Sources */,
+				017D05641D72D775002EBBFD /* ClearSurfacesCmd.cpp in Sources */,
 				39C1248819F1EB75005DF557 /* SurfaceManager.cpp in Sources */,
 				0130C97B1CE65AA600911E17 /* PathFilterCollection.cpp in Sources */,
 				39FBE8B21C6A636900155B9E /* Gui.cpp in Sources */,
