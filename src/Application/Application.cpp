@@ -5,6 +5,8 @@ namespace ofx {
 namespace piMapper {
 
 Application::Application(){
+	_keySequence = "";
+
 	_surfaceManager.setMediaServer(&_mediaServer);
 	_gui.setMediaServer(&_mediaServer);
 	_gui.setCmdManager(&_cmdManager);
@@ -55,6 +57,16 @@ void Application::draw(){
 
 // Here we handle application state changes only
 void Application::onKeyPressed(ofKeyEventArgs & args){
+	
+	// Key sequence based commands. Last three keys are taken into account.
+	_keySequence += args.key;
+	if(_keySequence.size() >= 3){
+		_keySequence = _keySequence.substr(_keySequence.size() - 3, 3);
+		if(_keySequence == "new"){
+			_cmdManager.exec(new ClearSurfacesCmd());
+			return;
+		}
+	}
 
 	// For now we set the state of the new system and also the old
 	// before it is completely ported to the state system.

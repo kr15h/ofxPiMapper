@@ -7,6 +7,7 @@
 #include "BaseCmd.h"
 #include "BaseSurface.h"
 #include "SurfaceStack.h"
+#include "SurfaceManager.h"
 #include "Gui.h"
 
 namespace ofx {
@@ -15,13 +16,15 @@ namespace piMapper {
 class ClearSurfacesCmd : public BaseUndoCmd {
 
 	public:
-		ClearSurfacesCmd();
+		ClearSurfacesCmd(SurfaceManager * sm);
 		void exec();
 		void undo();
 
 	private:
 		// Here it would make sense to have another instance of SurfaceStack
 		vector<BaseSurface *> _surfaces;
+		SurfaceManager * _surfaceManager;
+		BaseSurface * _selectedSurface;
 
 };
 

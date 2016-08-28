@@ -4,6 +4,7 @@
 #include "ofLog.h"
 
 #include "SetApplicationStateCmd.h"
+#include "ClearSurfacesCmd.h"
 
 #include "ApplicationBaseState.h"
 #include "PresentationState.h"
@@ -84,6 +85,8 @@ class Application : public KeyListener {
 	
 		bool _shiftKeyDown;
         bool _isSSHConnection;
+	
+		string _keySequence;
 
 };
 
