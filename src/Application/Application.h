@@ -15,6 +15,7 @@
 #include "Info.h"
 
 #include "SurfaceManagerGui.h"
+#include "SurfaceStack.h"
 
 // TODO: To be removed.
 #include "GuiMode.h"
