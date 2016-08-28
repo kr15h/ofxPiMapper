@@ -41,6 +41,14 @@ void SurfaceStack::draw(){
 	}
 }
 
+void SurfaceStack::clear(){
+	for(int i = 0; i < size(); ++i){
+		ofRemoveListener(_surfaces[i]->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
+		ofRemoveListener(_surfaces[i]->vertexChangedEvent, this, &SurfaceStack::onVertexChanged);
+	}
+	_surfaces.clear();
+}
+
 int SurfaceStack::size(){
 	return _surfaces.size();
 }

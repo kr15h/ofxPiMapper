@@ -18,6 +18,7 @@ class SurfaceStack {
 		void erase(int i);
 		void swap(int a, int b);
 		void draw();
+		void clear();
 	
 		int size();
 
@@ -30,6 +31,8 @@ class SurfaceStack {
 	
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 		void onVertexChanged(int & i);
+	
+		vector<BaseSurface *> & getSurfaces(){ return _surfaces; };
 	
 	private:
 		SurfaceStack(){}
