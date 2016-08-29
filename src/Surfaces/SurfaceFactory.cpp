@@ -61,6 +61,7 @@ QuadSurface * SurfaceFactory::createQuadSurface(){
 	texCoords.push_back(ofVec2f(ofVec2f(0.0f, 1.0f)));
 	
 	QuadSurface * quadSurface = new QuadSurface();
+	quadSurface->setPerspectiveWarping(true);
 	
 	for(int i = 0; i < 4; i++){
 		quadSurface->setVertex(i, vertices[i]);
