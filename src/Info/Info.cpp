@@ -22,6 +22,9 @@ void Info::draw(){
 		ss << "  - Press <g> to add new grid surface\n";
 		ss << "  - Press <[> and <]> to remove or add columns to selected grid surface\n";
 		ss << "  - Press <{> and <}> to remove or add rows to selected grid surface\n";
+		ss << "  - Press <+> and <-> to scale surface up and down\n";
+		ss << "  - Press <9> and <0> to move selected surface one layer up or down\n";
+		ss << "  - Press <z> to undo\n";
 		ss << " 4. Source selection mode\n\n";
 		
 		ss << "You can switch between the modes by using <1>, <2>, <3> and <4> "
