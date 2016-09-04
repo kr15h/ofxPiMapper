@@ -294,8 +294,19 @@ void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
 		ofSetColor(255, 255, 255, 255);
 		line.draw();
 		ofPopStyle();
-	}else{
+	}else if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
 		surfaceManager->getSelectedSurface()->getMesh().drawWireframe();
+	}else{
+		ofPolyline p;
+		for(unsigned int i = 0;
+			i < surfaceManager->getSelectedSurface()->getMesh().getVertices().size();
+			++i){
+			
+			p.addVertex(ofPoint(
+				surfaceManager->getSelectedSurface()->getMesh().getVertices()[i]));
+		}
+		p.close();
+		p.draw();
 	}
 }
 
