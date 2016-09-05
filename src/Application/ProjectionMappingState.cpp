@@ -348,7 +348,7 @@ void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroun
 
 void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
 	
-	// Scale widget now. More later.
+	// Scale widget now. More widgets later.
 	if(e.widget == &Gui::instance()->getScaleWidget()){
 		if(e.args.type == e.args.Pressed){
 			_surfaceScaleBeforeTransform =
