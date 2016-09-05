@@ -30,6 +30,7 @@
 #include "Gui.h"
 
 #include "ScaleWidget.h"
+//#include "LayerPanelWidget.h"
 
 namespace ofx {
 namespace piMapper {

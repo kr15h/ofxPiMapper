@@ -84,6 +84,10 @@ ScaleWidget & Gui::getScaleWidget(){
 	return _scaleWidget;
 }
 
+LayerPanelWidget & Gui::getLayerPanelWidget(){
+	return _layerPanelWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

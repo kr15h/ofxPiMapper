@@ -27,47 +27,8 @@ void ProjectionMappingState::draw(Application * app){
 		Gui::instance()->getScaleWidget().draw();
 	}
 	
-	/*
-		Draw layer panel / indicator consisting of layer icons.
-		If none of the surfaces is selected, use outlines to represent all surfaces.
-		If one of the surfaces is selected, use a filled rectangle to visualise its location
-		in the layer stack.
-	*/
-	int numSurfaces = app->getSurfaceManager()->size();
-	
-	for(int i = 0; i < numSurfaces; ++i){
-		BaseSurface * surface = app->getSurfaceManager()->getSurface(i);
-		BaseSurface * surfaceSelected = app->getSurfaceManager()->getSelectedSurface();
-		
-		ofPushStyle();
-		
-		if(surface == surfaceSelected){
-			ofFill();
-		}else{
-			ofNoFill();
-		}
-		
-		int layerIconWidth = 45;
-		int layerIconHeight = 20;
-		int offsetRight = 20;
-		int offsetTop = 40;
-		int verticalSpacing = 10;
-		int layerIconX = ofGetWidth() - offsetRight - layerIconWidth;
-		int layerIconY = offsetTop + ((layerIconHeight + verticalSpacing) * (numSurfaces - i - 1));
-		
-		string label = "Layers";
-		ofDrawBitmapString(label, ofGetWidth() - 66, 30);
-		
-		ofRectangle layerIcon = ofRectangle(
-			layerIconX,
-			layerIconY,
-			layerIconWidth,
-			layerIconHeight);
-		
-		ofDrawRectangle(layerIcon);
-		
-		ofPopStyle();
-	}
+	Gui::instance()->getLayerPanelWidget().setSurfaceManager(app->getSurfaceManager());
+	Gui::instance()->getLayerPanelWidget().draw();
 }
 
 void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
