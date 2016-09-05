@@ -37,6 +37,7 @@
 		0130C9821CE65AA600911E17 /* snappy-sinksource.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C9491CE65AA600911E17 /* snappy-sinksource.cc */; };
 		0130C9831CE65AA600911E17 /* snappy-stubs-internal.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94B1CE65AA600911E17 /* snappy-stubs-internal.cc */; };
 		0130C9841CE65AA600911E17 /* snappy.cc in Sources */ = {isa = PBXBuildFile; fileRef = 0130C94E1CE65AA600911E17 /* snappy.cc */; };
+		0161EF201D7DEDF10050C71D /* LayerPanelWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0161EF1F1D7DEDF10050C71D /* LayerPanelWidget.cpp */; };
 		0177D5511D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */; };
 		017D05641D72D775002EBBFD /* ClearSurfacesCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 017D05621D72D775002EBBFD /* ClearSurfacesCmd.cpp */; };
 		01CD67871D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CD67861D6E15ED00CAE633 /* ScaleSurfaceFromToCmd.cpp */; };
@@ -234,6 +235,8 @@
 		0130C94E1CE65AA600911E17 /* snappy.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = snappy.cc; sourceTree = "<group>"; };
 		0130C94F1CE65AA600911E17 /* snappy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = snappy.h; sourceTree = "<group>"; };
 		0130C95B1CE65AA600911E17 /* ofxIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxIO.h; sourceTree = "<group>"; };
+		0161EF1E1D7DEDF10050C71D /* LayerPanelWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerPanelWidget.h; sourceTree = "<group>"; };
+		0161EF1F1D7DEDF10050C71D /* LayerPanelWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayerPanelWidget.cpp; sourceTree = "<group>"; };
 		0177D54F1D0B05230096A920 /* ToggleAnimatedSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleAnimatedSourceCmd.h; path = Commands/ToggleAnimatedSourceCmd.h; sourceTree = "<group>"; };
 		0177D5501D0B05230096A920 /* ToggleAnimatedSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ToggleAnimatedSourceCmd.cpp; path = Commands/ToggleAnimatedSourceCmd.cpp; sourceTree = "<group>"; };
 		017D05621D72D775002EBBFD /* ClearSurfacesCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ClearSurfacesCmd.cpp; path = Commands/ClearSurfacesCmd.cpp; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				0117D70E1D65A8C1008FECEB /* GuiBaseWidget.h */,
 				0117D7111D66F16C008FECEB /* ScaleWidget.h */,
 				0117D7121D66F16C008FECEB /* ScaleWidget.cpp */,
+				0161EF1E1D7DEDF10050C71D /* LayerPanelWidget.h */,
+				0161EF1F1D7DEDF10050C71D /* LayerPanelWidget.cpp */,
 				3968416A1BC91F6F009F0BAE /* Application.h */,
 				396841691BC91F6F009F0BAE /* Application.cpp */,
 				39FA2B7F1C457606003FAB28 /* SettingsLoader.h */,
@@ -1168,6 +1173,7 @@
 				39CF9C501C8A1B2200FDE473 /* DuplicateSurfaceCmd.cpp in Sources */,
 				0130C96E1CE65AA600911E17 /* ByteBufferUtils.cpp in Sources */,
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
+				0161EF201D7DEDF10050C71D /* LayerPanelWidget.cpp in Sources */,
 				39C1246919F0AB96005DF557 /* BaseSurface.cpp in Sources */,
 				0130C9731CE65AA600911E17 /* DirectoryFilter.cpp in Sources */,
 				39C1245E19F08965005DF557 /* ImageSource.cpp in Sources */,
