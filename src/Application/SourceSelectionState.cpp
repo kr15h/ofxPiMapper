@@ -14,6 +14,9 @@ SourceSelectionState * SourceSelectionState::instance(){
 
 void SourceSelectionState::draw(Application * app){
 	app->getGui()->draw();
+	
+	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
+	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
 } // namespace piMapper

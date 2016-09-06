@@ -42,7 +42,6 @@ class SurfaceManagerGui {
 
 		void setMode(int newGuiMode);
 		int getMode();
-		void drawSelectedSurfaceHighlight();
 		void drawSelectedSurfaceTextureHighlight();
 		void startDrag();
 		void stopDrag();

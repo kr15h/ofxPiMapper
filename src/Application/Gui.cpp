@@ -88,6 +88,10 @@ LayerPanelWidget & Gui::getLayerPanelWidget(){
 	return _layerPanelWidget;
 }
 
+SurfaceHighlightWidget & Gui::getSurfaceHighlightWidget(){
+	return _surfaceHighlightWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

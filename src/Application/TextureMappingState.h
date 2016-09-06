@@ -10,6 +10,7 @@
 #include "SetNextSourceCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {

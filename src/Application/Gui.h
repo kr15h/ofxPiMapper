@@ -6,6 +6,7 @@
 #include "GuiBaseWidget.h"
 #include "ScaleWidget.h"
 #include "LayerPanelWidget.h"
+#include "SurfaceHighlightWidget.h"
 
 namespace ofx {
 namespace piMapper {
@@ -63,6 +64,7 @@ class Gui {
 	
 		ScaleWidget & getScaleWidget();
 		LayerPanelWidget & getLayerPanelWidget();
+		SurfaceHighlightWidget & getSurfaceHighlightWidget();
 	
 		void onMousePressed(ofMouseEventArgs & args);
 		void onMouseReleased(ofMouseEventArgs & args);
@@ -80,6 +82,7 @@ class Gui {
 	
 		ScaleWidget _scaleWidget;
 		LayerPanelWidget _layerPanelWidget;
+		SurfaceHighlightWidget _surfaceHighlightWidget;
 };
 
 } // piMapper

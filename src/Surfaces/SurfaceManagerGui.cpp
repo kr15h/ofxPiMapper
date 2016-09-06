@@ -64,9 +64,6 @@ void SurfaceManagerGui::draw(){
 		surfaceManager->draw();
 		ofPopStyle();
 
-		// highlight selected surface
-		drawSelectedSurfaceHighlight();
-
 		// hilight selected surface texture
 		drawSelectedSurfaceTextureHighlight();
 
@@ -77,18 +74,12 @@ void SurfaceManagerGui::draw(){
 		// draw projection surfaces first
 		surfaceManager->draw();
 
-		// highlight selected surface
-		drawSelectedSurfaceHighlight();
-
 		// draw projection mapping editing gui
 		projectionEditor.draw();
 
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){
 		// draw projection surfaces first
 		surfaceManager->draw();
-
-		// highlight selected surface
-		drawSelectedSurfaceHighlight();
 
 		sourcesEditor.draw();
 	}
@@ -279,35 +270,6 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 
 int SurfaceManagerGui::getMode(){
 	return guiMode;
-}
-
-void SurfaceManagerGui::drawSelectedSurfaceHighlight(){
-	if(surfaceManager->getSelectedSurface() == 0){
-		return;
-	}
-	
-	if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::QUAD_SURFACE &&
-		((QuadSurface *)surfaceManager->getSelectedSurface())->getPerspectiveWarping()){
-		ofPolyline line = surfaceManager->getSelectedSurface()->getHitArea();
-		ofPushStyle();
-		ofSetLineWidth(1);
-		ofSetColor(255, 255, 255, 255);
-		line.draw();
-		ofPopStyle();
-	}else if(surfaceManager->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
-		surfaceManager->getSelectedSurface()->getMesh().drawWireframe();
-	}else{
-		ofPolyline p;
-		for(unsigned int i = 0;
-			i < surfaceManager->getSelectedSurface()->getMesh().getVertices().size();
-			++i){
-			
-			p.addVertex(ofPoint(
-				surfaceManager->getSelectedSurface()->getMesh().getVertices()[i]));
-		}
-		p.close();
-		p.draw();
-	}
 }
 
 void SurfaceManagerGui::drawSelectedSurfaceTextureHighlight(){

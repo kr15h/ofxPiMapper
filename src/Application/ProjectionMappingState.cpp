@@ -29,6 +29,9 @@ void ProjectionMappingState::draw(Application * app){
 	
 	Gui::instance()->getLayerPanelWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getLayerPanelWidget().draw();
+	
+	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
+	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
 void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
