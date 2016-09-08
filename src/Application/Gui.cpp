@@ -92,6 +92,10 @@ SurfaceHighlightWidget & Gui::getSurfaceHighlightWidget(){
 	return _surfaceHighlightWidget;
 }
 
+TextureHighlightWidget & Gui::getTextureHighlightWidget(){
+	return _textureHighlightWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;
