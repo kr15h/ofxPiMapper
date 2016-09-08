@@ -64,9 +64,6 @@ void SurfaceManagerGui::draw(){
 		surfaceManager->draw();
 		ofPopStyle();
 
-		// hilight selected surface texture
-		drawSelectedSurfaceTextureHighlight();
-
 		// draw texture editing GUI on top
 		textureEditor.draw();
 
@@ -270,18 +267,6 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 
 int SurfaceManagerGui::getMode(){
 	return guiMode;
-}
-
-void SurfaceManagerGui::drawSelectedSurfaceTextureHighlight(){
-	if(surfaceManager->getSelectedSurface() == 0){
-		return;
-	}
-	ofPolyline line = surfaceManager->getSelectedSurface()->getTextureHitArea();
-	ofPushStyle();
-	ofSetLineWidth(1);
-	ofSetColor(255, 255, 0, 255);
-	line.draw();
-	ofPopStyle();
 }
 
 void SurfaceManagerGui::startDrag(){
