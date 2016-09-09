@@ -41,9 +41,7 @@ void SurfaceManagerGui::draw(){
 		return;
 	}
 
-	if(guiMode == GuiMode::NONE){
-		surfaceManager->draw();
-	}else if(guiMode == GuiMode::TEXTURE_MAPPING){
+	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		// draw the texture of the selected surface
 		if(surfaceManager->getSelectedSurface() != 0){
 			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
@@ -58,26 +56,11 @@ void SurfaceManagerGui::draw(){
 			}
 		}
 
-		// draw surfaces with opacity
-		ofPushStyle();
-		ofSetColor(255, 255, 255, 200);
-		surfaceManager->draw();
-		ofPopStyle();
-
 		// draw texture editing GUI on top
 		textureEditor.draw();
-
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		// draw projection surfaces first
-		surfaceManager->draw();
-
-		// draw projection mapping editing gui
 		projectionEditor.draw();
-
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){
-		// draw projection surfaces first
-		surfaceManager->draw();
-
 		sourcesEditor.draw();
 	}
 }
