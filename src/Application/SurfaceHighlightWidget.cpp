@@ -16,14 +16,14 @@ void SurfaceHighlightWidget::draw(){
 		return;
 	}
 	
+	ofPushStyle();
+	ofSetLineWidth(2);
+	ofSetColor(255);
+	
 	if(_sm->getSelectedSurface()->getType() == SurfaceType::QUAD_SURFACE &&
 		((QuadSurface *)_sm->getSelectedSurface())->getPerspectiveWarping()){
 		ofPolyline line = _sm->getSelectedSurface()->getHitArea();
-		ofPushStyle();
-		ofSetLineWidth(1);
-		ofSetColor(255, 255, 255, 255);
 		line.draw();
-		ofPopStyle();
 	}else if(_sm->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
 		_sm->getSelectedSurface()->getMesh().drawWireframe();
 	}else{
@@ -38,6 +38,8 @@ void SurfaceHighlightWidget::draw(){
 		p.close();
 		p.draw();
 	}
+	
+	ofPopStyle();
 }
 
 } // namespace piMapper
