@@ -17,6 +17,7 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 }
 
 void ProjectionMappingState::draw(Application * app){
+	app->getSurfaceManager()->draw();
 	app->getGui()->draw();
 	
 	/*

@@ -14,6 +14,7 @@ TextureMappingState * TextureMappingState::instance(){
 
 void TextureMappingState::draw(Application * app){
 	app->getGui()->draw();
+	app->getSurfaceManager()->draw();
 	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();

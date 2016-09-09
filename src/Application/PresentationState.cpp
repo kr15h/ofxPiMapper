@@ -13,6 +13,7 @@ PresentationState * PresentationState::instance(){
 }
 
 void PresentationState::draw(Application * app){
+	app->getSurfaceManager()->draw();
 	app->getGui()->draw();
 }
 

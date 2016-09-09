@@ -13,6 +13,7 @@ SourceSelectionState * SourceSelectionState::instance(){
 }
 
 void SourceSelectionState::draw(Application * app){
+	app->getSurfaceManager()->draw();
 	app->getGui()->draw();
 	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
