@@ -13,7 +13,11 @@ PresentationState * PresentationState::instance(){
 }
 
 void PresentationState::draw(Application * app){
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();
+	ofPopStyle();
+	
 	app->getGui()->draw();
 }
 

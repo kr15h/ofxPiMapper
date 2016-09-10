@@ -14,7 +14,11 @@ TextureMappingState * TextureMappingState::instance(){
 
 void TextureMappingState::draw(Application * app){
 	app->getGui()->draw();
+	
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 150);
 	app->getSurfaceManager()->draw();
+	ofPopStyle();
 	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();

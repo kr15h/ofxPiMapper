@@ -17,7 +17,11 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 }
 
 void ProjectionMappingState::draw(Application * app){
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();
+	ofPopStyle();
+	
 	app->getGui()->draw();
 	
 	/*

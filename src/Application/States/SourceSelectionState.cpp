@@ -13,7 +13,11 @@ SourceSelectionState * SourceSelectionState::instance(){
 }
 
 void SourceSelectionState::draw(Application * app){
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();
+	ofPopStyle();
+	
 	app->getGui()->draw();
 	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
