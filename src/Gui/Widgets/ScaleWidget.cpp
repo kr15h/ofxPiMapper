@@ -57,6 +57,13 @@ void ScaleWidget::draw(){
 	ofSetLineWidth(1);
 	_line.draw();
 	
+	ofFill();
+	ofDrawRectangle(
+		_line.getVertices()[0].x - 5,
+		_line.getVertices()[0].y - 5,
+		10, 10);
+	
+	ofNoFill();
 	ofSetLineWidth(2);
 	ofDrawRectangle(_handle);
 	
