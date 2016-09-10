@@ -81,15 +81,10 @@ void QuadSurface::draw(){
 			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
 			ofEnableNormalizedTexCoords();
 			
-			ofPushStyle();
-			ofSetColor(255, 255, 255);
-			
 			glMultMatrixf(_matrix);
 			source->getTexture()->bind();
 			m.draw();
 			source->getTexture()->unbind();
-			
-			ofPopStyle();
 			
 			if(!normalizedTexCoords){
 				ofDisableNormalizedTexCoords();
