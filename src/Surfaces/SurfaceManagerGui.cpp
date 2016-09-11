@@ -19,21 +19,21 @@ SurfaceManagerGui::~SurfaceManagerGui(){
 }
 
 void SurfaceManagerGui::registerMouseEvents(){
-	ofAddListener(ofEvents().mousePressed, this,
-				  &SurfaceManagerGui::mousePressed);
-	ofAddListener(ofEvents().mouseReleased, this,
-				  &SurfaceManagerGui::mouseReleased);
-	ofAddListener(ofEvents().mouseDragged, this,
-				  &SurfaceManagerGui::mouseDragged);
+	//ofAddListener(ofEvents().mousePressed, this,
+	//			  &SurfaceManagerGui::mousePressed);
+	//ofAddListener(ofEvents().mouseReleased, this,
+	//			  &SurfaceManagerGui::mouseReleased);
+	//ofAddListener(ofEvents().mouseDragged, this,
+	//			  &SurfaceManagerGui::mouseDragged);
 }
 
 void SurfaceManagerGui::unregisterMouseEvents(){
-	ofRemoveListener(ofEvents().mousePressed, this,
-					 &SurfaceManagerGui::mousePressed);
-	ofRemoveListener(ofEvents().mouseReleased, this,
-					 &SurfaceManagerGui::mouseReleased);
-	ofRemoveListener(ofEvents().mouseDragged, this,
-					 &SurfaceManagerGui::mouseDragged);
+	//ofRemoveListener(ofEvents().mousePressed, this,
+	//				 &SurfaceManagerGui::mousePressed);
+	//ofRemoveListener(ofEvents().mouseReleased, this,
+	//				 &SurfaceManagerGui::mouseReleased);
+	//ofRemoveListener(ofEvents().mouseDragged, this,
+	//				 &SurfaceManagerGui::mouseDragged);
 }
 
 void SurfaceManagerGui::draw(){
@@ -77,6 +77,8 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		CircleJoint * hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
 		
 		if(hitJoint != 0){
+		
+			hitJoint->mousePressed(args);
 			
 			textureEditor.unselectAllJoints();
 			hitJoint->select();
@@ -155,13 +157,14 @@ void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
 		if(!surfaceManager->getSelectedSurface()->getMoved()){
 			
 			// TODO: emit event through the gui singleton
-			_cmdManager->undo();
+			//_cmdManager->undo();
 		}
 	}
-
 }
 
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
+	textureEditor.mouseDragged(args);
+	
 	if(bDrag){
 		ofVec2f mousePosition = ofVec2f(args.x, args.y);
 		ofVec2f distance = mousePosition - clickPosition;

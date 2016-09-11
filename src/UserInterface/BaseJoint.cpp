@@ -14,16 +14,18 @@ BaseJoint::~BaseJoint(){
 }
 
 void BaseJoint::registerMouseEvents(){
-	ofAddListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
-	ofAddListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
+	//ofAddListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
+	//ofAddListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
 }
 
 void BaseJoint::unregisterMouseEvents(){
-	ofRemoveListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
-	ofRemoveListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
+	//ofRemoveListener(ofEvents().mousePressed, this, &BaseJoint::mousePressed);
+	//ofRemoveListener(ofEvents().mouseDragged, this, &BaseJoint::mouseDragged);
 }
 
 void BaseJoint::mousePressed(ofMouseEventArgs & args){
+	cout << "BaseJoint::mousePressed()" << endl;
+
 	if(hitTest(ofVec2f(args.x, args.y))){
 		// selected = true;
 		clickDistance = position - ofVec2f(args.x, args.y);
@@ -36,6 +38,8 @@ void BaseJoint::mouseReleased(int x, int y, int button){
 }
 
 void BaseJoint::mouseDragged(ofMouseEventArgs & args){
+	cout << "BaseJoint::mouseDragged()" << endl;
+	
 	if(!bDrag){
 		return;
 	}

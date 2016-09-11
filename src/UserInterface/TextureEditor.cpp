@@ -152,6 +152,18 @@ void TextureEditor::keyReleased(ofKeyEventArgs & args){
 	}
 }
 
+void TextureEditor::mousePressed(ofMouseEventArgs & args){
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		joints[i]->mousePressed(args);
+	}
+}
+
+void TextureEditor::mouseDragged(ofMouseEventArgs & args){
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		joints[i]->mouseDragged(args);
+	}
+}
+
 void TextureEditor::draw(){
 	if(surface == 0){
 		return;

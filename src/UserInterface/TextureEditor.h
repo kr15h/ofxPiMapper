@@ -26,6 +26,8 @@ class TextureEditor {
 		void update(ofEventArgs & args);
 		void keyPressed(ofKeyEventArgs & args);
 		void keyReleased(ofKeyEventArgs & args);
+		void mousePressed(ofMouseEventArgs & args);
+		void mouseDragged(ofMouseEventArgs & args);
 		void draw();
 		void drawJoints();
 		void setSurface(BaseSurface * newSurface);
