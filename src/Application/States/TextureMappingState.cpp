@@ -12,19 +12,31 @@ TextureMappingState * TextureMappingState::instance(){
 	return _instance;
 }
 
+TextureMappingState::TextureMappingState(){
+	_bTranslateCanvas = false;
+}
+
 void TextureMappingState::draw(Application * app){
+	ofPushMatrix();
+	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	app->getGui()->draw();
+	ofPopMatrix();
 	
 	ofPushStyle();
 	ofSetColor(255, 255, 255, 150);
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
 	
+	ofPushMatrix();
+	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
+	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 	
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
+	
+	ofPopMatrix();
 }
 
 void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
@@ -67,8 +79,30 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 }
 
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
-    app->getCmdManager()->exec(
+	cout << "TextureMappingState::onBackgroundPressed()" << endl;
+	
+	app->getCmdManager()->exec(
         new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
+	
+	_bTranslateCanvas = true;
+	_clickPosition = ofPoint(e.args.x, e.args.y);
+	_clickCanvasTranslate = _canvasTranslate;
+}
+
+void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
+	cout << "TextureMappingState::onMouseReleased()" << endl;
+	
+	_bTranslateCanvas = false;
+}
+
+void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
+	if(!_bTranslateCanvas){
+		return;
+	}
+	
+	ofPoint mousePosition = ofPoint(args.x, args.y);
+	ofPoint distance =  mousePosition - _clickPosition;
+	_canvasTranslate = _clickCanvasTranslate + distance;
 }
 
 } // namespace piMapper

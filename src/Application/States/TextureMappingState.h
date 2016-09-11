@@ -22,11 +22,21 @@ class TextureMappingState : public ApplicationBaseState {
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
         void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
+		void onMouseReleased(Application * app, ofMouseEventArgs & args);
+		void onMouseDragged(Application * app, ofMouseEventArgs & args);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
 
 	private:
 		static TextureMappingState * _instance;
+	
+		TextureMappingState();
+
+		bool _bTranslateCanvas;
+	
+		ofPoint _clickPosition;
+		ofPoint _canvasTranslate;
+		ofPoint _clickCanvasTranslate;
 
 };
 
