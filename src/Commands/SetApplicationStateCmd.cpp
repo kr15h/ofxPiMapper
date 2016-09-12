@@ -21,6 +21,8 @@ SetApplicationStateCmd::SetApplicationStateCmd(Application * app,
 void SetApplicationStateCmd::exec(){
 	_prevApplicationState = _application->getState();
 	_application->setState(_applicationState);
+	_applicationState->setTranslation(ofPoint(0, 0));
+	_translation = _prevApplicationState->getTranslation();
 
 	// TODO: To be removed.
 	_prevGuiMode = _gui->getMode();
@@ -30,6 +32,7 @@ void SetApplicationStateCmd::exec(){
 void SetApplicationStateCmd::undo(){
 	ofLogNotice("SetApplicationStateCmd", "undo");
 	_application->setState(_prevApplicationState);
+	_application->getState()->setTranslation(_translation);
 
 	// TODO: To be removed.
 	_gui->setMode(_prevGuiMode);

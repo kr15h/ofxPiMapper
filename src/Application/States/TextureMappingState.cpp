@@ -125,5 +125,16 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 	}
 }
 
+ofPoint TextureMappingState::getTranslation(){
+	cout << "TextureMappingState::getTranslation()" << endl;
+	return _canvasTranslate;
+}
+
+void TextureMappingState::setTranslation(ofPoint p){
+	cout << "TextureMappingState::setTranslation()" << endl;
+	_canvasTranslate = p;
+	_clickCanvasTranslate = p;
+}
+
 } // namespace piMapper
 } // namespace ofx

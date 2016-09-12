@@ -27,6 +27,9 @@ class TextureMappingState : public ApplicationBaseState {
 		void onMouseDragged(Application * app, ofMouseEventArgs & args);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
+	
+		ofPoint getTranslation();
+		void setTranslation(ofPoint p);
 
 	private:
 		static TextureMappingState * _instance;

@@ -25,6 +25,10 @@ class ApplicationBaseState {
 		virtual void onBackgroundPressed(Application * app, GuiBackgroundEvent & e){}
 	
 		virtual void onGuiEvent(Application * app, GuiEvent & e) = 0;
+	
+		// These are only used by TextureMappingState for now.
+		virtual ofPoint getTranslation(){ return ofPoint(0, 0); }
+		virtual void setTranslation(ofPoint p){}
 
 };
 

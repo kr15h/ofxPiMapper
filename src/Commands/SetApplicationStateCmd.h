@@ -26,6 +26,8 @@ class SetApplicationStateCmd : public BaseUndoCmd {
 		ApplicationBaseState * _prevApplicationState;
 		ApplicationBaseState * _applicationState;
 
+		ofPoint _translation;
+
 		// TODO: Remove these after porting to app state system is done
 		SurfaceManagerGui * _gui;
 		int _prevGuiMode;
