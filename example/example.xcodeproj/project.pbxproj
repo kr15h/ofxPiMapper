@@ -105,6 +105,7 @@
 		01C2078C1D82FA4A00742588 /* TextureEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207431D82FA4A00742588 /* TextureEditor.cpp */; };
 		01C2078D1D82FA4A00742588 /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207461D82FA4A00742588 /* HomographyHelper.cpp */; };
 		01C2078E1D82FA4A00742588 /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207481D82FA4A00742588 /* TerminalListener.cpp */; };
+		01CD0BC31D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -379,6 +380,8 @@
 		01C207471D82FA4A00742588 /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
 		01C207481D82FA4A00742588 /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
 		01C207491D82FA4A00742588 /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
+		01CD0BC11D87CD9A00BBCE25 /* TranslateCanvasCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslateCanvasCmd.h; sourceTree = "<group>"; };
+		01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranslateCanvasCmd.cpp; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -777,6 +780,8 @@
 				01C206FE1D82FA4900742588 /* ToggleAnimatedSourceCmd.h */,
 				01C206FF1D82FA4900742588 /* TogglePerspectiveCmd.cpp */,
 				01C207001D82FA4900742588 /* TogglePerspectiveCmd.h */,
+				01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */,
+				01CD0BC11D87CD9A00BBCE25 /* TranslateCanvasCmd.h */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1207,6 +1212,7 @@
 				0130C97B1CE65AA600911E17 /* PathFilterCollection.cpp in Sources */,
 				01C207811D82FA4A00742588 /* QuadSurface.cpp in Sources */,
 				0130C9721CE65AA600911E17 /* DeviceFilter.cpp in Sources */,
+				01CD0BC31D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp in Sources */,
 				0130C9781CE65AA600911E17 /* HexBinaryEncoding.cpp in Sources */,
 				01C207741D82FA4A00742588 /* SurfaceHighlightWidget.cpp in Sources */,
 				01C2075F1D82FA4A00742588 /* RmGridColCmd.cpp in Sources */,
