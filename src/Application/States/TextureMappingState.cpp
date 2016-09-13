@@ -81,8 +81,6 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 }
 
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
-	cout << "TextureMappingState::onBackgroundPressed()" << endl;
-	
 	app->getCmdManager()->exec(
         new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
 	
@@ -100,8 +98,6 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 }
 
 void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
-	cout << "TextureMappingState::onMouseReleased()" << endl;
-	
 	_bTranslateCanvas = false;
 	
 	_clickCanvasTranslate = _canvasTranslate;
@@ -126,12 +122,10 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 }
 
 ofPoint TextureMappingState::getTranslation(){
-	cout << "TextureMappingState::getTranslation()" << endl;
 	return _canvasTranslate;
 }
 
 void TextureMappingState::setTranslation(ofPoint p){
-	cout << "TextureMappingState::setTranslation()" << endl;
 	_canvasTranslate = p;
 	_clickCanvasTranslate = p;
 }
