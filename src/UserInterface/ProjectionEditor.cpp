@@ -78,6 +78,12 @@ void ProjectionEditor::draw(){
 }
 
 void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
+	
+	// Pass args to joint mouse events
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		joints[i]->mouseDragged(args);
+	}
+	
 	ofVec2f mousePosition = ofVec2f(args.x, args.y);
 
 	// Collect all vertices of the projection surfaces

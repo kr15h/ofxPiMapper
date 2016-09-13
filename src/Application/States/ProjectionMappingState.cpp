@@ -283,14 +283,17 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 
 void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMousePressed(args);
+	app->getGui()->mousePressed(args);
 }
 
 void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseReleased(args);
+	app->getGui()->mouseReleased(args);
 }
 
 void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
+	app->getGui()->mouseDragged(args);
 }
 
 void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e){

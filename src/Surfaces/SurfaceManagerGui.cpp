@@ -163,16 +163,23 @@ void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
 }
 
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
-	textureEditor.mouseDragged(args);
+	if(guiMode == GuiMode::TEXTURE_MAPPING){
+		textureEditor.mouseDragged(args);
+	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
+		projectionEditor.mouseDragged(args);
+	}
 	
 	if(bDrag){
 		ofVec2f mousePosition = ofVec2f(args.x, args.y);
 		ofVec2f distance = mousePosition - clickPosition;
 
 		if(guiMode == GuiMode::PROJECTION_MAPPING){
-			// add this distance to all vertices in surface
+			
+			// Moves the selected surface on drag
 			projectionEditor.moveSelectedSurface(distance);
 		}else if(guiMode == GuiMode::TEXTURE_MAPPING){
+		
+			// Moves the crop area of the texture
 			textureEditor.moveTexCoords(distance);
 		}
 		clickPosition = mousePosition;
