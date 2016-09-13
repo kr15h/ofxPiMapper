@@ -10,6 +10,7 @@
 #include "SetNextSourceCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
+#include "TranslateCanvasCmd.h"
 #include "Gui.h"
 
 namespace ofx {
@@ -40,6 +41,7 @@ class TextureMappingState : public ApplicationBaseState {
 	
 		ofPoint _clickPosition;
 		ofPoint _canvasTranslate;
+		ofPoint _prevCanvasTranslate; // Canvas translate before TranslateCanvasCmd command exec
 		ofPoint _clickCanvasTranslate;
 
 };

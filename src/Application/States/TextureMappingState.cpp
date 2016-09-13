@@ -90,6 +90,7 @@ void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEv
 
 void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
 	_clickPosition = ofPoint(args.x, args.y);
+	_prevCanvasTranslate = _canvasTranslate;
 
 	// Alter mouse event args to match canvas translation
 	args.x -= _canvasTranslate.x;
@@ -99,6 +100,15 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 
 void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	_bTranslateCanvas = false;
+	
+	// If translation has happened, create an undoable command
+	if(_prevCanvasTranslate != _canvasTranslate){
+		app->getCmdManager()->exec(
+			new TranslateCanvasCmd(
+				app,
+				_prevCanvasTranslate,
+				_canvasTranslate));
+	}
 	
 	_clickCanvasTranslate = _canvasTranslate;
 	
