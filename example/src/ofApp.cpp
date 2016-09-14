@@ -23,6 +23,10 @@ void ofApp::setup(){
 	ofSetFullscreen(Settings::instance()->getFullscreen());
 }
 
+void ofApp::update(){
+	piMapper.update();
+}
+
 void ofApp::draw(){
 	piMapper.draw();
 }
