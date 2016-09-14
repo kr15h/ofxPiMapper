@@ -7,6 +7,10 @@ void ofApp::setup(){
 	piMapper.setup();
 }
 
+void ofApp::update(){
+	piMapper.update();
+}
+
 void ofApp::draw(){
 	piMapper.draw();
 }
