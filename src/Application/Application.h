@@ -39,6 +39,7 @@ class Application : public KeyListener {
 		ApplicationBaseState * getState();
 
 		void setup();
+		void update();
 		void draw();
 	
 		void onKeyPressed(ofKeyEventArgs & args);

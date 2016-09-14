@@ -99,6 +99,8 @@ BaseSurface * SurfaceManager::selectSurface(int index){
 }
 
 BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
+	cout << "SurfaceManager::selectSurface()" << endl;
+
 	for(int i = 0; i < SurfaceStack::instance()->size(); i++){
 		if(SurfaceStack::instance()->at(i) == surface){
 			selectedSurface = surface;

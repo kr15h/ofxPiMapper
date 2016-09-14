@@ -16,6 +16,10 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 	return _instance;
 }
 
+void ProjectionMappingState::update(Application * app){
+	Gui::instance()->getScaleWidget().update();
+}
+
 void ProjectionMappingState::draw(Application * app){
 	ofPushStyle();
 	ofSetColor(255, 255, 255, 255);
@@ -306,7 +310,6 @@ void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e
 void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
 	if(app->getSurfaceManager()->getSelectedSurface() != e.surface){
 		app->getCmdManager()->exec(new SelSurfaceCmd(app->getSurfaceManager(), e.surface ));
-		Gui::instance()->getScaleWidget().setSurface(app->getSurfaceManager()->getSelectedSurface());
 	}
 	
 	app->getCmdManager()->exec(new StartDragSurfaceCmd(e.surface));

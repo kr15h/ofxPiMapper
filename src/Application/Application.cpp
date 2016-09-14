@@ -44,6 +44,13 @@ void Application::setup(){
     if(_isSSHConnection){
         consoleListener.setup(this);
     }
+	
+	// TODO: Consider whether this is the right place for it
+	Gui::instance()->getScaleWidget().setSurfaceManager(&_surfaceManager);
+}
+
+void Application::update(){
+	_state->update(this);
 }
 
 ApplicationBaseState * Application::getState(){

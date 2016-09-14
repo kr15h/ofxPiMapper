@@ -5,6 +5,7 @@
 #include "GuiBaseWidget.h"
 #include "ofGraphics.h"
 #include "BaseSurface.h"
+#include "SurfaceManager.h"
 
 namespace ofx {
 namespace piMapper {
@@ -24,7 +25,7 @@ class ScaleWidget : public GuiBaseWidget {
 		bool inside(float x, float y);
 	
 		// This should be the size of the objet's bounding box
-		void setSurface(BaseSurface * s);
+		void setSurfaceManager(SurfaceManager * sm);
 
 		float getScale(){
 			return _scale;
@@ -39,7 +40,8 @@ class ScaleWidget : public GuiBaseWidget {
 	
 		bool _dragging;
 	
-		BaseSurface * _surface;
+		BaseSurface * _selectedSurface;
+		SurfaceManager * _surfaceManager;
 	
 		void setRect(ofRectangle rect);
 };

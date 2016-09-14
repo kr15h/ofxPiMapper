@@ -6,6 +6,10 @@ void ofxPiMapper::setup(){
 	_application.setup();
 }
 
+void ofxPiMapper::update(){
+	_application.update();
+}
+
 void ofxPiMapper::draw(){
 	_application.draw();
 }
