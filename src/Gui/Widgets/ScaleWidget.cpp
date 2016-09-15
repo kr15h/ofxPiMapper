@@ -24,6 +24,10 @@ void ScaleWidget::update(){
 		return;
 	}
 	
+	if(_surfaceManager->getSelectedSurface() == 0){
+		return;
+	}
+	
 	if(_selectedSurface != _surfaceManager->getSelectedSurface()){
 		_selectedSurface = _surfaceManager->getSelectedSurface();
 		setRect(_surfaceManager->getSelectedSurface()->getBoundingBox());
