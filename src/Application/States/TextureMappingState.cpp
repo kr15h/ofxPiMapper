@@ -81,11 +81,21 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 }
 
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
-	app->getCmdManager()->exec(
-        new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
+	// Exec the command only if a joint is selected.
+	bool selected = false;
+	for(unsigned int i = 0; i < app->getGui()->getTextureEditor()->getJoints().size(); ++i){
+		if(app->getGui()->getTextureEditor()->getJoints()[i]->selected){
+			selected = true;
+			break;
+		}
+	}
+	
+	if(selected){
+		app->getCmdManager()->exec(
+			new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
+	}
 	
 	_bTranslateCanvas = true;
-	
 }
 
 void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
