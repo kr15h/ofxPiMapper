@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01048D1B1D8BE26400D0FC21 /* SetTexMapDrawModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01048D1A1D8BE26400D0FC21 /* SetTexMapDrawModeCmd.cpp */; };
 		0130C9681CE65AA600911E17 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90A1CE65AA600911E17 /* README.md */; };
 		0130C9691CE65AA600911E17 /* lz4.c in Sources */ = {isa = PBXBuildFile; fileRef = 0130C90D1CE65AA600911E17 /* lz4.c */; };
 		0130C96A1CE65AA600911E17 /* Base64Encoding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0130C92E1CE65AA600911E17 /* Base64Encoding.cpp */; };
@@ -171,6 +172,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01048D191D8BE26400D0FC21 /* SetTexMapDrawModeCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTexMapDrawModeCmd.h; sourceTree = "<group>"; };
+		01048D1A1D8BE26400D0FC21 /* SetTexMapDrawModeCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetTexMapDrawModeCmd.cpp; sourceTree = "<group>"; };
 		0130C9041CE65AA600911E17 /* alphanum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = alphanum.hpp; sourceTree = "<group>"; };
 		0130C9071CE65AA600911E17 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		0130C9091CE65AA600911E17 /* LICENSE.MIT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.MIT; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 				01C207001D82FA4900742588 /* TogglePerspectiveCmd.h */,
 				01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */,
 				01CD0BC11D87CD9A00BBCE25 /* TranslateCanvasCmd.h */,
+				01048D191D8BE26400D0FC21 /* SetTexMapDrawModeCmd.h */,
+				01048D1A1D8BE26400D0FC21 /* SetTexMapDrawModeCmd.cpp */,
 			);
 			path = Commands;
 			sourceTree = "<group>";
@@ -1169,6 +1174,7 @@
 				01C207521D82FA4A00742588 /* AddGridRowCmd.cpp in Sources */,
 				3933D5DA19BB87BD000ACA55 /* ofxToggle.cpp in Sources */,
 				01C207591D82FA4A00742588 /* MvAllTexCoordsCmd.cpp in Sources */,
+				01048D1B1D8BE26400D0FC21 /* SetTexMapDrawModeCmd.cpp in Sources */,
 				01C2077E1D82FA4A00742588 /* VideoSource.cpp in Sources */,
 				3933D5D319BB87BD000ACA55 /* ofxBaseGui.cpp in Sources */,
 				3933D5D919BB87BD000ACA55 /* ofxSliderGroup.cpp in Sources */,
