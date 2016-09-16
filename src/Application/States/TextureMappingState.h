@@ -32,12 +32,17 @@ class TextureMappingState : public ApplicationBaseState {
 		ofPoint getTranslation();
 		void setTranslation(ofPoint p);
 
+		void setDrawMode(int m);
+		int getDrawMode();
+
 	private:
 		static TextureMappingState * _instance;
 	
 		TextureMappingState();
 
 		bool _bTranslateCanvas;
+	
+		int _drawMode;
 	
 		ofPoint _clickPosition;
 		ofPoint _canvasTranslate;

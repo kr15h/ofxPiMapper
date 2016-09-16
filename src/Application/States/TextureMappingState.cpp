@@ -16,6 +16,7 @@ TextureMappingState::TextureMappingState(){
 	_bTranslateCanvas = false;
 	_canvasTranslate = ofPoint(0, 0);
 	_clickCanvasTranslate = ofPoint(0, 0);
+	_drawMode = 0;
 }
 
 void TextureMappingState::draw(Application * app){
@@ -148,6 +149,14 @@ ofPoint TextureMappingState::getTranslation(){
 void TextureMappingState::setTranslation(ofPoint p){
 	_canvasTranslate = p;
 	_clickCanvasTranslate = p;
+}
+
+void TextureMappingState::setDrawMode(int m){
+	_drawMode = m;
+}
+
+int TextureMappingState::getDrawMode(){
+	return _drawMode;
 }
 
 } // namespace piMapper
