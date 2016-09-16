@@ -11,6 +11,7 @@
 #include "SelNextSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
 #include "TranslateCanvasCmd.h"
+#include "SetTexMapDrawModeCmd.h"
 #include "Gui.h"
 
 namespace ofx {
@@ -34,6 +35,8 @@ class TextureMappingState : public ApplicationBaseState {
 
 		void setDrawMode(int m);
 		int getDrawMode();
+		int getNextDrawMode();
+		int getPrevDrawMode();
 
 	private:
 		static TextureMappingState * _instance;

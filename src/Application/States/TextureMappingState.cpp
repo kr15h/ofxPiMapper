@@ -20,21 +20,47 @@ TextureMappingState::TextureMappingState(){
 }
 
 void TextureMappingState::draw(Application * app){
+	if(_drawMode == 0){
+		// Texture on the back
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
+		app->getGui()->draw();
+	
+		// Semi-transparent surfaces on the front
+		ofPushStyle();
+		ofSetColor(255, 255, 255, 150);
+		app->getSurfaceManager()->draw();
+		ofPopStyle();
+		ofPopMatrix();
+	}else if(_drawMode == 1){
+		// Testure on the background
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
+		app->getGui()->draw();
+	
+		// Opaque surfaces on the front
+		ofPushStyle();
+		ofSetColor(255, 255, 255, 255);
+		app->getSurfaceManager()->draw();
+		ofPopStyle();
+		ofPopMatrix();
+	}else if(_drawMode == 2){
+		// Texture only
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
+		app->getGui()->draw();
+		ofPopMatrix();
+	}else{
+		_drawMode = 0;
+	}
+	
 	ofPushMatrix();
 	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-	app->getGui()->draw();
-	ofPopMatrix();
 	
-	ofPushStyle();
-	ofSetColor(255, 255, 255, 150);
-	app->getSurfaceManager()->draw();
-	ofPopStyle();
-	
-	ofPushMatrix();
-	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-	
-	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
-	Gui::instance()->getSurfaceHighlightWidget().draw();
+	if(_drawMode != 2){
+		Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
+		Gui::instance()->getSurfaceHighlightWidget().draw();
+	}
 	
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
@@ -78,6 +104,15 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
 		 }
 		 break;
+	
+	 case '0': // Next draw mode
+		 app->getCmdManager()->exec(new SetTexMapDrawModeCmd( this, getNextDrawMode() ));
+		 break;
+	 
+	 case '9': // Prew draw mode
+		 app->getCmdManager()->exec(new SetTexMapDrawModeCmd( this, getPrevDrawMode() ));
+		 break;
+		 
 	}
 }
 
@@ -157,6 +192,26 @@ void TextureMappingState::setDrawMode(int m){
 
 int TextureMappingState::getDrawMode(){
 	return _drawMode;
+}
+
+int TextureMappingState::getNextDrawMode(){
+	int nextDrawMode = _drawMode + 1;
+	
+	if(nextDrawMode > 2){
+		nextDrawMode = 0;
+	}
+	
+	return nextDrawMode;
+}
+
+int TextureMappingState::getPrevDrawMode(){
+	int prevDrawMode = _drawMode - 1;
+	
+	if(prevDrawMode < 0){
+		prevDrawMode = 2;
+	}
+	
+	return prevDrawMode;
 }
 
 } // namespace piMapper
