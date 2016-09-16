@@ -9,14 +9,14 @@ SetTexMapDrawModeCmd::SetTexMapDrawModeCmd(TextureMappingState * s, int m){
 }
 
 void SetTexMapDrawModeCmd::exec(){
-	ofLogNotice("SetTexMapDrawModeCmd", "undo");
-	_oldMode = 0; // _state->getDrawMode();
-	// _state->setDrawMode(_newMode);
+	ofLogNotice("SetTexMapDrawModeCmd", "exec");
+	_oldMode = _state->getDrawMode();
+	_state->setDrawMode(_newMode);
 }
 
 void SetTexMapDrawModeCmd::undo(){
 	ofLogNotice("SetTexMapDrawModeCmd", "undo");
-	// _state->setDrawMode(_oldMode);
+	_state->setDrawMode(_oldMode);
 }
 
 } // namespace piMapper

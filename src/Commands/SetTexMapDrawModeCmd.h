@@ -10,6 +10,8 @@
 namespace ofx {
 namespace piMapper {
 
+class TextureMappingState;
+
 class SetTexMapDrawModeCmd : public BaseUndoCmd {
 
 	public:
