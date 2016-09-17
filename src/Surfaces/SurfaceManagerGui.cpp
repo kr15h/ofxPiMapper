@@ -43,6 +43,7 @@ void SurfaceManagerGui::draw(){
 
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		// draw the texture of the selected surface
+		/*
 		if(surfaceManager->getSelectedSurface() != 0){
 			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
 			ofEnableNormalizedTexCoords();
@@ -55,9 +56,10 @@ void SurfaceManagerGui::draw(){
 				ofDisableNormalizedTexCoords();
 			}
 		}
+		*/
 
 		// draw texture editing GUI on top
-		textureEditor.draw();
+		//textureEditor.draw();
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
 		projectionEditor.draw();
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){

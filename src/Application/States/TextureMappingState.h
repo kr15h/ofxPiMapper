@@ -27,6 +27,7 @@ class TextureMappingState : public ApplicationBaseState {
 		void onMousePressed(Application * app, ofMouseEventArgs & args);
 		void onMouseReleased(Application * app, ofMouseEventArgs & args);
 		void onMouseDragged(Application * app, ofMouseEventArgs & args);
+		void drawTexture(Application * app);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
 	

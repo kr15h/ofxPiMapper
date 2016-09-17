@@ -20,42 +20,27 @@ TextureMappingState::TextureMappingState(){
 }
 
 void TextureMappingState::draw(Application * app){
-	if(_drawMode == 0){
-		// Texture on the back
-		ofPushMatrix();
-		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-		app->getGui()->draw();
-	
-		// Semi-transparent surfaces on the front
+	ofPushMatrix();
+	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
+
+	if(_drawMode == 0){ // Semi-transparent surfaces on front
+		drawTexture(app);
 		ofPushStyle();
 		ofSetColor(255, 255, 255, 150);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
-		ofPopMatrix();
-	}else if(_drawMode == 1){
-		// Testure on the background
-		ofPushMatrix();
-		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-		app->getGui()->draw();
-	
-		// Opaque surfaces on the front
+	}else if(_drawMode == 1){ // Opaque surfaces on front
+		drawTexture(app);
 		ofPushStyle();
 		ofSetColor(255, 255, 255, 255);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
-		ofPopMatrix();
-	}else if(_drawMode == 2){
-		// Texture only
-		ofPushMatrix();
+	}else if(_drawMode == 2){ // Draw texture only
 		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-		app->getGui()->draw();
-		ofPopMatrix();
+		drawTexture(app);
 	}else{
 		_drawMode = 0;
 	}
-	
-	ofPushMatrix();
-	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	
 	if(_drawMode != 2){
 		Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
@@ -64,6 +49,9 @@ void TextureMappingState::draw(Application * app){
 	
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
+	
+	// TODO: Replace with a transform widget.
+	app->getGui()->getTextureEditor()->draw();
 	
 	ofPopMatrix();
 }
@@ -174,6 +162,20 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 		ofPoint mousePosition = ofPoint(args.x, args.y);
 		ofPoint distance =  mousePosition - _clickPosition;
 		_canvasTranslate = _clickCanvasTranslate + distance;
+	}
+}
+
+void TextureMappingState::drawTexture(Application * app){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
+		ofEnableNormalizedTexCoords();
+
+		ofSetColor(255, 255, 255, 255);
+		app->getSurfaceManager()->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
+
+		if(!normalizedTexCoords){
+			ofDisableNormalizedTexCoords();
+		}
 	}
 }
 
