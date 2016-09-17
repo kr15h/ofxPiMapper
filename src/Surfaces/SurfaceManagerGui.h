@@ -28,9 +28,6 @@ class SurfaceManagerGui {
 		SurfaceManagerGui();
 		~SurfaceManagerGui();
 
-		void registerMouseEvents();
-		void unregisterMouseEvents();
-
 		void draw();
 		void mousePressed(ofMouseEventArgs & args);
 		void mouseReleased(ofMouseEventArgs & args);

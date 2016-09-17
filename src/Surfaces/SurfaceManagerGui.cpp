@@ -7,33 +7,13 @@ SurfaceManagerGui::SurfaceManagerGui(){
 	surfaceManager = 0;
 	guiMode = GuiMode::NONE;
 	bDrag = false;
-	registerMouseEvents();
 	ofHideCursor();
 	_cmdManager = 0;
 }
 
 SurfaceManagerGui::~SurfaceManagerGui(){
-	unregisterMouseEvents();
 	surfaceManager = 0;
 	_cmdManager = 0;
-}
-
-void SurfaceManagerGui::registerMouseEvents(){
-	//ofAddListener(ofEvents().mousePressed, this,
-	//			  &SurfaceManagerGui::mousePressed);
-	//ofAddListener(ofEvents().mouseReleased, this,
-	//			  &SurfaceManagerGui::mouseReleased);
-	//ofAddListener(ofEvents().mouseDragged, this,
-	//			  &SurfaceManagerGui::mouseDragged);
-}
-
-void SurfaceManagerGui::unregisterMouseEvents(){
-	//ofRemoveListener(ofEvents().mousePressed, this,
-	//				 &SurfaceManagerGui::mousePressed);
-	//ofRemoveListener(ofEvents().mouseReleased, this,
-	//				 &SurfaceManagerGui::mouseReleased);
-	//ofRemoveListener(ofEvents().mouseDragged, this,
-	//				 &SurfaceManagerGui::mouseDragged);
 }
 
 void SurfaceManagerGui::draw(){
@@ -42,24 +22,7 @@ void SurfaceManagerGui::draw(){
 	}
 
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
-		// draw the texture of the selected surface
-		/*
-		if(surfaceManager->getSelectedSurface() != 0){
-			bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
-			ofEnableNormalizedTexCoords();
-			
-			// Reset default color to white first
-			ofSetColor(255, 255, 255, 255);
-			surfaceManager->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
-			
-			if(!normalizedTexCoords){
-				ofDisableNormalizedTexCoords();
-			}
-		}
-		*/
-
-		// draw texture editing GUI on top
-		//textureEditor.draw();
+		// TODO: Remove this if else together with the SurfaceManagerGui
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
 		projectionEditor.draw();
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){
@@ -285,7 +248,6 @@ SourcesEditor * SurfaceManagerGui::getSourcesEditor(){
 }
 
 void SurfaceManagerGui::onVertexChanged(int & i){
-	//cout << "VERTEX CHANGED: " << vertex.x << ", " << vertex.y << endl;
 	bool isDragged = projectionEditor.getJoints()->at(i)->isDragged();
 	projectionEditor.createJoints();
 	projectionEditor.getJoints()->at(i)->select();
@@ -297,7 +259,6 @@ void SurfaceManagerGui::onVertexChanged(int & i){
 }
 
 void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){
-	//cout << "VERTICES CHANGED: " << vertices.size() << endl;
 	projectionEditor.createJoints();
 }
 
