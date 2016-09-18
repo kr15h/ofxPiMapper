@@ -26,11 +26,10 @@ void ProjectionMappingState::draw(Application * app){
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
 	
-	app->getGui()->draw();
+	// TODO: Extract projection editor, make it a widget
+	app->getGui()->getProjectionEditor()->draw();
 	
-	/*
-		Draw scale widget. The size of the widget is being set on surface select.
-	*/
+	// Draw scale widget. The size of the widget is being set on surface select.
 	BaseSurface * selectedSurface = app->getSurfaceManager()->getSelectedSurface();
 	if(selectedSurface != 0){
 		Gui::instance()->getScaleWidget().draw();

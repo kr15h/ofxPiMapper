@@ -19,7 +19,7 @@ void SurfaceManagerGui::draw(){
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		// TODO: Remove this if else together with the SurfaceManagerGui
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		projectionEditor.draw();
+		//projectionEditor.draw();
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){
 		sourcesEditor.draw();
 	}
