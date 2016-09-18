@@ -21,7 +21,7 @@ void SurfaceManagerGui::draw(){
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
 		//projectionEditor.draw();
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){
-		sourcesEditor.draw();
+		//sourcesEditor.draw();
 	}
 }
 

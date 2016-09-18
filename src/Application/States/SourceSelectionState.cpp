@@ -18,7 +18,8 @@ void SourceSelectionState::draw(Application * app){
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
 	
-	app->getGui()->draw();
+	// TODO: Separate SourcesEditor from SurfaceManagerGui, make it a widget
+	app->getGui()->getSourcesEditor()->draw();
 	
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();
