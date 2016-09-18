@@ -27,7 +27,6 @@ class SurfaceManagerGui {
     public:
 		SurfaceManagerGui();
 
-		void draw();
 		void mousePressed(ofMouseEventArgs & args);
 		void mouseReleased(ofMouseEventArgs & args);
 		void mouseDragged(ofMouseEventArgs & args);

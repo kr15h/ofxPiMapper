@@ -11,20 +11,6 @@ SurfaceManagerGui::SurfaceManagerGui(){
 	_cmdManager = 0;
 }
 
-void SurfaceManagerGui::draw(){
-	if(surfaceManager == 0){
-		return;
-	}
-
-	if(guiMode == GuiMode::TEXTURE_MAPPING){
-		// TODO: Remove this if else together with the SurfaceManagerGui
-	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		//projectionEditor.draw();
-	}else if(guiMode == GuiMode::SOURCE_SELECTION){
-		//sourcesEditor.draw();
-	}
-}
-
 void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 	if(guiMode == GuiMode::NONE){
 		return;

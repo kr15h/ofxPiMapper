@@ -17,8 +17,6 @@ void PresentationState::draw(Application * app){
 	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
-	
-	app->getGui()->draw();
 }
 
 void PresentationState::onMousePressed(Application * app, ofMouseEventArgs & args){
