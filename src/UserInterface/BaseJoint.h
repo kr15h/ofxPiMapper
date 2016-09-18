@@ -9,10 +9,6 @@ class BaseJoint {
 
 	public:
 		BaseJoint();
-		~BaseJoint();
-
-		void registerMouseEvents();
-		void unregisterMouseEvents();
 
 		ofVec2f position;
 		bool enabled;
