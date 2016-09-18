@@ -26,7 +26,6 @@ class SurfaceManagerGui {
 	
     public:
 		SurfaceManagerGui();
-		~SurfaceManagerGui();
 
 		void draw();
 		void mousePressed(ofMouseEventArgs & args);

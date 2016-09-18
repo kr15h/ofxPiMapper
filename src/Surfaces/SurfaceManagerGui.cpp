@@ -11,11 +11,6 @@ SurfaceManagerGui::SurfaceManagerGui(){
 	_cmdManager = 0;
 }
 
-SurfaceManagerGui::~SurfaceManagerGui(){
-	surfaceManager = 0;
-	_cmdManager = 0;
-}
-
 void SurfaceManagerGui::draw(){
 	if(surfaceManager == 0){
 		return;
