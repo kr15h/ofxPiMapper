@@ -93,12 +93,6 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
 }
 
-void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
-	//stopDrag();
-	//projectionEditor.stopDragJoints();
-	//textureEditor.stopDragJoints();
-}
-
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		textureEditor.mouseDragged(args);
