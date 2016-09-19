@@ -291,7 +291,8 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 
 void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseReleased(args);
-	app->getGui()->mouseReleased(args);
+	app->getGui()->stopDrag();
+	app->getGui()->getProjectionEditor()->stopDragJoints();
 }
 
 void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){

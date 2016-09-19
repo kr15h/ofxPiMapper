@@ -94,9 +94,9 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 }
 
 void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
-	stopDrag();
-	projectionEditor.stopDragJoints();
-	textureEditor.stopDragJoints();
+	//stopDrag();
+	//projectionEditor.stopDragJoints();
+	//textureEditor.stopDragJoints();
 }
 
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){

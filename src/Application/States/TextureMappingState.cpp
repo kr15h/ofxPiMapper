@@ -149,7 +149,10 @@ void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & 
 	// Alter mouse event args to match canvas translation
 	args.x -= _canvasTranslate.x;
 	args.y -= _canvasTranslate.y;
-	app->getGui()->mouseReleased(args);
+	
+	//app->getGui()->mouseReleased(args);
+	app->getGui()->stopDrag();
+	app->getGui()->getTextureEditor()->stopDragJoints();
 }
 
 void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
