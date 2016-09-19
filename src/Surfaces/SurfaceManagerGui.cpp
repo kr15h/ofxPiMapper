@@ -97,15 +97,6 @@ void SurfaceManagerGui::mouseReleased(ofMouseEventArgs & args){
 	stopDrag();
 	projectionEditor.stopDragJoints();
 	textureEditor.stopDragJoints();
-
-	// Check if surface has moved
-	if(surfaceManager->getSelectedSurface()){
-		if(!surfaceManager->getSelectedSurface()->getMoved()){
-			
-			// TODO: emit event through the gui singleton
-			//_cmdManager->undo();
-		}
-	}
 }
 
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
