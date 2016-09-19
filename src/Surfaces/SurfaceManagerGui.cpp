@@ -93,24 +93,6 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
 }
 
-void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
-	if(guiMode == GuiMode::TEXTURE_MAPPING){
-		//textureEditor.mouseDragged(args);
-	}
-	
-	/*
-	if(bDrag){
-		ofVec2f mousePosition = ofVec2f(args.x, args.y);
-		ofVec2f distance = mousePosition - clickPosition;
-
-		if(guiMode == GuiMode::TEXTURE_MAPPING){
-			textureEditor.moveTexCoords(distance);
-		}
-		clickPosition = mousePosition;
-	}
-	*/
-}
-
 void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	if(surfaceManager == 0){
 		ofRemoveListener(newSurfaceManager->vertexChangedEvent, this, &SurfaceManagerGui::onVertexChanged);

@@ -28,7 +28,6 @@ class SurfaceManagerGui {
 		SurfaceManagerGui();
 
 		void mousePressed(ofMouseEventArgs & args);
-		void mouseDragged(ofMouseEventArgs & args);
 
 		void setSurfaceManager(SurfaceManager * newSurfaceManager);
 		void setMediaServer(MediaServer * newMediaServer);
