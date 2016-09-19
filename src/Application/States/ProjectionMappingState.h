@@ -58,7 +58,7 @@ class ProjectionMappingState : public ApplicationBaseState {
 		static ProjectionMappingState * _instance;
 	
 		float _surfaceScaleBeforeTransform;
-	
+
 };
 
 } // namespace piMapper

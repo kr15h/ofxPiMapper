@@ -48,6 +48,9 @@ class SurfaceManagerGui {
 		void onSurfaceSelected(int & surfaceIndex);
 		void onVertexSelected(int & vertexIndex);
 		void onVertexUnselected(int & vertexIndex);
+	
+		ofVec2f clickPosition;
+		bool bDrag;
 
 	private:
 		SurfaceManager * surfaceManager;
@@ -55,9 +58,9 @@ class SurfaceManagerGui {
 		TextureEditor textureEditor;
 		ProjectionEditor projectionEditor;
 		SourcesEditor sourcesEditor;
+	
 		int guiMode;
-		bool bDrag;
-		ofVec2f clickPosition;
+	
 		CmdManager * _cmdManager;
 
 };

@@ -297,7 +297,15 @@ void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs
 
 void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
-	app->getGui()->mouseDragged(args);
+	app->getGui()->getProjectionEditor()->mouseDragged(args);
+	
+	// TODO: Handle app->getGui()->clickPosition and app->getGui()->bDrag locally.
+	if(app->getGui()->bDrag){
+		ofVec2f mousePosition = ofVec2f(args.x, args.y);
+		ofVec2f distance = mousePosition - app->getGui()->clickPosition;
+		app->getGui()->getProjectionEditor()->moveSelectedSurface(distance);
+		app->getGui()->clickPosition = mousePosition;
+	}
 }
 
 void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e){

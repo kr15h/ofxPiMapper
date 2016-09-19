@@ -97,7 +97,7 @@ void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		textureEditor.mouseDragged(args);
 	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		projectionEditor.mouseDragged(args);
+		//projectionEditor.mouseDragged(args);
 	}
 	
 	if(bDrag){
@@ -107,7 +107,7 @@ void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 		if(guiMode == GuiMode::PROJECTION_MAPPING){
 			
 			// Moves the selected surface on drag
-			projectionEditor.moveSelectedSurface(distance);
+			//projectionEditor.moveSelectedSurface(distance);
 		}else if(guiMode == GuiMode::TEXTURE_MAPPING){
 		
 			// Moves the crop area of the texture
