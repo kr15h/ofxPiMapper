@@ -95,9 +95,10 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 
 void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
-		textureEditor.mouseDragged(args);
+		//textureEditor.mouseDragged(args);
 	}
 	
+	/*
 	if(bDrag){
 		ofVec2f mousePosition = ofVec2f(args.x, args.y);
 		ofVec2f distance = mousePosition - clickPosition;
@@ -107,6 +108,7 @@ void SurfaceManagerGui::mouseDragged(ofMouseEventArgs & args){
 		}
 		clickPosition = mousePosition;
 	}
+	*/
 }
 
 void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){

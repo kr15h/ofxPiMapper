@@ -159,7 +159,14 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 		// Alter mouse event args to match canvas translation
 		args.x -= _canvasTranslate.x;
 		args.y -= _canvasTranslate.y;
-		app->getGui()->mouseDragged(args);
+		app->getGui()->getTextureEditor()->mouseDragged(args);
+		
+		if(app->getGui()->bDrag){
+			ofVec2f mousePosition = ofVec2f(args.x, args.y);
+			ofVec2f distance = mousePosition - app->getGui()->clickPosition;
+			app->getGui()->getTextureEditor()->moveTexCoords(distance);
+			app->getGui()->clickPosition = mousePosition;
+		}
 	}else{
 		ofPoint mousePosition = ofPoint(args.x, args.y);
 		ofPoint distance =  mousePosition - _clickPosition;
