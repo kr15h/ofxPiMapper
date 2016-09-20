@@ -53,44 +53,7 @@ void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
 		}else{
             Gui::instance()->notifyBackgroundPressed(args);
 		}
-
-	}else if(guiMode == GuiMode::PROJECTION_MAPPING){
-		CircleJoint * hitJoint = 0;
-		int hitJointIndex = -1;
-		BaseSurface * hitSurface = 0;
-
-		hitJoint = projectionEditor.hitTestJoints(ofVec2f(args.x, args.y));
-		
-		if(hitJoint){
-			for(int i = projectionEditor.getJoints()->size() - 1; i >= 0 ; --i){
-				if((*projectionEditor.getJoints())[i] == hitJoint){
-					hitJointIndex = i;
-					break;
-				}
-			}
-		}else{
-			for(int i = surfaceManager->size() - 1; i >= 0; --i){
-				if(surfaceManager->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
-					hitSurface = surfaceManager->getSurface(i);
-					break;
-				}
-			}
-		}
-		
-		if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
-			//
-		}else if(hitJoint){
-			hitJoint->select();
-			hitJoint->startDrag();
-			Gui::instance()->notifyJointPressed(args, hitJointIndex);
-		}else if(hitSurface){
-			clickPosition = ofVec2f(args.x, args.y);
-			startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
-			Gui::instance()->notifySurfacePressed(args, hitSurface);
-		}else{
-			Gui::instance()->notifyBackgroundPressed(args);
-		}
-	}else if(guiMode == GuiMode::SOURCE_SELECTION){}
+	}
 }
 
 void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
