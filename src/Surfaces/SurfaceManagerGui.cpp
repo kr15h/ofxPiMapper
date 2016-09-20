@@ -11,51 +11,6 @@ SurfaceManagerGui::SurfaceManagerGui(){
 	_cmdManager = 0;
 }
 
-void SurfaceManagerGui::mousePressed(ofMouseEventArgs & args){
-	if(guiMode == GuiMode::NONE){
-		return;
-	}else if(guiMode == GuiMode::TEXTURE_MAPPING){
-		
-		if(surfaceManager->getSelectedSurface() == 0){
-			return;
-		}
-		
-		CircleJoint * hitJoint = textureEditor.hitTestJoints(ofVec2f(args.x, args.y));
-		
-		if(hitJoint != 0){
-		
-			hitJoint->mousePressed(args);
-			
-			textureEditor.unselectAllJoints();
-			hitJoint->select();
-			hitJoint->startDrag();
-			int jointIndex;
-			
-			for(int i = 0; i < textureEditor.getJoints().size(); i++){
-				if(textureEditor.getJoints()[i] == hitJoint){
-					jointIndex = i;
-					break;
-				}
-			}
-
-			_cmdManager->exec(new MvTexCoordCmd(jointIndex, &textureEditor));
-			
-		}else if(surfaceManager->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
-			
-			clickPosition = ofVec2f(args.x, args.y);
-			startDrag();
-
-			// TODO: emit event through the gui singleton
-			_cmdManager->exec(new MvAllTexCoordsCmd(
-				surfaceManager->getSelectedSurface(),
-				&textureEditor));
-
-		}else{
-            Gui::instance()->notifyBackgroundPressed(args);
-		}
-	}
-}
-
 void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	if(surfaceManager == 0){
 		ofRemoveListener(newSurfaceManager->vertexChangedEvent, this, &SurfaceManagerGui::onVertexChanged);
@@ -63,7 +18,6 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 		ofRemoveListener(newSurfaceManager->surfaceSelectedEvent, this, &SurfaceManagerGui::onSurfaceSelected);
 		ofRemoveListener(newSurfaceManager->vertexSelectedEvent, this, &SurfaceManagerGui::onVertexSelected);
 		ofRemoveListener(newSurfaceManager->vertexUnselectedEvent, this, &SurfaceManagerGui::onVertexUnselected);
-
 	}
 	
 	surfaceManager = newSurfaceManager;

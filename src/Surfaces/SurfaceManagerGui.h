@@ -27,8 +27,6 @@ class SurfaceManagerGui {
     public:
 		SurfaceManagerGui();
 
-		void mousePressed(ofMouseEventArgs & args);
-
 		void setSurfaceManager(SurfaceManager * newSurfaceManager);
 		void setMediaServer(MediaServer * newMediaServer);
 		void setCmdManager(CmdManager * cmdManager);
