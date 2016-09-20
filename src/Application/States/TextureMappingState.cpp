@@ -129,7 +129,46 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 	// Alter mouse event args to match canvas translation
 	args.x -= _canvasTranslate.x;
 	args.y -= _canvasTranslate.y;
-	app->getGui()->mousePressed(args);
+	
+	if(app->getSurfaceManager()->getSelectedSurface() == 0){
+		return;
+	}
+	
+	// Old code from SurfaceManagerGui
+	CircleJoint * hitJoint = app->getGui()->getTextureEditor()->hitTestJoints(ofVec2f(args.x, args.y));
+	
+	if(hitJoint != 0){
+	
+		hitJoint->mousePressed(args);
+		
+		app->getGui()->getTextureEditor()->unselectAllJoints();
+		hitJoint->select();
+		hitJoint->startDrag();
+		int jointIndex;
+		
+		for(int i = 0; i < app->getGui()->getTextureEditor()->getJoints().size(); i++){
+			if(app->getGui()->getTextureEditor()->getJoints()[i] == hitJoint){
+				jointIndex = i;
+				break;
+			}
+		}
+
+		app->getCmdManager()->exec(
+			new MvTexCoordCmd(jointIndex, app->getGui()->getTextureEditor()));
+		
+	}else if(app->getSurfaceManager()->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
+		
+		app->getGui()->clickPosition = ofVec2f(args.x, args.y);
+		app->getGui()->startDrag();
+
+		// TODO: emit event through the gui singleton
+		app->getCmdManager()->exec(new MvAllTexCoordsCmd(
+			app->getSurfaceManager()->getSelectedSurface(),
+			app->getGui()->getTextureEditor()));
+
+	}else{
+           Gui::instance()->notifyBackgroundPressed(args);
+	}
 }
 
 void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
