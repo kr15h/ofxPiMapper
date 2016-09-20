@@ -286,7 +286,42 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 
 void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMousePressed(args);
-	app->getGui()->mousePressed(args);
+	
+	CircleJoint * hitJoint = 0;
+	int hitJointIndex = -1;
+	BaseSurface * hitSurface = 0;
+
+	hitJoint = app->getGui()->getProjectionEditor()->hitTestJoints(ofVec2f(args.x, args.y));
+		
+	if(hitJoint){
+		for(int i = app->getGui()->getProjectionEditor()->getJoints()->size() - 1; i >= 0 ; --i){
+			if((*app->getGui()->getProjectionEditor()->getJoints())[i] == hitJoint){
+				hitJointIndex = i;
+				break;
+			}
+		}
+	}else{
+		for(int i = app->getSurfaceManager()->size() - 1; i >= 0; --i){
+			if(app->getSurfaceManager()->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
+				hitSurface = app->getSurfaceManager()->getSurface(i);
+				break;
+			}
+		}
+	}
+		
+	if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
+		//
+	}else if(hitJoint){
+		hitJoint->select();
+		hitJoint->startDrag();
+		Gui::instance()->notifyJointPressed(args, hitJointIndex);
+	}else if(hitSurface){
+		app->getGui()->clickPosition = ofVec2f(args.x, args.y);
+		app->getGui()->startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
+		Gui::instance()->notifySurfacePressed(args, hitSurface);
+	}else{
+		Gui::instance()->notifyBackgroundPressed(args);
+	}
 }
 
 void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
