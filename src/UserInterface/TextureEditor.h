@@ -16,8 +16,6 @@ class TextureEditor {
 		TextureEditor();
 		~TextureEditor();
 
-		void registerAppEvents();
-		void unregisterAppEvents();
 		void registerKeyEvents();
 		void unregisterKeyEvents();
 		void enable();

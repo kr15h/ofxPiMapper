@@ -13,14 +13,6 @@ TextureEditor::~TextureEditor(){
 	disable();
 }
 
-void TextureEditor::registerAppEvents(){
-	//ofAddListener(ofEvents().update, this, &TextureEditor::update);
-}
-
-void TextureEditor::unregisterAppEvents(){
-	//ofRemoveListener(ofEvents().update, this, &TextureEditor::update);
-}
-
 void TextureEditor::registerKeyEvents(){
 	ofAddListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
@@ -32,13 +24,11 @@ void TextureEditor::unregisterKeyEvents(){
 }
 
 void TextureEditor::enable(){
-	registerAppEvents();
 	registerKeyEvents();
 	bShiftKeyDown = false;
 }
 
 void TextureEditor::disable(){
-	unregisterAppEvents();
 	unregisterKeyEvents();
 }
 
