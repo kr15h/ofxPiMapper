@@ -19,6 +19,10 @@ TextureMappingState::TextureMappingState(){
 	_drawMode = 0;
 }
 
+void TextureMappingState::update(Application * app){
+	app->getGui()->getTextureEditor()->update();
+}
+
 void TextureMappingState::draw(Application * app){
 	ofPushMatrix();
 	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);

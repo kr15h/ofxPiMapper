@@ -23,7 +23,7 @@ class TextureEditor {
 		void enable();
 		void disable();
 
-		void update(ofEventArgs & args);
+		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
 		void keyPressed(ofKeyEventArgs & args);
 		void keyReleased(ofKeyEventArgs & args);
 		void mousePressed(ofMouseEventArgs & args);

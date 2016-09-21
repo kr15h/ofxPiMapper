@@ -14,11 +14,11 @@ TextureEditor::~TextureEditor(){
 }
 
 void TextureEditor::registerAppEvents(){
-	ofAddListener(ofEvents().update, this, &TextureEditor::update);
+	//ofAddListener(ofEvents().update, this, &TextureEditor::update);
 }
 
 void TextureEditor::unregisterAppEvents(){
-	ofRemoveListener(ofEvents().update, this, &TextureEditor::update);
+	//ofRemoveListener(ofEvents().update, this, &TextureEditor::update);
 }
 
 void TextureEditor::registerKeyEvents(){
@@ -42,7 +42,7 @@ void TextureEditor::disable(){
 	unregisterKeyEvents();
 }
 
-void TextureEditor::update(ofEventArgs & args){
+void TextureEditor::update(){
 	if(surface == 0){
 		return;
 	}
