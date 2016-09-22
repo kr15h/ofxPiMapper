@@ -16,11 +16,6 @@ class TextureEditor {
 		TextureEditor();
 		~TextureEditor();
 
-		void registerKeyEvents();
-		void unregisterKeyEvents();
-		void enable();
-		void disable();
-
 		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
 		void keyPressed(ofKeyEventArgs & args);
 		void keyReleased(ofKeyEventArgs & args);

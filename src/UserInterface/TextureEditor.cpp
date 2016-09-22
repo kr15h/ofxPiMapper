@@ -5,31 +5,10 @@ namespace piMapper {
 
 TextureEditor::TextureEditor(){
 	clear();
-	enable();
 }
 
 TextureEditor::~TextureEditor(){
 	clear();
-	disable();
-}
-
-void TextureEditor::registerKeyEvents(){
-	//ofAddListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
-	//ofAddListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
-}
-
-void TextureEditor::unregisterKeyEvents(){
-	//ofRemoveListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
-	//ofRemoveListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
-}
-
-void TextureEditor::enable(){
-	registerKeyEvents();
-	bShiftKeyDown = false;
-}
-
-void TextureEditor::disable(){
-	unregisterKeyEvents();
 }
 
 void TextureEditor::update(){

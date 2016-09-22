@@ -64,10 +64,7 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 	}
 
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
-		textureEditor.enable();
 		textureEditor.setSurface(surfaceManager->getSelectedSurface());
-	}else{
-		textureEditor.disable();
 	}
 
 	if(guiMode == GuiMode::PROJECTION_MAPPING){
