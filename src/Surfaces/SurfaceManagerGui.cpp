@@ -32,10 +32,8 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	sourcesEditor.setSurfaceManager(surfaceManager);
 }
 
-// Set external media server so we can access it from wherever we need
 void SurfaceManagerGui::setMediaServer(MediaServer * newMediaServer){
 	mediaServer = newMediaServer;
-	// Set the media server of the sources editor here
 	sourcesEditor.setMediaServer(mediaServer);
 }
 
@@ -61,15 +59,12 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 
 	if(guiMode == GuiMode::SOURCE_SELECTION){
 		sourcesEditor.enable();
-		//string sourceName = surfaceManager->getSelectedSurfaceSourceName();
-		//sourcesEditor.selectImageSourceRadioButton(sourceName);
 	}else{
 		sourcesEditor.disable();
 	}
 
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		textureEditor.enable();
-		// refresh texture editor surface reference
 		textureEditor.setSurface(surfaceManager->getSelectedSurface());
 	}else{
 		textureEditor.disable();
