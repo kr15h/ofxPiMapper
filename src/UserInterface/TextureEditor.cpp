@@ -79,48 +79,6 @@ void TextureEditor::update(){
 	} // else
 }
 
-void TextureEditor::keyPressed(ofKeyEventArgs & args){
-	int key = args.key;
-	float moveStep;
-
-	if(bShiftKeyDown){
-		moveStep = 10.0f;
-	}else{
-		moveStep = 0.5f;
-	}
-
-	switch(key){
-	 case OF_KEY_LEFT:
-		 moveSelection(ofVec2f(-moveStep, 0.0f));
-		 break;
-
-	 case OF_KEY_RIGHT:
-		 moveSelection(ofVec2f(moveStep, 0.0f));
-		 break;
-
-	 case OF_KEY_UP:
-		 moveSelection(ofVec2f(0.0f, -moveStep));
-		 break;
-
-	 case OF_KEY_DOWN:
-		 moveSelection(ofVec2f(0.0f, moveStep));
-		 break;
-
-	 case OF_KEY_SHIFT:
-		 bShiftKeyDown = true;
-		 break;
-	}
-}
-
-void TextureEditor::keyReleased(ofKeyEventArgs & args){
-	int key = args.key;
-	switch(key){
-	 case OF_KEY_SHIFT:
-		 bShiftKeyDown = false;
-		 break;
-	}
-}
-
 void TextureEditor::mousePressed(ofMouseEventArgs & args){
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		joints[i]->mousePressed(args);

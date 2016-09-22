@@ -17,8 +17,6 @@ class TextureEditor {
 		~TextureEditor();
 
 		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
-		void keyPressed(ofKeyEventArgs & args);
-		void keyReleased(ofKeyEventArgs & args);
 		void mousePressed(ofMouseEventArgs & args);
 		void mouseDragged(ofMouseEventArgs & args);
 		void draw();
