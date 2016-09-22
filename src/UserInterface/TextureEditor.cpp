@@ -14,13 +14,13 @@ TextureEditor::~TextureEditor(){
 }
 
 void TextureEditor::registerKeyEvents(){
-	ofAddListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
-	ofAddListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
+	//ofAddListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
+	//ofAddListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
 }
 
 void TextureEditor::unregisterKeyEvents(){
-	ofRemoveListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
-	ofRemoveListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
+	//ofRemoveListener(ofEvents().keyPressed, this, &TextureEditor::keyPressed);
+	//ofRemoveListener(ofEvents().keyReleased, this, &TextureEditor::keyReleased);
 }
 
 void TextureEditor::enable(){

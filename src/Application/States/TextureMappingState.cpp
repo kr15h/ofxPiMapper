@@ -61,6 +61,8 @@ void TextureMappingState::draw(Application * app){
 }
 
 void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
+	app->getGui()->getTextureEditor()->keyPressed(args);
+	
 	switch(args.key){
 		 
 	 case '>':
@@ -106,6 +108,10 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 break;
 		 
 	}
+}
+
+void TextureMappingState::onKeyReleased(Application * app, ofKeyEventArgs & args){
+	app->getGui()->getTextureEditor()->keyReleased(args);
 }
 
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){

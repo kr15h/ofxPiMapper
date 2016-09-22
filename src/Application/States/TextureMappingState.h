@@ -25,6 +25,7 @@ class TextureMappingState : public ApplicationBaseState {
 		void update(Application * app);
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
+		void onKeyReleased(Application * app, ofKeyEventArgs & args);
         void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 		void onMousePressed(Application * app, ofMouseEventArgs & args);
 		void onMouseReleased(Application * app, ofMouseEventArgs & args);
