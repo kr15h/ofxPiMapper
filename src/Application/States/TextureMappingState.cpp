@@ -61,10 +61,33 @@ void TextureMappingState::draw(Application * app){
 }
 
 void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
-	app->getGui()->getTextureEditor()->keyPressed(args);
+	int key = args.key;
+	float moveStep;
+
+	if(app->isShiftKeyDown()){
+		moveStep = 10.0f;
+	}else{
+		moveStep = 1.0f;
+	}
 	
 	switch(args.key){
-		 
+
+	 case OF_KEY_LEFT:
+		 app->getGui()->getTextureEditor()->moveSelection(ofVec2f(-moveStep, 0.0f));
+		 break;
+
+	 case OF_KEY_RIGHT:
+		 app->getGui()->getTextureEditor()->moveSelection(ofVec2f(moveStep, 0.0f));
+		 break;
+
+	 case OF_KEY_UP:
+		 app->getGui()->getTextureEditor()->moveSelection(ofVec2f(0.0f, -moveStep));
+		 break;
+
+	 case OF_KEY_DOWN:
+		 app->getGui()->getTextureEditor()->moveSelection(ofVec2f(0.0f, moveStep));
+		 break;
+
 	 case '>':
 		 app->getCmdManager()->exec(
 			 new SelNextTexCoordCmd(app->getGui()->getTextureEditor()));
@@ -108,10 +131,6 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 		 break;
 		 
 	}
-}
-
-void TextureMappingState::onKeyReleased(Application * app, ofKeyEventArgs & args){
-	app->getGui()->getTextureEditor()->keyReleased(args);
 }
 
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
