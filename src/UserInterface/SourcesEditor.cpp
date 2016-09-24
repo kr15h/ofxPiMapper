@@ -21,11 +21,10 @@ void SourcesEditor::init(){
 }
 
 SourcesEditor::~SourcesEditor(){
-	//unregisterAppEvents();
 	delete imageSelector;
 	delete videoSelector;
 	delete fboSelector;
-	//removeMediaServerListeners();
+	
 	clearMediaServer();
 }
 
@@ -73,7 +72,6 @@ void SourcesEditor::setup(){
 void SourcesEditor::draw(){
 	// Don't draw if there is no source selected
 	if(surfaceManager->getSelectedSurface() == 0){
-		//ofLogNotice("SourcesEditor") << "No surface selected";
 		return;
 	}
 	if(imageSelector->size()){
@@ -85,7 +83,6 @@ void SourcesEditor::draw(){
 	if(fboSelector->size()){
 		fboSelector->draw();
 	}
-
 }
 
 void SourcesEditor::disable(){
@@ -143,8 +140,7 @@ void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
 	}
 	// Attempt to clear existing media server and assign new one
 	clearMediaServer();
-	//cout << "old ms addr: " << mediaServer << endl;
-	//cout << "new ms addr: " << newMediaServer << endl;
+	
 	mediaServer = newMediaServer;
 	isMediaServerExternal = true;
 }
