@@ -14,8 +14,6 @@ class ProjectionEditor {
 
 		void registerAppEvents();
 		void unregisterAppEvents();
-		void registerMouseEvents();
-		void unregisterMouseEvents();
 
 		void enable();
 		void disable();

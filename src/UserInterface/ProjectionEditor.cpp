@@ -27,23 +27,12 @@ void ProjectionEditor::unregisterAppEvents(){
 					 &ProjectionEditor::gotMessage);
 }
 
-void ProjectionEditor::registerMouseEvents(){
-	ofAddListener(ofEvents().mouseDragged, this, &ProjectionEditor::mouseDragged);
-}
-
-void ProjectionEditor::unregisterMouseEvents(){
-	ofRemoveListener(ofEvents().mouseDragged, this,
-					 &ProjectionEditor::mouseDragged);
-}
-
 void ProjectionEditor::enable(){
 	registerAppEvents();
-	registerMouseEvents();
 }
 
 void ProjectionEditor::disable(){
 	unregisterAppEvents();
-	unregisterMouseEvents();
 }
 
 void ProjectionEditor::update(){
