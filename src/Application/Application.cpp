@@ -45,6 +45,12 @@ void Application::setup(){
         consoleListener.setup(this);
     }
 	
+	// Setup all states.
+	PresentationState::instance()->setup(this);
+	TextureMappingState::instance()->setup(this);
+	ProjectionMappingState::instance()->setup(this);
+	SourceSelectionState::instance()->setup(this);
+
 	// TODO: Consider whether this is the right place for it
 	Gui::instance()->getScaleWidget().setSurfaceManager(&_surfaceManager);
 }

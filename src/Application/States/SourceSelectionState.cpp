@@ -12,6 +12,10 @@ SourceSelectionState * SourceSelectionState::instance(){
 	return _instance;
 }
 
+void SourceSelectionState::setup(Application * app){
+	app->getGui()->getSourcesEditor()->setup();
+}
+
 void SourceSelectionState::draw(Application * app){
 	ofPushStyle();
 	ofSetColor(255, 255, 255, 255);

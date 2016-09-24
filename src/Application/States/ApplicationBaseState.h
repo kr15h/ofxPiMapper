@@ -12,6 +12,7 @@ class Application;
 class ApplicationBaseState {
 
 	public:
+		virtual void setup(Application * app){}
 		virtual void update(Application * app){}
 		virtual void draw(Application * app){}
 		virtual void setState(Application * app, ApplicationBaseState * st);

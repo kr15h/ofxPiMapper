@@ -10,6 +10,10 @@ SourcesEditor::SourcesEditor(){
 	mediaServer = new MediaServer();
 	isMediaServerExternal = false;
 	addMediaServerListeners();
+	
+	imageSelector = new RadioList();
+	videoSelector = new RadioList();
+	fboSelector = new RadioList();
 }
 
 void SourcesEditor::init(){
@@ -36,18 +40,14 @@ SourcesEditor::~SourcesEditor(){
 }
 
 void SourcesEditor::registerAppEvents(){
-	ofAddListener(ofEvents().setup, this, &SourcesEditor::setup);
+	//ofAddListener(ofEvents().setup, this, &SourcesEditor::setup);
 }
 
 void SourcesEditor::unregisterAppEvents(){
-	ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
+	//ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
 }
 
-void SourcesEditor::setup(ofEventArgs & args){
-	imageSelector = new RadioList();
-	videoSelector = new RadioList();
-	fboSelector = new RadioList();
-
+void SourcesEditor::setup(){
 	// Get media count
 	int numImages = mediaServer->getNumImages();
 	int numVideos = mediaServer->getNumVideos();

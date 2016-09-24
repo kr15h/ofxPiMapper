@@ -24,7 +24,7 @@ class SourcesEditor {
 		void registerAppEvents();
 		void unregisterAppEvents();
 
-		void setup(ofEventArgs & args);
+		void setup();
 		void draw();
 		void loadImage(string name, string path);
 		void disable();
