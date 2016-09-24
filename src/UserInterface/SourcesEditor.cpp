@@ -5,8 +5,7 @@ namespace piMapper {
 
 SourcesEditor::SourcesEditor(){
 	init();
-	// Create new MediaServer instance,
-	// we will need to clear this in the deconstr
+	
 	mediaServer = new MediaServer();
 	isMediaServerExternal = false;
 	addMediaServerListeners();
@@ -19,14 +18,6 @@ SourcesEditor::SourcesEditor(){
 void SourcesEditor::init(){
 	mediaServer = 0; // Pointers to 0 pointer so we can check later
 	isMediaServerExternal = false;
-}
-
-SourcesEditor::SourcesEditor(MediaServer * externalMediaServer){
-	init();
-	// Assign external MediaServer instance pointer
-	mediaServer = externalMediaServer;
-	isMediaServerExternal = true;
-	addMediaServerListeners();
 }
 
 SourcesEditor::~SourcesEditor(){

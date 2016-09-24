@@ -13,12 +13,7 @@ namespace piMapper {
 
 class SourcesEditor {
 	public:
-		// Default contructor that initializes media server locally,
-		// thus requiring to delete the media server from memory on deconstr
 		SourcesEditor();
-
-		// Alternative constructor that allows to assign external media server
-		SourcesEditor(MediaServer * externalMediaServer);
 		~SourcesEditor();
 
 		void setup();
