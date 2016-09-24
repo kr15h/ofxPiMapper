@@ -6,7 +6,7 @@ namespace piMapper {
 SourcesEditor::SourcesEditor(){
 	init();
 	
-	mediaServer = new MediaServer();
+	mediaServer = 0;
 	isMediaServerExternal = false;
 	addMediaServerListeners();
 	
@@ -334,6 +334,10 @@ void SourcesEditor::clearSource(){
 }
 
 void SourcesEditor::clearMediaServer(){
+	if(mediaServer == 0){
+		return;
+	}
+	
 	// If mediaServer is local, clear it
 	if(!isMediaServerExternal){
 		// Clear all loaded sources
