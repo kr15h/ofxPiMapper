@@ -17,14 +17,11 @@ ProjectionEditor::~ProjectionEditor(){
 }
 
 void ProjectionEditor::registerAppEvents(){
-	//ofAddListener(ofEvents().update, this, &ProjectionEditor::update);
 	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }
 
 void ProjectionEditor::unregisterAppEvents(){
-	//ofRemoveListener(ofEvents().update, this, &ProjectionEditor::update);
-	ofRemoveListener(ofEvents().messageEvent, this,
-					 &ProjectionEditor::gotMessage);
+	ofRemoveListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }
 
 void ProjectionEditor::enable(){
@@ -80,7 +77,7 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 	for(int i = 0; i < surfaceManager->size(); i++){
 		BaseSurface * surface = surfaceManager->getSurface(i);
 		if(surface == surfaceManager->getSelectedSurface()){
-			continue;          // Don't add vertices of selected surface
+			continue; // Don't add vertices of selected surface
 		}
 		for(int j = 0; j < surface->getVertices().size(); j++){
 			allVertices.push_back(&surface->getVertices()[j]);
@@ -90,10 +87,8 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 	// Snap currently dragged joint to nearest vertex
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->isDragged()){
-			// Snap it!
 			for(int j = 0; j < allVertices.size(); j++){
 				float distance = mousePosition.distance(*allVertices[j]);
-				// cout << "distance: " << distance << endl;
 				if(distance < fSnapDistance){
 					joints[i]->position = *allVertices[j];
 					ofVec2f clickDistance = joints[i]->position - ofVec2f(args.x, args.y);
@@ -107,7 +102,6 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 
 void ProjectionEditor::gotMessage(ofMessage & msg){
 	if(msg.message == "surfaceSelected"){
-		// refresh gui
 		clearJoints();
 		createJoints();
 	}
