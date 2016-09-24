@@ -17,6 +17,7 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 }
 
 void ProjectionMappingState::update(Application * app){
+	app->getGui()->getProjectionEditor()->update();
 	Gui::instance()->getScaleWidget().update();
 }
 

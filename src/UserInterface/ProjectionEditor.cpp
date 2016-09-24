@@ -17,12 +17,12 @@ ProjectionEditor::~ProjectionEditor(){
 }
 
 void ProjectionEditor::registerAppEvents(){
-	ofAddListener(ofEvents().update, this, &ProjectionEditor::update);
+	//ofAddListener(ofEvents().update, this, &ProjectionEditor::update);
 	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }
 
 void ProjectionEditor::unregisterAppEvents(){
-	ofRemoveListener(ofEvents().update, this, &ProjectionEditor::update);
+	//ofRemoveListener(ofEvents().update, this, &ProjectionEditor::update);
 	ofRemoveListener(ofEvents().messageEvent, this,
 					 &ProjectionEditor::gotMessage);
 }
@@ -46,7 +46,7 @@ void ProjectionEditor::disable(){
 	unregisterMouseEvents();
 }
 
-void ProjectionEditor::update(ofEventArgs & args){
+void ProjectionEditor::update(){
 	// update surface if one of the joints is being dragged
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->isDragged() || joints[i]->isSelected()){

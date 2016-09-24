@@ -20,7 +20,7 @@ class ProjectionEditor {
 		void enable();
 		void disable();
 
-		void update(ofEventArgs & args);
+		void update();
 		void draw();
 		void mouseDragged(ofMouseEventArgs & args);
 		void gotMessage(ofMessage & msg);
