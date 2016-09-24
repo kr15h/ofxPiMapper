@@ -21,9 +21,6 @@ class SourcesEditor {
 		SourcesEditor(MediaServer * externalMediaServer);
 		~SourcesEditor();
 
-		void registerAppEvents();
-		void unregisterAppEvents();
-
 		void setup();
 		void draw();
 		void loadImage(string name, string path);

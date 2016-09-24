@@ -19,7 +19,6 @@ SourcesEditor::SourcesEditor(){
 void SourcesEditor::init(){
 	mediaServer = 0; // Pointers to 0 pointer so we can check later
 	isMediaServerExternal = false;
-	registerAppEvents();
 }
 
 SourcesEditor::SourcesEditor(MediaServer * externalMediaServer){
@@ -37,14 +36,6 @@ SourcesEditor::~SourcesEditor(){
 	delete fboSelector;
 	//removeMediaServerListeners();
 	clearMediaServer();
-}
-
-void SourcesEditor::registerAppEvents(){
-	//ofAddListener(ofEvents().setup, this, &SourcesEditor::setup);
-}
-
-void SourcesEditor::unregisterAppEvents(){
-	//ofRemoveListener(ofEvents().setup, this, &SourcesEditor::setup);
 }
 
 void SourcesEditor::setup(){
