@@ -29,16 +29,26 @@ void TextureMappingState::draw(Application * app){
 
 	if(_drawMode == 0){ // Semi-transparent surfaces on front
 		drawTexture(app);
+		ofPopMatrix();
+		
 		ofPushStyle();
 		ofSetColor(255, 255, 255, 150);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
+		
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	}else if(_drawMode == 1){ // Opaque surfaces on front
 		drawTexture(app);
+		ofPopMatrix();
+		
 		ofPushStyle();
 		ofSetColor(255, 255, 255, 255);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
+		
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	}else if(_drawMode == 2){ // Draw texture only
 		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 		drawTexture(app);
@@ -47,8 +57,13 @@ void TextureMappingState::draw(Application * app){
 	}
 	
 	if(_drawMode != 2){
+		ofPopMatrix();
+		
 		Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 		Gui::instance()->getSurfaceHighlightWidget().draw();
+		
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	}
 	
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
