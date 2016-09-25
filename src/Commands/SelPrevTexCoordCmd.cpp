@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-SelPrevTexCoordCmd::SelPrevTexCoordCmd(TextureEditor * te){
+SelPrevTexCoordCmd::SelPrevTexCoordCmd(TextureEditorWidget * te){
 	_textureEditor = te;
 }
 

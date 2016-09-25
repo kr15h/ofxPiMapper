@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-MvAllTexCoordsCmd::MvAllTexCoordsCmd(BaseSurface * surface, TextureEditor * texEditor){
+MvAllTexCoordsCmd::MvAllTexCoordsCmd(BaseSurface * surface, TextureEditorWidget * texEditor){
 	_surface = surface;
 	_texEditor = texEditor;
 }

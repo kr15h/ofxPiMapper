@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseCmd.h"
-#include "TextureEditor.h"
+#include "TextureEditorWidget.h"
 #include "CircleJoint.h"
 
 class ofxPiMapper;
@@ -12,12 +12,12 @@ namespace piMapper {
 class DeselectTexCoordCmd : public BaseUndoCmd {
 
 	public:
-		DeselectTexCoordCmd(TextureEditor * te);
+		DeselectTexCoordCmd(TextureEditorWidget * te);
 		void exec();
 		void undo();
 
 	private:
-		TextureEditor * _textureEditor;
+		TextureEditorWidget * _textureEditor;
 		int _selectedTexCoord;
 
 };

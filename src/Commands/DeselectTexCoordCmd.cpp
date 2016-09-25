@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-DeselectTexCoordCmd::DeselectTexCoordCmd(TextureEditor * te){
+DeselectTexCoordCmd::DeselectTexCoordCmd(TextureEditorWidget * te){
 	_textureEditor = te;
 }
 

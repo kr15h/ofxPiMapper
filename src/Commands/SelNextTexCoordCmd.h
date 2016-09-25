@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseCmd.h"
-#include "TextureEditor.h"
+#include "TextureEditorWidget.h"
 
 class ofxPiMapper;
 
@@ -11,12 +11,12 @@ namespace piMapper {
 class SelNextTexCoordCmd : public BaseUndoCmd {
 
 	public:
-		SelNextTexCoordCmd(TextureEditor * te);
+		SelNextTexCoordCmd(TextureEditorWidget * te);
 		void exec();
 		void undo();
 
 	private:
-		TextureEditor * _textureEditor;
+		TextureEditorWidget * _textureEditor;
 
 };
 

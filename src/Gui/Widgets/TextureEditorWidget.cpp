@@ -1,13 +1,17 @@
-#include "TextureEditor.h"
+#include "TextureEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-TextureEditor::TextureEditor(){
+TextureEditorWidget::TextureEditorWidget(){
 	clear();
 }
 
-void TextureEditor::update(){
+void TextureEditorWidget::setup(){
+	// Nothing here yet.
+}
+
+void TextureEditorWidget::update(){
 	if(surface == 0){
 		return;
 	}
@@ -75,19 +79,19 @@ void TextureEditor::update(){
 	} // else
 }
 
-void TextureEditor::mousePressed(ofMouseEventArgs & args){
+void TextureEditorWidget::mousePressed(ofMouseEventArgs & args){
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		joints[i]->mousePressed(args);
 	}
 }
 
-void TextureEditor::mouseDragged(ofMouseEventArgs & args){
+void TextureEditorWidget::mouseDragged(ofMouseEventArgs & args){
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		joints[i]->mouseDragged(args);
 	}
 }
 
-void TextureEditor::draw(){
+void TextureEditorWidget::draw(){
 	if(surface == 0){
 		return;
 	}
@@ -97,23 +101,23 @@ void TextureEditor::draw(){
 	drawJoints();
 }
 
-void TextureEditor::drawJoints(){
+void TextureEditorWidget::drawJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->draw();
 	}
 }
 
-void TextureEditor::setSurface(BaseSurface * newSurface){
+void TextureEditorWidget::setSurface(BaseSurface * newSurface){
 	surface = newSurface;
 	createJoints();
 }
 
-void TextureEditor::clear(){
+void TextureEditorWidget::clear(){
 	surface = 0;
 	clearJoints();
 }
 
-void TextureEditor::createJoints(){
+void TextureEditorWidget::createJoints(){
 	if(surface == 0){
 		return;
 	}
@@ -154,20 +158,20 @@ void TextureEditor::createJoints(){
 	}
 }
 
-void TextureEditor::clearJoints(){
+void TextureEditorWidget::clearJoints(){
 	while(joints.size()){
 		delete joints.back();
 		joints.pop_back();
 	}
 }
 
-void TextureEditor::unselectAllJoints(){
+void TextureEditorWidget::unselectAllJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->unselect();
 	}
 }
 
-void TextureEditor::selectNextTexCoord(){
+void TextureEditorWidget::selectNextTexCoord(){
 	if(joints.size() <= 0){
 		return;
 	}
@@ -189,7 +193,7 @@ void TextureEditor::selectNextTexCoord(){
 	joints[0]->select();
 }
 
-void TextureEditor::selectPrevTexCoord(){
+void TextureEditorWidget::selectPrevTexCoord(){
 	if(joints.size() <= 0){
 		return;
 	}
@@ -213,7 +217,7 @@ void TextureEditor::selectPrevTexCoord(){
 	joints[joints.size() - 1]->select();
 }
 
-void TextureEditor::moveTexCoords(ofVec2f by){
+void TextureEditorWidget::moveTexCoords(ofVec2f by){
 	if(surface == 0){
 		return;
 	}
@@ -266,13 +270,13 @@ void TextureEditor::moveTexCoords(ofVec2f by){
 	}
 }
 
-void TextureEditor::stopDragJoints(){
+void TextureEditorWidget::stopDragJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->stopDrag();
 	}
 }
 
-void TextureEditor::moveSelection(ofVec2f by){
+void TextureEditorWidget::moveSelection(ofVec2f by){
 	// check if joints selected
 	bool bJointSelected = false;
 	BaseJoint * selectedJoint;
@@ -291,7 +295,7 @@ void TextureEditor::moveSelection(ofVec2f by){
 	}
 }
 
-void TextureEditor::constrainJointsToQuad(int selectedJointIndex){
+void TextureEditorWidget::constrainJointsToQuad(int selectedJointIndex){
 	switch(selectedJointIndex){
 	 case 0:
 		 joints[1]->position = ofVec2f(joints[1]->position.x, joints[0]->position.y);
@@ -319,7 +323,7 @@ void TextureEditor::constrainJointsToQuad(int selectedJointIndex){
 	} // switch
 }
 
-CircleJoint * TextureEditor::hitTestJoints(ofVec2f pos){
+CircleJoint * TextureEditorWidget::hitTestJoints(ofVec2f pos){
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->hitTest(pos)){
 			return joints[i];
@@ -328,7 +332,7 @@ CircleJoint * TextureEditor::hitTestJoints(ofVec2f pos){
 	return 0;
 }
 
-vector <CircleJoint *> & TextureEditor::getJoints(){
+vector <CircleJoint *> & TextureEditorWidget::getJoints(){
 	return joints;
 }
 

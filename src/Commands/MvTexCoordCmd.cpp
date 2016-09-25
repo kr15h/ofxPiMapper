@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-MvTexCoordCmd::MvTexCoordCmd(int jointIndex, TextureEditor * texEditor){
+MvTexCoordCmd::MvTexCoordCmd(int jointIndex, TextureEditorWidget * texEditor){
 	_jointIndex = jointIndex;
 	_texEditor = texEditor;
 }

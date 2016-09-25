@@ -6,19 +6,30 @@
 #include "GridWarpSurface.h"
 #include "CircleJoint.h"
 #include "SurfaceType.h"
+#include "GuiBaseWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-class TextureEditor {
+class TextureEditorWidget : public GuiBaseWidget {
 
 	public:
-		TextureEditor();
+		TextureEditorWidget();
 
+		void setup();
 		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
+		void draw();
+	
+		// These come from GuiBaseWidget
+		void onMousePressed(ofMouseEventArgs & e){}
+		void onMouseReleased(ofMouseEventArgs & e){}
+		void onMouseDragged(ofMouseEventArgs & e){}
+	
 		void mousePressed(ofMouseEventArgs & args);
 		void mouseDragged(ofMouseEventArgs & args);
-		void draw();
+	
+		bool inside(float x, float y){ return false; }
+	
 		void drawJoints();
 		void setSurface(BaseSurface * newSurface);
 		void clear();

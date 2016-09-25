@@ -103,10 +103,10 @@
 		01C207891D82FA4A00742588 /* ProjectionEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2073D1D82FA4A00742588 /* ProjectionEditor.cpp */; };
 		01C2078A1D82FA4A00742588 /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C2073F1D82FA4A00742588 /* RadioList.cpp */; };
 		01C2078B1D82FA4A00742588 /* SourcesEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207411D82FA4A00742588 /* SourcesEditor.cpp */; };
-		01C2078C1D82FA4A00742588 /* TextureEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207431D82FA4A00742588 /* TextureEditor.cpp */; };
 		01C2078D1D82FA4A00742588 /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207461D82FA4A00742588 /* HomographyHelper.cpp */; };
 		01C2078E1D82FA4A00742588 /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01C207481D82FA4A00742588 /* TerminalListener.cpp */; };
 		01CD0BC31D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */; };
+		01FA14F31D97FF2A005831AA /* TextureEditorWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01FA14F21D97FF2A005831AA /* TextureEditorWidget.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -377,14 +377,14 @@
 		01C207401D82FA4A00742588 /* RadioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioList.h; sourceTree = "<group>"; };
 		01C207411D82FA4A00742588 /* SourcesEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SourcesEditor.cpp; sourceTree = "<group>"; };
 		01C207421D82FA4A00742588 /* SourcesEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesEditor.h; sourceTree = "<group>"; };
-		01C207431D82FA4A00742588 /* TextureEditor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureEditor.cpp; sourceTree = "<group>"; };
-		01C207441D82FA4A00742588 /* TextureEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureEditor.h; sourceTree = "<group>"; };
 		01C207461D82FA4A00742588 /* HomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		01C207471D82FA4A00742588 /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
 		01C207481D82FA4A00742588 /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
 		01C207491D82FA4A00742588 /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
 		01CD0BC11D87CD9A00BBCE25 /* TranslateCanvasCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslateCanvasCmd.h; sourceTree = "<group>"; };
 		01CD0BC21D87CD9A00BBCE25 /* TranslateCanvasCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TranslateCanvasCmd.cpp; sourceTree = "<group>"; };
+		01FA14F11D97FF2A005831AA /* TextureEditorWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureEditorWidget.h; sourceTree = "<group>"; };
+		01FA14F21D97FF2A005831AA /* TextureEditorWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureEditorWidget.cpp; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -813,6 +813,8 @@
 				01C2070B1D82FA4900742588 /* SurfaceHighlightWidget.h */,
 				01C2070C1D82FA4900742588 /* TextureHighlightWidget.cpp */,
 				01C2070D1D82FA4900742588 /* TextureHighlightWidget.h */,
+				01FA14F21D97FF2A005831AA /* TextureEditorWidget.cpp */,
+				01FA14F11D97FF2A005831AA /* TextureEditorWidget.h */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -894,8 +896,6 @@
 				01C207401D82FA4A00742588 /* RadioList.h */,
 				01C207411D82FA4A00742588 /* SourcesEditor.cpp */,
 				01C207421D82FA4A00742588 /* SourcesEditor.h */,
-				01C207431D82FA4A00742588 /* TextureEditor.cpp */,
-				01C207441D82FA4A00742588 /* TextureEditor.h */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -1191,7 +1191,6 @@
 				3995C20A1C79069B00123352 /* Settings.cpp in Sources */,
 				01C207841D82FA4A00742588 /* SurfaceManagerGui.cpp in Sources */,
 				01C207761D82FA4A00742588 /* Info.cpp in Sources */,
-				01C2078C1D82FA4A00742588 /* TextureEditor.cpp in Sources */,
 				0130C96F1CE65AA600911E17 /* ByteBufferWriter.cpp in Sources */,
 				01C2076E1D82FA4A00742588 /* StartDragSurfaceCmd.cpp in Sources */,
 				0130C97E1CE65AA600911E17 /* RegexPathFilter.cpp in Sources */,
@@ -1251,6 +1250,7 @@
 				0130C97A1CE65AA600911E17 /* LinkFilter.cpp in Sources */,
 				01C207821D82FA4A00742588 /* SurfaceFactory.cpp in Sources */,
 				01C2077C1D82FA4A00742588 /* ImageSource.cpp in Sources */,
+				01FA14F31D97FF2A005831AA /* TextureEditorWidget.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				0130C96C1CE65AA600911E17 /* ByteBufferReader.cpp in Sources */,
 				3933D5D719BB87BD000ACA55 /* ofxPanel.cpp in Sources */,

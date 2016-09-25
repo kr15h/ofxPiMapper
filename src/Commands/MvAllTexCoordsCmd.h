@@ -6,7 +6,7 @@
 
 #include "BaseCmd.h"
 #include "BaseSurface.h"
-#include "TextureEditor.h"
+#include "TextureEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
@@ -14,14 +14,14 @@ namespace piMapper {
 class MvAllTexCoordsCmd : public BaseUndoCmd {
 
 	public:
-		MvAllTexCoordsCmd(BaseSurface * surface, TextureEditor * texEditor);
+		MvAllTexCoordsCmd(BaseSurface * surface, TextureEditorWidget * texEditor);
 		void exec();
 		void undo();
 
 	private:
 		vector <ofVec2f> _texCoords;
 		BaseSurface * _surface;
-		TextureEditor * _texEditor;
+		TextureEditorWidget * _texEditor;
 
 };
 

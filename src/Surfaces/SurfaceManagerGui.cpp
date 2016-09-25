@@ -90,7 +90,7 @@ ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
 	return &projectionEditor;
 }
 
-TextureEditor * SurfaceManagerGui::getTextureEditor(){
+TextureEditorWidget * SurfaceManagerGui::getTextureEditor(){
 	return &textureEditor;
 }
 
