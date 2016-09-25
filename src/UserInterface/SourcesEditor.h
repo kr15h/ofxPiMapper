@@ -14,7 +14,6 @@ namespace piMapper {
 class SourcesEditor {
 	public:
 		SourcesEditor();
-		~SourcesEditor();
 
 		void setup();
 		void draw();
@@ -45,13 +44,6 @@ class SourcesEditor {
 		RadioList * videoSelector;
 		RadioList * fboSelector;
 		CmdManager * _cmdManager;
-
-		// Is the media server pointer local or from somewhere else?
-		// We use this to determine if we are allowed to clear media server locally.
-		bool isMediaServerExternal;
-
-		// Init handles variable initialization in all constructors
-		void init();
 
 		// Methods for adding and removing listeners to the media server
 		void addMediaServerListeners();

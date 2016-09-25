@@ -4,32 +4,14 @@ namespace ofx {
 namespace piMapper {
 
 SourcesEditor::SourcesEditor(){
-	init();
-	
 	mediaServer = 0;
-	isMediaServerExternal = false;
 	addMediaServerListeners();
-	
 	imageSelector = new RadioList();
 	videoSelector = new RadioList();
 	fboSelector = new RadioList();
 }
 
-void SourcesEditor::init(){
-	mediaServer = 0; // Pointers to 0 pointer so we can check later
-	isMediaServerExternal = false;
-}
-
-SourcesEditor::~SourcesEditor(){
-	delete imageSelector;
-	delete videoSelector;
-	delete fboSelector;
-	
-	clearMediaServer();
-}
-
 void SourcesEditor::setup(){
-	// Get media count
 	int numImages = mediaServer->getNumImages();
 	int numVideos = mediaServer->getNumVideos();
 	int numFbos = mediaServer->getNumFboSources();
@@ -132,17 +114,12 @@ void SourcesEditor::setCmdManager(CmdManager * cmdManager){
 }
 
 void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
-	// If the new media server is not valid
 	if(newMediaServer == 0){
-		// Log an error and return from the routine
 		ofLogFatalError("SourcesEditor") << "New media server is 0";
 		exit(EXIT_FAILURE);
 	}
-	// Attempt to clear existing media server and assign new one
 	clearMediaServer();
-	
 	mediaServer = newMediaServer;
-	isMediaServerExternal = true;
 }
 
 MediaServer * SourcesEditor::getMediaServer(){
@@ -333,15 +310,9 @@ void SourcesEditor::clearMediaServer(){
 	if(mediaServer == 0){
 		return;
 	}
-	
-	// If mediaServer is local, clear it
-	if(!isMediaServerExternal){
-		// Clear all loaded sources
-		mediaServer->clear();
-		// Destroy the pointer and set it to 0 pointer
-		delete mediaServer;
-		mediaServer = 0;
-	}
+	mediaServer->clear();
+	delete mediaServer;
+	mediaServer = 0;
 }
 
 void SourcesEditor::handleImageAdded(string & path){}
