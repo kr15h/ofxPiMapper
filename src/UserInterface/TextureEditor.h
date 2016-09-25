@@ -14,7 +14,6 @@ class TextureEditor {
 
 	public:
 		TextureEditor();
-		~TextureEditor();
 
 		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
 		void mousePressed(ofMouseEventArgs & args);

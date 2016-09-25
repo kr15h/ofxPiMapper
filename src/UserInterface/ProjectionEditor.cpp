@@ -10,12 +10,6 @@ ProjectionEditor::ProjectionEditor(){
 	enable();
 }
 
-ProjectionEditor::~ProjectionEditor(){
-	clearJoints();
-	surfaceManager = 0;
-	disable();
-}
-
 void ProjectionEditor::registerAppEvents(){
 	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
 }

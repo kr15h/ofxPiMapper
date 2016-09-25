@@ -7,10 +7,6 @@ TextureEditor::TextureEditor(){
 	clear();
 }
 
-TextureEditor::~TextureEditor(){
-	clear();
-}
-
 void TextureEditor::update(){
 	if(surface == 0){
 		return;

@@ -10,7 +10,6 @@ class ProjectionEditor {
 	
     public:
 		ProjectionEditor();
-		~ProjectionEditor();
 
 		void registerAppEvents();
 		void unregisterAppEvents();
