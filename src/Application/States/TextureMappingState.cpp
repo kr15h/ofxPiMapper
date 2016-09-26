@@ -20,7 +20,6 @@ TextureMappingState::TextureMappingState(){
 }
 
 void TextureMappingState::update(Application * app){
-	//app->getGui()->getTextureEditor()->update();
 	Gui::instance()->getTextureEditorWidget().update();
 }
 
@@ -69,9 +68,6 @@ void TextureMappingState::draw(Application * app){
 	
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
-	
-	// TODO: Replace with a transform widget.
-	//app->getGui()->getTextureEditor()->draw();
 	Gui::instance()->getTextureEditorWidget().draw();
 	
 	ofPopMatrix();
@@ -90,34 +86,28 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 	switch(args.key){
 
 	 case OF_KEY_LEFT:
-		 //app->getGui()->getTextureEditor()->moveSelection(ofVec2f(-moveStep, 0.0f));
 		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(-moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_RIGHT:
-		 //app->getGui()->getTextureEditor()->moveSelection(ofVec2f(moveStep, 0.0f));
 		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_UP:
-		 //app->getGui()->getTextureEditor()->moveSelection(ofVec2f(0.0f, -moveStep));
 		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(0.0f, -moveStep));
 		 break;
 
 	 case OF_KEY_DOWN:
-		 //app->getGui()->getTextureEditor()->moveSelection(ofVec2f(0.0f, moveStep));
 		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(0.0f, moveStep));
 		 break;
 
 	 case '>':
 		 app->getCmdManager()->exec(
-			 //new SelNextTexCoordCmd(app->getGui()->getTextureEditor()));
 			 new SelNextTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
 		 break;
 		 
 	 case '<':
 		 app->getCmdManager()->exec(
-			 //new SelPrevTexCoordCmd(app->getGui()->getTextureEditor()));
 			 new SelPrevTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
 		 break;
 	 
@@ -159,9 +149,7 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
 	// Exec the command only if a joint is selected.
 	bool selected = false;
-	//for(unsigned int i = 0; i < app->getGui()->getTextureEditor()->getJoints().size(); ++i){
 	for(unsigned int i = 0; i < Gui::instance()->getTextureEditorWidget().getJoints().size(); ++i){
-		//if(app->getGui()->getTextureEditor()->getJoints()[i]->selected){
 		if(Gui::instance()->getTextureEditorWidget().getJoints()[i]->selected){
 			selected = true;
 			break;
@@ -170,7 +158,6 @@ void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEv
 	
 	if(selected){
 		app->getCmdManager()->exec(
-			//new DeselectTexCoordCmd(app->getGui()->getTextureEditor()));
 			new DeselectTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
 	}
 	
@@ -190,7 +177,6 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 	}
 	
 	// Old code from SurfaceManagerGui
-	//CircleJoint * hitJoint = app->getGui()->getTextureEditor()->hitTestJoints(ofVec2f(args.x, args.y));
 	CircleJoint * hitJoint =
 		Gui::instance()->getTextureEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
 	
@@ -198,15 +184,12 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 	
 		hitJoint->mousePressed(args);
 		
-		//app->getGui()->getTextureEditor()->unselectAllJoints();
 		Gui::instance()->getTextureEditorWidget().unselectAllJoints();
 		hitJoint->select();
 		hitJoint->startDrag();
 		int jointIndex;
 		
-		//for(int i = 0; i < app->getGui()->getTextureEditor()->getJoints().size(); i++){
 		for(int i = 0; i < Gui::instance()->getTextureEditorWidget().getJoints().size(); i++){
-			//if(app->getGui()->getTextureEditor()->getJoints()[i] == hitJoint){
 			if(Gui::instance()->getTextureEditorWidget().getJoints()[i] == hitJoint){
 				jointIndex = i;
 				break;
@@ -214,7 +197,6 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 		}
 
 		app->getCmdManager()->exec(
-			//new MvTexCoordCmd(jointIndex, app->getGui()->getTextureEditor()));
 			new MvTexCoordCmd(jointIndex, &Gui::instance()->getTextureEditorWidget()));
 		
 	}else if(app->getSurfaceManager()->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
@@ -225,7 +207,6 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 		// TODO: emit event through the gui singleton
 		app->getCmdManager()->exec(new MvAllTexCoordsCmd(
 			app->getSurfaceManager()->getSelectedSurface(),
-			//app->getGui()->getTextureEditor()));
 			&Gui::instance()->getTextureEditorWidget()));
 
 	}else{
@@ -251,7 +232,6 @@ void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & 
 	args.y -= _canvasTranslate.y;
 
 	app->getGui()->stopDrag();
-	//app->getGui()->getTextureEditor()->stopDragJoints();
 	Gui::instance()->getTextureEditorWidget().stopDragJoints();
 }
 
@@ -260,13 +240,11 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 	if(!_bTranslateCanvas){
 		args.x -= _canvasTranslate.x;
 		args.y -= _canvasTranslate.y;
-		//app->getGui()->getTextureEditor()->onMouseDragged(args);
 		Gui::instance()->getTextureEditorWidget().onMouseDragged(args);
 		
 		if(app->getGui()->bDrag){
 			ofVec2f mousePosition = ofVec2f(args.x, args.y);
 			ofVec2f distance = mousePosition - app->getGui()->clickPosition;
-			//app->getGui()->getTextureEditor()->moveTexCoords(distance);
 			Gui::instance()->getTextureEditorWidget().moveTexCoords(distance);
 			app->getGui()->clickPosition = mousePosition;
 		}
