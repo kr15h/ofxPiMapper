@@ -2,8 +2,6 @@
 
 #include "BaseCmd.h"
 #include "Application.h"
-#include "SurfaceManagerGui.h"
-#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
@@ -15,9 +13,7 @@ class SetApplicationStateCmd : public BaseUndoCmd {
 
 	public:
 		SetApplicationStateCmd(Application * app,
-							   ApplicationBaseState * st,
-							   SurfaceManagerGui * gui,
-							   int mode);
+							   ApplicationBaseState * st);
 
 		void exec();
 		void undo();
@@ -26,13 +22,8 @@ class SetApplicationStateCmd : public BaseUndoCmd {
 		Application * _application;
 		ApplicationBaseState * _prevApplicationState;
 		ApplicationBaseState * _applicationState;
-
+	
 		ofPoint _translation;
-
-		// TODO: Remove these after porting to app state system is done
-		SurfaceManagerGui * _gui;
-		int _prevGuiMode;
-		int _mode;
 
 };
 

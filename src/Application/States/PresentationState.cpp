@@ -22,8 +22,7 @@ void PresentationState::draw(Application * app){
 void PresentationState::onMousePressed(Application * app, ofMouseEventArgs & args){
     app->getCmdManager()->exec(
         new ofx::piMapper::SetApplicationStateCmd(
-            app, ProjectionMappingState::instance(),
-            app->getGui(), GuiMode::PROJECTION_MAPPING));
+            app, ProjectionMappingState::instance()));
 }
 
 } // namespace piMapper
