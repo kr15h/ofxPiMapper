@@ -96,6 +96,10 @@ TextureHighlightWidget & Gui::getTextureHighlightWidget(){
 	return _textureHighlightWidget;
 }
 
+TextureEditorWidget & Gui::getTextureEditorWidget(){
+	return _textureEditorWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

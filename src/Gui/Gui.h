@@ -8,6 +8,7 @@
 #include "LayerPanelWidget.h"
 #include "SurfaceHighlightWidget.h"
 #include "TextureHighlightWidget.h"
+#include "TextureEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
@@ -67,7 +68,9 @@ class Gui {
 		LayerPanelWidget & getLayerPanelWidget();
 		SurfaceHighlightWidget & getSurfaceHighlightWidget();
 		TextureHighlightWidget & getTextureHighlightWidget();
+		TextureEditorWidget & getTextureEditorWidget();
 	
+		// Consider these as a part of the application states/modes.
 		void onMousePressed(ofMouseEventArgs & args);
 		void onMouseReleased(ofMouseEventArgs & args);
 		void onMouseDragged(ofMouseEventArgs & args);
@@ -86,6 +89,7 @@ class Gui {
 		LayerPanelWidget _layerPanelWidget;
 		SurfaceHighlightWidget _surfaceHighlightWidget;
 		TextureHighlightWidget _textureHighlightWidget;
+		TextureEditorWidget _textureEditorWidget;
 };
 
 } // piMapper

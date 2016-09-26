@@ -23,6 +23,9 @@ void SetApplicationStateCmd::exec(){
 	_application->setState(_applicationState);
 	_applicationState->setTranslation(ofPoint(0, 0));
 	_translation = _prevApplicationState->getTranslation();
+	
+	Gui::instance()->getTextureEditorWidget().setSurface(
+		_application->getSurfaceManager()->getSelectedSurface());
 
 	// TODO: To be removed.
 	_prevGuiMode = _gui->getMode();

@@ -79,13 +79,17 @@ void TextureEditorWidget::update(){
 	} // else
 }
 
-void TextureEditorWidget::mousePressed(ofMouseEventArgs & args){
+void TextureEditorWidget::onMousePressed(ofMouseEventArgs & args){
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		joints[i]->mousePressed(args);
 	}
 }
 
-void TextureEditorWidget::mouseDragged(ofMouseEventArgs & args){
+void TextureEditorWidget::onMouseReleased(ofMouseEventArgs & args){
+	// Nothing
+}
+
+void TextureEditorWidget::onMouseDragged(ofMouseEventArgs & args){
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		joints[i]->mouseDragged(args);
 	}

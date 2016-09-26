@@ -6,7 +6,7 @@
 #include "ofGraphics.h"
 
 #include "SurfaceManager.h"
-#include "TextureEditorWidget.h"
+//#include "TextureEditorWidget.h"
 #include "ProjectionEditor.h"
 #include "SourcesEditor.h"
 #include "GuiMode.h"
@@ -37,7 +37,7 @@ class SurfaceManagerGui {
 		void stopDrag();
 	
 		ProjectionEditor * getProjectionEditor();
-		TextureEditorWidget * getTextureEditor();
+		//TextureEditorWidget * getTextureEditor();
 		SourcesEditor * getSourcesEditor();
 	
 		void onVertexChanged(int & i);
@@ -52,7 +52,7 @@ class SurfaceManagerGui {
 	private:
 		SurfaceManager * surfaceManager;
 		MediaServer * mediaServer;
-		TextureEditorWidget textureEditor;
+		//TextureEditorWidget textureEditor;
 		ProjectionEditor projectionEditor;
 		SourcesEditor sourcesEditor;
 	

@@ -63,9 +63,11 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 		sourcesEditor.disable();
 	}
 
+	/*
 	if(guiMode == GuiMode::TEXTURE_MAPPING){
 		textureEditor.setSurface(surfaceManager->getSelectedSurface());
 	}
+	*/
 
 	if(guiMode == GuiMode::PROJECTION_MAPPING){
 		projectionEditor.enable();
@@ -90,9 +92,11 @@ ProjectionEditor * SurfaceManagerGui::getProjectionEditor(){
 	return &projectionEditor;
 }
 
+/*
 TextureEditorWidget * SurfaceManagerGui::getTextureEditor(){
 	return &textureEditor;
 }
+*/
 
 SourcesEditor * SurfaceManagerGui::getSourcesEditor(){
 	return &sourcesEditor;

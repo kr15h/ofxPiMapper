@@ -20,13 +20,9 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void update(); // Maybe the Application pointer would make sense there. Not sure yet.
 		void draw();
 	
-		// These come from GuiBaseWidget
-		void onMousePressed(ofMouseEventArgs & e){}
-		void onMouseReleased(ofMouseEventArgs & e){}
-		void onMouseDragged(ofMouseEventArgs & e){}
-	
-		void mousePressed(ofMouseEventArgs & args);
-		void mouseDragged(ofMouseEventArgs & args);
+		void onMousePressed(ofMouseEventArgs & e);
+		void onMouseReleased(ofMouseEventArgs & e);
+		void onMouseDragged(ofMouseEventArgs & e);
 	
 		bool inside(float x, float y){ return false; }
 	
