@@ -9,6 +9,7 @@
 #include "SurfaceHighlightWidget.h"
 #include "TextureHighlightWidget.h"
 #include "TextureEditorWidget.h"
+#include "ProjectionEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
@@ -69,6 +70,7 @@ class Gui {
 		SurfaceHighlightWidget & getSurfaceHighlightWidget();
 		TextureHighlightWidget & getTextureHighlightWidget();
 		TextureEditorWidget & getTextureEditorWidget();
+		ProjectionEditorWidget & getProjectionEditorWidget();
 	
 		// Consider these as a part of the application states/modes.
 		void onMousePressed(ofMouseEventArgs & args);
@@ -90,6 +92,7 @@ class Gui {
 		SurfaceHighlightWidget _surfaceHighlightWidget;
 		TextureHighlightWidget _textureHighlightWidget;
 		TextureEditorWidget _textureEditorWidget;
+		ProjectionEditorWidget _projectionEditorWidget;
 };
 
 } // piMapper

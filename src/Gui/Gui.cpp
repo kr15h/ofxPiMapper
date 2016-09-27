@@ -100,6 +100,10 @@ TextureEditorWidget & Gui::getTextureEditorWidget(){
 	return _textureEditorWidget;
 }
 
+ProjectionEditorWidget & Gui::getProjectionEditorWidget(){
+	return _projectionEditorWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

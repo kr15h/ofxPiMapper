@@ -28,7 +28,7 @@ void SurfaceManagerGui::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	ofAddListener(newSurfaceManager->vertexSelectedEvent, this, &SurfaceManagerGui::onVertexSelected);
 	ofAddListener(newSurfaceManager->vertexUnselectedEvent, this, &SurfaceManagerGui::onVertexUnselected);
 	
-	projectionEditorWidget.setSurfaceManager(surfaceManager);
+//	projectionEditorWidget.setSurfaceManager(surfaceManager);
 	sourcesEditor.setSurfaceManager(surfaceManager);
 }
 
@@ -63,11 +63,13 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 		sourcesEditor.disable();
 	}
 
+/*
 	if(guiMode == GuiMode::PROJECTION_MAPPING){
 		projectionEditorWidget.enable();
 	}else{
 		projectionEditorWidget.disable();
 	}
+*/
 }
 
 int SurfaceManagerGui::getMode(){
@@ -82,48 +84,52 @@ void SurfaceManagerGui::stopDrag(){
 	bDrag = false;
 }
 
-ProjectionEditorWidget * SurfaceManagerGui::getProjectionEditorWidget(){
-	return &projectionEditorWidget;
-}
+//ProjectionEditorWidget * SurfaceManagerGui::getProjectionEditorWidget(){
+//	return &projectionEditorWidget;
+//}
 
 SourcesEditor * SurfaceManagerGui::getSourcesEditor(){
 	return &sourcesEditor;
 }
 
 void SurfaceManagerGui::onVertexChanged(int & i){
-	bool isDragged = projectionEditorWidget.getJoints()->at(i)->isDragged();
-	projectionEditorWidget.createJoints();
-	projectionEditorWidget.getJoints()->at(i)->select();
-	if(isDragged){
-		projectionEditorWidget.getJoints()->at(i)->startDrag();
-	}else{
-		projectionEditorWidget.getJoints()->at(i)->stopDrag();
-	}
+	//bool isDragged = projectionEditorWidget.getJoints()->at(i)->isDragged();
+	//projectionEditorWidget.createJoints();
+	//projectionEditorWidget.getJoints()->at(i)->select();
+	//if(isDragged){
+	//	projectionEditorWidget.getJoints()->at(i)->startDrag();
+	//}else{
+	//	projectionEditorWidget.getJoints()->at(i)->stopDrag();
+	//}
 }
 
 void SurfaceManagerGui::onVerticesChanged(vector<ofVec3f> & vertices){
-	projectionEditorWidget.createJoints();
+	//projectionEditorWidget.createJoints();
 }
 
 void SurfaceManagerGui::onSurfaceSelected(int & surfaceIndex){
-	projectionEditorWidget.createJoints();
+	//projectionEditorWidget.createJoints();
 }
 
 void SurfaceManagerGui::onVertexSelected(int & vertexIndex){
+	/*
 	if(projectionEditorWidget.getJoints()->size() == 0){
 		return;
 	}
 	
 	projectionEditorWidget.unselectAllJoints();
 	projectionEditorWidget.getJoints()->at(vertexIndex)->select();
+	*/
 }
 
 void SurfaceManagerGui::onVertexUnselected(int & vertexIndex){
+	/*
 	if(projectionEditorWidget.getJoints()->size() == 0){
 		return;
 	}
 	
 	projectionEditorWidget.unselectAllJoints();
+	*/
 }
 
 } // namespace piMapper

@@ -32,6 +32,12 @@ class ProjectionEditorWidget {
 		void setSnapDistance(float newSnapDistance);
 		CircleJoint * hitTestJoints(ofVec2f pos);
 		vector <CircleJoint *> * getJoints();
+	
+		void onVertexChanged(int & i);
+		void onVerticesChanged(vector<ofVec3f> & vertices);
+		void onSurfaceSelected(int & surfaceIndex);
+		void onVertexSelected(int & vertexIndex);
+		void onVertexUnselected(int & vertexIndex);
 
 	private:
 		SurfaceManager * surfaceManager;

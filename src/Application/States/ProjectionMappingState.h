@@ -40,6 +40,7 @@ class ProjectionMappingState : public ApplicationBaseState {
 	public:
 		static ProjectionMappingState * instance();
 	
+		void setup(Application * app);
 		void update(Application * app);
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);

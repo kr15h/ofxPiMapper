@@ -102,7 +102,31 @@ void ProjectionEditorWidget::gotMessage(ofMessage & msg){
 }
 
 void ProjectionEditorWidget::setSurfaceManager(SurfaceManager * newSurfaceManager){
+	if(surfaceManager != 0){
+		ofRemoveListener(surfaceManager->vertexChangedEvent, this,
+			&ProjectionEditorWidget::onVertexChanged);
+		ofRemoveListener(surfaceManager->verticesChangedEvent, this,
+			&ProjectionEditorWidget::onVerticesChanged);
+		ofRemoveListener(surfaceManager->surfaceSelectedEvent, this,
+			&ProjectionEditorWidget::onSurfaceSelected);
+		ofRemoveListener(surfaceManager->vertexSelectedEvent, this,
+			&ProjectionEditorWidget::onVertexSelected);
+		ofRemoveListener(surfaceManager->vertexUnselectedEvent, this,
+			&ProjectionEditorWidget::onVertexUnselected);
+	}
+	
 	surfaceManager = newSurfaceManager;
+	
+	ofAddListener(surfaceManager->vertexChangedEvent, this,
+		&ProjectionEditorWidget::onVertexChanged);
+	ofAddListener(surfaceManager->verticesChangedEvent, this,
+		&ProjectionEditorWidget::onVerticesChanged);
+	ofAddListener(surfaceManager->surfaceSelectedEvent, this,
+		&ProjectionEditorWidget::onSurfaceSelected);
+	ofAddListener(surfaceManager->vertexSelectedEvent, this,
+		&ProjectionEditorWidget::onVertexSelected);
+	ofAddListener(surfaceManager->vertexUnselectedEvent, this,
+		&ProjectionEditorWidget::onVertexUnselected);
 }
 
 void ProjectionEditorWidget::clearJoints(){
@@ -181,6 +205,42 @@ CircleJoint * ProjectionEditorWidget::hitTestJoints(ofVec2f pos){
 
 vector <CircleJoint *> * ProjectionEditorWidget::getJoints(){
 	return &joints;
+}
+
+void ProjectionEditorWidget::onVertexChanged(int & i){
+	bool isDragged = getJoints()->at(i)->isDragged();
+	createJoints();
+	getJoints()->at(i)->select();
+	if(isDragged){
+		getJoints()->at(i)->startDrag();
+	}else{
+		getJoints()->at(i)->stopDrag();
+	}
+}
+
+void ProjectionEditorWidget::onVerticesChanged(vector<ofVec3f> & vertices){
+	createJoints();
+}
+
+void ProjectionEditorWidget::onSurfaceSelected(int & surfaceIndex){
+	createJoints();
+}
+
+void ProjectionEditorWidget::onVertexSelected(int & vertexIndex){
+	if(getJoints()->size() == 0){
+		return;
+	}
+	
+	unselectAllJoints();
+	getJoints()->at(vertexIndex)->select();
+}
+
+void ProjectionEditorWidget::onVertexUnselected(int & vertexIndex){
+	if(getJoints()->size() == 0){
+		return;
+	}
+	
+	unselectAllJoints();
 }
 
 void ProjectionEditorWidget::drawJoints(){
