@@ -10,7 +10,6 @@ Application::Application(){
 	_surfaceManager.setMediaServer(&_mediaServer);
 	_gui.setMediaServer(&_mediaServer);
 	_gui.setCmdManager(&_cmdManager);
-	_gui.setSurfaceManager(&_surfaceManager);
 	
 	setState(PresentationState::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);

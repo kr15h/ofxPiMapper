@@ -23,7 +23,6 @@ void ProjectionMappingState::setup(Application *app){
 }
 
 void ProjectionMappingState::update(Application * app){
-	//app->getGui()->getProjectionEditorWidget()->update();
 	Gui::instance()->getProjectionEditorWidget().update();
 	Gui::instance()->getScaleWidget().update();
 }
@@ -34,8 +33,6 @@ void ProjectionMappingState::draw(Application * app){
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
 	
-	// TODO: Extract projection editor, make it a widget
-	//app->getGui()->getProjectionEditorWidget()->draw();
 	Gui::instance()->getProjectionEditorWidget().draw();
 	
 	// Draw scale widget. The size of the widget is being set on surface select.
@@ -297,13 +294,10 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 	int hitJointIndex = -1;
 	BaseSurface * hitSurface = 0;
 
-	//hitJoint = app->getGui()->getProjectionEditorWidget()->hitTestJoints(ofVec2f(args.x, args.y));
 	hitJoint = Gui::instance()->getProjectionEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
 		
 	if(hitJoint){
-		//for(int i = app->getGui()->getProjectionEditorWidget()->getJoints()->size() - 1; i >= 0 ; --i){
 		for(int i = Gui::instance()->getProjectionEditorWidget().getJoints()->size() - 1; i >= 0 ; --i){
-			//if((*app->getGui()->getProjectionEditorWidget()->getJoints())[i] == hitJoint){
 			if((*Gui::instance()->getProjectionEditorWidget().getJoints())[i] == hitJoint){
 				hitJointIndex = i;
 				break;
@@ -336,20 +330,17 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseReleased(args);
 	app->getGui()->stopDrag(); // TODO: handle this locally
-	//app->getGui()->getProjectionEditorWidget()->stopDragJoints();
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
 void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
-	//app->getGui()->getProjectionEditorWidget()->mouseDragged(args);
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	
 	// TODO: Handle app->getGui()->clickPosition and app->getGui()->bDrag locally.
 	if(app->getGui()->bDrag){
 		ofVec2f mousePosition = ofVec2f(args.x, args.y);
 		ofVec2f distance = mousePosition - app->getGui()->clickPosition;
-		//app->getGui()->getProjectionEditorWidget()->moveSelectedSurface(distance);
 		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(distance);
 		app->getGui()->clickPosition = mousePosition;
 	}

@@ -6,7 +6,6 @@
 #include "ofGraphics.h"
 
 #include "SurfaceManager.h"
-//#include "ProjectionEditorWidget.h"
 #include "SourcesEditor.h"
 #include "GuiMode.h"
 #include "CmdManager.h"
@@ -25,8 +24,7 @@ class SurfaceManagerGui {
 	
     public:
 		SurfaceManagerGui();
-
-		void setSurfaceManager(SurfaceManager * newSurfaceManager);
+	
 		void setMediaServer(MediaServer * newMediaServer);
 		void setCmdManager(CmdManager * cmdManager);
 
@@ -35,14 +33,7 @@ class SurfaceManagerGui {
 		void startDrag();
 		void stopDrag();
 	
-		//ProjectionEditorWidget * getProjectionEditorWidget();
 		SourcesEditor * getSourcesEditor();
-	
-		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<ofVec3f> & vertices);
-		void onSurfaceSelected(int & surfaceIndex);
-		void onVertexSelected(int & vertexIndex);
-		void onVertexUnselected(int & vertexIndex);
 	
 		ofVec2f clickPosition;
 		bool bDrag;
@@ -50,7 +41,6 @@ class SurfaceManagerGui {
 	private:
 		SurfaceManager * surfaceManager;
 		MediaServer * mediaServer;
-		//ProjectionEditorWidget projectionEditorWidget;
 		SourcesEditor sourcesEditor;
 	
 		int guiMode;
