@@ -17,6 +17,8 @@ ProjectionMappingState * ProjectionMappingState::instance(){
 }
 
 void ProjectionMappingState::setup(Application *app){
+	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
+	Gui::instance()->getLayerPanelWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getProjectionEditorWidget().setSurfaceManager(app->getSurfaceManager());
 }
 
@@ -42,10 +44,7 @@ void ProjectionMappingState::draw(Application * app){
 		Gui::instance()->getScaleWidget().draw();
 	}
 	
-	Gui::instance()->getLayerPanelWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getLayerPanelWidget().draw();
-	
-	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
