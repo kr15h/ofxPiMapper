@@ -6,10 +6,10 @@
 namespace ofx {
 namespace piMapper {
 
-class ProjectionEditor {
+class ProjectionEditorWidget {
 	
     public:
-		ProjectionEditor();
+		ProjectionEditorWidget();
 
 		void registerAppEvents();
 		void unregisterAppEvents();

@@ -1,32 +1,32 @@
-#include "ProjectionEditor.h"
+#include "ProjectionEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-ProjectionEditor::ProjectionEditor(){
+ProjectionEditorWidget::ProjectionEditorWidget(){
 	surfaceManager = 0;
 	bShiftKeyDown = false;
 	fSnapDistance = 10.0f;
 	enable();
 }
 
-void ProjectionEditor::registerAppEvents(){
-	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
+void ProjectionEditorWidget::registerAppEvents(){
+	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditorWidget::gotMessage);
 }
 
-void ProjectionEditor::unregisterAppEvents(){
-	ofRemoveListener(ofEvents().messageEvent, this, &ProjectionEditor::gotMessage);
+void ProjectionEditorWidget::unregisterAppEvents(){
+	ofRemoveListener(ofEvents().messageEvent, this, &ProjectionEditorWidget::gotMessage);
 }
 
-void ProjectionEditor::enable(){
+void ProjectionEditorWidget::enable(){
 	registerAppEvents();
 }
 
-void ProjectionEditor::disable(){
+void ProjectionEditorWidget::disable(){
 	unregisterAppEvents();
 }
 
-void ProjectionEditor::update(){
+void ProjectionEditorWidget::update(){
 	// update surface if one of the joints is being dragged
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->isDragged() || joints[i]->isSelected()){
@@ -44,7 +44,7 @@ void ProjectionEditor::update(){
 	}
 }
 
-void ProjectionEditor::draw(){
+void ProjectionEditorWidget::draw(){
 	if(surfaceManager == 0){
 		return;
 	}
@@ -57,7 +57,7 @@ void ProjectionEditor::draw(){
 	drawJoints();
 }
 
-void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
+void ProjectionEditorWidget::mouseDragged(ofMouseEventArgs & args){
 	
 	// Pass args to joint mouse events
 	for(unsigned int i = 0; i < joints.size(); ++i){
@@ -94,25 +94,25 @@ void ProjectionEditor::mouseDragged(ofMouseEventArgs & args){
 	}
 }
 
-void ProjectionEditor::gotMessage(ofMessage & msg){
+void ProjectionEditorWidget::gotMessage(ofMessage & msg){
 	if(msg.message == "surfaceSelected"){
 		clearJoints();
 		createJoints();
 	}
 }
 
-void ProjectionEditor::setSurfaceManager(SurfaceManager * newSurfaceManager){
+void ProjectionEditorWidget::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	surfaceManager = newSurfaceManager;
 }
 
-void ProjectionEditor::clearJoints(){
+void ProjectionEditorWidget::clearJoints(){
 	while(joints.size()){
 		delete joints.back();
 		joints.pop_back();
 	}
 }
 
-void ProjectionEditor::createJoints(){
+void ProjectionEditorWidget::createJoints(){
 	if(surfaceManager == 0){
 		return;
 	}
@@ -132,7 +132,7 @@ void ProjectionEditor::createJoints(){
 	}
 }
 
-void ProjectionEditor::updateJoints(){
+void ProjectionEditorWidget::updateJoints(){
 	if(surfaceManager->getSelectedSurface()){
 		vector <ofVec3f> & vertices =
 			surfaceManager->getSelectedSurface()->getVertices();
@@ -143,13 +143,13 @@ void ProjectionEditor::updateJoints(){
 
 }
 
-void ProjectionEditor::unselectAllJoints(){
+void ProjectionEditorWidget::unselectAllJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->unselect();
 	}
 }
 
-void ProjectionEditor::moveSelectedSurface(ofVec2f by){
+void ProjectionEditorWidget::moveSelectedSurface(ofVec2f by){
 	if(surfaceManager == 0){
 		return;
 	}
@@ -160,17 +160,17 @@ void ProjectionEditor::moveSelectedSurface(ofVec2f by){
 	updateJoints();
 }
 
-void ProjectionEditor::stopDragJoints(){
+void ProjectionEditorWidget::stopDragJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->stopDrag();
 	}
 }
 
-void ProjectionEditor::setSnapDistance(float newSnapDistance){
+void ProjectionEditorWidget::setSnapDistance(float newSnapDistance){
 	fSnapDistance = newSnapDistance;
 }
 
-CircleJoint * ProjectionEditor::hitTestJoints(ofVec2f pos){
+CircleJoint * ProjectionEditorWidget::hitTestJoints(ofVec2f pos){
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->hitTest(pos)){
 			return joints[i];
@@ -179,11 +179,11 @@ CircleJoint * ProjectionEditor::hitTestJoints(ofVec2f pos){
 	return 0;
 }
 
-vector <CircleJoint *> * ProjectionEditor::getJoints(){
+vector <CircleJoint *> * ProjectionEditorWidget::getJoints(){
 	return &joints;
 }
 
-void ProjectionEditor::drawJoints(){
+void ProjectionEditorWidget::drawJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->draw();
 	}

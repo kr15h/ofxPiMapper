@@ -3,7 +3,7 @@
 #include "SurfaceManager.h"
 #include "BaseCmd.h"
 #include "GridWarpSurface.h"
-#include "ProjectionEditor.h"
+#include "ProjectionEditorWidget.h"
 
 class ofxPiMapper;
 
