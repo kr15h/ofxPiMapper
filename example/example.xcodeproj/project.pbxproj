@@ -99,7 +99,6 @@
 		01E9E78B1D9BF62600E1BFAE /* QuadSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E7341D9BF62600E1BFAE /* QuadSurface.cpp */; };
 		01E9E78C1D9BF62600E1BFAE /* SurfaceFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E7361D9BF62600E1BFAE /* SurfaceFactory.cpp */; };
 		01E9E78D1D9BF62600E1BFAE /* SurfaceManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E7381D9BF62600E1BFAE /* SurfaceManager.cpp */; };
-		01E9E78E1D9BF62600E1BFAE /* SurfaceManagerGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E73A1D9BF62600E1BFAE /* SurfaceManagerGui.cpp */; };
 		01E9E78F1D9BF62600E1BFAE /* SurfaceStack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E73C1D9BF62600E1BFAE /* SurfaceStack.cpp */; };
 		01E9E7901D9BF62600E1BFAE /* TriangleSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E73F1D9BF62600E1BFAE /* TriangleSurface.cpp */; };
 		01E9E7911D9BF62600E1BFAE /* BaseJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E7421D9BF62600E1BFAE /* BaseJoint.cpp */; };
@@ -366,8 +365,6 @@
 		01E9E7371D9BF62600E1BFAE /* SurfaceFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceFactory.h; sourceTree = "<group>"; };
 		01E9E7381D9BF62600E1BFAE /* SurfaceManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManager.cpp; sourceTree = "<group>"; };
 		01E9E7391D9BF62600E1BFAE /* SurfaceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceManager.h; sourceTree = "<group>"; };
-		01E9E73A1D9BF62600E1BFAE /* SurfaceManagerGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceManagerGui.cpp; sourceTree = "<group>"; };
-		01E9E73B1D9BF62600E1BFAE /* SurfaceManagerGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceManagerGui.h; sourceTree = "<group>"; };
 		01E9E73C1D9BF62600E1BFAE /* SurfaceStack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceStack.cpp; sourceTree = "<group>"; };
 		01E9E73D1D9BF62600E1BFAE /* SurfaceStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceStack.h; sourceTree = "<group>"; };
 		01E9E73E1D9BF62600E1BFAE /* SurfaceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceType.h; sourceTree = "<group>"; };
@@ -874,8 +871,6 @@
 				01E9E7371D9BF62600E1BFAE /* SurfaceFactory.h */,
 				01E9E7381D9BF62600E1BFAE /* SurfaceManager.cpp */,
 				01E9E7391D9BF62600E1BFAE /* SurfaceManager.h */,
-				01E9E73A1D9BF62600E1BFAE /* SurfaceManagerGui.cpp */,
-				01E9E73B1D9BF62600E1BFAE /* SurfaceManagerGui.h */,
 				01E9E73C1D9BF62600E1BFAE /* SurfaceStack.cpp */,
 				01E9E73D1D9BF62600E1BFAE /* SurfaceStack.h */,
 				01E9E73E1D9BF62600E1BFAE /* SurfaceType.h */,
@@ -1228,7 +1223,6 @@
 				01E9E74F1D9BF62600E1BFAE /* Application.cpp in Sources */,
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
 				0130C9731CE65AA600911E17 /* DirectoryFilter.cpp in Sources */,
-				01E9E78E1D9BF62600E1BFAE /* SurfaceManagerGui.cpp in Sources */,
 				01E9E76B1D9BF62600E1BFAE /* SelPrevSurfaceCmd.cpp in Sources */,
 				01E9E7721D9BF62600E1BFAE /* SetSourceCmd.cpp in Sources */,
 				3933D5D619BB87BD000ACA55 /* ofxLabel.cpp in Sources */,
