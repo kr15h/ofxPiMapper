@@ -6,7 +6,6 @@
 #include "ofGraphics.h"
 
 #include "SurfaceManager.h"
-#include "SourcesEditorWidget.h"
 #include "GuiMode.h"
 #include "CmdManager.h"
 #include "SelSurfaceCmd.h"
@@ -33,15 +32,12 @@ class SurfaceManagerGui {
 		void startDrag();
 		void stopDrag();
 	
-		//SourcesEditorWidget * getSourcesEditorWidget();
-	
 		ofVec2f clickPosition;
 		bool bDrag;
 
 	private:
 		SurfaceManager * surfaceManager;
 		MediaServer * mediaServer;
-		//SourcesEditorWidget sourcesEditor;
 	
 		int guiMode;
 	

@@ -12,12 +12,10 @@ SurfaceManagerGui::SurfaceManagerGui(){
 
 void SurfaceManagerGui::setMediaServer(MediaServer * newMediaServer){
 	mediaServer = newMediaServer;
-	//sourcesEditor.setMediaServer(mediaServer);
 }
 
 void SurfaceManagerGui::setCmdManager(CmdManager * cmdManager){
 	_cmdManager = cmdManager;
-	//sourcesEditor.setCmdManager(_cmdManager);
 }
 
 void SurfaceManagerGui::setMode(int newGuiMode){
@@ -34,15 +32,6 @@ void SurfaceManagerGui::setMode(int newGuiMode){
 	}
 
 	guiMode = newGuiMode;
-
-/*
-	if(guiMode == GuiMode::SOURCE_SELECTION){
-		sourcesEditor.enable();
-	}else{
-		sourcesEditor.disable();
-	}
-*/
-
 }
 
 int SurfaceManagerGui::getMode(){
@@ -56,12 +45,6 @@ void SurfaceManagerGui::startDrag(){
 void SurfaceManagerGui::stopDrag(){
 	bDrag = false;
 }
-
-/*
-SourcesEditorWidget * SurfaceManagerGui::getSourcesEditorWidget(){
-	return &sourcesEditor;
-}
-*/
 
 } // namespace piMapper
 } // namespace ofx
