@@ -2,7 +2,7 @@
 
 #include "BaseCmd.h"
 #include "BaseSurface.h"
-#include "SourcesEditor.h"
+#include "SourcesEditorWidget.h"
 #include "MediaServer.h"
 
 namespace ofx {
@@ -13,18 +13,18 @@ struct SourceData {
 	string id;
 };
 
-class SourcesEditor;
+class SourcesEditorWidget;
 
 class SetNextSourceCmd : public BaseUndoCmd {
 
 	public:
-		SetNextSourceCmd(BaseSurface * surface, SourcesEditor * sourcesEditor);
+		SetNextSourceCmd(BaseSurface * surface, SourcesEditorWidget * sourcesEditor);
 		void exec();
 		void undo();
 
 	private:
 		BaseSurface * _surface;
-		SourcesEditor * _sourcesEditor;
+		SourcesEditorWidget * _sourcesEditor;
 		vector <SourceData> _sources;
 		int _sourceIndex; // Previous source index
 		int _nextSourceIndex;

@@ -6,7 +6,7 @@ namespace piMapper {
 SetSourceCmd::SetSourceCmd(int sourceType,
 						   string sourceId,
 						   BaseSurface * surface,
-						   SourcesEditor * sourcesEditor){
+						   SourcesEditorWidget * sourcesEditor){
 
 	_sourceType = sourceType;
 	_sourceId = sourceId;

@@ -6,12 +6,12 @@
 
 #include "BaseCmd.h"
 #include "BaseSurface.h"
-#include "SourcesEditor.h"
+#include "SourcesEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-class SourcesEditor;
+class SourcesEditorWidget;
 
 class SetSourceCmd : public BaseUndoCmd {
 
@@ -19,7 +19,7 @@ class SetSourceCmd : public BaseUndoCmd {
 		SetSourceCmd(int sourceType,
 					 string sourceId,
 					 BaseSurface * surface,
-					 SourcesEditor * sourcesEditor);
+					 SourcesEditorWidget * sourcesEditor);
 		void exec();
 		void undo();
 
@@ -27,7 +27,7 @@ class SetSourceCmd : public BaseUndoCmd {
 		int _sourceType;
 		string _sourceId;
 		BaseSurface * _surface;
-		SourcesEditor * _sourcesEditor;
+		SourcesEditorWidget * _sourcesEditor;
 
 		int _oldSourceType;
 		string _oldSourceId;

@@ -54,7 +54,7 @@ void SurfaceManagerGui::stopDrag(){
 	bDrag = false;
 }
 
-SourcesEditor * SurfaceManagerGui::getSourcesEditor(){
+SourcesEditorWidget * SurfaceManagerGui::getSourcesEditorWidget(){
 	return &sourcesEditor;
 }
 

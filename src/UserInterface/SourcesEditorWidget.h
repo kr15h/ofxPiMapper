@@ -11,9 +11,9 @@
 namespace ofx {
 namespace piMapper {
 
-class SourcesEditor {
+class SourcesEditorWidget {
 	public:
-		SourcesEditor();
+		SourcesEditorWidget();
 
 		void setup();
 		void draw();

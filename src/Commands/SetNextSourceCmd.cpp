@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-SetNextSourceCmd::SetNextSourceCmd(BaseSurface * surface, SourcesEditor * sourcesEditor){
+SetNextSourceCmd::SetNextSourceCmd(BaseSurface * surface, SourcesEditorWidget * sourcesEditor){
 	_surface = surface;
 	_sourcesEditor = sourcesEditor;
 }

@@ -1,9 +1,9 @@
-#include "SourcesEditor.h"
+#include "SourcesEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-SourcesEditor::SourcesEditor(){
+SourcesEditorWidget::SourcesEditorWidget(){
 	mediaServer = 0;
 	addMediaServerListeners();
 	imageSelector = new RadioList();
@@ -11,7 +11,7 @@ SourcesEditor::SourcesEditor(){
 	fboSelector = new RadioList();
 }
 
-void SourcesEditor::setup(){
+void SourcesEditorWidget::setup(){
 	int numImages = mediaServer->getNumImages();
 	int numVideos = mediaServer->getNumVideos();
 	int numFbos = mediaServer->getNumFboSources();
@@ -21,17 +21,17 @@ void SourcesEditor::setup(){
 		// Get image names from media server
 		vector <string> imageNames = mediaServer->getImageNames();
 		imageSelector->setup("Images", imageNames, mediaServer->getImagePaths());
-		ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditor::handleImageSelected);
+		ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditorWidget::handleImageSelected);
 	}
 	if(numVideos){
 		vector <string> videoNames = mediaServer->getVideoNames();
 		videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
-		ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditor::handleVideoSelected);
+		ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditorWidget::handleVideoSelected);
 	}
 	if(numFbos){
 		vector <string> fboNames = mediaServer->getFboSourceNames();
 		fboSelector->setup("FBOs", fboNames, fboNames);
-		ofAddListener(fboSelector->onRadioSelected, this, &SourcesEditor::handleFboSelected);
+		ofAddListener(fboSelector->onRadioSelected, this, &SourcesEditorWidget::handleFboSelected);
 	}
 
 	// Align menus
@@ -51,7 +51,7 @@ void SourcesEditor::setup(){
 
 }
 
-void SourcesEditor::draw(){
+void SourcesEditorWidget::draw(){
 	// Don't draw if there is no source selected
 	if(surfaceManager->getSelectedSurface() == 0){
 		return;
@@ -67,7 +67,7 @@ void SourcesEditor::draw(){
 	}
 }
 
-void SourcesEditor::disable(){
+void SourcesEditorWidget::disable(){
 	if(imageSelector->size()){
 		imageSelector->disable();
 	}
@@ -79,10 +79,10 @@ void SourcesEditor::disable(){
 	}
 }
 
-void SourcesEditor::enable(){
+void SourcesEditorWidget::enable(){
 	// Don't enable if there is no surface selected
 	if(surfaceManager->getSelectedSurface() == 0){
-		ofLogNotice("SourcesEditor") << "No surface selected. Not enabling and not showing source list.";
+		ofLogNotice("SourcesEditorWidget") << "No surface selected. Not enabling and not showing source list.";
 		return;
 	}
 	if(imageSelector->size()){
@@ -105,30 +105,30 @@ void SourcesEditor::enable(){
 	}
 }
 
-void SourcesEditor::setSurfaceManager(SurfaceManager * newSurfaceManager){
+void SourcesEditorWidget::setSurfaceManager(SurfaceManager * newSurfaceManager){
 	surfaceManager = newSurfaceManager;
 }
 
-void SourcesEditor::setCmdManager(CmdManager * cmdManager){
+void SourcesEditorWidget::setCmdManager(CmdManager * cmdManager){
 	_cmdManager = cmdManager;
 }
 
-void SourcesEditor::setMediaServer(MediaServer * newMediaServer){
+void SourcesEditorWidget::setMediaServer(MediaServer * newMediaServer){
 	if(newMediaServer == 0){
-		ofLogFatalError("SourcesEditor") << "New media server is 0";
+		ofLogFatalError("SourcesEditorWidget") << "New media server is 0";
 		exit(EXIT_FAILURE);
 	}
 	clearMediaServer();
 	mediaServer = newMediaServer;
 }
 
-MediaServer * SourcesEditor::getMediaServer(){
+MediaServer * SourcesEditorWidget::getMediaServer(){
 	return mediaServer;
 }
 
-void SourcesEditor::selectSourceRadioButton(string & sourcePath){
+void SourcesEditorWidget::selectSourceRadioButton(string & sourcePath){
 	if(sourcePath == ""){
-		ofLogNotice("SourcesEditor") << "Path is empty";
+		ofLogNotice("SourcesEditorWidget") << "Path is empty";
 		if(imageSelector->size()){
 			imageSelector->unselectAll();
 		}
@@ -157,65 +157,65 @@ void SourcesEditor::selectSourceRadioButton(string & sourcePath){
 			return;
 		}
 		// Log warning if we are still here
-		ofLogWarning("SourcesEditor") << "Could not find option in any of the source lists";
+		ofLogWarning("SourcesEditorWidget") << "Could not find option in any of the source lists";
 	}
 }
 
-void SourcesEditor::addMediaServerListeners(){
+void SourcesEditorWidget::addMediaServerListeners(){
 	// Check if the media server is valid
 	if(mediaServer == 0){
-		ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
+		ofLogError("SourcesEditorWidget::addMediaServerListeners", "Media server not set");
 		return;
 	}
 	// Add listeners to custom events of the media server
-	ofAddListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
-	ofAddListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
-	ofAddListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
-	ofAddListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
-	ofAddListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
-	ofAddListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
+	ofAddListener(mediaServer->onImageAdded, this, &SourcesEditorWidget::handleImageAdded);
+	ofAddListener(mediaServer->onImageRemoved, this, &SourcesEditorWidget::handleImageRemoved);
+	ofAddListener(mediaServer->onVideoAdded, this, &SourcesEditorWidget::handleVideoAdded);
+	ofAddListener(mediaServer->onVideoRemoved, this, &SourcesEditorWidget::handleVideoRemoved);
+	ofAddListener(mediaServer->onImageLoaded, this, &SourcesEditorWidget::handleImageLoaded);
+	ofAddListener(mediaServer->onImageUnloaded, this, &SourcesEditorWidget::handleImageUnloaded);
 
-	ofAddListener(mediaServer->onFboSourceAdded, this, &SourcesEditor::handleFboSourceAdded);
-	ofAddListener(mediaServer->onFboSourceRemoved, this, &SourcesEditor::handleFboSourceRemoved);
-	ofAddListener(mediaServer->onFboSourceLoaded, this, &SourcesEditor::handleFboSourceLoaded);
-	ofAddListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditor::handleFboSourceUnloaded);
+	ofAddListener(mediaServer->onFboSourceAdded, this, &SourcesEditorWidget::handleFboSourceAdded);
+	ofAddListener(mediaServer->onFboSourceRemoved, this, &SourcesEditorWidget::handleFboSourceRemoved);
+	ofAddListener(mediaServer->onFboSourceLoaded, this, &SourcesEditorWidget::handleFboSourceLoaded);
+	ofAddListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditorWidget::handleFboSourceUnloaded);
 
 }
 
-void SourcesEditor::removeMediaServerListeners(){
+void SourcesEditorWidget::removeMediaServerListeners(){
 	// Check if the media server is valid
 	if(mediaServer == 0){
-		ofLogError("SourcesEditor::addMediaServerListeners", "Media server not set");
+		ofLogError("SourcesEditorWidget::addMediaServerListeners", "Media server not set");
 		return;
 	}
 	// Remove listeners to custom events of the media server
-	ofRemoveListener(mediaServer->onImageAdded, this, &SourcesEditor::handleImageAdded);
-	ofRemoveListener(mediaServer->onImageRemoved, this, &SourcesEditor::handleImageRemoved);
-	ofRemoveListener(mediaServer->onVideoAdded, this, &SourcesEditor::handleVideoAdded);
-	ofRemoveListener(mediaServer->onVideoRemoved, this, &SourcesEditor::handleVideoRemoved);
-	ofRemoveListener(mediaServer->onImageLoaded, this, &SourcesEditor::handleImageLoaded);
-	ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditor::handleImageUnloaded);
-	ofRemoveListener(mediaServer->onFboSourceAdded, this, &SourcesEditor::handleFboSourceAdded);
-	ofRemoveListener(mediaServer->onFboSourceRemoved, this, &SourcesEditor::handleFboSourceRemoved);
-	ofRemoveListener(mediaServer->onFboSourceLoaded, this, &SourcesEditor::handleFboSourceLoaded);
-	ofRemoveListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditor::handleFboSourceUnloaded);
+	ofRemoveListener(mediaServer->onImageAdded, this, &SourcesEditorWidget::handleImageAdded);
+	ofRemoveListener(mediaServer->onImageRemoved, this, &SourcesEditorWidget::handleImageRemoved);
+	ofRemoveListener(mediaServer->onVideoAdded, this, &SourcesEditorWidget::handleVideoAdded);
+	ofRemoveListener(mediaServer->onVideoRemoved, this, &SourcesEditorWidget::handleVideoRemoved);
+	ofRemoveListener(mediaServer->onImageLoaded, this, &SourcesEditorWidget::handleImageLoaded);
+	ofRemoveListener(mediaServer->onImageUnloaded, this, &SourcesEditorWidget::handleImageUnloaded);
+	ofRemoveListener(mediaServer->onFboSourceAdded, this, &SourcesEditorWidget::handleFboSourceAdded);
+	ofRemoveListener(mediaServer->onFboSourceRemoved, this, &SourcesEditorWidget::handleFboSourceRemoved);
+	ofRemoveListener(mediaServer->onFboSourceLoaded, this, &SourcesEditorWidget::handleFboSourceLoaded);
+	ofRemoveListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditorWidget::handleFboSourceUnloaded);
 }
 
-void SourcesEditor::handleImageSelected(string & imagePath){
+void SourcesEditorWidget::handleImageSelected(string & imagePath){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_IMAGE,
 									   imagePath,
 									   surfaceManager->getSelectedSurface(),
-									   (SourcesEditor *)this));
+									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditor::setImageSource(string & imagePath){
+void SourcesEditorWidget::setImageSource(string & imagePath){
 	// Unselect selected items
 	videoSelector->unselectAll();
 	fboSelector->unselectAll();
 
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
 	if(surface == 0){
-		ofLogWarning("SourcesEditor") << "No surface selected";
+		ofLogWarning("SourcesEditorWidget") << "No surface selected";
 		return;
 	}
 
@@ -231,21 +231,21 @@ void SourcesEditor::setImageSource(string & imagePath){
 	surface->setSource(mediaServer->loadImage(imagePath));
 }
 
-void SourcesEditor::handleVideoSelected(string & videoPath){
+void SourcesEditorWidget::handleVideoSelected(string & videoPath){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_VIDEO,
 									   videoPath,
 									   surfaceManager->getSelectedSurface(),
-									   (SourcesEditor *)this));
+									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditor::setVideoSource(string & videoPath){
+void SourcesEditorWidget::setVideoSource(string & videoPath){
 	// Unselect any selected items
 	fboSelector->unselectAll();
 	imageSelector->unselectAll();
 
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
 	if(surface == 0){
-		ofLogWarning("SourcesEditor") << "No surface selected";
+		ofLogWarning("SourcesEditorWidget") << "No surface selected";
 		return;
 	}
 
@@ -261,21 +261,21 @@ void SourcesEditor::setVideoSource(string & videoPath){
 	surface->setSource(mediaServer->loadVideo(videoPath));
 }
 
-void SourcesEditor::handleFboSelected(string & fboName){
+void SourcesEditorWidget::handleFboSelected(string & fboName){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_FBO,
 									   fboName,
 									   surfaceManager->getSelectedSurface(),
-									   (SourcesEditor *)this));
+									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditor::setFboSource(string & fboName){
+void SourcesEditorWidget::setFboSource(string & fboName){
 	videoSelector->unselectAll();
 	imageSelector->unselectAll();
 
 	// Get selected surface
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
 	if(surface == 0){
-		ofLogWarning("SourcesEditor") << "No surface selected";
+		ofLogWarning("SourcesEditorWidget") << "No surface selected";
 		return;
 	}
 
@@ -291,7 +291,7 @@ void SourcesEditor::setFboSource(string & fboName){
 	surface->setSource(mediaServer->loadFboSource(fboName));
 }
 
-void SourcesEditor::clearSource(){
+void SourcesEditorWidget::clearSource(){
 	BaseSurface * surface = surfaceManager->getSelectedSurface();
 
 	// Unload old media
@@ -306,7 +306,7 @@ void SourcesEditor::clearSource(){
 	surface->setSource(surface->getDefaultSource());
 }
 
-void SourcesEditor::clearMediaServer(){
+void SourcesEditorWidget::clearMediaServer(){
 	if(mediaServer == 0){
 		return;
 	}
@@ -315,16 +315,16 @@ void SourcesEditor::clearMediaServer(){
 	mediaServer = 0;
 }
 
-void SourcesEditor::handleImageAdded(string & path){}
-void SourcesEditor::handleImageRemoved(string & path){}
-void SourcesEditor::handleVideoAdded(string & path){}
-void SourcesEditor::handleVideoRemoved(string & path){}
-void SourcesEditor::handleImageLoaded(string & path){}
-void SourcesEditor::handleImageUnloaded(string & path){}
-void SourcesEditor::handleFboSourceAdded(string & name){}
-void SourcesEditor::handleFboSourceRemoved(string & name){}
-void SourcesEditor::handleFboSourceLoaded(string & name){}
-void SourcesEditor::handleFboSourceUnloaded(string & name){}
+void SourcesEditorWidget::handleImageAdded(string & path){}
+void SourcesEditorWidget::handleImageRemoved(string & path){}
+void SourcesEditorWidget::handleVideoAdded(string & path){}
+void SourcesEditorWidget::handleVideoRemoved(string & path){}
+void SourcesEditorWidget::handleImageLoaded(string & path){}
+void SourcesEditorWidget::handleImageUnloaded(string & path){}
+void SourcesEditorWidget::handleFboSourceAdded(string & name){}
+void SourcesEditorWidget::handleFboSourceRemoved(string & name){}
+void SourcesEditorWidget::handleFboSourceLoaded(string & name){}
+void SourcesEditorWidget::handleFboSourceUnloaded(string & name){}
 
 } // namespace piMapper
 } // namespace ofx

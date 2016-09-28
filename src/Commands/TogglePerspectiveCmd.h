@@ -2,12 +2,12 @@
 
 #include "BaseCmd.h"
 #include "QuadSurface.h"
-#include "SourcesEditor.h"
+#include "SourcesEditorWidget.h"
 
 namespace ofx {
 namespace piMapper {
 
-class SourcesEditor;
+class SourcesEditorWidget;
 
 class TogglePerspectiveCmd : public BaseUndoCmd {
 
