@@ -67,6 +67,7 @@ void SourcesEditorWidget::draw(){
 	}
 }
 
+// TODO: Redesign the selectors completely so they do not need enable and disable.
 void SourcesEditorWidget::disable(){
 	if(imageSelector->size()){
 		imageSelector->disable();
@@ -315,6 +316,7 @@ void SourcesEditorWidget::clearMediaServer(){
 	mediaServer = 0;
 }
 
+// TODO: There is no need for those at the moment. They add too much overhead.
 void SourcesEditorWidget::handleImageAdded(string & path){}
 void SourcesEditorWidget::handleImageRemoved(string & path){}
 void SourcesEditorWidget::handleVideoAdded(string & path){}

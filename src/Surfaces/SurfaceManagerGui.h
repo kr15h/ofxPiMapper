@@ -33,7 +33,7 @@ class SurfaceManagerGui {
 		void startDrag();
 		void stopDrag();
 	
-		SourcesEditorWidget * getSourcesEditorWidget();
+		//SourcesEditorWidget * getSourcesEditorWidget();
 	
 		ofVec2f clickPosition;
 		bool bDrag;
@@ -41,7 +41,7 @@ class SurfaceManagerGui {
 	private:
 		SurfaceManager * surfaceManager;
 		MediaServer * mediaServer;
-		SourcesEditorWidget sourcesEditor;
+		//SourcesEditorWidget sourcesEditor;
 	
 		int guiMode;
 	

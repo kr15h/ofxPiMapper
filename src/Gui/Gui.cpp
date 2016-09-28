@@ -104,6 +104,10 @@ ProjectionEditorWidget & Gui::getProjectionEditorWidget(){
 	return _projectionEditorWidget;
 }
 
+SourcesEditorWidget & Gui::getSourcesEditorWidget(){
+	return _sourcesEditorWidget;
+}
+
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

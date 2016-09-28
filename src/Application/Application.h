@@ -63,9 +63,10 @@ class Application : public KeyListener {
 		bool loadXmlSettings(string fileName);
 		bool isShiftKeyDown();
 	
-		SurfaceManagerGui * getGui(){ return &_gui; };
-		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; };
-		CmdManager * getCmdManager(){ return &_cmdManager; };
+		SurfaceManagerGui * getGui(){ return &_gui; }
+		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
+		CmdManager * getCmdManager(){ return &_cmdManager; }
+		MediaServer * getMediaServer(){ return &_mediaServer; }
 	
 		void onCharacterReceived(KeyListenerEventData & e);
 		TerminalListener consoleListener;

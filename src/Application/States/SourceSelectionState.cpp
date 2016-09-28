@@ -13,8 +13,10 @@ SourceSelectionState * SourceSelectionState::instance(){
 }
 
 void SourceSelectionState::setup(Application * app){
-	app->getGui()->getSourcesEditorWidget()->setSurfaceManager(app->getSurfaceManager());
-	app->getGui()->getSourcesEditorWidget()->setup();
+	Gui::instance()->getSourcesEditorWidget().setSurfaceManager(app->getSurfaceManager());
+	Gui::instance()->getSourcesEditorWidget().setMediaServer(app->getMediaServer());
+	Gui::instance()->getSourcesEditorWidget().setCmdManager(app->getCmdManager());
+	Gui::instance()->getSourcesEditorWidget().setup();
 }
 
 void SourceSelectionState::draw(Application * app){
@@ -23,9 +25,9 @@ void SourceSelectionState::draw(Application * app){
 	app->getSurfaceManager()->draw();
 	ofPopStyle();
 	
-	// TODO: Separate SourcesEditorWidget from SurfaceManagerGui, make it a widget
-	app->getGui()->getSourcesEditorWidget()->draw();
+	Gui::instance()->getSourcesEditorWidget().draw();
 	
+	// TODO: Move the following line to setup()
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }

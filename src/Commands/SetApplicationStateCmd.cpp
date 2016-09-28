@@ -25,6 +25,12 @@ void SetApplicationStateCmd::exec(){
 	}else{
 		ofHideCursor();
 	}
+	
+	if(_applicationState == SourceSelectionState::instance()){
+		Gui::instance()->getSourcesEditorWidget().enable();
+	}else{
+		Gui::instance()->getSourcesEditorWidget().disable();
+	}
 }
 
 void SetApplicationStateCmd::undo(){
@@ -39,6 +45,12 @@ void SetApplicationStateCmd::undo(){
 		ofShowCursor();
 	}else{
 		ofHideCursor();
+	}
+	
+	if(_prevApplicationState == SourceSelectionState::instance()){
+		Gui::instance()->getSourcesEditorWidget().enable();
+	}else{
+		Gui::instance()->getSourcesEditorWidget().disable();
 	}
 }
 
