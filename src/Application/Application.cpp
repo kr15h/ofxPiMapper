@@ -8,8 +8,6 @@ Application::Application(){
 	_keySequence = "";
 
 	_surfaceManager.setMediaServer(&_mediaServer);
-	_gui.setMediaServer(&_mediaServer);
-	_gui.setCmdManager(&_cmdManager);
 	
 	setState(PresentationState::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);

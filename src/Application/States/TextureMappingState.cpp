@@ -176,7 +176,6 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 		return;
 	}
 	
-	// Old code from SurfaceManagerGui
 	CircleJoint * hitJoint =
 		Gui::instance()->getTextureEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
 	
@@ -201,8 +200,8 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 		
 	}else if(app->getSurfaceManager()->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
 		
-		app->getGui()->clickPosition = ofVec2f(args.x, args.y);
-		app->getGui()->startDrag();
+		_clickPosition = ofPoint(args.x, args.y);
+		_bCropAreaDrag = true;
 
 		// TODO: emit event through the gui singleton
 		app->getCmdManager()->exec(new MvAllTexCoordsCmd(
@@ -231,7 +230,7 @@ void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & 
 	args.x -= _canvasTranslate.x;
 	args.y -= _canvasTranslate.y;
 
-	app->getGui()->stopDrag();
+	_bCropAreaDrag = false;
 	Gui::instance()->getTextureEditorWidget().stopDragJoints();
 }
 
@@ -242,11 +241,11 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 		args.y -= _canvasTranslate.y;
 		Gui::instance()->getTextureEditorWidget().onMouseDragged(args);
 		
-		if(app->getGui()->bDrag){
-			ofVec2f mousePosition = ofVec2f(args.x, args.y);
-			ofVec2f distance = mousePosition - app->getGui()->clickPosition;
+		if(_bCropAreaDrag){
+			ofPoint mousePosition = ofPoint(args.x, args.y);
+			ofPoint distance = mousePosition - _clickPosition;
 			Gui::instance()->getTextureEditorWidget().moveTexCoords(distance);
-			app->getGui()->clickPosition = mousePosition;
+			_clickPosition = mousePosition;
 		}
 	}else{
 		ofPoint mousePosition = ofPoint(args.x, args.y);

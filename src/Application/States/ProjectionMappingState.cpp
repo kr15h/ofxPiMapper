@@ -319,8 +319,9 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 		hitJoint->startDrag();
 		Gui::instance()->notifyJointPressed(args, hitJointIndex);
 	}else if(hitSurface){
-		app->getGui()->clickPosition = ofVec2f(args.x, args.y);
-		app->getGui()->startDrag(); // TODO: Should be something like `hitSurface->startDrag()`
+		_clickPosition = ofVec2f(args.x, args.y); // TODO: redesign this so we can use a kind of
+												  //       display stack.
+		_bSurfaceDrag = true; // TODO: Should be something like `hitSurface->startDrag()`
 		Gui::instance()->notifySurfacePressed(args, hitSurface);
 	}else{
 		Gui::instance()->notifyBackgroundPressed(args);
@@ -329,7 +330,7 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 
 void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseReleased(args);
-	app->getGui()->stopDrag(); // TODO: handle this locally
+	_bSurfaceDrag = false; // TODO: handle this locally
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
@@ -338,11 +339,11 @@ void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs 
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	
 	// TODO: Handle app->getGui()->clickPosition and app->getGui()->bDrag locally.
-	if(app->getGui()->bDrag){
+	if(_bSurfaceDrag){
 		ofVec2f mousePosition = ofVec2f(args.x, args.y);
-		ofVec2f distance = mousePosition - app->getGui()->clickPosition;
+		ofVec2f distance = mousePosition - _clickPosition;
 		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(distance);
-		app->getGui()->clickPosition = mousePosition;
+		_clickPosition = mousePosition;
 	}
 }
 

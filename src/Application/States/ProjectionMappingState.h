@@ -26,6 +26,7 @@
 #include "MvLayerUpCmd.h"
 #include "MvLayerDnCmd.h"
 #include "ScaleSurfaceFromToCmd.h"
+#include "MvSurfaceVertCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
 
@@ -59,6 +60,10 @@ class ProjectionMappingState : public ApplicationBaseState {
 		static ProjectionMappingState * _instance;
 	
 		float _surfaceScaleBeforeTransform;
+	
+		ofVec2f _clickPosition;
+	
+		bool _bSurfaceDrag;
 
 };
 

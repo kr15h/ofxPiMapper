@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "SurfaceManager.h"
-#include "SurfaceManagerGui.h"
 #include "MediaServer.h"
 #include "FboSource.h"
 #include "BaseCmd.h"

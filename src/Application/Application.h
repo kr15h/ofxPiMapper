@@ -14,7 +14,6 @@
 #include "FboSource.h"
 #include "Info.h"
 
-#include "SurfaceManagerGui.h"
 #include "SurfaceStack.h"
 
 // TODO: To be removed.
@@ -63,7 +62,6 @@ class Application : public KeyListener {
 		bool loadXmlSettings(string fileName);
 		bool isShiftKeyDown();
 	
-		SurfaceManagerGui * getGui(){ return &_gui; }
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
 		CmdManager * getCmdManager(){ return &_cmdManager; }
 		MediaServer * getMediaServer(){ return &_mediaServer; }
@@ -81,7 +79,6 @@ class Application : public KeyListener {
 		ApplicationBaseState * _state;
 	
 		CmdManager _cmdManager;
-		SurfaceManagerGui _gui;
 		MediaServer _mediaServer;
 		SurfaceManager _surfaceManager;
 		Info _info;

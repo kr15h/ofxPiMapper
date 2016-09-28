@@ -12,6 +12,8 @@
 #include "ToggleAnimatedSourceCmd.h"
 #include "TranslateCanvasCmd.h"
 #include "SetTexMapDrawModeCmd.h"
+#include "MvTexCoordCmd.h"
+#include "MvAllTexCoordsCmd.h"
 #include "Gui.h"
 
 namespace ofx {
@@ -47,6 +49,7 @@ class TextureMappingState : public ApplicationBaseState {
 		TextureMappingState();
 
 		bool _bTranslateCanvas;
+		bool _bCropAreaDrag;
 	
 		int _drawMode;
 	
