@@ -1,25 +1,25 @@
-#include "SourceSelectionState.h"
+#include "SourceSelectionMode.h"
 
 namespace ofx {
 namespace piMapper {
 
-SourceSelectionState * SourceSelectionState::_instance = 0;
+SourceSelectionMode * SourceSelectionMode::_instance = 0;
 
-SourceSelectionState * SourceSelectionState::instance(){
+SourceSelectionMode * SourceSelectionMode::instance(){
 	if(_instance == 0){
-		_instance = new ofx::piMapper::SourceSelectionState();
+		_instance = new ofx::piMapper::SourceSelectionMode();
 	}
 	return _instance;
 }
 
-void SourceSelectionState::setup(Application * app){
+void SourceSelectionMode::setup(Application * app){
 	Gui::instance()->getSourcesEditorWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getSourcesEditorWidget().setMediaServer(app->getMediaServer());
 	Gui::instance()->getSourcesEditorWidget().setCmdManager(app->getCmdManager());
 	Gui::instance()->getSourcesEditorWidget().setup();
 }
 
-void SourceSelectionState::draw(Application * app){
+void SourceSelectionMode::draw(Application * app){
 	ofPushStyle();
 	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();

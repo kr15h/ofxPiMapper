@@ -7,21 +7,21 @@ namespace ofx {
 namespace piMapper {
 
 class Application;
-class ApplicationBaseState;
+class ApplicationBaseMode;
 
 class SetApplicationStateCmd : public BaseUndoCmd {
 
 	public:
 		SetApplicationStateCmd(Application * app,
-							   ApplicationBaseState * st);
+							   ApplicationBaseMode * st);
 
 		void exec();
 		void undo();
 
 	private:
 		Application * _application;
-		ApplicationBaseState * _prevApplicationState;
-		ApplicationBaseState * _applicationState;
+		ApplicationBaseMode * _prevApplicationState;
+		ApplicationBaseMode * _applicationState;
 	
 		ofPoint _translation;
 

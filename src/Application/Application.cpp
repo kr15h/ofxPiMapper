@@ -1,5 +1,5 @@
 #include "Application.h"
-#include "PresentationState.h"
+#include "PresentationMode.h"
 
 namespace ofx {
 namespace piMapper {
@@ -9,7 +9,7 @@ Application::Application(){
 
 	_surfaceManager.setMediaServer(&_mediaServer);
 	
-	setState(PresentationState::instance());
+	setState(PresentationMode::instance());
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
 	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
@@ -43,10 +43,10 @@ void Application::setup(){
     }
 	
 	// Setup all states.
-	PresentationState::instance()->setup(this);
-	TextureMappingState::instance()->setup(this);
-	ProjectionMappingState::instance()->setup(this);
-	SourceSelectionState::instance()->setup(this);
+	PresentationMode::instance()->setup(this);
+	TextureMappingMode::instance()->setup(this);
+	ProjectionMappingMode::instance()->setup(this);
+	SourceSelectionMode::instance()->setup(this);
 
 	// TODO: Consider whether this is the right place for it
 	Gui::instance()->getScaleWidget().setSurfaceManager(&_surfaceManager);
@@ -56,7 +56,7 @@ void Application::update(){
 	_state->update(this);
 }
 
-ApplicationBaseState * Application::getState(){
+ApplicationBaseMode * Application::getState(){
 	return _state;
 }
 
@@ -95,25 +95,25 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case '1':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
-				 this, PresentationState::instance()));
+				 this, PresentationMode::instance()));
 		 break;
 
 	 case '2':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
-				 this, TextureMappingState::instance()));
+				 this, TextureMappingMode::instance()));
 		 break;
 
 	 case '3':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
-				 this, ProjectionMappingState::instance()));
+				 this, ProjectionMappingMode::instance()));
 		 break;
 
 	 case '4':
 		 _cmdManager.exec(
 			 new ofx::piMapper::SetApplicationStateCmd(
-				 this, SourceSelectionState::instance()));
+				 this, SourceSelectionMode::instance()));
 		 break;
 
 	 case 'f':
@@ -183,7 +183,7 @@ void Application::addFboSource(FboSource * fboSource){
 	_mediaServer.addFboSource(fboSource);
 }
 
-void Application::setState(ApplicationBaseState * st){
+void Application::setState(ApplicationBaseMode * st){
 	_state = st;
 }
 

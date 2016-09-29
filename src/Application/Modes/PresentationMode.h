@@ -5,23 +5,23 @@
 #include "ofLog.h"
 #include "ofGraphics.h"
 #include "SetApplicationStateCmd.h"
-#include "ProjectionMappingState.h"
+#include "ProjectionMappingMode.h"
 #include "GuiMode.h"
 
 namespace ofx {
 namespace piMapper {
 
-class PresentationState : public ApplicationBaseState {
+class PresentationMode : public ApplicationBaseMode {
 
 	public:
-		static PresentationState * instance();
+		static PresentationMode * instance();
 		void draw(Application * app);
         void onMousePressed(Application * app, ofMouseEventArgs & args);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
 
 	private:
-		static PresentationState * _instance;
+		static PresentationMode * _instance;
 
 };
 

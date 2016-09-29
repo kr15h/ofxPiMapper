@@ -19,10 +19,10 @@
 namespace ofx {
 namespace piMapper {
 
-class TextureMappingState : public ApplicationBaseState {
+class TextureMappingMode : public ApplicationBaseMode {
 
 	public:
-		static TextureMappingState * instance();
+		static TextureMappingMode * instance();
 	
 		void update(Application * app);
 		void draw(Application * app);
@@ -44,9 +44,9 @@ class TextureMappingState : public ApplicationBaseState {
 		int getPrevDrawMode();
 
 	private:
-		static TextureMappingState * _instance;
+		static TextureMappingMode * _instance;
 	
-		TextureMappingState();
+		TextureMappingMode();
 
 		bool _bTranslateCanvas;
 		bool _bCropAreaDrag;

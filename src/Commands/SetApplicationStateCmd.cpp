@@ -4,7 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 SetApplicationStateCmd::SetApplicationStateCmd(Application * app,
-											   ApplicationBaseState * st){
+											   ApplicationBaseMode * st){
 
 	_application = app;
 	_prevApplicationState = 0;
@@ -20,13 +20,13 @@ void SetApplicationStateCmd::exec(){
 	Gui::instance()->getTextureEditorWidget().setSurface(
 		_application->getSurfaceManager()->getSelectedSurface());
 	
-	if(_applicationState != PresentationState::instance()){
+	if(_applicationState != PresentationMode::instance()){
 		ofShowCursor();
 	}else{
 		ofHideCursor();
 	}
 	
-	if(_applicationState == SourceSelectionState::instance()){
+	if(_applicationState == SourceSelectionMode::instance()){
 		Gui::instance()->getSourcesEditorWidget().enable();
 	}else{
 		Gui::instance()->getSourcesEditorWidget().disable();
@@ -41,13 +41,13 @@ void SetApplicationStateCmd::undo(){
 	Gui::instance()->getTextureEditorWidget().setSurface(
 		_application->getSurfaceManager()->getSelectedSurface());
 	
-	if(_prevApplicationState != PresentationState::instance()){
+	if(_prevApplicationState != PresentationMode::instance()){
 		ofShowCursor();
 	}else{
 		ofHideCursor();
 	}
 	
-	if(_prevApplicationState == SourceSelectionState::instance()){
+	if(_prevApplicationState == SourceSelectionMode::instance()){
 		Gui::instance()->getSourcesEditorWidget().enable();
 	}else{
 		Gui::instance()->getSourcesEditorWidget().disable();

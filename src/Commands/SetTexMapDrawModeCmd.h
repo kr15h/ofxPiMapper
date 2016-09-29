@@ -5,22 +5,22 @@
 #pragma once
 
 #include "BaseCmd.h"
-#include "TextureMappingState.h"
+#include "TextureMappingMode.h"
 
 namespace ofx {
 namespace piMapper {
 
-class TextureMappingState;
+class TextureMappingMode;
 
 class SetTexMapDrawModeCmd : public BaseUndoCmd {
 
 	public:
-		SetTexMapDrawModeCmd(TextureMappingState * s, int m);
+		SetTexMapDrawModeCmd(TextureMappingMode * s, int m);
 		void exec();
 		void undo();
 
 	private:
-		TextureMappingState * _state;
+		TextureMappingMode * _state;
 		int _oldMode;
 		int _newMode;
 

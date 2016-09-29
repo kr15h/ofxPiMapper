@@ -1,33 +1,33 @@
-#include "ProjectionMappingState.h"
+#include "ProjectionMappingMode.h"
 
 namespace ofx {
 namespace piMapper {
 
-ProjectionMappingState::ProjectionMappingState(){
+ProjectionMappingMode::ProjectionMappingMode(){
 	_surfaceScaleBeforeTransform = 1.0f;
 }
 
-ProjectionMappingState * ProjectionMappingState::_instance = 0;
+ProjectionMappingMode * ProjectionMappingMode::_instance = 0;
 
-ProjectionMappingState * ProjectionMappingState::instance(){
+ProjectionMappingMode * ProjectionMappingMode::instance(){
 	if(_instance == 0){
-		_instance = new ofx::piMapper::ProjectionMappingState();
+		_instance = new ofx::piMapper::ProjectionMappingMode();
 	}
 	return _instance;
 }
 
-void ProjectionMappingState::setup(Application *app){
+void ProjectionMappingMode::setup(Application *app){
 	Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getLayerPanelWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getProjectionEditorWidget().setSurfaceManager(app->getSurfaceManager());
 }
 
-void ProjectionMappingState::update(Application * app){
+void ProjectionMappingMode::update(Application * app){
 	Gui::instance()->getProjectionEditorWidget().update();
 	Gui::instance()->getScaleWidget().update();
 }
 
-void ProjectionMappingState::draw(Application * app){
+void ProjectionMappingMode::draw(Application * app){
 	ofPushStyle();
 	ofSetColor(255, 255, 255, 255);
 	app->getSurfaceManager()->draw();
@@ -45,7 +45,7 @@ void ProjectionMappingState::draw(Application * app){
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
-void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
+void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 		 
 	 case 't':
@@ -287,7 +287,7 @@ void ProjectionMappingState::onKeyPressed(Application * app, ofKeyEventArgs & ar
 	}
 }
 
-void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
+void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMousePressed(args);
 	
 	CircleJoint * hitJoint = 0;
@@ -328,13 +328,13 @@ void ProjectionMappingState::onMousePressed(Application * app, ofMouseEventArgs 
 	}
 }
 
-void ProjectionMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
+void ProjectionMappingMode::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseReleased(args);
 	_bSurfaceDrag = false; // TODO: handle this locally
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
-void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
+void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	
@@ -347,14 +347,14 @@ void ProjectionMappingState::onMouseDragged(Application * app, ofMouseEventArgs 
 	}
 }
 
-void ProjectionMappingState::onJointPressed(Application * app, GuiJointEvent & e){
+void ProjectionMappingMode::onJointPressed(Application * app, GuiJointEvent & e){
 	app->getCmdManager()->exec(new SelVertexCmd(app->getSurfaceManager(), e.jointIndex));
 	app->getCmdManager()->exec(new MvSurfaceVertCmd(
 		e.jointIndex,
 		app->getSurfaceManager()->getSelectedSurface()));
 }
 
-void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
+void ProjectionMappingMode::onSurfacePressed(Application * app, GuiSurfaceEvent & e){
 	if(app->getSurfaceManager()->getSelectedSurface() != e.surface){
 		app->getCmdManager()->exec(new SelSurfaceCmd(app->getSurfaceManager(), e.surface ));
 	}
@@ -362,13 +362,13 @@ void ProjectionMappingState::onSurfacePressed(Application * app, GuiSurfaceEvent
 	app->getCmdManager()->exec(new StartDragSurfaceCmd(e.surface));
 }
 
-void ProjectionMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
+void ProjectionMappingMode::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
 	if(app->getSurfaceManager()->getSelectedSurface() != 0){
 		app->getCmdManager()->exec(new DeselectSurfaceCmd(app->getSurfaceManager()));
 	}
 }
 
-void ProjectionMappingState::onGuiEvent(Application * app, GuiEvent & e){
+void ProjectionMappingMode::onGuiEvent(Application * app, GuiEvent & e){
 	
 	// Scale widget now. More widgets later.
 	if(e.widget == &Gui::instance()->getScaleWidget()){

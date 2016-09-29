@@ -1,29 +1,29 @@
-#include "TextureMappingState.h"
+#include "TextureMappingMode.h"
 
 namespace ofx {
 namespace piMapper {
 
-TextureMappingState * TextureMappingState::_instance = 0;
+TextureMappingMode * TextureMappingMode::_instance = 0;
 
-TextureMappingState * TextureMappingState::instance(){
+TextureMappingMode * TextureMappingMode::instance(){
 	if(_instance == 0){
-		_instance = new ofx::piMapper::TextureMappingState();
+		_instance = new ofx::piMapper::TextureMappingMode();
 	}
 	return _instance;
 }
 
-TextureMappingState::TextureMappingState(){
+TextureMappingMode::TextureMappingMode(){
 	_bTranslateCanvas = false;
 	_canvasTranslate = ofPoint(0, 0);
 	_clickCanvasTranslate = ofPoint(0, 0);
 	_drawMode = 0;
 }
 
-void TextureMappingState::update(Application * app){
+void TextureMappingMode::update(Application * app){
 	Gui::instance()->getTextureEditorWidget().update();
 }
 
-void TextureMappingState::draw(Application * app){
+void TextureMappingMode::draw(Application * app){
 	ofPushMatrix();
 	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 
@@ -73,7 +73,7 @@ void TextureMappingState::draw(Application * app){
 	ofPopMatrix();
 }
 
-void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args){
+void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	int key = args.key;
 	float moveStep;
 
@@ -146,7 +146,7 @@ void TextureMappingState::onKeyPressed(Application * app, ofKeyEventArgs & args)
 	}
 }
 
-void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
+void TextureMappingMode::onBackgroundPressed(Application * app, GuiBackgroundEvent & e){
 	// Exec the command only if a joint is selected.
 	bool selected = false;
 	for(unsigned int i = 0; i < Gui::instance()->getTextureEditorWidget().getJoints().size(); ++i){
@@ -164,7 +164,7 @@ void TextureMappingState::onBackgroundPressed(Application * app, GuiBackgroundEv
 	_bTranslateCanvas = true;
 }
 
-void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & args){
+void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & args){
 	_clickPosition = ofPoint(args.x, args.y);
 	_prevCanvasTranslate = _canvasTranslate;
 
@@ -213,7 +213,7 @@ void TextureMappingState::onMousePressed(Application * app, ofMouseEventArgs & a
 	}
 }
 
-void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & args){
+void TextureMappingMode::onMouseReleased(Application * app, ofMouseEventArgs & args){
 	_bTranslateCanvas = false;
 	
 	// If translation has happened, create an undoable command
@@ -235,7 +235,7 @@ void TextureMappingState::onMouseReleased(Application * app, ofMouseEventArgs & 
 }
 
 // TODO: Handle app->getGui()->clickPosition and app->getGui()->bDrag locally.
-void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & args){
+void TextureMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	if(!_bTranslateCanvas){
 		args.x -= _canvasTranslate.x;
 		args.y -= _canvasTranslate.y;
@@ -254,7 +254,7 @@ void TextureMappingState::onMouseDragged(Application * app, ofMouseEventArgs & a
 	}
 }
 
-void TextureMappingState::drawTexture(Application * app){
+void TextureMappingMode::drawTexture(Application * app){
 	if(app->getSurfaceManager()->getSelectedSurface() != 0){
 		bool normalizedTexCoords = ofGetUsingNormalizedTexCoords();
 		ofEnableNormalizedTexCoords();
@@ -268,24 +268,24 @@ void TextureMappingState::drawTexture(Application * app){
 	}
 }
 
-ofPoint TextureMappingState::getTranslation(){
+ofPoint TextureMappingMode::getTranslation(){
 	return _canvasTranslate;
 }
 
-void TextureMappingState::setTranslation(ofPoint p){
+void TextureMappingMode::setTranslation(ofPoint p){
 	_canvasTranslate = p;
 	_clickCanvasTranslate = p;
 }
 
-void TextureMappingState::setDrawMode(int m){
+void TextureMappingMode::setDrawMode(int m){
 	_drawMode = m;
 }
 
-int TextureMappingState::getDrawMode(){
+int TextureMappingMode::getDrawMode(){
 	return _drawMode;
 }
 
-int TextureMappingState::getNextDrawMode(){
+int TextureMappingMode::getNextDrawMode(){
 	int nextDrawMode = _drawMode + 1;
 	
 	if(nextDrawMode > 2){
@@ -295,7 +295,7 @@ int TextureMappingState::getNextDrawMode(){
 	return nextDrawMode;
 }
 
-int TextureMappingState::getPrevDrawMode(){
+int TextureMappingMode::getPrevDrawMode(){
 	int prevDrawMode = _drawMode - 1;
 	
 	if(prevDrawMode < 0){

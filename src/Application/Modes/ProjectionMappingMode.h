@@ -36,10 +36,10 @@
 namespace ofx {
 namespace piMapper {
 
-class ProjectionMappingState : public ApplicationBaseState {
+class ProjectionMappingMode : public ApplicationBaseMode {
 
 	public:
-		static ProjectionMappingState * instance();
+		static ProjectionMappingMode * instance();
 	
 		void setup(Application * app);
 		void update(Application * app);
@@ -55,9 +55,9 @@ class ProjectionMappingState : public ApplicationBaseState {
 		void onGuiEvent(Application * app, GuiEvent & e);
 
 	private:
-		ProjectionMappingState();
+		ProjectionMappingMode();
 	
-		static ProjectionMappingState * _instance;
+		static ProjectionMappingMode * _instance;
 	
 		float _surfaceScaleBeforeTransform;
 	

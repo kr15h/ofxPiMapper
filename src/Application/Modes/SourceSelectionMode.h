@@ -9,17 +9,17 @@
 namespace ofx {
 namespace piMapper {
 
-class SourceSelectionState : public ApplicationBaseState {
+class SourceSelectionMode : public ApplicationBaseMode {
 
 	public:
-		static SourceSelectionState * instance();
+		static SourceSelectionMode * instance();
 		void setup(Application * app);
 		void draw(Application * app);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
 
 	private:
-		static SourceSelectionState * _instance;
+		static SourceSelectionMode * _instance;
 
 };
 

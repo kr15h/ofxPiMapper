@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-SetTexMapDrawModeCmd::SetTexMapDrawModeCmd(TextureMappingState * s, int m){
+SetTexMapDrawModeCmd::SetTexMapDrawModeCmd(TextureMappingMode * s, int m){
 	_state = s;
 	_newMode = m;
 }

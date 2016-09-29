@@ -6,11 +6,11 @@
 #include "SetApplicationStateCmd.h"
 #include "ClearSurfacesCmd.h"
 
-#include "ApplicationBaseState.h"
-#include "PresentationState.h"
-#include "ProjectionMappingState.h"
-#include "TextureMappingState.h"
-#include "SourceSelectionState.h"
+#include "ApplicationBaseMode.h"
+#include "PresentationMode.h"
+#include "ProjectionMappingMode.h"
+#include "TextureMappingMode.h"
+#include "SourceSelectionMode.h"
 #include "FboSource.h"
 #include "Info.h"
 
@@ -28,14 +28,14 @@
 namespace ofx {
 namespace piMapper {
 
-class ApplicationBaseState;
+class ApplicationBaseMode;
 
 class Application : public KeyListener {
 
 	public:
 		Application();
 
-		ApplicationBaseState * getState();
+		ApplicationBaseMode * getState();
 
 		void setup();
 		void update();
@@ -70,13 +70,13 @@ class Application : public KeyListener {
 		TerminalListener consoleListener;
 	
 	protected:
-		void setState(ApplicationBaseState * st);
+		void setState(ApplicationBaseMode * st);
 	
 	private:
-		friend class ApplicationBaseState;
+		friend class ApplicationBaseMode;
 		friend class SetApplicationStateCmd;
 
-		ApplicationBaseState * _state;
+		ApplicationBaseMode * _state;
 	
 		CmdManager _cmdManager;
 		MediaServer _mediaServer;
