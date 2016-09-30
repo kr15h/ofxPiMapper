@@ -1,9 +1,9 @@
-#include "SetApplicationStateCmd.h"
+#include "SetApplicationModeCmd.h"
 
 namespace ofx {
 namespace piMapper {
 
-SetApplicationStateCmd::SetApplicationStateCmd(Application * app,
+SetApplicationModeCmd::SetApplicationModeCmd(Application * app,
 											   ApplicationBaseMode * st){
 
 	_application = app;
@@ -11,7 +11,7 @@ SetApplicationStateCmd::SetApplicationStateCmd(Application * app,
 	_applicationState = st;
 }
 
-void SetApplicationStateCmd::exec(){
+void SetApplicationModeCmd::exec(){
 	_prevApplicationState = _application->getState();
 	_application->setState(_applicationState);
 	_applicationState->setTranslation(ofPoint(0, 0));
@@ -33,8 +33,8 @@ void SetApplicationStateCmd::exec(){
 	}
 }
 
-void SetApplicationStateCmd::undo(){
-	ofLogNotice("SetApplicationStateCmd", "undo");
+void SetApplicationModeCmd::undo(){
+	ofLogNotice("SetApplicationModeCmd", "undo");
 	_application->setState(_prevApplicationState);
 	_application->getState()->setTranslation(_translation);
 	

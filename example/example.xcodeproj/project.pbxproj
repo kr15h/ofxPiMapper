@@ -69,7 +69,7 @@
 		01E9EA321D9D535E00E1BFAE /* SelPrevVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9B71D9D535E00E1BFAE /* SelPrevVertexCmd.cpp */; };
 		01E9EA331D9D535E00E1BFAE /* SelSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9B91D9D535E00E1BFAE /* SelSurfaceCmd.cpp */; };
 		01E9EA341D9D535E00E1BFAE /* SelVertexCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9BB1D9D535E00E1BFAE /* SelVertexCmd.cpp */; };
-		01E9EA351D9D535E00E1BFAE /* SetApplicationStateCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9BD1D9D535E00E1BFAE /* SetApplicationStateCmd.cpp */; };
+		01E9EA351D9D535E00E1BFAE /* SetApplicationModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9BD1D9D535E00E1BFAE /* SetApplicationModeCmd.cpp */; };
 		01E9EA361D9D535E00E1BFAE /* SetNextSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9BF1D9D535E00E1BFAE /* SetNextSourceCmd.cpp */; };
 		01E9EA371D9D535E00E1BFAE /* SetSourceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9C11D9D535E00E1BFAE /* SetSourceCmd.cpp */; };
 		01E9EA381D9D535E00E1BFAE /* SetTexMapDrawModeCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01E9E9C31D9D535E00E1BFAE /* SetTexMapDrawModeCmd.cpp */; };
@@ -303,8 +303,8 @@
 		01E9E9BA1D9D535E00E1BFAE /* SelSurfaceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelSurfaceCmd.h; sourceTree = "<group>"; };
 		01E9E9BB1D9D535E00E1BFAE /* SelVertexCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelVertexCmd.cpp; sourceTree = "<group>"; };
 		01E9E9BC1D9D535E00E1BFAE /* SelVertexCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelVertexCmd.h; sourceTree = "<group>"; };
-		01E9E9BD1D9D535E00E1BFAE /* SetApplicationStateCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetApplicationStateCmd.cpp; sourceTree = "<group>"; };
-		01E9E9BE1D9D535E00E1BFAE /* SetApplicationStateCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetApplicationStateCmd.h; sourceTree = "<group>"; };
+		01E9E9BD1D9D535E00E1BFAE /* SetApplicationModeCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetApplicationModeCmd.cpp; sourceTree = "<group>"; };
+		01E9E9BE1D9D535E00E1BFAE /* SetApplicationModeCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetApplicationModeCmd.h; sourceTree = "<group>"; };
 		01E9E9BF1D9D535E00E1BFAE /* SetNextSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetNextSourceCmd.cpp; sourceTree = "<group>"; };
 		01E9E9C01D9D535E00E1BFAE /* SetNextSourceCmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetNextSourceCmd.h; sourceTree = "<group>"; };
 		01E9E9C11D9D535E00E1BFAE /* SetSourceCmd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetSourceCmd.cpp; sourceTree = "<group>"; };
@@ -768,8 +768,8 @@
 				01E9E9BA1D9D535E00E1BFAE /* SelSurfaceCmd.h */,
 				01E9E9BB1D9D535E00E1BFAE /* SelVertexCmd.cpp */,
 				01E9E9BC1D9D535E00E1BFAE /* SelVertexCmd.h */,
-				01E9E9BD1D9D535E00E1BFAE /* SetApplicationStateCmd.cpp */,
-				01E9E9BE1D9D535E00E1BFAE /* SetApplicationStateCmd.h */,
+				01E9E9BD1D9D535E00E1BFAE /* SetApplicationModeCmd.cpp */,
+				01E9E9BE1D9D535E00E1BFAE /* SetApplicationModeCmd.h */,
 				01E9E9BF1D9D535E00E1BFAE /* SetNextSourceCmd.cpp */,
 				01E9E9C01D9D535E00E1BFAE /* SetNextSourceCmd.h */,
 				01E9E9C11D9D535E00E1BFAE /* SetSourceCmd.cpp */,
@@ -1204,7 +1204,7 @@
 				0130C9691CE65AA600911E17 /* lz4.c in Sources */,
 				01E9EA431D9D535E00E1BFAE /* TextureEditorWidget.cpp in Sources */,
 				01E9EA171D9D535E00E1BFAE /* ProjectionMappingMode.cpp in Sources */,
-				01E9EA351D9D535E00E1BFAE /* SetApplicationStateCmd.cpp in Sources */,
+				01E9EA351D9D535E00E1BFAE /* SetApplicationModeCmd.cpp in Sources */,
 				01E9EA471D9D535E00E1BFAE /* MediaServer.cpp in Sources */,
 				0130C9791CE65AA600911E17 /* HiddenFileFilter.cpp in Sources */,
 				01E9EA251D9D535E00E1BFAE /* MvLayerUpCmd.cpp in Sources */,

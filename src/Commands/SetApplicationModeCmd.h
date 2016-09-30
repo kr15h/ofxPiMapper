@@ -9,10 +9,10 @@ namespace piMapper {
 class Application;
 class ApplicationBaseMode;
 
-class SetApplicationStateCmd : public BaseUndoCmd {
+class SetApplicationModeCmd : public BaseUndoCmd {
 
 	public:
-		SetApplicationStateCmd(Application * app,
+		SetApplicationModeCmd(Application * app,
 							   ApplicationBaseMode * st);
 
 		void exec();

@@ -94,25 +94,25 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 
 	 case '1':
 		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationStateCmd(
+			 new ofx::piMapper::SetApplicationModeCmd(
 				 this, PresentationMode::instance()));
 		 break;
 
 	 case '2':
 		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationStateCmd(
+			 new ofx::piMapper::SetApplicationModeCmd(
 				 this, TextureMappingMode::instance()));
 		 break;
 
 	 case '3':
 		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationStateCmd(
+			 new ofx::piMapper::SetApplicationModeCmd(
 				 this, ProjectionMappingMode::instance()));
 		 break;
 
 	 case '4':
 		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationStateCmd(
+			 new ofx::piMapper::SetApplicationModeCmd(
 				 this, SourceSelectionMode::instance()));
 		 break;
 

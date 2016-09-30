@@ -21,7 +21,7 @@ void PresentationMode::draw(Application * app){
 
 void PresentationMode::onMousePressed(Application * app, ofMouseEventArgs & args){
     app->getCmdManager()->exec(
-        new ofx::piMapper::SetApplicationStateCmd(
+        new ofx::piMapper::SetApplicationModeCmd(
             app, ProjectionMappingMode::instance()));
 }
 

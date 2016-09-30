@@ -3,7 +3,7 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 
-#include "SetApplicationStateCmd.h"
+#include "SetApplicationModeCmd.h"
 #include "ClearSurfacesCmd.h"
 
 #include "ApplicationBaseMode.h"
@@ -74,7 +74,7 @@ class Application : public KeyListener {
 	
 	private:
 		friend class ApplicationBaseMode;
-		friend class SetApplicationStateCmd;
+		friend class SetApplicationModeCmd;
 
 		ApplicationBaseMode * _state;
 	

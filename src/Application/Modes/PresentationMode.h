@@ -4,7 +4,7 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 #include "ofGraphics.h"
-#include "SetApplicationStateCmd.h"
+#include "SetApplicationModeCmd.h"
 #include "ProjectionMappingMode.h"
 #include "GuiMode.h"
 
