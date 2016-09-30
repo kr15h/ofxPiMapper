@@ -24,10 +24,12 @@ void TextureMappingMode::update(Application * app){
 }
 
 void TextureMappingMode::draw(Application * app){
-	ofPushMatrix();
-	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-
+	
+	// TODO: Make state classes out of the following anti-code.
+	
 	if(_drawMode == 0){ // Semi-transparent surfaces on front
+		ofPushMatrix();
+		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 		drawTexture(app);
 		ofPopMatrix();
 		
@@ -35,10 +37,9 @@ void TextureMappingMode::draw(Application * app){
 		ofSetColor(255, 255, 255, 150);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
-		
+	}else if(_drawMode == 1){ // Opaque surfaces on front
 		ofPushMatrix();
 		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-	}else if(_drawMode == 1){ // Opaque surfaces on front
 		drawTexture(app);
 		ofPopMatrix();
 		
@@ -46,30 +47,25 @@ void TextureMappingMode::draw(Application * app){
 		ofSetColor(255, 255, 255, 255);
 		app->getSurfaceManager()->draw();
 		ofPopStyle();
-		
+	}else if(_drawMode == 2){ // Draw texture only
 		ofPushMatrix();
 		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-	}else if(_drawMode == 2){ // Draw texture only
-		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 		drawTexture(app);
+		ofPopMatrix();
 	}else{
 		_drawMode = 0;
 	}
 	
 	if(_drawMode != 2){
-		ofPopMatrix();
-		
 		Gui::instance()->getSurfaceHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 		Gui::instance()->getSurfaceHighlightWidget().draw();
-		
-		ofPushMatrix();
-		ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	}
 	
+	ofPushMatrix();
+	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
 	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
 	Gui::instance()->getTextureEditorWidget().draw();
-	
 	ofPopMatrix();
 }
 
