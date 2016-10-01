@@ -6,9 +6,10 @@
 namespace ofx {
 namespace piMapper {
 
-// One can imagine this as a layers panel in an image editor.
-// TODO: Make it singleton for easy access from commands.
-// And refactor rest of the code to use it this way.
+/* TODO: Do not use singleton here. 
+ * For presets we need multiple instances of surface stacks.
+ */
+
 class SurfaceStack {
 	public:
 		static SurfaceStack * instance();

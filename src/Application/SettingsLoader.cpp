@@ -29,6 +29,12 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 		return false;
 	}
 	
+	/* TODO: Add presets.
+	 * Presets would be surface groups. Now we are using a single <surfaces> tag
+	 * to store only one possible composition. We can multiply the <surfaces> container
+	 * in order to get presets working.
+	 */
+	
 	if(!xmlSettings->tagExists("surfaces")){
 		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
 		return false;
