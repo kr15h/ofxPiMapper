@@ -10,11 +10,13 @@ namespace piMapper {
 class MvLayerDnCmd : public BaseUndoCmd {
 
 	public:
-		MvLayerDnCmd(BaseSurface * selectedSurface);
+		MvLayerDnCmd(SurfaceStack * stack, BaseSurface * selectedSurface);
 		void exec();
 		void undo();
 
 	private:
+		SurfaceStack * _stack;
+	
 		BaseSurface * _selectedSurface;
 	
 		int _selectedSurfaceIndex;

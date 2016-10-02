@@ -70,12 +70,16 @@ class SurfaceManager {
 		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 	
+		SurfaceStack * getActivePreset();
+	
 	private:
 		BaseSurface * selectedSurface;
 		ofxXmlSettings xmlSettings;
 		MediaServer * mediaServer;
 	
 		int _selectedVertexIndex;
+	
+		vector <SurfaceStack *> _presets;
 };
 
 } // namespace piMapper

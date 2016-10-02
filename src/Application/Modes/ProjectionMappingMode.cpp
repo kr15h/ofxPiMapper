@@ -234,12 +234,14 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case '0': // Move selected surface up the layer stack
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
 			if(app->getSurfaceManager()->getSelectedSurface() ==
-				SurfaceStack::instance()->at(SurfaceStack::instance()->size() - 1)){
+				app->getSurfaceManager()->getActivePreset()->at(
+					app->getSurfaceManager()->getActivePreset()->size() - 1)){
 				return;
 			}
 			
 			app->getCmdManager()->exec(
 				new MvLayerUpCmd(
+					app->getSurfaceManager()->getActivePreset(),
 					app->getSurfaceManager()->getSelectedSurface())
 			);
 		 }
@@ -248,12 +250,13 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case '9': // Move selected surface down the layer stack
 		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
 			if(app->getSurfaceManager()->getSelectedSurface() ==
-				SurfaceStack::instance()->at(0)){
+				app->getSurfaceManager()->getActivePreset()->at(0)){
 				return;
 			}
 			
 			app->getCmdManager()->exec(
 				new MvLayerDnCmd(
+					app->getSurfaceManager()->getActivePreset(),
 					app->getSurfaceManager()->getSelectedSurface())
 			);
 		 }

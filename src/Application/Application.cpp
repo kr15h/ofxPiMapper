@@ -73,7 +73,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	if(_keySequence.size() >= 3){
 		_keySequence = _keySequence.substr(_keySequence.size() - 3, 3);
 		if(_keySequence == "new"){
-			if(SurfaceStack::instance()->size()){
+			if(_surfaceManager.getActivePreset()->size()){
 				_cmdManager.exec(new ClearSurfacesCmd(getSurfaceManager()));
 			}
 			return;

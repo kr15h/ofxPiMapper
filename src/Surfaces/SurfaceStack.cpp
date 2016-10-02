@@ -3,15 +3,6 @@
 namespace ofx {
 namespace piMapper {
 
-SurfaceStack * SurfaceStack::_instance = 0;
-
-SurfaceStack * SurfaceStack::instance(){
-	if(_instance == 0){
-		_instance = new ofx::piMapper::SurfaceStack();
-	}
-	return _instance;
-}
-
 void SurfaceStack::push_back(BaseSurface * s){
 	ofAddListener(s->verticesChangedEvent, this, &SurfaceStack::onVerticesChanged);
 	ofAddListener(s->vertexChangedEvent, this, &SurfaceStack::onVertexChanged);
