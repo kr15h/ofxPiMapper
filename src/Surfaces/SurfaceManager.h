@@ -39,7 +39,7 @@ class SurfaceManager {
 		void deselectSurface();
 		void saveXmlSettings(string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
-		void clear();
+		void clearPresets();
 		
 		bool loadXmlSettings(string fileName);
 	

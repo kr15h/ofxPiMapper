@@ -83,20 +83,14 @@ void SurfaceManager::deleteSurface(ofx::piMapper::BaseSurface * surface){
 	}
 }
 
-/*
- * Question: Should it clear the active preset or all presets?
- * Maybe creating additional methods like clearPresets() and clearActivePreset() would help.
- */
-void SurfaceManager::clear(){
-	if(_activePresetIndex < 0){
-		ofLogWarning("SurfaceManager::clear", "Can not clear. No active preset.");
-		return;
+void SurfaceManager::clearPresets(){
+	for(unsigned int i = 0; i < _presets.size(); ++i){
+		while(_presets[i]->size()){
+			delete _presets[i]->back();
+			_presets[i]->pop_back();
+		}
 	}
-
-	while(_presets[_activePresetIndex]->size()){
-		delete _presets[_activePresetIndex]->back();
-		_presets[_activePresetIndex]->pop_back();
-	}
+	_presets.clear();
 }
 
 // TODO: Do serious adjustment here. We need to save all presets. Not just the active one.
