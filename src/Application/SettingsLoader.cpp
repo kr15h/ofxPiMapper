@@ -39,6 +39,10 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
 		return false;
 	}else{
+		// Count <surfaces> tags.
+		unsigned int numPresets = xmlSettings->getNumTags("surfaces");
+		cout << "numPresets: " << numPresets << endl;
+	
 		xmlSettings->pushTag("surfaces");
 
 		int numSurfaces = xmlSettings->getNumTags("surface");

@@ -33,6 +33,8 @@
             <source-name>Custom FBO Source</source-name>
         </source>
     </surface>
+</surfaces>
+<surfaces>
     <surface type="1">
         <vertices>
             <vertex>
@@ -78,6 +80,8 @@
             <perspectiveWarping>1</perspectiveWarping>
         </properties>
     </surface>
+</surfaces>
+<surfaces>
     <surface type="2">
         <vertices>
             <vertex>
