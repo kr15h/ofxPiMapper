@@ -60,6 +60,7 @@ class SurfaceManager {
 	
 		int size();
 		int getSelectedVertexIndex();
+		int getActivePresetIndex();
 	
 		ofEvent <int> vertexChangedEvent;
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
@@ -71,6 +72,9 @@ class SurfaceManager {
 		void onVerticesChanged(vector<ofVec3f> & vertices);
 	
 		SurfaceStack * getActivePreset();
+		SurfaceStack * createPreset();
+	
+		void setNextPreset();
 	
 	private:
 		BaseSurface * selectedSurface;
@@ -78,8 +82,11 @@ class SurfaceManager {
 		MediaServer * mediaServer;
 	
 		int _selectedVertexIndex;
+		int _activePresetIndex;
 	
 		vector <SurfaceStack *> _presets;
+	
+	
 };
 
 } // namespace piMapper

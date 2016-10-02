@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 #include "SurfaceStack.h"
+#include "SurfaceManager.h"
 #include "MediaServer.h"
 #include "SurfaceFactory.h"
 #include "SurfaceType.h"
@@ -10,11 +11,13 @@
 namespace ofx {
 namespace piMapper {
 
+class SurfaceManager;
+
 class SettingsLoader {
 	public:
 		static SettingsLoader * instance();
 	
-		bool load(SurfaceStack & surfaces, MediaServer & mediaServer, string fileName);
+		bool load(SurfaceManager & surfaceManager, MediaServer & mediaServer, string fileName);
 		bool save(SurfaceStack & surfaces, string fileName);
 	
 		string getLastLoadedFilename(){ return _lastLoadedFilename; };

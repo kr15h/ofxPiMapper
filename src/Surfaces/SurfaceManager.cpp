@@ -7,39 +7,46 @@ SurfaceManager::SurfaceManager(){
 	mediaServer = 0;
 	selectedSurface = 0;
 	
-	// Create one SurfaceStack instance in the beginning as interphase towards full
-	// preset functionality.
+	//SurfaceStack * preset = new SurfaceStack();
+	//_presets.push_back(preset);
+	//_activePresetIndex = 0;
 	
-	SurfaceStack * preset = new SurfaceStack();
-	_presets.push_back(preset);
-	
-	ofAddListener(
-		_presets[0]->vertexChangedEvent,
-		this,
-		&SurfaceManager::onVertexChanged);
-	ofAddListener(
-		_presets[0]->verticesChangedEvent,
-		this,
-		&SurfaceManager::onVerticesChanged);
+	_activePresetIndex = -1;
 	_selectedVertexIndex = -1;
 }
 
 void SurfaceManager::draw(){
-	_presets[0]->draw();
+	if(_activePresetIndex < 0){
+		return;
+	}
+	
+	_presets[_activePresetIndex]->draw();
 }
 
 void SurfaceManager::addSurface(BaseSurface * surface){
-	_presets[0]->push_back(surface);
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::addSurface", "Can not add surface. No active preset.");
+		return;
+	}
+
+	_presets[_activePresetIndex]->push_back(surface);
 }
 
 void SurfaceManager::removeSelectedSurface(){
+	if(_activePresetIndex < 0){
+		ofLogWarning(
+			"SurfaceManager::removeSelectedSurface",
+			"Can not remove surface. No Active preset");
+		return;
+	}
+	
 	if(selectedSurface == 0){
 		return;
 	}
 	
-	for(int i = 0; i < _presets[0]->size(); i++){
-		if(_presets[0]->at(i) == selectedSurface){
-			_presets[0]->erase(i);
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); i++){
+		if(_presets[_activePresetIndex]->at(i) == selectedSurface){
+			_presets[_activePresetIndex]->erase(i);
 			selectedSurface = 0;
 			_selectedVertexIndex = -1;
 			break;
@@ -48,46 +55,80 @@ void SurfaceManager::removeSelectedSurface(){
 }
 
 void SurfaceManager::removeSurface(){
-	if(_presets[0]->size() <= 0){
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::removeSurface", "Can not remove surface. No active preset.");
 		return;
 	}
-    BaseSurface * s = _presets[0]->back();
-	_presets[0]->pop_back();
+	
+	if(_presets[_activePresetIndex]->size() <= 0){
+		return;
+	}
+	
+    BaseSurface * s = _presets[_activePresetIndex]->back();
+	_presets[_activePresetIndex]->pop_back();
     delete s;
 }
 
 void SurfaceManager::deleteSurface(ofx::piMapper::BaseSurface * surface){
-	for(int i = 0; i < _presets[0]->size(); ++i){
-		if(_presets[0]->at(i) == surface){
-			_presets[0]->erase(i);
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::deleteSurface", "Can not delete surface. No active preset.");
+		return;
+	}
+
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); ++i){
+		if(_presets[_activePresetIndex]->at(i) == surface){
+			_presets[_activePresetIndex]->erase(i);
 			break;
 		}
 	}
 }
 
+/*
+ * Question: Should it clear the active preset or all presets?
+ * Maybe creating additional methods like clearPresets() and clearActivePreset() would help.
+ */
 void SurfaceManager::clear(){
-	while(_presets[0]->size()){
-		delete _presets[0]->back();
-		_presets[0]->pop_back();
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::clear", "Can not clear. No active preset.");
+		return;
+	}
+
+	while(_presets[_activePresetIndex]->size()){
+		delete _presets[_activePresetIndex]->back();
+		_presets[_activePresetIndex]->pop_back();
 	}
 }
 
+// TODO: Do serious adjustment here. We need to save all presets. Not just the active one.
 void SurfaceManager::saveXmlSettings(string fileName){
+	if(_presets.size() <= 0){
+		ofLogWarning(
+			"SurfaceManager::saveXmlSettings",
+			"Can not save XML settings. No presets.");
+		return;
+	}
+	
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		exit(EXIT_FAILURE);
 	}
 	
-	SettingsLoader::instance()->save(*_presets[0], fileName);
+	SettingsLoader::instance()->save(*_presets[_activePresetIndex], fileName);
 }
 
+// TODO: We need to load all presets. Not just the active one.
 bool SurfaceManager::loadXmlSettings(string fileName){
+	
+	// TODO: clear old presets beforehand?
+	
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		exit(EXIT_FAILURE);
 	}
 	
-	return SettingsLoader::instance()->load(*_presets[0], *mediaServer, fileName);
+	bool success = SettingsLoader::instance()->load(*this, *mediaServer, fileName);
+	return success;
+	//return SettingsLoader::instance()->load(*_presets[_activePresetIndex], *mediaServer, fileName);
 }
 
 void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
@@ -95,21 +136,28 @@ void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
 }
 
 BaseSurface * SurfaceManager::selectSurface(int index){
-	if(index >= _presets[0]->size()){
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::selectSurface", "Can not select surface. No active preset.");
+		return;
+	}
+
+	if(index >= _presets[_activePresetIndex]->size()){
 		throw runtime_error("Surface index out of bounds.");
 	}
 
-	selectedSurface = _presets[0]->at(index);
+	selectedSurface = _presets[_activePresetIndex]->at(index);
 	_selectedVertexIndex = -1;
 	ofSendMessage("surfaceSelected");
 	return selectedSurface;
 }
 
 BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
-	cout << "SurfaceManager::selectSurface()" << endl;
-
-	for(int i = 0; i < _presets[0]->size(); i++){
-		if(_presets[0]->at(i) == surface){
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::selectSurface", "Can not select surface. No active preset.");
+	}
+	
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); i++){
+		if(_presets[_activePresetIndex]->at(i) == surface){
 			selectedSurface = surface;
 			_selectedVertexIndex = -1;
 			ofSendMessage("surfaceSelected");
@@ -123,6 +171,13 @@ BaseSurface * SurfaceManager::selectSurface(BaseSurface * surface){
 }
 
 BaseSurface * SurfaceManager::selectNextSurface(){
+	if(_activePresetIndex < 0){
+		ofLogWarning(
+			"SurfaceManager::selectNextSurface",
+			"Can not select next surface. No active preset.");
+		return;
+	}
+
 	int next;
 	_selectedVertexIndex = -1;
 	
@@ -133,15 +188,15 @@ BaseSurface * SurfaceManager::selectNextSurface(){
 		return selectedSurface;
 	}
 	
-	for(int i = 0; i < _presets[0]->size(); ++i){
-		if(_presets[0]->at(i) == selectedSurface){
-			if(i < _presets[0]->size() - 1){
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); ++i){
+		if(_presets[_activePresetIndex]->at(i) == selectedSurface){
+			if(i < _presets[_activePresetIndex]->size() - 1){
 				next = i + 1;
 			}else{
 				next = 0;
 			}
 			
-			selectedSurface = _presets[0]->at(next);
+			selectedSurface = _presets[_activePresetIndex]->at(next);
 			ofNotifyEvent(surfaceSelectedEvent, next, this);
 			return selectedSurface;
 		}
@@ -151,25 +206,32 @@ BaseSurface * SurfaceManager::selectNextSurface(){
 }
 
 BaseSurface * SurfaceManager::selectPrevSurface(){
+	if(_activePresetIndex < 0){
+		ofLogWarning(
+			"SurfaceManager::selectPrevSurface",
+			"Can not select prev surface. No active preset.");
+		return;
+	}
+
 	int prev;
 	_selectedVertexIndex = -1;
 	
 	if(selectedSurface == 0){
-		prev = _presets[0]->size() - 1;
+		prev = _presets[_activePresetIndex]->size() - 1;
 		selectedSurface = selectSurface(prev);
 		ofNotifyEvent(surfaceSelectedEvent, prev, this);
 		return selectedSurface;
 	}
 	
-	for(int i = 0; i < _presets[0]->size(); ++i){
-		if(_presets[0]->at(i) == selectedSurface){
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); ++i){
+		if(_presets[_activePresetIndex]->at(i) == selectedSurface){
 			if(i > 0){
 				prev = i - 1;
 			}else{
-				prev = _presets[0]->size() - 1;
+				prev = _presets[_activePresetIndex]->size() - 1;
 			}
 			
-			selectedSurface = _presets[0]->at(prev);
+			selectedSurface = _presets[_activePresetIndex]->at(prev);
 			ofNotifyEvent(surfaceSelectedEvent, prev, this);
 			return selectedSurface;
 		}
@@ -254,8 +316,15 @@ void SurfaceManager::moveSelectionBy(ofVec2f v){
 }
 
 void SurfaceManager::moveAllSurfacesBy(ofVec2f v){
-	for(int i = 0; i < _presets[0]->size(); ++i){
-		_presets[0]->at(i)->moveBy(v);
+	if(_activePresetIndex < 0){
+		ofLogWarning(
+			"SurfaceManager::moveAllSurfacesBy",
+			"Can not move surfaces. No active preset.");
+		return;
+	}
+
+	for(int i = 0; i < _presets[_activePresetIndex]->size(); ++i){
+		_presets[_activePresetIndex]->at(i)->moveBy(v);
 	}
 }
 
@@ -265,20 +334,37 @@ void SurfaceManager::deselectSurface(){
 }
 
 BaseSurface * SurfaceManager::getSurface(int index){
-	if(index >= _presets[0]->size()){
+	if(_activePresetIndex < 0){
+		throw runtime_error("No active preset.");
+		return 0;
+	}
+
+	if(index >= _presets[_activePresetIndex]->size()){
 		throw runtime_error("Surface index out of bounds.");
 		return 0;
 	}
 	
-	return _presets[0]->at(index);
+	return _presets[_activePresetIndex]->at(index);
 }
 
+/* TODO: Solve fundamental question
+ * What size are we talking about here? 
+ * Is it the number of presets or surfaces?
+ */
 int SurfaceManager::size(){
-	return _presets[0]->size();
+	if(_activePresetIndex < 0){
+		return 0;
+	}
+	
+	return _presets[_activePresetIndex]->size();
 }
 
 int SurfaceManager::getSelectedVertexIndex(){
 	return _selectedVertexIndex;
+}
+
+int SurfaceManager::getActivePresetIndex(){
+	return 0;
 }
 
 void SurfaceManager::onVertexChanged(int & i){
@@ -290,7 +376,50 @@ void SurfaceManager::onVerticesChanged(vector<ofVec3f> & vertices){
 }
 
 SurfaceStack * SurfaceManager::getActivePreset(){
-	return _presets[0];
+	if(_activePresetIndex < 0){
+		throw runtime_error(
+			"SurfaceManager::getActivePreset: Can not getActivePreset. No active preset.");
+	}
+
+	return _presets[_activePresetIndex];
+}
+
+SurfaceStack * SurfaceManager::createPreset(){
+	SurfaceStack * preset = new SurfaceStack();
+	_presets.push_back(preset);
+	
+	// If we did not have any presets before, set the new as active one.
+	if(_presets.size() == 1){
+		_activePresetIndex = 0;
+	}
+	
+	// Remember to remove these listeners when adding a removePreset method.
+	ofAddListener(
+		preset->vertexChangedEvent,
+		this,
+		&SurfaceManager::onVertexChanged);
+	ofAddListener(
+		preset->verticesChangedEvent,
+		this,
+		&SurfaceManager::onVerticesChanged);
+	
+	return preset;
+	
+	// TODO: Create command for this. And what not.
+}
+
+void SurfaceManager::setNextPreset(){
+	if(_presets.size() <= 1){
+		return;
+	}
+	
+	if(_activePresetIndex == _presets.size() - 1){
+		_activePresetIndex = 0;
+	}else{
+		_activePresetIndex += 1;
+	}
+	
+	// TODO: Create command for this.
 }
 
 } // namespace piMapper

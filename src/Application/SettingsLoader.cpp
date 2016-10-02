@@ -16,7 +16,10 @@ SettingsLoader::SettingsLoader(){
     _lastLoadedFilename = "surfaces.xml";
 }
 
-bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, string fileName){
+bool SettingsLoader::load(
+	SurfaceManager & surfaceManager,
+	MediaServer & mediaServer,
+	string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
 	string sourceType = "";
@@ -42,6 +45,13 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 		// Count <surfaces> tags.
 		unsigned int numPresets = xmlSettings->getNumTags("surfaces");
 		cout << "numPresets: " << numPresets << endl;
+		
+		// Clear previous presets and surfaces first.
+		// TODO...
+		
+		// Add new presets.
+		// surfaceManager.createPreset...
+		SurfaceStack * surfaces = surfaceManager.createPreset();
 	
 		xmlSettings->pushTag("surfaces");
 
@@ -109,19 +119,19 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 					if(sourceName != "none" && source != 0){
 						triangleSurface->setSource(source);
 					}
-					surfaces.push_back(triangleSurface);
+					surfaces->push_back(triangleSurface);
 				}else if(type == SurfaceType::QUAD_SURFACE){
 					BaseSurface * quadSurface = getQuadSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
 						quadSurface->setSource(source);
 					}
-					surfaces.push_back(quadSurface);
+					surfaces->push_back(quadSurface);
 				}else if(type == SurfaceType::GRID_WARP_SURFACE){
 					BaseSurface * gridWarpSurface = getGridWarpSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
 						gridWarpSurface->setSource(source);
 					}
-					surfaces.push_back(gridWarpSurface);
+					surfaces->push_back(gridWarpSurface);
 				}
 
 				xmlSettings->popTag(); // surface
@@ -136,6 +146,7 @@ bool SettingsLoader::load(SurfaceStack & surfaces, MediaServer & mediaServer, st
 	return true;
 }
 
+// TODO: Save all presets, not just the active one.
 bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
