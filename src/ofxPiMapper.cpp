@@ -33,3 +33,7 @@ bool ofxPiMapper::loadXmlSettings(string fileName){
 unsigned int ofxPiMapper::getNumPresets(){
 	return _application.getSurfaceManager()->getNumPresets();
 }
+
+unsigned int ofxPiMapper::getActivePresetIndex(){
+	return _application.getSurfaceManager()->getActivePresetIndex();
+}

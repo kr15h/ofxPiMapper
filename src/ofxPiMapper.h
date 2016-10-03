@@ -32,6 +32,7 @@ class ofxPiMapper {
 		bool loadXmlSettings(string fileName);
 	
 		unsigned int getNumPresets();
+		unsigned int getActivePresetIndex();
 
 	private:
 		ofx::piMapper::Application _application;
