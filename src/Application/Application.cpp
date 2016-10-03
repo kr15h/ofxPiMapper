@@ -32,10 +32,14 @@ Application::Application(){
 }
 
 void Application::setup(){
-	if(!loadXmlSettings(PIMAPPER_USER_SURFACES_XML_FILE)){
-		ofLogWarning("Application::setup()") << "Failed to load user settings" << endl;
-		if(!loadXmlSettings(PIMAPPER_DEF_SURFACES_XML_FILE)){
-			ofLogWarning("Application::setup()") << "Failed to load default settings" << endl;
+	if(!loadXmlSettings(PIMAPPER_SETTINGS_FILE)){
+		if(SettingsLoader::instance()->create(PIMAPPER_SETTINGS_FILE)){
+			bool success = loadXmlSettings(PIMAPPER_SETTINGS_FILE);
+			if(!success){
+				throw runtime_error("ofxPiMapper: Failed to load settings.");
+			}
+		}else{
+			throw runtime_error("ofxPiMapper: Failed to create default settings file.");
 		}
 	}
 	

@@ -22,8 +22,7 @@
 #include "Gui.h"
 #include "TerminalListener.h"
 
-#define PIMAPPER_DEF_SURFACES_XML_FILE "defaultSurfaces.xml"
-#define PIMAPPER_USER_SURFACES_XML_FILE "surfaces.xml"
+#define PIMAPPER_SETTINGS_FILE "ofxpimapper.xml"
 
 namespace ofx {
 namespace piMapper {

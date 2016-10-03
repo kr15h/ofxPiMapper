@@ -19,6 +19,7 @@ class SettingsLoader {
 	
 		bool load(SurfaceManager & surfaceManager, MediaServer & mediaServer, string fileName);
 		bool save(SurfaceManager & surfaceManager, string fileName);
+		bool create(string fileName);
 	
 		string getLastLoadedFilename(){ return _lastLoadedFilename; };
 	

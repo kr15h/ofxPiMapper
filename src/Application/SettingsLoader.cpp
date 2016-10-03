@@ -33,18 +33,18 @@ bool SettingsLoader::load(
 	}
 	
 	if(!xmlSettings->tagExists("surfaces")){
-		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
-		return false;
-	}else{
-		// Count <surfaces> tags.
-		unsigned int numPresets = xmlSettings->getNumTags("surfaces");
-		cout << "numPresets: " << numPresets << endl;
+		xmlSettings->addTag("surfaces");
+	}
+	
+	// Count <surfaces> tags.
+	unsigned int numPresets = xmlSettings->getNumTags("surfaces");
+	cout << "numPresets: " << numPresets << endl;
 		
-		// Clear previous presets and surfaces first.
-		surfaceManager.clearPresets();
+	// Clear previous presets and surfaces first.
+	surfaceManager.clearPresets();
 		
-		// Loop through <surfaces> tags in the XML.
-		for(unsigned int i = 0; i < numPresets; ++i){
+	// Loop through <surfaces> tags in the XML.
+	for(unsigned int i = 0; i < numPresets; ++i){
 	
 		xmlSettings->pushTag("surfaces", i);
 		
@@ -135,8 +135,7 @@ bool SettingsLoader::load(
 
 		xmlSettings->popTag(); // surfaces
 		
-		} // for
-	}
+	} // for
 	
 	_lastLoadedFilename = fileName;
 	
@@ -229,6 +228,12 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 	} // for
 	
 	xmlSettings->save(fileName);
+}
+
+bool SettingsLoader::create(string fileName){
+	ofxXmlSettings xml;
+	xml.addTag("surfaces");
+	return xml.save(fileName);
 }
 
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
