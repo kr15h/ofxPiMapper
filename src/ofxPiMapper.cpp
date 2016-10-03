@@ -26,6 +26,10 @@ void ofxPiMapper::setActivePreset(unsigned int i){
 	_application.getSurfaceManager()->setActivePreset(i);
 }
 
+void ofxPiMapper::setNextPreset(){
+	_application.getSurfaceManager()->setNextPreset();
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }
