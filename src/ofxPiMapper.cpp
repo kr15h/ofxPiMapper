@@ -22,6 +22,14 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource * fboSource){
 	_application.addFboSource(fboSource);
 }
 
+void ofxPiMapper::setActivePreset(unsigned int i){
+	_application.getSurfaceManager()->setActivePreset(i);
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
+}
+
+unsigned int ofxPiMapper::getNumPresets(){
+	return _application.getSurfaceManager()->getNumPresets();
 }

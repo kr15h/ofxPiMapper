@@ -27,7 +27,11 @@ class ofxPiMapper {
 	
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
+		void setActivePreset(unsigned int i);
+
 		bool loadXmlSettings(string fileName);
+	
+		unsigned int getNumPresets();
 
 	private:
 		ofx::piMapper::Application _application;

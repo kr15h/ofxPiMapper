@@ -71,12 +71,13 @@ class SurfaceManager {
 
 		void onVertexChanged(int & i);
 		void onVerticesChanged(vector<ofVec3f> & vertices);
-	
+
 		SurfaceStack * getActivePreset();
 		SurfaceStack * createPreset();
 		SurfaceStack * getPresetAt(unsigned int i);
 	
 		void setNextPreset();
+		void setActivePreset(unsigned int i);
 	
 	private:
 		BaseSurface * selectedSurface;
