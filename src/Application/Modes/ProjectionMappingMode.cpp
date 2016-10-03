@@ -71,6 +71,13 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 				 SurfaceType::GRID_WARP_SURFACE)
 			 );
 		break;
+		
+	 case 'h':
+		 app->getCmdManager()->exec(
+			new AddSurfaceCmd(
+				app->getSurfaceManager(),
+				SurfaceType::HEXAGON_SURFACE));
+		 break;
 
 	 case OF_KEY_BACKSPACE:
 		 if(app->getSurfaceManager()->getSelectedSurface() == 0){

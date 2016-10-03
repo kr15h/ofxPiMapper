@@ -137,6 +137,8 @@ void TextureEditorWidget::createJoints(){
 		tc = texCoords;
 	}else if(surface->getType() == SurfaceType::QUAD_SURFACE){
 		tc = texCoords;
+	}else if(surface->getType() == SurfaceType::HEXAGON_SURFACE){
+		tc = texCoords;
 	}else if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
 		GridWarpSurface * s = (GridWarpSurface *)surface;
 		

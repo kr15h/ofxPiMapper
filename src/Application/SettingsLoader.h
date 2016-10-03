@@ -31,6 +31,7 @@ class SettingsLoader {
 		BaseSurface * getTriangleSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getQuadSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getGridWarpSurface(ofxXmlSettings * xmlSettings);
+		BaseSurface * getHexagonSurface(ofxXmlSettings * xmlSettings);
 	
 		string _lastLoadedFilename;
 };

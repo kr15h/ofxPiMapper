@@ -127,6 +127,12 @@ bool SettingsLoader::load(
 						gridWarpSurface->setSource(source);
 					}
 					surfaces->push_back(gridWarpSurface);
+				}else if(type == SurfaceType::HEXAGON_SURFACE){
+					BaseSurface * hexagonSurface = getHexagonSurface(xmlSettings);
+					if(sourceName != "none" && source != 0){
+						hexagonSurface->setSource(source);
+					}
+					surfaces->push_back(hexagonSurface);
 				}
 
 				xmlSettings->popTag(); // surface
@@ -460,8 +466,50 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 	return gridWarpSurface;
 }
 
+BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
+	vector <ofVec2f> vertices;
+	
+	if(xmlSettings->tagExists("vertices")){
+		xmlSettings->pushTag("vertices");
+		
+		unsigned int v = 0;
+		while(xmlSettings->tagExists("vertex", v)){
+			xmlSettings->pushTag("vertex", v);
+			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag(); // vertex
+			v += 1;
+		}
 
+		xmlSettings->popTag(); // vertices
+	}
 
+	vector <ofVec2f> texCoords;
+
+	if(xmlSettings->tagExists("texCoords")){
+		xmlSettings->pushTag("texCoords");
+		
+		unsigned int t = 0;
+		while(xmlSettings->tagExists("texCoord", t)){
+			xmlSettings->pushTag("texCoord", t);
+			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+										xmlSettings->getValue("y", 0.0f)));
+			xmlSettings->popTag(); // texCoord
+			t += 1;
+		}
+
+		xmlSettings->popTag(); // texCoords
+	}
+
+	// Create and add a triangle surface
+	BaseSurface * hexagonSurface =
+		SurfaceFactory::instance()->createSurface(
+			SurfaceType::HEXAGON_SURFACE);
+	hexagonSurface->setVertices(vertices);
+	hexagonSurface->setTexCoords(texCoords);
+	
+	return hexagonSurface;
+}
 
 } // namespace piMapper
 } // namespace ofx

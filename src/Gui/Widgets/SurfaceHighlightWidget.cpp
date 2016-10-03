@@ -26,6 +26,8 @@ void SurfaceHighlightWidget::draw(){
 		line.draw();
 	}else if(_sm->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
 		_sm->getSelectedSurface()->getMesh().drawWireframe();
+	}else if(_sm->getSelectedSurface()->getType() == SurfaceType::HEXAGON_SURFACE){
+		_sm->getSelectedSurface()->getMesh().drawWireframe();
 	}else{
 		ofPolyline p;
 		for(unsigned int i = 0;
