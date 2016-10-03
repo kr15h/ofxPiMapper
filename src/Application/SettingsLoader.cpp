@@ -32,12 +32,6 @@ bool SettingsLoader::load(
 		return false;
 	}
 	
-	/* TODO: Add presets.
-	 * Presets would be surface groups. Now we are using a single <surfaces> tag
-	 * to store only one possible composition. We can multiply the <surfaces> container
-	 * in order to get presets working.
-	 */
-	
 	if(!xmlSettings->tagExists("surfaces")){
 		ofLogWarning("SettingsLoader::load()") << "XML settings is empty or has wrong markup";
 		return false;
@@ -47,13 +41,14 @@ bool SettingsLoader::load(
 		cout << "numPresets: " << numPresets << endl;
 		
 		// Clear previous presets and surfaces first.
-		// TODO...
+		surfaceManager.clearPresets();
 		
-		// Add new presets.
-		// surfaceManager.createPreset...
-		SurfaceStack * surfaces = surfaceManager.createPreset();
+		// Loop through <surfaces> tags in the XML.
+		for(unsigned int i = 0; i < numPresets; ++i){
 	
-		xmlSettings->pushTag("surfaces");
+		xmlSettings->pushTag("surfaces", i);
+		
+		SurfaceStack * surfaces = surfaceManager.createPreset();
 
 		int numSurfaces = xmlSettings->getNumTags("surface");
 		for(int i = 0; i < numSurfaces; i++){
@@ -139,6 +134,8 @@ bool SettingsLoader::load(
 		}
 
 		xmlSettings->popTag(); // surfaces
+		
+		} // for
 	}
 	
 	_lastLoadedFilename = fileName;

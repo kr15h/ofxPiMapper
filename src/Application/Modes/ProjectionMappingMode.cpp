@@ -285,6 +285,10 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 		 
+	 case 'n': // Set next preset
+		 app->getSurfaceManager()->setNextPreset();
+		 break;
+		 
 	 default:
 		 break;
 	}

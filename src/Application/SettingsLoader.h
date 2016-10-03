@@ -34,5 +34,5 @@ class SettingsLoader {
 		string _lastLoadedFilename;
 };
 
-}
-}
+} // namespace piMapper
+} // namespace ofx
