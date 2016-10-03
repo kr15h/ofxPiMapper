@@ -107,7 +107,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 		exit(EXIT_FAILURE);
 	}
 	
-	SettingsLoader::instance()->save(*_presets[_activePresetIndex], fileName);
+	SettingsLoader::instance()->save(*this, fileName);
 }
 
 // TODO: We need to load all presets. Not just the active one.
@@ -358,7 +358,11 @@ int SurfaceManager::getSelectedVertexIndex(){
 }
 
 int SurfaceManager::getActivePresetIndex(){
-	return 0;
+	return _activePresetIndex;
+}
+
+unsigned int SurfaceManager::getNumPresets(){
+	return _presets.size();
 }
 
 void SurfaceManager::onVertexChanged(int & i){
@@ -400,6 +404,13 @@ SurfaceStack * SurfaceManager::createPreset(){
 	return preset;
 	
 	// TODO: Create command for this. And what not.
+}
+
+SurfaceStack * SurfaceManager::getPresetAt(unsigned int i){
+	if(i >= _presets.size()){
+		throw runtime_error("SurfaceManager::getPresetAt index out of bounds.");
+	}
+	return _presets[i];
 }
 
 void SurfaceManager::setNextPreset(){

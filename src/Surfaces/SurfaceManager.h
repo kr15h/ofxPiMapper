@@ -61,6 +61,7 @@ class SurfaceManager {
 		int size();
 		int getSelectedVertexIndex();
 		int getActivePresetIndex();
+		unsigned int getNumPresets();
 	
 		ofEvent <int> vertexChangedEvent;
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
@@ -73,6 +74,7 @@ class SurfaceManager {
 	
 		SurfaceStack * getActivePreset();
 		SurfaceStack * createPreset();
+		SurfaceStack * getPresetAt(unsigned int i);
 	
 		void setNextPreset();
 	

@@ -144,15 +144,21 @@ bool SettingsLoader::load(
 }
 
 // TODO: Save all presets, not just the active one.
-bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
+bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
+	
+	unsigned int numPresets = surfaceManager.getNumPresets();
+	
+	for(unsigned int i = 0; i < numPresets; ++i){
+	
+	SurfaceStack * surfaces = surfaceManager.getPresetAt(i);
 
 	// Save surfaces
 	xmlSettings->addTag("surfaces");
-	xmlSettings->pushTag("surfaces");
-	for(int i = 0; i < surfaces.size(); i++){
-		BaseSurface * surface = surfaces[i];
+	xmlSettings->pushTag("surfaces", i);
+	for(int i = 0; i < surfaces->size(); i++){
+		BaseSurface * surface = surfaces->at(i);
 		
 		xmlSettings->addTag("surface");
 		xmlSettings->addAttribute("surface", "type", surface->getType(), i);
@@ -219,6 +225,9 @@ bool SettingsLoader::save(SurfaceStack & surfaces, string fileName){
 		xmlSettings->popTag(); // surface
 	}
 	xmlSettings->popTag(); // surfaces
+	
+	} // for
+	
 	xmlSettings->save(fileName);
 }
 
