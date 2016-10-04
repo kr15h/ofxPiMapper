@@ -41,3 +41,16 @@ unsigned int ofxPiMapper::getNumPresets(){
 unsigned int ofxPiMapper::getActivePresetIndex(){
 	return _application.getSurfaceManager()->getActivePresetIndex();
 }
+
+ofxPiMapper::Mode ofxPiMapper::getMode(){
+	if(_application.getState() == ofx::piMapper::PresentationMode::instance()){
+		return PRESENTATION_MODE;
+	}else if(_application.getState() == ofx::piMapper::TextureMappingMode::instance()){
+		return TEXTURE_MODE;
+	}else if(_application.getState() == ofx::piMapper::ProjectionMappingMode::instance()){
+		return PROJECTION_MODE;
+	}else{
+		return SOURCE_MODE;
+	}
+	return PRESENTATION_MODE;
+}

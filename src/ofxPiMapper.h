@@ -10,6 +10,11 @@
 #include "Application.h"
 #include "Info.h"
 
+#include "PresentationMode.h"
+#include "TextureMappingMode.h"
+#include "ProjectionMappingMode.h"
+#include "SourceSelectionMode.h"
+
 namespace ofx {
 namespace piMapper {
 	class Application;
@@ -17,8 +22,14 @@ namespace piMapper {
 }
 
 class ofxPiMapper {
-
 	public:
+		enum Mode {
+			PRESENTATION_MODE,
+			TEXTURE_MODE,
+			PROJECTION_MODE,
+			SOURCE_MODE
+		};
+	
 		ofxPiMapper();
 
 		void setup();
@@ -34,6 +45,8 @@ class ofxPiMapper {
 	
 		unsigned int getNumPresets();
 		unsigned int getActivePresetIndex();
+	
+		Mode getMode();
 
 	private:
 		ofx::piMapper::Application _application;
