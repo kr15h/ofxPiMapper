@@ -27,6 +27,7 @@ void ofxPiMapper::setActivePreset(unsigned int i){
 }
 
 void ofxPiMapper::setNextPreset(){
+	_application.getSurfaceManager()->deselectSurface();
 	_application.getSurfaceManager()->setNextPreset();
 }
 
