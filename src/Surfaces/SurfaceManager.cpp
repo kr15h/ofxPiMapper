@@ -112,17 +112,12 @@ void SurfaceManager::saveXmlSettings(string fileName){
 
 // TODO: We need to load all presets. Not just the active one.
 bool SurfaceManager::loadXmlSettings(string fileName){
-	
-	// TODO: clear old presets beforehand?
-	
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		exit(EXIT_FAILURE);
 	}
-	
 	bool success = SettingsLoader::instance()->load(*this, *mediaServer, fileName);
 	return success;
-	//return SettingsLoader::instance()->load(*_presets[_activePresetIndex], *mediaServer, fileName);
 }
 
 void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
@@ -132,7 +127,7 @@ void SurfaceManager::setMediaServer(MediaServer * newMediaServer){
 BaseSurface * SurfaceManager::selectSurface(int index){
 	if(_activePresetIndex < 0){
 		ofLogWarning("SurfaceManager::selectSurface", "Can not select surface. No active preset.");
-		return;
+		return 0;
 	}
 
 	if(index >= _presets[_activePresetIndex]->size()){
@@ -169,7 +164,7 @@ BaseSurface * SurfaceManager::selectNextSurface(){
 		ofLogWarning(
 			"SurfaceManager::selectNextSurface",
 			"Can not select next surface. No active preset.");
-		return;
+		return 0;
 	}
 
 	int next;
@@ -204,7 +199,7 @@ BaseSurface * SurfaceManager::selectPrevSurface(){
 		ofLogWarning(
 			"SurfaceManager::selectPrevSurface",
 			"Can not select prev surface. No active preset.");
-		return;
+		return 0;
 	}
 
 	int prev;
