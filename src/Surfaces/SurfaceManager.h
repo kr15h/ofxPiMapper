@@ -21,12 +21,6 @@ namespace piMapper {
 
 class SurfaceManager {
 
-	/* TODO: Add presets.
-	 * This would be solved by adding multiple SurfaceStack instances. Depending on selected
-	 * preset, it would draw and operate on a a specific surface stack. SurfaceManager would
-	 * become kind of a state machine.
-	 */
-
 	public:
 		SurfaceManager();
 
@@ -88,8 +82,7 @@ class SurfaceManager {
 		int _activePresetIndex;
 	
 		vector <SurfaceStack *> _presets;
-	
-	
+
 };
 
 } // namespace piMapper
