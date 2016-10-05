@@ -28,7 +28,7 @@ The following is a list of key features ofxPiMapper has.
    Use ofxPiMapper as an addon and enjoy the power of custom generative sources by extending the `FboSource` class. 
  - **Undoable**  
    Since version 0.2.3 ofxPiMapper supports undo. 
- - **Nerd Remote Control via SSH**
+ - **Nerd Remote Control via SSH (not working at the moment)**
    All the functions can be triggered by using the keyboard and via SSH CLI connection. See [SSH Remote Control](#ssh-remote-control) section to learn more.
  - **More to Come**  
    Expect more conventional projection mapping software features to be implemented.
