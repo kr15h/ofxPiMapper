@@ -444,5 +444,24 @@ void SurfaceManager::cloneActivePreset(){
 	_activePresetIndex = _presets.size() - 1;
 }
 
+void SurfaceManager::eraseActivePreset(){
+	if(_presets.size() <= 0){
+		return;
+	}
+	
+	_presets[_activePresetIndex]->clear();
+	_presets.erase(_presets.begin() + _activePresetIndex);
+	
+	_activePresetIndex--;
+	
+	if(_presets.size() > 0 && _activePresetIndex < 0){
+		_activePresetIndex = 0;
+	}
+	
+	if(_activePresetIndex < 0){
+		createPreset();
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

@@ -73,6 +73,7 @@ class SurfaceManager {
 		void setNextPreset();
 		void setActivePreset(unsigned int i);
 		void cloneActivePreset();
+		void eraseActivePreset();
 	
 	private:
 		BaseSurface * selectedSurface;

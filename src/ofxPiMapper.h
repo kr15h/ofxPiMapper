@@ -41,6 +41,7 @@ class ofxPiMapper {
 		void setActivePreset(unsigned int i);
 		void setNextPreset();
 		void cloneActivePreset();
+		void eraseActivePreset();
 
 		bool loadXmlSettings(string fileName);
 	
