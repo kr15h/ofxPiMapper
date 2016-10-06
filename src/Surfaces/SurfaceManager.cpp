@@ -435,7 +435,7 @@ void SurfaceManager::setActivePreset(unsigned int i){
 }
 
 void SurfaceManager::cloneActivePreset(){
-	if(_presets.size() <= 1){
+	if(_presets.size() <= 0){
 		return;
 	}
 	
