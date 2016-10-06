@@ -434,5 +434,15 @@ void SurfaceManager::setActivePreset(unsigned int i){
 	_activePresetIndex = i;
 }
 
+void SurfaceManager::cloneActivePreset(){
+	if(_presets.size() <= 1){
+		return;
+	}
+	
+	SurfaceStack * preset = _presets[_activePresetIndex]->clone();
+	_presets.push_back(preset);
+	_activePresetIndex = _presets.size() - 1;
+}
+
 } // namespace piMapper
 } // namespace ofx

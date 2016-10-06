@@ -29,6 +29,8 @@ class SurfaceStack {
 	
 		vector<BaseSurface *> & getSurfaces(){ return _surfaces; };
 	
+		SurfaceStack * clone();
+	
 	private:
 		vector<BaseSurface *> _surfaces;
 };

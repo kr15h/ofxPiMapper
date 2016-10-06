@@ -31,6 +31,11 @@ void ofxPiMapper::setNextPreset(){
 	_application.getSurfaceManager()->setNextPreset();
 }
 
+void ofxPiMapper::cloneActivePreset(){
+	_application.getSurfaceManager()->deselectSurface();
+	_application.getSurfaceManager()->cloneActivePreset();
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }

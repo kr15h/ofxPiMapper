@@ -67,5 +67,14 @@ void SurfaceStack::onVertexChanged(int & i){
 	ofNotifyEvent(vertexChangedEvent, i, this);
 }
 
+SurfaceStack * SurfaceStack::clone(){
+	SurfaceStack * stack = new SurfaceStack();
+	for(unsigned int i = 0; i < _surfaces.size(); ++i){
+		BaseSurface * surface = _surfaces[i]->clone();
+		stack->push_back(surface);
+	}
+	return stack;
+}
+
 } // namespace piMapper
 } // namespace ofx
