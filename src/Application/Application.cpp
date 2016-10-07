@@ -224,7 +224,11 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 	
 	cout << "TermListener: " << e.character << endl;
 	onKeyPressed(args);
-};
+}
+
+void Application::setActivePreset(unsigned int i){
+	_cmdManager.exec(new SetActivePresetCmd(this, i));
+}
 
 bool Application::loadXmlSettings(string fileName){
 	if(!ofFile::doesFileExist(fileName)){

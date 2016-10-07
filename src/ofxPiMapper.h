@@ -38,6 +38,7 @@ class ofxPiMapper {
 	
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
+	
 		void setActivePreset(unsigned int i);
 		void setNextPreset();
 		void cloneActivePreset();

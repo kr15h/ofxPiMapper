@@ -23,7 +23,7 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource * fboSource){
 }
 
 void ofxPiMapper::setActivePreset(unsigned int i){
-	_application.getSurfaceManager()->setActivePreset(i);
+	_application.setActivePreset(i);
 }
 
 void ofxPiMapper::setNextPreset(){

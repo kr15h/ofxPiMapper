@@ -5,6 +5,7 @@
 
 #include "SetApplicationModeCmd.h"
 #include "ClearSurfacesCmd.h"
+#include "SetActivePresetCmd.h"
 
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
@@ -67,6 +68,9 @@ class Application : public KeyListener {
 	
 		void onCharacterReceived(KeyListenerEventData & e);
 		TerminalListener consoleListener;
+	
+		// Command executors
+		void setActivePreset(unsigned int i);
 	
 	protected:
 		void setState(ApplicationBaseMode * st);
