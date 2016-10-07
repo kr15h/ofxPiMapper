@@ -12,8 +12,9 @@ class ApplicationBaseMode;
 class SetApplicationModeCmd : public BaseUndoCmd {
 
 	public:
-		SetApplicationModeCmd(Application * app,
-							   ApplicationBaseMode * st);
+		SetApplicationModeCmd(
+			Application * app,
+			ApplicationBaseMode * st);
 
 		void exec();
 		void undo();

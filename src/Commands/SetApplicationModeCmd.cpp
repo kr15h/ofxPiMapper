@@ -3,8 +3,9 @@
 namespace ofx {
 namespace piMapper {
 
-SetApplicationModeCmd::SetApplicationModeCmd(Application * app,
-											   ApplicationBaseMode * st){
+SetApplicationModeCmd::SetApplicationModeCmd(
+	Application * app,
+	ApplicationBaseMode * st){
 
 	_application = app;
 	_prevApplicationState = 0;
