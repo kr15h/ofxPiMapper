@@ -27,13 +27,7 @@ void ofxPiMapper::setActivePreset(unsigned int i){
 }
 
 void ofxPiMapper::setNextPreset(){
-	unsigned int currentActivePreset = _application.getSurfaceManager()->getActivePresetIndex();
-	if(currentActivePreset >= _application.getSurfaceManager()->getNumPresets() - 1){
-		currentActivePreset = 0;
-	}else{
-		currentActivePreset += 1;
-	}
-	_application.setActivePreset(currentActivePreset);
+	_application.setNextPreset();
 }
 
 void ofxPiMapper::cloneActivePreset(){
