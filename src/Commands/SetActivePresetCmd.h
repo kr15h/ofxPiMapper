@@ -25,6 +25,7 @@ class SetActivePresetCmd : public BaseUndoCmd {
 		Application * _app;
 		unsigned int _newPresetIndex;
 		unsigned int _prevPresetIndex;
+		int _selectedSurfaceIndex;
 };
 
 } // namespace piMapper
