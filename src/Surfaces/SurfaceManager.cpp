@@ -356,6 +356,18 @@ int SurfaceManager::getActivePresetIndex(){
 	return _activePresetIndex;
 }
 
+int SurfaceManager::getSelectedSurfaceIndex(){
+	if(selectedSurface == 0){
+		return -1;
+	}
+	for(unsigned int i = 0; i < _presets[_activePresetIndex]->size(); ++i){
+		if(_presets[_activePresetIndex]->getSurfaces()[i] == selectedSurface){
+			return i;
+		}
+	}
+	return -1;
+}
+
 unsigned int SurfaceManager::getNumPresets(){
 	return _presets.size();
 }

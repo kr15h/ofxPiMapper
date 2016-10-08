@@ -55,6 +55,7 @@ class SurfaceManager {
 		int size();
 		int getSelectedVertexIndex();
 		int getActivePresetIndex();
+		int getSelectedSurfaceIndex();
 		unsigned int getNumPresets();
 	
 		ofEvent <int> vertexChangedEvent;
