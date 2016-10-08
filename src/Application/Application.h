@@ -71,6 +71,7 @@ class Application : public KeyListener {
 	
 		// Command executors
 		void setActivePreset(unsigned int i);
+		void setNextPreset();
 	
 	protected:
 		void setState(ApplicationBaseMode * st);

@@ -136,6 +136,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case 'z':
 		 _cmdManager.undo();
 		 break;
+		 
+	 case 'n':
+		 setNextPreset();
+		 break;
 
 	 default:
 		 // All the other keypresses are handled by the application state onKeyPressed
@@ -228,6 +232,20 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 
 void Application::setActivePreset(unsigned int i){
 	_cmdManager.exec(new SetActivePresetCmd(this, i));
+}
+
+void Application::setNextPreset(){
+	unsigned int numPresets = _surfaceManager.getNumPresets();
+	if(numPresets <= 1){
+		return;
+	}
+	int activePreset = _surfaceManager.getActivePresetIndex();
+	if(activePreset >= numPresets - 1){
+		activePreset = 0;
+	}else{
+		activePreset += 1;
+	}
+	setActivePreset(activePreset);
 }
 
 bool Application::loadXmlSettings(string fileName){
