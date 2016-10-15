@@ -98,27 +98,19 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 		 
 	 case '1':
-		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationModeCmd(
-				 this, PresentationMode::instance()));
+		 setProjectionMode();
 		 break;
 
 	 case '2':
-		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationModeCmd(
-				 this, TextureMappingMode::instance()));
+		 setTextureMode();
 		 break;
 
 	 case '3':
-		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationModeCmd(
-				 this, ProjectionMappingMode::instance()));
+		 setProjectionMode();
 		 break;
 
 	 case '4':
-		 _cmdManager.exec(
-			 new ofx::piMapper::SetApplicationModeCmd(
-				 this, SourceSelectionMode::instance()));
+		 setSourceMode();
 		 break;
 
 	 case 'f':
@@ -258,6 +250,30 @@ bool Application::loadXmlSettings(string fileName){
 		return false;
 	}
 	return true;
+}
+
+void Application::setPresentationMode(){
+	_cmdManager.exec(
+		new ofx::piMapper::SetApplicationModeCmd(
+			this, PresentationMode::instance()));
+}
+
+void Application::setTextureMode(){
+	_cmdManager.exec(
+		new ofx::piMapper::SetApplicationModeCmd(
+			this, TextureMappingMode::instance()));
+}
+
+void Application::setProjectionMode(){
+	_cmdManager.exec(
+		new ofx::piMapper::SetApplicationModeCmd(
+			this, ProjectionMappingMode::instance()));
+}
+
+void Application::setSourceMode(){
+	_cmdManager.exec(
+		new ofx::piMapper::SetApplicationModeCmd(
+			this, SourceSelectionMode::instance()));
 }
 
 } // namespace piMapper

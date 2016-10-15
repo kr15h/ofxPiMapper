@@ -70,6 +70,11 @@ class Application : public KeyListener {
 		TerminalListener consoleListener;
 	
 		// Command executors
+		void setPresentationMode();
+		void setTextureMode();
+		void setProjectionMode();
+		void setSourceMode();
+	
 		void setActivePreset(unsigned int i);
 		void setNextPreset();
 	
