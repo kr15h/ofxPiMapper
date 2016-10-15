@@ -52,6 +52,20 @@ unsigned int ofxPiMapper::getActivePresetIndex(){
 	return _application.getSurfaceManager()->getActivePresetIndex();
 }
 
+void ofxPiMapper::setMode(ofxPiMapper::Mode m){
+	if(m == PRESENTATION_MODE){
+		_application.setPresentationMode();
+	}else if(m == TEXTURE_MODE){
+		_application.setTextureMode();
+	}else if(m == PROJECTION_MODE){
+		_application.setProjectionMode();
+	}else if(m == SOURCE_MODE){
+		_application.setSourceMode();
+	}else{
+		ofLogWarning("ofxPiMapper::setMode", "Please specify valid mode");
+	}
+}
+
 ofxPiMapper::Mode ofxPiMapper::getMode(){
 	if(_application.getState() == ofx::piMapper::PresentationMode::instance()){
 		return PRESENTATION_MODE;

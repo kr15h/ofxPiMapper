@@ -39,6 +39,11 @@ class ofxPiMapper {
 		void registerFboSource(ofx::piMapper::FboSource & fboSource);
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
 	
+		// Modes
+		void setMode(ofxPiMapper::Mode m);
+		ofxPiMapper::Mode getMode();
+	
+		// Presets
 		void setActivePreset(unsigned int i);
 		void setNextPreset();
 		void cloneActivePreset();
@@ -48,8 +53,6 @@ class ofxPiMapper {
 	
 		unsigned int getNumPresets();
 		unsigned int getActivePresetIndex();
-	
-		Mode getMode();
 
 	private:
 		ofx::piMapper::Application _application;
