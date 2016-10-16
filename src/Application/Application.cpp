@@ -9,8 +9,11 @@ Application::Application(){
 
 	_surfaceManager.setMediaServer(&_mediaServer);
 	
+	// Set initial mode
 	setState(PresentationMode::instance());
+	ofHideCursor();
 	
+	// TODO: Get rid of listeners, pipe application events from the example app
 	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
 	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
 	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
