@@ -58,6 +58,7 @@ class Application : public KeyListener {
 	
 		void addFboSource(FboSource & fboSource);
 		void addFboSource(FboSource * fboSource);
+		void saveProject();
 	
 		bool loadXmlSettings(string fileName);
 		bool isShiftKeyDown();
@@ -94,6 +95,9 @@ class Application : public KeyListener {
 	
 		bool _shiftKeyDown;
         bool _isSSHConnection;
+	
+		float _lastSaveTime;
+		float _autoSaveInterval;
 	
 		string _keySequence;
 

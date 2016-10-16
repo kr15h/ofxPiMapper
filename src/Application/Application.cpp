@@ -29,6 +29,9 @@ Application::Application(){
     }else{
         _isSSHConnection = false;
     }
+	
+	_lastSaveTime = 0.0f;
+	_autoSaveInterval = 60.0f;
 }
 
 void Application::setup(){
@@ -59,6 +62,15 @@ void Application::setup(){
 
 void Application::update(){
 	_state->update(this);
+	
+	// Autosave, do it only of the mode is not presentation mode
+	if(_state != PresentationMode::instance()){
+		float timeNow = ofGetElapsedTimef();
+		if(timeNow - _lastSaveTime > _autoSaveInterval){
+			saveProject();
+			_lastSaveTime = timeNow;
+		}
+	}
 }
 
 ApplicationBaseMode * Application::getState(){
@@ -122,7 +134,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 's':
-		 _surfaceManager.saveXmlSettings(SettingsLoader::instance()->getLastLoadedFilename());
+		 saveProject();
 		 break;
 
 	 case 'z':
@@ -182,6 +194,11 @@ void Application::addFboSource(FboSource & fboSource){
 
 void Application::addFboSource(FboSource * fboSource){
 	_mediaServer.addFboSource(fboSource);
+}
+
+void Application::saveProject(){
+	ofLogNotice("Application::saveProject", "Saving project...");
+	_surfaceManager.saveXmlSettings(SettingsLoader::instance()->getLastLoadedFilename());
 }
 
 void Application::setState(ApplicationBaseMode * st){
