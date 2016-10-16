@@ -57,7 +57,7 @@ void ofxPiMapper::setMode(ofxPiMapper::Mode m){
 		_application.setPresentationMode();
 	}else if(m == TEXTURE_MODE){
 		_application.setTextureMode();
-	}else if(m == PROJECTION_MODE){
+	}else if(m == MAPPING_MODE){
 		_application.setProjectionMode();
 	}else if(m == SOURCE_MODE){
 		_application.setSourceMode();
@@ -72,7 +72,7 @@ ofxPiMapper::Mode ofxPiMapper::getMode(){
 	}else if(_application.getState() == ofx::piMapper::TextureMappingMode::instance()){
 		return TEXTURE_MODE;
 	}else if(_application.getState() == ofx::piMapper::ProjectionMappingMode::instance()){
-		return PROJECTION_MODE;
+		return MAPPING_MODE;
 	}else{
 		return SOURCE_MODE;
 	}

@@ -26,7 +26,7 @@ class ofxPiMapper {
 		enum Mode {
 			PRESENTATION_MODE,
 			TEXTURE_MODE,
-			PROJECTION_MODE,
+			MAPPING_MODE,
 			SOURCE_MODE
 		};
 	
