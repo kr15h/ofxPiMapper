@@ -40,6 +40,14 @@ void ofxPiMapper::eraseActivePreset(){
 	_application.getSurfaceManager()->eraseActivePreset();
 }
 
+void ofxPiMapper::togglePauseForSurface(unsigned int i){
+	ofx::piMapper::BaseSource * s =
+		_application.getSurfaceManager()->getActivePreset()->getSurfaces().at(i)->getSource();
+	if(s->getType() == ofx::piMapper::SourceType::SOURCE_TYPE_VIDEO){
+		s->togglePause();
+	}
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }
@@ -50,6 +58,10 @@ unsigned int ofxPiMapper::getNumPresets(){
 
 unsigned int ofxPiMapper::getActivePresetIndex(){
 	return _application.getSurfaceManager()->getActivePresetIndex();
+}
+
+unsigned int ofxPiMapper::getNumSurfaces(){
+	return _application.getSurfaceManager()->getActivePreset()->getSurfaces().size();
 }
 
 void ofxPiMapper::setMode(ofxPiMapper::Mode m){
