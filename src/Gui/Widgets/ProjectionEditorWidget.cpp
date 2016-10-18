@@ -195,6 +195,9 @@ void ProjectionEditorWidget::setSnapDistance(float newSnapDistance){
 }
 
 CircleJoint * ProjectionEditorWidget::hitTestJoints(ofVec2f pos){
+	if(surfaceManager->getSelectedSurface() == 0){
+		return 0;
+	}
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->hitTest(pos)){
 			return joints[i];
