@@ -128,10 +128,6 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 setSourceMode();
 		 break;
 
-	 case 'f':
-		 ofToggleFullscreen();
-		 break;
-
 	 case 'i':
 		 _info.toggle();
 		 break;
