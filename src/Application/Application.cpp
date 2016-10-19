@@ -113,7 +113,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 		 
 	 case '1':
-		 setProjectionMode();
+		 setPresentationMode();
 		 break;
 
 	 case '2':
