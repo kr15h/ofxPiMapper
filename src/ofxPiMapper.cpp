@@ -40,6 +40,12 @@ void ofxPiMapper::eraseActivePreset(){
 	_application.getSurfaceManager()->eraseActivePreset();
 }
 
+void ofxPiMapper::selectSurface(int i){
+	if(_application.getState() == ofx::piMapper::PresentationMode::instance()){
+		_application.getSurfaceManager()->selectSurface(i);
+	}
+}
+
 void ofxPiMapper::togglePauseForSurface(unsigned int i){
 	ofx::piMapper::BaseSource * s =
 		_application.getSurfaceManager()->getActivePreset()->getSurfaces().at(i)->getSource();

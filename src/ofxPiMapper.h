@@ -47,21 +47,19 @@ class ofxPiMapper {
 		ofxPiMapper::Mode getMode();
 	
 		// Presets
+		unsigned int getNumPresets();
+		unsigned int getActivePresetIndex();
 		void setActivePreset(unsigned int i);
 		void setNextPreset();
 		void cloneActivePreset();
 		void eraseActivePreset();
 	
-		// Toggle play/pause for a surface in the active preset.
+		// Surfaces, active preset
+		unsigned int getNumSurfaces();
+		void selectSurface(int i);
 		void togglePauseForSurface(unsigned int i);
 
 		bool loadXmlSettings(string fileName);
-	
-		unsigned int getNumPresets();
-		unsigned int getActivePresetIndex();
-	
-		// Get number of surfaces in the active preset.
-		unsigned int getNumSurfaces();
 
 	private:
 		ofx::piMapper::Application _application;
