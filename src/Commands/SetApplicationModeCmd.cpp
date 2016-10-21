@@ -20,6 +20,7 @@ void SetApplicationModeCmd::exec(){
 	
 	Gui::instance()->getTextureEditorWidget().setSurface(
 		_application->getSurfaceManager()->getSelectedSurface());
+	Gui::instance()->getTextureConsumersWidget().findConsumerSurfaces();
 	
 	if(_applicationState != PresentationMode::instance()){
 		ofShowCursor();

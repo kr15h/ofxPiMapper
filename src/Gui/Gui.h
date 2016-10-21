@@ -11,6 +11,7 @@
 #include "TextureEditorWidget.h"
 #include "ProjectionEditorWidget.h"
 #include "SourcesEditorWidget.h"
+#include "TextureConsumersWidget.h"
 
 namespace ofx {
 namespace piMapper {
@@ -73,6 +74,7 @@ class Gui {
 		TextureEditorWidget & getTextureEditorWidget();
 		ProjectionEditorWidget & getProjectionEditorWidget();
 		SourcesEditorWidget & getSourcesEditorWidget();
+		TextureConsumersWidget & getTextureConsumersWidget();
 	
 		// Consider these as a part of the application states/modes.
 		void onMousePressed(ofMouseEventArgs & args);
@@ -96,6 +98,7 @@ class Gui {
 		TextureEditorWidget _textureEditorWidget;
 		ProjectionEditorWidget _projectionEditorWidget;
 		SourcesEditorWidget _sourcesEditorWidget;
+		TextureConsumersWidget _textureConsumersWidget;
 };
 
 } // piMapper
