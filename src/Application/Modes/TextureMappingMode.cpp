@@ -19,6 +19,10 @@ TextureMappingMode::TextureMappingMode(){
 	_drawMode = 0;
 }
 
+void TextureMappingMode::setup(Application * app){
+	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
+}
+
 void TextureMappingMode::update(Application * app){
 	Gui::instance()->getTextureEditorWidget().update();
 }
@@ -63,7 +67,6 @@ void TextureMappingMode::draw(Application * app){
 	
 	ofPushMatrix();
 	ofTranslate(_canvasTranslate.x, _canvasTranslate.y);
-	Gui::instance()->getTextureHighlightWidget().setSurfaceManager(app->getSurfaceManager());
 	Gui::instance()->getTextureHighlightWidget().draw();
 	Gui::instance()->getTextureEditorWidget().draw();
 	ofPopMatrix();

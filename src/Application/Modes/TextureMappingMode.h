@@ -24,6 +24,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 	public:
 		static TextureMappingMode * instance();
 	
+		void setup(Application * app);
 		void update(Application * app);
 		void draw(Application * app);
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
