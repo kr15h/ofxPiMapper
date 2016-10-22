@@ -10,17 +10,13 @@ class ProjectionEditorWidget {
 	
     public:
 		ProjectionEditorWidget();
-
-		void registerAppEvents();
-		void unregisterAppEvents();
-
-		void enable();
-		void disable();
-
+	
 		void update();
 		void draw();
+	
 		void mouseDragged(ofMouseEventArgs & args);
 		void gotMessage(ofMessage & msg);
+	
 		void setSurfaceManager(SurfaceManager * newSurfaceManager);
 		void clearJoints();
 		void createJoints();

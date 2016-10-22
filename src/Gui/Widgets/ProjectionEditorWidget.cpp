@@ -7,23 +7,6 @@ ProjectionEditorWidget::ProjectionEditorWidget(){
 	surfaceManager = 0;
 	bShiftKeyDown = false;
 	fSnapDistance = 10.0f;
-	enable();
-}
-
-void ProjectionEditorWidget::registerAppEvents(){
-	ofAddListener(ofEvents().messageEvent, this, &ProjectionEditorWidget::gotMessage);
-}
-
-void ProjectionEditorWidget::unregisterAppEvents(){
-	ofRemoveListener(ofEvents().messageEvent, this, &ProjectionEditorWidget::gotMessage);
-}
-
-void ProjectionEditorWidget::enable(){
-	registerAppEvents();
-}
-
-void ProjectionEditorWidget::disable(){
-	unregisterAppEvents();
 }
 
 void ProjectionEditorWidget::update(){
