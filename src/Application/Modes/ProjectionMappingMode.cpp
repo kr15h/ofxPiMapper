@@ -158,11 +158,15 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '.':
-		 app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
+		 if(app->getSurfaceManager()->size()){
+			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
+		 }
 		 break;
 		 
 	 case ',':
-		 app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
+		 if(app->getSurfaceManager()->size()){
+			app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
+		 }
 		 break;
 		 
 	 case '>':

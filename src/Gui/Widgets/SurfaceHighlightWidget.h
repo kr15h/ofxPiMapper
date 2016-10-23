@@ -26,5 +26,5 @@ class SurfaceHighlightWidget : public GuiBaseWidget {
 		SurfaceManager * _sm;
 };
 
-} // namespace piMapper
+} // namespace piMappe
 } // namespace ofx
