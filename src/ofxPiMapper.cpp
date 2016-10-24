@@ -41,9 +41,7 @@ void ofxPiMapper::eraseActivePreset(){
 }
 
 void ofxPiMapper::selectSurface(int i){
-	if(_application.getState() == ofx::piMapper::PresentationMode::instance()){
-		_application.getSurfaceManager()->selectSurface(i);
-	}
+	_application.getState()->selectSurface(&_application, i);
 }
 
 void ofxPiMapper::selectNextSurface(){
