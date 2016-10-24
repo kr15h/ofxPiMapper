@@ -31,6 +31,10 @@ class ApplicationBaseMode {
 		// These are only used by TextureMappingMode for now.
 		virtual ofPoint getTranslation(){ return ofPoint(0, 0); }
 		virtual void setTranslation(ofPoint p){}
+	
+		// Undoable public methods
+		virtual void selectNextSurface(Application * app){}
+		virtual void selectPrevSurface(Application * app){}
 
 };
 
