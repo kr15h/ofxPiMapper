@@ -410,6 +410,18 @@ void ProjectionMappingMode::onGuiEvent(Application * app, GuiEvent & e){
 	}
 }
 
+void ProjectionMappingMode::selectSurface(Application * app, int i){
+	if(app->getSurfaceManager()->size()){
+		if(app->getSurfaceManager()->getSelectedSurfaceIndex() == i){
+			return;
+		}
+		app->getCmdManager()->exec(
+			new SelSurfaceCmd(
+				app->getSurfaceManager(),
+				app->getSurfaceManager()->getSurface(i) ));
+	}
+}
+
 void ProjectionMappingMode::selectNextSurface(Application * app){
 	if(app->getSurfaceManager()->size()){
 		app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));

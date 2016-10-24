@@ -55,6 +55,7 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		void onGuiEvent(Application * app, GuiEvent & e);
 	
 		// Undoable public methods
+		void selectSurface(Application * app, int i);
 		void selectNextSurface(Application * app);
 		void selectPrevSurface(Application * app);
 
