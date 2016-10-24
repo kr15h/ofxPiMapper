@@ -33,6 +33,7 @@ class ApplicationBaseMode {
 		virtual void setTranslation(ofPoint p){}
 	
 		// Undoable public methods
+		virtual void selectSurface(Application * app, int i){}
 		virtual void selectNextSurface(Application * app){}
 		virtual void selectPrevSurface(Application * app){}
 
