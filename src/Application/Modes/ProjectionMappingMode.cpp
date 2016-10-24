@@ -158,15 +158,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '.':
-		 if(app->getSurfaceManager()->size()){
-			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
-		 }
+		 selectNextSurface(app);
 		 break;
 		 
 	 case ',':
-		 if(app->getSurfaceManager()->size()){
-			app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
-		 }
+		 selectPrevSurface(app);
 		 break;
 		 
 	 case '>':
@@ -411,6 +407,18 @@ void ProjectionMappingMode::onGuiEvent(Application * app, GuiEvent & e){
 		}else if(e.args.type == e.args.Dragged){
 			app->getSurfaceManager()->getSelectedSurface()->scaleTo(e.widget->getScale());
 		}
+	}
+}
+
+void ProjectionMappingMode::selectNextSurface(Application * app){
+	if(app->getSurfaceManager()->size()){
+		app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
+	}
+}
+
+void ProjectionMappingMode::selectPrevSurface(Application * app){
+	if(app->getSurfaceManager()->size()){
+		app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
 	}
 }
 
