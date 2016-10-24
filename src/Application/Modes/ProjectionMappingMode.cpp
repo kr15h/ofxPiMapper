@@ -424,12 +424,22 @@ void ProjectionMappingMode::selectSurface(Application * app, int i){
 
 void ProjectionMappingMode::selectNextSurface(Application * app){
 	if(app->getSurfaceManager()->size()){
+		if(	app->getSurfaceManager()->size() == 1 &&
+			app->getSurfaceManager()->getSelectedSurface() ==
+			app->getSurfaceManager()->getSurface(0)){
+			return;
+		}
 		app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
 	}
 }
 
 void ProjectionMappingMode::selectPrevSurface(Application * app){
 	if(app->getSurfaceManager()->size()){
+		if(	app->getSurfaceManager()->size() == 1 &&
+			app->getSurfaceManager()->getSelectedSurface() ==
+			app->getSurfaceManager()->getSurface(0)){
+			return;
+		}
 		app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
 	}
 }
