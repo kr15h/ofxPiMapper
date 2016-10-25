@@ -21,6 +21,8 @@ class SurfaceHighlightWidget : public GuiBaseWidget {
 		bool inside(float x, float y){ return false; }
 	
 		void setSurfaceManager(SurfaceManager * sm){ _sm = sm; }
+		void drawAllSurfaceOutlines();
+		void drawSurfaceOutlines(BaseSurface * s);
 	
 	private:
 		SurfaceManager * _sm;

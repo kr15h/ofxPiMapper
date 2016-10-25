@@ -12,6 +12,8 @@ void SurfaceHighlightWidget::draw(){
 		return;
 	}
 	
+	drawAllSurfaceOutlines();
+	
 	if(_sm->getSelectedSurface() == 0){
 		return;
 	}
@@ -20,28 +22,49 @@ void SurfaceHighlightWidget::draw(){
 	ofSetLineWidth(2);
 	ofSetColor(255);
 	
-	if(_sm->getSelectedSurface()->getType() == SurfaceType::QUAD_SURFACE &&
-		((QuadSurface *)_sm->getSelectedSurface())->getPerspectiveWarping()){
-		ofPolyline line = _sm->getSelectedSurface()->getHitArea();
+	drawSurfaceOutlines(_sm->getSelectedSurface());
+	
+	ofPopStyle();
+}
+
+void SurfaceHighlightWidget::drawAllSurfaceOutlines(){
+	if(_sm == 0){
+		return;
+	}
+	
+	ofPushStyle();
+	ofSetColor(255, 255, 255, 150);
+	ofSetLineWidth(2);
+	for(unsigned int i = 0; i < _sm->size(); ++i){
+		if(_sm->getSurface(i) != _sm->getSelectedSurface()){
+			drawSurfaceOutlines(_sm->getSurface(i));
+		}
+	}
+	ofPopStyle();
+}
+
+void SurfaceHighlightWidget::drawSurfaceOutlines(BaseSurface * s){
+	// TODO: Use Surface::drawOutline here
+	if(s->getType() == SurfaceType::QUAD_SURFACE &&
+		((QuadSurface *)s)->getPerspectiveWarping()){
+		ofPolyline line = s->getHitArea();
 		line.draw();
-	}else if(_sm->getSelectedSurface()->getType() == SurfaceType::GRID_WARP_SURFACE){
-		_sm->getSelectedSurface()->getMesh().drawWireframe();
-	}else if(_sm->getSelectedSurface()->getType() == SurfaceType::HEXAGON_SURFACE){
-		_sm->getSelectedSurface()->getMesh().drawWireframe();
+	}else if(s->getType() == SurfaceType::GRID_WARP_SURFACE){
+		s->getMesh().drawWireframe();
+	}else if(s->getType() == SurfaceType::HEXAGON_SURFACE){
+		s->getMesh().drawWireframe();
 	}else{
 		ofPolyline p;
 		for(unsigned int i = 0;
-			i < _sm->getSelectedSurface()->getMesh().getVertices().size();
+			i < s->getMesh().getVertices().size();
 			++i){
 			
 			p.addVertex(ofPoint(
-				_sm->getSelectedSurface()->getMesh().getVertices()[i]));
+				s->getMesh().getVertices()[i]));
 		}
 		p.close();
 		p.draw();
 	}
-	
-	ofPopStyle();
 }
 
 } // namespace piMapper
