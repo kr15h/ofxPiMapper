@@ -239,7 +239,7 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 }
 
 void Application::setPreset(unsigned int i){
-	_cmdManager.exec(new SetActivePresetCmd(this, i));
+	_cmdManager.exec(new SetPresetCmd(this, i));
 }
 
 void Application::setNextPreset(){

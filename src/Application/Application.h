@@ -5,7 +5,7 @@
 
 #include "SetApplicationModeCmd.h"
 #include "ClearSurfacesCmd.h"
-#include "SetActivePresetCmd.h"
+#include "SetPresetCmd.h"
 
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
