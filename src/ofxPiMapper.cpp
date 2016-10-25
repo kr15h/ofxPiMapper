@@ -22,8 +22,8 @@ void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource * fboSource){
 	_application.addFboSource(fboSource);
 }
 
-void ofxPiMapper::setActivePreset(unsigned int i){
-	_application.setActivePreset(i);
+void ofxPiMapper::setPreset(unsigned int i){
+	_application.setPreset(i);
 }
 
 void ofxPiMapper::setNextPreset(){

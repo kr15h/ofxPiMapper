@@ -72,7 +72,7 @@ class SurfaceManager {
 		SurfaceStack * getPresetAt(unsigned int i);
 	
 		void setNextPreset();
-		void setActivePreset(unsigned int i);
+		void setPreset(unsigned int i);
 		void cloneActivePreset();
 		void eraseActivePreset();
 	

@@ -434,7 +434,7 @@ void SurfaceManager::setNextPreset(){
 	// TODO: Create command for this.
 }
 
-void SurfaceManager::setActivePreset(unsigned int i){
+void SurfaceManager::setPreset(unsigned int i){
 	if(_presets.size() <= 1){
 		throw runtime_error("ofxPiMapper: No presets to set.");
 	}

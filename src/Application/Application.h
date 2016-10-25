@@ -76,7 +76,7 @@ class Application : public KeyListener {
 		void setProjectionMode();
 		void setSourceMode();
 	
-		void setActivePreset(unsigned int i);
+		void setPreset(unsigned int i);
 		void setNextPreset();
 	
 	protected:

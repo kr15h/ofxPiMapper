@@ -13,12 +13,12 @@ void SetActivePresetCmd::exec(){
 	_prevPresetIndex = _app->getSurfaceManager()->getActivePresetIndex();
 	_app->getSurfaceManager()->deselectSurface();
 	_selectedSurfaceIndex = _app->getSurfaceManager()->getSelectedSurfaceIndex();
-	_app->getSurfaceManager()->setActivePreset(_newPresetIndex);
+	_app->getSurfaceManager()->setPreset(_newPresetIndex);
 }
 
 void SetActivePresetCmd::undo(){
 	ofLogNotice("SetActivePresetCmd", "undo");
-	_app->getSurfaceManager()->setActivePreset(_prevPresetIndex);
+	_app->getSurfaceManager()->setPreset(_prevPresetIndex);
 	_app->getSurfaceManager()->selectSurface(_selectedSurfaceIndex);
 }
 

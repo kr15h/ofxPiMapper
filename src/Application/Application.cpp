@@ -238,7 +238,7 @@ void Application::onCharacterReceived(KeyListenerEventData & e){
 	onKeyPressed(args);
 }
 
-void Application::setActivePreset(unsigned int i){
+void Application::setPreset(unsigned int i){
 	_cmdManager.exec(new SetActivePresetCmd(this, i));
 }
 
@@ -253,7 +253,7 @@ void Application::setNextPreset(){
 	}else{
 		activePreset += 1;
 	}
-	setActivePreset(activePreset);
+	setPreset(activePreset);
 }
 
 bool Application::loadXmlSettings(string fileName){

@@ -49,7 +49,7 @@ class ofxPiMapper {
 		// Presets
 		unsigned int getNumPresets();
 		unsigned int getActivePresetIndex();
-		void setActivePreset(unsigned int i);
+		void setPreset(unsigned int i);
 		void setNextPreset();
 		void cloneActivePreset();
 		void eraseActivePreset();
