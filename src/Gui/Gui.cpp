@@ -108,10 +108,6 @@ SourcesEditorWidget & Gui::getSourcesEditorWidget(){
 	return _sourcesEditorWidget;
 }
 
-TextureConsumersWidget & Gui::getTextureConsumersWidget(){
-	return _textureConsumersWidget;
-}
-
 void Gui::onScaleWidgetEvent(GuiWidgetEvent & event){
 	GuiEvent e;
 	e.args = event.args;

@@ -2,6 +2,7 @@
 
 #include "GuiBaseWidget.h"
 #include "SurfaceManager.h"
+#include "BaseSurface.h"
 
 namespace ofx {
 namespace piMapper {
@@ -21,9 +22,12 @@ class TextureHighlightWidget : public GuiBaseWidget {
 		bool inside(float x, float y){ return false; }
 	
 		void setSurfaceManager(SurfaceManager * sm){ _sm = sm; }
+		void findConsumerSurfaces();
 	
 	private:
 		SurfaceManager * _sm;
+	
+		vector<BaseSurface *> _consumerSurfaces;
 };
 
 } // namespace piMapper
