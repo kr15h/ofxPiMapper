@@ -55,7 +55,6 @@
 		0115A6A81DBF93BA00C51732 /* ScaleWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6391DBF93BA00C51732 /* ScaleWidget.cpp */; };
 		0115A6A91DBF93BA00C51732 /* SourcesEditorWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A63B1DBF93BA00C51732 /* SourcesEditorWidget.cpp */; };
 		0115A6AA1DBF93BA00C51732 /* SurfaceHighlightWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A63D1DBF93BA00C51732 /* SurfaceHighlightWidget.cpp */; };
-		0115A6AB1DBF93BA00C51732 /* TextureConsumersWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A63F1DBF93BA00C51732 /* TextureConsumersWidget.cpp */; };
 		0115A6AC1DBF93BA00C51732 /* TextureEditorWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6411DBF93BA00C51732 /* TextureEditorWidget.cpp */; };
 		0115A6AD1DBF93BA00C51732 /* TextureHighlightWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6431DBF93BA00C51732 /* TextureHighlightWidget.cpp */; };
 		0115A6AE1DBF93BA00C51732 /* Info.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6461DBF93BA00C51732 /* Info.cpp */; };
@@ -272,8 +271,6 @@
 		0115A63C1DBF93BA00C51732 /* SourcesEditorWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourcesEditorWidget.h; sourceTree = "<group>"; };
 		0115A63D1DBF93BA00C51732 /* SurfaceHighlightWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SurfaceHighlightWidget.cpp; sourceTree = "<group>"; };
 		0115A63E1DBF93BA00C51732 /* SurfaceHighlightWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurfaceHighlightWidget.h; sourceTree = "<group>"; };
-		0115A63F1DBF93BA00C51732 /* TextureConsumersWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureConsumersWidget.cpp; sourceTree = "<group>"; };
-		0115A6401DBF93BA00C51732 /* TextureConsumersWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureConsumersWidget.h; sourceTree = "<group>"; };
 		0115A6411DBF93BA00C51732 /* TextureEditorWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureEditorWidget.cpp; sourceTree = "<group>"; };
 		0115A6421DBF93BA00C51732 /* TextureEditorWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureEditorWidget.h; sourceTree = "<group>"; };
 		0115A6431DBF93BA00C51732 /* TextureHighlightWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureHighlightWidget.cpp; sourceTree = "<group>"; };
@@ -622,8 +619,6 @@
 				0115A63C1DBF93BA00C51732 /* SourcesEditorWidget.h */,
 				0115A63D1DBF93BA00C51732 /* SurfaceHighlightWidget.cpp */,
 				0115A63E1DBF93BA00C51732 /* SurfaceHighlightWidget.h */,
-				0115A63F1DBF93BA00C51732 /* TextureConsumersWidget.cpp */,
-				0115A6401DBF93BA00C51732 /* TextureConsumersWidget.h */,
 				0115A6411DBF93BA00C51732 /* TextureEditorWidget.cpp */,
 				0115A6421DBF93BA00C51732 /* TextureEditorWidget.h */,
 				0115A6431DBF93BA00C51732 /* TextureHighlightWidget.cpp */,
@@ -1211,7 +1206,6 @@
 				0115A6AE1DBF93BA00C51732 /* Info.cpp in Sources */,
 				0115A6A31DBF93BA00C51732 /* TogglePerspectiveCmd.cpp in Sources */,
 				0115A6941DBF93BA00C51732 /* SelNextSurfaceCmd.cpp in Sources */,
-				0115A6AB1DBF93BA00C51732 /* TextureConsumersWidget.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				0115A6991DBF93BA00C51732 /* SelPrevVertexCmd.cpp in Sources */,
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
