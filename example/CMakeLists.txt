@@ -29,8 +29,8 @@ set( ${APP_NAME}_SOURCE_FILES
 set( OFX_ADDONS_ACTIVE
                 ofxXmlSettings
                 ofxGui
-        #        ofxPiMapper
-        #        ofxIO
+                ofxPiMapper
+                ofxIO
                 )
 
 # =========================================================================
