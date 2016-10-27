@@ -60,6 +60,10 @@ void ofxPiMapper::togglePauseForSurface(unsigned int i){
 	}
 }
 
+void ofxPiMapper::moveSelection(ofVec2f by){
+	_application.getState()->moveSelection(&_application, by);
+}
+
 bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }

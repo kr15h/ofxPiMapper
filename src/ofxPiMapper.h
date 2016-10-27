@@ -60,6 +60,7 @@ class ofxPiMapper {
 		void selectNextSurface();
 		void selectPrevSurface();
 		void togglePauseForSurface(unsigned int i);
+		void moveSelection(ofVec2f by);
 
 		bool loadXmlSettings(string fileName);
 
