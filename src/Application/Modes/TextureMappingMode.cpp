@@ -85,19 +85,19 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 
 	 case OF_KEY_LEFT:
-		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(-moveStep, 0.0f));
+		 moveSelection(app, ofVec2f(-moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_RIGHT:
-		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(moveStep, 0.0f));
+		 moveSelection(app, ofVec2f(moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_UP:
-		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(0.0f, -moveStep));
+		 moveSelection(app, ofVec2f(0.0f, -moveStep));
 		 break;
 
 	 case OF_KEY_DOWN:
-		 Gui::instance()->getTextureEditorWidget().moveSelection(ofVec2f(0.0f, moveStep));
+		 moveSelection(app, ofVec2f(0.0f, moveStep));
 		 break;
 
 	 case '>':
@@ -265,6 +265,11 @@ void TextureMappingMode::drawTexture(Application * app){
 			ofDisableNormalizedTexCoords();
 		}
 	}
+}
+
+void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
+	// TODO: Create an undoable command out of this
+	Gui::instance()->getTextureEditorWidget().moveSelection(by);
 }
 
 ofPoint TextureMappingMode::getTranslation(){

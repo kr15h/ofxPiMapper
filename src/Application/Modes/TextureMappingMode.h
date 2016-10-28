@@ -33,6 +33,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 		void onMouseReleased(Application * app, ofMouseEventArgs & args);
 		void onMouseDragged(Application * app, ofMouseEventArgs & args);
 		void drawTexture(Application * app);
+		void moveSelection(Application * app, ofVec2f by);
 	
 		void onGuiEvent(Application * app, GuiEvent & e){}
 	
