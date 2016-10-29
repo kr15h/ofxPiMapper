@@ -9,12 +9,14 @@ SelNextTexCoordCmd::SelNextTexCoordCmd(TextureEditorWidget * te){
 
 void SelNextTexCoordCmd::exec(){
 	ofLogNotice("SelNextTexCoordCmd", "exec");
+	_prevSelection = _textureEditor->getSelectedTexCoord();
 	_textureEditor->selectNextTexCoord();
 }
 
 void SelNextTexCoordCmd::undo(){
 	ofLogNotice("SelNextTexCoordCmd", "undo");
-	_textureEditor->selectPrevTexCoord();
+	//_textureEditor->selectPrevTexCoord();
+	_textureEditor->selectTexCoord(_prevSelection);
 }
 
 } // namespace piMapper

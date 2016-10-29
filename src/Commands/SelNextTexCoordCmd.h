@@ -17,6 +17,7 @@ class SelNextTexCoordCmd : public BaseUndoCmd {
 
 	private:
 		TextureEditorWidget * _textureEditor;
+		int _prevSelection;
 
 };
 
