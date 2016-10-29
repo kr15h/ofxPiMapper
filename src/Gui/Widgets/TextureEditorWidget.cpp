@@ -177,6 +177,38 @@ void TextureEditorWidget::unselectAllJoints(){
 	}
 }
 
+void TextureEditorWidget::selectTexCoord(int i){
+	if(joints.size() <= 0){
+		return;
+	}
+	
+	if(i >= (int)joints.size()){
+		ofLogError("TextureEditorWidget::selectTexCoord",
+			"Attempt to select non existent tex coord");
+		return;
+	}
+	
+	unselectAllJoints();
+	
+	if(i >= 0){
+		joints[i]->select();
+	}
+}
+
+int TextureEditorWidget::getSelectedTexCoord(){
+	if(joints.size() <= 0){
+		return -1;
+	}
+	
+	for(unsigned int i = 0; i < joints.size(); ++i){
+		if(joints[i]->isSelected()){
+			return i;
+		}
+	}
+	
+	return -1;
+}
+
 void TextureEditorWidget::selectNextTexCoord(){
 	if(joints.size() <= 0){
 		return;
@@ -190,13 +222,15 @@ void TextureEditorWidget::selectNextTexCoord(){
 				next = 0;
 			}
 			unselectAllJoints();
-			joints[next]->select();
+			//joints[next]->select();
+			selectTexCoord(next);
 			return;
 		}
 	}
 	
 	// If none found, select 0th
-	joints[0]->select();
+	//joints[0]->select();
+	selectTexCoord(0);
 }
 
 void TextureEditorWidget::selectPrevTexCoord(){
@@ -214,13 +248,15 @@ void TextureEditorWidget::selectPrevTexCoord(){
 				prev = i - 1;
 			}
 			unselectAllJoints();
-			joints[prev]->select();
+			//joints[prev]->select();
+			selectTexCoord(prev);
 			return;
 		}
 	}
 	
 	// Select last if none selected
-	joints[joints.size() - 1]->select();
+	//joints[joints.size() - 1]->select();
+	selectTexCoord(joints.size() - 1);
 }
 
 void TextureEditorWidget::moveTexCoords(ofVec2f by){

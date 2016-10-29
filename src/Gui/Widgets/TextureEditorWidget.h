@@ -32,8 +32,12 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void createJoints();
 		void clearJoints();
 		void unselectAllJoints();
+	
+		void selectTexCoord(int i);
+		int getSelectedTexCoord();
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
+	
 		void moveTexCoords(ofVec2f by);
 		void stopDragJoints();
 		void moveSelection(ofVec2f by);
