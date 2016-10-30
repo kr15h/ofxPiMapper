@@ -268,24 +268,14 @@ void TextureMappingMode::drawTexture(Application * app){
 }
 
 void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
-	// TODO: Make the command mechanism more elegant than this
-	bool foundSelected = false;
+	int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 	
-	for(
-		unsigned int i = 0;
-		i < Gui::instance()->getTextureEditorWidget().getJoints().size();
-		++i){
-		
-		if(Gui::instance()->getTextureEditorWidget().getJoints()[i]->isSelected()){
-			app->getCmdManager()->exec(
-				new MvTexCoordCmd(
-					i, &Gui::instance()->getTextureEditorWidget()));
-			foundSelected = true;
-			break;
-		}
-	}
-	
-	if(!foundSelected){
+	if(selectedTexCoord >= 0){
+		app->getCmdManager()->exec(
+			new MvTexCoordCmd(
+				selectedTexCoord,
+				&Gui::instance()->getTextureEditorWidget()));
+	}else{
 		app->getCmdManager()->exec(new MvAllTexCoordsCmd(
 			app->getSurfaceManager()->getSelectedSurface(),
 			&Gui::instance()->getTextureEditorWidget()));
