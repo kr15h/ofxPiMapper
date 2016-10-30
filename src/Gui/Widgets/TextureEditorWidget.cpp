@@ -312,6 +312,20 @@ void TextureEditorWidget::moveTexCoords(ofVec2f by){
 	}
 }
 
+void TextureEditorWidget::moveTexCoordTo(int texCoordIndex, ofVec2f position){
+	if(surface == 0){
+		return;
+	}
+	
+	ofLogNotice("TextureEditorWidget::moveTexCoordTo") << texCoordIndex << ", " << position.x << ", " << position.y;
+	surface->setTexCoord(texCoordIndex, position);
+	
+	ofVec2f textureSize = ofVec2f(
+		surface->getSource()->getTexture()->getWidth(),
+		surface->getSource()->getTexture()->getHeight());
+	joints[texCoordIndex]->position = position * textureSize;
+}
+
 void TextureEditorWidget::stopDragJoints(){
 	for(int i = 0; i < joints.size(); i++){
 		joints[i]->stopDrag();

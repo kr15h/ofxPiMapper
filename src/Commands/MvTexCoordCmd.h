@@ -6,7 +6,7 @@
 
 #include "BaseCmd.h"
 #include "CircleJoint.h"
-#include "TextureEditorWidget.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
@@ -14,14 +14,14 @@ namespace piMapper {
 class MvTexCoordCmd : public BaseUndoCmd {
 
 	public:
-		MvTexCoordCmd(int jointIndex, TextureEditorWidget * texEditor);
+		MvTexCoordCmd(int texCoordIndex, ofVec2f by);
 		void exec();
 		void undo();
 
 	private:
-		ofVec2f _jointPosition;
-		int _jointIndex;
-		TextureEditorWidget * _texEditor;
+		int _texCoordIndex;
+		ofVec2f _moveBy;
+		ofVec2f _positionBefore;
 
 };
 

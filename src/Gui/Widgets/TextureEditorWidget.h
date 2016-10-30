@@ -39,6 +39,8 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void selectPrevTexCoord();
 	
 		void moveTexCoords(ofVec2f by);
+		void moveTexCoordTo(int texCoordIndex, ofVec2f position);
+	
 		void stopDragJoints();
 		void moveSelection(ofVec2f by);
 		void constrainJointsToQuad(int selectedJointIndex);

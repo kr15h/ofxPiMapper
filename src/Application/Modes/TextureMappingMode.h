@@ -14,6 +14,8 @@
 #include "SetTexMapDrawModeCmd.h"
 #include "MvTexCoordCmd.h"
 #include "MvAllTexCoordsCmd.h"
+#include "SaveTexCoordPosCmd.h"
+#include "SelTexCoordCmd.h"
 #include "Gui.h"
 
 namespace ofx {
