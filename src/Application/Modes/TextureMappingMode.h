@@ -61,6 +61,8 @@ class TextureMappingMode : public ApplicationBaseMode {
 		ofPoint _canvasTranslate;
 		ofPoint _prevCanvasTranslate; // Canvas translate before TranslateCanvasCmd command exec
 		ofPoint _clickCanvasTranslate;
+	
+		ofVec2f _texCoordOnClick;
 
 };
 

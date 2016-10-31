@@ -203,8 +203,8 @@ void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & ar
 		// TODO: Make the following better, more direct.
 		//       Move this to mouseReleased part as we nee to save the previous location only
 		//       if the move has happened.
-		ofVec2f tex = app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
-		app->getCmdManager()->exec(new SaveTexCoordPosCmd(selectedTexCoord, tex));
+		_texCoordOnClick = app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
+		//app->getCmdManager()->exec(new SaveTexCoordPosCmd(selectedTexCoord, tex));
 	}else if(app->getSurfaceManager()->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
 		
 		_clickPosition = ofPoint(args.x, args.y);
@@ -237,13 +237,11 @@ void TextureMappingMode::onMouseReleased(Application * app, ofMouseEventArgs & a
 	// create an undoable move tex coord command.
 	int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 	if(selectedTexCoord >= 0){
-		ofPoint mouseReleasePosition = ofPoint(args.x, args.y);
-		if(_clickPosition != mouseReleasePosition){
-			ofVec2f moveBy = ofVec2f(
-				mouseReleasePosition.x - _clickPosition.x,
-				mouseReleasePosition.y - _clickPosition.y);
-			//app->getCmdManager()->exec(
-			//	new MvTexCoordCmd(selectedTexCoord, moveBy));
+		ofVec2f texCoordCurrent =
+			app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
+		
+		if(texCoordCurrent != _texCoordOnClick){
+			app->getCmdManager()->exec(new SaveTexCoordPosCmd(selectedTexCoord, _texCoordOnClick));
 		}
 	}
 	
