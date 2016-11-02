@@ -164,6 +164,10 @@ void TextureMappingMode::onBackgroundPressed(Application * app, GuiBackgroundEve
 }
 
 void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & args){
+	if(app->getSurfaceManager()->getSelectedSurface() == 0){
+		return;
+	}
+	
 	_clickPosition = ofPoint(args.x, args.y);
 	_prevCanvasTranslate = _canvasTranslate;
 
@@ -171,19 +175,12 @@ void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & ar
 	args.x -= _canvasTranslate.x;
 	args.y -= _canvasTranslate.y;
 	
-	if(app->getSurfaceManager()->getSelectedSurface() == 0){
-		return;
-	}
-	
 	CircleJoint * hitJoint =
-		Gui::instance()->getTextureEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
+		Gui::instance()->getTextureEditorWidget().hitTestJoints(
+			ofVec2f(args.x, args.y));
 	
 	if(hitJoint != 0){
 		hitJoint->mousePressed(args);
-		//Gui::instance()->getTextureEditorWidget().unselectAllJoints();
-		
-		//hitJoint->select();
-		
 		int selectedTexCoord = -1;
 		for(int i = 0; i < Gui::instance()->getTextureEditorWidget().getJoints().size(); ++i){
 			if(hitJoint == Gui::instance()->getTextureEditorWidget().getJoints()[i]){
@@ -200,11 +197,9 @@ void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & ar
 		}
 		
 		hitJoint->startDrag();
-		// TODO: Make the following better, more direct.
-		//       Move this to mouseReleased part as we nee to save the previous location only
-		//       if the move has happened.
-		_texCoordOnClick = app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
-		//app->getCmdManager()->exec(new SaveTexCoordPosCmd(selectedTexCoord, tex));
+		
+		_texCoordOnClick =
+			app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
 	}else if(app->getSurfaceManager()->getSelectedSurface()->getTextureHitArea().inside(args.x, args.y)){
 		
 		_clickPosition = ofPoint(args.x, args.y);
@@ -290,8 +285,6 @@ void TextureMappingMode::drawTexture(Application * app){
 
 void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
 	int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
-	
-	// TODO: Do the moving only through commands not like now.
 	
 	if(selectedTexCoord >= 0){
 		app->getCmdManager()->exec(

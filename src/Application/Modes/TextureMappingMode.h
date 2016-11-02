@@ -29,20 +29,22 @@ class TextureMappingMode : public ApplicationBaseMode {
 		void setup(Application * app);
 		void update(Application * app);
 		void draw(Application * app);
+	
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
         void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 		void onMousePressed(Application * app, ofMouseEventArgs & args);
 		void onMouseReleased(Application * app, ofMouseEventArgs & args);
 		void onMouseDragged(Application * app, ofMouseEventArgs & args);
+		void onGuiEvent(Application * app, GuiEvent & e){}
+
 		void drawTexture(Application * app);
 		void moveSelection(Application * app, ofVec2f by);
 	
-		void onGuiEvent(Application * app, GuiEvent & e){}
+		void setTranslation(ofPoint p);
+		void setDrawMode(int m);
 	
 		ofPoint getTranslation();
-		void setTranslation(ofPoint p);
-
-		void setDrawMode(int m);
+	
 		int getDrawMode();
 		int getNextDrawMode();
 		int getPrevDrawMode();
@@ -59,7 +61,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 	
 		ofPoint _clickPosition;
 		ofPoint _canvasTranslate;
-		ofPoint _prevCanvasTranslate; // Canvas translate before TranslateCanvasCmd command exec
+		ofPoint _prevCanvasTranslate;
 		ofPoint _clickCanvasTranslate;
 	
 		ofVec2f _texCoordOnClick;
