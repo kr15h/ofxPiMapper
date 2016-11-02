@@ -204,6 +204,12 @@ void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & ar
 		
 		_clickPosition = ofPoint(args.x, args.y);
 		_bCropAreaDrag = true;
+		
+		int selectedTexCoordIndex = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
+		if(selectedTexCoordIndex != -1){
+			app->getCmdManager()->exec(new DeselectTexCoordCmd(
+				&Gui::instance()->getTextureEditorWidget()));
+		}
 
 		// TODO: emit event through the gui singleton.
 		// TODO: create command only on mouse release.
