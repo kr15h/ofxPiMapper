@@ -6,6 +6,7 @@ PROCESS_NAME="example-camera"
 case "$(pidof $PROCESS_NAME | wc -w)" in
 
 0)  echo "Restarting $PROCESS_NAME: $(date)" >> "/var/log/$PROCESS_NAME.txt"
+    sleep 5
     "$PROCESS_DIR/$PROCESS_NAME" &
     ;;
 1)  # all ok
