@@ -4,6 +4,8 @@ namespace ofx {
 namespace piMapper {
 
 TextureEditorWidget::TextureEditorWidget(){
+	_pollCreateJoints = false;
+	
 	clear();
 }
 
@@ -14,6 +16,10 @@ void TextureEditorWidget::setup(){
 void TextureEditorWidget::update(){
 	if(surface == 0){
 		return;
+	}
+	
+	if(_pollCreateJoints){
+		createJoints();
 	}
 
 	// update surface if one of the joints is being dragged
@@ -127,6 +133,14 @@ void TextureEditorWidget::createJoints(){
 	}
 	clearJoints();
 	vector <ofVec2f> & texCoords = surface->getTexCoords();
+	
+	if(surface->getSource()->getTexture()->isAllocated()){
+		_pollCreateJoints = false;
+	}else{
+		_pollCreateJoints = true;
+		return;
+	}
+	
 	ofVec2f textureSize = ofVec2f(surface->getSource()->getTexture()->getWidth(),
 								  surface->getSource()->getTexture()->getHeight());
 	

@@ -50,7 +50,9 @@ class TextureEditorWidget : public GuiBaseWidget {
 	private:
 		BaseSurface * surface;
 		vector <CircleJoint *> joints;
+	
 		bool bShiftKeyDown;
+		bool _pollCreateJoints;
 
 };
 
