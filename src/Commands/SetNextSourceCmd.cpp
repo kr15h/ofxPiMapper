@@ -98,6 +98,8 @@ void SetNextSourceCmd::exec(){
 	}else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_NONE){
 		_sourcesEditor->clearSource();
 	}
+	
+	Gui::instance()->getTextureEditorWidget().createJoints();
 }
 
 void SetNextSourceCmd::undo(){
@@ -125,6 +127,8 @@ void SetNextSourceCmd::undo(){
 	}else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_NONE){
 		_sourcesEditor->clearSource();
 	}
+	
+	Gui::instance()->getTextureEditorWidget().createJoints();
 }
 
 } // namespace piMapper

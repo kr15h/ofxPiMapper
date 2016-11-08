@@ -4,6 +4,7 @@
 #include "BaseSurface.h"
 #include "SourcesEditorWidget.h"
 #include "MediaServer.h"
+#include "Gui.h"
 
 namespace ofx {
 namespace piMapper {
