@@ -44,7 +44,7 @@ You can use the example application of the addon for simple projection mapping p
 
    ```bash
 cd openFrameworks/addons/ofxPiMapper/example
-make && make run
+make && ./bin/example
    ```
 
 3. Use the `-f` flag to launch it fullscreen.  
@@ -52,6 +52,15 @@ make && make run
    ```bash
 ./bin/example -f
    ```
+
+
+## Compiling on Linux
+
+There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
+
+1. Open `example/addons.make` and remove ofxOMXPlayer line.
+2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
+3. Compile one or both examples by using make.
 
 
 ## Using as an Addon
