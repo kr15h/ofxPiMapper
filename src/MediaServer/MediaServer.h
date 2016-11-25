@@ -18,7 +18,8 @@
 
 /* Discussion: This could be the right place for a Factory Method or
  * Abstract Factory design pattern - replace all these includes with a
- * SourceFactory that can create sources with the interfaces below. */
+ * SourceFactory that can create sources with the interfaces below. 
+ */
 #include "BaseSource.h"
 #include "ImageSource.h"
 #include "VideoSource.h"
@@ -30,6 +31,32 @@
 
 #define PI_IMAGES_DIR "/boot/ofxpimapper/sources/images"
 #define PI_VIDEOS_DIR "/boot/ofxpimapper/sources/videos"
+
+/* 
+ * These you can get when you apt-get install usbmount
+ */
+#define USB0_IMAGES_DIR "/media/usb0"
+#define USB1_IMAGES_DIR "/media/usb1"
+#define USB2_IMAGES_DIR "/media/usb2"
+#define USB3_IMAGES_DIR "/media/usb3"
+
+#define USB0_VIDEOS_DIR "/media/usb0"
+#define USB1_VIDEOS_DIR "/media/usb1"
+#define USB2_VIDEOS_DIR "/media/usb2"
+#define USB3_VIDEOS_DIR "/media/usb3"
+
+// TODO: Change this into a externally configurable list
+
+/*
+
+Considering that the pi has 4 USB ports, there is a possibility to connect 4 USB flash drives. The paths to them would be 
+	/media/usb0
+	/media/usb1
+	/media/usb2
+	/media/usb3
+We need all of them and we search for mp4, jpg and png files there.
+
+*/
 
 namespace ofx {
 namespace piMapper {
@@ -84,11 +111,20 @@ class MediaServer {
 
 	private:
 		// Directory Watchers
-		ofx::piMapper::DirectoryWatcher videoWatcher;
-		ofx::piMapper::DirectoryWatcher imageWatcher;
-    
-        ofx::piMapper::DirectoryWatcher piVideoWatcher;
-        ofx::piMapper::DirectoryWatcher piImageWatcher;
+		DirectoryWatcher videoWatcher;
+		DirectoryWatcher piVideoWatcher;
+		DirectoryWatcher usb0VideoWatcher;
+		DirectoryWatcher usb1VideoWatcher;
+		DirectoryWatcher usb2VideoWatcher;
+		DirectoryWatcher usb3VideoWatcher;
+	
+		DirectoryWatcher imageWatcher;
+        DirectoryWatcher piImageWatcher;
+		DirectoryWatcher usb0ImageWatcher;
+		DirectoryWatcher usb1ImageWatcher;
+		DirectoryWatcher usb2ImageWatcher;
+		DirectoryWatcher usb3ImageWatcher;
+	
         vector <string> _tempImagePaths;
         vector <string> _tempVideoPaths;
     
