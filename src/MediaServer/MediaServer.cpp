@@ -447,6 +447,9 @@ void MediaServer::unloadFboSource(string & fboSourceName){
 }   // unloadFboSource
 
 void MediaServer::handleImageAdded(string & path){
+	ofLogNotice("MediaServer::handleImageAdded")
+		<< "Image path: "
+		<< path;
 	ofNotifyEvent(onImageAdded, path, this);
 }
 void MediaServer::handleImageRemoved(string & path){

@@ -66,6 +66,9 @@ class DirectoryWatcher {
 			if(!filter->accept(pocoPath)){
 				return;
 			}
+			ofLogNotice("DirectoryWatcher::onDirectoryWatcherItemAdded")
+				<< "Added item: "
+				<< path;
 			filePaths.push_back(path);
 			ofNotifyEvent(onItemAdded, path, this);
 		}
