@@ -27,6 +27,9 @@ class VideoPathFilter : public BasePathFilter {
 		VideoPathFilter(){}
 		virtual ~VideoPathFilter(){}
 
+		// TODO: Make Raspi load only mp4s (and mov and h264?)
+		//       How to detect codec? Read file headers?
+
 		bool accept(const Poco::Path & path) const {
 			return !Poco::File(path).isHidden() &&
 				   (ofIsStringInString(path.toString(), ".mp4") ||
