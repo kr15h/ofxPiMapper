@@ -85,18 +85,30 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 
 	 case OF_KEY_LEFT:
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 moveSelection(app, ofVec2f(-moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_RIGHT:
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 moveSelection(app, ofVec2f(moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_UP:
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 moveSelection(app, ofVec2f(0.0f, -moveStep));
 		 break;
 
 	 case OF_KEY_DOWN:
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 moveSelection(app, ofVec2f(0.0f, moveStep));
 		 break;
 
