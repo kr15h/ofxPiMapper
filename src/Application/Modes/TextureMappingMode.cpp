@@ -113,11 +113,17 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 		 break;
 
 	 case '>':
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 app->getCmdManager()->exec(
 			 new SelNextTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
 		 break;
 		 
 	 case '<':
+		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
+			return;
+		 }
 		 app->getCmdManager()->exec(
 			 new SelPrevTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
 		 break;
