@@ -5,6 +5,7 @@ namespace piMapper {
 
 ProjectionMappingMode::ProjectionMappingMode(){
 	_surfaceScaleBeforeTransform = 1.0f;
+	_bDrawLayerPanel = true;
 }
 
 ProjectionMappingMode * ProjectionMappingMode::_instance = 0;
@@ -41,7 +42,10 @@ void ProjectionMappingMode::draw(Application * app){
 		Gui::instance()->getScaleWidget().draw();
 	}
 	
-	Gui::instance()->getLayerPanelWidget().draw();
+	if(_bDrawLayerPanel){
+		Gui::instance()->getLayerPanelWidget().draw();
+	}
+	
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
@@ -291,7 +295,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 					app->getSurfaceManager()->getSelectedSurface()->getScale() - 0.2f));
 		 }
 		 break;
-	
+
+	 case 'l':
+		 _bDrawLayerPanel = !_bDrawLayerPanel;
+		 break;
+
 	/*
 	 case 'n': // Set next preset
 		 app->getSurfaceManager()->setNextPreset();
