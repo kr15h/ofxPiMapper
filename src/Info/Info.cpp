@@ -26,6 +26,7 @@ void Info::draw(){
 		ss << "  - Press <{> and <}> to remove or add rows to selected grid surface\n";
 		ss << "  - Press <+> and <-> to scale surface up and down\n";
 		ss << "  - Press <9> and <0> to move selected surface one layer up or down\n";
+		ss << "  - Press <l> to hide/show layer panel\n";
 		ss << "  - Press <BACKSPACE> to delete selection\n";
 		ss << "  - Press <SPACE> to play/pause the video\n";
 		ss << "  - Type  <new> to clear composition\n";
