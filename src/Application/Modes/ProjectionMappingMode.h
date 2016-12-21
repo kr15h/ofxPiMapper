@@ -70,6 +70,7 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		ofVec2f _clickPosition;
 	
 		bool _bSurfaceDrag;
+		bool _bDrawLayerPanel;
 
 };
 

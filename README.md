@@ -209,8 +209,8 @@ p | toggle perspective warping (quad surfaces only)
 < | select previous vertex
 0 | Move selected surface one layer up
 9 | Move selected surface one layer down
-f | Toggle fullscreen
 s | Save composition
+l | Hide/show layer panel
 z | Undo
 BACKSPACE ('\' via SSH) | Delete surface.
 SPACE | Toggle pause for video sources (texture and projection mapping modes)

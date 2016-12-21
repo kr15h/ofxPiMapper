@@ -5,13 +5,17 @@ namespace piMapper {
 
 SourcesEditorWidget::SourcesEditorWidget(){
 	mediaServer = 0;
-	addMediaServerListeners();
-	imageSelector = new RadioList();
-	videoSelector = new RadioList();
-	fboSelector = new RadioList();
 }
 
 void SourcesEditorWidget::setup(){
+	createSelectors();
+}
+
+void SourcesEditorWidget::createSelectors(){
+	imageSelector = new RadioList();
+	videoSelector = new RadioList();
+	fboSelector = new RadioList();
+
 	int numImages = mediaServer->getNumImages();
 	int numVideos = mediaServer->getNumVideos();
 	int numFbos = mediaServer->getNumFboSources();
@@ -48,7 +52,6 @@ void SourcesEditorWidget::setup(){
 	if(numFbos){
 		fboSelector->setPosition(menuPosX, 20);
 	}
-
 }
 
 void SourcesEditorWidget::draw(){
@@ -119,8 +122,13 @@ void SourcesEditorWidget::setMediaServer(MediaServer * newMediaServer){
 		ofLogFatalError("SourcesEditorWidget") << "New media server is 0";
 		exit(EXIT_FAILURE);
 	}
+	
+	if(mediaServer != 0){
+		removeMediaServerListeners();
+	}
 	clearMediaServer();
 	mediaServer = newMediaServer;
+	addMediaServerListeners();
 }
 
 MediaServer * SourcesEditorWidget::getMediaServer(){
@@ -317,7 +325,12 @@ void SourcesEditorWidget::clearMediaServer(){
 }
 
 // TODO: There is no need for those at the moment. They add too much overhead.
-void SourcesEditorWidget::handleImageAdded(string & path){}
+void SourcesEditorWidget::handleImageAdded(string & path){
+	ofLogNotice("SourcesEditorWidget::handleImageAdded")
+		<< "Image path: "
+		<< path;
+}
+
 void SourcesEditorWidget::handleImageRemoved(string & path){}
 void SourcesEditorWidget::handleVideoAdded(string & path){}
 void SourcesEditorWidget::handleVideoRemoved(string & path){}

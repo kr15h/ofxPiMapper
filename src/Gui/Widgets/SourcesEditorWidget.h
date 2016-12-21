@@ -44,6 +44,9 @@ class SourcesEditorWidget {
 		RadioList * videoSelector;
 		RadioList * fboSelector;
 		CmdManager * _cmdManager;
+	
+		// Methods for creating and destroying the source selectors
+		void createSelectors();
 
 		// Methods for adding and removing listeners to the media server
 		void addMediaServerListeners();
