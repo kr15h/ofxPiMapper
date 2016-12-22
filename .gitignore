@@ -1,2 +1,7 @@
 .DS_Store
 example-stream
+.vscode
+*.o
+*.d
+*.so
+.compiler_flags
