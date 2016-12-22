@@ -88,6 +88,10 @@ void ScaleWidget::draw(){
 }
 
 void ScaleWidget::onMousePressed(ofMouseEventArgs & args){
+	if(_surfaceManager->getSelectedSurface() == 0){
+		return;
+	}
+	
 	if(_handle.inside(args.x, args.y)){
 		_dragging = true;
 		
