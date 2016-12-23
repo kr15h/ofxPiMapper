@@ -3,7 +3,10 @@
 namespace ofx {
 namespace piMapper {
 
-FboSource::FboSource() : fbo(0){
+FboSource::FboSource(const int width, const int height) :
+	width_(width), 
+	height_(height) 
+{
 	name = PIMAPPER_FBO_SOURCE_DEF_NAME;
 	loadable = false;
 	loaded = false;
@@ -11,12 +14,14 @@ FboSource::FboSource() : fbo(0){
 	_disableDraw = false;
 }
 
-FboSource::~FboSource(){
+FboSource::~FboSource()
+{
 	removeAppListeners();
 	clear();
 }
 
-void FboSource::addAppListeners(){
+void FboSource::addAppListeners()
+{
 	ofLogNotice("FboSource") << "Adding app listeners";
 	ofAddListener(ofEvents().update, this,
 				  &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
@@ -26,7 +31,8 @@ void FboSource::addAppListeners(){
 				  &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
 
-void FboSource::removeAppListeners(){
+void FboSource::removeAppListeners()
+{
 	ofLogNotice("FboSource") << "Removing app listeners";
 	ofRemoveListener(ofEvents().update, this,
 					 &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
@@ -36,76 +42,71 @@ void FboSource::removeAppListeners(){
 					 &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
 
-void FboSource::onAppUpdate(ofEventArgs & args){
-	if(fbo == 0 || !fbo->isAllocated()){
+void FboSource::onAppUpdate(ofEventArgs & args)
+{
+	if(!fbo_.isAllocated())
+	{
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
+	glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
+	
 	update();
 }
 
-void FboSource::onAppDraw(ofEventArgs & args){
-	if(fbo == 0 || !fbo->isAllocated()){
+void FboSource::onAppDraw(ofEventArgs & args)
+{
+	if(!fbo_.isAllocated())
+	{
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
 	
-	if(_disableDraw){
+	if(_disableDraw)
 		return;
-	}
 	
-	fbo->begin();
-	draw();
-	fbo->end();
+	glitch_.generateFx();
 }
 
 void FboSource::onAppExit(ofEventArgs & args){
-	exit();
+	// exit();
 }
 
 void FboSource::setDisableDraw(bool b){
 	_disableDraw = b;
 }
 
-void FboSource::allocate(int width, int height){
-	clear();
-	fbo = new ofFbo();
-	fbo->allocate(width, height);
-
-	// Clear FBO
-	fbo->begin();
-	ofClear(0);
-	fbo->end();
+void FboSource::setup(){
+	ofLogNotice("FboSource") << "Setting up...";	
+	fbo_.allocate(width_, height_);
+	glitch_.setup(&fbo_);
 	
+	// Clear fbo_
+	fbo_.begin();
+	ofClear(0);
+	fbo_.end();
+
 	#if (OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR >= 9) || OF_VERSION_MAJOR > 0
-		texture = &(fbo->getTexture());
+		texture = &(fbo_.getTexture());
 	#else
-		texture = &(fbo->getTextureReference());
+		texture = &(fbo_.getTextureReference());
 	#endif
 }
 
-void FboSource::clear(){
-	texture = 0;
-	if(fbo != 0){
-		delete fbo;
-		fbo = 0;
-	}
+int FboSource::getWidth()
+{
+	if(fbo_.isAllocated())
+		return fbo_.getWidth();
+
+	return 0;
 }
 
-int FboSource::getWidth(){
-	if(fbo->isAllocated()){
-		return fbo->getWidth();
-	}else{
-		return 0;
-	}
-}
+int FboSource::getHeight()
+{
+	if(fbo_.isAllocated())
+		return fbo_.getHeight();
 
-int FboSource::getHeight(){
-	if(fbo->isAllocated()){
-		return fbo->getHeight();
-	}else{
-		return 0;
-	}
+	return 0;
 }
 
 } // namespace piMapper
