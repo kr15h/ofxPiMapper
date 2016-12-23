@@ -26,23 +26,16 @@ class FboSource : public BaseSource {
 		void removeAppListeners();
 
 		void onAppUpdate(ofEventArgs & args);
-		void onAppDraw(ofEventArgs & args);
 		void onAppExit(ofEventArgs & args);
 
-		void setDisableDraw(bool b); // Use in cases with external ofFbo
-
 	protected:
-		ofFbo fbo_;
-		ofxPostGlitch glitch_;
-		ofEasyCam camera_;
-
 		void allocate(int width, int height);
-
-		// Some handy getters
 		int getWidth();
 		int getHeight();
-	
-		bool _disableDraw;
+
+		ofFbo 			fbo_;
+		ofxPostGlitch 	glitch_;
+		ofEasyCam 		camera_;
 
 		int width_;
 		int height_;

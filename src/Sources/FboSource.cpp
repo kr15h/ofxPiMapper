@@ -11,7 +11,6 @@ FboSource::FboSource(const int width, const int height) :
 	loadable = false;
 	loaded = false;
 	type = SourceType::SOURCE_TYPE_FBO;
-	_disableDraw = false;
 }
 
 FboSource::~FboSource()
@@ -25,8 +24,6 @@ void FboSource::addAppListeners()
 	ofLogNotice("FboSource") << "Adding app listeners";
 	ofAddListener(ofEvents().update, this,
 				  &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofAddListener(ofEvents().draw, this,
-				  &FboSource::onAppDraw, OF_EVENT_ORDER_BEFORE_APP);
 	ofAddListener(ofEvents().exit, this,
 				  &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
@@ -36,8 +33,6 @@ void FboSource::removeAppListeners()
 	ofLogNotice("FboSource") << "Removing app listeners";
 	ofRemoveListener(ofEvents().update, this,
 					 &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofRemoveListener(ofEvents().draw, this,
-					 &FboSource::onAppDraw, OF_EVENT_ORDER_BEFORE_APP);
 	ofRemoveListener(ofEvents().exit, this,
 					 &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
@@ -54,26 +49,8 @@ void FboSource::onAppUpdate(ofEventArgs & args)
 	update();
 }
 
-void FboSource::onAppDraw(ofEventArgs & args)
-{
-	if(!fbo_.isAllocated())
-	{
-		ofLogWarning("FboSource") << "FBO not allocated";
-		return;
-	}
-	
-	if(_disableDraw)
-		return;
-	
-	glitch_.generateFx();
-}
-
 void FboSource::onAppExit(ofEventArgs & args){
 	// exit();
-}
-
-void FboSource::setDisableDraw(bool b){
-	_disableDraw = b;
 }
 
 void FboSource::setup(){
