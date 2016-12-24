@@ -9,12 +9,14 @@ SelPrevSurfaceCmd::SelPrevSurfaceCmd(SurfaceManager * surfaceManager){
 
 void SelPrevSurfaceCmd::exec(){
 	_prevSelectedSurface = _surfaceManager->getSelectedSurface();
+	_prevSelectedVertex = _surfaceManager->getSelectedVertexIndex();
 	_surfaceManager->selectPrevSurface();
 }
 
 void SelPrevSurfaceCmd::undo(){
 	ofLogNotice("SelPrevSurfaceCmd", "undo");
 	_surfaceManager->selectSurface(_prevSelectedSurface);
+	_surfaceManager->selectVertex(_prevSelectedVertex);
 	_prevSelectedSurface = 0;
 }
 

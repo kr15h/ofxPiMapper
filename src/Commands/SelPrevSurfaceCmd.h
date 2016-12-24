@@ -22,6 +22,7 @@ class SelPrevSurfaceCmd : public BaseUndoCmd {
 	private:
 		SurfaceManager * _surfaceManager;
 		BaseSurface * _prevSelectedSurface;
+		int _prevSelectedVertex;
 
 };
 
