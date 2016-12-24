@@ -24,8 +24,6 @@ void FboSource::addAppListeners()
 	ofLogNotice("FboSource") << "Adding app listeners";
 	ofAddListener(ofEvents().update, this,
 				  &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofAddListener(ofEvents().exit, this,
-				  &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
 
 void FboSource::removeAppListeners()
@@ -33,8 +31,6 @@ void FboSource::removeAppListeners()
 	ofLogNotice("FboSource") << "Removing app listeners";
 	ofRemoveListener(ofEvents().update, this,
 					 &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofRemoveListener(ofEvents().exit, this,
-					 &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
 }
 
 void FboSource::onAppUpdate(ofEventArgs & args)
@@ -47,10 +43,6 @@ void FboSource::onAppUpdate(ofEventArgs & args)
 	glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
 	
 	update();
-}
-
-void FboSource::onAppExit(ofEventArgs & args){
-	// exit();
 }
 
 void FboSource::setup(){
@@ -68,22 +60,6 @@ void FboSource::setup(){
 	#else
 		texture = &(fbo_.getTextureReference());
 	#endif
-}
-
-int FboSource::getWidth()
-{
-	if(fbo_.isAllocated())
-		return fbo_.getWidth();
-
-	return 0;
-}
-
-int FboSource::getHeight()
-{
-	if(fbo_.isAllocated())
-		return fbo_.getHeight();
-
-	return 0;
 }
 
 } // namespace piMapper

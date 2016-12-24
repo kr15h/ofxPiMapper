@@ -14,25 +14,18 @@ class FboSource : public BaseSource {
 	public:
 		FboSource(const int width, const int height);
 		~FboSource();
-
-		// Override these in your custom FBO source
+		
 		void setup();
-		virtual void update() = 0;
-		// virtual void draw(){}
-		// virtual void exit(){}
 
-		// App listeners
+		// Override this in your custom FBO source
+		virtual void update() = 0;
+
 		void addAppListeners();
 		void removeAppListeners();
 
 		void onAppUpdate(ofEventArgs & args);
-		void onAppExit(ofEventArgs & args);
 
 	protected:
-		void allocate(int width, int height);
-		int getWidth();
-		int getHeight();
-
 		ofFbo 			fbo_;
 		ofxPostGlitch 	glitch_;
 		ofEasyCam 		camera_;
