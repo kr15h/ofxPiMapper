@@ -40,17 +40,13 @@ void FboSource::onAppUpdate(ofEventArgs & args)
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
 	}
-	glitch_.setFx(OFXPOSTGLITCH_OUTLINE, true);
-	
 	update();
 }
 
 void FboSource::setup(){
 	ofLogNotice("FboSource") << "Setting up...";	
 	fbo_.allocate(width_, height_);
-	glitch_.setup(&fbo_);
 	
-	// Clear fbo_
 	fbo_.begin();
 	ofClear(0);
 	fbo_.end();

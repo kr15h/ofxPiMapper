@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include <ofxPostGlitch.h>
 #include "BaseSource.h"
 
 #define PIMAPPER_FBO_SOURCE_DEF_NAME "FBO Source"
@@ -27,7 +26,6 @@ class FboSource : public BaseSource {
 
 	protected:
 		ofFbo 			fbo_;
-		ofxPostGlitch 	glitch_;
 		ofEasyCam 		camera_;
 
 		int width_;
