@@ -8,13 +8,16 @@ SelNextSurfaceCmd::SelNextSurfaceCmd(SurfaceManager * surfaceManager){
 }
 
 void SelNextSurfaceCmd::exec(){
+	ofLogNotice("SelNextSurfaceCmd", "exec");
 	_prevSelectedSurface = _surfaceManager->getSelectedSurface();
+	_prevSelectedVertex = _surfaceManager->getSelectedVertexIndex();
 	_surfaceManager->selectNextSurface();
 }
 
 void SelNextSurfaceCmd::undo(){
 	ofLogNotice("SelNextSurfaceCmd", "undo");
 	_surfaceManager->selectSurface(_prevSelectedSurface);
+	_surfaceManager->selectVertex(_prevSelectedVertex);
 	_prevSelectedSurface = 0;
 }
 
