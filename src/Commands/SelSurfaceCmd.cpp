@@ -10,14 +10,14 @@ SelSurfaceCmd::SelSurfaceCmd(SurfaceManager * surfaceManager, BaseSurface * surf
 
 void SelSurfaceCmd::exec(){
 	_prevSelectedSurface = _surfaceManager->getSelectedSurface();
+	_prevSelectedVertex = _surfaceManager->getSelectedVertexIndex();
 	_surfaceManager->selectSurface(_surfaceToSelect);
 }
 
 void SelSurfaceCmd::undo(){
 	ofLogNotice("SelSurfaceCmd", "undo");
 	_surfaceManager->selectSurface(_prevSelectedSurface);
-	_surfaceToSelect = 0;
-	_prevSelectedSurface = 0;
+	_surfaceManager->selectVertex(_prevSelectedVertex);
 }
 
 } // namespace piMapper
