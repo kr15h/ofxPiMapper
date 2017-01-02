@@ -452,6 +452,18 @@ void ProjectionMappingMode::selectPrevSurface(Application * app){
 	}
 }
 
+void ProjectionMappingMode::selectNextVertex(Application * app){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		app->getCmdManager()->exec(new SelNextVertexCmd(app->getSurfaceManager()));
+	}
+}
+
+void ProjectionMappingMode::selectPrevVertex(Application * app){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		app->getCmdManager()->exec(new SelPrevVertexCmd(app->getSurfaceManager()));
+	}
+}
+
 void ProjectionMappingMode::moveSelection(Application * app, ofVec2f by){
 	app->getCmdManager()->exec(
 		new MvSelectionCmd(

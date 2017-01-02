@@ -36,6 +36,8 @@ class ApplicationBaseMode {
 		virtual void selectSurface(Application * app, int i){}
 		virtual void selectNextSurface(Application * app){}
 		virtual void selectPrevSurface(Application * app){}
+		virtual void selectNextVertex(Application * app){}
+		virtual void selectPrevVertex(Application * app){}
 		virtual void moveSelection(Application * app, ofVec2f by){}
 
 };

@@ -59,6 +59,8 @@ class ofxPiMapper {
 		void selectSurface(int i);
 		void selectNextSurface();
 		void selectPrevSurface();
+		void selectNextVertex();
+		void selectPrevVertex();
 		void togglePauseForSurface(unsigned int i);
 		void moveSelection(ofVec2f by);
 

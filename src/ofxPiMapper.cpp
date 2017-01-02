@@ -52,6 +52,14 @@ void ofxPiMapper::selectPrevSurface(){
 	_application.getState()->selectPrevSurface(&_application);
 }
 
+void ofxPiMapper::selectNextVertex(){
+	_application.getState()->selectNextVertex(&_application);
+}
+
+void ofxPiMapper::selectPrevVertex(){
+	_application.getState()->selectPrevVertex(&_application);
+}
+
 void ofxPiMapper::togglePauseForSurface(unsigned int i){
 	ofx::piMapper::BaseSource * s =
 		_application.getSurfaceManager()->getActivePreset()->getSurfaces().at(i)->getSource();

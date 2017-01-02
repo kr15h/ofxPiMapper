@@ -58,6 +58,8 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		void selectSurface(Application * app, int i);
 		void selectNextSurface(Application * app);
 		void selectPrevSurface(Application * app);
+		void selectNextVertex(Application * app);
+		void selectPrevVertex(Application * app);
 		void moveSelection(Application * app, ofVec2f by);
 
 	private:
