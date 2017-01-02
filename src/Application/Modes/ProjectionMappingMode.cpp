@@ -170,11 +170,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '>':
-		 app->getCmdManager()->exec(new SelNextVertexCmd(app->getSurfaceManager()));
+		 selectNextVertex(app);
 		 break;
 	 
 	 case '<':
-		 app->getCmdManager()->exec(new SelPrevVertexCmd(app->getSurfaceManager()));
+		 selectPrevVertex(app);
 		 break;
 	 
 	 case OF_KEY_UP:
