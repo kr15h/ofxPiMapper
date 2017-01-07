@@ -113,19 +113,11 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 		 break;
 
 	 case '>':
-		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
-			return;
-		 }
-		 app->getCmdManager()->exec(
-			 new SelNextTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
+		 selectNextVertex(app);
 		 break;
 		 
 	 case '<':
-		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
-			return;
-		 }
-		 app->getCmdManager()->exec(
-			 new SelPrevTexCoordCmd(&Gui::instance()->getTextureEditorWidget()));
+		 selectPrevVertex(app);
 		 break;
 	 
 	 case ' ':
@@ -319,6 +311,22 @@ void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
 			&Gui::instance()->getTextureEditorWidget()));
 		
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
+	}
+}
+
+void TextureMappingMode::selectNextVertex(Application * app){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		app->getCmdManager()->exec(
+			new SelNextTexCoordCmd(
+				&Gui::instance()->getTextureEditorWidget()));
+	}
+}
+
+void TextureMappingMode::selectPrevVertex(Application * app){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		app->getCmdManager()->exec(
+			new SelPrevTexCoordCmd(
+				&Gui::instance()->getTextureEditorWidget()));
 	}
 }
 

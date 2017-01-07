@@ -39,6 +39,8 @@ class TextureMappingMode : public ApplicationBaseMode {
 
 		void drawTexture(Application * app);
 		void moveSelection(Application * app, ofVec2f by);
+		void selectNextVertex(Application * app);
+		void selectPrevVertex(Application * app);
 	
 		void setTranslation(ofPoint p);
 		void setDrawMode(int m);
