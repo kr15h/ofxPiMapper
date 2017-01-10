@@ -129,7 +129,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'i':
-		 _info.toggle();
+		 toggleInfo();
 		 break;
 
 	 case 's':
@@ -193,6 +193,10 @@ void Application::addFboSource(FboSource & fboSource){
 
 void Application::addFboSource(FboSource * fboSource){
 	_mediaServer.addFboSource(fboSource);
+}
+
+void Application::toggleInfo(){
+	_info.toggle();
 }
 
 void Application::saveProject(){

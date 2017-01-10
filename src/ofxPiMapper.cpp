@@ -92,6 +92,10 @@ unsigned int ofxPiMapper::getNumSurfaces(){
 	return _application.getSurfaceManager()->getActivePreset()->getSurfaces().size();
 }
 
+void ofxPiMapper::toggleInfo(){
+	_application.toggleInfo();
+}
+
 void ofxPiMapper::setMode(ofxPiMapper::Mode m){
 	if(m == PRESENTATION_MODE){
 		_application.setPresentationMode();

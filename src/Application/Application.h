@@ -58,11 +58,13 @@ class Application : public KeyListener {
 	
 		void addFboSource(FboSource & fboSource);
 		void addFboSource(FboSource * fboSource);
+
+		void toggleInfo();
 		void saveProject();
-	
 		bool loadXmlSettings(string fileName);
+
 		bool isShiftKeyDown();
-	
+
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
 		CmdManager * getCmdManager(){ return &_cmdManager; }
 		MediaServer * getMediaServer(){ return &_mediaServer; }
