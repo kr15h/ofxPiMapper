@@ -14,6 +14,18 @@ void ofxPiMapper::draw(){
 	_application.draw();
 }
 
+void ofxPiMapper::keyPressed(int key){
+	ofKeyEventArgs args;
+	args.key = key;
+	_application.onKeyPressed(args);
+}
+
+void ofxPiMapper::keyReleased(int key){
+	ofKeyEventArgs args;
+	args.key = key;
+	_application.onKeyReleased(args);
+}
+
 void ofxPiMapper::mousePressed(int x, int y, int button){
 	ofMouseEventArgs args;
 	args.x = x;
