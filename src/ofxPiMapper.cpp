@@ -76,6 +76,14 @@ bool ofxPiMapper::loadXmlSettings(string fileName){
 	return _application.loadXmlSettings(fileName);
 }
 
+void ofxPiMapper::saveProject(){
+	_application.saveProject();
+}
+
+bool ofxPiMapper::loadProject(string filename){
+	return _application.loadXmlSettings(filename);
+}
+
 unsigned int ofxPiMapper::getNumPresets(){
 	return _application.getSurfaceManager()->getNumPresets();
 }

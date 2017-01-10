@@ -46,6 +46,10 @@ class ofxPiMapper {
 		void setMode(ofxPiMapper::Mode m);
 		ofxPiMapper::Mode getMode();
 	
+		// Project
+		void saveProject();
+		bool loadProject(string filename);
+	
 		// Presets
 		unsigned int getNumPresets();
 		unsigned int getActivePresetIndex();
