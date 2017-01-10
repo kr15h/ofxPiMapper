@@ -31,6 +31,14 @@ void ofApp::draw(){
 	piMapper.draw();
 }
 
+void ofApp::keyPressed(int key){
+	piMapper.keyPressed(key);
+}
+
+void ofApp::keyReleased(int key){
+	piMapper.keyReleased(key);
+}
+
 void ofApp::mousePressed(int x, int y, int button){
 	piMapper.mousePressed(x, y, button);
 }
