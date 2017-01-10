@@ -68,8 +68,6 @@ class ofxPiMapper {
 		void togglePauseForSurface(unsigned int i);
 		void moveSelection(ofVec2f by);
 
-		bool loadXmlSettings(string fileName);
-
 	private:
 		ofx::piMapper::Application _application;
 };
