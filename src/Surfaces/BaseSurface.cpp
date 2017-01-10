@@ -112,6 +112,10 @@ bool BaseSurface::getMoved(){
 	return _moved;
 }
 
+float BaseSurface::getScale(){
+	return _scale;
+}
+
 ofMesh & BaseSurface::getMesh(){
 	return mesh;
 }

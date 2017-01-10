@@ -14,6 +14,30 @@ void ofxPiMapper::draw(){
 	_application.draw();
 }
 
+void ofxPiMapper::mousePressed(int x, int y, int button){
+	ofMouseEventArgs args;
+	args.x = x;
+	args.y = y;
+	args.button = button;
+	_application.onMousePressed(args);
+}
+
+void ofxPiMapper::mouseReleased(int x, int y, int button){
+	ofMouseEventArgs args;
+	args.x = x;
+	args.y = y;
+	args.button = button;
+	_application.onMouseReleased(args);
+}
+
+void ofxPiMapper::mouseDragged(int x, int y, int button){
+	ofMouseEventArgs args;
+	args.x = x;
+	args.y = y;
+	args.button = button;
+	_application.onMouseDragged(args);
+}
+
 void ofxPiMapper::registerFboSource(ofx::piMapper::FboSource & fboSource){
 	_application.addFboSource(fboSource);
 }

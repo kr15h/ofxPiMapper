@@ -44,8 +44,7 @@ class BaseSurface {
 		BaseSource * getDefaultSource();
 
 		bool getMoved();
-	
-		float getScale(){ return _scale; }
+		float getScale();
 	
 		ofMesh & getMesh();
 		ofRectangle & getBoundingBox();
