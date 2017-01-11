@@ -3,3 +3,4 @@ obj
 *.xcuserdatad
 *~
 config.make
+bin/*.app
