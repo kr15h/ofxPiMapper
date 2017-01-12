@@ -53,34 +53,19 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	switch(args.key){
 		 
 	 case 't':
-		 app->getCmdManager()->exec(
-			 new AddSurfaceCmd(
-				 app->getSurfaceManager(),
-				 SurfaceType::TRIANGLE_SURFACE)
-			 );
+		 createSurface(app, SurfaceType::TRIANGLE_SURFACE);
 		 break;
 
 	 case 'q':
-		 app->getCmdManager()->exec(
-			 new AddSurfaceCmd(
-				 app->getSurfaceManager(),
-				 SurfaceType::QUAD_SURFACE)
-			 );
+		 createSurface(app, SurfaceType::QUAD_SURFACE);
 		 break;
 		 
 	 case 'g':
-		 app->getCmdManager()->exec(
-			 new AddSurfaceCmd(
-				 app->getSurfaceManager(),
-				 SurfaceType::GRID_WARP_SURFACE)
-			 );
-		break;
+		 createSurface(app, SurfaceType::GRID_WARP_SURFACE);
+		 break;
 		
 	 case 'h':
-		 app->getCmdManager()->exec(
-			new AddSurfaceCmd(
-				app->getSurfaceManager(),
-				SurfaceType::HEXAGON_SURFACE));
+		 createSurface(app, SurfaceType::HEXAGON_SURFACE);
 		 break;
 
 	 case OF_KEY_BACKSPACE:
@@ -468,6 +453,11 @@ void ProjectionMappingMode::moveSelection(Application * app, ofVec2f by){
 	app->getCmdManager()->exec(
 		new MvSelectionCmd(
 			app->getSurfaceManager(), by));
+}
+
+void ProjectionMappingMode::createSurface(Application *app, int type){
+	app->getCmdManager()->exec(
+		new AddSurfaceCmd(app->getSurfaceManager(), type));
 }
 
 } // namespace piMapper
