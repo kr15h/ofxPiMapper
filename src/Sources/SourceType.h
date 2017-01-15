@@ -27,9 +27,9 @@ class SourceType {
 			}else if(sourceTypeEnum == SOURCE_TYPE_FBO){
 				return SOURCE_TYPE_NAME_FBO;
 			}else{
-				std::string out;
-				out + "Invalid source type: " + std::to_string(sourceTypeEnum);
-				ofLogFatalError("SourceType " + out);
+				stringstream ss;
+				ss << "Invalid source type: " << sourceTypeEnum;
+				ofLogFatalError("SourceType") << ss.str();
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -44,9 +44,9 @@ class SourceType {
 			}else if(sourceTypeName == SOURCE_TYPE_NAME_FBO){
 				return SOURCE_TYPE_FBO;
 			}else{
-				std::string out;
-				out + "Invalid source type name: " + sourceTypeName;
-				ofLogFatalError("SourceType " + out);
+				stringstream ss;
+				ss << "Invalid source type name: " << sourceTypeName;
+				ofLogFatalError("SourceType") << ss.str();
 				exit(EXIT_FAILURE);
 			}
 		}

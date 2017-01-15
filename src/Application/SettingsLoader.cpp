@@ -79,7 +79,9 @@ bool SettingsLoader::load(
 				
 							// Construct full path
 							string dir = mediaServer.getDefaultMediaDir(typeEnum);
-							string sourcePath = ofToDataPath(dir, true) + sourceName;
+							stringstream pathss;
+							pathss << ofToDataPath(dir, true) << sourceName;
+							string sourcePath = pathss.str();
 				
 							// Load media by using full path
 							source = mediaServer.loadMedia(sourcePath, typeEnum);
