@@ -43,7 +43,8 @@ void FboSource::onAppUpdate(ofEventArgs & args)
 	update();
 }
 
-void FboSource::setup(){
+void FboSource::setup()
+{
 	ofLogNotice("FboSource") << "Setting up...";	
 	fbo_.allocate(width_, height_);
 	
