@@ -54,9 +54,10 @@ bool SettingsLoader::load(
 		for(int i = 0; i < numSurfaces; i++){
 			if(xmlSettings->tagExists("surface", i)){
 			
-				int type = -1;
+				SurfaceType type = SurfaceType::NONE;
 				if(xmlSettings->attributeExists("surface", "type")){
-					type = xmlSettings->getAttribute("surface", "type", 0, i);
+					type = static_cast<SurfaceType>(
+						xmlSettings->getAttribute("surface", "type", 0, i));
 				}
 			
 				xmlSettings->pushTag("surface", i);
@@ -99,7 +100,7 @@ bool SettingsLoader::load(
 					xmlSettings->popTag(); // vertices
 				}
 				
-				if(type == -1){
+				if(type == SurfaceType::NONE){
 					if(vertexCount == 3){
 						type = SurfaceType::TRIANGLE_SURFACE;
 					}else if(vertexCount == 4){

@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-AddSurfaceCmd::AddSurfaceCmd(SurfaceManager * sm, int surfaceType){
+AddSurfaceCmd::AddSurfaceCmd(SurfaceManager * sm, SurfaceType surfaceType){
 	_surfaceManager = sm;
 	_surfaceType = surfaceType;
 }

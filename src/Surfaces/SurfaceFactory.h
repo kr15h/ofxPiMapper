@@ -17,7 +17,7 @@ class SurfaceFactory {
 		static SurfaceFactory * instance();
 	
 		// Create new surface based on type
-		BaseSurface * createSurface(int type);
+		BaseSurface * createSurface(SurfaceType type);
 	
 	private:
 		static SurfaceFactory * _instance;

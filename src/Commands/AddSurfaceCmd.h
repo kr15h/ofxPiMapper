@@ -14,13 +14,13 @@ namespace piMapper {
 class AddSurfaceCmd : public BaseUndoCmd {
 
 	public:
-		AddSurfaceCmd(SurfaceManager * sm, int surfaceType);
+		AddSurfaceCmd(SurfaceManager * sm, SurfaceType surfaceType);
 		void exec();
 		void undo();
 
 	private:
 		SurfaceManager * _surfaceManager;
-		int _surfaceType;
+		SurfaceType _surfaceType;
 
 };
 

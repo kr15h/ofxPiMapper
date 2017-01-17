@@ -459,7 +459,7 @@ void ProjectionMappingMode::moveSelection(Application * app, ofVec2f by){
 			app->getSurfaceManager(), by));
 }
 
-void ProjectionMappingMode::createSurface(Application *app, int type){
+void ProjectionMappingMode::createSurface(Application *app, SurfaceType type){
 	app->getCmdManager()->exec(
 		new AddSurfaceCmd(app->getSurfaceManager(), type));
 }

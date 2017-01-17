@@ -12,7 +12,7 @@ SurfaceFactory * SurfaceFactory::instance(){
 	return _instance;
 }
 
-BaseSurface * SurfaceFactory::createSurface(int type){
+BaseSurface * SurfaceFactory::createSurface(SurfaceType type){
 	if(type == SurfaceType::TRIANGLE_SURFACE){
 		return createTriangleSurface();
 	}else if(type == SurfaceType::QUAD_SURFACE){
