@@ -7,6 +7,7 @@
 #include "MediaServer.h"
 #include "SurfaceFactory.h"
 #include "SurfaceType.h"
+#include "SourceTypeHelper.h"
 
 namespace ofx {
 namespace piMapper {
