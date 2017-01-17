@@ -71,7 +71,7 @@ bool SettingsLoader::load(
 					if(sourceName != "" && sourceName != "none" && sourceType != ""){
 
 						// Load source depending on type
-						int typeEnum = SourceType::GetSourceTypeEnum(sourceType);
+						SourceType typeEnum = SourceTypeHelper::GetSourceTypeHelperEnum(sourceType);
 						if(typeEnum == SourceType::SOURCE_TYPE_FBO){
 				
 							// Load FBO source using sourceName
@@ -200,7 +200,7 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->addTag("source");
 		xmlSettings->pushTag("source");
 		
-		string sourceTypeName = SourceType::GetSourceTypeName(surface->getSource()->getType());
+		string sourceTypeName = SourceTypeHelper::GetSourceTypeHelperName(surface->getSource()->getType());
 		
 		xmlSettings->addValue("source-type", sourceTypeName);
 		string sourceName = surface->getSource()->getName();

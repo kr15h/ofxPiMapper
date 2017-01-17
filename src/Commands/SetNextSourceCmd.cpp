@@ -71,24 +71,7 @@ void SetNextSourceCmd::exec(){
 	if(_nextSourceIndex >= _sources.size()){
 		_nextSourceIndex = 0;
 	}
-	
-	// Load new source
-    /*
-	BaseSource * newSource;
-	if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
-		newSource = mediaServer->loadImage(_sources[_nextSourceIndex].id);
-	}else{
-		newSource = mediaServer->loadMedia(
-			_sources[_nextSourceIndex].id,
-			_sources[_nextSourceIndex].type);
-	}
-	
-	_surface->setSource(newSource);
-	
-	// Unload old one
-	mediaServer->unloadMedia(sourceId);
-    */
-    
+
     if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
 		_sourcesEditor->setImageSource(_sources[_nextSourceIndex].id);
 	}else if(_sources[_nextSourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){
@@ -104,20 +87,7 @@ void SetNextSourceCmd::exec(){
 
 void SetNextSourceCmd::undo(){
 	ofLogNotice("SetNextSourceCmd", "undo");
-	
-    /*
-	MediaServer * mediaServer = _sourcesEditor->getMediaServer();
 
-	// Load back old source
-	BaseSource * prevSource = mediaServer->loadMedia(
-		_sources[_sourceIndex].id,
-		_sources[_sourceIndex].type);
-	
-	_surface->setSource(prevSource);
-	
-	mediaServer->unloadMedia(_sources[_nextSourceIndex].id);
-    */
-    
     if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_IMAGE){
 		_sourcesEditor->setImageSource(_sources[_sourceIndex].id);
 	}else if(_sources[_sourceIndex].type == SourceType::SOURCE_TYPE_VIDEO){

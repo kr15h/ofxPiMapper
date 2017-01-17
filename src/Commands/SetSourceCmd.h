@@ -29,7 +29,7 @@ class SetSourceCmd : public BaseUndoCmd {
 		BaseSurface * _surface;
 		SourcesEditorWidget * _sourcesEditor;
 
-		int _oldSourceType;
+		int _oldSourceTypeHelper;
 		string _oldSourceId;
 
 };

@@ -17,7 +17,7 @@ SetSourceCmd::SetSourceCmd(int sourceType,
 void SetSourceCmd::exec(){
 	ofLogNotice("SetSourceCmd", "exec");
 
-	_oldSourceType = _surface->getSource()->getType();
+	_oldSourceTypeHelper = _surface->getSource()->getType();
 	if(_surface->getSource()->isLoadable()){
 		_oldSourceId = _surface->getSource()->getPath();
 	}else{
@@ -38,13 +38,13 @@ void SetSourceCmd::exec(){
 void SetSourceCmd::undo(){
 	ofLogNotice("SetSourceCmd", "undo");
 
-	if(_oldSourceType == SourceType::SOURCE_TYPE_IMAGE){
+	if(_oldSourceTypeHelper == SourceType::SOURCE_TYPE_IMAGE){
 		_sourcesEditor->setImageSource(_oldSourceId);
-	}else if(_oldSourceType == SourceType::SOURCE_TYPE_VIDEO){
+	}else if(_oldSourceTypeHelper == SourceType::SOURCE_TYPE_VIDEO){
 		_sourcesEditor->setVideoSource(_oldSourceId);
-	}else if(_oldSourceType == SourceType::SOURCE_TYPE_FBO){
+	}else if(_oldSourceTypeHelper == SourceType::SOURCE_TYPE_FBO){
 		_sourcesEditor->setFboSource(_oldSourceId);
-	}else if(_oldSourceType == SourceType::SOURCE_TYPE_NONE){
+	}else if(_oldSourceTypeHelper == SourceType::SOURCE_TYPE_NONE){
 		_sourcesEditor->clearSource();
 	}
 

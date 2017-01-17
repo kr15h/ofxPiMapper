@@ -10,14 +10,16 @@
 namespace ofx {
 namespace piMapper {
 
-class SourceType {
+enum SourceType {
+	SOURCE_TYPE_NONE,
+	SOURCE_TYPE_IMAGE,
+	SOURCE_TYPE_VIDEO,
+	SOURCE_TYPE_FBO
+};
 
+class SourceTypeHelper {
 	public:
-		enum {
-			SOURCE_TYPE_NONE, SOURCE_TYPE_IMAGE, SOURCE_TYPE_VIDEO, SOURCE_TYPE_FBO
-		};
-
-		static string GetSourceTypeName(int sourceTypeEnum){
+		static string GetSourceTypeHelperName(SourceType sourceTypeEnum){
 			if(sourceTypeEnum == SOURCE_TYPE_IMAGE){
 				return SOURCE_TYPE_NAME_IMAGE;
 			}else if(sourceTypeEnum == SOURCE_TYPE_VIDEO){
@@ -29,12 +31,12 @@ class SourceType {
 			}else{
 				stringstream ss;
 				ss << "Invalid source type: " << sourceTypeEnum;
-				ofLogFatalError("SourceType") << ss.str();
+				ofLogFatalError("SourceTypeHelper") << ss.str();
 				exit(EXIT_FAILURE);
 			}
 		}
 
-		static int GetSourceTypeEnum(string sourceTypeName){
+		static SourceType GetSourceTypeHelperEnum(string sourceTypeName){
 			if(sourceTypeName == SOURCE_TYPE_NAME_IMAGE){
 				return SOURCE_TYPE_IMAGE;
 			}else if(sourceTypeName == SOURCE_TYPE_NAME_VIDEO){
@@ -46,11 +48,10 @@ class SourceType {
 			}else{
 				stringstream ss;
 				ss << "Invalid source type name: " << sourceTypeName;
-				ofLogFatalError("SourceType") << ss.str();
+				ofLogFatalError("SourceTypeHelper") << ss.str();
 				exit(EXIT_FAILURE);
 			}
 		}
-
 };
 
 } // namespace piMapper

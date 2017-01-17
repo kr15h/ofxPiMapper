@@ -31,7 +31,7 @@ bool BaseSource::isLoaded(){
 	return loaded;
 }
 
-int BaseSource::getType(){
+SourceType BaseSource::getType(){
 	return type;
 }
 
