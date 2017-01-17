@@ -32,6 +32,24 @@ MediaServer::~MediaServer(){
 	removeWatcherListeners();
 }
 
+void MediaServer::setup(){
+	// We could setup sources here, but the sources are
+	// set up while adding them to media server. For now
+	// This method is here just to keep things consistent.
+}
+
+void MediaServer::update(){
+	for(int i = 0; i < fboSources.size(); ++i){
+		fboSources[i]->updateFbo();
+	}
+}
+
+void MediaServer::draw(){
+	for(int i = 0; i < fboSources.size(); ++i){
+		fboSources[i]->drawFbo();
+	}
+}
+
 int MediaServer::getNumImages(){
     int numLocalImages = imageWatcher.getFilePaths().size();
     int numPiImages = piImageWatcher.getFilePaths().size();
@@ -156,7 +174,7 @@ BaseSource * MediaServer::loadMedia(string & path, int mediaType){
 		stringstream ss;
 		ss << "Can not load media of unknown type: " << mediaType;
 		ofLogFatalError("MediaServer") << ss.str();
-		exit(EXIT_FAILURE);
+		std::exit(EXIT_FAILURE);
 	}
 	return 0;
 }
@@ -227,7 +245,7 @@ void MediaServer::unloadImage(string & path){
 	stringstream failss;
 	failss << "Failed to remove image source: " << path;
 	ofLogFatalError("MediaServer") << failss.str();
-	exit(EXIT_FAILURE);
+	std::exit(EXIT_FAILURE);
 }
 
 BaseSource * MediaServer::loadVideo(string & path){
@@ -298,7 +316,7 @@ void MediaServer::unloadVideo(string & path){
 	stringstream failss;
 	failss << "Failed to remove video source: " << path;
 	ofLogFatalError("MediaServer") << failss.str();
-	exit(EXIT_FAILURE);
+	std::exit(EXIT_FAILURE);
 }
 
 void MediaServer::unloadMedia(string & path){
@@ -313,7 +331,7 @@ void MediaServer::unloadMedia(string & path){
 		}else{
 			// Oh my god, what to do!? Relax and exit.
 			ofLogFatalError("MediaServer") << "Attempt to unload media of unknown type";
-			exit(EXIT_FAILURE);
+			std::exit(EXIT_FAILURE);
 		}
 	}else{
 		ofLogNotice("MediaServer") << "Nothing to unload";
@@ -341,7 +359,7 @@ BaseSource * MediaServer::getSourceByPath(string & mediaPath){
 	stringstream ss;
 	ss << "Could not find source by path: " << mediaPath;
 	ofLogFatalError("MediaServer") << ss.str();
-	exit(EXIT_FAILURE);
+	std::exit(EXIT_FAILURE);
 }
 
 string MediaServer::getDefaultImageDir(){
@@ -361,7 +379,7 @@ string MediaServer::getDefaultMediaDir(int sourceType){
 		stringstream ss;
 		ss << "Could not get default media dir. Unknown source type: " << sourceType;
 		ofLogFatalError("MediaServer") << ss.str();
-		exit(EXIT_FAILURE);
+		std::exit(EXIT_FAILURE);
 	}
 }
 
@@ -414,7 +432,7 @@ BaseSource * MediaServer::loadFboSource(string & fboSourceName){
 	// else
 	// Not loaded, add to loaded sources and activate
 	// source var should be set by now
-	source->addAppListeners();
+	//source->addAppListeners();
 	source->referenceCount = 1;
 	ofLogNotice("MediaServer") << "Current " << fboSourceName << " reference count: " << source->referenceCount;
 	loadedSources[fboSourceName] = source;
@@ -438,7 +456,7 @@ void MediaServer::unloadFboSource(string & fboSourceName){
 	if(source->referenceCount <= 0){
 		ofLogNotice("MediaServer") << fboSourceName << " reference count <= 0, removing from loaded sources";
 		source->referenceCount = 0;
-		source->removeAppListeners();
+		//source->removeAppListeners();
 		map <string, BaseSource *>::iterator it = loadedSources.find(fboSourceName);
 		loadedSources.erase(it);
 		ofLogNotice("MediaServer") << "Source count after FBO source removal: " << loadedSources.size() << endl;

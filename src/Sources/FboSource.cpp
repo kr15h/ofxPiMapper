@@ -3,7 +3,8 @@
 namespace ofx {
 namespace piMapper {
 
-FboSource::FboSource() : fbo(0){
+FboSource::FboSource(){
+	fbo = 0;
 	name = PIMAPPER_FBO_SOURCE_DEF_NAME;
 	loadable = false;
 	loaded = false;
@@ -12,31 +13,10 @@ FboSource::FboSource() : fbo(0){
 }
 
 FboSource::~FboSource(){
-	removeAppListeners();
 	clear();
 }
 
-void FboSource::addAppListeners(){
-	ofLogNotice("FboSource") << "Adding app listeners";
-	ofAddListener(ofEvents().update, this,
-				  &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofAddListener(ofEvents().draw, this,
-				  &FboSource::onAppDraw, OF_EVENT_ORDER_BEFORE_APP);
-	ofAddListener(ofEvents().exit, this,
-				  &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
-}
-
-void FboSource::removeAppListeners(){
-	ofLogNotice("FboSource") << "Removing app listeners";
-	ofRemoveListener(ofEvents().update, this,
-					 &FboSource::onAppUpdate, OF_EVENT_ORDER_BEFORE_APP);
-	ofRemoveListener(ofEvents().draw, this,
-					 &FboSource::onAppDraw, OF_EVENT_ORDER_BEFORE_APP);
-	ofRemoveListener(ofEvents().exit, this,
-					 &FboSource::onAppExit, OF_EVENT_ORDER_AFTER_APP);
-}
-
-void FboSource::onAppUpdate(ofEventArgs & args){
+void FboSource::updateFbo(){
 	if(fbo == 0 || !fbo->isAllocated()){
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
@@ -44,7 +24,7 @@ void FboSource::onAppUpdate(ofEventArgs & args){
 	update();
 }
 
-void FboSource::onAppDraw(ofEventArgs & args){
+void FboSource::drawFbo(){
 	if(fbo == 0 || !fbo->isAllocated()){
 		ofLogWarning("FboSource") << "FBO not allocated";
 		return;
@@ -57,10 +37,6 @@ void FboSource::onAppDraw(ofEventArgs & args){
 	fbo->begin();
 	draw();
 	fbo->end();
-}
-
-void FboSource::onAppExit(ofEventArgs & args){
-	exit();
 }
 
 void FboSource::setDisableDraw(bool b){

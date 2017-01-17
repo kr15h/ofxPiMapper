@@ -65,6 +65,10 @@ class MediaServer {
 	public:
 		MediaServer();
 		virtual ~MediaServer();
+	
+		void setup();
+		void update();
+		void draw();
 
 		int getNumVideos();
 		int getNumImages();

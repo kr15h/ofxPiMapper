@@ -43,6 +43,9 @@ Application::Application(){
 }
 
 void Application::setup(){
+	// Setup components
+	_mediaServer.setup();
+
 	if(!loadXmlSettings(PIMAPPER_SETTINGS_FILE)){
 		if(SettingsLoader::instance()->create(PIMAPPER_SETTINGS_FILE)){
 			bool success = loadXmlSettings(PIMAPPER_SETTINGS_FILE);
@@ -69,6 +72,7 @@ void Application::setup(){
 }
 
 void Application::update(){
+	_mediaServer.update();
 	_state->update(this);
 	
 	// Autosave, do it only of the mode is not presentation mode
@@ -86,6 +90,7 @@ ApplicationBaseMode * Application::getState(){
 }
 
 void Application::draw(){
+	_mediaServer.draw();
 	_state->draw(this);
 	_info.draw();
 }

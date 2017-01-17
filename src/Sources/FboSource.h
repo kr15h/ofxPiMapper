@@ -18,18 +18,19 @@ class FboSource : public BaseSource {
 		virtual void setup(){}
 		virtual void update(){}
 		virtual void draw(){}
-		virtual void exit(){}
 
+		// We use this as replacement of draw internally in ofxPiMapper
+		// to populate the FBO texture that then can be drawn again by
+		// calling normal draw();
+		// Or maybe this should be simplified? By leaving only one draw?
+		// And the user would have to allocate the fbo himself?
+		void updateFbo();
+		void drawFbo();
+	
 		// The only method from BaseSource to be overriden
 		void clear();
 
 		// App listeners
-		void addAppListeners();
-		void removeAppListeners();
-		void onAppSetup(ofEventArgs & args);
-		void onAppUpdate(ofEventArgs & args);
-		void onAppDraw(ofEventArgs & args);
-		void onAppExit(ofEventArgs & args);
 		void setDisableDraw(bool b); // Use in cases with external ofFbo
 
 	protected:
