@@ -382,6 +382,10 @@ void ProjectionMappingMode::onGuiEvent(Application * app, GuiEvent & e){
 	// Scale widget now. More widgets later.
 	if(e.widget == &Gui::instance()->getScaleWidget()){
 		if(e.args.type == e.args.Pressed){
+			if(app->getSurfaceManager()->getSelectedSurface() == 0){
+				return;
+			}
+			
 			_surfaceScaleBeforeTransform =
 				app->getSurfaceManager()->getSelectedSurface()->getScale();
 		}else if(e.args.type == e.args.Released){
