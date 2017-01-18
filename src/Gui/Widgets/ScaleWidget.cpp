@@ -139,6 +139,9 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 		
 		GuiWidgetEvent e;
 		e.args = args;
+		
+		// Make sure that the args type is Dragged
+		e.args.type = e.args.Dragged;
 		ofNotifyEvent(guiWidgetEvent, e, this);
 	}
 }
