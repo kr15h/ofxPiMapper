@@ -94,8 +94,6 @@ void BaseSurface::setMoved(bool moved){
 }
 
 void BaseSurface::scaleTo(float scale){
-	cout << "TriangleSurface::scaleTo()" << endl;
-	
 	ofPoint centroid = getBoundingBox().getCenter();
 	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
 		ofVec3f d = (mesh.getVertices()[i] - centroid) / _scale;
