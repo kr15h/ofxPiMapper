@@ -2,11 +2,9 @@
 
 #include "ofEvents.h"
 #include "ofLog.h"
-
 #include "SetApplicationModeCmd.h"
 #include "ClearSurfacesCmd.h"
 #include "SetPresetCmd.h"
-
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
 #include "ProjectionMappingMode.h"
@@ -14,12 +12,7 @@
 #include "SourceSelectionMode.h"
 #include "FboSource.h"
 #include "Info.h"
-
 #include "SurfaceStack.h"
-
-// TODO: To be removed.
-#include "GuiMode.h"
-
 #include "Gui.h"
 #include "TerminalListener.h"
 
