@@ -31,6 +31,7 @@ void ofxPiMapper::mousePressed(int x, int y, int button){
 	args.x = x;
 	args.y = y;
 	args.button = button;
+	args.type = ofMouseEventArgs::Pressed;
 	_application.onMousePressed(args);
 }
 
@@ -39,6 +40,7 @@ void ofxPiMapper::mouseReleased(int x, int y, int button){
 	args.x = x;
 	args.y = y;
 	args.button = button;
+	args.type = ofMouseEventArgs::Released;
 	_application.onMouseReleased(args);
 }
 
@@ -47,6 +49,7 @@ void ofxPiMapper::mouseDragged(int x, int y, int button){
 	args.x = x;
 	args.y = y;
 	args.button = button;
+	args.type = ofMouseEventArgs::Dragged;
 	_application.onMouseDragged(args);
 }
 
