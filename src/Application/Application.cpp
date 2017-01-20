@@ -205,6 +205,11 @@ void Application::addFboSource(FboSource * fboSource){
 	_mediaServer.addFboSource(fboSource);
 }
 
+void Application::createSurface(SurfaceType type){
+	getCmdManager()->exec(
+		new AddSurfaceCmd(getSurfaceManager(), type));
+}
+
 void Application::toggleInfo(){
 	_info.toggle();
 }

@@ -4,6 +4,7 @@
 #include "ofLog.h"
 #include "FboSource.h"
 #include "Application.h"
+#include "SurfaceType.h"
 
 class ofxPiMapper {
 	public:
@@ -58,6 +59,7 @@ class ofxPiMapper {
 		void selectPrevVertex();
 		void togglePauseForSurface(unsigned int i);
 		void moveSelection(ofVec2f by);
+		void createSurface(ofx::piMapper::SurfaceType type);
 
 	private:
 		ofx::piMapper::Application _application;

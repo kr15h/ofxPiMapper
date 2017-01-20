@@ -111,6 +111,10 @@ void ofxPiMapper::moveSelection(ofVec2f by){
 	_application.getState()->moveSelection(&_application, by);
 }
 
+void ofxPiMapper::createSurface(ofx::piMapper::SurfaceType type){
+	_application.createSurface(type);
+}
+
 void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
