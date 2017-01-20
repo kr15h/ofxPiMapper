@@ -14,7 +14,17 @@ void ofApp::draw(){
 }
 
 void ofApp::keyPressed(int key){
-	mapper.keyPressed(key);
+	if(key == '1'){
+		mapper.setMode(ofxPiMapper::PRESENTATION_MODE);
+	}else if(key == '2'){
+		mapper.setMode(ofxPiMapper::MAPPING_MODE);
+	}else if(key == '3'){
+		mapper.setMode(ofxPiMapper::TEXTURE_MODE);
+	}else if(key == '4'){
+		mapper.setMode(ofxPiMapper::SOURCE_MODE);
+	}else{
+		mapper.keyPressed(key);
+	}
 }
 
 void ofApp::keyReleased(int key){
