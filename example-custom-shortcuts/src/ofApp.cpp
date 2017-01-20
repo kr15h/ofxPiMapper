@@ -30,6 +30,8 @@ void ofApp::keyPressed(int key){
 		mapper.createSurface(ofx::piMapper::GRID_WARP_SURFACE);
 	}else if(key == 't'){
 		mapper.createSurface(ofx::piMapper::TRIANGLE_SURFACE);
+	}else if(key == OF_KEY_BACKSPACE){
+		mapper.eraseSurface(mapper.getNumSurfaces() - 1);
 	}else{
 		mapper.keyPressed(key);
 	}
