@@ -2,33 +2,33 @@
 
 void ofApp::setup(){
 	ofBackground(0);
-	piMapper.setup();
+	mapper.setup();
 }
 
 void ofApp::update(){
-	piMapper.update();
+	mapper.update();
 }
 
 void ofApp::draw(){
-	piMapper.draw();
+	mapper.draw();
 }
 
 void ofApp::keyPressed(int key){
-	piMapper.keyPressed(key);
+	mapper.keyPressed(key);
 }
 
 void ofApp::keyReleased(int key){
-	piMapper.keyReleased(key);
+	mapper.keyReleased(key);
 }
 
 void ofApp::mousePressed(int x, int y, int button){
-	piMapper.mousePressed(x, y, button);
+	mapper.mousePressed(x, y, button);
 }
 
 void ofApp::mouseReleased(int x, int y, int button){
-	piMapper.mouseReleased(x, y, button);
+	mapper.mouseReleased(x, y, button);
 }
 
 void ofApp::mouseDragged(int x, int y, int button){
-	piMapper.mouseDragged(x, y, button);
+	mapper.mouseDragged(x, y, button);
 }

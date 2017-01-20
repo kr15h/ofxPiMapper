@@ -16,5 +16,5 @@ class ofApp : public ofBaseApp {
 		void mouseReleased(int x, int y, int button);
 		void mouseDragged(int x, int y, int button);
 
-		ofxPiMapper piMapper;
+		ofxPiMapper mapper;
 };
