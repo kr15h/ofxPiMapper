@@ -210,6 +210,11 @@ void Application::createSurface(SurfaceType type){
 		new AddSurfaceCmd(getSurfaceManager(), type));
 }
 
+void Application::eraseSurface(int i){
+	getCmdManager()->exec(
+		new RmSurfaceCmd(getSurfaceManager(), i));
+}
+
 void Application::toggleInfo(){
 	_info.toggle();
 }

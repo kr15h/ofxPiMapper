@@ -6,6 +6,7 @@
 #include "ClearSurfacesCmd.h"
 #include "SetPresetCmd.h"
 #include "AddSurfaceCmd.h"
+#include "RmSurfaceCmd.h"
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
 #include "ProjectionMappingMode.h"
@@ -53,6 +54,7 @@ class Application : public KeyListener {
 		void addFboSource(FboSource & fboSource);
 		void addFboSource(FboSource * fboSource);
 		void createSurface(SurfaceType type);
+		void eraseSurface(int i);
 		void toggleInfo();
 		void saveProject();
 		bool loadXmlSettings(string fileName);

@@ -115,6 +115,13 @@ void ofxPiMapper::createSurface(ofx::piMapper::SurfaceType type){
 	_application.createSurface(type);
 }
 
+void ofxPiMapper::eraseSurface(int i){
+	cout << "numSurfaces: " << getNumSurfaces() << ", i: " << i << endl;
+	if(getNumSurfaces() > 0 && i < getNumSurfaces()){
+		_application.eraseSurface(i);
+	}
+}
+
 void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
