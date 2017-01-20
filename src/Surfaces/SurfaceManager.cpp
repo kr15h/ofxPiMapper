@@ -54,6 +54,22 @@ void SurfaceManager::removeSelectedSurface(){
 	}
 }
 
+void SurfaceManager::removeSurface(int i){
+	if(_activePresetIndex < 0){
+		ofLogWarning("SurfaceManager::removeSurface", "Can not remove surface. No active preset.");
+		return;
+	}
+	
+	if(_presets[_activePresetIndex]->size() <= 0){
+		return;
+	}
+	
+	//_presets[_activePresetIndex]->erase(i);
+	_presets[_activePresetIndex]->swap(i, _presets[_activePresetIndex]->size() - 1);
+	_presets[_activePresetIndex]->pop_back();
+	selectedSurface = 0;
+}
+
 void SurfaceManager::removeSurface(){
 	if(_activePresetIndex < 0){
 		ofLogWarning("SurfaceManager::removeSurface", "Can not remove surface. No active preset.");
@@ -66,6 +82,7 @@ void SurfaceManager::removeSurface(){
 	
     BaseSurface * s = _presets[_activePresetIndex]->back();
 	_presets[_activePresetIndex]->pop_back();
+	selectedSurface = 0;
     delete s;
 }
 

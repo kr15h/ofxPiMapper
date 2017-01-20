@@ -29,6 +29,7 @@ class SurfaceManager {
 		void addSurface(BaseSurface * surface);
 		void removeSelectedSurface();
 		void removeSurface();
+		void removeSurface(int i);
 		void deleteSurface(BaseSurface * surface);
 		void deselectSurface();
 		void saveXmlSettings(string fileName);
