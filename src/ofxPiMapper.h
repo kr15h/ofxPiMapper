@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ofMain.h"
+#include "ofEvents.h"
+#include "ofLog.h"
 #include "FboSource.h"
 #include "Application.h"
 
