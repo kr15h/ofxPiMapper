@@ -22,6 +22,14 @@ void ofApp::keyPressed(int key){
 		mapper.setMode(ofxPiMapper::TEXTURE_MODE);
 	}else if(key == '4'){
 		mapper.setMode(ofxPiMapper::SOURCE_MODE);
+	}else if(key == 'w'){
+		mapper.createSurface(ofx::piMapper::QUAD_SURFACE);
+	}else if(key == 'e'){
+		mapper.createSurface(ofx::piMapper::HEXAGON_SURFACE);
+	}else if(key == 'r'){
+		mapper.createSurface(ofx::piMapper::GRID_WARP_SURFACE);
+	}else if(key == 't'){
+		mapper.createSurface(ofx::piMapper::TRIANGLE_SURFACE);
 	}else{
 		mapper.keyPressed(key);
 	}
