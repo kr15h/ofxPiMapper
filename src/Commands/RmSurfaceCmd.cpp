@@ -3,15 +3,17 @@
 namespace ofx {
 namespace piMapper {
 
-RmSurfaceCmd::RmSurfaceCmd(SurfaceManager * sm){
+RmSurfaceCmd::RmSurfaceCmd(SurfaceManager * sm, int i){
 	_surfaceManager = sm;
 	_surface = 0;
+	_surfaceIndex = i;
 }
 
 void RmSurfaceCmd::exec(){
 	// Store the surface, this implies that the surfaceManager's
 	// removeSelectedSurface does not destroy the surface.
-	_surface = _surfaceManager->getSelectedSurface();
+	// The owner is being changed.
+	_surface = _surfaceManager->getSurface(_surfaceIndex);
 	_surfaceManager->removeSelectedSurface();
 }
 
