@@ -15,13 +15,13 @@ void ofApp::draw(){
 
 void ofApp::keyPressed(int key){
 	if(key == '1'){
-		mapper.setMode(ofxPiMapper::PRESENTATION_MODE);
+		mapper.setMode(ofx::piMapper::PRESENTATION_MODE);
 	}else if(key == '2'){
-		mapper.setMode(ofxPiMapper::MAPPING_MODE);
+		mapper.setMode(ofx::piMapper::MAPPING_MODE);
 	}else if(key == '3'){
-		mapper.setMode(ofxPiMapper::TEXTURE_MODE);
+		mapper.setMode(ofx::piMapper::TEXTURE_MODE);
 	}else if(key == '4'){
-		mapper.setMode(ofxPiMapper::SOURCE_MODE);
+		mapper.setMode(ofx::piMapper::SOURCE_MODE);
 	}else if(key == 'w'){
 		mapper.createSurface(ofx::piMapper::QUAD_SURFACE);
 	}else if(key == 'e'){

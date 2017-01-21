@@ -172,6 +172,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0100D93E1E33E4A0000D7FA5 /* Mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mode.h; sourceTree = "<group>"; };
 		0130C9041CE65AA600911E17 /* alphanum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = alphanum.hpp; sourceTree = "<group>"; };
 		0130C9071CE65AA600911E17 /* json.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = json.hpp; sourceTree = "<group>"; };
 		0130C9091CE65AA600911E17 /* LICENSE.MIT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.MIT; sourceTree = "<group>"; };
@@ -678,6 +679,7 @@
 				013E61CC1E2E2FAE00FACF28 /* MediaServer */,
 				013E61D11E2E2FAE00FACF28 /* ofxPiMapper.cpp */,
 				013E61D21E2E2FAE00FACF28 /* ofxPiMapper.h */,
+				0100D93E1E33E4A0000D7FA5 /* Mode.h */,
 				013E61D31E2E2FAE00FACF28 /* Sources */,
 				013E61DF1E2E2FAE00FACF28 /* Surfaces */,
 				013E61F11E2E2FAE00FACF28 /* UserInterface */,
