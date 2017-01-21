@@ -146,29 +146,29 @@ void ofxPiMapper::toggleInfo(){
 	_application.toggleInfo();
 }
 
-void ofxPiMapper::setMode(ofxPiMapper::Mode m){
-	if(m == PRESENTATION_MODE){
+void ofxPiMapper::setMode(ofx::piMapper::Mode m){
+	if(m == ofx::piMapper::PRESENTATION_MODE){
 		_application.setPresentationMode();
-	}else if(m == TEXTURE_MODE){
+	}else if(m == ofx::piMapper::TEXTURE_MODE){
 		_application.setTextureMode();
-	}else if(m == MAPPING_MODE){
+	}else if(m == ofx::piMapper::MAPPING_MODE){
 		_application.setProjectionMode();
-	}else if(m == SOURCE_MODE){
+	}else if(m == ofx::piMapper::SOURCE_MODE){
 		_application.setSourceMode();
 	}else{
 		ofLogWarning("ofxPiMapper::setMode", "Please specify valid mode");
 	}
 }
 
-ofxPiMapper::Mode ofxPiMapper::getMode(){
+ofx::piMapper::Mode ofxPiMapper::getMode(){
 	if(_application.getState() == ofx::piMapper::PresentationMode::instance()){
-		return PRESENTATION_MODE;
+		return ofx::piMapper::PRESENTATION_MODE;
 	}else if(_application.getState() == ofx::piMapper::TextureMappingMode::instance()){
-		return TEXTURE_MODE;
+		return ofx::piMapper::TEXTURE_MODE;
 	}else if(_application.getState() == ofx::piMapper::ProjectionMappingMode::instance()){
-		return MAPPING_MODE;
+		return ofx::piMapper::MAPPING_MODE;
 	}else{
-		return SOURCE_MODE;
+		return ofx::piMapper::SOURCE_MODE;
 	}
-	return PRESENTATION_MODE;
+	return ofx::piMapper::PRESENTATION_MODE;
 }

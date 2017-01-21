@@ -5,16 +5,10 @@
 #include "FboSource.h"
 #include "Application.h"
 #include "SurfaceType.h"
+#include "Mode.h"
 
 class ofxPiMapper {
 	public:
-		enum Mode {
-			PRESENTATION_MODE,
-			TEXTURE_MODE,
-			MAPPING_MODE,
-			SOURCE_MODE
-		};
-	
 		ofxPiMapper();
 
 		void setup();
@@ -35,8 +29,8 @@ class ofxPiMapper {
 		void toggleInfo();
 	
 		// Modes
-		void setMode(ofxPiMapper::Mode m);
-		ofxPiMapper::Mode getMode();
+		void setMode(ofx::piMapper::Mode m);
+		ofx::piMapper::Mode getMode();
 	
 		// Project
 		void saveProject();
