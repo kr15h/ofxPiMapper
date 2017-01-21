@@ -173,6 +173,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0100D9421E33E6C1000D7FA5 /* Mode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mode.h; sourceTree = "<group>"; };
 		016630B21DC8E8010081F28F /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
 		016630B31DC8E8010081F28F /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		016630B51DC8E8010081F28F /* ApplicationBaseMode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationBaseMode.cpp; sourceTree = "<group>"; };
@@ -479,6 +480,7 @@
 				016631231DC8E8010081F28F /* MediaServer */,
 				016631281DC8E8010081F28F /* ofxPiMapper.cpp */,
 				016631291DC8E8010081F28F /* ofxPiMapper.h */,
+				0100D9421E33E6C1000D7FA5 /* Mode.h */,
 				0166312A1DC8E8010081F28F /* Sources */,
 				016631361DC8E8010081F28F /* Surfaces */,
 				016631481DC8E8010081F28F /* UserInterface */,
