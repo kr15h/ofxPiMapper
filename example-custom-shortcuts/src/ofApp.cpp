@@ -32,6 +32,14 @@ void ofApp::keyPressed(int key){
 		mapper.createSurface(ofx::piMapper::TRIANGLE_SURFACE);
 	}else if(key == OF_KEY_BACKSPACE){
 		mapper.eraseSurface(mapper.getNumSurfaces() - 1);
+	}else if(key == OF_KEY_LEFT){
+		mapper.moveSelection(ofVec2f(-20.0f, 0.0f));
+	}else if(key == OF_KEY_RIGHT){
+		mapper.moveSelection(ofVec2f(20.0f, 0.0f));
+	}else if(key == OF_KEY_UP){
+		mapper.moveSelection(ofVec2f(0.0f, -20.0f));
+	}else if(key == OF_KEY_DOWN){
+		mapper.moveSelection(ofVec2f(0.0f, 20.0f));
 	}else{
 		mapper.keyPressed(key);
 	}
