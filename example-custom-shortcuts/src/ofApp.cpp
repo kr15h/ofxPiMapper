@@ -48,6 +48,10 @@ void ofApp::keyPressed(int key){
 		mapper.selectNextVertex();
 	}else if(key == 'h'){
 		mapper.selectPrevVertex();
+	}else if(key == 'i'){
+		mapper.moveLayerUp();
+	}else if(key == 'u'){
+		mapper.moveLayerDown();
 	}else{
 		mapper.keyPressed(key);
 	}
