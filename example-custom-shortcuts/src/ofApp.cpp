@@ -40,6 +40,14 @@ void ofApp::keyPressed(int key){
 		mapper.moveSelection(ofVec2f(0.0f, -20.0f));
 	}else if(key == OF_KEY_DOWN){
 		mapper.moveSelection(ofVec2f(0.0f, 20.0f));
+	}else if(key == 'k'){
+		mapper.selectNextSurface();
+	}else if(key == 'j'){
+		mapper.selectPrevSurface();
+	}else if(key == 'l'){
+		mapper.selectNextVertex();
+	}else if(key == 'h'){
+		mapper.selectPrevVertex();
 	}else{
 		mapper.keyPressed(key);
 	}
