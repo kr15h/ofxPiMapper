@@ -316,5 +316,34 @@ void Application::setSourceMode(){
 			this, SourceSelectionMode::instance()));
 }
 
+void Application::moveLayerUp(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		if(getSurfaceManager()->getSelectedSurface() ==
+		 getSurfaceManager()->getActivePreset()->at(
+		 getSurfaceManager()->getActivePreset()->size() - 1)){
+			return;
+		}
+			
+		getCmdManager()->exec(
+		 new MvLayerUpCmd(
+		  getSurfaceManager()->getActivePreset(),
+		  getSurfaceManager()->getSelectedSurface()));
+	}
+}
+
+void Application::moveLayerDown(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		if(getSurfaceManager()->getSelectedSurface() ==
+		 getSurfaceManager()->getActivePreset()->at(0)){
+			return;
+		}
+			
+		getCmdManager()->exec(
+		 new MvLayerDnCmd(
+		  getSurfaceManager()->getActivePreset(),
+		  getSurfaceManager()->getSelectedSurface()));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

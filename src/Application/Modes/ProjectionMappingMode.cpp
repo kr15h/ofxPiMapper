@@ -230,34 +230,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '0': // Move selected surface up the layer stack
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface() ==
-				app->getSurfaceManager()->getActivePreset()->at(
-					app->getSurfaceManager()->getActivePreset()->size() - 1)){
-				return;
-			}
-			
-			app->getCmdManager()->exec(
-				new MvLayerUpCmd(
-					app->getSurfaceManager()->getActivePreset(),
-					app->getSurfaceManager()->getSelectedSurface())
-			);
-		 }
+		 app->moveLayerUp();
 		 break;
 		
 	 case '9': // Move selected surface down the layer stack
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface() ==
-				app->getSurfaceManager()->getActivePreset()->at(0)){
-				return;
-			}
-			
-			app->getCmdManager()->exec(
-				new MvLayerDnCmd(
-					app->getSurfaceManager()->getActivePreset(),
-					app->getSurfaceManager()->getSelectedSurface())
-			);
-		 }
+		 app->moveLayerDown();
 		 break;
 		 
 	 case '+': // Scale surface up

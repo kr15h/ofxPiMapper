@@ -7,6 +7,8 @@
 #include "SetPresetCmd.h"
 #include "AddSurfaceCmd.h"
 #include "RmSurfaceCmd.h"
+#include "MvLayerUpCmd.h"
+#include "MvLayerDnCmd.h"
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
 #include "ProjectionMappingMode.h"
@@ -73,6 +75,8 @@ class Application : public KeyListener {
 		void setTextureMode();
 		void setProjectionMode();
 		void setSourceMode();
+		void moveLayerUp();
+		void moveLayerDown();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();
