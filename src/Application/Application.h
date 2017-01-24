@@ -22,6 +22,10 @@
 #include "Gui.h"
 #include "TerminalListener.h"
 
+// TODO: Move all command executors to here (Application class)
+//       This would allow one not to repeat. Commands would be called in
+//       one place and includes of commands would not be duplicated.
+
 #define PIMAPPER_SETTINGS_FILE "ofxpimapper.xml"
 
 namespace ofx {
