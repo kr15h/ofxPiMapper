@@ -9,6 +9,8 @@
 #include "RmSurfaceCmd.h"
 #include "MvLayerUpCmd.h"
 #include "MvLayerDnCmd.h"
+#include "DuplicateSurfaceCmd.h"
+#include "SetNextSourceCmd.h"
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
 #include "ProjectionMappingMode.h"

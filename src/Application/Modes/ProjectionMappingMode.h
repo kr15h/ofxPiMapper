@@ -20,8 +20,6 @@
 #include "StartDragSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "DeselectSurfaceCmd.h"
-#include "SetNextSourceCmd.h"
-#include "DuplicateSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
 #include "ScaleSurfaceFromToCmd.h"
 #include "MvSurfaceVertCmd.h"
@@ -29,7 +27,6 @@
 #include "Gui.h"
 
 #include "ScaleWidget.h"
-//#include "LayerPanelWidget.h"
 
 namespace ofx {
 namespace piMapper {

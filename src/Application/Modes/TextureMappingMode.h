@@ -7,7 +7,6 @@
 #include "SelNextTexCoordCmd.h"
 #include "SelPrevTexCoordCmd.h"
 #include "DeselectTexCoordCmd.h"
-#include "SetNextSourceCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
 #include "TranslateCanvasCmd.h"
