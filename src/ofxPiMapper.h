@@ -26,6 +26,7 @@ class ofxPiMapper {
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
 	
 		// Application
+		void setInfoText(string text);
 		void toggleInfo();
 	
 		// Modes

@@ -154,6 +154,10 @@ unsigned int ofxPiMapper::getNumSurfaces(){
 	return _application.getSurfaceManager()->getActivePreset()->getSurfaces().size();
 }
 
+void ofxPiMapper::setInfoText(string text){
+	_application.setInfoText(text);
+}
+
 void ofxPiMapper::toggleInfo(){
 	_application.toggleInfo();
 }

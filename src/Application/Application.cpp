@@ -215,6 +215,10 @@ void Application::eraseSurface(int i){
 		new RmSurfaceCmd(getSurfaceManager(), i));
 }
 
+void Application::setInfoText(string text){
+	_info.setText(text);
+}
+
 void Application::toggleInfo(){
 	_info.toggle();
 }

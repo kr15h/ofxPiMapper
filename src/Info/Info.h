@@ -11,9 +11,11 @@ class Info {
 	
 		void draw();
 		void toggle();
+		void setText(string text);
 	
 	private:
 		bool _visible;
+		string _text;
 };
 
 } // namespace piMapper

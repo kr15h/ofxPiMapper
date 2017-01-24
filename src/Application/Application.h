@@ -57,6 +57,7 @@ class Application : public KeyListener {
 		void addFboSource(FboSource * fboSource);
 		void createSurface(SurfaceType type);
 		void eraseSurface(int i);
+		void setInfoText(string text);
 		void toggleInfo();
 		void saveProject();
 		bool loadXmlSettings(string fileName);
