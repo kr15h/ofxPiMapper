@@ -77,6 +77,7 @@ class Application : public KeyListener {
 		void setSourceMode();
 		void moveLayerUp();
 		void moveLayerDown();
+		void duplicateSurface();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();

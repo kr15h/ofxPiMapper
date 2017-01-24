@@ -91,6 +91,10 @@ void ofxPiMapper::selectPrevSurface(){
 	_application.getState()->selectPrevSurface(&_application);
 }
 
+void ofxPiMapper::duplicateSurface(){
+	_application.duplicateSurface();
+}
+
 void ofxPiMapper::selectNextVertex(){
 	_application.getState()->selectNextVertex(&_application);
 }

@@ -221,12 +221,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 	
 	 case 'd':
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			app->getCmdManager()->exec(
-				new DuplicateSurfaceCmd(
-					app->getSurfaceManager()->getSelectedSurface(),
-					app->getSurfaceManager()));
-		 }
+		 app->duplicateSurface();
 		 break;
 		 
 	 case '0': // Move selected surface up the layer stack

@@ -345,5 +345,14 @@ void Application::moveLayerDown(){
 	}
 }
 
+void Application::duplicateSurface(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new DuplicateSurfaceCmd(
+		  getSurfaceManager()->getSelectedSurface(),
+		  getSurfaceManager()));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx
