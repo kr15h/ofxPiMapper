@@ -358,5 +358,16 @@ void Application::duplicateSurface(){
 	}
 }
 
+void Application::setNextSource(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new SetNextSourceCmd(
+		  getSurfaceManager()->getSelectedSurface(),
+		  &Gui::instance()->getSourcesEditorWidget()));
+	}else{
+		getCmdManager()->exec(new SelNextSurfaceCmd(getSurfaceManager()));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

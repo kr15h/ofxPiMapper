@@ -59,6 +59,9 @@ class ofxPiMapper {
 		void moveSelection(ofVec2f by);
 		void createSurface(ofx::piMapper::SurfaceType type);
 		void eraseSurface(int i);
+	
+		// Sources, selected surface
+		void setNextSource();
 
 	private:
 		ofx::piMapper::Application _application;

@@ -130,14 +130,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 		 break;
 		 
 	 case OF_KEY_TAB:
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			app->getCmdManager()->exec(
-				new SetNextSourceCmd(
-					app->getSurfaceManager()->getSelectedSurface(),
-					&Gui::instance()->getSourcesEditorWidget()));
-		 }else{
-			app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
-		 }
+		 app->setNextSource();
 		 break;
 	
 	 case '0': // Next draw mode

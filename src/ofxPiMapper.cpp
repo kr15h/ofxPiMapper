@@ -134,6 +134,10 @@ void ofxPiMapper::eraseSurface(int i){
 	}
 }
 
+void ofxPiMapper::setNextSource(){
+	_application.setNextSource();
+}
+
 void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
