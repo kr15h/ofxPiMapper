@@ -54,6 +54,14 @@ void ofApp::keyPressed(int key){
 		mapper.moveLayerUp();
 	}else if(key == 'u'){
 		mapper.moveLayerDown();
+	}else if(key == 'n'){
+		string multilineInfoText =
+			"Custom ofxPiMapper shortcuts\n\n"
+			"Good day user.\n"
+			"Shortcuts have been customized.\n"
+			"Please make sure to provide your own documentation.";
+		mapper.setInfoText(multilineInfoText);
+		mapper.toggleInfo();
 	}else{
 		mapper.keyPressed(key);
 	}
