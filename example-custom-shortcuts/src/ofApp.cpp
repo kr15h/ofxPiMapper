@@ -44,6 +44,8 @@ void ofApp::keyPressed(int key){
 		mapper.selectNextSurface();
 	}else if(key == 'j'){
 		mapper.selectPrevSurface();
+	}else if(key == 'd'){
+		mapper.duplicateSurface();
 	}else if(key == 'l'){
 		mapper.selectNextVertex();
 	}else if(key == 'h'){
