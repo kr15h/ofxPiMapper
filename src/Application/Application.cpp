@@ -223,6 +223,17 @@ void Application::toggleInfo(){
 	_info.toggle();
 }
 
+void Application::togglePerspective(){
+	if(getSurfaceManager()->getSelectedSurface() == 0){
+		return;
+	}
+
+	if(getSurfaceManager()->getSelectedSurface()->getType() == SurfaceType::QUAD_SURFACE){
+		getCmdManager()->exec(new TogglePerspectiveCmd(
+		 (QuadSurface *)getSurfaceManager()->getSelectedSurface()));
+	}
+}
+
 void Application::saveProject(){
 	ofLogNotice("Application::saveProject", "Saving project...");
 	_surfaceManager.saveXmlSettings(SettingsLoader::instance()->getLastLoadedFilename());

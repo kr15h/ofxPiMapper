@@ -83,6 +83,10 @@ void ofxPiMapper::selectSurface(int i){
 	_application.getState()->selectSurface(&_application, i);
 }
 
+void ofxPiMapper::togglePerspective(){
+	_application.togglePerspective();
+}
+
 void ofxPiMapper::selectNextSurface(){
 	_application.getState()->selectNextSurface(&_application);
 }

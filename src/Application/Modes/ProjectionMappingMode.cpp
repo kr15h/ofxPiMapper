@@ -79,17 +79,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 	 
 	 case 'p':
-		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
-			break;
-		 }
-		 
-		 if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
-			 SurfaceType::QUAD_SURFACE){
-			 
-			 app->getCmdManager()->exec(
-				 new TogglePerspectiveCmd(
-					 (QuadSurface *)app->getSurfaceManager()->getSelectedSurface() ) );
-		 }
+		 app->togglePerspective();
 		 break;
 	 
 	 case '}':

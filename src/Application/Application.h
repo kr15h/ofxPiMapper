@@ -65,6 +65,7 @@ class Application : public KeyListener {
 		void eraseSurface(int i);
 		void setInfoText(string text);
 		void toggleInfo();
+		void togglePerspective();
 		void saveProject();
 		bool loadXmlSettings(string fileName);
 
