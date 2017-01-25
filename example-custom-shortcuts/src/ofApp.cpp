@@ -56,6 +56,8 @@ void ofApp::keyPressed(int key){
 		mapper.moveLayerUp();
 	}else if(key == 'u'){
 		mapper.moveLayerDown();
+	}else if(key == 'p'){
+		mapper.togglePerspective();
 	}else if(key == 'n'){
 		string multilineInfoText =
 			"Custom ofxPiMapper shortcuts\n\n"
