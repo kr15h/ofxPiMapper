@@ -210,26 +210,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '+': // Scale surface up
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			app->getCmdManager()->exec(
-				new ScaleSurfaceFromToCmd(
-					app->getSurfaceManager()->getSelectedSurface(),
-					app->getSurfaceManager()->getSelectedSurface()->getScale(),
-					app->getSurfaceManager()->getSelectedSurface()->getScale() + 0.2f));
-		 }
+		 app->scaleUp();
 		 break;
 
 	 case '-': // Scale surface down
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface()->getScale() <= 0.21f){
-				break;
-			}
-			app->getCmdManager()->exec(
-				new ScaleSurfaceFromToCmd(
-					app->getSurfaceManager()->getSelectedSurface(),
-					app->getSurfaceManager()->getSelectedSurface()->getScale(),
-					app->getSurfaceManager()->getSelectedSurface()->getScale() - 0.2f));
-		 }
+		 app->scaleDown();
 		 break;
 
 	 case 'l':

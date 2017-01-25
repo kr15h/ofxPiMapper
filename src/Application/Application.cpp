@@ -361,6 +361,29 @@ void Application::moveLayerDown(){
 	}
 }
 
+void Application::scaleUp(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new ScaleSurfaceFromToCmd(
+		  getSurfaceManager()->getSelectedSurface(),
+		  getSurfaceManager()->getSelectedSurface()->getScale(),
+		  getSurfaceManager()->getSelectedSurface()->getScale() + 0.2f));
+	}
+}
+
+void Application::scaleDown(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		if(getSurfaceManager()->getSelectedSurface()->getScale() <= 0.21f){
+			return;
+		}
+		getCmdManager()->exec(
+		 new ScaleSurfaceFromToCmd(
+		  getSurfaceManager()->getSelectedSurface(),
+		  getSurfaceManager()->getSelectedSurface()->getScale(),
+		  getSurfaceManager()->getSelectedSurface()->getScale() - 0.2f));
+	}
+}
+
 void Application::duplicateSurface(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(

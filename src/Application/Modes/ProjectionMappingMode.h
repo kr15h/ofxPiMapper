@@ -19,7 +19,6 @@
 #include "StartDragSurfaceCmd.h"
 #include "DeselectSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
-#include "ScaleSurfaceFromToCmd.h"
 #include "MvSurfaceVertCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"

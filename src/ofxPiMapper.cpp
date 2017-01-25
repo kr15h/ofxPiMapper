@@ -115,6 +115,14 @@ void ofxPiMapper::moveLayerDown(){
 	_application.moveLayerDown();
 }
 
+void ofxPiMapper::scaleUp(){
+	_application.scaleUp();
+}
+
+void ofxPiMapper::scaleDown(){
+	_application.scaleDown();
+}
+
 void ofxPiMapper::togglePauseForSurface(unsigned int i){
 	ofx::piMapper::BaseSource * s =
 		_application.getSurfaceManager()->getActivePreset()->getSurfaces().at(i)->getSource();

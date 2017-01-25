@@ -22,6 +22,7 @@
 #include "DuplicateSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SetNextSourceCmd.h"
+#include "ScaleSurfaceFromToCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -93,6 +94,8 @@ class Application : public KeyListener {
 		void setSourceMode();
 		void moveLayerUp();
 		void moveLayerDown();
+		void scaleUp();
+		void scaleDown();
 		void duplicateSurface();
 		void setNextSource();
 	
