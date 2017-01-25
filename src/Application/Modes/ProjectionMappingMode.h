@@ -18,7 +18,6 @@
 #include "SelSurfaceCmd.h"
 #include "MvSelectionCmd.h"
 #include "StartDragSurfaceCmd.h"
-#include "TogglePerspectiveCmd.h"
 #include "DeselectSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
 #include "ScaleSurfaceFromToCmd.h"

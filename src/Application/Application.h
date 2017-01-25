@@ -10,6 +10,7 @@
 #include "MvLayerUpCmd.h"
 #include "MvLayerDnCmd.h"
 #include "DuplicateSurfaceCmd.h"
+#include "TogglePerspectiveCmd.h"
 #include "SetNextSourceCmd.h"
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
