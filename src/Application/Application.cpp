@@ -211,8 +211,9 @@ void Application::createSurface(SurfaceType type){
 }
 
 void Application::eraseSurface(int i){
-	getCmdManager()->exec(
-		new RmSurfaceCmd(getSurfaceManager(), i));
+	if(i >= 0 && i < getSurfaceManager()->getActivePreset()->getSurfaces().size()){
+		getCmdManager()->exec(new RmSurfaceCmd(getSurfaceManager(), i));
+	}
 }
 
 void Application::setInfoText(string text){

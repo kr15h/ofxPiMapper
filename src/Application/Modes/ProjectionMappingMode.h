@@ -5,7 +5,6 @@
 #include "ofLog.h"
 #include "ofGraphics.h"
 #include "AddSurfaceCmd.h"
-#include "RmSurfaceCmd.h"
 #include "AddGridRowCmd.h"
 #include "RmGridRowCmd.h"
 #include "AddGridColCmd.h"

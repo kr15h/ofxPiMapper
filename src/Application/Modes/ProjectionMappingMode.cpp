@@ -69,13 +69,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 
 	 case OF_KEY_BACKSPACE:
-		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
-			break;
-		 }
-		 app->getCmdManager()->exec(
-			 new RmSurfaceCmd(
-				app->getSurfaceManager(),
-				app->getSurfaceManager()->getSelectedSurfaceIndex()));
+		 app->eraseSurface(app->getSurfaceManager()->getSelectedSurfaceIndex());
 		 break;
 	 
 	 case 'p':
