@@ -1,7 +1,17 @@
 #pragma once
 
+// OpenFrameworks components
 #include "ofEvents.h"
 #include "ofLog.h"
+
+// OfxPiMapper Components
+#include "FboSource.h"
+#include "Info.h"
+#include "SurfaceStack.h"
+#include "Gui.h"
+#include "TerminalListener.h"
+
+// Commands
 #include "SetApplicationModeCmd.h"
 #include "ClearSurfacesCmd.h"
 #include "SetPresetCmd.h"
@@ -12,16 +22,13 @@
 #include "DuplicateSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SetNextSourceCmd.h"
+
+// Modes
 #include "ApplicationBaseMode.h"
 #include "PresentationMode.h"
 #include "ProjectionMappingMode.h"
 #include "TextureMappingMode.h"
 #include "SourceSelectionMode.h"
-#include "FboSource.h"
-#include "Info.h"
-#include "SurfaceStack.h"
-#include "Gui.h"
-#include "TerminalListener.h"
 
 // TODO: Move all command executors to here (Application class)
 //       This would allow one not to repeat. Commands would be called in
