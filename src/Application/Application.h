@@ -98,6 +98,10 @@ class Application : public KeyListener {
 		void scaleDown();
 		void duplicateSurface();
 		void setNextSource();
+		void addGridRow();
+		void addGridColumn();
+		void removeGridRow();
+		void removeGridColumn();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();

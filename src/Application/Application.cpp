@@ -404,5 +404,62 @@ void Application::setNextSource(){
 	}
 }
 
+void Application::addGridRow(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+			if(getSurfaceManager()->getSelectedSurface()->getType() ==
+				SurfaceType::GRID_WARP_SURFACE){
+				
+				// TODO: The command should not require projection editor pointer
+				getCmdManager()->exec(
+					new AddGridRowCmd(
+						(GridWarpSurface *)getSurfaceManager()->getSelectedSurface() ));
+			}
+		 }
+}
+
+void Application::addGridColumn(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+			if(getSurfaceManager()->getSelectedSurface()->getType() ==
+				SurfaceType::GRID_WARP_SURFACE){
+				
+				// TODO: The command should not require projection editor pointer
+				getCmdManager()->exec(
+					new AddGridColCmd(
+						(GridWarpSurface *)getSurfaceManager()->getSelectedSurface() ));
+			}
+		 }
+
+}
+
+void Application::removeGridRow(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+			if(getSurfaceManager()->getSelectedSurface()->getType() ==
+				SurfaceType::GRID_WARP_SURFACE){
+				
+				if(((GridWarpSurface *)getSurfaceManager()->getSelectedSurface())->getGridRows() > 1){
+					// TODO: The command should not require projection editor pointer
+					getCmdManager()->exec(
+						new RmGridRowCmd(
+							(GridWarpSurface *)getSurfaceManager()->getSelectedSurface() ));
+				}
+			}
+		 }
+}
+
+void Application::removeGridColumn(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+			if(getSurfaceManager()->getSelectedSurface()->getType() ==
+				SurfaceType::GRID_WARP_SURFACE){
+				
+				if(((GridWarpSurface *)getSurfaceManager()->getSelectedSurface())->getGridCols() > 1){
+					// TODO: The command should not require projection editor pointer
+					getCmdManager()->exec(
+						new RmGridColCmd(
+							(GridWarpSurface *)getSurfaceManager()->getSelectedSurface() ));
+				}
+			}
+		 }
+}
+
 } // namespace piMapper
 } // namespace ofx

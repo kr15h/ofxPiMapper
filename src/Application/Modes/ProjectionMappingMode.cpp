@@ -77,59 +77,19 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 	 
 	 case '}':
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
-				SurfaceType::GRID_WARP_SURFACE){
-				
-				// TODO: The command should not require projection editor pointer
-				app->getCmdManager()->exec(
-					new AddGridRowCmd(
-						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
-			}
-		 }
+		 app->addGridRow();
 		 break;
 	
 	 case '{':
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
-				SurfaceType::GRID_WARP_SURFACE){
-				
-				if(((GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface())->getGridRows() > 1){
-					// TODO: The command should not require projection editor pointer
-					app->getCmdManager()->exec(
-						new RmGridRowCmd(
-							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
-				}
-			}
-		 }
+		 app->removeGridRow();
 		 break;
 	 
 	 case ']':
-		if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
-				SurfaceType::GRID_WARP_SURFACE){
-				
-				// TODO: The command should not require projection editor pointer
-				app->getCmdManager()->exec(
-					new AddGridColCmd(
-						(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
-			}
-		 }
+		 app->addGridColumn();
 		 break;
 		 
 	 case '[':
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			if(app->getSurfaceManager()->getSelectedSurface()->getType() ==
-				SurfaceType::GRID_WARP_SURFACE){
-				
-				if(((GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface())->getGridCols() > 1){
-					// TODO: The command should not require projection editor pointer
-					app->getCmdManager()->exec(
-						new RmGridColCmd(
-							(GridWarpSurface *)app->getSurfaceManager()->getSelectedSurface() ));
-				}
-			}
-		 }
+		 app->removeGridColumn();
 		 break;
 		 
 	 case '.':
