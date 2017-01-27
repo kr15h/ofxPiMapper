@@ -23,6 +23,10 @@
 #include "TogglePerspectiveCmd.h"
 #include "SetNextSourceCmd.h"
 #include "ScaleSurfaceFromToCmd.h"
+#include "AddGridRowCmd.h"
+#include "RmGridRowCmd.h"
+#include "AddGridColCmd.h"
+#include "RmGridColCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
