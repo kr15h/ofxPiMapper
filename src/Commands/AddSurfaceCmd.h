@@ -21,6 +21,7 @@ class AddSurfaceCmd : public BaseUndoCmd {
 	private:
 		SurfaceManager * _surfaceManager;
 		SurfaceType _surfaceType;
+		BaseSurface * _selectedSurface;
 
 };
 
