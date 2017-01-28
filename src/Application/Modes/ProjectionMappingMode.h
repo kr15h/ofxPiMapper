@@ -3,20 +3,12 @@
 #include "Application.h"
 #include "ofLog.h"
 #include "ofGraphics.h"
-#include "SelNextSurfaceCmd.h"
-#include "SelPrevSurfaceCmd.h"
-#include "SelNextVertexCmd.h"
-#include "SelPrevVertexCmd.h"
-#include "SelVertexCmd.h"
-#include "SelSurfaceCmd.h"
-#include "MvSelectionCmd.h"
 #include "StartDragSurfaceCmd.h"
 #include "DeselectSurfaceCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
 #include "MvSurfaceVertCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"
-
 #include "ScaleWidget.h"
 
 namespace ofx {
@@ -39,14 +31,6 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		void onBackgroundPressed(Application * app, GuiBackgroundEvent & e);
 	
 		void onGuiEvent(Application * app, GuiEvent & e);
-	
-		// Undoable public methods
-		void selectSurface(Application * app, int i);
-		void selectNextSurface(Application * app);
-		void selectPrevSurface(Application * app);
-		void selectNextVertex(Application * app);
-		void selectPrevVertex(Application * app);
-		void moveSelection(Application * app, ofVec2f by);
 
 	private:
 		ProjectionMappingMode();

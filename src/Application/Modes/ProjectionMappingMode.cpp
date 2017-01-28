@@ -93,50 +93,50 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 		 
 	 case '.':
-		 selectNextSurface(app);
+		 app->selectNextSurface();
 		 break;
 		 
 	 case ',':
-		 selectPrevSurface(app);
+		 app->selectPrevSurface();
 		 break;
 		 
 	 case '>':
-		 selectNextVertex(app);
+		 app->selectNextVertex();
 		 break;
 	 
 	 case '<':
-		 selectPrevVertex(app);
+		 app->selectPrevVertex();
 		 break;
 	 
 	 case OF_KEY_UP:
 		 if(app->isShiftKeyDown()){
-			moveSelection(app, ofVec2f(0.0f, -10.0f));
+			app->moveSelection(ofVec2f(0.0f, -10.0f));
 		 }else{
-			moveSelection(app, ofVec2f(0.0f, -1.0f));
+			app->moveSelection(ofVec2f(0.0f, -1.0f));
 		 }
 		 break;
 		 
 	 case OF_KEY_DOWN:
 		 if(app->isShiftKeyDown()){
-			moveSelection(app, ofVec2f(0.0f, 10.0f));
+			app->moveSelection(ofVec2f(0.0f, 10.0f));
 		 }else{
-			moveSelection(app, ofVec2f(0.0f, 1.0f));
+			app->moveSelection(ofVec2f(0.0f, 1.0f));
 		 }
 		 break;
 		 
 	 case OF_KEY_LEFT:
 		 if(app->isShiftKeyDown()){
-			moveSelection(app, ofVec2f(-10.0f, 0.0f));
+			app->moveSelection(ofVec2f(-10.0f, 0.0f));
 		 }else{
-			moveSelection(app, ofVec2f(-1.0f, 0.0f));
+			app->moveSelection(ofVec2f(-1.0f, 0.0f));
 		 }
 		 break;
 	 
 	 case OF_KEY_RIGHT:
 		 if(app->isShiftKeyDown()){
-			moveSelection(app, ofVec2f(10.0f, 0.0f));
+			app->moveSelection(ofVec2f(10.0f, 0.0f));
 		 }else{
-			moveSelection(app, ofVec2f(1.0f, 0.0f));
+			app->moveSelection(ofVec2f(1.0f, 0.0f));
 		 }
 		 break;
 		 
@@ -239,7 +239,7 @@ void ProjectionMappingMode::onMouseReleased(Application * app, ofMouseEventArgs 
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
-void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){
+void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){	
 	Gui::instance()->onMouseDragged(args);
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	
@@ -301,58 +301,6 @@ void ProjectionMappingMode::onGuiEvent(Application * app, GuiEvent & e){
 			app->getSurfaceManager()->getSelectedSurface()->scaleTo(e.widget->getScale());
 		}
 	}
-}
-
-void ProjectionMappingMode::selectSurface(Application * app, int i){
-	if(app->getSurfaceManager()->size()){
-		if(app->getSurfaceManager()->getSelectedSurfaceIndex() == i){
-			return;
-		}
-		app->getCmdManager()->exec(
-			new SelSurfaceCmd(
-				app->getSurfaceManager(),
-				app->getSurfaceManager()->getSurface(i) ));
-	}
-}
-
-void ProjectionMappingMode::selectNextSurface(Application * app){
-	if(app->getSurfaceManager()->size()){
-		if(	app->getSurfaceManager()->size() == 1 &&
-			app->getSurfaceManager()->getSelectedSurface() ==
-			app->getSurfaceManager()->getSurface(0)){
-			return;
-		}
-		app->getCmdManager()->exec(new SelNextSurfaceCmd(app->getSurfaceManager()));
-	}
-}
-
-void ProjectionMappingMode::selectPrevSurface(Application * app){
-	if(app->getSurfaceManager()->size()){
-		if(	app->getSurfaceManager()->size() == 1 &&
-			app->getSurfaceManager()->getSelectedSurface() ==
-			app->getSurfaceManager()->getSurface(0)){
-			return;
-		}
-		app->getCmdManager()->exec(new SelPrevSurfaceCmd(app->getSurfaceManager()));
-	}
-}
-
-void ProjectionMappingMode::selectNextVertex(Application * app){
-	if(app->getSurfaceManager()->getSelectedSurface() != 0){
-		app->getCmdManager()->exec(new SelNextVertexCmd(app->getSurfaceManager()));
-	}
-}
-
-void ProjectionMappingMode::selectPrevVertex(Application * app){
-	if(app->getSurfaceManager()->getSelectedSurface() != 0){
-		app->getCmdManager()->exec(new SelPrevVertexCmd(app->getSurfaceManager()));
-	}
-}
-
-void ProjectionMappingMode::moveSelection(Application * app, ofVec2f by){
-	app->getCmdManager()->exec(
-		new MvSelectionCmd(
-			app->getSurfaceManager(), by));
 }
 
 } // namespace piMapper

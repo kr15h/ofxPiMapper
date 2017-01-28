@@ -80,7 +80,7 @@ void ofxPiMapper::eraseActivePreset(){
 }
 
 void ofxPiMapper::selectSurface(int i){
-	_application.getState()->selectSurface(&_application, i);
+	_application.selectSurface(i);
 }
 
 void ofxPiMapper::togglePerspective(){
@@ -88,11 +88,11 @@ void ofxPiMapper::togglePerspective(){
 }
 
 void ofxPiMapper::selectNextSurface(){
-	_application.getState()->selectNextSurface(&_application);
+	_application.selectNextSurface();
 }
 
 void ofxPiMapper::selectPrevSurface(){
-	_application.getState()->selectPrevSurface(&_application);
+	_application.selectPrevSurface();
 }
 
 void ofxPiMapper::duplicateSurface(){
@@ -100,11 +100,11 @@ void ofxPiMapper::duplicateSurface(){
 }
 
 void ofxPiMapper::selectNextVertex(){
-	_application.getState()->selectNextVertex(&_application);
+	_application.selectNextVertex();
 }
 
 void ofxPiMapper::selectPrevVertex(){
-	_application.getState()->selectPrevVertex(&_application);
+	_application.selectPrevVertex();
 }
 
 void ofxPiMapper::moveLayerUp(){
@@ -132,7 +132,7 @@ void ofxPiMapper::togglePauseForSurface(unsigned int i){
 }
 
 void ofxPiMapper::moveSelection(ofVec2f by){
-	_application.getState()->moveSelection(&_application, by);
+	_application.moveSelection(by);
 }
 
 void ofxPiMapper::createSurface(ofx::piMapper::SurfaceType type){

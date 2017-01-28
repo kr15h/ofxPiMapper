@@ -308,6 +308,56 @@ bool Application::loadXmlSettings(string fileName){
 	return true;
 }
 
+void Application::selectSurface(int i){
+	if(getSurfaceManager()->size()){
+		if(getSurfaceManager()->getSelectedSurfaceIndex() == i){
+			return;
+		}
+		getCmdManager()->exec(
+		 new SelSurfaceCmd(
+		  getSurfaceManager(),
+		  getSurfaceManager()->getSurface(i)));
+	}
+}
+
+void Application::selectNextSurface(){
+	if(getSurfaceManager()->size()){
+		if(getSurfaceManager()->size() == 1 &&
+		 getSurfaceManager()->getSelectedSurface() ==
+		 getSurfaceManager()->getSurface(0)){
+			return;
+		}
+		getCmdManager()->exec(new SelNextSurfaceCmd(getSurfaceManager()));
+	}
+}
+
+void Application::selectPrevSurface(){
+	if(getSurfaceManager()->size()){
+		if(getSurfaceManager()->size() == 1 &&
+		 getSurfaceManager()->getSelectedSurface() ==
+		 getSurfaceManager()->getSurface(0)){
+			return;
+		}
+		getCmdManager()->exec(new SelPrevSurfaceCmd(getSurfaceManager()));
+	}
+}
+
+void Application::selectNextVertex(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(new SelNextVertexCmd(getSurfaceManager()));
+	}
+}
+
+void Application::selectPrevVertex(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(new SelPrevVertexCmd(getSurfaceManager()));
+	}
+}
+
+void Application::moveSelection(ofVec2f by){
+	getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
+}
+
 void Application::setPresentationMode(){
 	_cmdManager.exec(
 		new ofx::piMapper::SetApplicationModeCmd(

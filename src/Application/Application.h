@@ -27,6 +27,13 @@
 #include "RmGridRowCmd.h"
 #include "AddGridColCmd.h"
 #include "RmGridColCmd.h"
+#include "SelNextSurfaceCmd.h"
+#include "SelPrevSurfaceCmd.h"
+#include "SelNextVertexCmd.h"
+#include "SelPrevVertexCmd.h"
+#include "SelVertexCmd.h"
+#include "SelSurfaceCmd.h"
+#include "MvSelectionCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -92,6 +99,13 @@ class Application : public KeyListener {
 		TerminalListener consoleListener;
 	
 		// Command executors
+		void selectSurface(int i);
+		void selectNextSurface();
+		void selectPrevSurface();
+		void selectNextVertex();
+		void selectPrevVertex();
+		void moveSelection(ofVec2f by);
+	
 		void setPresentationMode();
 		void setTextureMode();
 		void setProjectionMode();
