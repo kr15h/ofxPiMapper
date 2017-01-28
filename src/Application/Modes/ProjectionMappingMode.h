@@ -4,7 +4,6 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 #include "ofGraphics.h"
-#include "AddSurfaceCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "SelPrevSurfaceCmd.h"
 #include "SelNextVertexCmd.h"
@@ -49,7 +48,6 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		void selectNextVertex(Application * app);
 		void selectPrevVertex(Application * app);
 		void moveSelection(Application * app, ofVec2f by);
-		void createSurface(Application * app, SurfaceType type);
 
 	private:
 		ProjectionMappingMode();
