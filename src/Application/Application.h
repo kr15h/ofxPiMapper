@@ -124,6 +124,9 @@ class Application : public KeyListener {
 		void setPreset(unsigned int i);
 		void setNextPreset();
 	
+		// System commands
+		void reboot();
+	
 	protected:
 		void setState(ApplicationBaseMode * st);
 	

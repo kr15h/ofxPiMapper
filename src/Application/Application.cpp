@@ -153,6 +153,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case 'n':
 		 setNextPreset();
 		 break;
+	
+	 case 'x':
+		 reboot();
+		 break;
 
 	 default:
 		 // All the other keypresses are handled by the application state onKeyPressed
@@ -294,6 +298,14 @@ void Application::setNextPreset(){
 		activePreset += 1;
 	}
 	setPreset(activePreset);
+}
+
+void Application::reboot(){
+	#ifdef TARGET_RASPBERRY_PI
+		system("sudo shutdown -r now");
+	#else
+		ofLogNotice("Application::reboot()", "Supported only on Raspberry Pi");
+	#endif
 }
 
 bool Application::loadXmlSettings(string fileName){

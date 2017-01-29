@@ -65,6 +65,9 @@ class ofxPiMapper {
 	
 		// Sources, selected surface
 		void setNextSource();
+	
+		// System commands
+		void reboot();
 
 	private:
 		ofx::piMapper::Application _application;

@@ -150,6 +150,10 @@ void ofxPiMapper::setNextSource(){
 	_application.setNextSource();
 }
 
+void ofxPiMapper::reboot(){
+	_application.reboot();
+}
+
 void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
