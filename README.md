@@ -213,6 +213,7 @@ s | Save composition
 l | Hide/show layer panel
 z | Undo
 x | Reboot (Raspberry Pi only)
+c | Shutdown (Raspberry Pi only)
 BACKSPACE ('\' via SSH) | Delete surface.
 SPACE | Toggle pause for video sources (texture and projection mapping modes)
 TAB | Select next source (no need to use the source selection interface)
