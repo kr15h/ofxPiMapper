@@ -158,6 +158,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 reboot();
 		 break;
 
+	 case 'c':
+		 shutdown();
+		 break;
+
 	 default:
 		 // All the other keypresses are handled by the application state onKeyPressed
 		 _state->onKeyPressed(this, args);
@@ -305,6 +309,14 @@ void Application::reboot(){
 		system("sudo shutdown -r now");
 	#else
 		ofLogNotice("Application::reboot()", "Supported only on Raspberry Pi");
+	#endif
+}
+
+void Application::shutdown(){
+	#ifdef TARGET_RASPBERRY_PI
+		system("sudo shutdown -h now");
+	#else
+		ofLogNotice("Application::shutdown()", "Supported only on Raspberry Pi");
 	#endif
 }
 

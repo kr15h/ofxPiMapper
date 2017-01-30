@@ -154,6 +154,10 @@ void ofxPiMapper::reboot(){
 	_application.reboot();
 }
 
+void ofxPiMapper::shutdown(){
+	_application.shutdown();
+}
+
 void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }

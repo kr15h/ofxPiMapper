@@ -68,6 +68,7 @@ class ofxPiMapper {
 	
 		// System commands
 		void reboot();
+		void shutdown();
 
 	private:
 		ofx::piMapper::Application _application;

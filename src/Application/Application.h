@@ -126,6 +126,7 @@ class Application : public KeyListener {
 	
 		// System commands
 		void reboot();
+		void shutdown();
 	
 	protected:
 		void setState(ApplicationBaseMode * st);
