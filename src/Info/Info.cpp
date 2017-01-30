@@ -22,7 +22,6 @@ Info::Info(){
 		"  - Press <+> and <-> to scale surface up and down\n"
 		"  - Press <9> and <0> to move selected surface one layer up or down\n"
 		"  - Press <l> to hide/show layer panel\n"
-		"  - Press <x> to reboot (Raspberry Pi only)\n"
 		"  - Press <BACKSPACE> to delete selection\n"
 		"  - Press <SPACE> to play/pause the video\n"
 		"  - Type  <new> to clear composition\n"
@@ -34,6 +33,7 @@ Info::Info(){
 		"Press <s> to save the composition\n"
 		"Press <f> to toggle fullscreen\n"
 		"Press <z> to undo\n"
+		"Press <x> to reboot Raspberry Pi\n"
 		"Press <c> to shutdown Raspberry Pi\n"
 		"Press <i> to hide this message";
 }
