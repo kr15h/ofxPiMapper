@@ -34,6 +34,7 @@ Info::Info(){
 		"Press <s> to save the composition\n"
 		"Press <f> to toggle fullscreen\n"
 		"Press <z> to undo\n"
+		"Press <c> to shutdown Raspberry Pi\n"
 		"Press <i> to hide this message";
 }
 
