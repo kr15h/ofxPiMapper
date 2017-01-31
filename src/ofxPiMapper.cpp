@@ -131,6 +131,10 @@ void ofxPiMapper::togglePauseForSurface(unsigned int i){
 	}
 }
 
+void ofxPiMapper::togglePause(){
+	_application.togglePause();
+}
+
 void ofxPiMapper::moveSelection(ofVec2f by){
 	_application.moveSelection(by);
 }

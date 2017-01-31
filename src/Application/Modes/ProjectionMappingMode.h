@@ -5,7 +5,6 @@
 #include "ofGraphics.h"
 #include "StartDragSurfaceCmd.h"
 #include "DeselectSurfaceCmd.h"
-#include "ToggleAnimatedSourceCmd.h"
 #include "MvSurfaceVertCmd.h"
 #include "SurfaceType.h"
 #include "Gui.h"

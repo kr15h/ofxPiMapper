@@ -34,6 +34,7 @@
 #include "SelVertexCmd.h"
 #include "SelSurfaceCmd.h"
 #include "MvSelectionCmd.h"
+#include "ToggleAnimatedSourceCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -120,6 +121,7 @@ class Application : public KeyListener {
 		void addGridColumn();
 		void removeGridRow();
 		void removeGridColumn();
+		void togglePause();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();

@@ -117,16 +117,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 		 break;
 	 
 	 case ' ':
-		 if(app->getSurfaceManager()->getSelectedSurface() == 0){
-			return;
-		 }
-		 
-         if(app->getSurfaceManager()->getSelectedSurface()->getSource()->getType() ==
-            SourceType::SOURCE_TYPE_VIDEO){
-            app->getCmdManager()->exec(
-                new ToggleAnimatedSourceCmd(
-                    app->getSurfaceManager()->getSelectedSurface()));
-         }
+		 app->togglePause();
 		 break;
 		 
 	 case OF_KEY_TAB:

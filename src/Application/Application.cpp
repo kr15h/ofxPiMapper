@@ -530,5 +530,18 @@ void Application::removeGridColumn(){
 	}
 }
 
+void Application::togglePause(){
+	if(getSurfaceManager()->getSelectedSurface() == 0){
+		return;
+	}
+		 
+	if(getSurfaceManager()->getSelectedSurface()->getSource()->getType() ==
+	 SourceType::SOURCE_TYPE_VIDEO){
+		getCmdManager()->exec(
+		 new ToggleAnimatedSourceCmd(
+		  getSurfaceManager()->getSelectedSurface()));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx
