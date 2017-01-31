@@ -62,6 +62,8 @@ void ofApp::keyPressed(int key){
 		mapper.scaleUp();
 	}else if(key == '-'){
 		mapper.scaleDown();
+	}else if(key == '\\'){
+		mapper.togglePause();
 	}else if(key == 'n'){
 		string multilineInfoText =
 			"Custom ofxPiMapper shortcuts\n\n"
