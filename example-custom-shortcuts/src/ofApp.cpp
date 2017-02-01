@@ -49,9 +49,17 @@ void ofApp::keyPressed(int key){
 	}else if(key == 'd'){
 		mapper.duplicateSurface();
 	}else if(key == 'l'){
-		mapper.selectNextVertex();
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.selectNextVertex();
+		}else if(mapper.getMode() == ofx::piMapper::Mode::TEXTURE_MODE){
+			mapper.selectNextTexCoord();
+		}
 	}else if(key == 'h'){
-		mapper.selectPrevVertex();
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.selectPrevVertex();
+		}else if(mapper.getMode() == ofx::piMapper::Mode::TEXTURE_MODE){
+			mapper.selectPrevTexCoord();
+		}
 	}else if(key == 'i'){
 		mapper.moveLayerUp();
 	}else if(key == 'u'){
