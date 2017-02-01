@@ -109,11 +109,11 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 		 break;
 
 	 case '>':
-		 selectNextVertex(app);
+		 app->selectNextTexCoord();
 		 break;
 		 
 	 case '<':
-		 selectPrevVertex(app);
+		 app->selectPrevTexCoord();
 		 break;
 	 
 	 case ' ':
@@ -291,22 +291,6 @@ void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
 			&Gui::instance()->getTextureEditorWidget()));
 		
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
-	}
-}
-
-void TextureMappingMode::selectNextVertex(Application * app){
-	if(app->getSurfaceManager()->getSelectedSurface() != 0){
-		app->getCmdManager()->exec(
-			new SelNextTexCoordCmd(
-				&Gui::instance()->getTextureEditorWidget()));
-	}
-}
-
-void TextureMappingMode::selectPrevVertex(Application * app){
-	if(app->getSurfaceManager()->getSelectedSurface() != 0){
-		app->getCmdManager()->exec(
-			new SelPrevTexCoordCmd(
-				&Gui::instance()->getTextureEditorWidget()));
 	}
 }
 

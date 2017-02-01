@@ -4,8 +4,6 @@
 #include "ofEvents.h"
 #include "ofLog.h"
 #include "ofGraphics.h"
-#include "SelNextTexCoordCmd.h"
-#include "SelPrevTexCoordCmd.h"
 #include "DeselectTexCoordCmd.h"
 #include "SelNextSurfaceCmd.h"
 #include "TranslateCanvasCmd.h"

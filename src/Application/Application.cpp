@@ -378,6 +378,22 @@ void Application::selectPrevVertex(){
 	}
 }
 
+void Application::selectNextTexCoord(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new SelNextTexCoordCmd(
+		  &Gui::instance()->getTextureEditorWidget()));
+	}
+}
+
+void Application::selectPrevTexCoord(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new SelPrevTexCoordCmd(
+		  &Gui::instance()->getTextureEditorWidget()));
+	}
+}
+
 void Application::moveSelection(ofVec2f by){
 	getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
 }

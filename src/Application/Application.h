@@ -35,6 +35,8 @@
 #include "SelSurfaceCmd.h"
 #include "MvSelectionCmd.h"
 #include "ToggleAnimatedSourceCmd.h"
+#include "SelNextTexCoordCmd.h"
+#include "SelPrevTexCoordCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -105,6 +107,8 @@ class Application : public KeyListener {
 		void selectPrevSurface();
 		void selectNextVertex();
 		void selectPrevVertex();
+		void selectNextTexCoord();
+		void selectPrevTexCoord();
 		void moveSelection(ofVec2f by);
 	
 		void setPresentationMode();
