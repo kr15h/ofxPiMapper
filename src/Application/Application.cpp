@@ -395,7 +395,12 @@ void Application::selectPrevTexCoord(){
 }
 
 void Application::moveSelection(ofVec2f by){
-	getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
+	if(_state == ProjectionMappingMode::instance()){
+		getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
+	}else if(_state == TextureMappingMode::instance()){
+		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
+		moveTexCoord(selectedTexCoord, by);
+	}
 }
 
 void Application::setPresentationMode(){
