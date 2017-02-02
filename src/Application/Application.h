@@ -126,6 +126,7 @@ class Application : public KeyListener {
 		void removeGridRow();
 		void removeGridColumn();
 		void togglePause();
+		void moveTexCoord(int texCoordIndex, ofVec2f by);
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();

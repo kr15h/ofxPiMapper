@@ -559,5 +559,17 @@ void Application::togglePause(){
 	}
 }
 
+void Application::moveTexCoord(int texCoordIndex, ofVec2f by){
+	if(texCoordIndex >= 0){
+		getCmdManager()->exec(new MvTexCoordCmd(texCoordIndex, by));
+	}else{
+		getCmdManager()->exec(new MvAllTexCoordsCmd(
+		 getSurfaceManager()->getSelectedSurface(),
+		 &Gui::instance()->getTextureEditorWidget()));
+		
+		Gui::instance()->getTextureEditorWidget().moveSelection(by);
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx
