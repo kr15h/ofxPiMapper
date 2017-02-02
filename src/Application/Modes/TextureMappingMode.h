@@ -34,7 +34,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 		void onGuiEvent(Application * app, GuiEvent & e){}
 
 		void drawTexture(Application * app);
-		void moveSelection(Application * app, ofVec2f by);
+		void moveSelectedTexCoord(Application * app, ofVec2f by);
 		void selectNextVertex(Application * app);
 		void selectPrevVertex(Application * app);
 	

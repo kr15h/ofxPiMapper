@@ -85,27 +85,19 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 
 	 case OF_KEY_LEFT:
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			moveSelection(app, ofVec2f(-moveStep, 0.0f));
-		 }
+		 moveSelectedTexCoord(app, ofVec2f(-moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_RIGHT:
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			moveSelection(app, ofVec2f(moveStep, 0.0f));
-		 }
+		 moveSelectedTexCoord(app, ofVec2f(moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_UP:
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			moveSelection(app, ofVec2f(0.0f, -moveStep));
-		 }
+		 moveSelectedTexCoord(app, ofVec2f(0.0f, -moveStep));
 		 break;
 
 	 case OF_KEY_DOWN:
-		 if(app->getSurfaceManager()->getSelectedSurface() != 0){
-			moveSelection(app, ofVec2f(0.0f, moveStep));
-		 }
+		 moveSelectedTexCoord(app, ofVec2f(0.0f, moveStep));
 		 break;
 
 	 case '>':
@@ -279,18 +271,10 @@ void TextureMappingMode::drawTexture(Application * app){
 	}
 }
 
-void TextureMappingMode::moveSelection(Application * app, ofVec2f by){
-	int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
-	
-	if(selectedTexCoord >= 0){
-		app->getCmdManager()->exec(
-			new MvTexCoordCmd(selectedTexCoord, by));
-	}else{
-		app->getCmdManager()->exec(new MvAllTexCoordsCmd(
-			app->getSurfaceManager()->getSelectedSurface(),
-			&Gui::instance()->getTextureEditorWidget()));
-		
-		Gui::instance()->getTextureEditorWidget().moveSelection(by);
+void TextureMappingMode::moveSelectedTexCoord(Application * app, ofVec2f by){
+	if(app->getSurfaceManager()->getSelectedSurface() != 0){
+		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
+		app->moveTexCoord(selectedTexCoord, by);
 	}
 }
 
