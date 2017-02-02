@@ -109,6 +109,12 @@ class Application : public KeyListener {
 		void selectPrevVertex();
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
+	
+		/* 
+		Context sensitive move.
+		Moves vertex when in projection mapping mode.
+		Moves texture coordinate when in texture mapping mode.
+		*/
 		void moveSelection(ofVec2f by);
 	
 		void setPresentationMode();
