@@ -127,6 +127,8 @@ class Application : public KeyListener {
 		void removeGridColumn();
 		void togglePause();
 		void moveTexCoord(int texCoordIndex, ofVec2f by);
+		// TODO: Add moveVertex.
+		// Make it so that other parts of the application react to the change.
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();
