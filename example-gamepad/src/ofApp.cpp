@@ -3,10 +3,12 @@
 void ofApp::setup(){
 	ofBackground(0);
 	mapper.setup();
+	InputHandler::instance()->initialise();
 }
 
 void ofApp::update(){
 	mapper.update();
+	InputHandler::instance()->update();
 }
 
 void ofApp::draw(){
@@ -30,5 +32,5 @@ void ofApp::mouseDragged(int x, int y, int button){
 }
 
 void ofApp::mouseReleased(int x, int y, int button){
-	piMapper.mouseReleased(x, y, button);
+	mapper.mouseReleased(x, y, button);
 }
