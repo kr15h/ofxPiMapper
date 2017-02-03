@@ -1,0 +1,6 @@
+obj
+*.xcworkspace
+*.xcuserdatad
+*~
+config.make
+bin/*.app
