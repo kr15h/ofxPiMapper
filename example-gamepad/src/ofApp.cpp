@@ -34,3 +34,20 @@ void ofApp::mouseDragged(int x, int y, int button){
 void ofApp::mouseReleased(int x, int y, int button){
 	mapper.mouseReleased(x, y, button);
 }
+
+/* These values we take into consideration
+
+  ↖ ↑ ↗        y
+  ←   →  --  x   b
+  ↙ ↓ ↘        a
+
+*/
+void ofApp::handleJoystick(){
+	if("value" == "left"){
+	
+	}else if("value" == "leftup"){
+	
+	}else if("value" == "A"){
+	
+	}
+}
