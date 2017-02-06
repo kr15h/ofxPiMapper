@@ -17,7 +17,9 @@ class ofApp : public ofBaseApp {
 		void mouseDragged(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 	
-		void handleJoystick();
+		void messageReceived(ofMessage & message);
+	
+		void handleController(ControllerCommand com);
 
 		ofxPiMapper mapper;
 };
