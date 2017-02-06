@@ -85,7 +85,6 @@ void ofApp::handleController(ControllerCommand com){
 			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
 		}
 	}else if(com == ControllerCommand::COMMAND_SELECT){
-		//mapper.undo();
 		mapper.togglePause();
 	}else if(com == ControllerCommand::COMMAND_START){
 		mapper.saveProject();
