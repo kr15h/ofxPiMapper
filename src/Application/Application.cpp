@@ -399,7 +399,9 @@ void Application::moveSelection(ofVec2f by){
 		getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
 	}else if(_state == TextureMappingMode::instance()){
 		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
-		moveTexCoord(selectedTexCoord, by);
+		if(selectedTexCoord >= 0){
+			moveTexCoord(selectedTexCoord, by);
+		}
 	}
 }
 
