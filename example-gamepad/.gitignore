@@ -2,7 +2,6 @@ obj
 *.xcworkspace
 *.xcuserdatad
 *~
-config.make
 bin/*.app
 bin/example-gamepad
 bin/libs
