@@ -248,6 +248,8 @@ ControllerCommand InputHandler::getControllerCommand(int controllerIndex, Contro
 			return mit->first;
 		}
 	}
+	
+	return ControllerCommand::COMMAND_NONE;
 }
 
 std::string InputHandler::controllerCommandToString(ControllerCommand com){
