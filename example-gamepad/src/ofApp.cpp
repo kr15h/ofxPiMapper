@@ -57,16 +57,38 @@ void ofApp::handleController(ControllerCommand com){
 	}else if(com == ControllerCommand::COMMAND_DOWN){
 		mapper.moveSelection(ofVec2f(0.0f, 5.0f));
 	}else if(com == ControllerCommand::COMMAND_A){
-		mapper.selectNextVertex();
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.selectNextVertex();
+		}else if(mapper.getMode() == ofx::piMapper::Mode::TEXTURE_MODE){
+			mapper.selectNextTexCoord();
+		}else{
+			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		}
 	}else if(com == ControllerCommand::COMMAND_B){
-		mapper.selectNextSurface();
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.selectNextSurface();
+		}else{
+			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		}
 	}else if(com == ControllerCommand::COMMAND_X){
-		mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.setNextSource();
+		}else{
+			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		}
 	}else if(com == ControllerCommand::COMMAND_Y){
-		mapper.setMode(ofx::piMapper::Mode::TEXTURE_MODE);
+		if(mapper.getMode() == ofx::piMapper::Mode::MAPPING_MODE){
+			mapper.setMode(ofx::piMapper::Mode::TEXTURE_MODE);
+		}else if(mapper.getMode() == ofx::piMapper::Mode::TEXTURE_MODE){
+			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		}else{
+			mapper.setMode(ofx::piMapper::Mode::MAPPING_MODE);
+		}
 	}else if(com == ControllerCommand::COMMAND_SELECT){
-		mapper.setNextSource();
+		//mapper.undo();
+		mapper.togglePause();
 	}else if(com == ControllerCommand::COMMAND_START){
+		mapper.saveProject();
 		mapper.setMode(ofx::piMapper::Mode::PRESENTATION_MODE);
 	}
 }
