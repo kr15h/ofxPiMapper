@@ -28,7 +28,7 @@ void VideoSource::loadVideo(string & filePath){
 		texture = &(omxPlayer->getTextureReference());
 	#else
 		videoPlayer = new ofVideoPlayer();
-		videoPlayer->load(filePath);
+		videoPlayer->load(path);
 		videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		videoPlayer->play();
 		videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
