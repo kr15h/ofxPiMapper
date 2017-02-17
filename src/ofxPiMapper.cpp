@@ -190,6 +190,10 @@ unsigned int ofxPiMapper::getNumSurfaces(){
 	return _application.getSurfaceManager()->getActivePreset()->getSurfaces().size();
 }
 
+int ofxPiMapper::getSelectedSurface(){
+	return _application.getSurfaceManager()->getSelectedSurfaceIndex();
+}
+
 void ofxPiMapper::setInfoText(string text){
 	_application.setInfoText(text);
 }
