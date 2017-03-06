@@ -1,11 +1,3 @@
-//
-//  MediaServer.cpp
-//  example
-//
-//  Created by felix on 13.09.14.
-//
-//
-
 #include "MediaServer.h"
 
 namespace ofx {
@@ -25,11 +17,7 @@ MediaServer::MediaServer():
 	usb2ImageWatcher(USB2_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
 	usb3ImageWatcher(USB3_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE)
 {
-	addWatcherListeners();
-}
-
-MediaServer::~MediaServer(){
-	removeWatcherListeners();
+	// What to do here?
 }
 
 void MediaServer::setup(){
@@ -463,37 +451,6 @@ void MediaServer::unloadFboSource(string & fboSourceName){
 		ofNotifyEvent(onFboSourceUnloaded, fboSourceName, this);
 	}
 }   // unloadFboSource
-
-void MediaServer::handleImageAdded(string & path){
-	ofLogNotice("MediaServer::handleImageAdded")
-		<< "Image path: "
-		<< path;
-	ofNotifyEvent(onImageAdded, path, this);
-}
-void MediaServer::handleImageRemoved(string & path){
-	ofNotifyEvent(onImageRemoved, path, this);
-}
-
-void MediaServer::handleVideoAdded(string & path){
-	ofNotifyEvent(onVideoAdded, path, this);
-}
-void MediaServer::handleVideoRemoved(string & path){
-	ofNotifyEvent(onVideoRemoved, path, this);
-}
-
-void MediaServer::addWatcherListeners(){
-	ofAddListener(imageWatcher.onItemAdded, this, &MediaServer::handleImageAdded);
-	ofAddListener(imageWatcher.onItemRemoved, this, &MediaServer::handleImageRemoved);
-	ofAddListener(videoWatcher.onItemAdded, this, &MediaServer::handleVideoAdded);
-	ofAddListener(videoWatcher.onItemRemoved, this, &MediaServer::handleVideoRemoved);
-}
-
-void MediaServer::removeWatcherListeners(){
-	ofRemoveListener(imageWatcher.onItemAdded, this, &MediaServer::handleImageAdded);
-	ofRemoveListener(imageWatcher.onItemRemoved, this, &MediaServer::handleImageRemoved);
-	ofRemoveListener(videoWatcher.onItemAdded, this, &MediaServer::handleVideoAdded);
-	ofRemoveListener(videoWatcher.onItemRemoved, this, &MediaServer::handleVideoRemoved);
-}
 
 } // namespace piMapper
 } // namespace ofx

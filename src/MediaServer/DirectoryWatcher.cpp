@@ -1,46 +1,41 @@
-//
-//  DirectoryWatcher.cpp
-//  example
-//
-//  Created by felix on 23.09.14.
-//
-//
-
 #include "DirectoryWatcher.h"
 
 namespace ofx {
 namespace piMapper {
 
 DirectoryWatcher::DirectoryWatcher(string path, int watcherMediaType){
-	mediaType = watcherMediaType;
-	// Decide what filter we need depending on media type
-	if(mediaType == SourceType::SOURCE_TYPE_VIDEO){
-		filter = new VideoPathFilter();
-	}else if(mediaType == SourceType::SOURCE_TYPE_IMAGE){
-		filter = new ImagePathFilter();
+	_mediaType = watcherMediaType;
+	
+	if(_mediaType == SourceType::SOURCE_TYPE_VIDEO){
+		_directory.allowExt("mp4");
+		_directory.allowExt("h264");
+		_directory.allowExt("mov");
+		_directory.allowExt("avi");
+		_directory.allowExt("ogv");
+		_directory.allowExt("mpeg");
+	}else if(_mediaType == SourceType::SOURCE_TYPE_IMAGE){
+		_directory.allowExt("png");
+		_directory.allowExt("jpg");
+		_directory.allowExt("jpeg");
 	}else{
 		ofLogFatalError("DirectoryWatcher::DirectoryWatcher", "Unkonwn media type");
 		exit(EXIT_FAILURE);
 	}
-	dirWatcher.registerAllEvents(this);
-	// For some reason the filters are not working,
-	// we leave just the path here and do the filter logic in the listeners
-	dirWatcher.addPath(path);
-	// Initial directory listing. Fill the file paths vector.
-	IO::DirectoryUtils::list(path, filePaths, true, filter);
-}
-
-DirectoryWatcher::~DirectoryWatcher(){
-	delete filter;
-	filter = 0;
+	
+	_directory.listDir(path);
+	_directory.sort();
+	
+	for(int i = 0; i < _directory.size(); ++i){
+		_filePaths.push_back(path + _directory.getName(i));
+	}
 }
 
 vector <string> & DirectoryWatcher::getFilePaths(){
-	return filePaths;
+	return _filePaths;
 }
 
 int DirectoryWatcher::getMediaType(){
-	return mediaType;
+	return _mediaType;
 }
 
 } // namespace piMapper

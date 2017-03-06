@@ -1,25 +1,8 @@
-//
-//  MediaServer.h
-//  example
-//
-//  Created by felix on 13.09.14.
-//
-//
-
-// TODO (by Krisjanis Rijnieks 2016-06-02): Transform MediaServer into a singleton.
-
-// TODO: move reference counting, enabling and disabling of sources
-//       to source classes themselves
-
 #pragma once
 
 #include "ofMain.h"
 #include "DirectoryWatcher.h"
 
-/* Discussion: This could be the right place for a Factory Method or
- * Abstract Factory design pattern - replace all these includes with a
- * SourceFactory that can create sources with the interfaces below. 
- */
 #include "BaseSource.h"
 #include "ImageSource.h"
 #include "VideoSource.h"
@@ -64,7 +47,6 @@ namespace piMapper {
 class MediaServer {
 	public:
 		MediaServer();
-		virtual ~MediaServer();
 	
 		void setup();
 		void update();
@@ -133,33 +115,7 @@ class MediaServer {
         vector <string> _tempVideoPaths;
     
 		map <string, BaseSource *> loadedSources;
-		// imageWatcher event listeners
-		void handleImageAdded(string & path);
-		void handleImageRemoved(string & path);
-		// TODO rest of listeners
-		/*
-		void onImageModified();
-		void onImageMovedFrom();
-		void onImageMovedTo();
-		*/
-
-		// videoWatcher event listeners
-		void handleVideoAdded(string & path);
-		void handleVideoRemoved(string & path);
-		// TODO rest of listeners
-		/*
-		 void onVideoModified();
-		 void onVideoMovedFrom();
-		 void onVideoMovedTo();
-		 */
-
-		// Add/remove event listeners.
-		// Add event listeners to image and video watcher events.
-		void addWatcherListeners();
-
-		// Remove event listeners to image and video watcher events
-		void removeWatcherListeners();
-
+	
 		// FBO source storage before they go to loadedSources
 		vector <FboSource *> fboSources; // FBO source storage
 };
