@@ -117,13 +117,12 @@ Before moving on, make sure that you have all the dependencies installed.
 
  - ofxGui (available in oF by default)
  - ofxXmlSettings (available in oF by default)
- - [ofxIO](https://github.com/bakercp/ofxIO)
- - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer)
+ - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) (needed only on Raspberry Pi)
 
 To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
 
 ```bash
-git clone https://github.com/jvcleave/ofxOMXPlayer.git && git clone https://github.com/bakercp/ofxIO.git
+git clone https://github.com/jvcleave/ofxOMXPlayer.git
 ```
 
 The `ofxOMXPlayer` addon recommends you to use its releases. Currently the latest release is `0.9.0-compatible`. To checkout the code of the relase, go to the `ofxOMXPlayer` addon directory and checkout the relase.
