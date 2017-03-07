@@ -63,6 +63,52 @@ There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVid
 3. Compile one or both examples by using make.
 
 
+## Problems with Audio
+
+If you are having problems with audio playback, here are two steps for you. Before you do these, make sure audio of your video file works. Use [HandBrake](https://handbrake.fr/) for encoding, use the "Fast 720p30" or "Fast 1080p30" preset.
+
+### Step 1
+
+Open example openFrameworks application `ofApp.cpp` file in a text editor.
+
+```
+cd /home/pi/openFrameworks/addons/ofxPiMapper/example
+nano src/ofApp.cpp
+```
+
+Make sure that the following line looks as follows.
+
+```
+ofx::piMapper::VideoSource::enableAudio = true;
+```
+
+Save the file (CTRL + X, Y and ENTER). Recompile and run the example.
+
+```
+make && make run
+```
+
+### Step 2
+
+If the sound still does not work, try to use `raspi-config`.
+
+```
+sudo raspi-config
+```
+
+Select "7 Advanced Options" and "A9 Audio" then "0 Auto". You can use one of the force options if you want to be 100% sure.
+
+Open alsamixer.
+
+```
+alsamixer
+```
+
+Set the volume to a value between 90 to 100 by using the arrow keys. ESC to exit the mixer.
+
+Launch ofxPiMapper example, select a surface and set a video source with audio. Should work.
+
+
 ## Using as an Addon
 
 OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
