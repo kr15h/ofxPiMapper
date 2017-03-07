@@ -5,7 +5,8 @@ void ofApp::setup(){
 
 	// Enable or disable audio for video sources globally
 	// Set this to false to save resources on the Raspberry Pi
-	ofx::piMapper::VideoSource::enableAudio = false;
+	ofx::piMapper::VideoSource::enableAudio = true;
+	ofx::piMapper::VideoSource::useHDMIForAudio = false;
 
 	// Add our CustomSource to list of fbo sources of the piMapper
 	// FBO sources should be added before piMapper.setup() so the
