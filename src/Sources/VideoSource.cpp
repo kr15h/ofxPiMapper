@@ -18,8 +18,6 @@ VideoSource::VideoSource(){
 	#endif
 }
 
-VideoSource::~VideoSource(){}
-
 void VideoSource::loadVideo(string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);

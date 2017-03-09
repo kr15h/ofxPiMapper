@@ -21,7 +21,6 @@ class VideoSource : public BaseSource {
 		static bool useHDMIForAudio;
 
 		VideoSource();
-		~VideoSource();
 
 		string & getPath();
 		void loadVideo(string & path);
