@@ -11,7 +11,7 @@ VideoSource::VideoSource(){
 	loaded = false;
 	type = SourceType::SOURCE_TYPE_VIDEO;
 	#ifdef TARGET_RASPBERRY_PI
-		omxPlayer = 0;
+		_omxPlayer = 0;
 	#else
 		_videoPlayer = 0;
 		_initialVolumeSet = false;
@@ -22,8 +22,8 @@ void VideoSource::loadVideo(string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);
 	#ifdef TARGET_RASPBERRY_PI
-		omxPlayer = OMXPlayerCache::instance()->load(filePath);
-		texture = &(omxPlayer->getTextureReference());
+		_omxPlayer = OMXPlayerCache::instance()->load(filePath);
+		texture = &(_omxPlayer->getTextureReference());
 	#else
 		_videoPlayer = make_unique<ofVideoPlayer>();
 		_videoPlayer->load(filePath);
@@ -52,7 +52,7 @@ void VideoSource::clear(){
 
 void VideoSource::togglePause(){
     #ifdef TARGET_RASPBERRY_PI
-        omxPlayer->togglePause();
+        _omxPlayer->togglePause();
     #else
         _videoPlayer->setPaused(!_videoPlayer->isPaused());
     #endif

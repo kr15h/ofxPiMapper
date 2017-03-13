@@ -34,7 +34,7 @@ class VideoSource : public BaseSource {
 	private:
 
 		#ifdef TARGET_RASPBERRY_PI
-			ofxOMXPlayer * omxPlayer;     // Naming different for less confusion
+			ofxOMXPlayer * _omxPlayer;
 		#else
 			unique_ptr<ofVideoPlayer> _videoPlayer;
 			bool _initialVolumeSet;
