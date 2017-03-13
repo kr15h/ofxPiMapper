@@ -36,9 +36,7 @@ class VideoSource : public BaseSource {
 		#ifdef TARGET_RASPBERRY_PI
 			ofxOMXPlayer * omxPlayer;     // Naming different for less confusion
 		#else
-			// Go with ofVideoPlayer or
-			// TODO: High Performance Video player on newer Macs
-			ofVideoPlayer * videoPlayer;
+			unique_ptr<ofVideoPlayer> _videoPlayer;
 			bool _initialVolumeSet;
 		#endif
 

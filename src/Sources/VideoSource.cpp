@@ -13,7 +13,7 @@ VideoSource::VideoSource(){
 	#ifdef TARGET_RASPBERRY_PI
 		omxPlayer = 0;
 	#else
-		videoPlayer = 0;
+		_videoPlayer = 0;
 		_initialVolumeSet = false;
 	#endif
 }
@@ -25,12 +25,12 @@ void VideoSource::loadVideo(string & filePath){
 		omxPlayer = OMXPlayerCache::instance()->load(filePath);
 		texture = &(omxPlayer->getTextureReference());
 	#else
-		videoPlayer = new ofVideoPlayer();
-		videoPlayer->load(filePath);
-		videoPlayer->setLoopState(OF_LOOP_NORMAL);
-		videoPlayer->play();
-		videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
-		texture = &(videoPlayer->getTexture());
+		_videoPlayer = make_unique<ofVideoPlayer>();
+		_videoPlayer->load(filePath);
+		_videoPlayer->setLoopState(OF_LOOP_NORMAL);
+		_videoPlayer->play();
+		_videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
+		texture = &(_videoPlayer->getTexture());
 		ofAddListener(ofEvents().update, this, &VideoSource::update);
 	#endif
 	loaded = true;
@@ -42,10 +42,10 @@ void VideoSource::clear(){
 		OMXPlayerCache::instance()->unload(path);
 	#else
 		ofRemoveListener(ofEvents().update, this, &VideoSource::update);
-		videoPlayer->stop();
-		videoPlayer->close();
-		delete videoPlayer;
-		videoPlayer = 0;
+		_videoPlayer->stop();
+		_videoPlayer->close();
+		_videoPlayer.reset();
+		_videoPlayer = 0;
 	#endif
 	loaded = false;
 }
@@ -54,20 +54,20 @@ void VideoSource::togglePause(){
     #ifdef TARGET_RASPBERRY_PI
         omxPlayer->togglePause();
     #else
-        videoPlayer->setPaused(!videoPlayer->isPaused());
+        _videoPlayer->setPaused(!_videoPlayer->isPaused());
     #endif
 }
 
 #ifndef TARGET_RASPBERRY_PI
 	void VideoSource::update(ofEventArgs & args){
-		if(videoPlayer != 0){
+		if(_videoPlayer != 0){
 			if(!_initialVolumeSet){
-				if(videoPlayer->isInitialized()){
-					videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
+				if(_videoPlayer->isInitialized()){
+					_videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
 					_initialVolumeSet = true;
 				}
 			}
-			videoPlayer->update();
+			_videoPlayer->update();
 		}
 	}
 #endif
