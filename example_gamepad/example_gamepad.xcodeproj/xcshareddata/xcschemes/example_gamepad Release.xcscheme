@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "example-gamepadDebug.app"
-               BlueprintName = "example-gamepad"
-               ReferencedContainer = "container:example-gamepad.xcodeproj">
+               BuildableName = "example_gamepad.app"
+               BlueprintName = "example_gamepad"
+               ReferencedContainer = "container:example_gamepad.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,15 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-gamepadDebug.app"
-            BlueprintName = "example-gamepad"
-            ReferencedContainer = "container:example-gamepad.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -56,9 +47,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-gamepadDebug.app"
-            BlueprintName = "example-gamepad"
-            ReferencedContainer = "container:example-gamepad.xcodeproj">
+            BuildableName = "example_gamepad.app"
+            BlueprintName = "example_gamepad"
+            ReferencedContainer = "container:example_gamepad.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,16 +61,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-gamepadDebug.app"
-            BlueprintName = "example-gamepad"
-            ReferencedContainer = "container:example-gamepad.xcodeproj">
+            BuildableName = "example_gamepad.app"
+            BlueprintName = "example_gamepad"
+            ReferencedContainer = "container:example_gamepad.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Release">

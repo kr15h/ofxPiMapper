@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "example-custom-shortcutsDebug.app"
-               BlueprintName = "example-custom-shortcuts"
-               ReferencedContainer = "container:example-custom-shortcuts.xcodeproj">
+               BuildableName = "example_shortcutsDebug.app"
+               BlueprintName = "example_shortcuts"
+               ReferencedContainer = "container:example_shortcuts.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-custom-shortcutsDebug.app"
-            BlueprintName = "example-custom-shortcuts"
-            ReferencedContainer = "container:example-custom-shortcuts.xcodeproj">
+            BuildableName = "example_shortcutsDebug.app"
+            BlueprintName = "example_shortcuts"
+            ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-custom-shortcutsDebug.app"
-            BlueprintName = "example-custom-shortcuts"
-            ReferencedContainer = "container:example-custom-shortcuts.xcodeproj">
+            BuildableName = "example_shortcutsDebug.app"
+            BlueprintName = "example_shortcuts"
+            ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example-custom-shortcutsDebug.app"
-            BlueprintName = "example-custom-shortcuts"
-            ReferencedContainer = "container:example-custom-shortcuts.xcodeproj">
+            BuildableName = "example_shortcutsDebug.app"
+            BlueprintName = "example_shortcuts"
+            ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
