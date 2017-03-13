@@ -30,13 +30,6 @@ Application::Application(){
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
 	
 	ofAddListener(Gui::instance()->guiEvent, this, &Application::onGuiEvent);
-    
-    string SSHConnection = ofSystem("if [ -z $SSH_CONNECTION ]; then echo no; else echo yes; fi");
-    if(SSHConnection == "yes"){
-        _isSSHConnection = true;
-    }else{
-        _isSSHConnection = false;
-    }
 	
 	_lastSaveTime = 0.0f;
 	_autoSaveInterval = 60.0f;
@@ -56,10 +49,6 @@ void Application::setup(){
 			throw runtime_error("ofxPiMapper: Failed to create default settings file.");
 		}
 	}
-	
-    if(_isSSHConnection){
-        consoleListener.setup(this);
-    }
 	
 	// Setup all states.
 	PresentationMode::instance()->setup(this);
@@ -254,36 +243,6 @@ void Application::setState(ApplicationBaseMode * st){
 
 bool Application::isShiftKeyDown(){
 	return _shiftKeyDown;
-}
-
-void Application::onCharacterReceived(KeyListenerEventData & e){
-    ofKeyEventArgs args;
-	args.key = (int)e.character;
-	
-	// These if's have been added because we get
-	// capital letters A, B, C and D when pressing
-	// arrows on the keyboard via terminal.
-	
-	switch(args.key){
-	 case 'A':
-		args.key = OF_KEY_UP;
-		break;
-	 case 'B':
-		args.key = OF_KEY_DOWN;
-		break;
-	 case 'C':
-		args.key = OF_KEY_RIGHT;
-		break;
-	 case 'D':
-		args.key = OF_KEY_LEFT;
-		break;
-	 case '\\':
-		args.key = OF_KEY_BACKSPACE;
-		break;
-	}
-	
-	cout << "TermListener: " << e.character << endl;
-	onKeyPressed(args);
 }
 
 void Application::setPreset(unsigned int i){

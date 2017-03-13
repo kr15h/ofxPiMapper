@@ -80,7 +80,6 @@
 		0166319C1DC8E8010081F28F /* CircleJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0166314B1DC8E8010081F28F /* CircleJoint.cpp */; };
 		0166319D1DC8E8010081F28F /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0166314F1DC8E8010081F28F /* RadioList.cpp */; };
 		0166319E1DC8E8010081F28F /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 016631521DC8E8010081F28F /* HomographyHelper.cpp */; };
-		0166319F1DC8E8010081F28F /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 016631541DC8E8010081F28F /* TerminalListener.cpp */; };
 		01DC7EDE1E452858003137B7 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01DC7EDC1E452858003137B7 /* InputHandler.cpp */; };
 		01DC7EE01E45289C003137B7 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01DC7EDF1E45289C003137B7 /* SDL2.framework */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
@@ -298,8 +297,6 @@
 		016631501DC8E8010081F28F /* RadioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioList.h; sourceTree = "<group>"; };
 		016631521DC8E8010081F28F /* HomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		016631531DC8E8010081F28F /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
-		016631541DC8E8010081F28F /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
-		016631551DC8E8010081F28F /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
 		01DC7EDC1E452858003137B7 /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
 		01DC7EDD1E452858003137B7 /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
 		01DC7EDF1E45289C003137B7 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
@@ -624,8 +621,6 @@
 			children = (
 				016631521DC8E8010081F28F /* HomographyHelper.cpp */,
 				016631531DC8E8010081F28F /* HomographyHelper.h */,
-				016631541DC8E8010081F28F /* TerminalListener.cpp */,
-				016631551DC8E8010081F28F /* TerminalListener.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -896,7 +891,6 @@
 				016631881DC8E8010081F28F /* TextureEditorWidget.cpp in Sources */,
 				016631841DC8E8010081F28F /* ProjectionEditorWidget.cpp in Sources */,
 				0166315B1DC8E8010081F28F /* TextureMappingMode.cpp in Sources */,
-				0166319F1DC8E8010081F28F /* TerminalListener.cpp in Sources */,
 				0166318D1DC8E8010081F28F /* ofxPiMapper.cpp in Sources */,
 				0166318A1DC8E8010081F28F /* Info.cpp in Sources */,
 				016631931DC8E8010081F28F /* BaseSurface.cpp in Sources */,

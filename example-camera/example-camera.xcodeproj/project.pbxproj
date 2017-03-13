@@ -80,7 +80,6 @@
 		0166319C1DC8E8010081F28F /* CircleJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0166314B1DC8E8010081F28F /* CircleJoint.cpp */; };
 		0166319D1DC8E8010081F28F /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0166314F1DC8E8010081F28F /* RadioList.cpp */; };
 		0166319E1DC8E8010081F28F /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 016631521DC8E8010081F28F /* HomographyHelper.cpp */; };
-		0166319F1DC8E8010081F28F /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 016631541DC8E8010081F28F /* TerminalListener.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -297,8 +296,6 @@
 		016631501DC8E8010081F28F /* RadioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioList.h; sourceTree = "<group>"; };
 		016631521DC8E8010081F28F /* HomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		016631531DC8E8010081F28F /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
-		016631541DC8E8010081F28F /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
-		016631551DC8E8010081F28F /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -621,8 +618,6 @@
 			children = (
 				016631521DC8E8010081F28F /* HomographyHelper.cpp */,
 				016631531DC8E8010081F28F /* HomographyHelper.h */,
-				016631541DC8E8010081F28F /* TerminalListener.cpp */,
-				016631551DC8E8010081F28F /* TerminalListener.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -892,7 +887,6 @@
 				016631881DC8E8010081F28F /* TextureEditorWidget.cpp in Sources */,
 				016631841DC8E8010081F28F /* ProjectionEditorWidget.cpp in Sources */,
 				0166315B1DC8E8010081F28F /* TextureMappingMode.cpp in Sources */,
-				0166319F1DC8E8010081F28F /* TerminalListener.cpp in Sources */,
 				0166318D1DC8E8010081F28F /* ofxPiMapper.cpp in Sources */,
 				0166318A1DC8E8010081F28F /* Info.cpp in Sources */,
 				016631931DC8E8010081F28F /* BaseSurface.cpp in Sources */,

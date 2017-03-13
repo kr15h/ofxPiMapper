@@ -9,7 +9,6 @@
 #include "Info.h"
 #include "SurfaceStack.h"
 #include "Gui.h"
-#include "TerminalListener.h"
 
 // Commands
 #include "SetApplicationModeCmd.h"
@@ -56,7 +55,7 @@ namespace piMapper {
 
 class ApplicationBaseMode;
 
-class Application : public KeyListener {
+class Application {
 
 	public:
 		Application();
@@ -97,9 +96,6 @@ class Application : public KeyListener {
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
 		CmdManager * getCmdManager(){ return &_cmdManager; }
 		MediaServer * getMediaServer(){ return &_mediaServer; }
-	
-		void onCharacterReceived(KeyListenerEventData & e);
-		TerminalListener consoleListener;
 	
 		// Command executors
 		void selectSurface(int i);
@@ -158,7 +154,6 @@ class Application : public KeyListener {
 		Info _info;
 	
 		bool _shiftKeyDown;
-        bool _isSSHConnection;
 	
 		float _lastSaveTime;
 		float _autoSaveInterval;

@@ -80,7 +80,6 @@
 		013E62451E2E2FAE00FACF28 /* CircleJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 013E61F41E2E2FAE00FACF28 /* CircleJoint.cpp */; };
 		013E62461E2E2FAE00FACF28 /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 013E61F81E2E2FAE00FACF28 /* RadioList.cpp */; };
 		013E62471E2E2FAE00FACF28 /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 013E61FB1E2E2FAE00FACF28 /* HomographyHelper.cpp */; };
-		013E62481E2E2FAE00FACF28 /* TerminalListener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 013E61FD1E2E2FAE00FACF28 /* TerminalListener.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -296,8 +295,6 @@
 		013E61F91E2E2FAE00FACF28 /* RadioList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioList.h; sourceTree = "<group>"; };
 		013E61FB1E2E2FAE00FACF28 /* HomographyHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		013E61FC1E2E2FAE00FACF28 /* HomographyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
-		013E61FD1E2E2FAE00FACF28 /* TerminalListener.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TerminalListener.cpp; sourceTree = "<group>"; };
-		013E61FE1E2E2FAE00FACF28 /* TerminalListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerminalListener.h; sourceTree = "<group>"; };
 		013E62491E2E38EC00FACF28 /* SourceTypeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceTypeHelper.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
@@ -620,8 +617,6 @@
 			children = (
 				013E61FB1E2E2FAE00FACF28 /* HomographyHelper.cpp */,
 				013E61FC1E2E2FAE00FACF28 /* HomographyHelper.h */,
-				013E61FD1E2E2FAE00FACF28 /* TerminalListener.cpp */,
-				013E61FE1E2E2FAE00FACF28 /* TerminalListener.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -916,7 +911,6 @@
 				013E620F1E2E2FAE00FACF28 /* MvLayerDnCmd.cpp in Sources */,
 				013E62181E2E2FAE00FACF28 /* ScaleSurfaceFromToCmd.cpp in Sources */,
 				013E62201E2E2FAE00FACF28 /* SelTexCoordCmd.cpp in Sources */,
-				013E62481E2E2FAE00FACF28 /* TerminalListener.cpp in Sources */,
 				013E62101E2E2FAE00FACF28 /* MvLayerUpCmd.cpp in Sources */,
 				39264841192224F90008A7F5 /* tinyxml.cpp in Sources */,
 				013E62171E2E2FAE00FACF28 /* SaveTexCoordPosCmd.cpp in Sources */,
