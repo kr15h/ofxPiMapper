@@ -3,8 +3,6 @@
 
 # ofxPiMapper
 
-![Travis CI](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)
-
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
@@ -14,6 +12,11 @@ OfxPiMapper is there for people who want to use the Raspberry Pi to create stand
 The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
+
+
+## Build Status
+
+[![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) Linux, OS X
 
 
 ## Features
