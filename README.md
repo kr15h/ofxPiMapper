@@ -5,7 +5,7 @@
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi. Make sure you use the `stable` branch if you downloaded openFrameworks from the [openFrameworks website](http://openframeworks.cc). The `master` branch aligns with the current `master` branch of the [openFrameworks GitHub](https://github.com/openframeworks/openframeworks) repository.
 
 OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
