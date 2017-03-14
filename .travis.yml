@@ -23,7 +23,7 @@ matrix:
   - os: linux
     dist: trusty
     sudo: required
-    env: TARGET="linux64" OF_BRANCH="stable"
+    env: TARGET="linux64" OF_BRANCH="master"
     addons:
       apt:
         sources:
@@ -51,7 +51,7 @@ matrix:
   - os: osx
     osx_image: xcode8
     compiler: clang
-    env: TARGET="osx" OF_BRANCH="stable"
+    env: TARGET="osx" OF_BRANCH="master"
 
 # OSX, OF stable:  Not supported yet
 #  - os: osx
