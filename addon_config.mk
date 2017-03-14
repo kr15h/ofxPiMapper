@@ -69,6 +69,7 @@ ADDON_LIBS =
 win_cb:
 ADDON_LIBS =
 linuxarmv6l:
+ADDON_DEPENDENCIES = ofxXmlSettings ofxGui ofxOMXPlayer
 ADDON_LIBS =
 linuxarmv7l:
 ADDON_LIBS =
