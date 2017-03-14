@@ -1,5 +1,0 @@
-ofxPiMapper
-ofxIO
-ofxXmlSettings
-ofxGui
-ofxOMXPlayer
