@@ -24,7 +24,7 @@ ADDON_URL = http://github.com/kr15h/ofxPiMapper
 common:
 # dependencies with other addons, a list of them separated by spaces
 # or use += in several lines
-ADDON_DEPENDENCIES = ofxPiMapper ofxXmlSettings ofxGui
+ADDON_DEPENDENCIES = ofxPiMapper ofxXmlSettings ofxGui ofxOMXPlayer
 
 # include search paths, this will be usually parsed from the file system
 # but if the addon or addon libraries need special search paths they can be
@@ -69,7 +69,6 @@ ADDON_LIBS =
 win_cb:
 ADDON_LIBS =
 linuxarmv6l:
-ADDON_DEPENDENCIES = ofxPiMapper ofxXmlSettings ofxGui ofxOMXPlayer
 ADDON_LIBS =
 linuxarmv7l:
 ADDON_LIBS =
