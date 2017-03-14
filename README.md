@@ -14,11 +14,6 @@ The project started as master's thesis project by [Krisjanis Rijnieks](http://ri
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
 
-## Build Status
-
-[![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) Linux, OS X
-
-
 ## Features
 
 The following is a list of key features ofxPiMapper has.
