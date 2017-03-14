@@ -14,7 +14,7 @@ class GridWarpSurface : public BaseSurface {
 
 		void setup();
 		void draw();
-		void moveBy(ofVec2f v);
+		void moveBy(ofDefaultVec2 v);
 	
 		int getType();
 		int getGridRows();
@@ -22,18 +22,17 @@ class GridWarpSurface : public BaseSurface {
 		int setGridRows(int r);
 		int setGridCols(int c);
 	
-		bool hitTest(ofVec2f p);
+		bool hitTest(ofDefaultVec2 p);
 	
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
 
-		void setVertex(int index, ofVec2f p);
-		void setVertices(vector<ofVec2f> v);
-		void setVertices(vector<ofVec3f> v);
-		void setTexCoord(int index, ofVec2f t);
-		void setTexCoords(vector<ofVec2f> t);
-		vector <ofVec3f> & getVertices();
-		vector <ofVec2f> & getTexCoords();
+		void setVertex(int index, ofDefaultVec3 v);
+		void setVertices(vector<ofDefaultVec3> v);
+		void setTexCoord(int index, ofDefaultVec2 t);
+		void setTexCoords(vector<ofDefaultVec2> t);
+		vector <ofDefaultVec3> & getVertices();
+		vector <ofDefaultVec2> & getTexCoords();
 	
 		void createGridMesh();
 	

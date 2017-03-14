@@ -51,24 +51,33 @@ void BaseSurface::createDefaultTexture(){
 	source = defaultSource;
 }
 
-void BaseSurface::drawTexture(ofVec2f position){
+void BaseSurface::drawTexture(ofDefaultVec2 position){
 	if(source->getTexture() == 0){
 		ofLogWarning("BaseSurface") << "Source texture empty. Not drawing.";
 		return;
 	}
 
 	ofMesh texMesh;
-	texMesh.addVertex(position);
-	texMesh.addVertex(position + ofVec2f(source->getTexture()->getWidth(), 0.0f));
-	texMesh.addVertex(position
-					  + ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight()));
-	texMesh.addVertex(position + ofVec2f(0.0f, source->getTexture()->getHeight()));
+	ofDefaultVec3 pos = ofDefaultVec3(position.x, position.y, 0);
+	texMesh.addVertex(pos);
+	texMesh.addVertex(pos + ofDefaultVec3(
+		source->getTexture()->getWidth(),
+		0.0f,
+		0.0f));
+	texMesh.addVertex(pos + ofDefaultVec3(
+		source->getTexture()->getWidth(),
+		source->getTexture()->getHeight(),
+		0.0f));
+	texMesh.addVertex(pos + ofDefaultVec3(
+		0.0f,
+		source->getTexture()->getHeight(),
+		0.0f));
 	texMesh.addTriangle(0, 2, 3);
 	texMesh.addTriangle(0, 1, 2);
-	texMesh.addTexCoord(ofVec2f(0.0f, 0.0f));
-	texMesh.addTexCoord(ofVec2f(1.0f, 0.0f));
-	texMesh.addTexCoord(ofVec2f(1.0f, 1.0f));
-	texMesh.addTexCoord(ofVec2f(0.0f, 1.0f));
+	texMesh.addTexCoord(ofDefaultVec2(0.0f, 0.0f));
+	texMesh.addTexCoord(ofDefaultVec2(1.0f, 0.0f));
+	texMesh.addTexCoord(ofDefaultVec2(1.0f, 1.0f));
+	texMesh.addTexCoord(ofDefaultVec2(0.0f, 1.0f));
 	source->getTexture()->bind();
 	texMesh.draw();
 	source->getTexture()->unbind();
@@ -96,7 +105,7 @@ void BaseSurface::setMoved(bool moved){
 void BaseSurface::scaleTo(float scale){
 	ofPoint centroid = getBoundingBox().getCenter();
 	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
-		ofVec3f d = (mesh.getVertices()[i] - centroid) / _scale;
+		ofDefaultVec3 d = (mesh.getVertices()[i] - centroid) / _scale;
 		d *= scale;
 		mesh.getVertices()[i] = centroid + d;
 	}

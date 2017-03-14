@@ -171,11 +171,11 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->pushTag("surface", i);
 		xmlSettings->addTag("vertices");
 		xmlSettings->pushTag("vertices");
-		vector <ofVec3f> * vertices = &surface->getVertices();
+		vector <ofDefaultVec3> * vertices = &surface->getVertices();
 		for(int j = 0; j < vertices->size(); j++){
 			xmlSettings->addTag("vertex");
 			xmlSettings->pushTag("vertex", j);
-			ofVec3f * vertex = &(*vertices)[j];
+			ofDefaultVec3 * vertex = &(*vertices)[j];
 			xmlSettings->addValue("x", vertex->x);
 			xmlSettings->addValue("y", vertex->y);
 
@@ -187,11 +187,11 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 
 		xmlSettings->addTag("texCoords");
 		xmlSettings->pushTag("texCoords");
-		vector <ofVec2f> * texCoords = &surface->getTexCoords();
+		vector <ofDefaultVec2> * texCoords = &surface->getTexCoords();
 		for(int j = 0; j < texCoords->size(); j++){
 			xmlSettings->addTag("texCoord");
 			xmlSettings->pushTag("texCoord", j);
-			ofVec2f * texCoord = &(*texCoords)[j];
+			ofDefaultVec2 * texCoord = &(*texCoords)[j];
 			xmlSettings->addValue("x", texCoord->x);
 			xmlSettings->addValue("y", texCoord->y);
 			xmlSettings->popTag(); // texCoord
@@ -244,57 +244,57 @@ bool SettingsLoader::create(string fileName){
 }
 
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
+	vector <ofDefaultVec3> vertices;
 	
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
 	
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag();
 		}
 	
 		if(xmlSettings->tagExists("vertex", 1)){
 			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 100.0f),
+									   xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 2)){
 			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 100.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <ofVec2f> texCoords;
+	vector <ofDefaultVec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
 		
 		if(xmlSettings->tagExists("texCoord", 0)){
 			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 		
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 2)){
 			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
@@ -313,71 +313,71 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
+	vector <ofDefaultVec3> vertices;
 	
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
 	
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 1)){
 			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 100.0f),
+									   xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 2)){
 			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-							           xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 100.0f),
+							           xmlSettings->getValue("y", 100.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 3)){
 			xmlSettings->pushTag("vertex", 3);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 100.0f), 0));
 			xmlSettings->popTag();
 		}
 
 		xmlSettings->popTag(); // vertices
 	}
 	
-	vector <ofVec2f> texCoords;
+	vector <ofDefaultVec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
 
 		if(xmlSettings->tagExists("texCoord", 0)){
 			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 		
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 2)){
 			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 3)){
 			xmlSettings->pushTag("texCoord", 3);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
@@ -407,7 +407,7 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
+	vector <ofDefaultVec3> vertices;
 	
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -416,8 +416,8 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		
 		while(xmlSettings->tagExists("vertex", iv)){
 			xmlSettings->pushTag("vertex", iv);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+								       xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag();
 			++iv;
 		}
@@ -425,7 +425,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 	
-	vector <ofVec2f> texCoords;
+	vector <ofDefaultVec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
@@ -434,7 +434,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		
 		while(xmlSettings->tagExists("texCoord", it)){
 			xmlSettings->pushTag("texCoord", it);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 			++it;
@@ -468,7 +468,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
+	vector <ofDefaultVec3> vertices;
 	
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -476,8 +476,8 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 		unsigned int v = 0;
 		while(xmlSettings->tagExists("vertex", v)){
 			xmlSettings->pushTag("vertex", v);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(ofDefaultVec3(xmlSettings->getValue("x", 0.0f),
+									   xmlSettings->getValue("y", 0.0f), 0));
 			xmlSettings->popTag(); // vertex
 			v += 1;
 		}
@@ -485,7 +485,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <ofVec2f> texCoords;
+	vector <ofDefaultVec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
@@ -493,7 +493,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 		unsigned int t = 0;
 		while(xmlSettings->tagExists("texCoord", t)){
 			xmlSettings->pushTag("texCoord", t);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(ofDefaultVec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag(); // texCoord
 			t += 1;

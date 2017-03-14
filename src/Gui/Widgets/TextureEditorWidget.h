@@ -38,13 +38,13 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
 	
-		void moveTexCoords(ofVec2f by);
-		void moveTexCoordTo(int texCoordIndex, ofVec2f position);
+		void moveTexCoords(ofDefaultVec2 by);
+		void moveTexCoordTo(int texCoordIndex, ofDefaultVec2 position);
 	
 		void stopDragJoints();
-		void moveSelection(ofVec2f by);
+		void moveSelection(ofDefaultVec2 by);
 		void constrainJointsToQuad(int selectedJointIndex);
-		CircleJoint * hitTestJoints(ofVec2f pos);
+		CircleJoint * hitTestJoints(ofDefaultVec2 pos);
 		vector <CircleJoint *> & getJoints();
 
 	private:
