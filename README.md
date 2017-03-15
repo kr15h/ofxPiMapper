@@ -1,22 +1,22 @@
 ![Pi Mapper Logo](piMapperLogo.jpg)
 
-
 # ofxPiMapper
 
-[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone projection mapping installations and beyond. Say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or similar space. Ten expensive computers? No! OfxPiMapper is here to save you!
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi. Make sure you use the `stable` branch if you downloaded openFrameworks from the [openFrameworks website](http://openframeworks.cc). The `master` branch aligns with the current `master` branch of the [openFrameworks GitHub](https://github.com/openframeworks/openframeworks) repository.
-
-OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
+Make sure you use the `stable` branch if you downloaded openFrameworks from the [openFrameworks website](http://openframeworks.cc). The `master` branch aligns with the current `master` branch of the [openFrameworks GitHub repository](https://github.com/openframeworks/openframeworks).
 
 The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
-
-Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
 
 ## Build Status
 
 [![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) Linux, OS X
+
+
+## Get Help
+
+[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 ## Features
@@ -43,7 +43,7 @@ The following is a list of key features ofxPiMapper has.
 
 You can use the example application of the addon for simple projection mapping projects where static images or videos have to be projection mapped. 
 
-1. Put your own sources in the `example/bin/data/sources` directory. Consult the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) documentation on how to encode your videos.
+1. Put your own sources in the `example/bin/data/sources` directory.
 
 2. Compile and run the example project.  
 
@@ -57,16 +57,6 @@ make && ./bin/example
    ```bash
 ./bin/example -f
    ```
-
-
-## Compiling on Linux
-
-There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
-
-1. Open `example/addons.make` and remove ofxOMXPlayer line.
-2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
-3. Compile one or both examples by using make.
-
 
 ## Problems with Audio
 
@@ -127,20 +117,6 @@ mv example myOfxPiMapperApp
 ```
 
 
-## Development
-
-The most part of development happens in the `dev` branch. Once a set of features is added, the `dev` branch is merged with the `master` branch. 
-
- 1. Develop in the `dev` branch.
- 2. Merge the `dev` branch into the `master` branch once a set of features are added.
- 3. Add a version tag.
- 4. If there is a need for a quickfix, it can be added to the `master` branch directly. In that case a new version tag has to be made.
-
-The set of features is defined per milestone. Each milestone is an increase in the minor part of the version number. Milestone examples: 0.3.0, 0.4.0, etc.
-
-The quickfixes increase the patch part of the version. 0.3.0 becomes 0.3.1 and 0.4.0 becomes 0.4.1 in the case of a quicfix.
-
-
 ## Licence
 
 ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details.
@@ -164,45 +140,13 @@ git clone https://github.com/kr15h/ofxPiMapper.git
 
 ## Dependencies
 
-Before moving on, make sure that you have all the dependencies installed. 
-
- - ofxGui (available in oF by default)
- - ofxXmlSettings (available in oF by default)
- - [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) (needed only on Raspberry Pi)
-
-To install dependencies, `cd` into `openFrameworks/addons` directory and execute the following:
-
-```bash
-git clone https://github.com/jvcleave/ofxOMXPlayer.git
-```
-
-The `ofxOMXPlayer` addon recommends you to use its releases. Currently the latest release is `0.9.0-compatible`. To checkout the code of the relase, go to the `ofxOMXPlayer` addon directory and checkout the relase.
-
-```
-cd openFrameworks/addons/ofxOMXPlayer
-git checkout 0.9.0-compatible
-```
-
-You can check the latest releases on the [ofxOMXPlayer GitHub repository](https://github.com/jvcleave/ofxOMXPlayer/releases).
-
-
-## First Test
-
-To test the addon, you will have to compile and run it:
-
-```bash
-cd ~/openFrameworks/addons/ofxPiMapper/example
-make && make run
-```
-
-After it compiles, run it with either `make run` or `./bin/example`. You can exit the application by pressing `ESC` or `Ctrl + C`.
-
-It will take a while first (not so long on the RPi 2), but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
+- ofxGui
+- ofxXmlSettings
 
 
 ## Usage
 
-Right now a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
+Right now a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper. It is possible to define your own shortcuts by making your own app and using ofxPiMapper as an addon.
 
 ### Modes
 
@@ -268,15 +212,3 @@ BACKSPACE ('\' via SSH) | Delete surface.
 SPACE | Toggle pause for video sources (texture and projection mapping modes)
 TAB | Select next source (no need to use the source selection interface)
 Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
-
-### SSH Remote Control
-
-You can enter a SSH session with your networked Raspberry Pi, launch the ofxPiMapper executable and access all the functionality by using the keyboard. Use the same commands listed in the above table, use `/` as the replacement for the `SHIFT` key as it is not that easy to capture `SHIFT` keypress when on SSH. The `/` works as a toggle, you have to press it once to simulate `SHIFT_DOWN` and one more time to simulate `SHIFT_UP`. It is particularly important when moving surfaces and vertices over long distances. The `/` key enables 10px steps when pressing arrow buttons.
-
-## Compatibility
-
-Tested with openFrameworks 0.9.2 (OS X and Raspbian Jessie Lite). It works.
-
-```
-TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
-```
