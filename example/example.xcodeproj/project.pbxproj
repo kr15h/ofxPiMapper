@@ -29,7 +29,6 @@
 		0115A6B21DBF93BA00C51732 /* BaseSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6501DBF93BA00C51732 /* BaseSource.cpp */; };
 		0115A6B31DBF93BA00C51732 /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6521DBF93BA00C51732 /* FboSource.cpp */; };
 		0115A6B41DBF93BA00C51732 /* ImageSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6541DBF93BA00C51732 /* ImageSource.cpp */; };
-		0115A6B51DBF93BA00C51732 /* OMXPlayerCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */; };
 		0115A6B61DBF93BA00C51732 /* VideoSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6591DBF93BA00C51732 /* VideoSource.cpp */; };
 		0115A6B71DBF93BA00C51732 /* BaseSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A65C1DBF93BA00C51732 /* BaseSurface.cpp */; };
 		0115A6B81DBF93BA00C51732 /* GridWarpSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A65E1DBF93BA00C51732 /* GridWarpSurface.cpp */; };
@@ -190,8 +189,6 @@
 		0115A6531DBF93BA00C51732 /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		0115A6541DBF93BA00C51732 /* ImageSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSource.cpp; sourceTree = "<group>"; };
 		0115A6551DBF93BA00C51732 /* ImageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSource.h; sourceTree = "<group>"; };
-		0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
-		0115A6571DBF93BA00C51732 /* OMXPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
 		0115A6581DBF93BA00C51732 /* SourceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceType.h; sourceTree = "<group>"; };
 		0115A6591DBF93BA00C51732 /* VideoSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoSource.cpp; sourceTree = "<group>"; };
 		0115A65A1DBF93BA00C51732 /* VideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSource.h; sourceTree = "<group>"; };
@@ -486,8 +483,6 @@
 				0115A6531DBF93BA00C51732 /* FboSource.h */,
 				0115A6541DBF93BA00C51732 /* ImageSource.cpp */,
 				0115A6551DBF93BA00C51732 /* ImageSource.h */,
-				0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */,
-				0115A6571DBF93BA00C51732 /* OMXPlayerCache.h */,
 				0115A6581DBF93BA00C51732 /* SourceType.h */,
 				0115A6591DBF93BA00C51732 /* VideoSource.cpp */,
 				0115A65A1DBF93BA00C51732 /* VideoSource.h */,
@@ -904,7 +899,6 @@
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
 				016630971DC66DAB0081F28F /* RmGridRowCmd.cpp in Sources */,
 				3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */,
-				0115A6B51DBF93BA00C51732 /* OMXPlayerCache.cpp in Sources */,
 				0166308E1DC66DAB0081F28F /* DeselectTexCoordCmd.cpp in Sources */,
 				0115A67E1DBF93BA00C51732 /* ProjectionMappingMode.cpp in Sources */,
 				0115A6B41DBF93BA00C51732 /* ImageSource.cpp in Sources */,
