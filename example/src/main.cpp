@@ -16,7 +16,14 @@ int main(int argc, char * argv[]){
 	}
 	
 	Settings::instance()->setFullscreen(fullscreen);
-
+	
 	ofSetupOpenGL(800, 450, OF_WINDOW);
+	
+#ifdef TARGET_RASPBERRY_PI
+    ofGLESWindowSettings settings;
+    settings.setGLESVersion(2);
+    ofCreateWindow(settings);
+#endif
+
 	ofRunApp(new ofApp());
 }
