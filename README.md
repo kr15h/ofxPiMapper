@@ -1,22 +1,13 @@
-![Pi Mapper Logo](piMapperLogo.jpg)
-
 # ofxPiMapper
+
+[![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper)
+[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone projection mapping installations and beyond. Say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or similar space. Ten expensive computers? No! OfxPiMapper is here to save you!
 
 Make sure you use the `stable` branch if you downloaded openFrameworks from the [openFrameworks website](http://openframeworks.cc). The `master` branch aligns with the current `master` branch of the [openFrameworks GitHub repository](https://github.com/openframeworks/openframeworks).
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
-
-
-## Build Status
-
-[![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) Linux, OS X
-
-
-## Get Help
-
-[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 ## Features
