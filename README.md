@@ -9,7 +9,7 @@ Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
 OfxPiMapper is there for people who want to use the Raspberry Pi to create standalone mapping installations. Let's say someone has 10 generative mapping pieces and gets an offer to exhibit them in an art gallery, museum or any other kind of place. 10 expensive computers? No! OfxPiMapper is here to save you!
 
-The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
+The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
 Consult the [Installation](#installation) section if you are using ofxPiMapper the first time. Some of the most frequently asked questions and answers can be found in the [FAQ](/FAQ.md) document.
 
