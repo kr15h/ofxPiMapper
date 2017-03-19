@@ -6,7 +6,7 @@ OfxPiMapper is there for people who want to use the Raspberry Pi to create stand
 
 Make sure you use the `stable` branch if you downloaded openFrameworks from the [openFrameworks website](http://openframeworks.cc). The `master` branch aligns with the current `master` branch of the [openFrameworks GitHub repository](https://github.com/openframeworks/openframeworks).
 
-The project started as master's thesis project by [Krisjanis Rijnieks](http://rijnieks.lv) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
+The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
 
 ## Build Status
