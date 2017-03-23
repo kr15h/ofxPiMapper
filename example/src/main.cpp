@@ -18,7 +18,7 @@ int main(int argc, char * argv[]){
 #ifdef TARGET_RASPBERRY_PI
     ofGLESWindowSettings settings;
     settings.setGLESVersion(2);
-	ofGLESWindow window;
+	ofAppEGLWindow window;
 #else
 	ofGLFWWindowSettings settings;
 	ofAppGLFWWindow window;
