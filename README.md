@@ -1,5 +1,6 @@
 # ofxPiMapper
 
+[![Build status](https://ci.appveyor.com/api/projects/status/github/kr15h/ofxPiMapper?branch=master&svg=true&passingText=vs-passing&failingText=vs-failing&pendingText=vs-pending)](https://ci.appveyor.com/project/kr15h/ofxPiMapper/branch/master)
 [![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper)
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
