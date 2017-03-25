@@ -182,8 +182,8 @@ t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
 d | duplicate surface
-+ | Scale surface up
-- | Scale surface down
+\+ | Scale surface up
+\- | Scale surface down
 p | toggle perspective warping (quad surfaces only)
 ] | add columns to grid surface (grid warp surfaces only)
 [ | remove columns from grid surface (grid warp surfaces only)
