@@ -191,8 +191,8 @@ p | toggle perspective warping (quad surfaces only)
 { | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
-> | select next vertex
-< | select previous vertex
+\> | select next vertex
+\< | select previous vertex
 0 | Move selected surface one layer up
 9 | Move selected surface one layer down
 s | Save composition
