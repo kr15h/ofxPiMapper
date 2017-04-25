@@ -202,6 +202,10 @@ void ofxPiMapper::toggleInfo(){
 	_application.toggleInfo();
 }
 
+void ofxPiMapper::undo(){
+	_application.undo();
+}
+
 void ofxPiMapper::setMode(ofx::piMapper::Mode m){
 	if(m == ofx::piMapper::PRESENTATION_MODE){
 		_application.setPresentationMode();

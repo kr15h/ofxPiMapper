@@ -136,7 +136,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'z':
-		 _cmdManager.undo();
+		 undo();
 		 break;
 		 
 	 case 'n':
@@ -535,6 +535,10 @@ void Application::moveTexCoord(int texCoordIndex, ofVec2f by){
 		
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
 	}
+}
+
+void Application::undo(){
+	_cmdManager.undo();
 }
 
 } // namespace piMapper

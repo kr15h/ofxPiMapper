@@ -131,6 +131,7 @@ class Application {
 		void moveTexCoord(int texCoordIndex, ofVec2f by);
 		// TODO: Add moveVertex.
 		// Make it so that other parts of the application react to the change.
+		void undo();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();
