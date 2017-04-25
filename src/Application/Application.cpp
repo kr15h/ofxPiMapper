@@ -541,5 +541,11 @@ void Application::undo(){
 	_cmdManager.undo();
 }
 
+void Application::deselect(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(new DeselectSurfaceCmd(getSurfaceManager()));
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

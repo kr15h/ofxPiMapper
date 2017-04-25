@@ -29,6 +29,7 @@ class ofxPiMapper {
 		void setInfoText(string text);
 		void toggleInfo();
 		void undo();
+		void deselect();
 	
 		// Modes
 		void setMode(ofx::piMapper::Mode m);

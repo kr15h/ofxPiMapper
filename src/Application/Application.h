@@ -36,6 +36,7 @@
 #include "ToggleAnimatedSourceCmd.h"
 #include "SelNextTexCoordCmd.h"
 #include "SelPrevTexCoordCmd.h"
+#include "DeselectSurfaceCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -132,6 +133,7 @@ class Application {
 		// TODO: Add moveVertex.
 		// Make it so that other parts of the application react to the change.
 		void undo();
+		void deselect();
 	
 		void setPreset(unsigned int i);
 		void setNextPreset();
