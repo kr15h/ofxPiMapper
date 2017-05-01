@@ -1,3 +1,13 @@
+# NOTE NOTE NOTE NOTE NOTE
+
+This is doctea's personal fork of this project, very experimental and nooby, developing something for a project that will hopefully bring Kinect integration to ofxPiMapper!
+
+Original work by https://github.com/kr15h/ofxPiMapper, this is forked from https://github.com/mudumat/ofxPiMapper which has GL Shader support as a custom source.
+
+Planning to integrate this with https://github.com/genekogan/ofxKinectProjectorToolkit in order to have some form of dynamic projection mapping while still having the ofxPiMapper features as a base.
+
+----
+
 # ofxPiMapper
 
 [![Build status](https://ci.appveyor.com/api/projects/status/github/kr15h/ofxPiMapper?branch=master&svg=true&passingText=vs-passing&failingText=vs-failing&pendingText=vs-pending)](https://ci.appveyor.com/project/kr15h/ofxPiMapper/branch/master)
