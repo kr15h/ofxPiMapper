@@ -1,4 +1,4 @@
-# NOTE NOTE NOTE NOTE NOTE
+# NOTE NOTE NOTE NOTE NOTE: USE THE 'stable' branch!
 
 This is doctea's personal fork of this project, very experimental and nooby, developing something for a project that will hopefully bring Kinect integration to ofxPiMapper!
 
