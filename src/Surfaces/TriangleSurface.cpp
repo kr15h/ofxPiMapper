@@ -76,7 +76,7 @@ void TriangleSurface::setVertex(int index, ofVec2f p){
 
 void TriangleSurface::setVertices(vector<ofVec2f> v){
 	if(v.size() != 3){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices (expected 3)");
 	}
 	
 	for(int i = 0; i < 3; ++i){

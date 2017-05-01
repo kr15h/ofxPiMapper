@@ -74,6 +74,10 @@ class ofxPiMapper {
 		void reboot();
 		void shutdown();
 
-	private:
+		// doctea custom
+		ofx::piMapper::Application getApp();
+
+
+	//private:
 		ofx::piMapper::Application _application;
 };

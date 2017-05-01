@@ -67,7 +67,7 @@ void ProjectionEditorWidget::mouseDragged(ofMouseEventArgs & args){
 			for(int j = 0; j < allVertices.size(); j++){
 				float distance = mousePosition.distance(*allVertices[j]);
 				if(distance < fSnapDistance){
-					joints[i]->position = *allVertices[j];
+					joints[i]->position = *allVertices[j];	
 					ofVec2f clickDistance = joints[i]->position - ofVec2f(args.x, args.y);
 					joints[i]->setClickDistance(clickDistance);
 					break;

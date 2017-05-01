@@ -116,7 +116,7 @@ void HexagonSurface::setVertex(int index, ofVec2f p){
 
 void HexagonSurface::setVertices(vector<ofVec2f> v){
 	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices (expected many, ..)); "); //<< mesh.getVertices().size() << ", got " << v.size() << ")");
 	}
 	
 	for(int i = 0; i < v.size(); ++i){
@@ -128,7 +128,7 @@ void HexagonSurface::setVertices(vector<ofVec2f> v){
 
 void HexagonSurface::setVertices(vector<ofVec3f> v){
 	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices, expected 6 probably? (HexagonSurface)");
 	}
 	
 	for(int i = 0; i < v.size(); ++i){

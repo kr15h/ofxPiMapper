@@ -228,3 +228,9 @@ ofx::piMapper::Mode ofxPiMapper::getMode(){
 	}
 	return ofx::piMapper::PRESENTATION_MODE;
 }
+
+
+ofx::piMapper::Application ofxPiMapper::getApp() {
+	return _application;
+}
+

@@ -1,0 +1,72 @@
+precision highp float;  
+
+uniform float time;
+
+const float PI = 3.14159;
+const float numStripes = 16.0;
+
+//convert HSV to RGB
+vec3 hsv2rgb(vec3 c){
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+vec3 gilmoreCol(float x){
+    
+     //stepped hue
+     x = floor(x*numStripes)/numStripes;
+    
+     //offset hue to put red in middle
+    //flip it and reverse it
+    float hue = fract((1.0 - x) - 0.45);
+    
+    //saturation is higher for warmer colors
+    float sat = 0.3 + sin(x*PI)*0.5;
+    
+    //brightness higher in middle
+    float bri = (smoothstep(0.,0.6, x) - smoothstep(0.6,1.0,x))*.6 + 0.3;
+   
+    //darker
+    bri *= 0.85;
+    
+    return vec3(hue, sat,bri);
+    
+}
+
+void main()
+{
+    vec2 uv = 0.5 + (gl_FragCoord.xy/vec2(512.,512.)-0.5)*2.;
+    
+    //stripes
+    float x = uv.x;
+    x = fract( x  +  time/10. );
+   
+    //rings
+    vec2 p =(uv -vec2(.5, 0.5));
+    x = distance(p , vec2(0)); 
+    x = fract( x  +  time/10. );
+    
+    vec3 hsv = gilmoreCol(x);
+    
+    //vertical brightness gradient
+    hsv.z -= ( uv.y - 0.5 )/8. + 1./64.;
+    
+    //add in gradient stripes
+    //th-th-thats all folks
+    float stripes = 1. - fract(x*numStripes);
+    hsv.z = mix(hsv.z,stripes,0.03); 
+    
+    vec3 col = hsv2rgb(hsv);
+    gl_FragColor = vec4(col,1.0);
+    
+}
+
+/*
+void main(){
+ vec4 p=vec4(gl_FragCoord.xy/vec2(512.,512.)*2.-1.,0,1);
+ gl_FragColor=p+sin(atan(p.y,p.x)*9.)*sin(p*time/2.+9./dot(p,p)+time*5.);
+
+}
+*/
+

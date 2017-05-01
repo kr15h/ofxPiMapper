@@ -159,7 +159,7 @@ void GridWarpSurface::setVertex(int index, ofVec2f p){
 
 void GridWarpSurface::setVertices(vector<ofVec2f> v){
 	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices (expected many for gridwarp)); "); // << mesh.getVertices().size() << ", got " << v.size() << ")");
 	}
 	
 	for(int i = 0; i < v.size(); ++i){
