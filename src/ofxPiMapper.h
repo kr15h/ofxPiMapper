@@ -57,6 +57,7 @@ class ofxPiMapper {
 		void duplicateSurface();
 		void selectNextVertex();
 		void selectPrevVertex();
+		void selectVertex(int surface, int vertex);
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
 		void moveLayerUp();

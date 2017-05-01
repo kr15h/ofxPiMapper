@@ -337,6 +337,23 @@ void Application::selectPrevVertex(){
 	}
 }
 
+void Application::selectVertex(int surface, int vertex){
+	if(getSurfaceManager()->size()){
+		
+		// TODO: use one command instead of two
+		
+		getCmdManager()->exec(
+		 new SelSurfaceCmd(
+		  getSurfaceManager(),
+		  getSurfaceManager()->getSurface(surface)));
+		
+		getCmdManager()->exec(
+		 new SelVertexCmd(
+		  getSurfaceManager(),
+		  vertex));
+	}
+}
+
 void Application::selectNextTexCoord(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(

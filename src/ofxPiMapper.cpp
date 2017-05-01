@@ -107,6 +107,10 @@ void ofxPiMapper::selectPrevVertex(){
 	_application.selectPrevVertex();
 }
 
+void ofxPiMapper::selectVertex(int surface, int vertex){
+	_application.selectVertex(surface, vertex);
+}
+
 void ofxPiMapper::selectNextTexCoord(){
 	_application.selectNextTexCoord();
 }

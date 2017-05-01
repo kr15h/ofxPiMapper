@@ -104,6 +104,7 @@ class Application {
 		void selectPrevSurface();
 		void selectNextVertex();
 		void selectPrevVertex();
+		void selectVertex(int surface, int vertex);
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
 	
