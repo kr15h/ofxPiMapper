@@ -136,7 +136,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'z':
-		 _cmdManager.undo();
+		 undo();
 		 break;
 		 
 	 case 'n':
@@ -337,6 +337,23 @@ void Application::selectPrevVertex(){
 	}
 }
 
+void Application::selectVertex(int surface, int vertex){
+	if(getSurfaceManager()->size()){
+		
+		// TODO: use one command instead of two
+		
+		getCmdManager()->exec(
+		 new SelSurfaceCmd(
+		  getSurfaceManager(),
+		  getSurfaceManager()->getSurface(surface)));
+		
+		getCmdManager()->exec(
+		 new SelVertexCmd(
+		  getSurfaceManager(),
+		  vertex));
+	}
+}
+
 void Application::selectNextTexCoord(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(
@@ -534,6 +551,16 @@ void Application::moveTexCoord(int texCoordIndex, ofVec2f by){
 		 &Gui::instance()->getTextureEditorWidget()));
 		
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
+	}
+}
+
+void Application::undo(){
+	_cmdManager.undo();
+}
+
+void Application::deselect(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(new DeselectSurfaceCmd(getSurfaceManager()));
 	}
 }
 

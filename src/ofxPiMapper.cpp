@@ -107,6 +107,10 @@ void ofxPiMapper::selectPrevVertex(){
 	_application.selectPrevVertex();
 }
 
+void ofxPiMapper::selectVertex(int surface, int vertex){
+	_application.selectVertex(surface, vertex);
+}
+
 void ofxPiMapper::selectNextTexCoord(){
 	_application.selectNextTexCoord();
 }
@@ -200,6 +204,14 @@ void ofxPiMapper::setInfoText(string text){
 
 void ofxPiMapper::toggleInfo(){
 	_application.toggleInfo();
+}
+
+void ofxPiMapper::undo(){
+	_application.undo();
+}
+
+void ofxPiMapper::deselect(){
+	_application.deselect();
 }
 
 void ofxPiMapper::setMode(ofx::piMapper::Mode m){

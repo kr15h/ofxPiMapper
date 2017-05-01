@@ -28,6 +28,8 @@ class ofxPiMapper {
 		// Application
 		void setInfoText(string text);
 		void toggleInfo();
+		void undo();
+		void deselect();
 	
 		// Modes
 		void setMode(ofx::piMapper::Mode m);
@@ -55,6 +57,7 @@ class ofxPiMapper {
 		void duplicateSurface();
 		void selectNextVertex();
 		void selectPrevVertex();
+		void selectVertex(int surface, int vertex);
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
 		void moveLayerUp();
