@@ -16,7 +16,21 @@ int main(int argc, char * argv[]){
 	}
 	
 	Settings::instance()->setFullscreen(fullscreen);
+	//ofSetupOpenGL(800, 450, OF_WINDOW);
+	
+	int w = 800;
+	int h = 450;
+	ofWindowMode mode = OF_WINDOW;
 
-	ofSetupOpenGL(800, 450, OF_WINDOW);
+	// Loglever festlegen
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    ofGLESWindowSettings settings;
+    settings.width = w;
+    settings.height = h;
+    settings.setGLESVersion(2);
+    settings.windowMode = mode;
+    ofCreateWindow(settings);
+
 	ofRunApp(new ofApp());
 }
