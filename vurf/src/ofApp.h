@@ -9,6 +9,9 @@
 #include "UDPSource.h"
 #include "VideoSource.h"
 #include "CustomShader.h"
+
+//#include "CustomContourFinder.h"
+
 #include "DynamicSurfaceManagerKinect.h"
 
 

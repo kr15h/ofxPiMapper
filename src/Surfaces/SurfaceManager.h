@@ -3,6 +3,7 @@
 #include "BaseSurface.h"
 #include "TriangleSurface.h"
 #include "QuadSurface.h"
+#include "HexagonSurface.h"
 #include "SurfaceType.h"
 #include "MediaServer.h"
 #include "BaseSource.h"

@@ -25,7 +25,7 @@
 #include "ofxKinect.h"
 #include "ofxKinectProjectorToolkit.h"
 
-
+#include "CustomContourFinder.h"
 
 using namespace std;
 
@@ -42,7 +42,10 @@ class DynamicSurfaceManagerKinect {
 
 		void setup(ofxPiMapper *setupPiMapper);
 
-    ofxCv::ContourFinder        contourFinder;
+		int getDynamicSurfaceIndex(int label);
+
+    ofxCv::CustomContourFinder        contourFinder;
+
     ofxKinectProjectorToolkit   kpt;
     ofxKinect                   kinect;
 
@@ -66,9 +69,16 @@ class DynamicSurfaceManagerKinect {
 
 		ofxPanel                    gui;
 
+		const static int MAX_VERTEX = 6;
+		const static int MAX_DYNAMIC_SURFACES = 16;
+		const static int MAX_BLOB_AGE = 50.0f;
+                int label_map[MAX_DYNAMIC_SURFACES] = {}; //-1,-1,-1,-1,-1,-1,-1,-1};
+                double label_map_lastused[MAX_DYNAMIC_SURFACES] = {}; //{0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f}; 
 
 		ofxPiMapper *piMapper;
 
 		void setupKinect();
+
+		void gcSurfaces();
 
 };
