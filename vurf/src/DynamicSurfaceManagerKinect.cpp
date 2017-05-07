@@ -14,6 +14,18 @@ void DynamicSurfaceManagerKinect::updateKinect() {
         grayThreshNear.threshold(nearThreshold, true);
         grayThreshFar.threshold(farThreshold);
         cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+
+	//cvSmooth(grayImage.getCvImage(), grayImage.getCvImage(), CV_GAUSSIAN, 2);
+
+	//grayImage.dilate();
+	/*grayImage.dilate();
+	grayImage.erode();
+	grayImage.blur(7);*/
+	/*grayImage.erode();
+	grayImage.erode();
+	grayImage.blur(7);*/
+
+
         grayImage.flagImageChanged();
 
         // set contour tracker parameters
@@ -31,12 +43,12 @@ void DynamicSurfaceManagerKinect::updateKinect() {
 }
 
 void DynamicSurfaceManagerKinect::gcSurfaces() {
-        double threshold = ofGetFrameNum() - MAX_BLOB_AGE;
+        double threshold = ofGetFrameNum() - (MAX_BLOB_AGE * 3);
 
         // garbage-collect stale surfaces by setting them to 0,0 coords ?
         for (int i = 0 ; i < MAX_DYNAMIC_SURFACES ; i++) {
                 //cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
-                if (label_map[i]!=-1 && label_map_lastused[i] < threshold) {
+                if ((label_map[i]!=-1 && (label_map_lastused[i] == 0 || label_map_lastused[i] < threshold)) || (label_map[i]==-2)) { //label_map_lastused[i]>0 && label_map_lastused[i] < threshold)) {
                         cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
 
                         cout << ofGetFrameNum() << ": collecting " << i << " because it hasnt been used since " << label_map_lastused[i] << " (was used for " << label_map[i] << ") " << endl;
@@ -146,9 +158,11 @@ void DynamicSurfaceManagerKinect::update() {
 	        	ofVec2f projectedPoint = kpt.getProjectedPoint(worldPoint);
                         cout << "[" << i <<" (" << label << ")]: added point " << projectedPoint.x*1024 << ", " << projectedPoint.y*768;
 			cout << " from " << points[j].x << "," << points[j].y << endl;
+			//projectedPoint = ofVec2f(points[j].x,points[j].y);	
 		    	stroke.push_back(projectedPoint * ofVec2f(1024,768)); //ofVec2f(projectedPoint.x,projectedPoint.y));
 		}
 		stroke.push_back((ofVec2f)kpt.getProjectedPoint((ofVec3f)kinect.getWorldCoordinateAt(points[0].x, points[0].y)) * ofVec2f(1024,768));
+		//stroke.push_back(ofVec2f(points[0].x,points[0].y)*ofVec2f(1024,768));
 
 		//label = i;	// disable to use labels instead of surfaces .. 
 		int index = getDynamicSurfaceIndex(label);
@@ -191,10 +205,10 @@ void DynamicSurfaceManagerKinect::setupKinect(){
     gui.add(nearThreshold.set("nearThresh", 255, 0, 255));
     gui.add(farThreshold.set("farThresh", 85, 0, 255));
     gui.add(minArea.set("minArea", 2000, 0, 5000));
-    gui.add(maxArea.set("maxArea", 100000/*70000*/, 15000, 150000));
-    gui.add(threshold.set("threshold", 50/*100*/, 1, 100));
-    gui.add(persistence.set("persistence", 50 /*100*/, 1, 100));
-    gui.add(maxDistance.set("maxDistance", 48 /*32*/, 1, 100));
+    gui.add(maxArea.set("maxArea", 70000, 15000, 150000));
+    gui.add(threshold.set("threshold", 100, 1, 100));
+    gui.add(persistence.set("persistence", 100, 1, 100));
+    gui.add(maxDistance.set("maxDistance", 32, 1, 100));
 
 }
 
@@ -210,7 +224,7 @@ void DynamicSurfaceManagerKinect::setup (ofxPiMapper *setupPiMapper) {
 	// setup bank of Surfaces for using as dynamic surfaces
 	//double a = ofGetFrameNum();
 	for (int i = 0 ; i < MAX_DYNAMIC_SURFACES ; i++) {
-		label_map[i] = -1;
+		label_map[i] = -2;
 		label_map_lastused[i] = 0.0f;//a;//[a,a,a,a,a,a,a,a];
 	}
 	//label_map_lastused = {0,0,0,0,0,0,0,0};
