@@ -40,14 +40,14 @@ You can use the example application of the addon for simple projection mapping p
 2. Compile and run the example project.  
 
    ```bash
-cd openFrameworks/addons/ofxPiMapper/example
-make && ./bin/example
+        cd openFrameworks/addons/ofxPiMapper/example
+        make && ./bin/example
    ```
 
 3. Use the `-f` flag to launch it fullscreen.  
 
    ```bash
-./bin/example -f
+		./bin/example -f
    ```
 
 ## Problems with Audio
@@ -58,37 +58,37 @@ If you are having problems with audio playback, here are two steps for you. Befo
 
 Open example openFrameworks application `ofApp.cpp` file in a text editor.
 
-```
-cd /home/pi/openFrameworks/addons/ofxPiMapper/example
-nano src/ofApp.cpp
+```bash
+    cd /home/pi/openFrameworks/addons/ofxPiMapper/example
+    nano src/ofApp.cpp
 ```
 
 Make sure that the following line looks as follows.
 
-```
-ofx::piMapper::VideoSource::enableAudio = true;
+```bash
+	ofx::piMapper::VideoSource::enableAudio = true;
 ```
 
 Save the file (CTRL + X, Y and ENTER). Recompile and run the example.
 
-```
-make && make run
+```bash
+	make && make run
 ```
 
 ### Step 2
 
 If the sound still does not work, try to use `raspi-config`.
 
-```
-sudo raspi-config
+```bash
+	sudo raspi-config
 ```
 
 Select "7 Advanced Options" and "A9 Audio" then "0 Auto". You can use one of the force options if you want to be 100% sure.
 
 Open alsamixer.
 
-```
-alsamixer
+```bash
+	alsamixer
 ```
 
 Set the volume to a value between 90 to 100 by using the arrow keys. ESC to exit the mixer.
@@ -103,9 +103,9 @@ OfxPiMapper features FBO sources that allow you to create generative openFramewo
 Reuse the `example` app by copying it to your `apps` directory.
 
 ```bash
-cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
-cd openFrameworks/apps/myApps
-mv example myOfxPiMapperApp
+    cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
+    cd openFrameworks/apps/myApps
+    mv example myOfxPiMapperApp
 ```
 
 
@@ -125,8 +125,8 @@ Another thing you need is a working [openFrameworks](http://openframeworks.cc) i
 Clone this (the ofxPiMapper) repository into your `openFrameworks/addons` folder. If your openFrameworks installation on the Pi resides in the home directory, you have to type the following in the terminal:
 
 ```bash
-cd ~/openFrameworks/addons
-git clone https://github.com/kr15h/ofxPiMapper.git
+    cd ~/openFrameworks/addons
+    git clone https://github.com/kr15h/ofxPiMapper.git
 ```
 
 
