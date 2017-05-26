@@ -13,18 +13,16 @@ You can use the example application of the addon for projection mapping projects
 
 1. Put your own sources in the `example/bin/data/sources` directory. Use [Handbrake](https://handbrake.fr/) with the **Fast 720p30** preset to encode your videos. 
 
-2. Compile and run the example project.  
+2. Compile and run the example project.
+    ```bash
+    cd openFrameworks/addons/ofxPiMapper/example
+    make && ./bin/example
+    ```
 
-   ```bash
-cd openFrameworks/addons/ofxPiMapper/example
-make && ./bin/example
-   ```
-
-3. Use the `-f` flag to launch it fullscreen.  
-
-   ```bash
-./bin/example -f
-   ```
+3. Use the `-f` flag to launch it fullscreen.
+    ```bash
+    ./bin/example -f
+    ```
 
 
 ## Compiling on Linux
