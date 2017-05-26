@@ -6,29 +6,15 @@ namespace piMapper {
 
 Application::Application(){
 	_keySequence = "";
-
 	_surfaceManager.setMediaServer(&_mediaServer);
 	
 	// Set initial mode
 	setState(PresentationMode::instance());
 	ofHideCursor();
 	
-	// TODO: Get rid of listeners, pipe application events from the example app
-	/*
-	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
-	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
-	*/
-	
-	/*
-	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
-	ofAddListener(ofEvents().mouseReleased, this, &Application::onMouseReleased);
-	ofAddListener(ofEvents().mouseDragged, this, &Application::onMouseDragged);
-	*/
-	
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
-	
 	ofAddListener(Gui::instance()->guiEvent, this, &Application::onGuiEvent);
 	
 	_lastSaveTime = 0.0f;
