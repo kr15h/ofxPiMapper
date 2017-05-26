@@ -36,7 +36,8 @@ There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVid
 
 ## Problems with Audio
 
-If you are having problems with audio playback, here are two steps for you. Before you do these, make sure audio of your video file works. Use [HandBrake](https://handbrake.fr/) for encoding, use the "Fast 720p30" or "Fast 1080p30" preset.
+If you are having problems with audio playback, here are two steps for you. Before you do these, make sure audio of your video file works.
+
 
 ### Step 1
 
