@@ -181,20 +181,6 @@ git checkout 0.9.0-compatible
 You can check the latest releases on the [ofxOMXPlayer GitHub repository](https://github.com/jvcleave/ofxOMXPlayer/releases).
 
 
-## First Test
-
-To test the addon, you will have to compile and run it:
-
-```bash
-cd ~/openFrameworks/addons/ofxPiMapper/example
-make && make run
-```
-
-After it compiles, run it with either `make run` or `./bin/example`. You can exit the application by pressing `ESC` or `Ctrl + C`.
-
-It will take a while first (not so long on the RPi 2), but once it runs, press 1, 2, 3 and 4 keys to switch between modes of the software. Switch to mode 3 at first to select a surface. Afterwards you will be able to edit the texture mapping of it in mode 2 and choose a source in mode 4. Mode 1 is the presentation mode. It is activated on start by default.
-
-
 ## Usage
 
 Right now a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
@@ -210,9 +196,11 @@ PiMapper has 4 modes:
 
 You can access these modes by pressing 1, 2, 3 or 4 respectively.
 
+
 #### Presentation mode
 
 This mode is activated once the application starts up. It does not show anything else except the final projection mapping as it was saved previously.
+
 
 #### Texture mapping mode
 
@@ -222,9 +210,11 @@ In this mode you can adjust the texture coordinates of the surface you have sele
 
 Here you can select, move and distort the surfaces you have created.
 
+
 #### Source assignment mode
 
 After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
+
 
 ### Other shortcuts
 
@@ -240,9 +230,9 @@ i | Show info
 t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
-d | duplicate surface
-``+`` | Scale surface up
-``-`` | Scale surface down
+d | duplicate selected surface
+\+ | Scale surface up
+\- | Scale surface down
 p | toggle perspective warping (quad surfaces only)
 ] | add columns to grid surface (grid warp surfaces only)
 [ | remove columns from grid surface (grid warp surfaces only)
@@ -250,28 +240,18 @@ p | toggle perspective warping (quad surfaces only)
 { | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
-``>`` | select next vertex
-``<`` | select previous vertex
+\> | select next vertex
+\< | select previous vertex
 0 | Move selected surface one layer up
 9 | Move selected surface one layer down
 s | Save composition
 l | Hide/show layer panel
 z | Undo
-x | Reboot (Raspberry Pi only)
-c | Shutdown (Raspberry Pi only)
+rbt | Reboot (Raspberry Pi only)
+sdn | Shutdown (Raspberry Pi only)
+new | Clear composition (remove all surfaces)
 BACKSPACE ('\' via SSH) | Delete surface.
 SPACE | Toggle pause for video sources (texture and projection mapping modes)
 TAB | Select next source (no need to use the source selection interface)
 Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
-
-### SSH Remote Control
-
-You can enter a SSH session with your networked Raspberry Pi, launch the ofxPiMapper executable and access all the functionality by using the keyboard. Use the same commands listed in the above table, use `/` as the replacement for the `SHIFT` key as it is not that easy to capture `SHIFT` keypress when on SSH. The `/` works as a toggle, you have to press it once to simulate `SHIFT_DOWN` and one more time to simulate `SHIFT_UP`. It is particularly important when moving surfaces and vertices over long distances. The `/` key enables 10px steps when pressing arrow buttons.
-
-## Compatibility
-
-Tested with openFrameworks 0.9.2 (OS X and Raspbian Jessie Lite). It works.
-
-```
-TODO: Add a matrix with oF versions and OS's ofxPiMapper is tested on.
-```
+\/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi
