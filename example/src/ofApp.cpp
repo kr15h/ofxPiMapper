@@ -22,6 +22,7 @@ void ofApp::setup(){
 	// piMapper.showInfo();
 	
 	ofSetFullscreen(Settings::instance()->getFullscreen());
+	ofSetEscapeQuitsApp(false);
 }
 
 void ofApp::update(){
