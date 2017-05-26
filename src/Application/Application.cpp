@@ -82,6 +82,12 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 				_cmdManager.exec(new ClearSurfacesCmd(getSurfaceManager()));
 			}
 			return;
+		}else if(_keySequence == "rbt"){
+			reboot();
+			return;
+		}else if(_keySequence == "sdn"){
+			shutdown();
+			return;
 		}
 	}
 
@@ -127,14 +133,6 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 
 	 case 'n':
 		 setNextPreset();
-		 break;
-	
-	 case 'x':
-		 reboot();
-		 break;
-
-	 case 'c':
-		 shutdown();
 		 break;
 
 	 default:
