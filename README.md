@@ -80,19 +80,6 @@ Set the volume to a value between 90 to 100 by using the arrow keys. ESC to exit
 Launch ofxPiMapper example, select a surface and set a video source with audio. Should work.
 
 
-## Using as an Addon
-
-OfxPiMapper features FBO sources that allow you to create generative openFrameworks patches to be used with ofxPiMapper. Extend the `FboSource` class, override `setup()`, `update()` and `draw()` methods and then create an instance of your custom source to add it to your ofxPiMapper object.
-
-Reuse the `example` app by copying it to your `apps` directory.
-
-```bash
-cp -R openFrameworks/addons/ofxPiMapper/example openFrameworks/apps/myApps/
-cd openFrameworks/apps/myApps
-mv example myOfxPiMapperApp
-```
-
-
 ## Development
 
 Keeping it simple. Developing ofxPiMapper master branch against the latest stable release version of openFrameworks. 
