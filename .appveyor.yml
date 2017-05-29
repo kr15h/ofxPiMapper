@@ -1,0 +1,38 @@
+version: 1.0.{build}
+os: Visual Studio 2015 RC
+
+environment:
+  global:
+    APPVEYOR_OS_NAME: windows
+  matrix:
+  #MSYS2 Building
+    - platform: x86
+      BUILDER: MSYS2
+
+  #VisualStudio Building
+    - platform: x86
+      BUILDER : VS
+      BITS: 32
+    - platform: x64
+      BUILDER : VS
+      BITS: 64
+
+configuration: Debug
+shallow_clone: true
+clone_depth: 10
+init:
+- set MSYS2_PATH=c:\msys64
+- set CHERE_INVOKING=1
+- if "%BUILDER%_%PLATFORM%"=="MSYS2_x86" set MSYSTEM=MINGW32
+- if "%BUILDER%_%PLATFORM%"=="MSYS2_x64" set MSYSTEM=MINGW64
+- if "%BUILDER%"=="VS" set PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
+
+install:
+- cd ..
+- git clone --depth=1 --branch=master https://github.com/openframeworks/openFrameworks
+- call openFrameworks\scripts\ci\addons\install.cmd
+
+build_script:
+- cd %OF_PATH%
+- scripts\ci\addons\build.cmd
+

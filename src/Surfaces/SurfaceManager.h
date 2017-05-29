@@ -51,8 +51,8 @@ class SurfaceManager {
 		void selectPrevVertex();
 		void selectVertex(int i);
 	
-		void moveSelectionBy(ofVec2f v);
-		void moveAllSurfacesBy(ofVec2f v);
+		void moveSelectionBy(ofDefaultVec2 v);
+		void moveAllSurfacesBy(ofDefaultVec2 v);
 	
 		int size();
 		int getSelectedVertexIndex();
@@ -61,13 +61,13 @@ class SurfaceManager {
 		unsigned int getNumPresets();
 	
 		ofEvent <int> vertexChangedEvent;
-		ofEvent <vector<ofVec3f>> verticesChangedEvent;
+		ofEvent <vector<ofDefaultVec3>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
 		ofEvent <int> vertexSelectedEvent;
 		ofEvent <int> vertexUnselectedEvent;
 
 		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<ofVec3f> & vertices);
+		void onVerticesChanged(vector<ofDefaultVec3> & vertices);
 
 		SurfaceStack * getActivePreset();
 		SurfaceStack * createPreset();

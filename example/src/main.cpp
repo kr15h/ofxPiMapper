@@ -6,7 +6,6 @@
 
 int main(int argc, char * argv[]){
 	bool fullscreen = false;
-
 	vector<string> arguments = vector<string>(argv, argv + argc);
 	for(int i = 0; i < arguments.size(); ++i){
 		if(arguments.at(i) == "-f"){
@@ -14,7 +13,6 @@ int main(int argc, char * argv[]){
 			break;
 		}
 	}
-	
 	Settings::instance()->setFullscreen(fullscreen);
 	//ofSetupOpenGL(800, 450, OF_WINDOW);
 	

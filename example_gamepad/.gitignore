@@ -1,7 +1,0 @@
-obj
-*.xcworkspace
-*.xcuserdatad
-*~
-bin/*.app
-bin/example-gamepad
-bin/libs

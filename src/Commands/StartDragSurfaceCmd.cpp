@@ -15,7 +15,8 @@ void StartDragSurfaceCmd::exec(){
 
 void StartDragSurfaceCmd::undo(){
 	ofLogNotice("StartDragSurfaceCmd", "undo");
-	_surface->moveBy(_previousVertices[0] - _surface->getVertices()[0]);
+	ofDefaultVec3 dist = _previousVertices[0] - _surface->getVertices()[0];
+	_surface->moveBy(ofDefaultVec2(dist.x, dist.y));
 }
 
 } // namespace piMapper

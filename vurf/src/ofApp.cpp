@@ -48,7 +48,7 @@ void ofApp::keyPressed(int key){
 
 	switch(key) {
 		case '0':
-			piMapper.moveSelection(ofVec2f(0.1f,0.1f));
+			piMapper.moveSelection(ofDefaultVec2(0.1f,0.1f));
 			cout << "moved\n";
 		break;
 	}

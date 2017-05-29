@@ -7,24 +7,29 @@ TriangleSurface::TriangleSurface(){
 	setup();
 }
 
-TriangleSurface::~TriangleSurface(){}
-
 void TriangleSurface::setup(){
 	// Create 3 points for the triangle
-	ofVec2f p1 = ofVec2f(ofGetWidth() / 2.0f, 0);
-	ofVec2f p2 = ofVec2f(ofVec2f(0, ofGetHeight()));
-	ofVec2f p3 = ofVec2f(ofGetWidth(), ofGetHeight());
+	ofDefaultVec3 v1 = ofDefaultVec3(ofGetWidth() / 2.0f, 0, 0);
+	ofDefaultVec3 v2 = ofDefaultVec3(0, ofGetHeight(), 0);
+	ofDefaultVec3 v3 = ofDefaultVec3(ofGetWidth(), ofGetHeight(), 0);
 
 	// Create 3 point for the texture coordinates
-	ofVec2f t1 = ofVec2f(0.5f, 0);
-	ofVec2f t2 = ofVec2f(0, 1.0f);
-	ofVec2f t3 = ofVec2f(1, 1.0f);
+	ofDefaultVec2 t1 = ofDefaultVec2(0.5f, 0);
+	ofDefaultVec2 t2 = ofDefaultVec2(0, 1.0f);
+	ofDefaultVec2 t3 = ofDefaultVec2(1, 1.0f);
 
-	setup(p1, p2, p3, t1, t2, t3, source);
+	setup(v1, v2, v3, t1, t2, t3, source);
 }
 
-void TriangleSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1,
-							ofVec2f t2, ofVec2f t3, BaseSource * newSource){
+void TriangleSurface::setup(
+	ofDefaultVec3 v1,
+	ofDefaultVec3 v2,
+	ofDefaultVec3 v3,
+	ofDefaultVec2 t1,
+	ofDefaultVec2 t2,
+	ofDefaultVec2 t3,
+	BaseSource * newSource){
+	
 	// Assign texture
 	source = newSource;
 
@@ -32,9 +37,9 @@ void TriangleSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f t1,
 	mesh.clear();
 
 	// Create a surface with the points
-	mesh.addVertex(p1);
-	mesh.addVertex(p2);
-	mesh.addVertex(p3);
+	mesh.addVertex(v1);
+	mesh.addVertex(v2);
+	mesh.addVertex(v3);
 
 	// Add texture coordinates
 	mesh.addTexCoord(t1);
@@ -63,18 +68,18 @@ void TriangleSurface::draw(){
 	}
 }
 
-void TriangleSurface::setVertex(int index, ofVec2f p){
+void TriangleSurface::setVertex(int index, ofDefaultVec3 v){
 	if(index > 2){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
 		return;
 	}
 	
-	mesh.setVertex(index, p);
-	ofVec3f v = mesh.getVertex(index);
+	mesh.setVertex(index, v);
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void TriangleSurface::setVertices(vector<ofVec2f> v){
+
+/*void TriangleSurface::setVertices(vector<ofVecf> v){
 	if(v.size() != 3){
 		throw runtime_error("Wrong number of vertices (expected 3)");
 	}
@@ -84,9 +89,9 @@ void TriangleSurface::setVertices(vector<ofVec2f> v){
 	}
 	
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
-}
+}*/
 
-void TriangleSurface::setVertices(vector<ofVec3f> v){
+void TriangleSurface::setVertices(vector<ofDefaultVec3> v){
 	if(v.size() != 3){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -98,7 +103,7 @@ void TriangleSurface::setVertices(vector<ofVec3f> v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
-void TriangleSurface::setTexCoord(int index, ofVec2f t){
+void TriangleSurface::setTexCoord(int index, ofDefaultVec2 t){
 	if(index > 2){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
 				<< endl;
@@ -108,7 +113,7 @@ void TriangleSurface::setTexCoord(int index, ofVec2f t){
 	mesh.setTexCoord(index, t);
 }
 
-void TriangleSurface::setTexCoords(vector<ofVec2f> t){
+void TriangleSurface::setTexCoords(vector<ofDefaultVec2> t){
 	if(t.size() != 3){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
@@ -117,11 +122,11 @@ void TriangleSurface::setTexCoords(vector<ofVec2f> t){
 	}
 }
 
-void TriangleSurface::moveBy(ofVec2f v){
-	vector <ofVec3f> & vertices = getVertices();
+void TriangleSurface::moveBy(ofDefaultVec2 v){
+	vector <ofDefaultVec3> & vertices = getVertices();
 	
 	for(int i = 0; i < vertices.size(); i++){
-		vertices[i] += v;
+		vertices[i] += ofDefaultVec3(v.x, v.y, 0);
 	}
 	
 	setMoved(true);
@@ -132,7 +137,7 @@ int TriangleSurface::getType(){
 	return SurfaceType::TRIANGLE_SURFACE;
 }
 
-bool TriangleSurface::hitTest(ofVec2f p){
+bool TriangleSurface::hitTest(ofDefaultVec2 p){
 	// Construct ofPolyline from vertices
 	ofPolyline line = getHitArea();
 
@@ -143,17 +148,16 @@ bool TriangleSurface::hitTest(ofVec2f p){
 	}
 }
 
-ofVec2f TriangleSurface::getVertex(int index){
+ofDefaultVec3 TriangleSurface::getVertex(int index){
 	if(index > 2){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
 
-	ofVec3f vert = mesh.getVertex(index);
-	return ofVec2f(vert.x, vert.y);
+	return mesh.getVertex(index);
 }
 
-ofVec2f TriangleSurface::getTexCoord(int index){
+ofDefaultVec2 TriangleSurface::getTexCoord(int index){
 	if(index > 2){
 		throw runtime_error("Texture coordinate index out of bounds.");
 	}
@@ -173,8 +177,8 @@ ofPolyline TriangleSurface::getHitArea(){
 
 ofPolyline TriangleSurface::getTextureHitArea(){
 	ofPolyline line;
-	vector <ofVec2f> & texCoords = mesh.getTexCoords();
-	ofVec2f textureSize = ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight());
+	vector <ofDefaultVec2> & texCoords = mesh.getTexCoords();
+	ofDefaultVec2 textureSize = ofDefaultVec2(source->getTexture()->getWidth(), source->getTexture()->getHeight());
 	for(int i = 0; i < texCoords.size(); i++){
 		line.addVertex(ofPoint(texCoords[i] * textureSize));
 	}
@@ -183,12 +187,11 @@ ofPolyline TriangleSurface::getTextureHitArea(){
 	return line;
 }
 
-vector <ofVec3f> & TriangleSurface::getVertices(){
-	// return only joint vertices
+vector <ofDefaultVec3> & TriangleSurface::getVertices(){
 	return mesh.getVertices();
 }
 
-vector <ofVec2f> & TriangleSurface::getTexCoords(){
+vector <ofDefaultVec2> & TriangleSurface::getTexCoords(){
 	return mesh.getTexCoords();
 }
 

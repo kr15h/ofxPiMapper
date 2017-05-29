@@ -50,14 +50,14 @@ void DynamicSurfaceManagerUDP::update() {
 
 	if (stroke.size()>1) {
 		//cout << "scaling to " << stroke[0].x/500 << "\n";
-		//piMapper->getApp().getSurfaceManager()->getSurface(1);//->setVertex(0, ofVec2f(stroke[0].x, stroke[0].y)); //joints[i]->position)
+		//piMapper->getApp().getSurfaceManager()->getSurface(1);//->setVertex(0, ofDefaultVec{$1}(stroke[0].x, stroke[0].y)); //joints[i]->position)
 
 		// convert from x,y,width,height to vertices
-		vector<ofVec2f> vs;
-		vs.push_back(ofVec2f(stroke[0].x, 		stroke[0].y));
-		vs.push_back(ofVec2f(stroke[0].x + stroke[1].x, stroke[0].y));
-		vs.push_back(ofVec2f(stroke[0].x + stroke[1].x, stroke[0].y + stroke[1].y));
-		vs.push_back(ofVec2f(stroke[0].x, 		stroke[0].y + stroke[1].y));
+		vector<ofDefaultVec3> vs;
+		vs.push_back(ofDefaultVec2(stroke[0].x, 		stroke[0].y));
+		vs.push_back(ofDefaultVec2(stroke[0].x + stroke[1].x, stroke[0].y));
+		vs.push_back(ofDefaultVec2(stroke[0].x + stroke[1].x, stroke[0].y + stroke[1].y));
+		vs.push_back(ofDefaultVec2(stroke[0].x, 		stroke[0].y + stroke[1].y));
 
 		int surf_index = 0;
 		try {	

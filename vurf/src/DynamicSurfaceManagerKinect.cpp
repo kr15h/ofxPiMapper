@@ -61,10 +61,10 @@ void DynamicSurfaceManagerKinect::gcSurfaces() {
                         //cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
 
                         //cout << ofGetFrameNum() << ": collecting " << i << " because it hasnt been used since " << label_map_lastused[i] << " (was used for " << label_map[i] << ") " << endl;
-                        vector<ofVec2f> hidden;
+                        vector<ofDefaultVec3> hidden;
                         for (int x = 0 ; x < MAX_VERTEX ; x++)
-                                hidden.push_back(ofVec2f(0,0));//,ofVec2f(0,0),ofVec2f(0,0),ofVec2f(0,0)};
-			hidden.push_back(ofVec2f(0,0));
+                                hidden.push_back(ofDefaultVec3(0,0));//,ofDefaultVec{$1}(0,0),ofDefaultVec{$1}(0,0),ofDefaultVec{$1}(0,0)};
+			hidden.push_back(ofDefaultVec3(0,0));
 			try {
                         	//piMapper->getApp().getSurfaceManager()->getSurface(i)->setVertices(hidden); //->hide();
 				piMapper->getApp().getSurfaceManager()->getSurface(i)->setEnabled(false);
@@ -144,7 +144,7 @@ void DynamicSurfaceManagerKinect::update() {
 	updateKinect();
 
         //vector<ofPoint> stroke;
-	vector<ofVec2f> stroke;
+	vector<ofDefaultVec3> stroke;
 
 	ofxCv::RectTracker& tracker = contourFinder.getTracker();
 
@@ -163,26 +163,26 @@ void DynamicSurfaceManagerKinect::update() {
 			continue;	// only bother with something that's been tracked for longer than 10ms(?) to avoid flashes
 		}
 
-		//ofVec2f old = piMapper->getApp().getSurfaceManager()->getSurface(index)->getVertices();
+		//ofDefaultVec{$1} old = piMapper->getApp().getSurfaceManager()->getSurface(index)->getVertices();
 
 		piMapper->getApp().getSurfaceManager()->getSurface(i)->setEnabled(true);
 
 
 		cout << "got hex with points size " << points.size() << endl;
         	for (int j=0; j<points.size(); j++) {
-	        	ofVec3f worldPoint = kinect.getWorldCoordinateAt(points[j].x, points[j].y);
-	        	ofVec2f projectedPoint = kpt.getProjectedPoint(worldPoint);
+	        	ofDefaultVec3 worldPoint = kinect.getWorldCoordinateAt(points[j].x, points[j].y);
+	        	ofDefaultVec2 projectedPoint = kpt.getProjectedPoint(worldPoint);
                         cout << "[" << i <<" (" << label << ")]: added point " << projectedPoint.x*1024 << ", " << projectedPoint.y*768;
 			cout << " from " << points[j].x << "," << points[j].y << endl;
-			//projectedPoint = ofVec2f(points[j].x,points[j].y);	
-		    	stroke.push_back(projectedPoint * ofVec2f(1024,768)); //ofVec2f(projectedPoint.x,projectedPoint.y));
+			//projectedPoint = ofDefaultVec{$1}(points[j].x,points[j].y);	
+		    	stroke.push_back(projectedPoint * ofDefaultVec2(1024,768)); //ofDefaultVec{$1}(projectedPoint.x,projectedPoint.y));
 		}
 		stroke.push_back(
-			(ofVec2f)kpt.getProjectedPoint(
-				(ofVec3f)kinect.getWorldCoordinateAt(points[0].x, points[0].y)
-			) * ofVec2f(1024,768)
+			(ofDefaultVec2)kpt.getProjectedPoint(
+				(ofDefaultVec3)kinect.getWorldCoordinateAt(points[0].x, points[0].y)
+			) * ofDefaultVec2(1024,768)
 		);
-		//stroke.push_back(ofVec2f(points[0].x,points[0].y)*ofVec2f(1024,768));
+		//stroke.push_back(ofDefaultVec{$1}(points[0].x,points[0].y)*ofDefaultVec{$1}(1024,768));
 
 		//label = i;	// disable to use labels instead of surfaces .. 
 		int index = getDynamicSurfaceIndex(label);
