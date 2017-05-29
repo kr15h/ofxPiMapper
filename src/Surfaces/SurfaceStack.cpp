@@ -28,7 +28,8 @@ void SurfaceStack::swap(int a, int b){
 void SurfaceStack::draw(){
 	ofEnableAlphaBlending();
 	for(int i = 0; i < _surfaces.size(); ++i){
-		_surfaces[i]->draw();
+		if (!_surfaces[i]->isEnabled())
+			_surfaces[i]->draw();
 	}
 }
 
@@ -59,7 +60,7 @@ BaseSurface * SurfaceStack::back(){
 	return _surfaces.back();
 }
 
-void SurfaceStack::onVerticesChanged(vector<ofVec3f> & vertices){
+void SurfaceStack::onVerticesChanged(vector<ofDefaultVec3> & vertices){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 

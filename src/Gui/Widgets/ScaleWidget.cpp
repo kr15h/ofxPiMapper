@@ -56,8 +56,11 @@ void ScaleWidget::draw(){
 		_line[1].x -= dx;
 		_line[1].y -= dy;
 		
+		ofPoint p0 = ofPoint(_line[0].x, _line[0].y);
+		ofPoint p1 = ofPoint(_line[1].x, _line[1].y);
+		
 		// Continue
-		float scale = lineLength / _line[0].distance(_line[1]);
+		float scale = lineLength / p0.distance(p1);
 		
 		_line[1].x = _line[0].x + (_line[1].x - _line[0].x) * scale;
 		_line[1].y = _line[0].y + (_line[1].y - _line[0].y) * scale;
@@ -127,10 +130,15 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 		ofPolyline newLine = _line;
 		newLine[1].x = args.x;
 		newLine[1].y = args.y;
+		ofPoint np0 = ofPoint(newLine[0].x, newLine[0].y);
+		ofPoint np1 = ofPoint(newLine[1].x, newLine[1].y);
+		
+		ofPoint p0 = ofPoint(_line[0].x, _line[0].y);
+		ofPoint p1 = ofPoint(_line[1].x, _line[1].y);
 		
 		_scale = _surfaceManager->getSelectedSurface()->getScale() /
-			_line[0].distance(_line[1]) *
-			newLine[0].distance(newLine[1]);
+			p0.distance(p1) *
+			np0.distance(np1);
 		
 		_line = newLine;
 		

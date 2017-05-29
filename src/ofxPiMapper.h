@@ -66,7 +66,7 @@ class ofxPiMapper {
 		void scaleDown();
 		void togglePauseForSurface(unsigned int i);
 		void togglePause();
-		void moveSelection(ofVec2f by);
+		void moveSelection(ofDefaultVec2 by);
 		void createSurface(ofx::piMapper::SurfaceType type);
 		void eraseSurface(int i);
 	
@@ -77,6 +77,10 @@ class ofxPiMapper {
 		void reboot();
 		void shutdown();
 
-	private:
+		// doctea custom
+		ofx::piMapper::Application getApp();
+
+
+	//private:
 		ofx::piMapper::Application _application;
 };
