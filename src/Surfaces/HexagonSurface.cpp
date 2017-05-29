@@ -11,42 +11,42 @@ void HexagonSurface::setup(){
 
 	// Create 6 + 1 points for the hexagon surface.
 	
-	vector <ofVec2f> verts;
+	vector <ofDefaultVec3> verts;
 	verts.resize(7);
 	
 	// Start with the center.
-	verts[0] = ofVec2f((float)ofGetWidth() / 2.0f, (float)ofGetHeight() / 2.0f);
+	verts[0] = ofDefaultVec3((float)ofGetWidth() / 2.0f, (float)ofGetHeight() / 2.0f, 0);
 	
 	// Then from top left clockwise.
-	verts[1] = ofVec2f((float)ofGetWidth() / 3.0f, 0);
-	verts[2] = ofVec2f((float)ofGetWidth() / 3.0f * 2.0f, 0);
-	verts[3] = ofVec2f(ofGetWidth(), (float)ofGetHeight() / 2.0f);
-	verts[4] = ofVec2f((float)ofGetWidth() / 3.0f * 2.0f, ofGetHeight());
-	verts[5] = ofVec2f((float)ofGetWidth() / 3.0f, ofGetHeight());
-	verts[6] = ofVec2f(0, (float)ofGetHeight() / 2.0f);
+	verts[1] = ofDefaultVec3((float)ofGetWidth() / 3.0f, 0, 0);
+	verts[2] = ofDefaultVec3((float)ofGetWidth() / 3.0f * 2.0f, 0, 0);
+	verts[3] = ofDefaultVec3(ofGetWidth(), (float)ofGetHeight() / 2.0f, 0);
+	verts[4] = ofDefaultVec3((float)ofGetWidth() / 3.0f * 2.0f, ofGetHeight(), 0);
+	verts[5] = ofDefaultVec3((float)ofGetWidth() / 3.0f, ofGetHeight(), 0);
+	verts[6] = ofDefaultVec3(0, (float)ofGetHeight() / 2.0f, 0);
 	
 	// No create the texture coordinates.
-	vector <ofVec2f> coords;
+	vector <ofDefaultVec2> coords;
 	coords.resize(7);
 	
 	// Start with center.
-	coords[0] = ofVec2f(0.5f, 0.5f);
+	coords[0] = ofDefaultVec2(0.5f, 0.5f);
 	
 	// Then from top left and go clockwise.
-	coords[1] = ofVec2f(1.0f / 3.0f, 0.0f);
-	coords[2] = ofVec2f(1.0f / 3.0f * 2.0f, 0.0f);
-	coords[3] = ofVec2f(1.0f, 0.5f);
-	coords[4] = ofVec2f(1.0f / 3.0f * 2.0f, 1.0f);
-	coords[5] = ofVec2f(1.0f / 3.0f, 1.0f);
-	coords[6] = ofVec2f(0.0f, 0.5f);
+	coords[1] = ofDefaultVec2(1.0f / 3.0f, 0.0f);
+	coords[2] = ofDefaultVec2(1.0f / 3.0f * 2.0f, 0.0f);
+	coords[3] = ofDefaultVec2(1.0f, 0.5f);
+	coords[4] = ofDefaultVec2(1.0f / 3.0f * 2.0f, 1.0f);
+	coords[5] = ofDefaultVec2(1.0f / 3.0f, 1.0f);
+	coords[6] = ofDefaultVec2(0.0f, 0.5f);
 	
 	// And finally setup
 	setup(verts, coords, source);
 }
 
 void HexagonSurface::setup(
-	vector <ofVec2f> & verts,
-	vector <ofVec2f> & coords,
+	vector <ofDefaultVec3> & verts,
+	vector <ofDefaultVec2> & coords,
 	BaseSource * newSource){
 	
 	// Assign texture
@@ -103,20 +103,19 @@ void HexagonSurface::draw(){
 	}
 }
 
-void HexagonSurface::setVertex(int index, ofVec2f p){
+void HexagonSurface::setVertex(int index, ofDefaultVec3 v){
 	if(index >= mesh.getVertices().size()){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
 		return;
 	}
 	
-	mesh.setVertex(index, p);
-	ofVec3f v = mesh.getVertex(index);
+	mesh.setVertex(index, v);
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void HexagonSurface::setVertices(vector<ofVec2f> v){
+void HexagonSurface::setVertices(vector<ofDefaultVec3> v){
 	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices (expected many, ..)); "); //<< mesh.getVertices().size() << ", got " << v.size() << ")");
 	}
 	
 	for(int i = 0; i < v.size(); ++i){
@@ -126,19 +125,7 @@ void HexagonSurface::setVertices(vector<ofVec2f> v){
 	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
 }
 
-void HexagonSurface::setVertices(vector<ofVec3f> v){
-	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
-	}
-	
-	for(int i = 0; i < v.size(); ++i){
-		mesh.setVertex(i, v[i]);
-	}
-	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
-}
-
-void HexagonSurface::setTexCoord(int index, ofVec2f t){
+void HexagonSurface::setTexCoord(int index, ofDefaultVec2 t){
 	if(index >= mesh.getTexCoords().size()){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
 				<< endl;
@@ -148,7 +135,7 @@ void HexagonSurface::setTexCoord(int index, ofVec2f t){
 	mesh.setTexCoord(index, t);
 }
 
-void HexagonSurface::setTexCoords(vector<ofVec2f> t){
+void HexagonSurface::setTexCoords(vector<ofDefaultVec2> t){
 	if(t.size() != mesh.getTexCoords().size()){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
@@ -157,11 +144,11 @@ void HexagonSurface::setTexCoords(vector<ofVec2f> t){
 	}
 }
 
-void HexagonSurface::moveBy(ofVec2f v){
-	vector <ofVec3f> & vertices = getVertices();
+void HexagonSurface::moveBy(ofDefaultVec2 v){
+	vector <ofDefaultVec3> & vertices = getVertices();
 	
 	for(int i = 0; i < vertices.size(); i++){
-		vertices[i] += v;
+		vertices[i] += ofDefaultVec3(v.x, v.y, 0);
 	}
 	
 	setMoved(true);
@@ -172,8 +159,7 @@ int HexagonSurface::getType(){
 	return SurfaceType::HEXAGON_SURFACE;
 }
 
-bool HexagonSurface::hitTest(ofVec2f p){
-	// Construct ofPolyline from vertices
+bool HexagonSurface::hitTest(ofDefaultVec2 p){
 	ofPolyline line = getHitArea();
 
 	if(line.inside(p.x, p.y)){
@@ -183,17 +169,16 @@ bool HexagonSurface::hitTest(ofVec2f p){
 	}
 }
 
-ofVec2f HexagonSurface::getVertex(int index){
+ofDefaultVec3 HexagonSurface::getVertex(int index){
 	if(index > 2){
 		ofLog() << "Vertex with this index does not exist: " << index << endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
 
-	ofVec3f vert = mesh.getVertex(index);
-	return ofVec2f(vert.x, vert.y);
+	return mesh.getVertex(index);
 }
 
-ofVec2f HexagonSurface::getTexCoord(int index){
+ofDefaultVec2 HexagonSurface::getTexCoord(int index){
 	if(index > 2){
 		throw runtime_error("Texture coordinate index out of bounds.");
 	}
@@ -215,13 +200,14 @@ ofPolyline HexagonSurface::getHitArea(){
 
 ofPolyline HexagonSurface::getTextureHitArea(){
 	ofPolyline line;
-	vector <ofVec2f> & texCoords = mesh.getTexCoords();
-	ofVec2f textureSize = ofVec2f(
+	vector <ofDefaultVec2> & texCoords = mesh.getTexCoords();
+	ofPoint textureSize = ofPoint(
 		source->getTexture()->getWidth(),
 		source->getTexture()->getHeight());
-	
+
 	for(int i = 1; i < texCoords.size(); i++){
-		line.addVertex(ofPoint(texCoords[i] * textureSize));
+		ofPoint coord = ofPoint(texCoords[i].x, texCoords[i].y);
+		line.addVertex(ofPoint(coord * textureSize));
 	}
 	
 	line.close();
@@ -229,12 +215,12 @@ ofPolyline HexagonSurface::getTextureHitArea(){
 	return line;
 }
 
-vector <ofVec3f> & HexagonSurface::getVertices(){
+vector <ofDefaultVec3> & HexagonSurface::getVertices(){
 	// return only joint vertices
 	return mesh.getVertices();
 }
 
-vector <ofVec2f> & HexagonSurface::getTexCoords(){
+vector <ofDefaultVec2> & HexagonSurface::getTexCoords(){
 	return mesh.getTexCoords();
 }
 

@@ -18,8 +18,8 @@ class RmGridRowCmd : public BaseUndoCmd {
 		void undo();
 
 	private:
-		vector <ofVec3f> _vertices;
-		vector <ofVec2f> _texCoords;
+		vector <ofDefaultVec3> _vertices;
+		vector <ofDefaultVec2> _texCoords;
 		GridWarpSurface * _surface;
 		bool _doNotUndo;
 

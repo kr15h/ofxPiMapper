@@ -59,8 +59,11 @@ void CircleJoint::setDefaultProperties(){
 	radius = 10.0f;
 }
 
-bool CircleJoint::hitTest(ofVec2f pos){
-	float distance = position.distance(pos);
+bool CircleJoint::hitTest(ofDefaultVec2 pos){
+	ofPoint a = ofPoint(position.x, position.y);
+	ofPoint b = ofPoint(pos.x, pos.y);
+
+	float distance = a.distance(b);
 	if(distance < radius){
 		return true;
 	}else{

@@ -113,7 +113,7 @@ class Application {
 		Moves vertex when in projection mapping mode.
 		Moves texture coordinate when in texture mapping mode.
 		*/
-		void moveSelection(ofVec2f by);
+		void moveSelection(ofDefaultVec2 by);
 	
 		void setPresentationMode();
 		void setTextureMode();
@@ -130,7 +130,7 @@ class Application {
 		void removeGridRow();
 		void removeGridColumn();
 		void togglePause();
-		void moveTexCoord(int texCoordIndex, ofVec2f by);
+		void moveTexCoord(int texCoordIndex, ofDefaultVec2 by);
 		// TODO: Add moveVertex.
 		// Make it so that other parts of the application react to the change.
 		void undo();

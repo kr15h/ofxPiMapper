@@ -21,7 +21,7 @@ class MvSurfaceVertCmd : public BaseUndoCmd {
 
 	private:
 		int _vertIndex;
-		ofVec2f _prevVertPos;
+		ofDefaultVec3 _prevVertPos;
 		BaseSurface * _surface;
 
 };

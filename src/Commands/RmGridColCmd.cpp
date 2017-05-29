@@ -30,10 +30,10 @@ void RmGridColCmd::undo(){
 	}
 	
 	_surface->setGridCols(_surface->getGridCols() + 1);
-	vector <ofVec2f> v;
+	vector <ofDefaultVec3> v;
 	
 	for(int i = 0; i < _vertices.size(); ++i){
-		v.push_back( ofVec2f(_vertices[i].x, _vertices[i].y) );
+		v.push_back( _vertices[i] );
 	}
 	
 	_surface->setVertices(v);
