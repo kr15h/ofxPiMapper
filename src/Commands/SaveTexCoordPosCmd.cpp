@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-SaveTexCoordPosCmd::SaveTexCoordPosCmd(int texCoordIndex, ofVec2f position){
+SaveTexCoordPosCmd::SaveTexCoordPosCmd(int texCoordIndex, ofDefaultVec2 position){
 	_texCoordIndex = texCoordIndex;
 	_position = position;
 }

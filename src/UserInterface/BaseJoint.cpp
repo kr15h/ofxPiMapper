@@ -9,8 +9,8 @@ BaseJoint::BaseJoint(){
 }
 
 void BaseJoint::mousePressed(ofMouseEventArgs & args){
-	if(hitTest(ofVec2f(args.x, args.y))){
-		clickDistance = position - ofVec2f(args.x, args.y);
+	if(hitTest(ofDefaultVec2(args.x, args.y))){
+		clickDistance = position - ofDefaultVec2(args.x, args.y);
 	}
 }
 
@@ -22,7 +22,7 @@ void BaseJoint::mouseDragged(ofMouseEventArgs & args){
 	if(!bDrag){
 		return;
 	}
-	position = ofVec2f(args.x, args.y) + clickDistance;
+	position = ofDefaultVec2(args.x, args.y) + clickDistance;
 }
 
 void BaseJoint::startDrag(){
@@ -41,7 +41,7 @@ void BaseJoint::unselect(){
 	selected = false;
 }
 
-void BaseJoint::setClickDistance(ofVec2f newClickDistance){
+void BaseJoint::setClickDistance(ofDefaultVec2 newClickDistance){
 	clickDistance = newClickDistance;
 }
 
@@ -63,8 +63,8 @@ void BaseJoint::setDefaultColors(){
 void BaseJoint::setDefaultProperties(){
 	enabled = true;
 	visible = true;
-	position = ofVec2f(20.0f, 20.0f);
-	clickDistance = ofVec2f(0.0f, 0.0f);
+	position = ofDefaultVec2(20.0f, 20.0f);
+	clickDistance = ofDefaultVec2(0.0f, 0.0f);
 	bDrag = false;
 	selected = false;
 	strokeWidth = 1.5f;

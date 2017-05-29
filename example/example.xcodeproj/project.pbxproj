@@ -29,7 +29,6 @@
 		0115A6B21DBF93BA00C51732 /* BaseSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6501DBF93BA00C51732 /* BaseSource.cpp */; };
 		0115A6B31DBF93BA00C51732 /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6521DBF93BA00C51732 /* FboSource.cpp */; };
 		0115A6B41DBF93BA00C51732 /* ImageSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6541DBF93BA00C51732 /* ImageSource.cpp */; };
-		0115A6B51DBF93BA00C51732 /* OMXPlayerCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */; };
 		0115A6B61DBF93BA00C51732 /* VideoSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A6591DBF93BA00C51732 /* VideoSource.cpp */; };
 		0115A6B71DBF93BA00C51732 /* BaseSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A65C1DBF93BA00C51732 /* BaseSurface.cpp */; };
 		0115A6B81DBF93BA00C51732 /* GridWarpSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0115A65E1DBF93BA00C51732 /* GridWarpSurface.cpp */; };
@@ -109,7 +108,6 @@
 		E4C2424710CC5A17004149E2 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424410CC5A17004149E2 /* AppKit.framework */; };
 		E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
-		E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
@@ -191,8 +189,6 @@
 		0115A6531DBF93BA00C51732 /* FboSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		0115A6541DBF93BA00C51732 /* ImageSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSource.cpp; sourceTree = "<group>"; };
 		0115A6551DBF93BA00C51732 /* ImageSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSource.h; sourceTree = "<group>"; };
-		0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
-		0115A6571DBF93BA00C51732 /* OMXPlayerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
 		0115A6581DBF93BA00C51732 /* SourceType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceType.h; sourceTree = "<group>"; };
 		0115A6591DBF93BA00C51732 /* VideoSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoSource.cpp; sourceTree = "<group>"; };
 		0115A65A1DBF93BA00C51732 /* VideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSource.h; sourceTree = "<group>"; };
@@ -327,7 +323,6 @@
 		3995C2091C79069B00123352 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
 		399953671BD54FF600D5B1F1 /* CrossSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CrossSource.cpp; sourceTree = "<group>"; };
 		399953681BD54FF600D5B1F1 /* CrossSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrossSource.h; sourceTree = "<group>"; };
-		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -359,7 +354,6 @@
 			files = (
 				E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */,
 				E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */,
-				E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 				E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */,
 				E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */,
@@ -489,8 +483,6 @@
 				0115A6531DBF93BA00C51732 /* FboSource.h */,
 				0115A6541DBF93BA00C51732 /* ImageSource.cpp */,
 				0115A6551DBF93BA00C51732 /* ImageSource.h */,
-				0115A6561DBF93BA00C51732 /* OMXPlayerCache.cpp */,
-				0115A6571DBF93BA00C51732 /* OMXPlayerCache.h */,
 				0115A6581DBF93BA00C51732 /* SourceType.h */,
 				0115A6591DBF93BA00C51732 /* VideoSource.cpp */,
 				0115A65A1DBF93BA00C51732 /* VideoSource.h */,
@@ -733,7 +725,6 @@
 		BBAB23CA13894EDB00AA2426 /* 3rd party frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBAB23BE13894E4700AA2426 /* GLUT.framework */,
 			);
 			name = "3rd party frameworks";
 			sourceTree = "<group>";
@@ -871,7 +862,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "rsync -aved ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\nrsync -aved ../../../libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"";
+			shellScript = "rsync -aved ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -908,7 +899,6 @@
 				39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */,
 				016630971DC66DAB0081F28F /* RmGridRowCmd.cpp in Sources */,
 				3933D5D419BB87BD000ACA55 /* ofxButton.cpp in Sources */,
-				0115A6B51DBF93BA00C51732 /* OMXPlayerCache.cpp in Sources */,
 				0166308E1DC66DAB0081F28F /* DeselectTexCoordCmd.cpp in Sources */,
 				0115A67E1DBF93BA00C51732 /* ProjectionMappingMode.cpp in Sources */,
 				0115A6B41DBF93BA00C51732 /* ImageSource.cpp in Sources */,

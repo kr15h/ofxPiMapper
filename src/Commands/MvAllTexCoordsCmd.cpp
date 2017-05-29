@@ -15,7 +15,7 @@ void MvAllTexCoordsCmd::exec(){
 
 void MvAllTexCoordsCmd::undo(){
 	ofLogNotice("MvAllTexCoordsCmd", "undo");
-	ofVec2f dist = _texCoords[0] - _surface->getTexCoords()[0];
+	ofDefaultVec2 dist = _texCoords[0] - _surface->getTexCoords()[0];
 	dist.x = _surface->getSource()->getTexture()->getWidth() * dist.x;
 	dist.y = _surface->getSource()->getTexture()->getHeight() * dist.y;
 	_texEditor->moveTexCoords(dist);

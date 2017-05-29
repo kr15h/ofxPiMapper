@@ -14,13 +14,13 @@ namespace piMapper {
 class SaveTexCoordPosCmd : public BaseUndoCmd {
 
 	public:
-		SaveTexCoordPosCmd(int texCoordIndex, ofVec2f position);
+		SaveTexCoordPosCmd(int texCoordIndex, ofDefaultVec2 position);
 		void exec();
 		void undo();
 
 	private:
 		int _texCoordIndex;
-		ofVec2f _position;
+		ofDefaultVec2 _position;
 
 };
 
