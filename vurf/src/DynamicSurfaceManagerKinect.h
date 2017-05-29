@@ -64,7 +64,6 @@ class DynamicSurfaceManagerKinect {
 
 
 
-
 	private:
 
 		ofxPanel                    gui;

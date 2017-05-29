@@ -52,6 +52,10 @@ class BaseSurface {
 		ofEvent <vector<ofVec3f>> verticesChangedEvent;
 		ofEvent <int> vertexChangedEvent;
 
+		bool isEnabled();
+		void setEnabled(bool v);
+
+
 	protected:
 		ofMesh mesh;
 	
@@ -65,6 +69,8 @@ class BaseSurface {
 		void createDefaultTexture();
 	
 		bool _moved;
+
+		bool _enabled = true;
 	
 		float _scale;
 };

@@ -6,6 +6,7 @@
 *.ogg
 *.avi
 .hg/*
+*/.hg/*
 
 docs/html
 docs/tagfile.xml

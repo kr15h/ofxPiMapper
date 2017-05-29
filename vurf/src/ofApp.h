@@ -13,6 +13,7 @@
 //#include "CustomContourFinder.h"
 
 #include "DynamicSurfaceManagerKinect.h"
+#include "DSMSource.h"
 
 
 class ofApp : public ofBaseApp {
@@ -38,4 +39,5 @@ class ofApp : public ofBaseApp {
 		CrossSource * crossSource;
 		CustomShader * customShader;
 		UDPSource * udpSource;
+		DSMSource * dsmSource;
 };

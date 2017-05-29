@@ -15,14 +15,18 @@ void ofApp::setup(){
 	crossSource = new CrossSource();
 	customSource = new CustomSource();
 	customShader = new CustomShader();
+	dsmSource = new DSMSource();
 	//udpSource = new UDPSource();
 	//piMapper.registerFboSource(udpSource);
 	piMapper.registerFboSource(crossSource);
 	piMapper.registerFboSource(customSource);
 	piMapper.registerFboSource(customShader);
+	piMapper.registerFboSource(dsmSource);
 	piMapper.setup();
 
 	dynamic.setup(&piMapper);
+
+	dsmSource->setDynamic(&dynamic);
 
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();

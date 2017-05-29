@@ -11,9 +11,9 @@ void DynamicSurfaceManagerKinect::updateKinect() {
         grayImage.setFromPixels(kinect.getDepthPixels().getData(), kinect.width, kinect.height);
         grayThreshNear = grayImage;
         grayThreshFar = grayImage;
-        grayThreshNear.threshold(nearThreshold, true);
-        grayThreshFar.threshold(farThreshold);
-        cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
+        //grayThreshNear.threshold(nearThreshold, true);
+        //grayThreshFar.threshold(farThreshold);
+        //cvAnd(grayThreshNear.getCvImage(), grayThreshFar.getCvImage(), grayImage.getCvImage(), NULL);
 
 	//cvSmooth(grayImage.getCvImage(), grayImage.getCvImage(), CV_GAUSSIAN, 2);
 
@@ -35,6 +35,15 @@ void DynamicSurfaceManagerKinect::updateKinect() {
         contourFinder.getTracker().setPersistence(persistence);
         contourFinder.getTracker().setMaximumDistance(maxDistance);
 
+
+	/*contourFinder.setMinAreaRadius(1);
+	contourFinder.setMaxAreaRadius(100);
+	contourFinder.setThreshold(15);
+	contourFinder.getTracker().setPersistence(75);
+	contourFinder.getTracker().setMaximumDistance(500);
+	contourFinder.getTracker().setSmoothingRate(1);*/
+
+
         // determine found contours
         contourFinder.findContours(grayImage);
 
@@ -43,28 +52,30 @@ void DynamicSurfaceManagerKinect::updateKinect() {
 }
 
 void DynamicSurfaceManagerKinect::gcSurfaces() {
-        double threshold = ofGetFrameNum() - (MAX_BLOB_AGE * 3);
+        double threshold = ofGetFrameNum() - (MAX_BLOB_AGE / 3); // * 3);
 
         // garbage-collect stale surfaces by setting them to 0,0 coords ?
         for (int i = 0 ; i < MAX_DYNAMIC_SURFACES ; i++) {
                 //cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
                 if ((label_map[i]!=-1 && (label_map_lastused[i] == 0 || label_map_lastused[i] < threshold)) || (label_map[i]==-2)) { //label_map_lastused[i]>0 && label_map_lastused[i] < threshold)) {
-                        cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
+                        //cout << ofGetFrameNum() << ": threshold is " << threshold << ", last used is " << label_map_lastused[i] << endl;
 
-                        cout << ofGetFrameNum() << ": collecting " << i << " because it hasnt been used since " << label_map_lastused[i] << " (was used for " << label_map[i] << ") " << endl;
+                        //cout << ofGetFrameNum() << ": collecting " << i << " because it hasnt been used since " << label_map_lastused[i] << " (was used for " << label_map[i] << ") " << endl;
                         vector<ofVec2f> hidden;
                         for (int x = 0 ; x < MAX_VERTEX ; x++)
                                 hidden.push_back(ofVec2f(0,0));//,ofVec2f(0,0),ofVec2f(0,0),ofVec2f(0,0)};
 			hidden.push_back(ofVec2f(0,0));
-
 			try {
-                        	piMapper->getApp().getSurfaceManager()->getSurface(i)->setVertices(hidden); //->hide();
+                        	//piMapper->getApp().getSurfaceManager()->getSurface(i)->setVertices(hidden); //->hide();
+				piMapper->getApp().getSurfaceManager()->getSurface(i)->setEnabled(false);
+				//piMapper->getApp().selectSurface(i);
+				//piMapper->getApp().moveLayerDown();
                         } catch (std::runtime_error& e) {
-                                        cout << "Caught exception blanking coordinates for dynamic surface #" << i << ": " << e.what() << "\n";
+                                cout << "Caught exception blanking coordinates for dynamic surface #" << i << " (that is, label " << label_map[i] << "): " << e.what() << "\n";
                         }
  
-                        label_map_lastused[i] = 0;
-                        label_map[i] = -1;
+                        //label_map_lastused[i] = 0;
+                        //label_map[i] = -1;
                 }
         }
 
@@ -86,7 +97,7 @@ int DynamicSurfaceManagerKinect::getDynamicSurfaceIndex(int label) {
 	}
 	cout << "---" << endl;
 
-        double threshold = ofGetFrameNum() - MAX_BLOB_AGE;
+        double threshold = ofGetFrameNum() - (MAX_BLOB_AGE*5);
 
 	// find pre-existing label mapping?
 	for (int i = 0 ; i < MAX_DYNAMIC_SURFACES ; i++) {
@@ -147,10 +158,15 @@ void DynamicSurfaceManagerKinect::update() {
 	        int age = tracker.getAge(label);
 
 		cout << "age of " << i << " is " << age << endl;
-		if (age < MAX_BLOB_AGE) {
+		if (age < MAX_BLOB_AGE/4) {
 			cout << "discarding label " << i << " because age is less than " << MAX_BLOB_AGE << endl;
 			continue;	// only bother with something that's been tracked for longer than 10ms(?) to avoid flashes
 		}
+
+		//ofVec2f old = piMapper->getApp().getSurfaceManager()->getSurface(index)->getVertices();
+
+		piMapper->getApp().getSurfaceManager()->getSurface(i)->setEnabled(true);
+
 
 		cout << "got hex with points size " << points.size() << endl;
         	for (int j=0; j<points.size(); j++) {
@@ -161,7 +177,11 @@ void DynamicSurfaceManagerKinect::update() {
 			//projectedPoint = ofVec2f(points[j].x,points[j].y);	
 		    	stroke.push_back(projectedPoint * ofVec2f(1024,768)); //ofVec2f(projectedPoint.x,projectedPoint.y));
 		}
-		stroke.push_back((ofVec2f)kpt.getProjectedPoint((ofVec3f)kinect.getWorldCoordinateAt(points[0].x, points[0].y)) * ofVec2f(1024,768));
+		stroke.push_back(
+			(ofVec2f)kpt.getProjectedPoint(
+				(ofVec3f)kinect.getWorldCoordinateAt(points[0].x, points[0].y)
+			) * ofVec2f(1024,768)
+		);
 		//stroke.push_back(ofVec2f(points[0].x,points[0].y)*ofVec2f(1024,768));
 
 		//label = i;	// disable to use labels instead of surfaces .. 
@@ -170,7 +190,14 @@ void DynamicSurfaceManagerKinect::update() {
 		if (index>-1) {
                 	try {
 	                        //piMapper->getApp().getSurfaceManager()->getSurface(label)->setVertices(stroke);
+
+				//stroke = lerpVertices(stroke, piMapper->getApp().getSurfaceManager()->getSurface(index)->getVertices());
+
 				piMapper->getApp().getSurfaceManager()->getSurface(index)->setVertices(stroke);
+
+				// move it up a layer
+				//piMapper->getApp().selectSurface(index);
+				//piMapper->getApp().moveLayerUp();
 	                } catch (std::runtime_error& e) {
 	                                cout << "Caught exception updating coordinates for contourFinder#object #" << i << "(label " << label << ", surface index " << index << "): " << e.what() << "\n";
         	        }

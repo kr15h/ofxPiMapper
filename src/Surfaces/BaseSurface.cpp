@@ -15,6 +15,14 @@ BaseSurface::~BaseSurface(){
 	defaultTexture.clear();
 }
 
+bool BaseSurface::isEnabled(){
+	return _enabled;
+}
+
+void BaseSurface::setEnabled(bool v) {
+	_enabled = v;
+}
+
 void BaseSurface::createDefaultTexture(){
 	ofPixels pixels;
 	pixels.allocate(500, 500, 1);
