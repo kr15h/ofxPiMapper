@@ -78,6 +78,19 @@ void TriangleSurface::setVertex(int index, ofDefaultVec3 v){
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
+
+/*void TriangleSurface::setVertices(vector<ofVecf> v){
+	if(v.size() != 3){
+		throw runtime_error("Wrong number of vertices (expected 3)");
+	}
+	
+	for(int i = 0; i < 3; ++i){
+		mesh.setVertex(i, v[i]);
+	}
+	
+	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+}*/
+
 void TriangleSurface::setVertices(vector<ofDefaultVec3> v){
 	if(v.size() != 3){
 		throw runtime_error("Wrong number of vertices");

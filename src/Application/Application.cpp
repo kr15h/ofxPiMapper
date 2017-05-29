@@ -6,29 +6,15 @@ namespace piMapper {
 
 Application::Application(){
 	_keySequence = "";
-
 	_surfaceManager.setMediaServer(&_mediaServer);
 	
 	// Set initial mode
 	setState(PresentationMode::instance());
 	ofHideCursor();
 	
-	// TODO: Get rid of listeners, pipe application events from the example app
-	/*
-	ofAddListener(ofEvents().keyPressed, this, &Application::onKeyPressed);
-	ofAddListener(ofEvents().keyReleased, this, &Application::onKeyReleased);
-	*/
-	
-	/*
-	ofAddListener(ofEvents().mousePressed, this, &Application::onMousePressed);
-	ofAddListener(ofEvents().mouseReleased, this, &Application::onMouseReleased);
-	ofAddListener(ofEvents().mouseDragged, this, &Application::onMouseDragged);
-	*/
-	
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
-	
 	ofAddListener(Gui::instance()->guiEvent, this, &Application::onGuiEvent);
 	
 	_lastSaveTime = 0.0f;
@@ -96,6 +82,12 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 				_cmdManager.exec(new ClearSurfacesCmd(getSurfaceManager()));
 			}
 			return;
+		}else if(_keySequence == "rbt"){
+			reboot();
+			return;
+		}else if(_keySequence == "sdn"){
+			shutdown();
+			return;
 		}
 	}
 
@@ -136,19 +128,11 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case 'z':
-		 _cmdManager.undo();
+		 undo();
 		 break;
 		 
 	 case 'n':
 		 setNextPreset();
-		 break;
-	
-	 case 'x':
-		 reboot();
-		 break;
-
-	 case 'c':
-		 shutdown();
 		 break;
 
 	 default:
@@ -334,6 +318,23 @@ void Application::selectNextVertex(){
 void Application::selectPrevVertex(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(new SelPrevVertexCmd(getSurfaceManager()));
+	}
+}
+
+void Application::selectVertex(int surface, int vertex){
+	if(getSurfaceManager()->size()){
+		
+		// TODO: use one command instead of two
+		
+		getCmdManager()->exec(
+		 new SelSurfaceCmd(
+		  getSurfaceManager(),
+		  getSurfaceManager()->getSurface(surface)));
+		
+		getCmdManager()->exec(
+		 new SelVertexCmd(
+		  getSurfaceManager(),
+		  vertex));
 	}
 }
 
@@ -534,6 +535,16 @@ void Application::moveTexCoord(int texCoordIndex, ofDefaultVec2 by){
 		 &Gui::instance()->getTextureEditorWidget()));
 		
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
+	}
+}
+
+void Application::undo(){
+	_cmdManager.undo();
+}
+
+void Application::deselect(){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(new DeselectSurfaceCmd(getSurfaceManager()));
 	}
 }
 

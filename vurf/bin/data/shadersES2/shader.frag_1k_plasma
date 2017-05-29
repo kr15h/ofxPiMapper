@@ -1,0 +1,9 @@
+precision highp float;  
+
+uniform float time;
+void main(){
+ vec4 p=vec4(gl_FragCoord.xy/vec2(512.,512.)*2.-1.,0,1);
+ gl_FragColor=p+sin(atan(p.y,p.x)*9.)*sin(p*time/2.+9./dot(p,p)+time*5.);
+
+}
+

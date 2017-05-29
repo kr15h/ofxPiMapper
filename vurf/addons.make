@@ -1,0 +1,10 @@
+ofxPiMapper
+ofxXmlSettings
+ofxGui
+#ofxOMXPlayer
+ofxNetwork
+#ofxUDPManager
+ofxCv
+ofxOpenCv
+ofxKinect
+ofxKinectProjectorToolkit

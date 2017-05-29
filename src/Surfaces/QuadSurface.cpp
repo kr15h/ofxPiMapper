@@ -126,7 +126,7 @@ void QuadSurface::setVertex(int index, ofDefaultVec3 v){
 
 void QuadSurface::setVertices(vector<ofDefaultVec3> v){
 	if(v.size() != 4){
-		throw runtime_error("Wrong number of vertices");
+		throw runtime_error("Wrong number of vertices (expected 4"); //, got " << v.size() << ")");
 	}
 	
 	for(int i = 0; i < 4; ++i){

@@ -5,7 +5,7 @@ void ofApp::setup(){
 
 	// Enable or disable audio for video sources globally
 	// Set this to false to save resources on the Raspberry Pi
-	ofx::piMapper::VideoSource::enableAudio = true;
+	ofx::piMapper::VideoSource::enableAudio = false;
 	ofx::piMapper::VideoSource::useHDMIForAudio = false;
 
 	// Add our CustomSource to list of fbo sources of the piMapper
@@ -14,14 +14,17 @@ void ofApp::setup(){
 	// a surface in XML settings.
 	crossSource = new CrossSource();
 	customSource = new CustomSource();
+	customShader = new CustomShader();
 	piMapper.registerFboSource(crossSource);
 	piMapper.registerFboSource(customSource);
+	piMapper.registerFboSource(customShader);
 	piMapper.setup();
 
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();
 	
 	ofSetFullscreen(Settings::instance()->getFullscreen());
+	ofSetEscapeQuitsApp(false);
 }
 
 void ofApp::update(){

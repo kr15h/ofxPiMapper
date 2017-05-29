@@ -6,6 +6,8 @@
 #include "CustomSource.h"
 #include "CrossSource.h"
 #include "VideoSource.h"
+#include "CustomShader.h"
+
 
 class ofApp : public ofBaseApp {
 	public:
@@ -26,4 +28,5 @@ class ofApp : public ofBaseApp {
 		// you will be able to see the source listed in sources editor
 		CustomSource * customSource;
 		CrossSource * crossSource;
+		CustomShader * customShader;
 };
