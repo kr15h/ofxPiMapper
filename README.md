@@ -186,6 +186,7 @@ z | Undo
 rbt | Reboot (Raspberry Pi only)
 sdn | Shutdown (Raspberry Pi only)
 new | Clear composition (remove all surfaces)
+ext | Exit application and return to command line
 BACKSPACE ('\' via SSH) | Delete surface.
 SPACE | Toggle pause for video sources (texture and projection mapping modes)
 TAB | Select next source (no need to use the source selection interface)
