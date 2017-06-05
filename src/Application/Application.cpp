@@ -88,6 +88,8 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		}else if(_keySequence == "sdn"){
 			shutdown();
 			return;
+		}else if(_keySequence == "ext"){
+			exit(0);
 		}
 	}
 
