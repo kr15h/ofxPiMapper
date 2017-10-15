@@ -27,6 +27,13 @@ DirectoryWatcher::DirectoryWatcher(string path, int watcherMediaType){
 	
 	for(int i = 0; i < _directory.size(); ++i){
 		_filePaths.push_back(path + _directory.getName(i));
+		
+		ofFile file(path + _directory.getName(i));
+		if(_mediaType == SourceType::SOURCE_TYPE_VIDEO){
+			file.copyTo("sources/videos/" + _directory.getName(i));
+		}else if(_mediaType == SourceType::SOURCE_TYPE_IMAGE){
+			file.copyTo("sources/images/" + _directory.getName(i));
+		}
 	}
 }
 

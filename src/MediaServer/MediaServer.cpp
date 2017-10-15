@@ -4,20 +4,29 @@ namespace ofx {
 namespace piMapper {
 
 MediaServer::MediaServer():
-	videoWatcher(ofToDataPath(DEFAULT_VIDEOS_DIR, true), SourceType::SOURCE_TYPE_VIDEO),
 	piVideoWatcher(PI_IMAGES_DIR, SourceType::SOURCE_TYPE_VIDEO),
 	usb0VideoWatcher(USB0_VIDEOS_DIR, SourceType::SOURCE_TYPE_VIDEO),
 	usb1VideoWatcher(USB1_VIDEOS_DIR, SourceType::SOURCE_TYPE_VIDEO),
 	usb2VideoWatcher(USB2_VIDEOS_DIR, SourceType::SOURCE_TYPE_VIDEO),
 	usb3VideoWatcher(USB3_VIDEOS_DIR, SourceType::SOURCE_TYPE_VIDEO),
-	imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), SourceType::SOURCE_TYPE_IMAGE),
     piImageWatcher(PI_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
 	usb0ImageWatcher(USB0_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
 	usb1ImageWatcher(USB1_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
 	usb2ImageWatcher(USB2_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
-	usb3ImageWatcher(USB3_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE)
+	usb3ImageWatcher(USB3_IMAGES_DIR, SourceType::SOURCE_TYPE_IMAGE),
+	imageWatcher(ofToDataPath(DEFAULT_IMAGES_DIR, true), SourceType::SOURCE_TYPE_IMAGE),
+	videoWatcher(ofToDataPath(DEFAULT_VIDEOS_DIR, true), SourceType::SOURCE_TYPE_VIDEO)
 {
-	// What to do here?
+	// By initialising all above we also copy files from external media
+	// to the ofxPiMapper storage.
+	
+	imageWatcher = DirectoryWatcher(
+		ofToDataPath(DEFAULT_IMAGES_DIR, true),
+		SourceType::SOURCE_TYPE_IMAGE);
+	
+	videoWatcher = DirectoryWatcher(
+		ofToDataPath(DEFAULT_VIDEOS_DIR, true),
+		SourceType::SOURCE_TYPE_VIDEO);
 }
 
 void MediaServer::setup(){
@@ -39,63 +48,18 @@ void MediaServer::draw(){
 }
 
 int MediaServer::getNumImages(){
-    int numLocalImages = imageWatcher.getFilePaths().size();
-    int numPiImages = piImageWatcher.getFilePaths().size();
-	int numUsb0Images = usb0ImageWatcher.getFilePaths().size();
-	int numUsb1Images = usb1ImageWatcher.getFilePaths().size();
-	int numUsb2Images = usb2ImageWatcher.getFilePaths().size();
-	int numUsb3Images = usb3ImageWatcher.getFilePaths().size();
 	
-    int sum =
-		numLocalImages +
-		numPiImages +
-		numUsb0Images +
-		numUsb1Images +
-		numUsb2Images +
-		numUsb3Images;
-	
-	return sum;
+	return imageWatcher.getFilePaths().size();
 }
 int MediaServer::getNumVideos(){
-    int numLocalVideos = videoWatcher.getFilePaths().size();
-    int numPiVideos = piVideoWatcher.getFilePaths().size();
-	int numUsb0Videos = usb0VideoWatcher.getFilePaths().size();
-	int numUsb1Videos = usb1VideoWatcher.getFilePaths().size();
-	int numUsb2Videos = usb2VideoWatcher.getFilePaths().size();
-	int numUsb3Videos = usb3VideoWatcher.getFilePaths().size();
-	
-    int sum =
-		numLocalVideos +
-		numPiVideos +
-		numUsb0Videos +
-		numUsb1Videos +
-		numUsb2Videos +
-		numUsb3Videos;
-	
-	return sum;
+	return videoWatcher.getFilePaths().size();
 }
 int MediaServer::getNumFboSources(){
 	return fboSources.size();
 }
 
 vector <string> & MediaServer::getImagePaths(){
-    vector<string> & localPaths = imageWatcher.getFilePaths();
-    vector<string> & piPaths = piImageWatcher.getFilePaths();
-	vector<string> & usb0Paths = usb0ImageWatcher.getFilePaths();
-	vector<string> & usb1Paths = usb1ImageWatcher.getFilePaths();
-	vector<string> & usb2Paths = usb2ImageWatcher.getFilePaths();
-	vector<string> & usb3Paths = usb3ImageWatcher.getFilePaths();
-    
-    _tempImagePaths.clear();
-	
-    _tempImagePaths.insert(_tempImagePaths.end(), localPaths.begin(), localPaths.end());
-    _tempImagePaths.insert(_tempImagePaths.end(), piPaths.begin(), piPaths.end());
-	_tempImagePaths.insert(_tempImagePaths.end(), usb0Paths.begin(), usb0Paths.end());
-	_tempImagePaths.insert(_tempImagePaths.end(), usb1Paths.begin(), usb1Paths.end());
-	_tempImagePaths.insert(_tempImagePaths.end(), usb2Paths.begin(), usb2Paths.end());
-	_tempImagePaths.insert(_tempImagePaths.end(), usb3Paths.begin(), usb3Paths.end());
-
-	return _tempImagePaths;
+	return imageWatcher.getFilePaths();
 }
 
 vector <string> MediaServer::getImageNames(){
@@ -119,23 +83,7 @@ vector <string> MediaServer::getFboSourceNames(){
 }
 
 vector <string> & MediaServer::getVideoPaths(){
-    vector<string> & localPaths = videoWatcher.getFilePaths();
-    vector<string> & piPaths = piVideoWatcher.getFilePaths();
-	vector<string> & usb0Paths = usb0VideoWatcher.getFilePaths();
-	vector<string> & usb1Paths = usb1VideoWatcher.getFilePaths();
-	vector<string> & usb2Paths = usb2VideoWatcher.getFilePaths();
-	vector<string> & usb3Paths = usb3VideoWatcher.getFilePaths();
-    
-    _tempVideoPaths.clear();
-	
-    _tempVideoPaths.insert(_tempVideoPaths.begin(), localPaths.begin(), localPaths.end());
-    _tempVideoPaths.insert(_tempVideoPaths.begin(), piPaths.begin(), piPaths.end());
-	_tempVideoPaths.insert(_tempVideoPaths.begin(), usb0Paths.begin(), usb0Paths.end());
-	_tempVideoPaths.insert(_tempVideoPaths.begin(), usb1Paths.begin(), usb1Paths.end());
-	_tempVideoPaths.insert(_tempVideoPaths.begin(), usb2Paths.begin(), usb2Paths.end());
-	_tempVideoPaths.insert(_tempVideoPaths.begin(), usb3Paths.begin(), usb3Paths.end());
-
-	return _tempVideoPaths;
+	return videoWatcher.getFilePaths();
 }
 
 vector <string> MediaServer::getVideoNames(){
