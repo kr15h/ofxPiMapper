@@ -12,21 +12,21 @@
 #define DEFAULT_IMAGES_DIR "sources/images/"
 #define DEFAULT_VIDEOS_DIR "sources/videos/"
 
-#define PI_IMAGES_DIR "/boot/ofxpimapper/sources/images"
-#define PI_VIDEOS_DIR "/boot/ofxpimapper/sources/videos"
+#define PI_IMAGES_DIR "/boot/ofxpimapper/sources/images/"
+#define PI_VIDEOS_DIR "/boot/ofxpimapper/sources/videos/"
 
 /* 
  * These you can get when you apt-get install usbmount
  */
-#define USB0_IMAGES_DIR "/media/usb0"
-#define USB1_IMAGES_DIR "/media/usb1"
-#define USB2_IMAGES_DIR "/media/usb2"
-#define USB3_IMAGES_DIR "/media/usb3"
+#define USB0_IMAGES_DIR "/media/usb0/"
+#define USB1_IMAGES_DIR "/media/usb1/"
+#define USB2_IMAGES_DIR "/media/usb2/"
+#define USB3_IMAGES_DIR "/media/usb3/"
 
-#define USB0_VIDEOS_DIR "/media/usb0"
-#define USB1_VIDEOS_DIR "/media/usb1"
-#define USB2_VIDEOS_DIR "/media/usb2"
-#define USB3_VIDEOS_DIR "/media/usb3"
+#define USB0_VIDEOS_DIR "/media/usb0/"
+#define USB1_VIDEOS_DIR "/media/usb1/"
+#define USB2_VIDEOS_DIR "/media/usb2/"
+#define USB3_VIDEOS_DIR "/media/usb3/"
 
 // TODO: Change this into a externally configurable list
 
