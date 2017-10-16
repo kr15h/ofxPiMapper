@@ -25,16 +25,16 @@ Info::Info(){
 		"  - Press <BACKSPACE> to delete selection\n"
 		"  - Press <SPACE> to play/pause the video\n"
 		"  - Type  <new> to clear composition\n"
+		"  - Type  <ext> to exit to command line interface\n"
+		"  - Type  <rbt> to reboot\n"
+		"  - Type  <sdn> to shutdown\n"
 		" 4. Source selection mode\n\n"
 		
 		"You can switch between the modes by using <1>, <2>, <3> and <4> "
 		"keys on the keyboard.\n\n"
 		
 		"Press <s> to save the composition\n"
-		"Press <f> to toggle fullscreen\n"
 		"Press <z> to undo\n"
-		"Press <x> to reboot Raspberry Pi\n"
-		"Press <c> to shutdown Raspberry Pi\n"
 		"Press <i> to hide this message";
 }
 
