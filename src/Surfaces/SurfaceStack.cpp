@@ -26,8 +26,14 @@ void SurfaceStack::swap(int a, int b){
 }
 
 void SurfaceStack::draw(){
-	ofEnableAlphaBlending();
 	for(int i = 0; i < _surfaces.size(); ++i){
+		if(_surfaces[i]->getSource()->getType() == SourceType::SOURCE_TYPE_FBO){
+			glEnable(GL_BLEND);
+			glBlendFuncSeparate(GL_ONE, GL_ZERO, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+		}else{
+			ofEnableAlphaBlending();
+		}
+		
 		_surfaces[i]->draw();
 	}
 }
