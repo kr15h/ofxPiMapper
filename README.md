@@ -1,8 +1,8 @@
 # This fork is made to integrate some important functions into PiMapper.
-# 1. Slide show function (play all images from a folder)
-# 2. Play all videos from a folder
-# 3. Circular shapes for mapping (there are only sqaure and tringle)
-# 4. Grid Warp, meshing of sqare shapes)
+### 1. Slide show function (play all images from a folder)
+### 2. Play all videos from a folder
+### 3. Circular shapes for mapping (there are only sqaure and tringle)
+### 4. Grid Warp, meshing of sqare shapes)
 
 This will be an opensource project and freely available for everyone.
 Each function will be rewarded to the coder how realise it.
