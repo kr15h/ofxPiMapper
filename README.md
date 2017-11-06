@@ -1,11 +1,11 @@
-# This fork is made to integrate some important functions into PiMapper.
+# This fork is made to integrate some important functions into PiMapper (RPi/Arm version only).
 ### 1. Slide show function (play all images from a folder)
 ### 2. Play all videos from a folder
 ### 3. Circular shapes for mapping (there are only square and tringle)
 ### 4. Grid Warp, meshing of square shapes)
 
 This will be an opensource project and freely available for everyone.
-
+Targeting OF_0.9.x on RaspberryPi.
 Each function will be rewarded to the coder from a pot sponsered by pocketvj.com.
 
 
