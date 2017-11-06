@@ -1,8 +1,16 @@
 # This fork is made to integrate some important functions into PiMapper (RPi/Arm version only).
 ### 1. Slide show function (play all images from a folder)
+This should be selectable as an additional FBO source in PiMapper, looping all images in the /media/internal/images/* folder
+Would be cool to adjust the speed with a simple flag, simple opacity transition welcome, but not necessary. Refresh state, so it checks if there are new images added during playback and play them as well. make all images fullscreen.
+(if its not possible to handle various sizes as one, i will make an imagemagick script to convert all to 1920x1080)
 ### 2. Play all videos from a folder
-### 3. Circular shapes for mapping (there are only square and tringle)
+This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
+### 3. Circular shapes for mapping (there are only square and tringle shapes so far)
+Circualr mapping shape
 ### 4. Grid Warp (meshing of square shapes)
+https://forum.openframeworks.cc/t/grid-mesh-warping/12883
+### 5. SoftEdge
+Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
 
 This will be an opensource project and freely available for everyone.
 Targeting OF_0.9.x on RaspberryPi.
