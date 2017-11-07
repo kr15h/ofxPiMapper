@@ -16,6 +16,9 @@ This will be an opensource project and freely available for everyone.
 Targeting OF_0.9.x on RaspberryPi.
 Each function will be rewarded to the coder from a pot sponsered by pocketvj.com.
 
+The keybindings will be changed to ones matching to PocketVJ CP and there will be an audio branch added.
+
+
 
 # ofxPiMapper
 
