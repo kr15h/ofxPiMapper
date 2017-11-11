@@ -6,8 +6,9 @@ Would be cool to adjust the speed with a simple flag, simple opacity transition 
 ### 2. Play all videos from a folder
 This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
 ### 3. Circular shapes for mapping (there are only square and tringle shapes so far)
-Circualr mapping shape
+Circualr mapping shape (if possible with movable center distorsion)
 ### 4. Grid Warp (meshing of square shapes)
+check out this http://www.hv-a.com/lpmt/sssm.pdf on page: 10
 https://forum.openframeworks.cc/t/grid-mesh-warping/12883
 ### 5. SoftEdge
 Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
