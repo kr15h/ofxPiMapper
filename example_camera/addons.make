@@ -1,4 +1,3 @@
 ofxPiMapper
 ofxXmlSettings
 ofxGui
-ofxRPiCameraVideoGrabber
