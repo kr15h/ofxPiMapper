@@ -185,33 +185,41 @@ Key | Function
 2 | Texture editing mode
 3 | Projection mapping mode, use this to select a surface first
 4 | Source selection mode
-i | Show info
+c | Show info
 t | Add triangle surface
 q | Add quad surface
+x | Add quad surface
 g | Add grid warp surface
-d | duplicate selected surface
-\+ | Scale surface up
-\- | Scale surface down
+a | duplicate selected surface
++ | Scale surface up
+- | Scale surface down
 p | toggle perspective warping (quad surfaces only)
-] | add columns to grid surface (grid warp surfaces only)
-[ | remove columns from grid surface (grid warp surfaces only)
-} | add rows to grid surface (grid warp surfaces only)
-{ | remove rows from grid surface (grid warp surfaces only)
+v | add columns to grid surface (grid warp surfaces only)
+b | remove columns from grid surface (grid warp surfaces only)
+n | add rows to grid surface (grid warp surfaces only)
+m | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
-\> | select next vertex
-\< | select previous vertex
-0 | Move selected surface one layer up
-9 | Move selected surface one layer down
+k | select next vertex
+l | select previous vertex
+h | Move selected surface one layer up
+j | Move selected surface one layer down
 s | Save composition
-l | Hide/show layer panel
+y | Hide/show layer panel
 z | Undo
 rbt | Reboot (Raspberry Pi only)
 sdn | Shutdown (Raspberry Pi only)
 new | Clear composition (remove all surfaces)
 ext | Exit application and return to command line
-BACKSPACE ('\' via SSH) | Delete surface.
-SPACE | Toggle pause for video sources (texture and projection mapping modes)
-TAB | Select next source (no need to use the source selection interface)
-Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
+d | Delete surface.
+w | Toggle pause for video sources (texture and projection mapping modes)
+5 | Select next source (no need to use the source selection interface)
+8 | Move selection Up
+9 | Move selection Down
+7 | Move selection Left
+0 | Move selection Right
+If no surface is selected in the projection mapping mode, all surfaces are moved.
+
+Dont know if this works already:
+
 \/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi
