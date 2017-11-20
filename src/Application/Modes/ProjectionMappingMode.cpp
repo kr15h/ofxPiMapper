@@ -64,11 +64,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->createSurface(SurfaceType::GRID_WARP_SURFACE);
 		 break;
 		
-	 case 'h':
+	 case 'x':
 		 app->createSurface(SurfaceType::HEXAGON_SURFACE);
 		 break;
 
-	 case OF_KEY_BACKSPACE:
+	 case 'd':
 		 app->eraseSurface(app->getSurfaceManager()->getSelectedSurfaceIndex());
 		 break;
 	 
@@ -76,19 +76,19 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->togglePerspective();
 		 break;
 	 
-	 case '}':
+	 case 'n':
 		 app->addGridRow();
 		 break;
 	
-	 case '{':
+	 case 'm':
 		 app->removeGridRow();
 		 break;
 	 
-	 case ']':
+	 case 'v':
 		 app->addGridColumn();
 		 break;
 		 
-	 case '[':
+	 case 'b':
 		 app->removeGridColumn();
 		 break;
 		 
@@ -100,15 +100,15 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->selectPrevSurface();
 		 break;
 		 
-	 case '>':
+	 case 'k':
 		 app->selectNextVertex();
 		 break;
 	 
-	 case '<':
+	 case 'l':
 		 app->selectPrevVertex();
 		 break;
 	 
-	 case OF_KEY_UP:
+	 case '8':
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(0.0f, -10.0f));
 		 }else{
@@ -116,7 +116,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 		 
-	 case OF_KEY_DOWN:
+	 case '9':
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(0.0f, 10.0f));
 		 }else{
@@ -124,7 +124,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 		 
-	 case OF_KEY_LEFT:
+	 case '7':
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(-10.0f, 0.0f));
 		 }else{
@@ -132,7 +132,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 	 
-	 case OF_KEY_RIGHT:
+	 case '0':
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(10.0f, 0.0f));
 		 }else{
@@ -140,23 +140,23 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 		 
-	 case ' ':
+	 case 'w':
 		 app->togglePause();
 		 break;
 		 
-	 case OF_KEY_TAB:
+	 case '5':
 		 app->setNextSource();
 		 break;
 	
-	 case 'd':
+	 case 'a':
 		 app->duplicateSurface();
 		 break;
 		 
-	 case '0': // Move selected surface up the layer stack
+	 case 'h': // Move selected surface up the layer stack
 		 app->moveLayerUp();
 		 break;
 		
-	 case '9': // Move selected surface down the layer stack
+	 case 'j': // Move selected surface down the layer stack
 		 app->moveLayerDown();
 		 break;
 		 
@@ -168,7 +168,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->scaleDown();
 		 break;
 
-	 case 'l':
+	 case 'y':
 		 _bDrawLayerPanel = !_bDrawLayerPanel;
 		 break;
 
