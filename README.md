@@ -182,8 +182,8 @@ q | Add quad surface
 x | Add quad surface
 g | Add grid warp surface
 a | duplicate selected surface
-+ | Scale surface up
-- | Scale surface down
+\+ | Scale surface up
+\- | Scale surface down
 p | toggle perspective warping (quad surfaces only)
 v | add columns to grid surface (grid warp surfaces only)
 b | remove columns from grid surface (grid warp surfaces only)
