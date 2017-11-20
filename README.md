@@ -48,15 +48,6 @@ You can use the example application of the addon for projection mapping projects
     ```
 
 
-## Compiling on Linux
-
-There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
-
-1. Open `example/addons.make` and remove ofxOMXPlayer line.
-2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
-3. Compile one or both examples by using make.
-
-
 ## Problems with Audio
 
 If you are having problems with audio playback, here are two steps for you. Before you do these, make sure audio of your video file works.
