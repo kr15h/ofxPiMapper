@@ -66,22 +66,22 @@ class Application {
 		void setup();
 		void update();
 		void draw();
-	
+
 		void onKeyPressed(ofKeyEventArgs & args);
 		void onKeyReleased(ofKeyEventArgs & args);
-	
+
 		// We use this to pass mouse events into the GUI layer
 		void onMousePressed(ofMouseEventArgs & args);
 		void onMouseReleased(ofMouseEventArgs & args);
 		void onMouseDragged(ofMouseEventArgs & args);
-	
+
 		// Then we catch GUI events with this one and create commands
 		void onJointPressed(GuiJointEvent & e);
 		void onSurfacePressed(GuiSurfaceEvent & e);
 		void onBackgroundPressed(GuiBackgroundEvent & e);
-	
+
 		void onGuiEvent(GuiEvent & e);
-	
+
 		void addFboSource(FboSource & fboSource);
 		void addFboSource(FboSource * fboSource);
 		void createSurface(SurfaceType type);
@@ -97,7 +97,7 @@ class Application {
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
 		CmdManager * getCmdManager(){ return &_cmdManager; }
 		MediaServer * getMediaServer(){ return &_mediaServer; }
-	
+
 		// Command executors
 		void selectSurface(int i);
 		void selectNextSurface();
@@ -107,14 +107,14 @@ class Application {
 		void selectVertex(int surface, int vertex);
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
-	
-		/* 
+
+		/*
 		Context sensitive move.
 		Moves vertex when in projection mapping mode.
 		Moves texture coordinate when in texture mapping mode.
 		*/
 		void moveSelection(ofVec2f by);
-	
+
 		void setPresentationMode();
 		void setTextureMode();
 		void setProjectionMode();
@@ -125,6 +125,7 @@ class Application {
 		void scaleDown();
 		void duplicateSurface();
 		void setNextSource();
+		void setFboSource(string sourceId);
 		void addGridRow();
 		void addGridColumn();
 		void removeGridRow();
@@ -135,33 +136,33 @@ class Application {
 		// Make it so that other parts of the application react to the change.
 		void undo();
 		void deselect();
-	
+
 		void setPreset(unsigned int i);
 		void setNextPreset();
-	
+
 		// System commands
 		void reboot();
 		void shutdown();
-	
+
 	protected:
 		void setState(ApplicationBaseMode * st);
-	
+
 	private:
 		friend class ApplicationBaseMode;
 		friend class SetApplicationModeCmd;
 
 		ApplicationBaseMode * _state;
-	
+
 		CmdManager _cmdManager;
 		MediaServer _mediaServer;
 		SurfaceManager _surfaceManager;
 		Info _info;
-	
+
 		bool _shiftKeyDown;
-	
+
 		float _lastSaveTime;
 		float _autoSaveInterval;
-	
+
 		string _keySequence;
 
 };
