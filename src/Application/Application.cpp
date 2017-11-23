@@ -7,16 +7,16 @@ namespace piMapper {
 Application::Application(){
 	_keySequence = "";
 	_surfaceManager.setMediaServer(&_mediaServer);
-	
+
 	// Set initial mode
 	setState(PresentationMode::instance());
 	ofHideCursor();
-	
+
 	ofAddListener(Gui::instance()->jointPressedEvent, this, &Application::onJointPressed);
 	ofAddListener(Gui::instance()->surfacePressedEvent, this, &Application::onSurfacePressed);
 	ofAddListener(Gui::instance()->backgroundPressedEvent, this, &Application::onBackgroundPressed);
 	ofAddListener(Gui::instance()->guiEvent, this, &Application::onGuiEvent);
-	
+
 	_lastSaveTime = 0.0f;
 	_autoSaveInterval = 60.0f;
 }
@@ -35,7 +35,7 @@ void Application::setup(){
 			throw runtime_error("ofxPiMapper: Failed to create default settings file.");
 		}
 	}
-	
+
 	// Setup all states.
 	PresentationMode::instance()->setup(this);
 	TextureMappingMode::instance()->setup(this);
@@ -49,7 +49,7 @@ void Application::setup(){
 void Application::update(){
 	_mediaServer.update();
 	_state->update(this);
-	
+
 	// Autosave, do it only of the mode is not presentation mode
 	if(_state != PresentationMode::instance()){
 		float timeNow = ofGetElapsedTimef();
@@ -72,7 +72,7 @@ void Application::draw(){
 
 // Here we handle application state changes only
 void Application::onKeyPressed(ofKeyEventArgs & args){
-	
+
 	// Key sequence based commands. Last three keys are taken into account.
 	_keySequence += args.key;
 	if(_keySequence.size() >= 3){
@@ -100,11 +100,11 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case OF_KEY_SHIFT:
 		 _shiftKeyDown = true;
 		 break;
-		 
+
 	 case '/':
 		 _shiftKeyDown = !_shiftKeyDown;
 		 break;
-		 
+
 	 case '1':
 		 setPresentationMode();
 		 break;
@@ -132,7 +132,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case 'z':
 		 undo();
 		 break;
-		 
+
 	 case 'n':
 		 setNextPreset();
 		 break;
@@ -325,14 +325,14 @@ void Application::selectPrevVertex(){
 
 void Application::selectVertex(int surface, int vertex){
 	if(getSurfaceManager()->size()){
-		
+
 		// TODO: use one command instead of two
-		
+
 		getCmdManager()->exec(
 		 new SelSurfaceCmd(
 		  getSurfaceManager(),
 		  getSurfaceManager()->getSurface(surface)));
-		
+
 		getCmdManager()->exec(
 		 new SelVertexCmd(
 		  getSurfaceManager(),
@@ -398,7 +398,7 @@ void Application::moveLayerUp(){
 		 getSurfaceManager()->getActivePreset()->size() - 1)){
 			return;
 		}
-			
+
 		getCmdManager()->exec(
 		 new MvLayerUpCmd(
 		  getSurfaceManager()->getActivePreset(),
@@ -412,7 +412,7 @@ void Application::moveLayerDown(){
 		 getSurfaceManager()->getActivePreset()->at(0)){
 			return;
 		}
-			
+
 		getCmdManager()->exec(
 		 new MvLayerDnCmd(
 		  getSurfaceManager()->getActivePreset(),
@@ -456,6 +456,19 @@ void Application::setNextSource(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(
 		 new SetNextSourceCmd(
+		  getSurfaceManager()->getSelectedSurface(),
+		  &Gui::instance()->getSourcesEditorWidget()));
+	}else{
+		getCmdManager()->exec(new SelNextSurfaceCmd(getSurfaceManager()));
+	}
+}
+
+void Application::setFboSource(string sourceId){
+	if(getSurfaceManager()->getSelectedSurface() != 0){
+		getCmdManager()->exec(
+		 new SetSourceCmd(
+			SourceType::SOURCE_TYPE_FBO,
+			sourceId,
 		  getSurfaceManager()->getSelectedSurface(),
 		  &Gui::instance()->getSourcesEditorWidget()));
 	}else{
@@ -519,7 +532,7 @@ void Application::togglePause(){
 	if(getSurfaceManager()->getSelectedSurface() == 0){
 		return;
 	}
-		 
+
 	if(getSurfaceManager()->getSelectedSurface()->getSource()->getType() ==
 	 SourceType::SOURCE_TYPE_VIDEO){
 		getCmdManager()->exec(
@@ -535,7 +548,7 @@ void Application::moveTexCoord(int texCoordIndex, ofVec2f by){
 		getCmdManager()->exec(new MvAllTexCoordsCmd(
 		 getSurfaceManager()->getSelectedSurface(),
 		 &Gui::instance()->getTextureEditorWidget()));
-		
+
 		Gui::instance()->getTextureEditorWidget().moveSelection(by);
 	}
 }
