@@ -160,11 +160,11 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->moveLayerDown();
 		 break;
 		 
-	 case '+': // Scale surface up
+	 case 'o': // Scale surface up
 		 app->scaleUp();
 		 break;
 
-	 case '-': // Scale surface down
+	 case 'i': // Scale surface down
 		 app->scaleDown();
 		 break;
 
