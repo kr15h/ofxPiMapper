@@ -14,8 +14,27 @@ void ofApp::setup(){
 	// a surface in XML settings.
 	crossSource = new CrossSource();
 	customSource = new CustomSource();
+
+	// Create the slide show source.
+	slideShowSource = new magSlideShowSource();
+
+	// Create the settings struct for the slide show.
+    magSlideShowSource::Settings settings;
+    settings.width = 1280;
+    settings.height = 720;
+    settings.slidesFolderPath = "sources/images";
+    settings.transitionDuration = 0;
+    settings.slideDuration = 0.5;
+    settings.loopType = magSlideShowSource::LoopType::NORMAL;
+	settings.resizeOption = magSlide::ResizeOptions::FitProportionally;
+
+	// Initialize the slide show with our settings.
+    slideShowSource->initialize(settings);
+
+	// Register our sources:
 	piMapper.registerFboSource(crossSource);
 	piMapper.registerFboSource(customSource);
+	piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
 
 	// The info layer is hidden by default, press <i> to toggle
@@ -23,6 +42,9 @@ void ofApp::setup(){
 	
 	ofSetFullscreen(Settings::instance()->getFullscreen());
 	ofSetEscapeQuitsApp(false);
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    slideShowSource->play();
 }
 
 void ofApp::update(){
