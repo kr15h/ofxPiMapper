@@ -177,7 +177,7 @@ Key | Function
 c | Show info
 t | Add triangle surface
 q | Add quad surface
-x | Add quad surface
+x | Add hexagon surface
 g | Add grid warp surface
 a | duplicate selected surface
 o | Scale surface up
