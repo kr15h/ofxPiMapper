@@ -166,6 +166,10 @@ void ofxPiMapper::setNextSource(){
 	_application.setNextSource();
 }
 
+void ofxPiMapper::setFboSource(string sourceId){
+	_application.setFboSource(sourceId);
+}
+
 void ofxPiMapper::reboot(){
 	_application.reboot();
 }
