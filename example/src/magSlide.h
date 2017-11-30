@@ -30,7 +30,7 @@ public:
 		 * No resizing applied, displays the slide in its native pixel dimensions.
 		 * This is the default behavior.
 		 */
-				None = 0,
+				NoResize = 0,
 		/**
 		 * Explicitly set a slide to display in its native dimension.
 		 * None and NoResize result in the same output, but if you specify
@@ -38,7 +38,7 @@ public:
 		 * slide not to resize, you must specify this option. Otherwise the
 		 * slide show option will apply.
 		 */
-				NoResize,
+				Native,
 
 		/**
 		 * Sets width and height to match the source's.
@@ -136,9 +136,9 @@ protected:
 	float width;
 	float height;
 	ofPoint position;
-	ResizeOptions resizeOption = None;
+	ResizeOptions resizeOption = NoResize;
 	SlideState slideState = Off;
-	bool isComplete;
+	bool isComplete = false;
 
 	std::shared_ptr<magSlideTransition> buildIn = nullptr;
 	std::shared_ptr<magSlideTransition> buildOut = nullptr;

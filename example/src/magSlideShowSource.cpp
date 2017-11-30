@@ -203,7 +203,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 
 	// If the slide does not have a resize option assign
 	// the slide show's option
-	if (rOption == magSlide::ResizeOptions::None)
+	if (rOption == magSlide::ResizeOptions::NoResize)
 	{
 		rOption = settings.resizeOption;
 	}

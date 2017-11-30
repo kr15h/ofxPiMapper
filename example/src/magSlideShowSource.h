@@ -110,7 +110,7 @@ public:
          * already has a resizing option applied, that option will be respected and
          * this resizeOption will not be used.
          */
-        magSlide::ResizeOptions resizeOption = magSlide::ResizeOptions::None;
+        magSlide::ResizeOptions resizeOption = magSlide::ResizeOptions::NoResize;
     };
 
     ////////////////////////////////////////////
