@@ -192,6 +192,7 @@ bool magSlideShowSource::createFromFolderContents(std::string path)
 
 bool magSlideShowSource::loadSlideShow(std::string slideShowXmlPath)
 {
+
 	return false;
 }
 

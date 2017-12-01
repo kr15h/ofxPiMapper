@@ -4,6 +4,7 @@
 # ===================== CMake Settings ===================
 # ========================================================
 cmake_minimum_required( VERSION 3.3 )
+
 project( openframeworks )
 
 # ========================================================
@@ -17,21 +18,23 @@ set( APP_NAME   example_ofxPiMapper )
 set( OF_DIRECTORY_BY_USER "../../.." )
 
 # --------------------- Source Files ---------------------
+
+file(   GLOB_RECURSE
+        APP_SRC
+        "src/*.cpp"
+        )
+
 set( ${APP_NAME}_SOURCE_FILES
-        src/main.cpp
-        src/ofApp.cpp
-        src/CrossSource.cpp
-        src/CustomSource.cpp
-        src/Settings.cpp)
+        ${APP_SRC} )
 
 
 # ------------------------ AddOns  -----------------------
 set( OFX_ADDONS_ACTIVE
-                ofxXmlSettings
-                ofxGui
-                ofxPiMapper
-                ofxIO
-                )
+        ofxXmlSettings
+        ofxGui
+        ofxPiMapper
+#        ofxIO
+        )
 
 # =========================================================================
 # ============================== OpenFrameworks ===========================
