@@ -6,8 +6,8 @@
 
 
 #include "magSlideShowSource.h"
-#include "magSlide.h"
 #include "magSlideTransition.h"
+#include "SettingsLoader.h"
 
 magSlideShowSource::magSlideShowSource()
 {
@@ -189,11 +189,79 @@ bool magSlideShowSource::createFromFolderContents(std::string path)
 	}
 }
 
-
-bool magSlideShowSource::loadSlideShow(std::string slideShowXmlPath)
+bool magSlideShowSource::loadFromXml()
 {
+	auto *loader = ofx::piMapper::SettingsLoader::instance();
+	auto xml = ofxXmlSettings();
+	Settings settings;
 
-	return false;
+	if (!xml.load(loader->getLastLoadedFilename()))
+	{
+		ofLogError("magSlideShowSource") << "Could not load settings file " << loader->getLastLoadedFilename();
+		return false;
+	}
+
+	xml.pushTag("surfaces");
+	if (!xml.pushTag("magSlideShow"))
+	{
+		ofLogError("magSlideShowSource") << "Slide show settings not found in " << loader->getLastLoadedFilename();
+		return false;
+	}
+
+	settings.width = xml.getValue("Width", settings.width);
+	settings.height = xml.getValue("Height", settings.height);
+
+	// Default slide duration:
+	settings.slideDuration = xml.getValue("SlideDuration", settings.slideDuration);
+
+	// Default loop:
+	if (xml.pushTag("Loop"))
+	{
+		auto type = xml.getValue("Type", "");
+		if (type == "NONE")
+		{
+			settings.loopType = LoopType::NONE;
+		}
+		else if (type == "NORMAL")
+		{
+			settings.loopType = LoopType::NORMAL;
+		}
+		else if (type == "PING-PONG")
+		{
+			settings.loopType = LoopType::PING_PONG;
+		}
+
+		settings.numLoops = xml.getValue("Count", settings.numLoops);
+		xml.popTag();
+	}
+
+	// Default resize options:
+	auto ropts = xml.getValue("ResizeOption", "");
+	if (ropts == "NoResize")
+	{
+		settings.resizeOption = magSlide::NoResize;
+	}
+	else if (ropts == "Native")
+	{
+		settings.resizeOption = magSlide::Native;
+	}
+	else if (ropts == "Fit")
+	{
+		settings.resizeOption = magSlide::Fit;
+	}
+	else if (ropts == "FitProportionally")
+	{
+		settings.resizeOption = magSlide::FitProportionally;
+	}
+	else if (ropts == "FillProportionally")
+	{
+		settings.resizeOption = magSlide::FillProportionally;
+	}
+
+	initialize(settings);
+
+	return true;
+
 }
 
 void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)

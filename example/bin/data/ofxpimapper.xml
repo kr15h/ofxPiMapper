@@ -78,4 +78,14 @@
             <perspectiveWarping>1</perspectiveWarping>
         </properties>
     </surface>
+    <magSlideShow>
+        <Width>1920</Width>
+        <Height>1080</Height>
+        <SlideDuration>0.5</SlideDuration> <!-- Optional default duration for each slide-->
+        <Loop>
+            <Type>PING-PONG</Type> <!-- NONE | NORMAL | PING-PONG -->
+        </Loop>
+        <!-- NoResize | Native | Fit | FitProportionally | FillProportionally -->
+        <ResizeOption>FitProportionally</ResizeOption>
+    </magSlideShow>
 </surfaces>

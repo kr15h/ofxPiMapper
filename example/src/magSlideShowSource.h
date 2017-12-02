@@ -35,7 +35,8 @@ public:
      * otherwise. Check the console for the specific error.
      */
     bool createFromFolderContents(std::string path);
-    bool loadSlideShow(std::string slideShowXmlPath);
+
+    bool loadFromXml();
     void addSlide(std::shared_ptr<magSlide> slide);
     void play();
     void pause();
@@ -43,7 +44,7 @@ public:
     void playPrevSlide();
     void playSlide(int slideIndex);
 
-    enum LoopType
+    enum LoopType : int
     {
         NONE = 0,
         NORMAL,
@@ -53,14 +54,14 @@ public:
     struct Settings
     {
         /**
-         * The pixel width of the FBO. This value must be provided.
+         * The pixel width of the FBO.
          */
-        float width = 0;
+        float width = 1280;
 
         /**
-         * The pixel height of the FBO. This value must be provided.
+         * The pixel height of the FBO.
          */
-        float height = 0;
+        float height = 720;
         /**
          * An optional default slide duration, in seconds.
          * If a slide specifies a duration this value is ignored.
@@ -76,7 +77,7 @@ public:
          * An optional default transition duration. If no transition
          * is specified, this value is ignored;
          */
-        float transitionDuration = 1;
+        float transitionDuration = 0;
 
         /**
          * If specified, all applicable files in the folder will
@@ -85,7 +86,7 @@ public:
          *
          * If path is relative, the root will likely be the Data folder.
          */
-        std::string slidesFolderPath;
+        std::string slidesFolderPath = "sources/images";
 
         /**
          * If specified,
@@ -105,12 +106,12 @@ public:
          */
         int numLoops = 0;
 
-        /**
-         * The resizing option for the slide show. The default is None. If a slide
-         * already has a resizing option applied, that option will be respected and
-         * this resizeOption will not be used.
-         */
-        magSlide::ResizeOptions resizeOption = magSlide::ResizeOptions::NoResize;
+		/**
+		 * The resizing option for the slide show. The default is FitProportionally.
+		 * If a slide already has a resizing option applied, that option will be
+		 * respected and this resizeOption will not be used.
+		 */
+        magSlide::ResizeOptions resizeOption = magSlide::ResizeOptions::FitProportionally;
     };
 
     ////////////////////////////////////////////

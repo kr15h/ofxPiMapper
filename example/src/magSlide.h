@@ -50,7 +50,6 @@ public:
 		/**
 		 * Resizes the largest dimension to the source's max,
 		 * the other dimension is resized proportionally.
-		 * This is the default behavior.
 		*/
 				FitProportionally,
 

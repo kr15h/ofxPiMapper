@@ -19,17 +19,10 @@ void ofApp::setup(){
 	slideShowSource = new magSlideShowSource();
 
 	// Create the settings struct for the slide show.
-    magSlideShowSource::Settings settings;
-    settings.width = 1280;
-    settings.height = 720;
-    settings.slidesFolderPath = "sources/images";
-    settings.transitionDuration = 0;
-    settings.slideDuration = 0.5;
-    settings.loopType = magSlideShowSource::LoopType::NORMAL;
-	settings.resizeOption = magSlide::ResizeOptions::FitProportionally;
 
 	// Initialize the slide show with our settings.
-    slideShowSource->initialize(settings);
+	// If it fails, initialize from default settings
+
 
 	// Register our sources:
 	piMapper.registerFboSource(crossSource);
@@ -37,9 +30,17 @@ void ofApp::setup(){
 	piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
 
+	// Slide show needs to be loaded after piMapper is set up:
+	if (!slideShowSource->loadFromXml())
+	{
+		ofLogNotice("setup") << "loading magSlideShowSource XML settings failed. Initializing from default values";
+		magSlideShowSource::Settings sets;
+		slideShowSource->initialize(sets);
+	}
+
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();
-	
+
 	ofSetFullscreen(Settings::instance()->getFullscreen());
 	ofSetEscapeQuitsApp(false);
     ofSetLogLevel(OF_LOG_VERBOSE);
