@@ -21,6 +21,8 @@ class BaseSource {
 		virtual void clear(){}
         virtual void togglePause(){}
 
+        virtual void reset(){} // called by surfaceManager to optionally allow users to reset a source's variables
+
 		// TODO: add virtual increaseReferenceCount and decreaseReferenceCount methods
 		// and make the variable protected
 		int referenceCount;

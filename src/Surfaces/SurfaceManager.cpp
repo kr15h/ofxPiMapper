@@ -461,6 +461,10 @@ void SurfaceManager::setPreset(unsigned int i){
 	}
 	
 	_activePresetIndex = i;
+
+    for (int i=0; i<_presets[_activePresetIndex]->getSurfaces().size(); i++){
+        _presets[_activePresetIndex]->getSurfaces()[i]->getSource()->reset();
+    }
 }
 
 void SurfaceManager::cloneActivePreset(){
