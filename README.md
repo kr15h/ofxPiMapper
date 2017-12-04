@@ -4,7 +4,7 @@ This should be selectable as an additional FBO source in PiMapper, looping all i
 Would be cool to adjust the speed with a simple flag, simple opacity transition welcome, but not necessary. Refresh state, so it checks if there are new images added during playback and play them as well. make all images fullscreen.
 (if its not possible to handle various sizes as one, i will make an imagemagick script to convert all to 1920x1080)
 ### 2. Circular shapes for mapping (there are only square and tringle shapes so far)
-Circualr mapping shape (if possible with movable center distorsion)
+Circular mapping shape (if possible with movable center distorsion)
 ### 3. Bezier handles
 Adding bezier handles to masks for better aligment: https://github.com/TsubokuLab/ofxBezierWarpManager
 ### 4. Play all videos from a folder
