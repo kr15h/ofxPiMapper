@@ -77,6 +77,16 @@ public:
 	float getHeight()
 	{ return height; }
 
+	float getOpacity() const
+	{
+		return opacity;
+	}
+
+	void setOpacity(float opacity)
+	{
+		magSlide::opacity = opacity;
+	}
+
 	/**
 	 * Change the display size of a slide. This will implicitly
 	 * set resizeOptions to ResizeOption.NoResize.
@@ -135,6 +145,7 @@ protected:
 	float width;
 	float height;
 	ofPoint position;
+	float opacity = 1.0;
 	ResizeOptions resizeOption = NoResize;
 	SlideState slideState = Off;
 	bool isComplete = false;
