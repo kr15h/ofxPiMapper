@@ -8,6 +8,7 @@
 #include "magSlideShowSource.h"
 #include "magSlideTransition.h"
 #include "SettingsLoader.h"
+#include "magSlideTransitionFactory.h"
 
 magSlideShowSource::magSlideShowSource()
 {
@@ -72,6 +73,10 @@ void magSlideShowSource::update()
 
 	for (auto &slide : activeSlides)
 	{
+		if (slide->activeTransition)
+		{
+			slide->activeTransition->update(deltaTime);
+		}
 		slide->update(deltaTime);
 	}
 
@@ -99,15 +104,23 @@ void magSlideShowSource::draw()
 {
 	ofBackground(0, 0);
 	ofPushMatrix();
+	ofPushStyle();
 	ofTranslate(getWidth()/2.0f, getHeight()/2.0f);
+	ofEnableAlphaBlending();
 	ofSetRectMode(OF_RECTMODE_CENTER);
+	ofFill();
+	ofSetColor(255, 255);
 	for (auto &slide : activeSlides)
 	{
-		ofSetColor(255);
-		ofFill();
+		if (slide->activeTransition)
+		{
+			slide->activeTransition->draw();
+		}
 		slide->draw();
 	}
+	ofPopStyle();
 	ofPopMatrix();
+	ofDisableAlphaBlending();
 }
 
 bool magSlideShowSource::createFromFolderContents(std::string path)
@@ -258,6 +271,8 @@ bool magSlideShowSource::loadFromXml()
 		settings.resizeOption = magSlide::FillProportionally;
 	}
 
+	settings.transitionName = "FadeIn";
+	settings.transitionDuration = 1.0;
 	initialize(settings);
 
 	return true;
@@ -324,11 +339,13 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 	if (!settings.transitionName.empty())
 	{
 		static ofParameterGroup bogusParamGroup; // This is temporary so that things compile
-		slide->buildIn = magSlideTransition::createTransition(settings.transitionName,
+
+		auto tf = magSlideTransitionFactory::instance();
+		slide->buildIn = tf->createTransition(settings.transitionName,
 															  slide,
 															  bogusParamGroup,
 															  slide->buildInDuration);
-		slide->buildOut = magSlideTransition::createTransition(settings.transitionName,
+		slide->buildOut = tf->createTransition(settings.transitionName,
 															   slide,
 															   bogusParamGroup,
 															   slide->buildOutDuration);

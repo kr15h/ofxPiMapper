@@ -7,25 +7,24 @@
 #ifndef MAGSLIDETRANSITION_H
 #define MAGSLIDETRANSITION_H
 
-
 #include "magSlide.h"
+
+class magSlideTransitionFactory;
 
 class magSlideTransition
 {
 public:
-	static std::shared_ptr<magSlideTransition> createTransition(string transitionName,
-																shared_ptr<magSlide> ptr,
-																ofParameterGroup &group,
-																u_int64_t i);
+	magSlideTransition() {}
 	/**
 	 * Begins the transition. This must be called in order for the
 	 * transition to actually do anything!
 	 */
 	void start();
-	virtual void loadSettings(ofParameterGroup &settings) = 0;
-	virtual void setup(){}
+	virtual void loadSettings(ofParameterGroup &settings){}
 	virtual void update(u_int64_t timeDelta);
-	virtual void draw(){}
+	virtual void draw(){
+		ofLogVerbose() << "transiwiton draw " << getNormalizedTime();
+	}
 
 	/**
 	 * Current running time in milliseconds.
@@ -40,28 +39,35 @@ public:
 	 */
 	float getNormalizedTime();
 
+	string const &getName() const
+	{
+		return name;
+	}
+
 	ofEvent<ofEventArgs> transitionCompleteEvent;
 
 protected:
-	magSlideTransition(){}
+	std::string name = "Void";
 	std::shared_ptr<magSlide> slide;
 	u_int64_t runningTime;
 	u_int64_t duration;
 	u_int64_t endTime;
 	bool isActive = false;
-	static shared_ptr<magSlideTransition> instantiateTransition(string transitionName);
+
+	friend class magSlideTransitionFactory;
 };
 
-class magVoidTransition : public magSlideTransition
+class magFadeInTransition : public magSlideTransition
 {
 public:
-	void loadSettings(ofParameterGroup &settings) override;
+	magFadeInTransition()
+	{
+		name = "FadeIn";
+	}
+
+	void draw() override ;
 };
 
-class magDissolveTransition : public magSlideTransition
-{
-public:
 
-};
 
 #endif
