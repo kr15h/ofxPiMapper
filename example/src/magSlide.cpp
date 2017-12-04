@@ -25,13 +25,13 @@ void magSlide::update(u_int64_t deltaTime)
 
     switch (slideState)
     {
-        case SlideState::BuildIn:
-            if (runningTime >= buildInDuration)
-            {
-                setState(Normal);
-				activeTransition = nullptr;
-            }
-            break;
+//        case SlideState::BuildIn:
+//            if (runningTime >= buildInDuration)
+//            {
+//                setState(Normal);
+//				activeTransition = nullptr;
+//            }
+//            break;
 
         case SlideState::Normal:
             if (runningTime >= buildOutStartTime)
@@ -95,15 +95,15 @@ void magSlide::setState(SlideState state)
 
 void magSlide::setTransitionDuration(u_int64_t tDuration)
 {
-    buildInDuration = buildOutDuration = tDuration;
+    buildOutDuration = tDuration;
 }
 
 const std::string magSlide::getSlideStateName()
 {
     switch (slideState)
     {
-        case SlideState::BuildIn:
-            return "BuildIn";
+//        case SlideState::BuildIn:
+//            return "BuildIn";
         case SlideState::BuildOut:
             return "BuildOut";
         case Normal:
@@ -121,15 +121,22 @@ void magSlide::start(u_int64_t startTime)
 {
 	this->startTime = startTime;
 	runningTime = 0;
-	endTime = duration + buildInDuration + buildOutDuration;
+	endTime = duration + buildOutDuration;
 	buildOutStartTime = endTime - buildOutDuration;
-	slideState = magSlide::SlideState::BuildIn;
-	if (buildIn != nullptr)
-	{
-		activeTransition = buildIn;
-		activeTransition->start();
-	}
+	slideState = magSlide::SlideState::Normal;
+//	if (buildIn != nullptr)
+//	{
+//		activeTransition = buildIn;
+//		activeTransition->start();
+//	}
+	position.set(0, 0);
+	opacity = 255;
 	isComplete = false;
+}
+
+void magSlide::draw()
+{
+	ofSetColor(255, opacity);
 }
 
 
@@ -152,6 +159,7 @@ void magImageSlide::setup(ofImage &image)
 
 void magImageSlide::draw()
 {
+	magSlide::draw();
     image.draw(position, width, height);
 }
 
@@ -191,11 +199,12 @@ void magVideoSlide::update()
 
 void magVideoSlide::draw()
 {
+	magSlide::draw();
 	videoPlayer.draw(position.x, position.y, width, height);
 }
 
 void magVideoSlide::useVideoForDuration()
 {
-    duration = u_int64_t((videoPlayer.getDuration()*1000)) - buildInDuration - buildOutDuration;
+    duration = u_int64_t((videoPlayer.getDuration()*1000)) - buildOutDuration;
 }
 

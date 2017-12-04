@@ -41,3 +41,15 @@ void magFadeInTransition::draw()
 	ofLogVerbose() << "fade in draw";
 	ofSetColor(255, getNormalizedTime() * 255);
 }
+
+void magFadeOutTransition::draw()
+{
+	magSlideTransition::draw();
+
+}
+
+void magDissolveTransition::draw()
+{
+	slide->setOpacity(255 - (getNormalizedTime() * 255));
+	ofLogVerbose("opacity") << slide->getId() <<  " " << slide->getOpacity();
+}

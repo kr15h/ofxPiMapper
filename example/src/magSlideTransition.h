@@ -49,6 +49,7 @@ public:
 protected:
 	std::string name = "Void";
 	std::shared_ptr<magSlide> slide;
+	std::shared_ptr<magSlide> nextSlide;
 	u_int64_t runningTime;
 	u_int64_t duration;
 	u_int64_t endTime;
@@ -68,6 +69,26 @@ public:
 	void draw() override ;
 };
 
+class magFadeOutTransition : public magSlideTransition
+{
+public:
+	magFadeOutTransition()
+	{
+		name = "FadeOut";
+	}
 
+	void draw() override ;
+};
+
+class magDissolveTransition : public magSlideTransition
+{
+public:
+	magDissolveTransition()
+	{
+		name = "Dissolve";
+	}
+
+	void draw() override;
+};
 
 #endif

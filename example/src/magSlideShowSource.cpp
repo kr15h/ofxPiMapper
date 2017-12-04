@@ -271,8 +271,8 @@ bool magSlideShowSource::loadFromXml()
 		settings.resizeOption = magSlide::FillProportionally;
 	}
 
-	settings.transitionName = "FadeIn";
-	settings.transitionDuration = 1.0;
+	settings.transitionName = "Dissolve";
+	settings.transitionDuration = 0.5;
 	initialize(settings);
 
 	return true;
@@ -282,7 +282,7 @@ bool magSlideShowSource::loadFromXml()
 void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 {
 //	ofLogVerbose("addSlide") << slide->getId();
-	slides.push_back(slide);
+	slides.insert(slides.begin(), slide);
 	auto rOption = slide->getResizeOption();
 
 	// If the slide does not have a resize option assign
@@ -341,10 +341,10 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 		static ofParameterGroup bogusParamGroup; // This is temporary so that things compile
 
 		auto tf = magSlideTransitionFactory::instance();
-		slide->buildIn = tf->createTransition(settings.transitionName,
-															  slide,
-															  bogusParamGroup,
-															  slide->buildInDuration);
+//		slide->buildIn = tf->createTransition(settings.transitionName,
+//															  slide,
+//															  bogusParamGroup,
+//															  slide->buildInDuration);
 		slide->buildOut = tf->createTransition(settings.transitionName,
 															   slide,
 															   bogusParamGroup,
@@ -475,7 +475,10 @@ void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t
 {
 //	ofLogVerbose() << "Enqueuing slide " << currentSlideIndex << " slide id: " << slide->getId();
 	slide->start(startTime);
-	activeSlides.push_back(slide);
+	if (activeSlides.size() > 1)
+	{
+	}
+	activeSlides.insert(activeSlides.begin(), slide);
 }
 
 void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args)

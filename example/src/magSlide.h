@@ -15,7 +15,7 @@ public:
 	magSlide(std::string type);
 //    ~magSlide();
 	virtual void update(u_int64_t deltaTime);
-	virtual void draw() = 0;
+	virtual void draw();
 
 	/**
 	 * Sets the slide up for playback. This method must be
@@ -62,7 +62,7 @@ public:
 	enum SlideState : short
 	{
 		Off = 0,
-		BuildIn,
+//		BuildIn,
 		Normal,
 		BuildOut,
 		Complete
@@ -145,12 +145,12 @@ protected:
 	float width;
 	float height;
 	ofPoint position;
-	float opacity = 1.0;
+	float opacity = 255;
 	ResizeOptions resizeOption = NoResize;
 	SlideState slideState = Off;
 	bool isComplete = false;
 
-	std::shared_ptr<magSlideTransition> buildIn = nullptr;
+//	std::shared_ptr<magSlideTransition> buildIn = nullptr;
 	std::shared_ptr<magSlideTransition> buildOut = nullptr;
 	std::shared_ptr<magSlideTransition> activeTransition = nullptr;
 	/**
@@ -173,7 +173,7 @@ protected:
 	/**
 	 * The duration of the build in transition or effect, in milliseconds.
 	 */
-	u_int64_t buildInDuration;
+//	u_int64_t buildInDuration;
 
 	/**
 	 * The duration of the build out transition or effect, in milliseconds.

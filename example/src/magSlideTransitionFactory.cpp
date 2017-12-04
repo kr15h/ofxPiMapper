@@ -38,10 +38,10 @@ magSlideTransitionFactory* magSlideTransitionFactory::_instance = 0;
 magSlideTransitionFactory::magSlideTransitionFactory()
 {
 	magSlideTransition voidTransition;
-	magFadeInTransition fadeIn;
+	magDissolveTransition dissolve;
 
 	registerTransition<magSlideTransition>(voidTransition);
-	registerTransition<magFadeInTransition>(fadeIn);
+	registerTransition<magDissolveTransition>(dissolve);
 }
 
 magSlideTransitionFactory* magSlideTransitionFactory::instance()
