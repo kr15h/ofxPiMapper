@@ -3,15 +3,19 @@
 This should be selectable as an additional FBO source in PiMapper, looping all images in the /media/internal/images/* folder
 Would be cool to adjust the speed with a simple flag, simple opacity transition welcome, but not necessary. Refresh state, so it checks if there are new images added during playback and play them as well. make all images fullscreen.
 (if its not possible to handle various sizes as one, i will make an imagemagick script to convert all to 1920x1080)
-### 2. Play all videos from a folder
-This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
-### 3. Circular shapes for mapping (there are only square and tringle shapes so far)
+### 2. Circular shapes for mapping (there are only square and tringle shapes so far)
 Circualr mapping shape (if possible with movable center distorsion)
-### 4. Grid Warp (meshing of square shapes)
+### 3. Bezier handles
+Adding bezier handles to masks for better aligment: https://github.com/TsubokuLab/ofxBezierWarpManager
+### 4. Play all videos from a folder
+This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
+### 5. Grid Warp (meshing of square shapes)
 check out this http://www.hv-a.com/lpmt/sssm.pdf on page: 10
 https://forum.openframeworks.cc/t/grid-mesh-warping/12883
-### 5. SoftEdge
+### 6. SoftEdge
 Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
+
+Finalize the mapping converter: https://github.com/magdesign/mapping-converter
 
 This will be an opensource project and freely available for everyone.
 Targeting OF_0.9.x on RaspberryPi.
