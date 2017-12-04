@@ -21,6 +21,7 @@ magSlide::magSlide(std::string type)
 
 void magSlide::update(u_int64_t deltaTime)
 {
+	transition->update(deltaTime);
     runningTime += deltaTime;
 
     switch (slideState)
@@ -37,11 +38,6 @@ void magSlide::update(u_int64_t deltaTime)
             if (runningTime >= buildOutStartTime)
 			{
 				setState(BuildOut);
-				if (buildOut != nullptr)
-				{
-					activeTransition = buildOut;
-					activeTransition->start();
-				}
 			}
             break;
 
@@ -49,7 +45,6 @@ void magSlide::update(u_int64_t deltaTime)
             if (runningTime >= endTime)
             {
                 setState(Complete);
-				activeTransition = nullptr;
             }
             break;
     }
@@ -137,6 +132,10 @@ void magSlide::start(u_int64_t startTime)
 void magSlide::draw()
 {
 	ofSetColor(255, opacity);
+	if(transition->isActive())
+	{
+		transition->draw();
+	}
 }
 
 

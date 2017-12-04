@@ -115,6 +115,7 @@ public:
 	 * @param tDuration in milliseconds.
 	 */
 	void setTransitionDuration(u_int64_t tDuration);
+
 	ResizeOptions getResizeOption() const;
 	void setResizeOption(ResizeOptions resizeOption);
 
@@ -145,14 +146,39 @@ protected:
 	float width;
 	float height;
 	ofPoint position;
+public:
+	const ofPoint &getPosition() const
+	{
+		return position;
+	}
+
+	void setPosition(const ofPoint &position)
+	{
+		magSlide::position = position;
+	}
+
+	void setPosition(float x, float y)
+	{
+		position.set(x, y);
+	}
+
+
+protected:
 	float opacity = 255;
 	ResizeOptions resizeOption = NoResize;
 	SlideState slideState = Off;
 	bool isComplete = false;
 
 //	std::shared_ptr<magSlideTransition> buildIn = nullptr;
-	std::shared_ptr<magSlideTransition> buildOut = nullptr;
-	std::shared_ptr<magSlideTransition> activeTransition = nullptr;
+//	std::shared_ptr<magSlideTransition> buildOut = nullptr;
+	std::shared_ptr<magSlideTransition> transition = nullptr;
+public:
+	const shared_ptr<magSlideTransition> &getTransition() const
+	{
+		return transition;
+	}
+
+protected:
 	/**
 	 * The duration of the slide in millis, not counting builds
 	 */

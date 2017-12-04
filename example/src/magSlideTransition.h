@@ -19,11 +19,12 @@ public:
 	 * Begins the transition. This must be called in order for the
 	 * transition to actually do anything!
 	 */
-	void start();
+	virtual void start(std::shared_ptr<magSlide> nextSlide);
+	virtual void end(){}
 	virtual void loadSettings(ofParameterGroup &settings){}
 	virtual void update(u_int64_t timeDelta);
 	virtual void draw(){
-		ofLogVerbose() << "transiwiton draw " << getNormalizedTime();
+		ofLogNotice("magSlideTransition") << "transition draw - this should be overriden " << getNormalizedTime();
 	}
 
 	/**
@@ -44,40 +45,37 @@ public:
 		return name;
 	}
 
+	const shared_ptr<magSlide> &getNextSlide() const
+	{
+		return nextSlide;
+	}
+
+	void setNextSlide(shared_ptr<magSlide> nextSlide)
+	{
+		magSlideTransition::nextSlide = nextSlide;
+	}
+
+	bool isActive() const
+	{
+		return active;
+	}
+
 	ofEvent<ofEventArgs> transitionCompleteEvent;
 
 protected:
 	std::string name = "Void";
 	std::shared_ptr<magSlide> slide;
 	std::shared_ptr<magSlide> nextSlide;
+
 	u_int64_t runningTime;
 	u_int64_t duration;
 	u_int64_t endTime;
-	bool isActive = false;
+	bool active = false;
+
+
+protected:
 
 	friend class magSlideTransitionFactory;
-};
-
-class magFadeInTransition : public magSlideTransition
-{
-public:
-	magFadeInTransition()
-	{
-		name = "FadeIn";
-	}
-
-	void draw() override ;
-};
-
-class magFadeOutTransition : public magSlideTransition
-{
-public:
-	magFadeOutTransition()
-	{
-		name = "FadeOut";
-	}
-
-	void draw() override ;
 };
 
 class magDissolveTransition : public magSlideTransition
@@ -88,7 +86,10 @@ public:
 		name = "Dissolve";
 	}
 
+	void start(std::shared_ptr<magSlide> nextSlide) override;
+
 	void draw() override;
+	void end() override;
 };
 
 #endif

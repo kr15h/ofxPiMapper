@@ -6,22 +6,26 @@
 
 #include "magSlideTransition.h"
 
-void magSlideTransition::start()
+void magSlideTransition::start(std::shared_ptr<magSlide> nextSlide)
 {
 	runningTime = 0;
-	isActive =  true;
+	active =  true;
+	this->nextSlide = nextSlide;
 }
 
 void magSlideTransition::update(u_int64_t timeDelta)
 {
-	if (!isActive) return;
+	if (!active) return;
 
 	runningTime += timeDelta;
 	if (runningTime >= duration)
 	{
 		ofEventArgs arghh;	// arghhhh...
+		nextSlide->setOpacity(255);
+		nextSlide->setPosition(0, 0);
+		end();
 		transitionCompleteEvent.notify(this, arghh);
-		isActive = false;
+		active = false;
 	}
 
 }
@@ -36,20 +40,21 @@ float magSlideTransition::getNormalizedTime()
 	return (double)runningTime / (double)duration;
 }
 
-void magFadeInTransition::draw()
-{
-	ofLogVerbose() << "fade in draw";
-	ofSetColor(255, getNormalizedTime() * 255);
-}
-
-void magFadeOutTransition::draw()
-{
-	magSlideTransition::draw();
-
-}
 
 void magDissolveTransition::draw()
 {
 	slide->setOpacity(255 - (getNormalizedTime() * 255));
-	ofLogVerbose("opacity") << slide->getId() <<  " " << slide->getOpacity();
+	nextSlide->setOpacity(getNormalizedTime()*255);
+}
+
+void magDissolveTransition::start(std::shared_ptr<magSlide> nextSlide)
+{
+	magSlideTransition::start(nextSlide);
+	nextSlide->setOpacity(0);
+}
+
+void magDissolveTransition::end()
+{
+	nextSlide->setOpacity(255);
+	slide->setOpacity(0);
 }

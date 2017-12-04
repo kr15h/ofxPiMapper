@@ -73,10 +73,6 @@ void magSlideShowSource::update()
 
 	for (auto &slide : activeSlides)
 	{
-		if (slide->activeTransition)
-		{
-			slide->activeTransition->update(deltaTime);
-		}
 		slide->update(deltaTime);
 	}
 
@@ -112,10 +108,6 @@ void magSlideShowSource::draw()
 	ofSetColor(255, 255);
 	for (auto &slide : activeSlides)
 	{
-		if (slide->activeTransition)
-		{
-			slide->activeTransition->draw();
-		}
 		slide->draw();
 	}
 	ofPopStyle();
@@ -276,7 +268,6 @@ bool magSlideShowSource::loadFromXml()
 	initialize(settings);
 
 	return true;
-
 }
 
 void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
@@ -345,7 +336,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 //															  slide,
 //															  bogusParamGroup,
 //															  slide->buildInDuration);
-		slide->buildOut = tf->createTransition(settings.transitionName,
+		slide->transition = tf->createTransition(settings.transitionName,
 															   slide,
 															   bogusParamGroup,
 															   slide->buildOutDuration);
@@ -475,9 +466,6 @@ void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t
 {
 //	ofLogVerbose() << "Enqueuing slide " << currentSlideIndex << " slide id: " << slide->getId();
 	slide->start(startTime);
-	if (activeSlides.size() > 1)
-	{
-	}
 	activeSlides.insert(activeSlides.begin(), slide);
 }
 
@@ -489,7 +477,13 @@ void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args
 //									  << slide->getSlideStateName();
 	if (slide->getSlideState() == magSlide::SlideState::BuildOut)
 	{
+//		slide->transition->start();
+//		ofLogVerbose() << "BuildOut " << slide->getId();
 		playNextSlide();
+		if (activeSlides.size() > 1)
+		{
+			activeSlides[1]->transition->start(activeSlides[0]);
+		}
 	}
 
 }
