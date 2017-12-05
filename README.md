@@ -3,20 +3,23 @@
 This should be selectable as an additional FBO source in PiMapper, looping all images in the /media/internal/images/* folder
 Would be cool to adjust the speed with a simple flag, simple opacity transition welcome, but not necessary. Refresh state, so it checks if there are new images added during playback and play them as well. make all images fullscreen.
 (if its not possible to handle various sizes as one, i will make an imagemagick script to convert all to 1920x1080)
-### 2. Play all videos from a folder
+### 2. Circular shapes for mapping (there are only square and tringle shapes so far)
+Circular mapping shape (if possible with movable center distorsion)
+### 3. Bezier handles
+Adding bezier handles to masks for better aligment: https://github.com/TsubokuLab/ofxBezierWarpManager
+### 4. Play all videos from a folder
 This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
-### 3. Circular shapes for mapping (there are only square and tringle shapes so far)
-Circualr mapping shape
-### 4. Grid Warp (meshing of square shapes)
+### 5. Grid Warp (meshing of square shapes)
+check out this http://www.hv-a.com/lpmt/sssm.pdf on page: 10
 https://forum.openframeworks.cc/t/grid-mesh-warping/12883
-### 5. SoftEdge
+### 6. SoftEdge
 Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
+
+Finalize the mapping converter: https://github.com/magdesign/mapping-converter
 
 This will be an opensource project and freely available for everyone.
 Targeting OF_0.9.x on RaspberryPi.
 Each function will be rewarded to the coder from a pot sponsered by pocketvj.com.
-
-The keybindings will be changed to ones matching to PocketVJ CP and there will be an audio branch added.
 
 
 
@@ -45,15 +48,6 @@ You can use the example application of the addon for projection mapping projects
     ```bash
     ./bin/example -f
     ```
-
-
-## Compiling on Linux
-
-There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
-
-1. Open `example/addons.make` and remove ofxOMXPlayer line.
-2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
-3. Compile one or both examples by using make.
 
 
 ## Problems with Audio
@@ -184,33 +178,41 @@ Key | Function
 2 | Texture editing mode
 3 | Projection mapping mode, use this to select a surface first
 4 | Source selection mode
-i | Show info
+c | Show info
 t | Add triangle surface
 q | Add quad surface
+x | Add hexagon surface
 g | Add grid warp surface
-d | duplicate selected surface
-\+ | Scale surface up
-\- | Scale surface down
+a | duplicate selected surface
+o | Scale surface up
+i | Scale surface down
 p | toggle perspective warping (quad surfaces only)
-] | add columns to grid surface (grid warp surfaces only)
-[ | remove columns from grid surface (grid warp surfaces only)
-} | add rows to grid surface (grid warp surfaces only)
-{ | remove rows from grid surface (grid warp surfaces only)
+v | add columns to grid surface (grid warp surfaces only)
+b | remove columns from grid surface (grid warp surfaces only)
+n | add rows to grid surface (grid warp surfaces only)
+m | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
-\> | select next vertex
-\< | select previous vertex
-0 | Move selected surface one layer up
-9 | Move selected surface one layer down
+k | select next vertex
+l | select previous vertex
+h | Move selected surface one layer up
+j | Move selected surface one layer down
 s | Save composition
-l | Hide/show layer panel
+y | Hide/show layer panel
 z | Undo
 rbt | Reboot (Raspberry Pi only)
 sdn | Shutdown (Raspberry Pi only)
 new | Clear composition (remove all surfaces)
 ext | Exit application and return to command line
-BACKSPACE ('\' via SSH) | Delete surface.
-SPACE | Toggle pause for video sources (texture and projection mapping modes)
-TAB | Select next source (no need to use the source selection interface)
-Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
+d | Delete surface.
+w | Toggle pause for video sources (texture and projection mapping modes)
+5 | Select next source (no need to use the source selection interface)
+8 | Move selection Up
+9 | Move selection Down
+7 | Move selection Left
+0 | Move selection Right
+If no surface is selected in the projection mapping mode, all surfaces are moved.
+
+Dont know if this works already:
+
 \/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi
