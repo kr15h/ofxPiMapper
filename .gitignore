@@ -105,3 +105,11 @@ Desktop.ini
 *.log
 *.sql
 *.sqlite
+
+example/cmake-build-debug/
+
+example/\.idea/
+
+example/cmake-build-release/
+
+example/example\.xcodeproj/xcshareddata/xcschemes/

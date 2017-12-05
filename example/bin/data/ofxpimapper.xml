@@ -2,16 +2,16 @@
     <surface type="0">
         <vertices>
             <vertex>
-                <x>250.000000000</x>
-                <y>138.187255859</y>
+                <x>244.000000000</x>
+                <y>151.187255859</y>
             </vertex>
             <vertex>
-                <x>403.625549316</x>
-                <y>291.812774658</y>
+                <x>397.625549316</x>
+                <y>304.812774658</y>
             </vertex>
             <vertex>
-                <x>96.374511719</x>
-                <y>291.812774658</y>
+                <x>90.374511719</x>
+                <y>304.812774658</y>
             </vertex>
         </vertices>
         <texCoords>
@@ -36,20 +36,20 @@
     <surface type="1">
         <vertices>
             <vertex>
-                <x>425.565002441</x>
-                <y>144.782531738</y>
+                <x>305.332824707</x>
+                <y>158.923416138</y>
             </vertex>
             <vertex>
-                <x>718.434936523</x>
-                <y>144.782531738</y>
+                <x>823.889770508</x>
+                <y>135.275909424</y>
             </vertex>
             <vertex>
-                <x>718.434936523</x>
-                <y>291.217407227</y>
+                <x>883.853393555</x>
+                <y>670.724243164</y>
             </vertex>
             <vertex>
-                <x>425.565002441</x>
-                <y>291.217407227</y>
+                <x>241.146575928</x>
+                <y>656.366699219</y>
             </vertex>
         </vertices>
         <texCoords>
@@ -72,7 +72,7 @@
         </texCoords>
         <source>
             <source-type>fbo</source-type>
-            <source-name>Custom FBO Source</source-name>
+            <source-name>Slide Show Source</source-name>
         </source>
         <properties>
             <perspectiveWarping>1</perspectiveWarping>
