@@ -1,0 +1,11 @@
+<magSlideShow>
+    <Width>1920</Width>
+    <Height>1080</Height>
+    <SlideDuration>1</SlideDuration> <!-- Optional default duration for each slide-->
+    <Loop>
+        <Type>PING-PONG</Type> <!-- NONE | NORMAL | PING-PONG -->
+    </Loop>
+    <Transition></Transition>
+    <!-- NoResize | Native | Fit | FitProportionally | FillProportionally -->
+    <ResizeOption>FitProportionally</ResizeOption>
+</magSlideShow>

@@ -18,25 +18,11 @@ void ofApp::setup(){
 	// Create the slide show source.
 	slideShowSource = new magSlideShowSource();
 
-	// Create the settings struct for the slide show.
-
-	// Initialize the slide show with our settings.
-	// If it fails, initialize from default settings
-
-
 	// Register our sources:
 	piMapper.registerFboSource(crossSource);
 	piMapper.registerFboSource(customSource);
 	piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
-
-	// Slide show needs to be loaded after piMapper is set up:
-	if (!slideShowSource->loadFromXml())
-	{
-		ofLogNotice("setup") << "loading magSlideShowSource XML settings failed. Initializing from default values";
-		magSlideShowSource::Settings sets;
-		slideShowSource->initialize(sets);
-	}
 
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();

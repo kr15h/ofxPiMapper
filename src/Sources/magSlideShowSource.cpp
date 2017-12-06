@@ -10,12 +10,20 @@
 #include "SettingsLoader.h"
 #include "magSlideTransitionFactory.h"
 
+const std::string magSlideShowSource::SettingsFileName = "magslideshow_settings.xml";
+
 magSlideShowSource::magSlideShowSource() {
 	name = "Slide Show Source";
 	currentSlideIndex = 0;
 	isPlaying = false;
 	directoryWatcher = 0;
 	doInit = false;
+	if (!loadFromXml(SettingsFileName))
+	{
+		ofLogError("magSlideShowSource") << "Could not find slide show settings file " << SettingsFileName;
+		Settings sets;
+		initialize(sets);
+	}
 }
 
 magSlideShowSource::~magSlideShowSource() {
@@ -218,21 +226,20 @@ bool magSlideShowSource::createFromFolderContents(std::string path) {
 	}
 }
 
-bool magSlideShowSource::loadFromXml() {
-	auto *loader = ofx::piMapper::SettingsLoader::instance();
+bool magSlideShowSource::loadFromXml(std::string path) {
 	auto xml = ofxXmlSettings();
 	Settings settings;
 
-	if (!xml.load(loader->getLastLoadedFilename()))
+	if (!xml.load(path))
 	{
-		ofLogError("magSlideShowSource") << "Could not load settings file " << loader->getLastLoadedFilename();
+		ofLogError("magSlideShowSource") << "Could not load settings file " << path;
 		return false;
 	}
 
-	xml.pushTag("surfaces");
+//	xml.pushTag("surfaces");
 	if (!xml.pushTag("magSlideShow"))
 	{
-		ofLogError("magSlideShowSource") << "Slide show settings not found in " << loader->getLastLoadedFilename();
+		ofLogError("magSlideShowSource") << "Slide show settings not found in " << path;
 		return false;
 	}
 
@@ -349,20 +356,18 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 
 	// Add transitions:
 
-	if (!settings.transitionName.empty())
-	{
-		static ofParameterGroup bogusParamGroup; // This is temporary so that things compile
+	static ofParameterGroup bogusParamGroup; // This is temporary so that things compile
 
-		auto tf = magSlideTransitionFactory::instance();
+	auto tf = magSlideTransitionFactory::instance();
 //		slide->buildIn = tf->createTransition(settings.transitionName,
 //															  slide,
 //															  bogusParamGroup,
 //															  slide->buildInDuration);
-		slide->transition = tf->createTransition(settings.transitionName,
-												 slide,
-												 bogusParamGroup,
-												 slide->buildOutDuration);
-	}
+	slide->transition = tf->createTransition(settings.transitionName,
+											 slide,
+											 bogusParamGroup,
+											 slide->buildOutDuration);
+
 	////     void method(const void * sender, ArgumentsType &args)
 	ofAddListener(slide->slideStateChangedEvent, this, &magSlideShowSource::slideStateChanged);
 	ofAddListener(slide->slideCompleteEvent, this, &magSlideShowSource::slideComplete);

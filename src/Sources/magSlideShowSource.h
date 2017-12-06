@@ -17,6 +17,11 @@ class magSlide;
 class magSlideShowSource : public ofx::piMapper::FboSource {
 	public:
 		magSlideShowSource();
+
+		/**
+		 * Default settings file name.
+		 */
+		static const std::string SettingsFileName;
 		struct Settings; // forward declaration
 		bool initialize(magSlideShowSource::Settings settings);
 		void setup() override;
@@ -35,8 +40,7 @@ class magSlideShowSource : public ofx::piMapper::FboSource {
 		 * otherwise. Check the console for the specific error.
 		 */
 		bool createFromFolderContents(std::string path);
-
-		bool loadFromXml();
+		bool loadFromXml(std::string path);
 		void addSlide(std::shared_ptr<magSlide> slide);
 		void play();
 		void pause();
@@ -67,15 +71,14 @@ class magSlideShowSource : public ofx::piMapper::FboSource {
 			float slideDuration = 5;
 
 			/**
-			 * An optional default transition for the slide show.
+			 * The default transition for the slide show.
 			 */
-			std::string transitionName = "";
+			std::string transitionName = "Dissolve";
 
 			/**
-			 * An optional default transition duration. If no transition
-			 * is specified, this value is ignored;
+			 * Default transition duration.
 			 */
-			float transitionDuration = 0;
+			float transitionDuration = 1;
 
 			/**
 			 * If specified, all applicable files in the folder will
