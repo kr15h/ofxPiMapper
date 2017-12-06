@@ -10,7 +10,7 @@ class DirectoryWatcher : public ofThread {
 	public:
 		DirectoryWatcher(string path, int watcherMediaType);
 		virtual ~DirectoryWatcher();
-		vector<string> & getFilePaths();
+		vector<string> &getFilePaths();
 		int getMediaType();
 
 		void beginWatch(int intervalInMillis = 5000);
@@ -18,12 +18,16 @@ class DirectoryWatcher : public ofThread {
 		void threadedFunction();
 
 		/**
-		 * Triggered when the file count of a directory increases
-		 * or decreases.
-		 *
+ 		 * Notifies when files are added to this directory.
 		 * Sender is a pointer to this DirectoryWatcher
 		 */
-		ofEvent<void> directoryFileCountChangedEvent;
+		ofEvent<void> directoryFileAddedEvent;
+		/**
+ 		 * Notifies when files are removed from this directory.
+		 * Sender is a pointer to this DirectoryWatcher
+ 		*/
+		ofEvent<void> directoryFileRemovedEvent;
+
 	private:
 		ofDirectory _directory;
 		vector<string> _filePaths;

@@ -67,10 +67,16 @@ void DirectoryWatcher::threadedFunction() {
 	while (isThreadRunning()) {
 
 		int newSize = _directory.listDir();
-		if (newSize != dirSize) {
+		if (newSize > dirSize) {
 			ofLogVerbose("DirectoryWatcher") << "Directory changed";
-			ofNotifyEvent(directoryFileCountChangedEvent, this);
+			dirSize = newSize;
+			ofNotifyEvent(directoryFileAddedEvent, this);
+		} else if (newSize < dirSize) {
+			dirSize = newSize;
+			ofNotifyEvent(directoryFileRemovedEvent, this);
 		}
+
+
 
 		sleep(watchInterval);
 	}
