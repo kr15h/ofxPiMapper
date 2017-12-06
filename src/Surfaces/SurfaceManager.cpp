@@ -462,8 +462,24 @@ void SurfaceManager::setPreset(unsigned int i){
 	
 	_activePresetIndex = i;
 
+    //when preset it changed, call reset on all sources, if it's defined
     for (int i=0; i<_presets[_activePresetIndex]->getSurfaces().size(); i++){
+
+        //if source is of type FBO then cast it from BaseSource to FboSource and call the beginFbo function
+        if (_presets[_activePresetIndex]->getSurfaces()[i]->getSource()->getType() == SourceType::SOURCE_TYPE_FBO){
+            FboSource *fboSource;
+            fboSource = (FboSource*)_presets[_activePresetIndex]->getSurfaces()[i]->getSource();
+            fboSource->beginFbo();
+        }
+
         _presets[_activePresetIndex]->getSurfaces()[i]->getSource()->reset();
+
+        //if source is of type FBO then cast it from BaseSource to FboSource and call the endFbo function
+        if (_presets[_activePresetIndex]->getSurfaces()[i]->getSource()->getType() == SourceType::SOURCE_TYPE_FBO){
+            FboSource *fboSource;
+            fboSource = (FboSource*)_presets[_activePresetIndex]->getSurfaces()[i]->getSource();
+            fboSource->endFbo();
+        }
     }
 }
 

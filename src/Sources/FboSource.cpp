@@ -24,6 +24,22 @@ void FboSource::updateFbo(){
 	update();
 }
 
+void FboSource::beginFbo(){
+    if(fbo == 0 || !fbo->isAllocated()){
+        ofLogWarning("FboSource") << "FBO not allocated";
+        return;
+    }
+    fbo->begin();
+}
+
+void FboSource::endFbo(){
+    if(fbo == 0 || !fbo->isAllocated()){
+        ofLogWarning("FboSource") << "FBO not allocated";
+        return;
+    }
+    fbo->end();
+}
+
 void FboSource::drawFbo(){
 	if(fbo == 0 || !fbo->isAllocated()){
 		ofLogWarning("FboSource") << "FBO not allocated";
