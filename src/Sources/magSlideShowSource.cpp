@@ -10,15 +10,20 @@
 #include "SettingsLoader.h"
 #include "magSlideTransitionFactory.h"
 
-magSlideShowSource::magSlideShowSource()
-{
+magSlideShowSource::magSlideShowSource() {
 	name = "Slide Show Source";
 	currentSlideIndex = 0;
 	isPlaying = false;
+	directoryWatcher = 0;
+	doInit = false;
 }
 
-bool magSlideShowSource::initialize(magSlideShowSource::Settings settings)
-{
+magSlideShowSource::~magSlideShowSource() {
+	directoryWatcher->endWatch();
+	delete directoryWatcher;
+}
+
+bool magSlideShowSource::initialize(magSlideShowSource::Settings settings) {
 	this->settings = settings;
 	bool success = true;
 
@@ -45,23 +50,44 @@ bool magSlideShowSource::initialize(magSlideShowSource::Settings settings)
 														 << settings.slidesFolderPath;
 			return success;
 		}
+		{
+			if (directoryWatcher == 0)
+			{
+
+				using namespace ofx::piMapper;
+				directoryWatcher = new DirectoryWatcher(settings.slidesFolderPath,
+														SourceTypeHelper::GetSourceTypeHelperEnum(
+																SOURCE_TYPE_NAME_IMAGE));
+				ofAddListener(directoryWatcher->directoryFileAddedEvent, this, &magSlideShowSource::fileAddedListener);
+				ofAddListener(directoryWatcher->directoryFileRemovedEvent, this,
+							  &magSlideShowSource::fileRemovedListener);
+				directoryWatcher->beginWatch();
+			}
+		}
 
 	}
 	else if (!settings.slideshowFilePath.empty())
 	{
-		// try to load slide show from xml
 		success = false;
 	}
+
 	return success;
 }
 
-void magSlideShowSource::setup()
-{
+void magSlideShowSource::setup() {
 	ofx::piMapper::FboSource::setup();
 }
 
-void magSlideShowSource::update()
-{
+void magSlideShowSource::update() {
+
+	// Perform re-initialization if the DirectoryWatcher
+	// detects file changes:
+	if (doInit)
+	{
+		initialize(settings);
+		doInit = false;
+	}
+
 	if (!isPlaying) return;
 
 	auto nowTime = ofGetElapsedTimeMillis();
@@ -96,8 +122,7 @@ void magSlideShowSource::update()
 	}
 }
 
-void magSlideShowSource::draw()
-{
+void magSlideShowSource::draw() {
 	ofBackground(0, 0);
 	ofPushMatrix();
 	ofPushStyle();
@@ -115,8 +140,7 @@ void magSlideShowSource::draw()
 	ofDisableAlphaBlending();
 }
 
-bool magSlideShowSource::createFromFolderContents(std::string path)
-{
+bool magSlideShowSource::createFromFolderContents(std::string path) {
 	ofDirectory dir = ofDirectory(path);
 	slides.clear();
 
@@ -194,8 +218,7 @@ bool magSlideShowSource::createFromFolderContents(std::string path)
 	}
 }
 
-bool magSlideShowSource::loadFromXml()
-{
+bool magSlideShowSource::loadFromXml() {
 	auto *loader = ofx::piMapper::SettingsLoader::instance();
 	auto xml = ofxXmlSettings();
 	Settings settings;
@@ -270,8 +293,7 @@ bool magSlideShowSource::loadFromXml()
 	return true;
 }
 
-void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
-{
+void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 //	ofLogVerbose("addSlide") << slide->getId();
 	slides.insert(slides.begin(), slide);
 	auto rOption = slide->getResizeOption();
@@ -337,9 +359,9 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 //															  bogusParamGroup,
 //															  slide->buildInDuration);
 		slide->transition = tf->createTransition(settings.transitionName,
-															   slide,
-															   bogusParamGroup,
-															   slide->buildOutDuration);
+												 slide,
+												 bogusParamGroup,
+												 slide->buildOutDuration);
 	}
 	////     void method(const void * sender, ArgumentsType &args)
 	ofAddListener(slide->slideStateChangedEvent, this, &magSlideShowSource::slideStateChanged);
@@ -347,8 +369,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide)
 
 }
 
-void magSlideShowSource::play()
-{
+void magSlideShowSource::play() {
 	if (!isPlaying)
 	{
 		runningTime = 0;
@@ -359,13 +380,11 @@ void magSlideShowSource::play()
 	}
 }
 
-void magSlideShowSource::pause()
-{
+void magSlideShowSource::pause() {
 	isPlaying = false;
 }
 
-void magSlideShowSource::playNextSlide()
-{
+void magSlideShowSource::playNextSlide() {
 	//TODO
 	// I should check here to see if there are less than two slides.
 	// If so, we should probably return
@@ -450,27 +469,23 @@ void magSlideShowSource::playNextSlide()
 	enqueueSlide(slides[currentSlideIndex], ofGetElapsedTimeMillis());
 }
 
-void magSlideShowSource::playPrevSlide()
-{
+void magSlideShowSource::playPrevSlide() {
 	currentSlideIndex -= (direction*2);
 	playNextSlide();
 }
 
-void magSlideShowSource::playSlide(int slideIndex)
-{
+void magSlideShowSource::playSlide(int slideIndex) {
 	currentSlideIndex = slideIndex-direction;
 	playNextSlide();
 }
 
-void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t startTime)
-{
+void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t startTime) {
 //	ofLogVerbose() << "Enqueuing slide " << currentSlideIndex << " slide id: " << slide->getId();
 	slide->start(startTime);
 	activeSlides.insert(activeSlides.begin(), slide);
 }
 
-void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args)
-{
+void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args) {
 	magSlide *slide = (magSlide *) sender;
 
 //	ofLogVerbose("slideStateChanged") << "Slide id: " << slide->getId() << " Slide state: "
@@ -488,11 +503,18 @@ void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args
 
 }
 
-void magSlideShowSource::slideComplete(const void *sender, ofEventArgs &args)
-{
+void magSlideShowSource::slideComplete(const void *sender, ofEventArgs &args) {
 	magSlide *slide = (magSlide *) sender;
 //	ofLogVerbose() << "Slide Complete. id: " << slide->getId();
 	slide->isComplete = true;
+}
+
+void magSlideShowSource::fileAddedListener(const void *sender) {
+	doInit = true;
+}
+
+void magSlideShowSource::fileRemovedListener(const void *sender) {
+	doInit = true;
 }
 
 
