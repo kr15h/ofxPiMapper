@@ -19,14 +19,17 @@ MediaServer::MediaServer():
 {
 	// By initialising all above we also copy files from external media
 	// to the ofxPiMapper storage.
-	
-	imageWatcher = DirectoryWatcher(
-		ofToDataPath(DEFAULT_IMAGES_DIR, true),
-		SourceType::SOURCE_TYPE_IMAGE);
-	
-	videoWatcher = DirectoryWatcher(
-		ofToDataPath(DEFAULT_VIDEOS_DIR, true),
-		SourceType::SOURCE_TYPE_VIDEO);
+	imageWatcher.beginWatch();
+
+
+//	imageWatcher = DirectoryWatcher(
+//		ofToDataPath(DEFAULT_IMAGES_DIR, true),
+//		SourceType::SOURCE_TYPE_IMAGE);
+//	imageWatcher.beginWatch();
+//
+//	videoWatcher = DirectoryWatcher(
+//		ofToDataPath(DEFAULT_VIDEOS_DIR, true),
+//		SourceType::SOURCE_TYPE_VIDEO);
 }
 
 void MediaServer::setup(){
