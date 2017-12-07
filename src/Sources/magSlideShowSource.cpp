@@ -102,12 +102,21 @@ void magSlideShowSource::update() {
 	deltaTime = nowTime-lastTime;
 	runningTime += deltaTime;
 	lastTime = nowTime;
-
-//    ofLogVerbose() << "Delta: " << deltaTime << " running: " << runningTime;
-
+	
 	for (auto &slide : activeSlides)
 	{
 		slide->update(deltaTime);
+	}
+
+	// Queue the next slide if it is time
+	if (doPlayNextSlide)
+	{
+		playNextSlide();
+		if (activeSlides.size() > 1)
+		{
+			activeSlides[1]->transition->start(activeSlides[0]);
+		}
+		doPlayNextSlide = false;
 	}
 
 	// Erase any complete slides:
@@ -497,13 +506,8 @@ void magSlideShowSource::slideStateChanged(const void *sender, ofEventArgs &args
 //									  << slide->getSlideStateName();
 	if (slide->getSlideState() == magSlide::SlideState::BuildOut)
 	{
-//		slide->transition->start();
-//		ofLogVerbose() << "BuildOut " << slide->getId();
-		playNextSlide();
-		if (activeSlides.size() > 1)
-		{
-			activeSlides[1]->transition->start(activeSlides[0]);
-		}
+		// Flag that we need to load the next slide:
+		doPlayNextSlide = true;
 	}
 
 }

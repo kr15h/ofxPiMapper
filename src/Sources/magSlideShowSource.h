@@ -161,6 +161,7 @@ class magSlideShowSource : public ofx::piMapper::FboSource {
 		void fileAddedListener(const void *sender);
 		void fileRemovedListener(const void *sender);
 		bool doInit;
+		bool doPlayNextSlide = false;
 };
 
 
