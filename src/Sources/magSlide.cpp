@@ -116,14 +116,9 @@ void magSlide::start(u_int64_t startTime)
 {
 	this->startTime = startTime;
 	runningTime = 0;
-	endTime = duration + buildOutDuration;
-	buildOutStartTime = endTime - buildOutDuration;
+	endTime = duration + (buildOutDuration*2); // *2 because we take into account transition in and out
+	buildOutStartTime = duration + buildOutDuration;
 	slideState = magSlide::SlideState::Normal;
-//	if (buildIn != nullptr)
-//	{
-//		activeTransition = buildIn;
-//		activeTransition->start();
-//	}
 	position.set(0, 0);
 	opacity = 255;
 	isComplete = false;
