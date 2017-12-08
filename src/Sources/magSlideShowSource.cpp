@@ -102,7 +102,7 @@ void magSlideShowSource::update() {
 	deltaTime = nowTime-lastTime;
 	runningTime += deltaTime;
 	lastTime = nowTime;
-	
+
 	for (auto &slide : activeSlides)
 	{
 		slide->update(deltaTime);
@@ -279,6 +279,13 @@ bool magSlideShowSource::loadFromXml(std::string path) {
 		xml.popTag();
 	}
 
+	if (xml.pushTag("Transition"))
+	{
+		settings.transitionName = xml.getValue("Type", settings.transitionName);
+		settings.transitionDuration = xml.getValue("Duration", settings.transitionDuration);
+		xml.popTag();
+	}
+
 	// Default resize options:
 	auto ropts = xml.getValue("ResizeOption", "");
 	if (ropts == "NoResize")
@@ -302,10 +309,7 @@ bool magSlideShowSource::loadFromXml(std::string path) {
 		settings.resizeOption = magSlide::FillProportionally;
 	}
 
-	settings.transitionName = "Dissolve";
-	settings.transitionDuration = 0.5;
 	initialize(settings);
-
 	return true;
 }
 
