@@ -33,6 +33,10 @@ class FboSource : public BaseSource {
 		// App listeners
 		void setDisableDraw(bool b); // Use in cases with external ofFbo
 
+        // fbo accessor functions to allow us to wrap any function with begin/end calls to fbo
+        void beginFbo();
+        void endFbo();
+
 	protected:
 		ofFbo * fbo;
 		void allocate(int width, int height);
