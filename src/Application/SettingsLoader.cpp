@@ -20,46 +20,46 @@ bool SettingsLoader::load(
 	SurfaceManager & surfaceManager,
 	MediaServer & mediaServer,
 	string fileName){
-	
+
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
 	string sourceType = "";
 	string sourceName = "";
-	
+
 	BaseSource * source = 0;
-	
+
 	if(!xmlSettings->loadFile(fileName)){
 		ofLogWarning("SettingsLoader::load()") << "Could not load XML settings";
 		return false;
 	}
-	
+
 	if(!xmlSettings->tagExists("surfaces")){
 		xmlSettings->addTag("surfaces");
 	}
-	
+
 	// Count <surfaces> tags.
 	unsigned int numPresets = xmlSettings->getNumTags("surfaces");
 	cout << "numPresets: " << numPresets << endl;
-		
+
 	// Clear previous presets and surfaces first.
 	surfaceManager.clearPresets();
-		
+
 	// Loop through <surfaces> tags in the XML.
 	for(unsigned int i = 0; i < numPresets; ++i){
-	
+
 		xmlSettings->pushTag("surfaces", i);
-		
+
 		SurfaceStack * surfaces = surfaceManager.createPreset();
 
 		int numSurfaces = xmlSettings->getNumTags("surface");
 		for(int i = 0; i < numSurfaces; i++){
 			if(xmlSettings->tagExists("surface", i)){
-			
+
 				SurfaceType type = SurfaceType::NONE;
 				if(xmlSettings->attributeExists("surface", "type")){
 					type = static_cast<SurfaceType>(
 						xmlSettings->getAttribute("surface", "type", 0, i));
 				}
-			
+
 				xmlSettings->pushTag("surface", i);
 
 				// attempt to load surface source
@@ -122,6 +122,13 @@ bool SettingsLoader::load(
 						quadSurface->setSource(source);
 					}
 					surfaces->push_back(quadSurface);
+				}else if(type == SurfaceType::CIRCLE_SURFACE){
+					QuadSurface * base = (QuadSurface*)getQuadSurface(xmlSettings);
+					CircleSurface * circleSurface = new CircleSurface(*base);
+					if(sourceName != "none" && source != 0){
+						circleSurface->setSource(source);
+					}
+					surfaces->push_back(circleSurface);
 				}else if(type == SurfaceType::GRID_WARP_SURFACE){
 					BaseSurface * gridWarpSurface = getGridWarpSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
@@ -227,13 +234,13 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 			xmlSettings->addValue("gridRows", gws->getGridRows());
 			xmlSettings->popTag();
 		}
-		
+
 		xmlSettings->popTag(); // surface
 	}
 	xmlSettings->popTag(); // surfaces
-	
+
 	} // for
-	
+
 	xmlSettings->save(fileName);
 }
 
@@ -245,17 +252,17 @@ bool SettingsLoader::create(string fileName){
 
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
-	
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-	
+
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
 			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
 									   xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
-	
+
 		if(xmlSettings->tagExists("vertex", 1)){
 			xmlSettings->pushTag("vertex", 1);
 			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
@@ -277,14 +284,14 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
-		
+
 		if(xmlSettings->tagExists("texCoord", 0)){
 			xmlSettings->pushTag("texCoord", 0);
 			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
-		
+
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
 			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
@@ -308,16 +315,16 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 			SurfaceType::TRIANGLE_SURFACE);
 	triangleSurface->setVertices(vertices);
 	triangleSurface->setTexCoords(texCoords);
-	
+
 	return triangleSurface;
 }
 
 BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
-	
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-	
+
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
 			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
@@ -348,7 +355,7 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 
 		xmlSettings->popTag(); // vertices
 	}
-	
+
 	vector <ofVec2f> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
@@ -360,7 +367,7 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
-		
+
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
 			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
@@ -384,14 +391,14 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 
 		xmlSettings->popTag(); // texCoords
 	}
-	
+
 	// Create and add quad surface
 	BaseSurface * quadSurface =
 		SurfaceFactory::instance()->createSurface(
 			SurfaceType::QUAD_SURFACE);
 	quadSurface->setVertices(vertices);
 	quadSurface->setTexCoords(texCoords);
-	
+
 	// Read properties
 	// Only perspective warping for now
 	bool perspectiveWarping = false;
@@ -402,18 +409,18 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	}
 	QuadSurface * qs = (QuadSurface *)quadSurface;
 	qs->setPerspectiveWarping(perspectiveWarping);
-	
+
 	return quadSurface;
 }
 
 BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
-	
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-		
+
 		int iv = 0;
-		
+
 		while(xmlSettings->tagExists("vertex", iv)){
 			xmlSettings->pushTag("vertex", iv);
 			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
@@ -424,14 +431,14 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 
 		xmlSettings->popTag(); // vertices
 	}
-	
+
 	vector <ofVec2f> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
 
 		int it = 0;
-		
+
 		while(xmlSettings->tagExists("texCoord", it)){
 			xmlSettings->pushTag("texCoord", it);
 			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
@@ -442,7 +449,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 
 		xmlSettings->popTag(); // texCoords
 	}
-	
+
 	// Read properties
 	// Only perspective warping for now
 	int gridCols = 0;
@@ -453,7 +460,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		gridRows = xmlSettings->getValue("gridRows", 0);
 		xmlSettings->popTag(); // properties
 	}
-	
+
 	// Create and add quad surface
 	BaseSurface * gridWarpSurface =
 		SurfaceFactory::instance()->createSurface(
@@ -463,16 +470,16 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 	((GridWarpSurface *)gridWarpSurface)->createGridMesh();
 	gridWarpSurface->setVertices(vertices);
 	gridWarpSurface->setTexCoords(texCoords);
-	
+
 	return gridWarpSurface;
 }
 
 BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 	vector <ofVec2f> vertices;
-	
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-		
+
 		unsigned int v = 0;
 		while(xmlSettings->tagExists("vertex", v)){
 			xmlSettings->pushTag("vertex", v);
@@ -489,7 +496,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
-		
+
 		unsigned int t = 0;
 		while(xmlSettings->tagExists("texCoord", t)){
 			xmlSettings->pushTag("texCoord", t);
@@ -508,7 +515,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 			SurfaceType::HEXAGON_SURFACE);
 	hexagonSurface->setVertices(vertices);
 	hexagonSurface->setTexCoords(texCoords);
-	
+
 	return hexagonSurface;
 }
 

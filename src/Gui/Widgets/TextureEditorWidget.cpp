@@ -149,7 +149,8 @@ void TextureEditorWidget::createJoints(){
 	
 	if(surface->getType() == SurfaceType::TRIANGLE_SURFACE){
 		tc = texCoords;
-	}else if(surface->getType() == SurfaceType::QUAD_SURFACE){
+	}else if(surface->getType() == SurfaceType::QUAD_SURFACE ||
+			 surface->getType() == SurfaceType::CIRCLE_SURFACE){
 		tc = texCoords;
 	}else if(surface->getType() == SurfaceType::HEXAGON_SURFACE){
 		tc = texCoords;
