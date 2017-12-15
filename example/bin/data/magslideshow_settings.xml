@@ -1,6 +1,6 @@
 <magSlideShow>
-    <Width>1920</Width>
-    <Height>1080</Height>
+    <Width>1280</Width>
+    <Height>720</Height>
     <SlideDuration>2</SlideDuration> <!-- Optional default duration for each slide-->
     <Loop>
         <Type>PING-PONG</Type> <!-- NONE | NORMAL | PING-PONG -->
