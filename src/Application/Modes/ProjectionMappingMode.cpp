@@ -58,8 +58,12 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 
 	 case 'q':
 		 app->createSurface(SurfaceType::QUAD_SURFACE);
-		 break;
-		 
+		break;
+
+	case 'r':
+		app->createSurface(SurfaceType::CIRCLE_SURFACE);
+		break;
+
 	 case 'g':
 		 app->createSurface(SurfaceType::GRID_WARP_SURFACE);
 		 break;
