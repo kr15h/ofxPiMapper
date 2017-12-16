@@ -1,29 +1,3 @@
-# This fork adds some important functions to PiMapper.
-### 1. Slide show function (implemented in master branch):
-PiMapper has now a slideshow and plays all images in a folder. There is an integrated directory watcher für updating new added images. Transition and slidetime can be edited via .xml file.
-
-### 2. Circular shapes for mapping (there are only square and tringle shapes so far):
-Simple Circular mapping shape (more complex version with movable center might come later)
-
-### 3. Mapping converter:
-Finalize the mapping converter, to convert exported .svg from Mapio and Madmapper to ofxPiMapper: https://github.com/magdesign/mapping-converter
-
-### 4. Bezier handles:
-Adding bezier handles to masks for better aligment: https://github.com/TsubokuLab/ofxBezierWarpManager
-### 5. Play all videos from a folder:
-This should be a an additional FBO source in PiMapper, looping all videos in /media/internal/video/*
-### 6. Grid Warp (meshing of square shapes):
-check out this http://www.hv-a.com/lpmt/sssm.pdf on page: 10
-https://forum.openframeworks.cc/t/grid-mesh-warping/12883
-### 7. SoftEdge:
-Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
-
-
-
-## Targeting OF_0.9.x on RaspberryPi.
-Each function will be rewarded to the coder from a pot sponsered by http://pocketvj.com
-Keybindings are edited to match the CP of PocketVJ.
-
 # ofxPiMapper
 
 [![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
