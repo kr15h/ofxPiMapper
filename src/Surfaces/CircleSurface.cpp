@@ -29,7 +29,7 @@ void CircleSurface::setup() {
 	updateMask = true;
 //	maskIsReady = false;
 
-	glESVertexShader = STRINGIFY(
+	glESVertexShader = CIRCLE_SURFACE_STRINGIFY(
 			attribute vec4 position;
 			attribute vec4 color;
 			attribute vec4 normal;
@@ -53,7 +53,7 @@ void CircleSurface::setup() {
 			}
 	);
 
-	glESFragmentShader = STRINGIFY(
+	glESFragmentShader = CIRCLE_SURFACE_STRINGIFY(
 //#ifdef GL_ES
 // define default precision for float, vec, mat.
 			precision highp float;
@@ -75,7 +75,7 @@ void CircleSurface::setup() {
 	);
 
 	gl2FragmentShader = "#version 120\n #extension GL_ARB_texture_rectangle : enable\n";
-	gl2FragmentShader += STRINGIFY(
+	gl2FragmentShader += CIRCLE_SURFACE_STRINGIFY(
 			uniform sampler2DRect tex0;
 			uniform sampler2DRect maskTex;
 

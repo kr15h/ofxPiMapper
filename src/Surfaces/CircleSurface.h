@@ -8,7 +8,7 @@
 
 #include "QuadSurface.h"
 
-#define STRINGIFY(A) #A
+#define CIRCLE_SURFACE_STRINGIFY(A) #A
 
 namespace ofx {
 namespace piMapper {
