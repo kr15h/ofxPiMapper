@@ -23,8 +23,8 @@ CircleSurface::~CircleSurface() {}
 
 void CircleSurface::setup() {
 
-	setPerspectiveWarping(true);
 	QuadSurface::setup();
+	setPerspectiveWarping(true);
 
 	updateMask = true;
 //	maskIsReady = false;
