@@ -17,7 +17,8 @@ check out this http://www.hv-a.com/lpmt/sssm.pdf on page: 10
 https://forum.openframeworks.cc/t/grid-mesh-warping/12883
 ### 7. SoftEdge:
 Image overlay to making adges transparent, could be achieved with overlaing a png with a black gradient.
-
+### 7. Color Adjustment:
+Adjust brightness and contrast.
 
 
 ## Targeting OF_0.9.x on RaspberryPi.
