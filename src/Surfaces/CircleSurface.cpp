@@ -183,6 +183,23 @@ void CircleSurface::draw() {
 		ofClear(0, 0, 0, 0);
 		ofSetupScreenOrtho(w, h, -1, 1);
 		ofEnableNormalizedTexCoords();
+		ofSetColor(255);
+		ofFill();
+		ofSetRectMode(OF_RECTMODE_CORNER);
+#ifdef TARGET_RASPBERRY_PI
+		scaledSourceFbo.getTexture().bind();
+		maskMesh.draw();
+		scaledSourceFbo.getTexture().unbind();
+
+		// Masking without shaders...
+		ofPushStyle();
+		ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+		ofSetColor(255);
+		ofFill();
+		ofDisableNormalizedTexCoords();
+		maskFbo.draw(0, 0);
+		ofPopStyle();
+#else
 		maskShader.begin();
 		maskShader.setUniformTexture("maskTex", maskFbo.getTexture(), 1);
 		ofSetColor(255);
@@ -192,6 +209,8 @@ void CircleSurface::draw() {
 		maskMesh.draw();
 		scaledSourceFbo.getTexture().unbind();
 		maskShader.end();
+#endif
+
 	}
 	outputFbo.end();
 

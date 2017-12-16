@@ -15,24 +15,8 @@ int main(int argc, char * argv[]){
 		}
 	}
 
-	shared_ptr<ofAppBaseWindow> window;
-#ifdef TARGET_OPENGLES
-	ofGLESWindowSettings esSettings;
-	esSettings.glesVersion = 2;
-	esSettings.width = 1440;
-	esSettings.height = 900;
-	window = ofCreateWindow(esSettings);
-#else
-	ofGLWindowSettings glSettings;
-	glSettings.glVersionMajor = 2;
-	glSettings.glVersionMinor = 1;
-	glSettings.width = 1440;
-	glSettings.height = 900;
-	window = ofCreateWindow(glSettings);
-#endif
-
-	auto app = std::make_shared<ofApp>();
 	Settings::instance()->setFullscreen(fullscreen);
-	ofRunApp(window, app);
-	ofRunMainLoop();
+
+	ofSetupOpenGL(1024, 768, OF_WINDOW);
+	ofRunApp(new ofApp());
 }
