@@ -216,7 +216,8 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		
 		// Save surface options
 		// For now only if quad surface
-		if(surface->getType() == SurfaceType::QUAD_SURFACE){
+		if (surface->getType() == SurfaceType::QUAD_SURFACE ||
+			surface->getType() == SurfaceType::CIRCLE_SURFACE) {
 			QuadSurface * qs = (QuadSurface *)surface;
 			if(!xmlSettings->tagExists("properties")){
 				xmlSettings->addTag("properties");
