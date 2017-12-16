@@ -32,7 +32,7 @@ int main(int argc, char * argv[]){
 #endif
 
 	auto app = std::make_shared<ofApp>();
-	ofRunApp(window, app);
 	Settings::instance()->setFullscreen(fullscreen);
+	ofRunApp(window, app);
 	ofRunMainLoop();
 }
