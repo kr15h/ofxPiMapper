@@ -26,82 +26,83 @@ void CircleSurface::setup() {
 	QuadSurface::setup();
 	setPerspectiveWarping(true);
 
+	lastSourceTextureId = UINT_MAX;
 	updateMask = true;
 //	maskIsReady = false;
 
-	glESVertexShader = CIRCLE_SURFACE_STRINGIFY(
-			attribute vec4 position;
-			attribute vec4 color;
-			attribute vec4 normal;
-			attribute vec2 texcoord;
-
-			uniform mat4 modelViewMatrix;
-			uniform mat4 projectionMatrix;
-			uniform sampler2D maskTex;
-
-			varying vec4 colorVarying;
-			varying vec2 texCoordVarying;
-
-			void main() {
-
-				//get our current vertex position so we can modify it
-				vec4 pos = projectionMatrix*modelViewMatrix*position;
-
-				gl_Position = pos;
-				colorVarying = color;
-				texCoordVarying = texcoord;
-			}
-	);
-
-	glESFragmentShader = CIRCLE_SURFACE_STRINGIFY(
-//#ifdef GL_ES
-// define default precision for float, vec, mat.
-			precision highp float;
+//	glESVertexShader = CIRCLE_SURFACE_STRINGIFY(
+//			attribute vec4 position;
+//			attribute vec4 color;
+//			attribute vec4 normal;
+//			attribute vec2 texcoord;
+//
+//			uniform mat4 modelViewMatrix;
+//			uniform mat4 projectionMatrix;
+//			uniform sampler2D maskTex;
+//
+//			varying vec4 colorVarying;
+//			varying vec2 texCoordVarying;
+//
+//			void main() {
+//
+//				//get our current vertex position so we can modify it
+//				vec4 pos = projectionMatrix*modelViewMatrix*position;
+//
+//				gl_Position = pos;
+//				colorVarying = color;
+//				texCoordVarying = texcoord;
+//			}
+//	);
+//
+//	glESFragmentShader = CIRCLE_SURFACE_STRINGIFY(
+////#ifdef GL_ES
+//// define default precision for float, vec, mat.
+//			precision highp float;
+////#endif
+//
+//			uniform sampler2D tex0;
+//			uniform sampler2D maskTex;
+//			uniform vec4 globalColor;
+//
+//			varying vec2 texCoordVarying;
+//
+//			void main (void)
+//			{
+//				vec2 pos = texCoordVarying;
+//				vec3 src = texture2D(tex0, pos).rgb;
+//				float mask = texture2D(maskTex, pos).r;
+//				gl_FragColor = vec4( src , mask);
+//			}
+//	);
+//
+//	gl2FragmentShader = "#version 120\n #extension GL_ARB_texture_rectangle : enable\n";
+//	gl2FragmentShader += CIRCLE_SURFACE_STRINGIFY(
+//			uniform sampler2DRect tex0;
+//			uniform sampler2DRect maskTex;
+//
+//			void main (void) {
+//				vec2 pos = gl_TexCoord[0].st;
+//
+//				vec3 src = texture2DRect(tex0, pos).rgb;
+//				float mask = texture2DRect(maskTex, pos).r;
+//
+//				gl_FragColor = vec4(src, mask);
+//			}
+//	);
+//
+//#ifdef TARGET_OPENGLES
+//	maskShader.setupShaderFromSource(GL_VERTEX_SHADER, glESVertexShader);
+//	maskShader.setupShaderFromSource(GL_FRAGMENT_SHADER, glESFragmentShader);
+//	maskShader.bindDefaults();
+//	maskShader.linkProgram();
+//#else
+//	if (ofIsGLProgrammableRenderer()) {
+//
+//	} else {
+//		maskShader.setupShaderFromSource(GL_FRAGMENT_SHADER, gl2FragmentShader);
+//		maskShader.linkProgram();
+//	}
 //#endif
-
-			uniform sampler2D tex0;
-			uniform sampler2D maskTex;
-			uniform vec4 globalColor;
-
-			varying vec2 texCoordVarying;
-
-			void main (void)
-			{
-				vec2 pos = texCoordVarying;
-				vec3 src = texture2D(tex0, pos).rgb;
-				float mask = texture2D(maskTex, pos).r;
-				gl_FragColor = vec4( src , mask);
-			}
-	);
-
-	gl2FragmentShader = "#version 120\n #extension GL_ARB_texture_rectangle : enable\n";
-	gl2FragmentShader += CIRCLE_SURFACE_STRINGIFY(
-			uniform sampler2DRect tex0;
-			uniform sampler2DRect maskTex;
-
-			void main (void) {
-				vec2 pos = gl_TexCoord[0].st;
-
-				vec3 src = texture2DRect(tex0, pos).rgb;
-				float mask = texture2DRect(maskTex, pos).r;
-
-				gl_FragColor = vec4(src, mask);
-			}
-	);
-
-#ifdef TARGET_OPENGLES
-	maskShader.setupShaderFromSource(GL_VERTEX_SHADER, glESVertexShader);
-	maskShader.setupShaderFromSource(GL_FRAGMENT_SHADER, glESFragmentShader);
-	maskShader.bindDefaults();
-	maskShader.linkProgram();
-#else
-	if (ofIsGLProgrammableRenderer()) {
-
-	} else {
-		maskShader.setupShaderFromSource(GL_FRAGMENT_SHADER, gl2FragmentShader);
-		maskShader.linkProgram();
-	}
-#endif
 
 	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 0.0f));
 	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 0.0f));
@@ -128,6 +129,7 @@ void CircleSurface::draw() {
 	if (source != currentSource) { // Pointer comparison
 		// Create the mask here
 		setupTextures();
+		lastSourceTextureId = UINT_MAX;
 		currentSource = source;
 	}
 
@@ -144,7 +146,43 @@ void CircleSurface::draw() {
 	auto sourceTex = ofTexture(*(source->getTexture()));
 	auto sourceTexId = sourceTex.getTextureData().textureID;
 
-	// Get the quad surface's mesh texture coordinates:
+	// Draw the mask only if the sources are FBO's, videos,
+	// or if the last texture id was UINT_MAX (which means that
+	// the mask has not yet been draw).
+//	if (source->getType() == SOURCE_TYPE_FBO ||
+//		source->getType() == SOURCE_TYPE_VIDEO ||
+//			lastSourceTextureId == UINT_MAX) {
+	if (true) {
+		lastSourceTextureId = sourceTexId;
+		drawMaskForSource(sourceTex);
+	}
+
+	// Swap the texture id of the source with the one of our
+	// newly drawn outputFbo:
+	source->getTexture()->getTextureData().textureID = outputFbo.getTexture().getTextureData().textureID;
+	auto texCoords = getMesh().getTexCoords();
+	getMesh().clearTexCoords();
+	getMesh().addTexCoords(defaultTexCoords);
+	// Draw the Quad:
+	QuadSurface::draw();
+
+	// Reset the texture id of the source
+	source->getTexture()->getTextureData().textureID = lastSourceTextureId;
+
+	// Reset the texture coords of the QuadSurface mesh:
+	getMesh().clearTexCoords();
+	getMesh().addTexCoords(texCoords);
+
+	if (!isNorm) ofDisableNormalizedTexCoords();
+}
+
+void CircleSurface::setFeathering(float f) {
+	feathering = f;
+	updateMask = true;
+}
+
+
+void CircleSurface::drawMaskForSource(ofTexture &sourceTex) {
 	auto quadTexCoords = getMesh().getTexCoords();
 
 	maskMesh.clearTexCoords();
@@ -152,45 +190,17 @@ void CircleSurface::draw() {
 	// Set the mesh's texture coords to the quads.
 	// This gets us the coordinates set in the TextureEditor
 	maskMesh.addTexCoords(quadTexCoords);
-
-	float w = outputFbo.getWidth();
-	float h = outputFbo.getHeight();
-
-	// Draw the scaled texture into an FBO
-	scaledSourceFbo.begin(true);
-	{
-		ofClear(0, 0, 0, 255);
-		ofSetupScreenOrtho(w, h, -1, 1);
-		ofEnableNormalizedTexCoords();
-		ofFill();
-		ofSetColor(255);
-		sourceTex.bind();
-		maskMesh.draw();
-		sourceTex.unbind();
-	}
-	scaledSourceFbo.end();
-
-	// Now draw the texture, masked, into the outputFbo.
-	// This enables us to use the TextureEditor to determine
-	// what part of the source will be masked:
-	maskMesh.clearTexCoords();
-
-	// Set default normalized texCoords
-	maskMesh.addTexCoords(defaultTexCoords);
-
 	outputFbo.begin(true);
 	{
 		ofClear(0, 0, 0, 0);
-		ofSetupScreenOrtho(w, h, -1, 1);
 		ofEnableNormalizedTexCoords();
 		ofSetColor(255);
 		ofFill();
 		ofSetRectMode(OF_RECTMODE_CORNER);
-#ifdef TARGET_RASPBERRY_PI
-		scaledSourceFbo.getTexture().bind();
+//#ifdef TARGET_RASPBERRY_PI
+		sourceTex.bind();
 		maskMesh.draw();
-		scaledSourceFbo.getTexture().unbind();
-
+		sourceTex.unbind();
 		// Masking without shaders...
 		ofPushStyle();
 		ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
@@ -199,44 +209,21 @@ void CircleSurface::draw() {
 		ofDisableNormalizedTexCoords();
 		maskFbo.draw(0, 0);
 		ofPopStyle();
-#else
-		maskShader.begin();
-		maskShader.setUniformTexture("maskTex", maskFbo.getTexture(), 1);
-		ofSetColor(255);
-		ofFill();
-		ofSetRectMode(OF_RECTMODE_CORNER);
-		scaledSourceFbo.getTexture().bind();
-		maskMesh.draw();
-		scaledSourceFbo.getTexture().unbind();
-		maskShader.end();
-#endif
+//#else
+//		maskShader.begin();
+//		maskShader.setUniformTexture("maskTex", maskFbo.getTexture(), 1);
+//		ofSetColor(255);
+//		ofFill();
+//		ofSetRectMode(OF_RECTMODE_CORNER);
+//		scaledSourceFbo.getTexture().bind();
+//		maskMesh.draw();
+//		scaledSourceFbo.getTexture().unbind();
+//		maskShader.end();
+//#endif
 
 	}
 	outputFbo.end();
 
-	getMesh().clearTexCoords();
-	getMesh().addTexCoords(defaultTexCoords);
-
-	// Swap the texture id of the source with the one of our
-	// newly drawn outputFbo:
-	source->getTexture()->getTextureData().textureID = outputFbo.getTexture().getTextureData().textureID;
-
-	// Draw the Quad:
-	QuadSurface::draw();
-
-	// Reset the texture id of the source
-	source->getTexture()->getTextureData().textureID = sourceTexId;
-
-	// Reset the texture coords of the QuadSurface mesh:
-	getMesh().clearTexCoords();
-	getMesh().addTexCoords(quadTexCoords);
-
-	if (!isNorm) ofDisableNormalizedTexCoords();
-}
-
-void CircleSurface::setFeathering(float f) {
-	feathering = f;
-	updateMask = true;
 }
 
 void CircleSurface::setupTextures() {
@@ -268,10 +255,10 @@ void CircleSurface::setupTextures() {
 	ofClear(0, 0, 0, 255);
 	outputFbo.end();
 
-	scaledSourceFbo.allocate(w, h);
-	scaledSourceFbo.begin();
-	ofClear(0, 0, 0, 255);
-	scaledSourceFbo.end();
+//	scaledSourceFbo.allocate(w, h);
+//	scaledSourceFbo.begin();
+//	ofClear(0, 0, 0, 255);
+//	scaledSourceFbo.end();
 
 	// This is lifted from QuadSurface::setup to ensure that the two
 	// meshes are similar:
@@ -283,10 +270,10 @@ void CircleSurface::setupTextures() {
 	ofVec2f p4 = ofVec2f(w, 0);
 
 	// Create 4 point for the texture coordinates
-	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 0.0f));
-	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 0.0f));
-	ofVec2f t3 = ofVec2f(ofVec2f(1.0f, 1.0f));
-	ofVec2f t4 = ofVec2f(ofVec2f(0.0f, 1.0f));
+	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 1.0f));
+	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 1.0f));
+	ofVec2f t3 = ofVec2f(ofVec2f(1.0f, 0.0f));
+	ofVec2f t4 = ofVec2f(ofVec2f(0.0f, 0.0f));
 	
 	// Clear maskMesh
 	maskMesh.clear();

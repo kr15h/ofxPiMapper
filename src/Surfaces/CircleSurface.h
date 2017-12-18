@@ -27,20 +27,20 @@ class CircleSurface : public QuadSurface {
 
 	protected:
 		void setupTextures();
+		void drawMaskForSource(ofTexture &sourceTexture);
 		ofFbo maskFbo;
-		ofFbo scaledSourceFbo;
+//		ofFbo scaledSourceFbo;
 		ofFbo outputFbo;
-		ofShader maskShader;
-		ofShader gradientShader;
+//		ofShader maskShader;
 		float feathering = 0.0f;
 		bool updateMask;
 		bool maskIsReady;
 
-		string glESFragmentShader;
-		string glESVertexShader;
-
-		string gl2FragmentShader;
-		string gl2VertexShader;
+//		string glESFragmentShader;
+//		string glESVertexShader;
+//
+//		string gl2FragmentShader;
+//		string gl2VertexShader;
 
 		ofMesh maskMesh;
 
@@ -54,6 +54,7 @@ class CircleSurface : public QuadSurface {
 		// This is a total kludge, but it keeps me from messing with the
 		// upstream source.
 		BaseSource* currentSource = 0;
+		unsigned int lastSourceTextureId;
 };
 
 }
