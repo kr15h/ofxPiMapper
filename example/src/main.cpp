@@ -14,7 +14,7 @@ int main(int argc, char * argv[]){
 			break;
 		}
 	}
-	
+
 	Settings::instance()->setFullscreen(fullscreen);
 
 	ofSetupOpenGL(1024, 768, OF_WINDOW);

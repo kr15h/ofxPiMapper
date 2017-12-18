@@ -7,6 +7,7 @@
 #include "QuadSurface.h"
 #include "GridWarpSurface.h"
 #include "HexagonSurface.h"
+#include "CircleSurface.h"
 
 namespace ofx {
 namespace piMapper {
@@ -26,6 +27,7 @@ class SurfaceFactory {
 		QuadSurface * createQuadSurface();
 		GridWarpSurface * createGridWarpSurface();
 		HexagonSurface * createHexagonSurface();
+		CircleSurface* createCircleSurface();
 	};
 
 } // namespace piMapper

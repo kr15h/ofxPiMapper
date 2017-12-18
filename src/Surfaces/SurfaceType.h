@@ -8,7 +8,8 @@ enum SurfaceType{
 	QUAD_SURFACE,
 	GRID_WARP_SURFACE,
 	HEXAGON_SURFACE,
-	NONE
+	NONE,
+	CIRCLE_SURFACE
 };
 
 } // namespace piMapper
