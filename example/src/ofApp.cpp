@@ -14,15 +14,24 @@ void ofApp::setup(){
 	// a surface in XML settings.
 	crossSource = new CrossSource();
 	customSource = new CustomSource();
+
+	// Create the slide show source.
+	slideShowSource = new magSlideShowSource();
+
+	// Register our sources:
 	piMapper.registerFboSource(crossSource);
 	piMapper.registerFboSource(customSource);
+	piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
 
 	// The info layer is hidden by default, press <i> to toggle
 	// piMapper.showInfo();
-	
+
 	ofSetFullscreen(Settings::instance()->getFullscreen());
 	ofSetEscapeQuitsApp(false);
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    slideShowSource->play();
 }
 
 void ofApp::update(){

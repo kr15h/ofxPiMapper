@@ -72,7 +72,7 @@
         </texCoords>
         <source>
             <source-type>fbo</source-type>
-            <source-name>Custom FBO Source</source-name>
+            <source-name>Slide Show Source</source-name>
         </source>
         <properties>
             <perspectiveWarping>1</perspectiveWarping>

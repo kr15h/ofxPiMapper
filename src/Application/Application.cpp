@@ -121,7 +121,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 setSourceMode();
 		 break;
 
-	 case 'i':
+	 case 'c':
 		 toggleInfo();
 		 break;
 
@@ -132,8 +132,8 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case 'z':
 		 undo();
 		 break;
-
-	 case 'n':
+		 
+	 case 'f':
 		 setNextPreset();
 		 break;
 
