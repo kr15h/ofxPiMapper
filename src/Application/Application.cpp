@@ -121,7 +121,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 setSourceMode();
 		 break;
 
-	 case 'c':
+	 case 'i':
 		 toggleInfo();
 		 break;
 

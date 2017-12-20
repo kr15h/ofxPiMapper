@@ -67,6 +67,10 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case 'h':
 		 app->createSurface(SurfaceType::HEXAGON_SURFACE);
 		 break;
+			
+	 case 'c':
+		app->createSurface(SurfaceType::CIRCLE_SURFACE);
+		break;
 
 	 case OF_KEY_BACKSPACE:
 		 app->eraseSurface(app->getSurfaceManager()->getSelectedSurfaceIndex());

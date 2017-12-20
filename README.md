@@ -166,6 +166,7 @@ i | Show info
 t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
+c | Add circle surface
 d | duplicate selected surface
 \+ | Scale surface up
 \- | Scale surface down
