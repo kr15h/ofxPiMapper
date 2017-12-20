@@ -84,6 +84,7 @@
 		01815ED61FE7D59200C35E93 /* CircleJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815E831FE7D53700C35E93 /* CircleJoint.cpp */; };
 		01815ED71FE7D59200C35E93 /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815E871FE7D53700C35E93 /* RadioList.cpp */; };
 		01815ED81FE7D59200C35E93 /* HomographyHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815E8A1FE7D53700C35E93 /* HomographyHelper.cpp */; };
+		01B8217B1FEB138A000100F2 /* CircleSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01B821791FEB138A000100F2 /* CircleSurface.cpp */; };
 		3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */; };
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
@@ -311,6 +312,8 @@
 		01815E881FE7D53700C35E93 /* RadioList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RadioList.h; sourceTree = "<group>"; };
 		01815E8A1FE7D53700C35E93 /* HomographyHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HomographyHelper.cpp; sourceTree = "<group>"; };
 		01815E8B1FE7D53700C35E93 /* HomographyHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomographyHelper.h; sourceTree = "<group>"; };
+		01B821791FEB138A000100F2 /* CircleSurface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CircleSurface.cpp; sourceTree = "<group>"; };
+		01B8217A1FEB138A000100F2 /* CircleSurface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleSurface.h; sourceTree = "<group>"; };
 		39264839192224DA0008A7F5 /* ofxXmlSettings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ofxXmlSettings.cpp; path = ../../ofxXmlSettings/src/ofxXmlSettings.cpp; sourceTree = "<group>"; };
 		3926483A192224DA0008A7F5 /* ofxXmlSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ofxXmlSettings.h; path = ../../ofxXmlSettings/src/ofxXmlSettings.h; sourceTree = "<group>"; };
 		3926483D192224F90008A7F5 /* tinyxml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml.cpp; sourceTree = "<group>"; };
@@ -622,6 +625,8 @@
 				01815E7D1FE7D53700C35E93 /* SurfaceType.h */,
 				01815E7E1FE7D53700C35E93 /* TriangleSurface.cpp */,
 				01815E7F1FE7D53700C35E93 /* TriangleSurface.h */,
+				01B821791FEB138A000100F2 /* CircleSurface.cpp */,
+				01B8217A1FEB138A000100F2 /* CircleSurface.h */,
 			);
 			path = Surfaces;
 			sourceTree = "<group>";
@@ -941,6 +946,7 @@
 				01815EB01FE7D59200C35E93 /* SetNextSourceCmd.cpp in Sources */,
 				01815EB11FE7D59200C35E93 /* SetPresetCmd.cpp in Sources */,
 				01815EB21FE7D59200C35E93 /* SetSourceCmd.cpp in Sources */,
+				01B8217B1FEB138A000100F2 /* CircleSurface.cpp in Sources */,
 				01815EB31FE7D59200C35E93 /* SetTexMapDrawModeCmd.cpp in Sources */,
 				01815EB41FE7D59200C35E93 /* StartDragSurfaceCmd.cpp in Sources */,
 				01815EB51FE7D59200C35E93 /* ToggleAnimatedSourceCmd.cpp in Sources */,
