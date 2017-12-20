@@ -343,9 +343,7 @@ void MediaServer::addFboSource(FboSource * fboSource){
     
     // It is important to run the setup of the FBO
     // source from outside as we can see here.
-    fboSource->beginFbo();
     fboSource->setup();
-    fboSource->endFbo();
 }
 
 BaseSource * MediaServer::loadFboSource(string & fboSourceName){
