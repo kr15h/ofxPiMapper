@@ -21,6 +21,8 @@ BaseSurface * SurfaceFactory::createSurface(SurfaceType type){
 		return createGridWarpSurface();
 	}else if(type == SurfaceType::HEXAGON_SURFACE){
 		return createHexagonSurface();
+	}else if(type == SurfaceType::CIRCLE_SURFACE){
+		return createCircleSurface();
 	}else{
 		throw runtime_error("Undefined surface type");
 	}
@@ -81,6 +83,11 @@ GridWarpSurface * SurfaceFactory::createGridWarpSurface(){
 HexagonSurface * SurfaceFactory::createHexagonSurface(){
 	HexagonSurface * hexagonSurface = new HexagonSurface();
 	return hexagonSurface;
+}
+
+CircleSurface * SurfaceFactory::createCircleSurface() {
+	CircleSurface * circleSurface = new CircleSurface();
+	return circleSurface;
 }
 
 } // namespace piMapper
