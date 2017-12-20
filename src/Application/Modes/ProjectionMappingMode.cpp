@@ -51,28 +51,24 @@ void ProjectionMappingMode::draw(Application * app){
 
 void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
-		 
+			
 	 case 't':
 		 app->createSurface(SurfaceType::TRIANGLE_SURFACE);
 		 break;
 
 	 case 'q':
 		 app->createSurface(SurfaceType::QUAD_SURFACE);
-		break;
-
-	case 'r':
-		app->createSurface(SurfaceType::CIRCLE_SURFACE);
-		break;
-
+		 break;
+			
 	 case 'g':
 		 app->createSurface(SurfaceType::GRID_WARP_SURFACE);
 		 break;
 		
-	 case 'x':
+	 case 'h':
 		 app->createSurface(SurfaceType::HEXAGON_SURFACE);
 		 break;
 
-	 case 'd':
+	 case OF_KEY_BACKSPACE:
 		 app->eraseSurface(app->getSurfaceManager()->getSelectedSurfaceIndex());
 		 break;
 	 
@@ -80,55 +76,55 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->togglePerspective();
 		 break;
 	 
-	 case 'n':
+	 case '}':
 		 app->addGridRow();
 		 break;
 	
-	 case 'm':
+	 case '{':
 		 app->removeGridRow();
 		 break;
 	 
-	 case 'v':
+	 case ']':
 		 app->addGridColumn();
 		 break;
-		 
-	 case 'b':
+			
+	 case '[':
 		 app->removeGridColumn();
 		 break;
-		 
+			
 	 case '.':
 		 app->selectNextSurface();
 		 break;
-		 
+			
 	 case ',':
 		 app->selectPrevSurface();
 		 break;
-		 
-	 case 'k':
+			
+	 case '>':
 		 app->selectNextVertex();
 		 break;
 	 
-	 case 'l':
+	 case '<':
 		 app->selectPrevVertex();
 		 break;
 	 
-	 case '8':
+	 case OF_KEY_UP:
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(0.0f, -10.0f));
 		 }else{
 			app->moveSelection(ofVec2f(0.0f, -1.0f));
 		 }
 		 break;
-		 
-	 case '9':
+			
+	 case OF_KEY_DOWN:
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(0.0f, 10.0f));
 		 }else{
 			app->moveSelection(ofVec2f(0.0f, 1.0f));
 		 }
 		 break;
-		 
-	 case '7':
+			
+	 case OF_KEY_LEFT:
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(-10.0f, 0.0f));
 		 }else{
@@ -136,43 +132,43 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 }
 		 break;
 	 
-	 case '0':
+	 case OF_KEY_RIGHT:
 		 if(app->isShiftKeyDown()){
 			app->moveSelection(ofVec2f(10.0f, 0.0f));
 		 }else{
 			app->moveSelection(ofVec2f(1.0f, 0.0f));
 		 }
 		 break;
-		 
-	 case 'w':
+			
+	 case ' ':
 		 app->togglePause();
 		 break;
-		 
-	 case '5':
+			
+	 case OF_KEY_TAB:
 		 app->setNextSource();
 		 break;
 	
-	 case 'a':
+	 case 'd':
 		 app->duplicateSurface();
 		 break;
-		 
-	 case 'h': // Move selected surface up the layer stack
+			
+	 case '0': // Move selected surface up the layer stack
 		 app->moveLayerUp();
 		 break;
 		
-	 case 'j': // Move selected surface down the layer stack
+	 case '9': // Move selected surface down the layer stack
 		 app->moveLayerDown();
 		 break;
-		 
-	 case 'o': // Scale surface up
+			
+	 case '+': // Scale surface up
 		 app->scaleUp();
 		 break;
 
-	 case 'i': // Scale surface down
+	 case '-': // Scale surface down
 		 app->scaleDown();
 		 break;
 
-	 case 'y':
+	 case 'l':
 		 _bDrawLayerPanel = !_bDrawLayerPanel;
 		 break;
 
@@ -181,7 +177,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->getSurfaceManager()->setNextPreset();
 		 break;
 	*/
-		 
+			
 	 default:
 		 break;
 	}
@@ -195,7 +191,7 @@ void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs &
 	BaseSurface * hitSurface = 0;
 
 	hitJoint = Gui::instance()->getProjectionEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
-		
+	
 	if(hitJoint){
 		for(int i = Gui::instance()->getProjectionEditorWidget().getJoints()->size() - 1; i >= 0 ; --i){
 			if((*Gui::instance()->getProjectionEditorWidget().getJoints())[i] == hitJoint){
@@ -211,7 +207,7 @@ void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs &
 			}
 		}
 	}
-		
+	
 	if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
 		//
 	}else if(hitJoint){
@@ -234,7 +230,7 @@ void ProjectionMappingMode::onMouseReleased(Application * app, ofMouseEventArgs 
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
-void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){	
+void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	

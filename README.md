@@ -25,6 +25,15 @@ You can use the example application of the addon for projection mapping projects
     ```
 
 
+## Compiling on Linux
+
+There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
+
+1. Open `example/addons.make` and remove ofxOMXPlayer line.
+2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
+3. Compile one or both examples by using make.
+
+
 ## Problems with Audio
 
 If you are having problems with audio playback, here are two steps for you. Before you do these, make sure audio of your video file works.
@@ -153,41 +162,33 @@ Key | Function
 2 | Texture editing mode
 3 | Projection mapping mode, use this to select a surface first
 4 | Source selection mode
-c | Show info
+i | Show info
 t | Add triangle surface
 q | Add quad surface
-x | Add hexagon surface
 g | Add grid warp surface
-a | duplicate selected surface
-o | Scale surface up
-i | Scale surface down
+d | duplicate selected surface
+\+ | Scale surface up
+\- | Scale surface down
 p | toggle perspective warping (quad surfaces only)
-v | add columns to grid surface (grid warp surfaces only)
-b | remove columns from grid surface (grid warp surfaces only)
-n | add rows to grid surface (grid warp surfaces only)
-m | remove rows from grid surface (grid warp surfaces only)
+] | add columns to grid surface (grid warp surfaces only)
+[ | remove columns from grid surface (grid warp surfaces only)
+} | add rows to grid surface (grid warp surfaces only)
+{ | remove rows from grid surface (grid warp surfaces only)
 . | select next surface (projection mapping mode only)
 , | select previous surface (projection mapping mode only)
-k | select next vertex
-l | select previous vertex
-h | Move selected surface one layer up
-j | Move selected surface one layer down
+\> | select next vertex
+\< | select previous vertex
+0 | Move selected surface one layer up
+9 | Move selected surface one layer down
 s | Save composition
-y | Hide/show layer panel
+l | Hide/show layer panel
 z | Undo
 rbt | Reboot (Raspberry Pi only)
 sdn | Shutdown (Raspberry Pi only)
 new | Clear composition (remove all surfaces)
 ext | Exit application and return to command line
-d | Delete surface.
-w | Toggle pause for video sources (texture and projection mapping modes)
-5 | Select next source (no need to use the source selection interface)
-8 | Move selection Up
-9 | Move selection Down
-7 | Move selection Left
-0 | Move selection Right
-If no surface is selected in the projection mapping mode, all surfaces are moved.
-
-Dont know if this works already:
-
+BACKSPACE ('\' via SSH) | Delete surface.
+SPACE | Toggle pause for video sources (texture and projection mapping modes)
+TAB | Select next source (no need to use the source selection interface)
+Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
 \/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi

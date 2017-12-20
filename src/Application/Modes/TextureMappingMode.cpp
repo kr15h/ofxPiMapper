@@ -103,7 +103,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	 case '>':
 		 app->selectNextTexCoord();
 		 break;
-		 
+			
 	 case '<':
 		 app->selectPrevTexCoord();
 		 break;
@@ -111,7 +111,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	 case ' ':
 		 app->togglePause();
 		 break;
-		 
+			
 	 case OF_KEY_TAB:
 		 app->setNextSource();
 		 break;
@@ -123,7 +123,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	 case '9': // Prew draw mode
 		 app->getCmdManager()->exec(new SetTexMapDrawModeCmd( this, getPrevDrawMode() ));
 		 break;
-		 
+			
 	}
 }
 
