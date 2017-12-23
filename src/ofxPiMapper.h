@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "SurfaceType.h"
 #include "Mode.h"
+#include "Vec2.h"
 
 class ofxPiMapper {
 	public:
@@ -66,7 +67,7 @@ class ofxPiMapper {
 		void scaleDown();
 		void togglePauseForSurface(unsigned int i);
 		void togglePause();
-		void moveSelection(ofVec2f by);
+		void moveSelection(ofx::piMapper::Vec2 by);
 		void createSurface(ofx::piMapper::SurfaceType type);
 		void eraseSurface(int i);
 

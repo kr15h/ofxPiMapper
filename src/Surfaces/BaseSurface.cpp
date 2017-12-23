@@ -51,24 +51,32 @@ void BaseSurface::createDefaultTexture(){
 	source = defaultSource;
 }
 
-void BaseSurface::drawTexture(ofVec2f position){
+void BaseSurface::drawTexture(Vec2 position){
 	if(source->getTexture() == 0){
 		ofLogWarning("BaseSurface") << "Source texture empty. Not drawing.";
 		return;
 	}
 
 	ofMesh texMesh;
-	texMesh.addVertex(position);
-	texMesh.addVertex(position + ofVec2f(source->getTexture()->getWidth(), 0.0f));
-	texMesh.addVertex(position
-					  + ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight()));
-	texMesh.addVertex(position + ofVec2f(0.0f, source->getTexture()->getHeight()));
+	texMesh.addVertex(position.toOf());
+	
+	Vec2 topRight(source->getTexture()->getWidth(), 0.0f);
+	texMesh.addVertex((position + topRight).toOf());
+	
+	Vec2 bottomRight(source->getTexture()->getWidth(), source->getTexture()->getHeight());
+	texMesh.addVertex((position + bottomRight).toOf());
+	
+	Vec2 bottomLeft(0.0f, source->getTexture()->getHeight());
+	texMesh.addVertex((position + bottomLeft).toOf());
+	
 	texMesh.addTriangle(0, 2, 3);
 	texMesh.addTriangle(0, 1, 2);
-	texMesh.addTexCoord(ofVec2f(0.0f, 0.0f));
-	texMesh.addTexCoord(ofVec2f(1.0f, 0.0f));
-	texMesh.addTexCoord(ofVec2f(1.0f, 1.0f));
-	texMesh.addTexCoord(ofVec2f(0.0f, 1.0f));
+	
+	texMesh.addTexCoord(Vec2(0.0f, 0.0f).toOf());
+	texMesh.addTexCoord(Vec2(1.0f, 0.0f).toOf());
+	texMesh.addTexCoord(Vec2(1.0f, 1.0f).toOf());
+	texMesh.addTexCoord(Vec2(0.0f, 1.0f).toOf());
+	
 	source->getTexture()->bind();
 	texMesh.draw();
 	source->getTexture()->unbind();

@@ -13,6 +13,7 @@
 #include "SaveTexCoordPosCmd.h"
 #include "SelTexCoordCmd.h"
 #include "Gui.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -34,7 +35,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 		void onGuiEvent(Application * app, GuiEvent & e){}
 
 		void drawTexture(Application * app);
-		void moveSelectedTexCoord(Application * app, ofVec2f by);
+		void moveSelectedTexCoord(Application * app, Vec2 by);
 		void selectNextVertex(Application * app);
 		void selectPrevVertex(Application * app);
 	
@@ -62,7 +63,7 @@ class TextureMappingMode : public ApplicationBaseMode {
 		ofPoint _prevCanvasTranslate;
 		ofPoint _clickCanvasTranslate;
 	
-		ofVec2f _texCoordOnClick;
+		Vec2 _texCoordOnClick;
 
 };
 

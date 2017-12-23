@@ -4,6 +4,7 @@
 #include "BaseCmd.h"
 #include "GridWarpSurface.h"
 #include "ProjectionEditorWidget.h"
+#include "Vec2.h"
 
 class ofxPiMapper;
 
@@ -19,7 +20,7 @@ class RmGridColCmd : public BaseUndoCmd {
 
 	private:
 		vector <ofVec3f> _vertices;
-		vector <ofVec2f> _texCoords;
+		vector <Vec2> _texCoords;
 		GridWarpSurface * _surface;
 		bool _doNotUndo;
 

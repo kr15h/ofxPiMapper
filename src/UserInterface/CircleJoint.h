@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "BaseJoint.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -12,7 +13,7 @@ class CircleJoint : public BaseJoint {
 
 		void update();
 		void draw();
-		bool hitTest(ofVec2f position);
+		bool hitTest(Vec2 position);
 
 	private:
 		float radius;

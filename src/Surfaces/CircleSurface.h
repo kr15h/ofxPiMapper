@@ -7,6 +7,8 @@
 #define OFXPIMAPPER_CIRCLESURFACE_H
 
 #include "QuadSurface.h"
+#include "Vec2.h"
+#include "Vec3.h"
 
 #define CIRCLE_SURFACE_STRINGIFY(A) #A
 
@@ -49,7 +51,7 @@ class CircleSurface : public QuadSurface {
 //		string          gl3FragmentShader;
 
 	private:
-		std::vector<ofVec2f> defaultTexCoords;
+		std::vector<Vec2> defaultTexCoords;
 		// We will use this pointer to determine if the source has changed.
 		// This is a total kludge, but it keeps me from messing with the
 		// upstream source.

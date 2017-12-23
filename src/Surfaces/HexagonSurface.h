@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "BaseSurface.h"
 #include "SurfaceType.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -15,28 +16,28 @@ class HexagonSurface : public BaseSurface {
 
 		void setup();
 		void setup(
-			vector <ofVec2f> & verts,
-			vector <ofVec2f> & coords,
+			vector <Vec2> & verts,
+			vector <Vec2> & coords,
 			BaseSource * newSource);
 		void draw();
 	
-		void setVertex(int index, ofVec2f p);
-		void setVertices(vector<ofVec2f> v);
+		void setVertex(int index, Vec2 p);
+		void setVertices(vector<Vec2> v);
 		void setVertices(vector<ofVec3f> v);
 	
-		void setTexCoord(int index, ofVec2f t);
-		void setTexCoords(vector<ofVec2f> t);
+		void setTexCoord(int index, Vec2 t);
+		void setTexCoords(vector<Vec2> t);
 	
-		void moveBy(ofVec2f v);
+		void moveBy(Vec2 v);
 
 		int getType();
-		bool hitTest(ofVec2f p);
-		ofVec2f getVertex(int index);
-		ofVec2f getTexCoord(int index);
+		bool hitTest(Vec2 p);
+		Vec2 getVertex(int index);
+		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
 		vector <ofVec3f> & getVertices();
-		vector <ofVec2f> & getTexCoords();
+		vector <Vec2> & getTexCoords();
 	
 		BaseSurface * clone();
 };

@@ -8,6 +8,7 @@
 #include "SurfaceFactory.h"
 #include "SurfaceType.h"
 #include "SourceTypeHelper.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {

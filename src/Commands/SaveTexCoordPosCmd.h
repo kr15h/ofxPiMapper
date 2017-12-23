@@ -7,6 +7,7 @@
 #include "BaseCmd.h"
 #include "CircleJoint.h"
 #include "Gui.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -14,13 +15,13 @@ namespace piMapper {
 class SaveTexCoordPosCmd : public BaseUndoCmd {
 
 	public:
-		SaveTexCoordPosCmd(int texCoordIndex, ofVec2f position);
+		SaveTexCoordPosCmd(int texCoordIndex, Vec2 position);
 		void exec();
 		void undo();
 
 	private:
 		int _texCoordIndex;
-		ofVec2f _position;
+		Vec2 _position;
 
 };
 

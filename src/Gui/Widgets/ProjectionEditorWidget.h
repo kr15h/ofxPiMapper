@@ -2,6 +2,7 @@
 
 #include "SurfaceManager.h"
 #include "CircleJoint.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -22,11 +23,11 @@ class ProjectionEditorWidget {
 		void createJoints();
 		void updateJoints();
 		void unselectAllJoints();
-		void moveSelectedSurface(ofVec2f by);
+		void moveSelectedSurface(Vec2 by);
 		void stopDragJoints();
 		void updateVertices();
 		void setSnapDistance(float newSnapDistance);
-		CircleJoint * hitTestJoints(ofVec2f pos);
+		CircleJoint * hitTestJoints(Vec2 pos);
 		vector <CircleJoint *> * getJoints();
 	
 		void onVertexChanged(int & i);

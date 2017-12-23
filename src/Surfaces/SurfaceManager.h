@@ -9,6 +9,7 @@
 #include "SourceType.h"
 #include "SurfaceStack.h"
 #include "SurfaceFactory.h"
+#include "Vec2.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
@@ -50,8 +51,8 @@ class SurfaceManager {
 		void selectPrevVertex();
 		void selectVertex(int i);
 	
-		void moveSelectionBy(ofVec2f v);
-		void moveAllSurfacesBy(ofVec2f v);
+		void moveSelectionBy(Vec2 v);
+		void moveAllSurfacesBy(Vec2 v);
 	
 		int size();
 		int getSelectedVertexIndex();

@@ -104,10 +104,10 @@ void CircleSurface::setup() {
 //	}
 //#endif
 
-	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 0.0f));
-	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 0.0f));
-	ofVec2f t3 = ofVec2f(ofVec2f(1.0f, 1.0f));
-	ofVec2f t4 = ofVec2f(ofVec2f(0.0f, 1.0f));
+	Vec2 t1 = Vec2(0.0f, 0.0f);
+	Vec2 t2 = Vec2(1.0f, 0.0f);
+	Vec2 t3 = Vec2(1.0f, 1.0f);
+	Vec2 t4 = Vec2(0.0f, 1.0f);
 
 	defaultTexCoords.push_back(t1);
 	defaultTexCoords.push_back(t2);
@@ -162,7 +162,7 @@ void CircleSurface::draw() {
 	source->getTexture()->getTextureData().textureID = outputFbo.getTexture().getTextureData().textureID;
 	auto texCoords = getMesh().getTexCoords();
 	getMesh().clearTexCoords();
-	getMesh().addTexCoords(defaultTexCoords);
+	getMesh().addTexCoords(Vec2::toOf(defaultTexCoords));
 	// Draw the Quad:
 	QuadSurface::draw();
 
@@ -264,35 +264,35 @@ void CircleSurface::setupTextures() {
 	// meshes are similar:
 
 	// Create 4 points for the 2 triangles
-	ofVec2f p1 = ofVec2f(0, 0);
-	ofVec2f p2 = ofVec2f(0, h);
-	ofVec2f p3 = ofVec2f(w, h);
-	ofVec2f p4 = ofVec2f(w, 0);
+	Vec3 p1 = Vec3(0, 0, 0);
+	Vec3 p2 = Vec3(0, h, 0);
+	Vec3 p3 = Vec3(w, h, 0);
+	Vec3 p4 = Vec3(w, 0, 0);
 
 	// Create 4 point for the texture coordinates
-	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 1.0f));
-	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 1.0f));
-	ofVec2f t3 = ofVec2f(ofVec2f(1.0f, 0.0f));
-	ofVec2f t4 = ofVec2f(ofVec2f(0.0f, 0.0f));
+	Vec2 t1 = Vec2(Vec2(0.0f, 1.0f));
+	Vec2 t2 = Vec2(Vec2(1.0f, 1.0f));
+	Vec2 t3 = Vec2(Vec2(1.0f, 0.0f));
+	Vec2 t4 = Vec2(Vec2(0.0f, 0.0f));
 	
 	// Clear maskMesh
 	maskMesh.clear();
 
 	// Create a surface with the points
-	maskMesh.addVertex(p1);
-	maskMesh.addVertex(p2);
-	maskMesh.addVertex(p3);
-	maskMesh.addVertex(p4);
+	maskMesh.addVertex(p1.toOf());
+	maskMesh.addVertex(p2.toOf());
+	maskMesh.addVertex(p3.toOf());
+	maskMesh.addVertex(p4.toOf());
 
 	// Add 2 triangles
 	maskMesh.addTriangle(0, 2, 3);
 	maskMesh.addTriangle(0, 1, 2);
 
 	// Add texture coordinates
-	maskMesh.addTexCoord(t1);
-	maskMesh.addTexCoord(t2);
-	maskMesh.addTexCoord(t3);
-	maskMesh.addTexCoord(t4);
+	maskMesh.addTexCoord(t1.toOf());
+	maskMesh.addTexCoord(t2.toOf());
+	maskMesh.addTexCoord(t3.toOf());
+	maskMesh.addTexCoord(t4.toOf());
 }
 
 
