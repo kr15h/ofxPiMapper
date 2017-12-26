@@ -5,6 +5,7 @@
 #include "GridWarpSurface.h"
 #include "ProjectionEditorWidget.h"
 #include "Vec2.h"
+#include "Vec3.h"
 
 class ofxPiMapper;
 
@@ -19,8 +20,8 @@ class AddGridColCmd : public BaseUndoCmd {
 		void undo();
 
 	private:
-		vector <ofVec3f> _vertices;
-		vector <Vec2> _texCoords;
+		vector<Vec3> _vertices;
+		vector<Vec2> _texCoords;
 		GridWarpSurface * _surface;
 
 };

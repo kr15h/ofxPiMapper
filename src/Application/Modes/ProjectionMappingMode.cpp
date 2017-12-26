@@ -114,33 +114,33 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 
 	 case OF_KEY_UP:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(Vec2(0.0f, -10.0f));
+			app->moveSelection(Vec3(0.0f, -10.0f, 0.0f));
 		 }else{
-			app->moveSelection(Vec2(0.0f, -1.0f));
+			app->moveSelection(Vec3(0.0f, -1.0f, 0.0f));
 		 }
 		 break;
 			
 	 case OF_KEY_DOWN:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(Vec2(0.0f, 10.0f));
+			app->moveSelection(Vec3(0.0f, 10.0f, 0.0f));
 		 }else{
-			app->moveSelection(Vec2(0.0f, 1.0f));
+			app->moveSelection(Vec3(0.0f, 1.0f, 0.0f));
 		 }
 		 break;
 			
 	 case OF_KEY_LEFT:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(Vec2(-10.0f, 0.0f));
+			app->moveSelection(Vec3(-10.0f, 0.0f, 0.0f));
 		 }else{
-			app->moveSelection(Vec2(-1.0f, 0.0f));
+			app->moveSelection(Vec3(-1.0f, 0.0f, 0.0f));
 		 }
 		 break;
 	 
 	 case OF_KEY_RIGHT:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(Vec2(10.0f, 0.0f));
+			app->moveSelection(Vec3(10.0f, 0.0f, 0.0f));
 		 }else{
-			app->moveSelection(Vec2(1.0f, 0.0f));
+			app->moveSelection(Vec3(1.0f, 0.0f, 0.0f));
 		 }
 		 break;
 			
@@ -242,7 +242,10 @@ void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs &
 	if(_bSurfaceDrag){
 		Vec2 mousePosition = Vec2(args.x, args.y);
 		Vec2 distance = mousePosition - _clickPosition;
-		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(distance);
+		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(Vec3(
+			distance.x,
+			distance.y,
+			0.0f));
 		_clickPosition = mousePosition;
 	}
 }

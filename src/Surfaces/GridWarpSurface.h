@@ -5,6 +5,7 @@
 #include "SurfaceType.h"
 #include "HomographyHelper.h"
 #include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -13,9 +14,9 @@ class GridWarpSurface : public BaseSurface {
 	public:
 		GridWarpSurface();
 
-		void setup();
+		void setup(){};
 		void draw();
-		void moveBy(Vec2 v);
+		void moveBy(Vec3 v);
 	
 		int getType();
 		int getGridRows();
@@ -28,13 +29,12 @@ class GridWarpSurface : public BaseSurface {
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
 
-		void setVertex(int index, Vec2 p);
-		void setVertices(vector<Vec2> v);
-		void setVertices(vector<ofVec3f> v);
+		void setVertex(int index, Vec3 p);
+		void setVertices(vector<Vec3> v);
 		void setTexCoord(int index, Vec2 t);
 		void setTexCoords(vector<Vec2> t);
-		vector <ofVec3f> & getVertices();
-		vector <Vec2> & getTexCoords();
+		vector<Vec3> getVertices();
+		vector<Vec2> getTexCoords();
 	
 		void createGridMesh();
 	
@@ -43,8 +43,6 @@ class GridWarpSurface : public BaseSurface {
 	private:
 		int _gridCols;
 		int _gridRows;
-	
-		vector<Vec2> _texCoords;
 };
 
 } // namespace piMapper

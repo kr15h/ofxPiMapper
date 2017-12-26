@@ -21,7 +21,10 @@ void BaseSurface::createDefaultTexture(){
 	for(int i = 0; i < pixels.size(); i++){
 		pixels[i] = 255;
 	}
-	int squareSize = 10;          // size of each test pattern square
+	
+	// size of each test pattern square
+	int squareSize = 10;
+
 	bool sy = false;
 	for(int y = 0; y < pixels.getWidth(); y += squareSize){
 		bool sx = false;
@@ -46,53 +49,54 @@ void BaseSurface::createDefaultTexture(){
 
 	// load pixels into texture
 	defaultTexture.loadData(pixels);
+	
 	// Create new source to be the default
 	defaultSource = new BaseSource(&defaultTexture);
 	source = defaultSource;
 }
 
-void BaseSurface::drawTexture(Vec2 position){
+void BaseSurface::drawTexture(Vec3 position){
 	if(source->getTexture() == 0){
 		ofLogWarning("BaseSurface") << "Source texture empty. Not drawing.";
 		return;
 	}
 
+	// TODO: Do not recreate this in each draw loop
 	ofMesh texMesh;
+	
+	// Add vertices to the mesh
 	texMesh.addVertex(position.toOf());
-	
-	Vec2 topRight(source->getTexture()->getWidth(), 0.0f);
+	Vec3 topRight(source->getTexture()->getWidth(), 0.0f, 0.0f);
 	texMesh.addVertex((position + topRight).toOf());
-	
-	Vec2 bottomRight(source->getTexture()->getWidth(), source->getTexture()->getHeight());
+	Vec3 bottomRight(source->getTexture()->getWidth(), source->getTexture()->getHeight(), 0.0f);
 	texMesh.addVertex((position + bottomRight).toOf());
-	
-	Vec2 bottomLeft(0.0f, source->getTexture()->getHeight());
+	Vec3 bottomLeft(0.0f, source->getTexture()->getHeight(), 0.0f);
 	texMesh.addVertex((position + bottomLeft).toOf());
 	
+	// Make triangles out of added vertices
 	texMesh.addTriangle(0, 2, 3);
 	texMesh.addTriangle(0, 1, 2);
 	
+	// Add texture coordinates for the added vertices
 	texMesh.addTexCoord(Vec2(0.0f, 0.0f).toOf());
 	texMesh.addTexCoord(Vec2(1.0f, 0.0f).toOf());
 	texMesh.addTexCoord(Vec2(1.0f, 1.0f).toOf());
 	texMesh.addTexCoord(Vec2(0.0f, 1.0f).toOf());
 	
+	// Draw mesh
 	source->getTexture()->bind();
 	texMesh.draw();
 	source->getTexture()->unbind();
 }
 
-//void BaseSurface::setTexture(ofTexture* texturePtr) { texture = texturePtr; }
 void BaseSurface::setSource(BaseSource * newSource){
 	source = newSource;
 }
 
-//ofTexture* BaseSurface::getTexture() { return texture; }
 BaseSource * BaseSurface::getSource(){
 	return source;
 }
 
-//ofTexture* BaseSurface::getDefaultTexture() { return &defaultTexture; }
 BaseSource * BaseSurface::getDefaultSource(){
 	return defaultSource;
 }
@@ -102,16 +106,20 @@ void BaseSurface::setMoved(bool moved){
 }
 
 void BaseSurface::scaleTo(float scale){
-	ofPoint centroid = getBoundingBox().getCenter();
+	Vec3 centroid(
+		getBoundingBox().getCenter().x,
+		getBoundingBox().getCenter().y,
+		getBoundingBox().getCenter().z);
 	for(unsigned int i = 0; i < mesh.getVertices().size(); ++i){
-		ofVec3f d = (mesh.getVertices()[i] - centroid) / _scale;
+		Vec3 d = (Vec3(mesh.getVertices()[i]) - centroid) / _scale;
 		d *= scale;
-		mesh.getVertices()[i] = centroid + d;
+		mesh.getVertices()[i] = (centroid + d).toOf();
 	}
 	
 	_scale = scale;
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 bool BaseSurface::getMoved(){

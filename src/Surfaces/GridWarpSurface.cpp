@@ -9,10 +9,6 @@ GridWarpSurface::GridWarpSurface(){
 	createGridMesh();
 }
 
-void GridWarpSurface::setup(){
-	// Nothing here yet
-}
-
 void GridWarpSurface::draw(){
 	if(source->getTexture() == 0){
 		return;
@@ -34,15 +30,14 @@ void GridWarpSurface::draw(){
 	}
 }
 
-void GridWarpSurface::moveBy(Vec2 v){
-	vector <ofVec3f> & vertices = getVertices();
-	
-	for(int i = 0; i < vertices.size(); i++){
-		vertices[i] += v.toOf();
+void GridWarpSurface::moveBy(Vec3 v){
+	for(int i = 0; i < mesh.getVertices().size(); i++){
+		mesh.getVertices()[i] += v.toOf();
 	}
 	
 	setMoved(true);
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 int GridWarpSurface::getType(){
@@ -146,17 +141,16 @@ ofPolyline GridWarpSurface::getTextureHitArea(){
 	return line;
 }
 
-void GridWarpSurface::setVertex(int index, Vec2 p){
+void GridWarpSurface::setVertex(int index, Vec3 vert){
 	if(index >= mesh.getVertices().size()){
 		throw runtime_error("Vertex with provided index does not exist");
 	}
 	
-	mesh.setVertex(index, p.toOf());
-	ofVec3f v = mesh.getVertex(index);
+	mesh.setVertex(index, vert.toOf());
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void GridWarpSurface::setVertices(vector<Vec2> v){
+void GridWarpSurface::setVertices(vector<Vec3> v){
 	if(v.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -165,19 +159,8 @@ void GridWarpSurface::setVertices(vector<Vec2> v){
 		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
-}
-
-void GridWarpSurface::setVertices(vector<ofVec3f> v){
-	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
-	}
-	
-	for(int i = 0; i < v.size(); ++i){
-		mesh.setVertex(i, v[i]);
-	}
-	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 void GridWarpSurface::setTexCoord(int index, Vec2 t){
@@ -197,16 +180,12 @@ void GridWarpSurface::setTexCoords(vector<Vec2> t){
 }
 
 
-vector <ofVec3f> & GridWarpSurface::getVertices(){
-	return mesh.getVertices();
+vector<Vec3> GridWarpSurface::getVertices(){
+	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector <Vec2> & GridWarpSurface::getTexCoords(){
-	_texCoords.clear();
-	for(auto c : mesh.getTexCoords()){
-		_texCoords.push_back(Vec2(c));
-	}
-	return _texCoords;
+vector<Vec2> GridWarpSurface::getTexCoords(){
+	return Vec2::fromOf(mesh.getTexCoords());
 }
 
 void GridWarpSurface::createGridMesh(){
@@ -251,7 +230,8 @@ void GridWarpSurface::createGridMesh(){
 		}
 	}
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 BaseSurface * GridWarpSurface::clone(){

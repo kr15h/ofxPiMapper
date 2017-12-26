@@ -114,7 +114,7 @@ class Application {
 		Moves vertex when in projection mapping mode.
 		Moves texture coordinate when in texture mapping mode.
 		*/
-		void moveSelection(Vec2 by);
+		void moveSelection(Vec3 by);
 
 		void setPresentationMode();
 		void setTextureMode();

@@ -356,13 +356,14 @@ void Application::selectPrevTexCoord(){
 	}
 }
 
-void Application::moveSelection(Vec2 by){
+void Application::moveSelection(Vec3 by){
 	if(_state == ProjectionMappingMode::instance()){
 		getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
 	}else if(_state == TextureMappingMode::instance()){
+		Vec2 tcBy(by.x, by.y);
 		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 		if(selectedTexCoord >= 0){
-			moveTexCoord(selectedTexCoord, by);
+			moveTexCoord(selectedTexCoord, tcBy);
 		}
 	}
 }

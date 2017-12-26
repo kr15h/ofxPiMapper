@@ -3,6 +3,7 @@
 #include "SurfaceManager.h"
 #include "CircleJoint.h"
 #include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -23,7 +24,7 @@ class ProjectionEditorWidget {
 		void createJoints();
 		void updateJoints();
 		void unselectAllJoints();
-		void moveSelectedSurface(Vec2 by);
+		void moveSelectedSurface(Vec3 by);
 		void stopDragJoints();
 		void updateVertices();
 		void setSnapDistance(float newSnapDistance);
@@ -31,7 +32,7 @@ class ProjectionEditorWidget {
 		vector <CircleJoint *> * getJoints();
 	
 		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<ofVec3f> & vertices);
+		void onVerticesChanged(vector<Vec3> & vertices);
 		void onSurfaceSelected(int & surfaceIndex);
 		void onVertexSelected(int & vertexIndex);
 		void onVertexUnselected(int & vertexIndex);

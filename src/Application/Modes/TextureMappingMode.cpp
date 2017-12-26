@@ -264,7 +264,7 @@ void TextureMappingMode::drawTexture(Application * app){
 		ofEnableNormalizedTexCoords();
 
 		ofSetColor(255, 255, 255, 255);
-		app->getSurfaceManager()->getSelectedSurface()->drawTexture(Vec2(0, 0));
+		app->getSurfaceManager()->getSelectedSurface()->drawTexture(Vec3(0.0f, 0.0f, 0.0f));
 
 		if(!normalizedTexCoords){
 			ofDisableNormalizedTexCoords();

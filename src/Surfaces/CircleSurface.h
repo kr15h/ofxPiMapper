@@ -1,6 +1,7 @@
 //
 // CircleSurface.h
 // Copyright (c) 2017 Cristobal Mendoza
+// With modifications by Krisjanis Rijnieks (c) 2017
 // http://cuppetellimendoza.com
 
 #ifndef OFXPIMAPPER_CIRCLESURFACE_H
@@ -20,7 +21,6 @@ class CircleSurface : public QuadSurface {
 		CircleSurface();
 		CircleSurface(QuadSurface &surface);
 		int getType() override;
-		~CircleSurface();
 		void draw() override;
 		void setup() override;
 

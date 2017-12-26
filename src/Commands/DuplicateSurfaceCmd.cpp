@@ -12,7 +12,7 @@ void DuplicateSurfaceCmd::exec(){
 	ofLogNotice("DuplicateSurfaceCmd", "exec");
 	_duplicate = _surface->clone();
 	_surfaceManager->addSurface(_duplicate);
-	_duplicate->moveBy(Vec2(10.0f, 10.0f));
+	_duplicate->moveBy(Vec3(10.0f, 10.0f, 0.0f));
 	_surfaceManager->selectSurface(_duplicate);
 }
 

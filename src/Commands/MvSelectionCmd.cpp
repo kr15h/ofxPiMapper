@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-MvSelectionCmd::MvSelectionCmd(SurfaceManager * sm, Vec2 moveBy){
+MvSelectionCmd::MvSelectionCmd(SurfaceManager * sm, Vec3 moveBy){
 	_surfaceManager = sm;
 	_movedBy = moveBy;
 }

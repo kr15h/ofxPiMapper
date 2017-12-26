@@ -18,11 +18,7 @@ void AddGridColCmd::exec(){
 void AddGridColCmd::undo(){
 	ofLogNotice("AddGridColCmd", "undo");
 	_surface->setGridCols(_surface->getGridCols() - 1);
-	vector <Vec2> v;
-	for(int i = 0; i < _vertices.size(); ++i){
-		v.push_back( Vec2(_vertices[i].x, _vertices[i].y) );
-	}
-	_surface->setVertices(v);
+	_surface->setVertices(_vertices);
 	_surface->setTexCoords(_texCoords);
 }
 

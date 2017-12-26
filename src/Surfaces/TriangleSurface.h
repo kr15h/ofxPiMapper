@@ -4,6 +4,7 @@
 #include "BaseSurface.h"
 #include "SurfaceType.h"
 #include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -11,21 +12,18 @@ namespace piMapper {
 class TriangleSurface : public BaseSurface {
 	public:
 		TriangleSurface();
-		~TriangleSurface();
 
 		void setup();
-		void setup(Vec2 p1, Vec2 p2, Vec2 p3, Vec2 t1, Vec2 t2,
-				   Vec2 t3, BaseSource * newSource);
+		void setup(
+			Vec3 p1, Vec3 p2, Vec3 p3,
+			Vec2 t1, Vec2 t2, Vec2 t3,
+			BaseSource * newSource);
 		void draw();
-	
-		void setVertex(int index, Vec2 p);
-		void setVertices(vector<Vec2> v);
-		void setVertices(vector<ofVec3f> v);
-	
+		void setVertex(int index, Vec3 p);
+		void setVertices(vector<Vec3> v);
 		void setTexCoord(int index, Vec2 t);
 		void setTexCoords(vector<Vec2> t);
-	
-		void moveBy(Vec2 v);
+		void moveBy(Vec3 v);
 
 		int getType();
 		bool hitTest(Vec2 p);
@@ -33,8 +31,8 @@ class TriangleSurface : public BaseSurface {
 		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
-		vector <ofVec3f> & getVertices();
-		vector <Vec2> & getTexCoords();
+		vector<Vec3> getVertices();
+		vector<Vec2> getTexCoords();
 	
 		BaseSurface * clone();
 };

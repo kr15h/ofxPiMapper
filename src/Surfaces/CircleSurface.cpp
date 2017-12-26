@@ -1,6 +1,7 @@
 //
 // CircleSurface.cpp
 // Copyright (c) 2017 Cristobal Mendoza
+// With modifications by Krisjanis Rijnieks (c) 2017
 // http://cuppetellimendoza.com
 
 #include "CircleSurface.h"
@@ -18,8 +19,6 @@ CircleSurface::CircleSurface(QuadSurface &surface) {
 	setTexCoords(surface.getTexCoords());
 	setPerspectiveWarping(surface.getPerspectiveWarping());
 }
-
-CircleSurface::~CircleSurface() {}
 
 void CircleSurface::setup() {
 
@@ -264,10 +263,10 @@ void CircleSurface::setupTextures() {
 	// meshes are similar:
 
 	// Create 4 points for the 2 triangles
-	Vec3 p1 = Vec3(0, 0, 0);
-	Vec3 p2 = Vec3(0, h, 0);
-	Vec3 p3 = Vec3(w, h, 0);
-	Vec3 p4 = Vec3(w, 0, 0);
+	Vec3 p1 = Vec3(0.0f, 0.0f, 0.0f);
+	Vec3 p2 = Vec3(0.0f, h, 0.0f);
+	Vec3 p3 = Vec3(w, h, 0.0f);
+	Vec3 p4 = Vec3(w, 0.0f, 0.0f);
 
 	// Create 4 point for the texture coordinates
 	Vec2 t1 = Vec2(Vec2(0.0f, 1.0f));
