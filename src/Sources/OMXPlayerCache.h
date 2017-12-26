@@ -14,12 +14,12 @@ class OMXPlayerCache {
 
 	public:
 		static OMXPlayerCache * instance();
-		ofxOMXPlayer * load(string moviePath);
-		void unload(string moviePath);
+		ofxOMXPlayer * load(std::string moviePath);
+		void unload(std::string moviePath);
 
 	private:
 		static OMXPlayerCache * _instance;
-		map <string, ofxOMXPlayer *> _players;
+		map <std::string, ofxOMXPlayer *> _players;
 
 };
 

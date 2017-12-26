@@ -29,13 +29,13 @@ BaseSurface * SurfaceFactory::createSurface(SurfaceType type){
 }
 
 TriangleSurface * SurfaceFactory::createTriangleSurface(){
-	vector <Vec3> vertices;
+	std::vector<Vec3> vertices;
 	float margin = 50.0f;
 	vertices.push_back(Vec3((float)ofGetWidth() / 2.0f, margin, 0.0f));
 	vertices.push_back(Vec3((float)ofGetWidth() - margin, (float)ofGetHeight() - margin, 0.0f));
 	vertices.push_back(Vec3(margin, (float)ofGetHeight() - margin, 0.0f));
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 	texCoords.push_back(Vec2(0.5f, 0.0f));
 	texCoords.push_back(Vec2(1.0f, 1.0f));
 	texCoords.push_back(Vec2(0.0f, 1.0f));
@@ -51,14 +51,14 @@ TriangleSurface * SurfaceFactory::createTriangleSurface(){
 }
 
 QuadSurface * SurfaceFactory::createQuadSurface(){
-	vector <Vec3> vertices;
+	std::vector<Vec3> vertices;
 	float margin = 50.0f;
 	vertices.push_back(Vec3(margin, margin, 0.0f));
 	vertices.push_back(Vec3((float)ofGetWidth() - margin, margin, 0.0f));
 	vertices.push_back(Vec3((float)ofGetWidth() - margin, (float)ofGetHeight() - margin, 0.0f));
 	vertices.push_back(Vec3(margin, (float)ofGetHeight() - margin, 0.0f));
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 	texCoords.push_back(Vec2(Vec2(0.0f, 0.0f)));
 	texCoords.push_back(Vec2(Vec2(1.0f, 0.0f)));
 	texCoords.push_back(Vec2(Vec2(1.0f, 1.0f)));

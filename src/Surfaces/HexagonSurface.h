@@ -17,14 +17,14 @@ class HexagonSurface : public BaseSurface {
 
 		void setup();
 		void setup(
-			vector <Vec3> & verts,
-			vector <Vec2> & coords,
+			std::vector<Vec3> & verts,
+			std::vector<Vec2> & coords,
 			BaseSource * newSource);
 		void draw();
 		void setVertex(int index, Vec3 p);
-		void setVertices(vector<Vec3> v);
+		void setVertices(std::vector<Vec3> v);
 		void setTexCoord(int index, Vec2 t);
-		void setTexCoords(vector<Vec2> t);
+		void setTexCoords(std::vector<Vec2> t);
 		void moveBy(Vec3 v);
 
 		int getType();
@@ -33,8 +33,8 @@ class HexagonSurface : public BaseSurface {
 		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
-		vector<Vec3> getVertices();
-		vector<Vec2> getTexCoords();
+		std::vector<Vec3> getVertices();
+		std::vector<Vec2> getTexCoords();
 	
 		BaseSurface * clone();
 };

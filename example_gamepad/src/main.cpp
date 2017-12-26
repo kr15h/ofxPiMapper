@@ -6,7 +6,7 @@
 int main(int argc, char * argv[]){
 	bool fullscreen = false;
 
-	vector<string> arguments = vector<string>(argv, argv + argc);
+	std::vector<std::string> arguments = std::vector<std::string>(argv, argv + argc);
 	for(int i = 0; i < arguments.size(); ++i){
 		if(arguments.at(i) == "-f"){
 			fullscreen = true;

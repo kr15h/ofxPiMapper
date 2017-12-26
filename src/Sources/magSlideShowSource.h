@@ -13,7 +13,6 @@
 
 class magSlide;
 
-
 class magSlideShowSource : public ofx::piMapper::FboSource {
 	public:
 		magSlideShowSource();
@@ -157,9 +156,9 @@ class magSlideShowSource : public ofx::piMapper::FboSource {
 		int currentSlideIndex = 0;
 		int direction = 1;
 		int loopCount = 0;
-		ofx::piMapper::DirectoryWatcher* directoryWatcher;
-		void fileAddedListener(const void *sender);
-		void fileRemovedListener(const void *sender);
+		ofx::piMapper::DirectoryWatcher * directoryWatcher;
+		void fileAddedListener(const void * sender);
+		void fileRemovedListener(const void * sender);
 		bool doInit;
 		bool doPlayNextSlide = false;
 };

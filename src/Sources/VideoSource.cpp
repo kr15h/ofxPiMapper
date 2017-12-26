@@ -18,7 +18,7 @@ VideoSource::VideoSource(){
 	#endif
 }
 
-void VideoSource::loadVideo(string & filePath){
+void VideoSource::loadVideo(std::string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);
 	#ifdef TARGET_RASPBERRY_PI

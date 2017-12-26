@@ -3,7 +3,7 @@
 namespace ofx {
 namespace piMapper {
 
-DirectoryWatcher::DirectoryWatcher(string path, int watcherMediaType){
+DirectoryWatcher::DirectoryWatcher(std::string path, int watcherMediaType){
 	directoryPath = path;
 	_mediaType = watcherMediaType;
 
@@ -41,11 +41,12 @@ DirectoryWatcher::DirectoryWatcher(string path, int watcherMediaType){
 }
 
 DirectoryWatcher::~DirectoryWatcher() {
-	endWatch();
-//	waitForThread(false);
+	if(isThreadRunning()){
+		stopThread();
+	}
 }
 
-vector <string> & DirectoryWatcher::getFilePaths(){
+std::vector<std::string> & DirectoryWatcher::getFilePaths(){
 	return _filePaths;
 }
 
@@ -56,10 +57,6 @@ int DirectoryWatcher::getMediaType(){
 void DirectoryWatcher::beginWatch(int intervalInMillis) {
 	watchInterval = intervalInMillis;
 	startThread();
-}
-
-void DirectoryWatcher::endWatch() {
-	stopThread();
 }
 
 void DirectoryWatcher::threadedFunction() {

@@ -1,9 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR <= 9
 	#include "ofVec3f.h"
 #else
-	// TODO: include glm
+	#include "glm/vec3.hpp"
 #endif
 
 namespace ofx {
@@ -18,10 +20,13 @@ public:
 	#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR <= 9
 		Vec3(ofVec3f & src);
 		ofVec3f toOf();
-		static vector<ofVec3f> toOf(vector<Vec3> & src);
-		static vector<Vec3> fromOf(vector<ofVec3f> & src);
+		static std::vector<ofVec3f> toOf(std::vector<Vec3> & src);
+		static std::vector<Vec3> fromOf(std::vector<ofVec3f> & src);
 	#else
-		// TODO: Vec3(glm::vec3 & src);
+		Vec3(glm::vec3 & src);
+		glm::vec3 toOf();
+		static std::vector<glm::vec3> toOf(std::vector<Vec3> & src);
+		static std::vector<Vec3> fromOf(std::vector<glm::vec3> & src);
 	#endif
 	
 	void operator=(const Vec3 & other);

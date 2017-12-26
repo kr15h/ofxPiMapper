@@ -20,8 +20,8 @@ class AddGridColCmd : public BaseUndoCmd {
 		void undo();
 
 	private:
-		vector<Vec3> _vertices;
-		vector<Vec2> _texCoords;
+		std::vector<Vec3> _vertices;
+		std::vector<Vec2> _texCoords;
 		GridWarpSurface * _surface;
 
 };

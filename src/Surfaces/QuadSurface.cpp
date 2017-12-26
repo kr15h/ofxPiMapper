@@ -9,7 +9,7 @@ QuadSurface::QuadSurface(){
 }
 
 QuadSurface::~QuadSurface(){
-	cout << "QuadSurface destructor." << endl;
+	std::cout << "QuadSurface destructor." << std::endl;
 }
 
 void QuadSurface::setup(){
@@ -112,7 +112,7 @@ void QuadSurface::draw(){
 
 void QuadSurface::setVertex(int index, Vec3 p){
 	if(index > 3){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		return;
 	}
 
@@ -120,7 +120,7 @@ void QuadSurface::setVertex(int index, Vec3 p){
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void QuadSurface::setVertices(vector<Vec3> v){
+void QuadSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != 4){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -129,21 +129,21 @@ void QuadSurface::setVertices(vector<Vec3> v){
 		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 void QuadSurface::setTexCoord(int index, Vec2 t){
 	if(index > 3){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
-				<< endl;
+				<< std::endl;
 		return;
 	}
 
 	mesh.setTexCoord(index, t.toOf());
 }
 
-void QuadSurface::setTexCoords(vector<Vec2> t){
+void QuadSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != 4){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -158,7 +158,7 @@ void QuadSurface::moveBy(Vec3 v){
 	}
 	
 	setMoved(true);
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
@@ -178,7 +178,7 @@ bool QuadSurface::hitTest(Vec2 p){
 
 Vec3 QuadSurface::getVertex(int index){
 	if(index > 3){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
 	
@@ -223,11 +223,11 @@ ofPolyline QuadSurface::getTextureHitArea(){
 	return line;
 }
 
-vector<Vec3> QuadSurface::getVertices(){
+std::vector<Vec3> QuadSurface::getVertices(){
 	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector<Vec2> QuadSurface::getTexCoords(){
+std::vector<Vec2> QuadSurface::getTexCoords(){
 	return Vec2::fromOf(mesh.getTexCoords());
 }
 

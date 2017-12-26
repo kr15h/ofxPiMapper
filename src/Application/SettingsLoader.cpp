@@ -19,11 +19,11 @@ SettingsLoader::SettingsLoader(){
 bool SettingsLoader::load(
 	SurfaceManager & surfaceManager,
 	MediaServer & mediaServer,
-	string fileName){
+	std::string fileName){
 
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
-	string sourceType = "";
-	string sourceName = "";
+	std::string sourceType = "";
+	std::string sourceName = "";
 
 	BaseSource * source = 0;
 
@@ -38,7 +38,7 @@ bool SettingsLoader::load(
 
 	// Count <surfaces> tags.
 	unsigned int numPresets = xmlSettings->getNumTags("surfaces");
-	cout << "numPresets: " << numPresets << endl;
+	std::cout << "numPresets: " << numPresets << std::endl;
 
 	// Clear previous presets and surfaces first.
 	surfaceManager.clearPresets();
@@ -79,10 +79,10 @@ bool SettingsLoader::load(
 						}else{
 				
 							// Construct full path
-							string dir = mediaServer.getDefaultMediaDir(typeEnum);
-							stringstream pathss;
+							std::string dir = mediaServer.getDefaultMediaDir(typeEnum);
+							std::stringstream pathss;
 							pathss << ofToDataPath(dir, true) << sourceName;
-							string sourcePath = pathss.str();
+							std::string sourcePath = pathss.str();
 				
 							// Load media by using full path
 							source = mediaServer.loadMedia(sourcePath, typeEnum);
@@ -157,7 +157,7 @@ bool SettingsLoader::load(
 }
 
 // TODO: Save all presets, not just the active one.
-bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
+bool SettingsLoader::save(SurfaceManager & surfaceManager, std::string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
 	
@@ -178,7 +178,7 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->pushTag("surface", i);
 		xmlSettings->addTag("vertices");
 		xmlSettings->pushTag("vertices");
-		vector<Vec3> vertices = surface->getVertices();
+		std::vector<Vec3> vertices = surface->getVertices();
 		for(int j = 0; j < vertices.size(); j++){
 			xmlSettings->addTag("vertex");
 			xmlSettings->pushTag("vertex", j);
@@ -194,7 +194,7 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 
 		xmlSettings->addTag("texCoords");
 		xmlSettings->pushTag("texCoords");
-		vector<Vec2> texCoords = surface->getTexCoords();
+		std::vector<Vec2> texCoords = surface->getTexCoords();
 		for(int j = 0; j < texCoords.size(); j++){
 			xmlSettings->addTag("texCoord");
 			xmlSettings->pushTag("texCoord", j);
@@ -207,10 +207,10 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->addTag("source");
 		xmlSettings->pushTag("source");
 		
-		string sourceTypeName = SourceTypeHelper::GetSourceTypeHelperName(surface->getSource()->getType());
+		std::string sourceTypeName = SourceTypeHelper::GetSourceTypeHelperName(surface->getSource()->getType());
 		
 		xmlSettings->addValue("source-type", sourceTypeName);
-		string sourceName = surface->getSource()->getName();
+		std::string sourceName = surface->getSource()->getName();
 		xmlSettings->addValue("source-name", (sourceName == "") ? "none" : sourceName);
 		xmlSettings->popTag(); // source
 		
@@ -245,14 +245,14 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 	xmlSettings->save(fileName);
 }
 
-bool SettingsLoader::create(string fileName){
+bool SettingsLoader::create(std::string fileName){
 	ofxXmlSettings xml;
 	xml.addTag("surfaces");
 	return xml.save(fileName);
 }
 
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
-	vector <Vec3> vertices;
+	std::vector<Vec3> vertices;
 
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -287,7 +287,7 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
@@ -327,7 +327,7 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
-	vector<Vec3> vertices;
+	std::vector<Vec3> vertices;
 
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -371,7 +371,7 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
@@ -429,7 +429,7 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
-	vector <Vec3> vertices;
+	std::vector<Vec3> vertices;
 
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -449,7 +449,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
@@ -492,7 +492,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 }
 
 BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
-	vector <Vec3> vertices;
+	std::vector<Vec3> vertices;
 
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
@@ -511,7 +511,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <Vec2> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");

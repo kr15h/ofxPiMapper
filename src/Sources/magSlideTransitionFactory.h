@@ -16,7 +16,7 @@ class magSlideTransitionFactory
 public:
 	static magSlideTransitionFactory* instance();
 
-	std::shared_ptr<magSlideTransition> createTransition(string transitionName,
+	std::shared_ptr<magSlideTransition> createTransition(std::string transitionName,
 														 std::shared_ptr<magSlide> slide,
 														 ofParameterGroup &group,
 														 u_int64_t duration);

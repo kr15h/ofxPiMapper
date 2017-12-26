@@ -73,7 +73,7 @@ void ofApp::keyPressed(int key){
 	}else if(key == '\\'){
 		mapper.togglePause();
 	}else if(key == 'n'){
-		string multilineInfoText =
+		std::string multilineInfoText =
 			"Custom ofxPiMapper shortcuts\n\n"
 			"Good day user.\n"
 			"Shortcuts have been customized.\n"

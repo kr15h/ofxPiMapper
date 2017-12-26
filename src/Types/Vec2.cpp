@@ -1,5 +1,9 @@
 #include "Vec2.h"
 
+#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR > 9
+	#include "glm/geometric.hpp"
+#endif
+
 namespace ofx {
 namespace piMapper {
 
@@ -22,16 +26,16 @@ Vec2::Vec2(float ix, float iy){
 		return ofVec2f(x, y);
 	}
 
-	vector<ofVec2f> Vec2::toOf(vector<Vec2> & src){
-		vector<ofVec2f> retVal;
+	std::vector<ofVec2f> Vec2::toOf(std::vector<Vec2> & src){
+		std::vector<ofVec2f> retVal;
 		for(auto itm : src){
 			retVal.push_back(itm.toOf());
 		}
 		return retVal;
 	}
 	
-	vector<Vec2> Vec2::fromOf(vector<ofVec2f> & src){
-		vector<Vec2> retVal;
+	std::vector<Vec2> Vec2::fromOf(std::vector<ofVec2f> & src){
+		std::vector<Vec2> retVal;
 		for(auto itm : src){
 			retVal.push_back(Vec2(itm));
 		}
@@ -44,7 +48,37 @@ Vec2::Vec2(float ix, float iy){
 		return v1.distance(v2);
 	}
 #else
-		// TODO: The same for glm::vec2
+	Vec2::Vec2(glm::vec2 & src){
+		x = src.x;
+		y = src.y;
+	}
+	
+	glm::vec2 Vec2::toOf(){
+		return glm::vec2(x, y);
+	}
+
+	std::vector<glm::vec2> Vec2::toOf(std::vector<Vec2> & src){
+		std::vector<glm::vec2> retVal;
+		for(auto itm : src){
+			retVal.push_back(itm.toOf());
+		}
+		return retVal;
+	}
+	
+	std::vector<Vec2> Vec2::fromOf(std::vector<glm::vec2> & src){
+		std::vector<Vec2> retVal;
+		for(auto itm : src){
+			retVal.push_back(Vec2(itm));
+		}
+		return retVal;
+	}
+	
+	float Vec2::distance(const Vec2 & other){
+		glm::vec2 v1(x, y);
+		glm::vec2 v2(other.x, other.y);
+		
+		return glm::distance(v1, v2);
+	}
 #endif
 
 void Vec2::operator=(const Vec2 & other){

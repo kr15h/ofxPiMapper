@@ -33,11 +33,11 @@ class SurfaceManager {
 		void removeSurface(int i);
 		void deleteSurface(BaseSurface * surface);
 		void deselectSurface();
-		void saveXmlSettings(string fileName);
+		void saveXmlSettings(std::string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
 		void clearPresets();
 		
-		bool loadXmlSettings(string fileName);
+		bool loadXmlSettings(std::string fileName);
 	
 		BaseSurface * getSurface(int index);
 		BaseSurface * selectSurface(int index);
@@ -61,13 +61,13 @@ class SurfaceManager {
 		unsigned int getNumPresets();
 	
 		ofEvent <int> vertexChangedEvent;
-		ofEvent <vector<Vec3>> verticesChangedEvent;
+		ofEvent <std::vector<Vec3>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
 		ofEvent <int> vertexSelectedEvent;
 		ofEvent <int> vertexUnselectedEvent;
 
 		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<Vec3> & vertices);
+		void onVerticesChanged(std::vector<Vec3> & vertices);
 
 		SurfaceStack * getActivePreset();
 		SurfaceStack * createPreset();
@@ -86,7 +86,7 @@ class SurfaceManager {
 		int _selectedVertexIndex;
 		int _activePresetIndex;
 	
-		vector <SurfaceStack *> _presets;
+		std::vector<SurfaceStack *> _presets;
 
 };
 

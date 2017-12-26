@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 // OpenFrameworks components
 #include "ofEvents.h"
 #include "ofLog.h"
@@ -87,11 +89,11 @@ class Application {
 		void addFboSource(FboSource * fboSource);
 		void createSurface(SurfaceType type);
 		void eraseSurface(int i);
-		void setInfoText(string text);
+		void setInfoText(std::string text);
 		void toggleInfo();
 		void togglePerspective();
 		void saveProject();
-		bool loadXmlSettings(string fileName);
+		bool loadXmlSettings(std::string fileName);
 
 		bool isShiftKeyDown();
 
@@ -126,7 +128,7 @@ class Application {
 		void scaleDown();
 		void duplicateSurface();
 		void setNextSource();
-		void setFboSource(string sourceId);
+		void setFboSource(std::string sourceId);
 		void addGridRow();
 		void addGridColumn();
 		void removeGridRow();
@@ -164,7 +166,7 @@ class Application {
 		float _lastSaveTime;
 		float _autoSaveInterval;
 
-		string _keySequence;
+		std::string _keySequence;
 
 };
 

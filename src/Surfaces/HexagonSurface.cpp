@@ -11,7 +11,7 @@ void HexagonSurface::setup(){
 
 	// Create 6 + 1 points for the hexagon surface.
 	
-	vector <Vec3> verts;
+	std::vector<Vec3> verts;
 	verts.resize(7);
 	
 	// Start with the center.
@@ -26,7 +26,7 @@ void HexagonSurface::setup(){
 	verts[6] = Vec3(0, (float)ofGetHeight() / 2.0f, 0.0f);
 	
 	// No create the texture coordinates.
-	vector <Vec2> coords;
+	std::vector<Vec2> coords;
 	coords.resize(7);
 	
 	// Start with center.
@@ -45,8 +45,8 @@ void HexagonSurface::setup(){
 }
 
 void HexagonSurface::setup(
-	vector <Vec3> & verts,
-	vector <Vec2> & coords,
+	std::vector<Vec3> & verts,
+	std::vector<Vec2> & coords,
 	BaseSource * newSource){
 	
 	// Assign texture
@@ -105,7 +105,7 @@ void HexagonSurface::draw(){
 
 void HexagonSurface::setVertex(int index, Vec3 p){
 	if(index >= mesh.getVertices().size()){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		return;
 	}
 	
@@ -113,7 +113,7 @@ void HexagonSurface::setVertex(int index, Vec3 p){
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void HexagonSurface::setVertices(vector<Vec3> v){
+void HexagonSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -122,21 +122,21 @@ void HexagonSurface::setVertices(vector<Vec3> v){
 		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 void HexagonSurface::setTexCoord(int index, Vec2 t){
 	if(index >= mesh.getTexCoords().size()){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
-				<< endl;
+				<< std::endl;
 		return;
 	}
 
 	mesh.setTexCoord(index, t.toOf());
 }
 
-void HexagonSurface::setTexCoords(vector<Vec2> t){
+void HexagonSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != mesh.getTexCoords().size()){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
@@ -152,7 +152,7 @@ void HexagonSurface::moveBy(Vec3 v){
 	}
 	
 	setMoved(true);
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
@@ -172,7 +172,7 @@ bool HexagonSurface::hitTest(Vec2 p){
 
 Vec3 HexagonSurface::getVertex(int index){
 	if(index > 2){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
 
@@ -217,11 +217,11 @@ ofPolyline HexagonSurface::getTextureHitArea(){
 	return line;
 }
 
-vector<Vec3> HexagonSurface::getVertices(){
+std::vector<Vec3> HexagonSurface::getVertices(){
 	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector<Vec2> HexagonSurface::getTexCoords(){
+std::vector<Vec2> HexagonSurface::getTexCoords(){
 	return Vec2::fromOf(mesh.getTexCoords());
 }
 

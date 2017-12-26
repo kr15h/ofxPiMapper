@@ -64,7 +64,7 @@ void TriangleSurface::draw(){
 
 void TriangleSurface::setVertex(int index, Vec3 p){
 	if(index > 2){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		return;
 	}
 	
@@ -72,7 +72,7 @@ void TriangleSurface::setVertex(int index, Vec3 p){
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void TriangleSurface::setVertices(vector<Vec3> v){
+void TriangleSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != 3){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -81,21 +81,21 @@ void TriangleSurface::setVertices(vector<Vec3> v){
 		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 void TriangleSurface::setTexCoord(int index, Vec2 t){
 	if(index > 2){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
-				<< endl;
+				<< std::endl;
 		return;
 	}
 
 	mesh.setTexCoord(index, t.toOf());
 }
 
-void TriangleSurface::setTexCoords(vector<Vec2> t){
+void TriangleSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != 3){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
@@ -111,7 +111,7 @@ void TriangleSurface::moveBy(Vec3 v){
 	}
 	
 	setMoved(true);
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
@@ -131,7 +131,7 @@ bool TriangleSurface::hitTest(Vec2 p){
 
 Vec2 TriangleSurface::getVertex(int index){
 	if(index > 2){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
 
@@ -142,7 +142,7 @@ Vec2 TriangleSurface::getVertex(int index){
 
 Vec2 TriangleSurface::getTexCoord(int index){
 	if(index > 2){
-		ofLog() << "Texture coordinate with this index does not exist: " << index << endl;
+		ofLog() << "Texture coordinate with this index does not exist: " << index << std::endl;
 		throw runtime_error("Texture coordinate index out of bounds.");
 	}
 
@@ -177,11 +177,11 @@ ofPolyline TriangleSurface::getTextureHitArea(){
 	return line;
 }
 
-vector<Vec3> TriangleSurface::getVertices(){
+std::vector<Vec3> TriangleSurface::getVertices(){
  	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector<Vec2> TriangleSurface::getTexCoords(){
+std::vector<Vec2> TriangleSurface::getTexCoords(){
 	return Vec2::fromOf(mesh.getTexCoords());
 }
 

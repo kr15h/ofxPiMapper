@@ -22,9 +22,9 @@ class QuadSurface : public BaseSurface {
 			BaseSource * newSource);
 		void draw();
 		void setVertex(int index, Vec3 p);
-		void setVertices(vector<Vec3> v);
+		void setVertices(std::vector<Vec3> v);
 		void setTexCoord(int index, Vec2 t);
-		void setTexCoords(vector<Vec2> t);
+		void setTexCoords(std::vector<Vec2> t);
 		void moveBy(Vec3 v);
 
 		int getType();
@@ -33,8 +33,8 @@ class QuadSurface : public BaseSurface {
 		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
-		vector<Vec3> getVertices();
-		vector<Vec2> getTexCoords();
+		std::vector<Vec3> getVertices();
+		std::vector<Vec2> getTexCoords();
 	
 		void setPerspectiveWarping(bool b);
 		bool getPerspectiveWarping();

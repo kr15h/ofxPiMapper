@@ -22,8 +22,8 @@ class VideoSource : public BaseSource {
 
 		VideoSource();
 
-		string & getPath();
-		void loadVideo(string & path);
+		std::string & getPath();
+		void loadVideo(std::string & path);
 		void clear();
         void togglePause();
 

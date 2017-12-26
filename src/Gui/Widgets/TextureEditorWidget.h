@@ -46,11 +46,11 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void moveSelection(Vec2 by);
 		void constrainJointsToQuad(int selectedJointIndex);
 		CircleJoint * hitTestJoints(Vec2 pos);
-		vector <CircleJoint *> & getJoints();
+		std::vector<CircleJoint *> & getJoints();
 
 	private:
 		BaseSurface * surface;
-		vector <CircleJoint *> joints;
+		std::vector<CircleJoint *> joints;
 	
 		bool bShiftKeyDown;
 		bool _pollCreateJoints;

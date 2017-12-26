@@ -51,7 +51,7 @@ void Info::toggle(){
 	_visible = !_visible;
 }
 
-void Info::setText(string text){
+void Info::setText(std::string text){
 	_text = text;
 }
 

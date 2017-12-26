@@ -1,6 +1,6 @@
 #pragma once
 
-// These are the strings reported by SDL2's SDL_JoystickGetGUIDString:
+// These are the std::strings reported by SDL2's SDL_JoystickGetGUIDString:
 // https://wiki.libsdl.org/SDL_JoystickGetGUIDString
 
 #include <vector>

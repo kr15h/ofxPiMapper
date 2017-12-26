@@ -38,17 +38,17 @@ class CircleSurface : public QuadSurface {
 		bool updateMask;
 		bool maskIsReady;
 
-//		string glESFragmentShader;
-//		string glESVertexShader;
+//		std::string glESFragmentShader;
+//		std::string glESVertexShader;
 //
-//		string gl2FragmentShader;
-//		string gl2VertexShader;
+//		std::string gl2FragmentShader;
+//		std::string gl2VertexShader;
 
 		ofMesh maskMesh;
 
 		// TODO: gl3 Shaders
-//		string          gl3VertexShader;
-//		string          gl3FragmentShader;
+//		std::string          gl3VertexShader;
+//		std::string          gl3FragmentShader;
 
 	private:
 		std::vector<Vec2> defaultTexCoords;

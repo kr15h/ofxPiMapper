@@ -13,11 +13,11 @@ class BaseSource {
 		BaseSource(ofTexture * newTexture); // Only one clean way of passing the texture
 		~BaseSource();
 		ofTexture * getTexture();
-		string & getName();
+		std::string & getName();
 		bool isLoadable(); // Maybe the loading features shoud go to a derrived class
 		bool isLoaded(); // as BaseSourceLoadable
 		SourceType getType();
-		string & getPath();
+		std::string & getPath();
 		virtual void clear(){}
         virtual void togglePause(){}
 
@@ -31,10 +31,10 @@ class BaseSource {
 		void init();
 
 	protected:
-		void setNameFromPath(string & fullPath);
+		void setNameFromPath(std::string & fullPath);
 		ofTexture * texture;
-		string name;
-		string path; // This is set only if loadable is true
+		std::string name;
+		std::string path; // This is set only if loadable is true
 		bool loadable; // If the source can be loaded from disk like image and video
 		bool loaded; // Is the source loaded?
 		SourceType type;

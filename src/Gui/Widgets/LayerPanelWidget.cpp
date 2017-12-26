@@ -35,7 +35,7 @@ void LayerPanelWidget::draw(){
 		int layerIconX = ofGetWidth() - offsetRight - layerIconWidth;
 		int layerIconY = offsetTop + ((layerIconHeight + verticalSpacing) * (numSurfaces - i - 1));
 		
-		string label = "Layers";
+		std::string label = "Layers";
 		ofDrawBitmapString(label, ofGetWidth() - 66, 30);
 		
 		ofRectangle layerIcon = ofRectangle(

@@ -17,7 +17,7 @@ class SourcesEditorWidget {
 
 		void setup();
 		void draw();
-		void loadImage(string name, string path);
+		void loadImage(std::string name, std::string path);
 		void disable();
 		void enable();
 		void setSurfaceManager(SurfaceManager * newSurfaceManager);
@@ -26,15 +26,15 @@ class SourcesEditorWidget {
 		// Sets external MediaServer
 		void setMediaServer(MediaServer * newMediaServer);
 		MediaServer * getMediaServer();
-		//void selectImageSourceRadioButton(string name);
-		void selectSourceRadioButton(string & sourcePath);
+		//void selectImageSourceRadioButton(std::string name);
+		void selectSourceRadioButton(std::string & sourcePath);
 
 		int getLoadedTexCount();
 		ofTexture * getTexture(int index);
 
-		void setImageSource(string & imagePath);
-		void setVideoSource(string & videoPath);
-		void setFboSource(string & fboName);
+		void setImageSource(std::string & imagePath);
+		void setVideoSource(std::string & videoPath);
+		void setFboSource(std::string & fboName);
 		void clearSource();
 
 	private:
@@ -53,25 +53,25 @@ class SourcesEditorWidget {
 		void removeMediaServerListeners();
 
 		// Handles GUI event, whenever someone has clicked on a radio button
-		void handleImageSelected(string & imagePath);
-		void handleVideoSelected(string & videoPath);
-		void handleFboSelected(string & fboName);
+		void handleImageSelected(std::string & imagePath);
+		void handleVideoSelected(std::string & videoPath);
+		void handleFboSelected(std::string & fboName);
 
 		// Careful clearing of the media server,
 		// clears only if the media server has been initialized locally
 		void clearMediaServer();
 
 		// MediaServer event handlers
-		void handleImageAdded(string & path);
-		void handleImageRemoved(string & path);
-		void handleVideoAdded(string & path);
-		void handleVideoRemoved(string & path);
-		void handleImageLoaded(string & path);
-		void handleImageUnloaded(string & path);
-		void handleFboSourceAdded(string & name);
-		void handleFboSourceRemoved(string & name);
-		void handleFboSourceLoaded(string & name);
-		void handleFboSourceUnloaded(string & name);
+		void handleImageAdded(std::string & path);
+		void handleImageRemoved(std::string & path);
+		void handleVideoAdded(std::string & path);
+		void handleVideoRemoved(std::string & path);
+		void handleImageLoaded(std::string & path);
+		void handleImageUnloaded(std::string & path);
+		void handleFboSourceAdded(std::string & name);
+		void handleFboSourceRemoved(std::string & name);
+		void handleFboSourceLoaded(std::string & name);
+		void handleFboSourceUnloaded(std::string & name);
 
 };
 

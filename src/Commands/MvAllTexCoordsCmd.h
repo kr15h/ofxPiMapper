@@ -20,7 +20,7 @@ class MvAllTexCoordsCmd : public BaseUndoCmd {
 		void undo();
 
 	private:
-		vector <Vec2> _texCoords;
+		std::vector<Vec2> _texCoords;
 		BaseSurface * _surface;
 		TextureEditorWidget * _texEditor;
 

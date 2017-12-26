@@ -15,7 +15,7 @@ void SetNextSourceCmd::exec(){
 	BaseSource * source = _surface->getSource();
 	int sourceType = source->getType();
 	
-	string sourceId;
+	std::string sourceId;
 	if(source->isLoadable()){
 		sourceId = source->getPath();
 	}else{

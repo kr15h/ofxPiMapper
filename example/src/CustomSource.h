@@ -9,6 +9,6 @@ class CustomSource : public ofx::piMapper::FboSource {
 		void update();
 		void draw();
 
-		vector <ofRectangle> rects;
-		vector <float> rectSpeeds;
+		std::vector<ofRectangle> rects;
+		std::vector<float> rectSpeeds;
 };

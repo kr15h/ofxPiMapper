@@ -11,7 +11,7 @@ ImageSource::ImageSource(){
 
 ImageSource::~ImageSource(){}
 
-void ImageSource::loadImage(string & filePath){
+void ImageSource::loadImage(std::string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);
 	image = new ofImage();

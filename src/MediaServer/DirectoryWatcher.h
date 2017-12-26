@@ -8,13 +8,12 @@ namespace piMapper {
 
 class DirectoryWatcher : public ofThread {
 	public:
-		DirectoryWatcher(string path, int watcherMediaType);
+		DirectoryWatcher(std::string path, int watcherMediaType);
 		virtual ~DirectoryWatcher();
-		vector<string> &getFilePaths();
+		std::vector<std::string> &getFilePaths();
 		int getMediaType();
 
 		void beginWatch(int intervalInMillis = 5000);
-		void endWatch();
 		void threadedFunction();
 
 		/**
@@ -30,7 +29,7 @@ class DirectoryWatcher : public ofThread {
 
 	private:
 		ofDirectory _directory;
-		vector<string> _filePaths;
+		std::vector<std::string> _filePaths;
 		std::string directoryPath;
 		int _mediaType;
 

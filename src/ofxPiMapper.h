@@ -28,7 +28,7 @@ class ofxPiMapper {
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
 
 		// Application
-		void setInfoText(string text);
+		void setInfoText(std::string text);
 		void toggleInfo();
 		void undo();
 		void deselect();
@@ -39,7 +39,7 @@ class ofxPiMapper {
 
 		// Project
 		void saveProject();
-		bool loadProject(string filename);
+		bool loadProject(std::string filename);
 
 		// Presets
 		unsigned int getNumPresets();
@@ -74,7 +74,7 @@ class ofxPiMapper {
 
 		// Sources, selected surface
 		void setNextSource();
-		void setFboSource(string sourceId);
+		void setFboSource(std::string sourceId);
 
 		// System commands
 		void reboot();

@@ -30,11 +30,11 @@ class GridWarpSurface : public BaseSurface {
 		ofPolyline getTextureHitArea();
 
 		void setVertex(int index, Vec3 p);
-		void setVertices(vector<Vec3> v);
+		void setVertices(std::vector<Vec3> v);
 		void setTexCoord(int index, Vec2 t);
-		void setTexCoords(vector<Vec2> t);
-		vector<Vec3> getVertices();
-		vector<Vec2> getTexCoords();
+		void setTexCoords(std::vector<Vec2> t);
+		std::vector<Vec3> getVertices();
+		std::vector<Vec2> getTexCoords();
 	
 		void createGridMesh();
 	

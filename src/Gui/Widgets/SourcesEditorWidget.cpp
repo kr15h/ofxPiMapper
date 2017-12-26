@@ -23,17 +23,17 @@ void SourcesEditorWidget::createSelectors(){
 	// Depending on media count, decide what to load and initialize
 	if(numImages){
 		// Get image names from media server
-		vector <string> imageNames = mediaServer->getImageNames();
+		std::vector<std::string> imageNames = mediaServer->getImageNames();
 		imageSelector->setup("Images", imageNames, mediaServer->getImagePaths());
 		ofAddListener(imageSelector->onRadioSelected, this, &SourcesEditorWidget::handleImageSelected);
 	}
 	if(numVideos){
-		vector <string> videoNames = mediaServer->getVideoNames();
+		std::vector<std::string> videoNames = mediaServer->getVideoNames();
 		videoSelector->setup("Videos", videoNames, mediaServer->getVideoPaths());
 		ofAddListener(videoSelector->onRadioSelected, this, &SourcesEditorWidget::handleVideoSelected);
 	}
 	if(numFbos){
-		vector <string> fboNames = mediaServer->getFboSourceNames();
+		std::vector<std::string> fboNames = mediaServer->getFboSourceNames();
 		fboSelector->setup("FBOs", fboNames, fboNames);
 		ofAddListener(fboSelector->onRadioSelected, this, &SourcesEditorWidget::handleFboSelected);
 	}
@@ -135,7 +135,7 @@ MediaServer * SourcesEditorWidget::getMediaServer(){
 	return mediaServer;
 }
 
-void SourcesEditorWidget::selectSourceRadioButton(string & sourcePath){
+void SourcesEditorWidget::selectSourceRadioButton(std::string & sourcePath){
 	if(sourcePath == ""){
 		ofLogNotice("SourcesEditorWidget") << "Path is empty";
 		if(imageSelector->size()){
@@ -210,14 +210,14 @@ void SourcesEditorWidget::removeMediaServerListeners(){
 	ofRemoveListener(mediaServer->onFboSourceUnloaded, this, &SourcesEditorWidget::handleFboSourceUnloaded);
 }
 
-void SourcesEditorWidget::handleImageSelected(string & imagePath){
+void SourcesEditorWidget::handleImageSelected(std::string & imagePath){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_IMAGE,
 									   imagePath,
 									   surfaceManager->getSelectedSurface(),
 									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditorWidget::setImageSource(string & imagePath){
+void SourcesEditorWidget::setImageSource(std::string & imagePath){
 	// Unselect selected items
 	videoSelector->unselectAll();
 	fboSelector->unselectAll();
@@ -240,14 +240,14 @@ void SourcesEditorWidget::setImageSource(string & imagePath){
 	surface->setSource(mediaServer->loadImage(imagePath));
 }
 
-void SourcesEditorWidget::handleVideoSelected(string & videoPath){
+void SourcesEditorWidget::handleVideoSelected(std::string & videoPath){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_VIDEO,
 									   videoPath,
 									   surfaceManager->getSelectedSurface(),
 									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditorWidget::setVideoSource(string & videoPath){
+void SourcesEditorWidget::setVideoSource(std::string & videoPath){
 	// Unselect any selected items
 	fboSelector->unselectAll();
 	imageSelector->unselectAll();
@@ -270,14 +270,14 @@ void SourcesEditorWidget::setVideoSource(string & videoPath){
 	surface->setSource(mediaServer->loadVideo(videoPath));
 }
 
-void SourcesEditorWidget::handleFboSelected(string & fboName){
+void SourcesEditorWidget::handleFboSelected(std::string & fboName){
 	_cmdManager->exec(new SetSourceCmd(SourceType::SOURCE_TYPE_FBO,
 									   fboName,
 									   surfaceManager->getSelectedSurface(),
 									   (SourcesEditorWidget *)this));
 }
 
-void SourcesEditorWidget::setFboSource(string & fboName){
+void SourcesEditorWidget::setFboSource(std::string & fboName){
 	videoSelector->unselectAll();
 	imageSelector->unselectAll();
 
@@ -325,21 +325,21 @@ void SourcesEditorWidget::clearMediaServer(){
 }
 
 // TODO: There is no need for those at the moment. They add too much overhead.
-void SourcesEditorWidget::handleImageAdded(string & path){
+void SourcesEditorWidget::handleImageAdded(std::string & path){
 	ofLogNotice("SourcesEditorWidget::handleImageAdded")
 		<< "Image path: "
 		<< path;
 }
 
-void SourcesEditorWidget::handleImageRemoved(string & path){}
-void SourcesEditorWidget::handleVideoAdded(string & path){}
-void SourcesEditorWidget::handleVideoRemoved(string & path){}
-void SourcesEditorWidget::handleImageLoaded(string & path){}
-void SourcesEditorWidget::handleImageUnloaded(string & path){}
-void SourcesEditorWidget::handleFboSourceAdded(string & name){}
-void SourcesEditorWidget::handleFboSourceRemoved(string & name){}
-void SourcesEditorWidget::handleFboSourceLoaded(string & name){}
-void SourcesEditorWidget::handleFboSourceUnloaded(string & name){}
+void SourcesEditorWidget::handleImageRemoved(std::string & path){}
+void SourcesEditorWidget::handleVideoAdded(std::string & path){}
+void SourcesEditorWidget::handleVideoRemoved(std::string & path){}
+void SourcesEditorWidget::handleImageLoaded(std::string & path){}
+void SourcesEditorWidget::handleImageUnloaded(std::string & path){}
+void SourcesEditorWidget::handleFboSourceAdded(std::string & name){}
+void SourcesEditorWidget::handleFboSourceRemoved(std::string & name){}
+void SourcesEditorWidget::handleFboSourceLoaded(std::string & name){}
+void SourcesEditorWidget::handleFboSourceUnloaded(std::string & name){}
 
 } // namespace piMapper
 } // namespace ofx

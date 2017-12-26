@@ -156,7 +156,7 @@ void ofxPiMapper::createSurface(ofx::piMapper::SurfaceType type){
 }
 
 void ofxPiMapper::eraseSurface(int i){
-	cout << "numSurfaces: " << getNumSurfaces() << ", i: " << i << endl;
+	std::cout << "numSurfaces: " << getNumSurfaces() << ", i: " << i << std::endl;
 	if(getNumSurfaces() > 0 && i < getNumSurfaces()){
 		_application.eraseSurface(i);
 	}
@@ -166,7 +166,7 @@ void ofxPiMapper::setNextSource(){
 	_application.setNextSource();
 }
 
-void ofxPiMapper::setFboSource(string sourceId){
+void ofxPiMapper::setFboSource(std::string sourceId){
 	_application.setFboSource(sourceId);
 }
 
@@ -182,7 +182,7 @@ void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
 
-bool ofxPiMapper::loadProject(string filename){
+bool ofxPiMapper::loadProject(std::string filename){
 	return _application.loadXmlSettings(filename);
 }
 
@@ -202,7 +202,7 @@ int ofxPiMapper::getSelectedSurface(){
 	return _application.getSurfaceManager()->getSelectedSurfaceIndex();
 }
 
-void ofxPiMapper::setInfoText(string text){
+void ofxPiMapper::setInfoText(std::string text){
 	_application.setInfoText(text);
 }
 

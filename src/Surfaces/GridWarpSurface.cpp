@@ -36,7 +36,7 @@ void GridWarpSurface::moveBy(Vec3 v){
 	}
 	
 	setMoved(true);
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
@@ -80,7 +80,7 @@ bool GridWarpSurface::hitTest(Vec2 p){
 			pl.addVertex(mesh.getVertex(d));
 			pl.close();
 			
-			if(pl.inside(p.toOf())){
+			if(pl.inside(p.x, p.y)){
 				return true;
 			}
 		}
@@ -150,7 +150,7 @@ void GridWarpSurface::setVertex(int index, Vec3 vert){
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void GridWarpSurface::setVertices(vector<Vec3> v){
+void GridWarpSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of vertices");
 	}
@@ -159,7 +159,7 @@ void GridWarpSurface::setVertices(vector<Vec3> v){
 		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
@@ -170,7 +170,7 @@ void GridWarpSurface::setTexCoord(int index, Vec2 t){
 	mesh.setTexCoord(index, t.toOf());
 }
 
-void GridWarpSurface::setTexCoords(vector<Vec2> t){
+void GridWarpSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
@@ -180,11 +180,11 @@ void GridWarpSurface::setTexCoords(vector<Vec2> t){
 }
 
 
-vector<Vec3> GridWarpSurface::getVertices(){
+std::vector<Vec3> GridWarpSurface::getVertices(){
 	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector<Vec2> GridWarpSurface::getTexCoords(){
+std::vector<Vec2> GridWarpSurface::getTexCoords(){
 	return Vec2::fromOf(mesh.getTexCoords());
 }
 
@@ -200,9 +200,10 @@ void GridWarpSurface::createGridMesh(){
 	// Add vertices for each col and row
 	for(int iy = 0; iy <= _gridRows; ++iy){
 		for(int ix = 0; ix <= _gridCols; ++ix){
-			mesh.addVertex(Vec2(
+			mesh.addVertex(Vec3(
 				margin + (vertexDistanceX * (float)ix),
-				margin + (vertexDistanceY * (float)iy)).toOf());
+				margin + (vertexDistanceY * (float)iy),
+				0.0f).toOf());
 		}
 	}
 	
@@ -230,7 +231,7 @@ void GridWarpSurface::createGridMesh(){
 		}
 	}
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 

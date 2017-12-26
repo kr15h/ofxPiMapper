@@ -53,7 +53,7 @@ void ProjectionEditorWidget::mouseDragged(ofMouseEventArgs & args){
 	Vec2 mousePosition = Vec2(args.x, args.y);
 
 	// Collect all vertices of the projection surfaces
-	vector<Vec3> allVertices;
+	std::vector<Vec3> allVertices;
 	for(int i = 0; i < surfaceManager->size(); i++){
 		BaseSurface * surface = surfaceManager->getSurface(i);
 		
@@ -137,7 +137,7 @@ void ProjectionEditorWidget::createJoints(){
 		return;
 	}
 
-	vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
+	std::vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
 
 	for(int i = 0; i < vertices.size(); i++){
 		joints.push_back(new CircleJoint());
@@ -147,7 +147,7 @@ void ProjectionEditorWidget::createJoints(){
 
 void ProjectionEditorWidget::updateJoints(){
 	if(surfaceManager->getSelectedSurface()){
-		vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
+		std::vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
 		
 		for(int i = 0; i < vertices.size(); i++){
 			joints[i]->position = Vec2(vertices[i].x, vertices[i].y);
@@ -197,7 +197,7 @@ CircleJoint * ProjectionEditorWidget::hitTestJoints(Vec2 pos){
 	return 0;
 }
 
-vector <CircleJoint *> * ProjectionEditorWidget::getJoints(){
+std::vector<CircleJoint *> * ProjectionEditorWidget::getJoints(){
 	return &joints;
 }
 
@@ -212,7 +212,7 @@ void ProjectionEditorWidget::onVertexChanged(int & i){
 	}
 }
 
-void ProjectionEditorWidget::onVerticesChanged(vector<Vec3> & vertices){
+void ProjectionEditorWidget::onVerticesChanged(std::vector<Vec3> & vertices){
 	createJoints();
 }
 

@@ -26,9 +26,10 @@ magSlideShowSource::magSlideShowSource() {
 	}
 }
 
-magSlideShowSource::~magSlideShowSource() {
-	directoryWatcher->endWatch();
-	delete directoryWatcher;
+magSlideShowSource::~magSlideShowSource(){
+	if(directoryWatcher != 0){
+		delete directoryWatcher;
+	}
 }
 
 bool magSlideShowSource::initialize(magSlideShowSource::Settings settings) {
@@ -168,20 +169,18 @@ bool magSlideShowSource::createFromFolderContents(std::string path) {
 		return false;
 	}
 
-	auto sortedDir = dir.getSorted();
-	auto files = sortedDir.getFiles();
+	ofDirectory sortedDir = dir.getSorted();
+	std::vector<ofFile> files = sortedDir.getFiles();
 
-	if (files.size() < 1)
-	{
+	if (files.size() < 1){
 		ofLogError("magSlideShowSource::createFromFolderContents") << "Folder " << dir.getAbsolutePath() << " is empty";
 		return false;
 	}
 
 	ofImage tempImage;
-	for (auto &file : files)
-	{
-		if (tempImage.load(file))
-		{
+	for(ofFile &file : files){
+		if (tempImage.load(file.getFileName())){
+			
 			// make a new image slide
 			auto slide = std::make_shared<magImageSlide>();
 			slide->setup(tempImage);
@@ -189,9 +188,7 @@ bool magSlideShowSource::createFromFolderContents(std::string path) {
 			slide->setTransitionDuration(static_cast<u_int64_t>(settings.transitionDuration*1000));
 //            if (settings.transitionName == "")
 			addSlide(slide);
-		}
-		else
-		{
+		}else{
 			auto ext = ofToLower(file.getExtension());
 
 			static std::vector<std::string> movieExtensions = {
@@ -388,8 +385,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 }
 
 void magSlideShowSource::play() {
-	if (!isPlaying)
-	{
+	if (!isPlaying && slides.size()){
 		runningTime = 0;
 		lastTime = ofGetElapsedTimeMillis();
 		isPlaying = true;

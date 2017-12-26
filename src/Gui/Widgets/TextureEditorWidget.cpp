@@ -44,7 +44,7 @@ void TextureEditorWidget::update(){
 
 			if(surface->getType() == SurfaceType::GRID_WARP_SURFACE){
 				GridWarpSurface * s = (GridWarpSurface *)surface;
-				vector<Vec2> texCoords = surface->getTexCoords();
+				std::vector<Vec2> texCoords = surface->getTexCoords();
 				Vec2 textureSize = Vec2(
 					surface->getSource()->getTexture()->getWidth(),
 					surface->getSource()->getTexture()->getHeight());
@@ -134,7 +134,7 @@ void TextureEditorWidget::createJoints(){
 	}
 	
 	clearJoints();
-	vector<Vec2> texCoords = surface->getTexCoords();
+	std::vector<Vec2> texCoords = surface->getTexCoords();
 	
 	if(surface->getSource()->getTexture()->isAllocated()){
 		_pollCreateJoints = false;
@@ -148,7 +148,7 @@ void TextureEditorWidget::createJoints(){
 		surface->getSource()->getTexture()->getHeight());
 	
 	// Select joints depending on the surface type
-	vector<Vec2> tc;
+	std::vector<Vec2> tc;
 	
 	if(surface->getType() == SurfaceType::TRIANGLE_SURFACE){
 		tc = texCoords;
@@ -282,7 +282,7 @@ void TextureEditorWidget::moveTexCoords(Vec2 by){
 		return;
 	}
 
-	vector<Vec2> texCoords = surface->getTexCoords();
+	std::vector<Vec2> texCoords = surface->getTexCoords();
 	Vec2 textureSize = Vec2(
 		surface->getSource()->getTexture()->getWidth(),
 		surface->getSource()->getTexture()->getHeight());
@@ -407,7 +407,7 @@ CircleJoint * TextureEditorWidget::hitTestJoints(Vec2 pos){
 	return 0;
 }
 
-vector <CircleJoint *> & TextureEditorWidget::getJoints(){
+std::vector<CircleJoint *> & TextureEditorWidget::getJoints(){
 	return joints;
 }
 

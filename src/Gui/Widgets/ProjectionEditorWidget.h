@@ -29,17 +29,17 @@ class ProjectionEditorWidget {
 		void updateVertices();
 		void setSnapDistance(float newSnapDistance);
 		CircleJoint * hitTestJoints(Vec2 pos);
-		vector <CircleJoint *> * getJoints();
+		std::vector<CircleJoint *> * getJoints();
 	
 		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<Vec3> & vertices);
+		void onVerticesChanged(std::vector<Vec3> & vertices);
 		void onSurfaceSelected(int & surfaceIndex);
 		void onVertexSelected(int & vertexIndex);
 		void onVertexUnselected(int & vertexIndex);
 
 	private:
 		SurfaceManager * surfaceManager;
-		vector <CircleJoint *> joints;
+		std::vector<CircleJoint *> joints;
 		bool bShiftKeyDown;
 		float fSnapDistance;
 

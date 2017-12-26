@@ -4,7 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 BaseSource::BaseSource(){
-	//cout << "BaseSource" << endl;
+	//std::cout << "BaseSource" << std::endl;
 	init();
 }
 
@@ -19,7 +19,7 @@ ofTexture * BaseSource::getTexture(){
 	return texture;
 }
 
-string & BaseSource::getName(){
+std::string & BaseSource::getName(){
 	return name;
 }
 
@@ -35,7 +35,7 @@ SourceType BaseSource::getType(){
 	return type;
 }
 
-string & BaseSource::getPath(){
+std::string & BaseSource::getPath(){
 	return path;
 }
 
@@ -49,11 +49,11 @@ void BaseSource::init(){
 	referenceCount = 1;   // We have one instance on init
 }
 
-void BaseSource::setNameFromPath(string & fullPath){
-	vector <string> pathParts;
-	//cout << "fullPath: " << fullPath << endl;
+void BaseSource::setNameFromPath(std::string & fullPath){
+	std::vector<std::string> pathParts;
+	//std::cout << "fullPath: " << fullPath << std::endl;
 	pathParts = ofSplitString(fullPath, "/");   // Maybe on win "/" is "\", have to test
-	//cout << "lastPathPart: " << pathParts[pathParts.size() - 1] << endl;
+	//std::cout << "lastPathPart: " << pathParts[pathParts.size() - 1] << std::endl;
 	name = pathParts[pathParts.size() - 1];
 }
 

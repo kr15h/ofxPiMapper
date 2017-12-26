@@ -55,45 +55,45 @@ class MediaServer {
 		int getNumVideos();
 		int getNumImages();
 		int getNumFboSources(); // new
-		vector <string> & getVideoPaths();
-		vector <string>  getVideoNames();
-		vector <string> & getImagePaths();
-		vector <string>  getImageNames();
-		vector <string>  getFboSourceNames(); // new
+		std::vector<std::string> & getVideoPaths();
+		std::vector<std::string>  getVideoNames();
+		std::vector<std::string> & getImagePaths();
+		std::vector<std::string>  getImageNames();
+		std::vector<std::string>  getFboSourceNames(); // new
 
-		BaseSource * loadMedia(string & path, int mediaType);
-		BaseSource * loadImage(string & path);
-		void unloadImage(string & path);
-		BaseSource * loadVideo(string & path);
-		void unloadVideo(string & path);
-		void unloadMedia(string & path);
+		BaseSource * loadMedia(std::string & path, int mediaType);
+		BaseSource * loadImage(std::string & path);
+		void unloadImage(std::string & path);
+		BaseSource * loadVideo(std::string & path);
+		void unloadVideo(std::string & path);
+		void unloadMedia(std::string & path);
 		void clear(); // Force all loaded source unload
-		BaseSource * getSourceByPath(string & mediaPath);
-		string getDefaultImageDir();
-		string getDefaultVideoDir();
-		string getDefaultMediaDir(int sourceType);
+		BaseSource * getSourceByPath(std::string & mediaPath);
+		std::string getDefaultImageDir();
+		std::string getDefaultVideoDir();
+		std::string getDefaultMediaDir(int sourceType);
 
 		// Do things with FBO sources
 		void addFboSource(FboSource & fboSource); // could be called also as register FBO source
 		void addFboSource(FboSource * fboSource);
 	
-		BaseSource * loadFboSource(string & fboSourceName);
-		void unloadFboSource(string & fboSourceName);
+		BaseSource * loadFboSource(std::string & fboSourceName);
+		void unloadFboSource(std::string & fboSourceName);
 
 		// Custom events, add/remove
-		ofEvent <string> onImageAdded;
-		ofEvent <string> onImageRemoved;
-		ofEvent <string> onVideoAdded;
-		ofEvent <string> onVideoRemoved;
-		ofEvent <string> onFboSourceAdded;
-		ofEvent <string> onFboSourceRemoved;
+		ofEvent <std::string> onImageAdded;
+		ofEvent <std::string> onImageRemoved;
+		ofEvent <std::string> onVideoAdded;
+		ofEvent <std::string> onVideoRemoved;
+		ofEvent <std::string> onFboSourceAdded;
+		ofEvent <std::string> onFboSourceRemoved;
 		// load/unload
-		ofEvent <string> onImageLoaded;
-		ofEvent <string> onImageUnloaded;
-		ofEvent <string> onVideoLoaded;
-		ofEvent <string> onVideoUnloaded;
-		ofEvent <string> onFboSourceLoaded;
-		ofEvent <string> onFboSourceUnloaded;
+		ofEvent <std::string> onImageLoaded;
+		ofEvent <std::string> onImageUnloaded;
+		ofEvent <std::string> onVideoLoaded;
+		ofEvent <std::string> onVideoUnloaded;
+		ofEvent <std::string> onFboSourceLoaded;
+		ofEvent <std::string> onFboSourceUnloaded;
 
 	private:
 		// Directory Watchers
@@ -111,13 +111,13 @@ class MediaServer {
 		DirectoryWatcher usb2ImageWatcher;
 		DirectoryWatcher usb3ImageWatcher;
 	
-        vector <string> _tempImagePaths;
-        vector <string> _tempVideoPaths;
+        std::vector<std::string> _tempImagePaths;
+        std::vector<std::string> _tempVideoPaths;
     
-		map <string, BaseSource *> loadedSources;
+		map <std::string, BaseSource *> loadedSources;
 	
 		// FBO source storage before they go to loadedSources
-		vector <FboSource *> fboSources; // FBO source storage
+		std::vector<FboSource *> fboSources; // FBO source storage
 };
 
 } // namespace piMapper

@@ -11,7 +11,7 @@ namespace piMapper {
 
 struct SourceData {
 	int type;
-	string id;
+	std::string id;
 };
 
 class SourcesEditorWidget;
@@ -26,7 +26,7 @@ class SetNextSourceCmd : public BaseUndoCmd {
 	private:
 		BaseSurface * _surface;
 		SourcesEditorWidget * _sourcesEditor;
-		vector <SourceData> _sources;
+		std::vector<SourceData> _sources;
 		int _sourceIndex; // Previous source index
 		int _nextSourceIndex;
 

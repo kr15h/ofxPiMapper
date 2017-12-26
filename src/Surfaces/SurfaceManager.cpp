@@ -111,7 +111,7 @@ void SurfaceManager::clearPresets(){
 }
 
 // TODO: Do serious adjustment here. We need to save all presets. Not just the active one.
-void SurfaceManager::saveXmlSettings(string fileName){
+void SurfaceManager::saveXmlSettings(std::string fileName){
 	if(_presets.size() <= 0){
 		ofLogWarning(
 			"SurfaceManager::saveXmlSettings",
@@ -128,7 +128,7 @@ void SurfaceManager::saveXmlSettings(string fileName){
 }
 
 // TODO: We need to load all presets. Not just the active one.
-bool SurfaceManager::loadXmlSettings(string fileName){
+bool SurfaceManager::loadXmlSettings(std::string fileName){
 	if(mediaServer == 0){
 		ofLogFatalError("SurfaceManager") << "Media server not set";
 		exit(EXIT_FAILURE);
@@ -292,7 +292,7 @@ void SurfaceManager::selectVertex(int i){
 	}
 	
 	if(i > selectedSurface->getVertices().size() - 1){
-		ofLogError("SurfaceManager::selectVertex") << "index (" << i << ") out of bounds" << endl;
+		ofLogError("SurfaceManager::selectVertex") << "index (" << i << ") out of bounds" << std::endl;
 		int prevVertIndex = _selectedVertexIndex;
 		ofNotifyEvent(vertexUnselectedEvent, prevVertIndex, this);
 		_selectedVertexIndex = -1;
@@ -393,7 +393,7 @@ void SurfaceManager::onVertexChanged(int & i){
 	ofNotifyEvent(vertexChangedEvent, i, this);
 }
 
-void SurfaceManager::onVerticesChanged(vector<Vec3> & vertices){
+void SurfaceManager::onVerticesChanged(std::vector<Vec3> & vertices){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 

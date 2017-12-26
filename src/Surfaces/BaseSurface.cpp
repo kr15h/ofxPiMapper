@@ -118,7 +118,7 @@ void BaseSurface::scaleTo(float scale){
 	
 	_scale = scale;
 	
-	vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 

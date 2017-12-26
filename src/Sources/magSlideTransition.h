@@ -76,7 +76,7 @@ public:
 	 */
 	float getNormalizedTime();
 
-	string const &getName() const
+	std::string const &getName() const
 	{
 		return name;
 	}

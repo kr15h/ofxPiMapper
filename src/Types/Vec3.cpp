@@ -24,23 +24,47 @@ Vec3::Vec3(float ix, float iy, float iz){
 		return ofVec3f(x, y, z);
 	}
 	
-	vector<ofVec3f> Vec3::toOf(vector<Vec3> & src){
-		vector<ofVec3f> retVal;
+	std::vector<ofVec3f> Vec3::toOf(std::vector<Vec3> & src){
+		std::vector<ofVec3f> retVal;
 		for(auto itm : src){
 			retVal.push_back(itm.toOf());
 		}
 		return retVal;
 	}
 	
-	vector<Vec3> Vec3::fromOf(vector<ofVec3f> & src){
-		vector<Vec3> retVal;
+	std::vector<Vec3> Vec3::fromOf(std::vector<ofVec3f> & src){
+		std::vector<Vec3> retVal;
 		for(auto itm : src){
 			retVal.push_back(Vec3(itm));
 		}
 		return retVal;
 	}
 #else
-	// TODO: Vec3::Vec3(glm::vec3 & src){...}
+	Vec3::Vec3(glm::vec3 & src){
+		x = src.x;
+		y = src.y;
+		z = src.z;
+	}
+	
+	glm::vec3 Vec3::toOf(){
+		return ofVec3f(x, y, z);
+	}
+	
+	std::vector<glm::vec3> Vec3::toOf(std::vector<Vec3> & src){
+		std::vector<glm::vec3> retVal;
+		for(auto itm : src){
+			retVal.push_back(itm.toOf());
+		}
+		return retVal;
+	}
+	
+	std::vector<Vec3> Vec3::fromOf(std::vector<glm::vec3> & src){
+		std::vector<Vec3> retVal;
+		for(auto itm : src){
+			retVal.push_back(Vec3(itm));
+		}
+		return retVal;
+	}
 #endif
 
 void Vec3::operator=(const Vec3 & other){

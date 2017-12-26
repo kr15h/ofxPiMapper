@@ -14,7 +14,7 @@ class CmdManager {
 		void undo();
 
 	private:
-		vector <BaseUndoCmd *> cmdStack;
+		std::vector<BaseUndoCmd *> cmdStack;
 
 };
 
