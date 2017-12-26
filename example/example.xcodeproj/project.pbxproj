@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010E92E21FEEEE9D0015B02B /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 010E92DE1FEEEE8D0015B02B /* Vec2.cpp */; };
+		010E92E31FEEEE9D0015B02B /* Vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 010E92E01FEEEE8D0015B02B /* Vec3.cpp */; };
 		01815E8C1FE7D59200C35E93 /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815DE01FE7D53700C35E93 /* Application.cpp */; };
 		01815E8D1FE7D59200C35E93 /* ApplicationBaseMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815DE31FE7D53700C35E93 /* ApplicationBaseMode.cpp */; };
 		01815E8E1FE7D59200C35E93 /* PresentationMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01815DE51FE7D53700C35E93 /* PresentationMode.cpp */; };
@@ -150,6 +152,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		010E92DE1FEEEE8D0015B02B /* Vec2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2.cpp; sourceTree = "<group>"; };
+		010E92DF1FEEEE8D0015B02B /* Vec2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec2.h; sourceTree = "<group>"; };
+		010E92E01FEEEE8D0015B02B /* Vec3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3.cpp; sourceTree = "<group>"; };
+		010E92E11FEEEE8D0015B02B /* Vec3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		01815DE01FE7D53700C35E93 /* Application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
 		01815DE11FE7D53700C35E93 /* Application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		01815DE31FE7D53700C35E93 /* ApplicationBaseMode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ApplicationBaseMode.cpp; sourceTree = "<group>"; };
@@ -395,6 +401,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010E92DD1FEEEE8D0015B02B /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				010E92DE1FEEEE8D0015B02B /* Vec2.cpp */,
+				010E92DF1FEEEE8D0015B02B /* Vec2.h */,
+				010E92E01FEEEE8D0015B02B /* Vec3.cpp */,
+				010E92E11FEEEE8D0015B02B /* Vec3.h */,
+			);
+			path = Types;
+			sourceTree = "<group>";
+		};
 		01815DDE1FE7D53700C35E93 /* src */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +425,7 @@
 				01815E581FE7D53700C35E93 /* ofxPiMapper.h */,
 				01815E591FE7D53700C35E93 /* Sources */,
 				01815E6E1FE7D53700C35E93 /* Surfaces */,
+				010E92DD1FEEEE8D0015B02B /* Types */,
 				01815E801FE7D53700C35E93 /* UserInterface */,
 				01815E891FE7D53700C35E93 /* Utils */,
 			);
@@ -907,6 +925,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010E92E21FEEEE9D0015B02B /* Vec2.cpp in Sources */,
+				010E92E31FEEEE9D0015B02B /* Vec3.cpp in Sources */,
 				01815E8C1FE7D59200C35E93 /* Application.cpp in Sources */,
 				01815E8D1FE7D59200C35E93 /* ApplicationBaseMode.cpp in Sources */,
 				01815E8E1FE7D59200C35E93 /* PresentationMode.cpp in Sources */,
