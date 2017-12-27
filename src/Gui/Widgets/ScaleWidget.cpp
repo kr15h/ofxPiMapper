@@ -1,5 +1,8 @@
 #include "ScaleWidget.h"
-#include "glm/geometric.hpp"
+
+#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR > 9
+	#include "glm/geometric.hpp"
+#endif
 
 namespace ofx {
 namespace piMapper {
