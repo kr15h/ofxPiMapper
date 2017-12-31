@@ -24,8 +24,7 @@ void magSlide::update(u_int64_t deltaTime)
 	transition->update(deltaTime);
     runningTime += deltaTime;
 
-    switch (slideState)
-    {
+    switch (slideState){
 //        case SlideState::BuildIn:
 //            if (runningTime >= buildInDuration)
 //            {
@@ -35,20 +34,19 @@ void magSlide::update(u_int64_t deltaTime)
 //            break;
 
         case SlideState::Normal:
-            if (runningTime >= buildOutStartTime)
-			{
+            if (runningTime >= buildOutStartTime){
 				setState(BuildOut);
 			}
             break;
 
         case SlideState::BuildOut:
-            if (runningTime >= endTime)
-            {
+            if (runningTime >= endTime){
                 setState(Complete);
             }
             break;
+		default:
+			break;
     }
-
 }
 
 void magSlide::setSize(float w, float h)

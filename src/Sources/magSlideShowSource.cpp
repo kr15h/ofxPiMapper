@@ -323,8 +323,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 	}
 
 	// Resize the slide according to the resize option:
-	switch (rOption)
-	{
+	switch (rOption){
 		float sw, sh, ratio;
 
 		case magSlide::ResizeOptions::FitProportionally:
@@ -361,6 +360,9 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 
 		case magSlide::Fit:
 			slide->setSize(getWidth(), getHeight());
+			break;
+			
+		default:
 			break;
 	}
 
