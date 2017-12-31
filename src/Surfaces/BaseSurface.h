@@ -15,7 +15,7 @@ class BaseSurface {
 
 	public:
 		BaseSurface();
-		~BaseSurface();
+		virtual ~BaseSurface();
 	
 		virtual void setup() = 0;
 		virtual void draw() = 0;
