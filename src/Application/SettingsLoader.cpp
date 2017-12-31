@@ -242,7 +242,7 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, std::string fileName)
 
 	} // for
 
-	xmlSettings->save(fileName);
+	return xmlSettings->save(fileName);
 }
 
 bool SettingsLoader::create(std::string fileName){
