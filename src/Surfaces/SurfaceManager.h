@@ -76,6 +76,7 @@ class SurfaceManager {
 		void setPreset(unsigned int i);
 		void cloneActivePreset();
 		void eraseActivePreset();
+        void setPresetSourcesActiveState(unsigned int presetIndex, bool state);
 	
 	private:
 		BaseSurface * selectedSurface;

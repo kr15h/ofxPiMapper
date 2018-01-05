@@ -6,6 +6,7 @@ namespace piMapper {
 BaseSource::BaseSource(){
 	//cout << "BaseSource" << endl;
 	init();
+    runInBackground = false;
 }
 
 BaseSource::BaseSource(ofTexture * newTexture){
@@ -47,6 +48,18 @@ void BaseSource::init(){
 	loaded = false;
 	type = SourceType::SOURCE_TYPE_NONE;
 	referenceCount = 1;   // We have one instance on init
+}
+
+void BaseSource::setActive(bool value){
+    displayed = value;
+}
+
+bool BaseSource::isActive(){
+    return displayed;
+}
+
+bool BaseSource::runsInBackground(){
+    return runInBackground;
 }
 
 void BaseSource::setNameFromPath(string & fullPath){

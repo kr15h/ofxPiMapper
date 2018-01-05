@@ -20,6 +20,9 @@ class BaseSource {
 		string & getPath();
 		virtual void clear(){}
         virtual void togglePause(){}
+        bool isActive();
+        bool runsInBackground();
+        void setActive(bool);
 
         virtual void reset(){} // called by surfaceManager to optionally allow users to reset a source's variables
 
@@ -28,7 +31,7 @@ class BaseSource {
 		int referenceCount;
 
 	private:
-		void init();
+        void init();
 
 	protected:
 		void setNameFromPath(string & fullPath);
@@ -38,6 +41,8 @@ class BaseSource {
 		bool loadable; // If the source can be loaded from disk like image and video
 		bool loaded; // Is the source loaded?
 		SourceType type;
+        bool displayed;
+        bool runInBackground;
 };
 
 } // namespace piMapper

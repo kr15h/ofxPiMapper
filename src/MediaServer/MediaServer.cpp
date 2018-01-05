@@ -37,13 +37,13 @@ void MediaServer::setup(){
 
 void MediaServer::update(){
 	for(int i = 0; i < fboSources.size(); ++i){
-		fboSources[i]->updateFbo();
+        if (fboSources[i]->isActive() || fboSources[i]->runsInBackground()) fboSources[i]->updateFbo();
 	}
 }
 
 void MediaServer::draw(){
 	for(int i = 0; i < fboSources.size(); ++i){
-		fboSources[i]->drawFbo();
+        if (fboSources[i]->isActive() || fboSources[i]->runsInBackground()) fboSources[i]->drawFbo();
 	}
 }
 
