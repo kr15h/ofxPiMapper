@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
+#include "Vec3.h"
 
 class ofApp : public ofBaseApp {
 	public:
