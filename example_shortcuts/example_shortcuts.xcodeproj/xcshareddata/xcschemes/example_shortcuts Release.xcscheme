@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "example_shortcutsDebug.app"
+               BuildableName = "example_shortcuts.app"
                BlueprintName = "example_shortcuts"
                ReferencedContainer = "container:example_shortcuts.xcodeproj">
             </BuildableReference>
@@ -26,6 +26,7 @@
       buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -33,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_shortcutsDebug.app"
+            BuildableName = "example_shortcuts.app"
             BlueprintName = "example_shortcuts"
             ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
@@ -45,6 +46,7 @@
       buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -56,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_shortcutsDebug.app"
+            BuildableName = "example_shortcuts.app"
             BlueprintName = "example_shortcuts"
             ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
@@ -75,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example_shortcutsDebug.app"
+            BuildableName = "example_shortcuts.app"
             BlueprintName = "example_shortcuts"
             ReferencedContainer = "container:example_shortcuts.xcodeproj">
          </BuildableReference>
