@@ -7,6 +7,7 @@ BaseSource::BaseSource(){
 	//cout << "BaseSource" << endl;
 	init();
     runInBackground = false;
+    displayed = true;
 }
 
 BaseSource::BaseSource(ofTexture * newTexture){
