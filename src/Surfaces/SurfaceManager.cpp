@@ -457,11 +457,12 @@ void SurfaceManager::setPresetSourcesActiveState(unsigned int presetIndex, bool 
     // tell sources associated with current preset that they are not displayed any more
     // this is so that we can optionally update the buffers or not.
     for (int j=0; j<_presets[presetIndex]->getSurfaces().size(); j++){
-        _presets[_activePresetIndex]->getSurfaces()[j]->getSource()->setActive(state);
+        _presets[presetIndex]->getSurfaces()[j]->getSource()->setActive(state);
     }
 }
 
 void SurfaceManager::setPreset(unsigned int i){
+    cout << "CALLED IT" << endl;
 	if(_presets.size() <= 1){
 		throw runtime_error("ofxPiMapper: No presets to set.");
 	}
@@ -470,8 +471,9 @@ void SurfaceManager::setPreset(unsigned int i){
 		throw runtime_error("ofxPiMapper: Preset index out of bounds.");
 	}
 	
-    //let sources associated with OLD preset know that they are not being displayed any more
+    //let sources associated with all preset know that they are not being displayed any more
     setPresetSourcesActiveState(_activePresetIndex, false);
+
     //change preset
     _activePresetIndex = i;
     //let sources associated with NEW preset know that they are now being displayed
