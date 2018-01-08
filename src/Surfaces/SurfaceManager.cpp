@@ -135,6 +135,10 @@ bool SurfaceManager::loadXmlSettings(string fileName){
 	}
 	bool success = SettingsLoader::instance()->load(*this, *mediaServer, fileName);
 
+    for (int i=0; i<_presets.size(); i++){
+        setPresetSourcesActiveState(i, false);
+    }
+
     setPresetSourcesActiveState(_activePresetIndex, true);
 	return success;
 }
