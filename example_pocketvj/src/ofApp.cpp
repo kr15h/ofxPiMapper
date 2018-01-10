@@ -51,13 +51,13 @@ void ofApp::keyPressed(int key){
 	}else if(key == 'p'){
 		mapper.togglePerspective();
 	}else if(key == 'v'){
-		// Add columns
+		mapper.addGridColumn();
 	}else if(key == 'b'){
-		// Remove columns
+		mapper.removeGridColumn();
 	}else if(key == 'n'){
-		// Add rows
+		mapper.addGridRow();
 	}else if(key == 'm'){
-		// Remove rows
+		mapper.removeGridRow();
 	}else if(key == '.'){
 		mapper.selectNextSurface();
 	}else if(key == ','){
