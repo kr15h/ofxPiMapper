@@ -49,6 +49,10 @@ void ProjectionMappingMode::draw(Application * app){
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
+void ProjectionMappingMode::toggleLayerPanel(){
+	_bDrawLayerPanel = !_bDrawLayerPanel;
+}
+
 void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 			
@@ -173,7 +177,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 
 	 case 'l':
-		 _bDrawLayerPanel = !_bDrawLayerPanel;
+		 toggleLayerPanel();
 		 break;
 
 	/*

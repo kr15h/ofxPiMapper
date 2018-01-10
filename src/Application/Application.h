@@ -139,6 +139,7 @@ class Application {
 		// Make it so that other parts of the application react to the change.
 		void undo();
 		void deselect();
+		void toggleLayerPanel();
 
 		void setPreset(unsigned int i);
 		void setNextPreset();

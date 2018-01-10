@@ -36,6 +36,9 @@ class ofxPiMapper {
 		// Modes
 		void setMode(ofx::piMapper::Mode m);
 		ofx::piMapper::Mode getMode();
+	
+		// Projection mapping mode only
+		void toggleLayerPanel();
 
 		// Project
 		void saveProject();

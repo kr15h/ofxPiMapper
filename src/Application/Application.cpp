@@ -564,5 +564,11 @@ void Application::deselect(){
 	}
 }
 
+void Application::toggleLayerPanel(){
+	if(getState() == ProjectionMappingMode::instance()){
+		ProjectionMappingMode::instance()->toggleLayerPanel();
+	}
+}
+
 } // namespace piMapper
 } // namespace ofx

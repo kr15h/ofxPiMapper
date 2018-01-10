@@ -260,3 +260,7 @@ ofx::piMapper::Mode ofxPiMapper::getMode(){
 	}
 	return ofx::piMapper::PRESENTATION_MODE;
 }
+
+void ofxPiMapper::toggleLayerPanel(){
+	_application.toggleLayerPanel();
+}

@@ -23,6 +23,9 @@ class ProjectionMappingMode : public ApplicationBaseMode {
 		void setup(Application * app);
 		void update(Application * app);
 		void draw(Application * app);
+	
+		void toggleLayerPanel();
+	
 		void onKeyPressed(Application * app, ofKeyEventArgs & args);
 		void onMousePressed(Application * app, ofMouseEventArgs & args);
 		void onMouseReleased(Application * app, ofMouseEventArgs & args);
