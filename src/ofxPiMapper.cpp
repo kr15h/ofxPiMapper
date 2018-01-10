@@ -234,6 +234,10 @@ void ofxPiMapper::deselect(){
 	_application.deselect();
 }
 
+bool ofxPiMapper::toggleShift(){
+	return _application.toggleShift();
+}
+
 void ofxPiMapper::setMode(ofx::piMapper::Mode m){
 	if(m == ofx::piMapper::PRESENTATION_MODE){
 		_application.setPresentationMode();

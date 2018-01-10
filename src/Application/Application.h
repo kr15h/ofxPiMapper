@@ -96,6 +96,7 @@ class Application {
 		bool loadXmlSettings(std::string fileName);
 
 		bool isShiftKeyDown();
+		bool toggleShift();
 
 		SurfaceManager * getSurfaceManager(){ return &_surfaceManager; }
 		CmdManager * getCmdManager(){ return &_cmdManager; }
