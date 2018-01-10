@@ -90,16 +90,21 @@ void ofApp::keyPressed(int key){
 		mapper.moveSelection(ofx::piMapper::Vec3(-1.0f, 0.0f, 0.0f));
 	}else if(key == '0'){
 		mapper.moveSelection(ofx::piMapper::Vec3(1.0f, 0.0f, 0.0f));
+	}else if(key == '/'){
+		bool shiftIsDown = mapper.toggleShift();
+		if(shiftIsDown){
+			ofLogNotice("ofApp") << "Shift key is down";
+		}else{
+			ofLogNotice("ofApp") << "Shift key is up";
+		}
 	}
 	
-	// Make / toggle between shif/unshift (how to capture that with EGL window?)
-	
-	/*
-	rbt	Reboot (Raspberry Pi only)
-	sdn	Shutdown (Raspberry Pi only)
-	new	Clear composition (remove all surfaces)
-	ext	Exit application and return to command line
-	*/
+	/* For these one has to figure out her own ways.
+	 * rbt	Reboot (Raspberry Pi only)
+	 * sdn	Shutdown (Raspberry Pi only)
+	 * new	Clear composition (remove all surfaces)
+	 * ext	Exit application and return to command line
+	 */
 }
 
 void ofApp::keyReleased(int key){
