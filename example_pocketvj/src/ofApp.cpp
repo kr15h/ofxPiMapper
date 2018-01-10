@@ -77,7 +77,7 @@ void ofApp::keyPressed(int key){
 	}else if(key == 'z'){
 		mapper.undo();
 	}else if(key == 'd'){
-		// Delete surface
+		mapper.eraseSurface(mapper.getSelectedSurface());
 	}else if(key == 'w'){
 		mapper.togglePause();
 	}else if(key == '5'){
