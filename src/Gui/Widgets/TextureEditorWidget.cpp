@@ -296,13 +296,6 @@ void TextureEditorWidget::moveTexCoords(Vec2 by){
 		
 		int rows = s->getGridRows();
 		int cols = s->getGridCols();
-		int vertsPerRow = cols + 1;
-		int vertsPerCol = rows + 1;
-		
-		int a = 0;
-		int b = cols;
-		int c = (rows * vertsPerRow) + (vertsPerRow - 1);
-		int d = (rows * vertsPerRow);
 		
 		// Distance between horizontal tex coords
 		float sx = joints[0]->position.x / textureSize.x;
