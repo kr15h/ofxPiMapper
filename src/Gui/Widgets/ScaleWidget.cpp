@@ -130,8 +130,6 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 		}
 		
 		ofRectangle box = _surfaceManager->getSelectedSurface()->getBoundingBox();
-		float boxAspect = box.width / box.height;
-		
 		ofPolyline newLine = _line;
 		newLine[1].x = args.x;
 		newLine[1].y = args.y;
