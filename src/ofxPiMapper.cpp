@@ -162,6 +162,22 @@ void ofxPiMapper::eraseSurface(int i){
 	}
 }
 
+void ofxPiMapper::addGridColumn(){
+	_application.addGridColumn();
+}
+
+void ofxPiMapper::removeGridColumn(){
+	_application.removeGridColumn();
+}
+
+void ofxPiMapper::addGridRow(){
+	_application.addGridRow();
+}
+
+void ofxPiMapper::removeGridRow(){
+	_application.removeGridRow();
+}
+
 void ofxPiMapper::setNextSource(){
 	_application.setNextSource();
 }
