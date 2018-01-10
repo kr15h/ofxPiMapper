@@ -145,7 +145,6 @@ void RadioList::unselectAll(){
 	int i;
 	for(i = 0; i < guiGroup.getNumControls(); i++){
 		ofxToggle * toggle = static_cast <ofxToggle *>(guiGroup.getControl(i));
-		ofParameter <bool> * paramPtr = static_cast <ofParameter <bool> *>(&toggle->getParameter());
 		toggle->removeListener(this, &RadioList::onToggleClicked);
 		*toggle = false;
 		toggle->addListener(this, &RadioList::onToggleClicked);
