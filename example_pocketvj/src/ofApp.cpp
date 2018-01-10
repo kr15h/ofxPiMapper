@@ -73,7 +73,7 @@ void ofApp::keyPressed(int key){
 	}else if(key == 's'){
 		mapper.saveProject();
 	}else if(key == 'y'){
-		// Toggle layer panel
+		mapper.toggleLayerPanel();
 	}else if(key == 'z'){
 		mapper.undo();
 	}else if(key == 'd'){
