@@ -73,7 +73,6 @@ void TextureMappingMode::draw(Application * app){
 }
 
 void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
-	int key = args.key;
 	float moveStep;
 
 	if(app->isShiftKeyDown()){
