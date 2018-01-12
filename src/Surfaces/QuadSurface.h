@@ -4,6 +4,8 @@
 #include "BaseSurface.h"
 #include "SurfaceType.h"
 #include "HomographyHelper.h"
+#include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -14,39 +16,34 @@ class QuadSurface : public BaseSurface {
 		~QuadSurface();
 
 		void setup();
-		void setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4, ofVec2f t1,
-				   ofVec2f t2, ofVec2f t3, ofVec2f t4, BaseSource * newSource);
-
+		void setup(
+			Vec3 p1, Vec3 p2, Vec3 p3, Vec3 p4,
+			Vec2 t1, Vec2 t2, Vec2 t3, Vec2 t4,
+			BaseSource * newSource);
 		void draw();
-	
-		void setVertex(int index, ofVec2f p);
-		void setVertices(vector<ofVec2f> v);
-		void setVertices(vector<ofVec3f> v);
-	
-		void setTexCoord(int index, ofVec2f t);
-		void setTexCoords(vector<ofVec2f> t);
-	
-		void moveBy(ofVec2f v);
+		void setVertex(int index, Vec3 p);
+		void setVertices(std::vector<Vec3> v);
+		void setTexCoord(int index, Vec2 t);
+		void setTexCoords(std::vector<Vec2> t);
+		void moveBy(Vec3 v);
 
 		int getType();
-		bool hitTest(ofVec2f p);
-		ofVec2f getVertex(int index);
-		ofVec2f getTexCoord(int index);
+		bool hitTest(Vec2 p);
+		Vec3 getVertex(int index);
+		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
-		vector <ofVec3f> & getVertices();
-		vector <ofVec2f> & getTexCoords();
+		std::vector<Vec3> getVertices();
+		std::vector<Vec2> getTexCoords();
 	
 		void setPerspectiveWarping(bool b);
 		bool getPerspectiveWarping();
 	
 		ofRectangle getMeshBoundingBox();
-	
 		BaseSurface * clone();
 
 	private:
 		void calculateHomography();
-	
 		float _matrix[16];
 		bool _perspectiveWarping;
 };

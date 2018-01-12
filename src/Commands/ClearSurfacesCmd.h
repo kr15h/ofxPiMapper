@@ -22,7 +22,7 @@ class ClearSurfacesCmd : public BaseUndoCmd {
 
 	private:
 		// Here it would make sense to have another instance of SurfaceStack
-		vector<BaseSurface *> _surfaces;
+		std::vector<BaseSurface *> _surfaces;
 		SurfaceManager * _surfaceManager;
 		BaseSurface * _selectedSurface;
 

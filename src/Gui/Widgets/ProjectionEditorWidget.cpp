@@ -15,7 +15,10 @@ void ProjectionEditorWidget::update(){
 		if(joints[i]->isDragged() || joints[i]->isSelected()){
 			if(surfaceManager->getSelectedSurface() != 0){
 				// update vertex to new location
-				surfaceManager->getSelectedSurface()->setVertex(i, joints[i]->position);
+				surfaceManager->getSelectedSurface()->setVertex(i, Vec3(
+					joints[i]->position.x,
+					joints[i]->position.y,
+					0.0f));
 			}else{
 				// clear joints if there is no surface selected
 				// as the remove selected surface in the surface manager
@@ -47,17 +50,19 @@ void ProjectionEditorWidget::mouseDragged(ofMouseEventArgs & args){
 		joints[i]->mouseDragged(args);
 	}
 	
-	ofVec2f mousePosition = ofVec2f(args.x, args.y);
+	Vec2 mousePosition = Vec2(args.x, args.y);
 
 	// Collect all vertices of the projection surfaces
-	vector <ofVec3f *> allVertices;
+	std::vector<Vec3> allVertices;
 	for(int i = 0; i < surfaceManager->size(); i++){
 		BaseSurface * surface = surfaceManager->getSurface(i);
+		
 		if(surface == surfaceManager->getSelectedSurface()){
-			continue; // Don't add vertices of selected surface
+			continue; // Don't add vertices of the selected surface
 		}
+		
 		for(int j = 0; j < surface->getVertices().size(); j++){
-			allVertices.push_back(&surface->getVertices()[j]);
+			allVertices.push_back(surface->getVertices()[j]);
 		}
 	}
 
@@ -65,10 +70,12 @@ void ProjectionEditorWidget::mouseDragged(ofMouseEventArgs & args){
 	for(int i = 0; i < joints.size(); i++){
 		if(joints[i]->isDragged()){
 			for(int j = 0; j < allVertices.size(); j++){
-				float distance = mousePosition.distance(*allVertices[j]);
+				Vec2 v(allVertices[j].x, allVertices[j].y);
+				float distance = mousePosition.distance(v);
+				
 				if(distance < fSnapDistance){
-					joints[i]->position = *allVertices[j];
-					ofVec2f clickDistance = joints[i]->position - ofVec2f(args.x, args.y);
+					joints[i]->position = v;
+					Vec2 clickDistance = joints[i]->position - Vec2(args.x, args.y);
 					joints[i]->setClickDistance(clickDistance);
 					break;
 				}
@@ -130,21 +137,20 @@ void ProjectionEditorWidget::createJoints(){
 		return;
 	}
 
-	vector <ofVec3f> & vertices =
-		surfaceManager->getSelectedSurface()->getVertices();
+	std::vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
 
 	for(int i = 0; i < vertices.size(); i++){
 		joints.push_back(new CircleJoint());
-		joints.back()->position = ofVec2f(vertices[i].x, vertices[i].y);
+		joints.back()->position = Vec2(vertices[i].x, vertices[i].y);
 	}
 }
 
 void ProjectionEditorWidget::updateJoints(){
 	if(surfaceManager->getSelectedSurface()){
-		vector <ofVec3f> & vertices =
-			surfaceManager->getSelectedSurface()->getVertices();
+		std::vector<Vec3> vertices = surfaceManager->getSelectedSurface()->getVertices();
+		
 		for(int i = 0; i < vertices.size(); i++){
-			joints[i]->position = ofVec2f(vertices[i].x, vertices[i].y);
+			joints[i]->position = Vec2(vertices[i].x, vertices[i].y);
 		}
 	}
 
@@ -156,13 +162,15 @@ void ProjectionEditorWidget::unselectAllJoints(){
 	}
 }
 
-void ProjectionEditorWidget::moveSelectedSurface(ofVec2f by){
+void ProjectionEditorWidget::moveSelectedSurface(Vec3 by){
 	if(surfaceManager == 0){
 		return;
 	}
+	
 	if(surfaceManager->getSelectedSurface() == 0){
 		return;
 	}
+	
 	surfaceManager->getSelectedSurface()->moveBy(by);
 	updateJoints();
 }
@@ -177,7 +185,7 @@ void ProjectionEditorWidget::setSnapDistance(float newSnapDistance){
 	fSnapDistance = newSnapDistance;
 }
 
-CircleJoint * ProjectionEditorWidget::hitTestJoints(ofVec2f pos){
+CircleJoint * ProjectionEditorWidget::hitTestJoints(Vec2 pos){
 	if(surfaceManager->getSelectedSurface() == 0){
 		return 0;
 	}
@@ -189,7 +197,7 @@ CircleJoint * ProjectionEditorWidget::hitTestJoints(ofVec2f pos){
 	return 0;
 }
 
-vector <CircleJoint *> * ProjectionEditorWidget::getJoints(){
+std::vector<CircleJoint *> * ProjectionEditorWidget::getJoints(){
 	return &joints;
 }
 
@@ -204,7 +212,7 @@ void ProjectionEditorWidget::onVertexChanged(int & i){
 	}
 }
 
-void ProjectionEditorWidget::onVerticesChanged(vector<ofVec3f> & vertices){
+void ProjectionEditorWidget::onVerticesChanged(std::vector<Vec3> & vertices){
 	createJoints();
 }
 

@@ -9,27 +9,27 @@ QuadSurface::QuadSurface(){
 }
 
 QuadSurface::~QuadSurface(){
-	cout << "QuadSurface destructor." << endl;
+	std::cout << "QuadSurface destructor." << std::endl;
 }
 
 void QuadSurface::setup(){
 	// Create 4 points for the 2 triangles
-	ofVec2f p1 = ofVec2f(0, 0);
-	ofVec2f p2 = ofVec2f(0, ofGetHeight());
-	ofVec2f p3 = ofVec2f(ofGetWidth(), ofGetHeight());
-	ofVec2f p4 = ofVec2f(ofGetWidth(), 0);
+	Vec3 p1 = Vec3(0.0f, 0.0f, 0.0f);
+	Vec3 p2 = Vec3(0.0f, ofGetHeight(), 0.0f);
+	Vec3 p3 = Vec3(ofGetWidth(), ofGetHeight(), 0.0f);
+	Vec3 p4 = Vec3(ofGetWidth(), 0.0f, 0.0f);
 
 	// Create 4 point for the texture coordinates
-	ofVec2f t1 = ofVec2f(ofVec2f(0.0f, 0.0f));
-	ofVec2f t2 = ofVec2f(ofVec2f(1.0f, 0.0f));
-	ofVec2f t3 = ofVec2f(ofVec2f(1.0f, 1.0f));
-	ofVec2f t4 = ofVec2f(ofVec2f(0.0f, 1.0f));
+	Vec2 t1 = Vec2(0.0f, 0.0f);
+	Vec2 t2 = Vec2(1.0f, 0.0f);
+	Vec2 t3 = Vec2(1.0f, 1.0f);
+	Vec2 t4 = Vec2(0.0f, 1.0f);
 
 	setup(p1, p2, p3, p4, t1, t2, t3, t4, source);
 }
 
-void QuadSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
-						ofVec2f t1, ofVec2f t2, ofVec2f t3, ofVec2f t4,
+void QuadSurface::setup(Vec3 p1, Vec3 p2, Vec3 p3, Vec3 p4,
+						Vec2 t1, Vec2 t2, Vec2 t3, Vec2 t4,
 						BaseSource * newSource){
 	// Assign texture
 	source = newSource;
@@ -38,20 +38,20 @@ void QuadSurface::setup(ofVec2f p1, ofVec2f p2, ofVec2f p3, ofVec2f p4,
 	mesh.clear();
 
 	// Create a surface with the points
-	mesh.addVertex(p1);
-	mesh.addVertex(p2);
-	mesh.addVertex(p3);
-	mesh.addVertex(p4);
+	mesh.addVertex(p1.toOf());
+	mesh.addVertex(p2.toOf());
+	mesh.addVertex(p3.toOf());
+	mesh.addVertex(p4.toOf());
 
 	// Add 2 triangles
 	mesh.addTriangle(0, 2, 3);
 	mesh.addTriangle(0, 1, 2);
 
 	// Add texture coordinates
-	mesh.addTexCoord(t1);
-	mesh.addTexCoord(t2);
-	mesh.addTexCoord(t3);
-	mesh.addTexCoord(t4);
+	mesh.addTexCoord(t1.toOf());
+	mesh.addTexCoord(t2.toOf());
+	mesh.addTexCoord(t3.toOf());
+	mesh.addTexCoord(t4.toOf());
 }
 
 void QuadSurface::draw(){
@@ -71,10 +71,10 @@ void QuadSurface::draw(){
 		ofRectangle box = getMeshBoundingBox();
 		ofMesh m = mesh;
 		
-		m.setVertex(0, ofVec3f(0, 0, 0));
-		m.setVertex(1, ofVec3f(box.width, 0, 0));
-		m.setVertex(2, ofVec3f(box.width, box.height, 0));
-		m.setVertex(3, ofVec3f(0, box.height, 0));
+		m.setVertex(0, Vec3(0, 0, 0).toOf());
+		m.setVertex(1, Vec3(box.width, 0, 0).toOf());
+		m.setVertex(2, Vec3(box.width, box.height, 0).toOf());
+		m.setVertex(3, Vec3(0, box.height, 0).toOf());
 		
 		ofPushMatrix();
 		if(true){
@@ -110,77 +110,63 @@ void QuadSurface::draw(){
 	}
 }
 
-void QuadSurface::setVertex(int index, ofVec2f p){
+void QuadSurface::setVertex(int index, Vec3 p){
 	if(index > 3){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		return;
 	}
 
-	mesh.setVertex(index, p);
-	ofVec3f v = mesh.getVertex(index);
+	mesh.setVertex(index, p.toOf());
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void QuadSurface::setVertices(vector<ofVec2f> v){
+void QuadSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != 4){
 		throw runtime_error("Wrong number of vertices");
 	}
 	
 	for(int i = 0; i < 4; ++i){
-		mesh.setVertex(i, v[i]);
+		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
-void QuadSurface::setVertices(vector<ofVec3f> v){
-	if(v.size() != 4){
-		throw runtime_error("Wrong number of vertices");
-	}
-	
-	for(int i = 0; i < 4; ++i){
-		mesh.setVertex(i, v[i]);
-	}
-	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
-}
-
-void QuadSurface::setTexCoord(int index, ofVec2f t){
+void QuadSurface::setTexCoord(int index, Vec2 t){
 	if(index > 3){
 		ofLog() << "Texture coordinate with this index does not exist: " << index
-				<< endl;
+				<< std::endl;
 		return;
 	}
 
-	mesh.setTexCoord(index, t);
+	mesh.setTexCoord(index, t.toOf());
 }
 
-void QuadSurface::setTexCoords(vector<ofVec2f> t){
+void QuadSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != 4){
 		throw runtime_error("Wrong number of vertices");
 	}
 	for(int i = 0; i < 4; ++i){
-		mesh.setTexCoord(i, t[i]);
+		mesh.setTexCoord(i, t[i].toOf());
 	}
 }
 
-void QuadSurface::moveBy(ofVec2f v){
-	vector <ofVec3f> & vertices = getVertices();
-	
-	for(int i = 0; i < vertices.size(); i++){
-		vertices[i] += v;
+void QuadSurface::moveBy(Vec3 v){
+	for(int i = 0; i < mesh.getVertices().size(); i++){
+		mesh.getVertices()[i] += v.toOf();
 	}
 	
 	setMoved(true);
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 int QuadSurface::getType(){
 	return SurfaceType::QUAD_SURFACE;
 }
 
-bool QuadSurface::hitTest(ofVec2f p){
-	// Construct ofPolyline from vertices
+bool QuadSurface::hitTest(Vec2 p){
 	ofPolyline line = getHitArea();
 
 	if(line.inside(p.x, p.y)){
@@ -190,26 +176,31 @@ bool QuadSurface::hitTest(ofVec2f p){
 	}
 }
 
-ofVec2f QuadSurface::getVertex(int index){
+Vec3 QuadSurface::getVertex(int index){
 	if(index > 3){
-		ofLog() << "Vertex with this index does not exist: " << index << endl;
+		ofLog() << "Vertex with this index does not exist: " << index << std::endl;
 		throw runtime_error("Vertex index out of bounds.");
 	}
-
-	ofVec3f vert = mesh.getVertex(index);
-	return ofVec2f(vert.x, vert.y);
+	
+	return Vec3(
+		mesh.getVertex(index).x,
+		mesh.getVertex(index).y,
+		mesh.getVertex(index).z);
 }
 
-ofVec2f QuadSurface::getTexCoord(int index){
+Vec2 QuadSurface::getTexCoord(int index){
 	if(index > 3){
 		throw runtime_error("Texture coordinate index out of bounds.");
 	}
 
-	return mesh.getTexCoord(index);
+	return Vec2(
+		mesh.getTexCoord(index).x,
+		mesh.getTexCoord(index).y);
 }
 
 ofPolyline QuadSurface::getHitArea(){
 	ofPolyline line;
+	
 	line.addVertex(ofPoint(mesh.getVertex(0).x, mesh.getVertex(0).y));
 	line.addVertex(ofPoint(mesh.getVertex(1).x, mesh.getVertex(1).y));
 	line.addVertex(ofPoint(mesh.getVertex(2).x, mesh.getVertex(2).y));
@@ -221,23 +212,23 @@ ofPolyline QuadSurface::getHitArea(){
 
 ofPolyline QuadSurface::getTextureHitArea(){
 	ofPolyline line;
-	vector <ofVec2f> & texCoords = mesh.getTexCoords();
-	ofVec2f textureSize = ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight());
-	for(int i = 0; i < texCoords.size(); i++){
-		line.addVertex(ofPoint(texCoords[i] * textureSize));
+	Vec2 textureSize =
+		Vec2(source->getTexture()->getWidth(),
+		source->getTexture()->getHeight());
+	for(int i = 0; i < mesh.getTexCoords().size(); i++){
+		line.addVertex(ofPoint(mesh.getTexCoords()[i] * textureSize.toOf()));
 	}
 	line.close();
 
 	return line;
 }
 
-vector <ofVec3f> & QuadSurface::getVertices(){
-	// return only joint vertices
-	return mesh.getVertices();
+std::vector<Vec3> QuadSurface::getVertices(){
+	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector <ofVec2f> & QuadSurface::getTexCoords(){
-	return mesh.getTexCoords();
+std::vector<Vec2> QuadSurface::getTexCoords(){
+	return Vec2::fromOf(mesh.getTexCoords());
 }
 
 void QuadSurface::calculateHomography(){
@@ -255,10 +246,10 @@ void QuadSurface::calculateHomography(){
     src[3][0] = 0;
     src[3][1] = box.height;
 	
-	ofVec3f p0 = mesh.getVertex(0);
-	ofVec3f p1 = mesh.getVertex(1);
-	ofVec3f p2 = mesh.getVertex(2);
-	ofVec3f p3 = mesh.getVertex(3);
+	Vec3 p0(mesh.getVertex(0).x, mesh.getVertex(0).y, mesh.getVertex(0).z);
+	Vec3 p1(mesh.getVertex(1).x, mesh.getVertex(1).y, mesh.getVertex(1).z);
+	Vec3 p2(mesh.getVertex(2).x, mesh.getVertex(2).y, mesh.getVertex(2).z);
+	Vec3 p3(mesh.getVertex(3).x, mesh.getVertex(3).y, mesh.getVertex(3).z);
 
 	dst[0][0] = p0.x;
 	dst[0][1] = p0.y;

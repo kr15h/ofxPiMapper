@@ -2,6 +2,7 @@
 
 #include "BaseCmd.h"
 #include "BaseSurface.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -15,7 +16,7 @@ class StartDragSurfaceCmd : public BaseUndoCmd {
 
 	private:
 		BaseSurface * _surface;
-		vector <ofVec3f> _previousVertices;
+		std::vector<Vec3> _previousVertices;
 
 };
 

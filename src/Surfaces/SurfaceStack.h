@@ -21,18 +21,18 @@ class SurfaceStack {
 		BaseSurface * at(int i);
 		BaseSurface * back();
 	
-		ofEvent <vector<ofVec3f>> verticesChangedEvent;
+		ofEvent <std::vector<Vec3>> verticesChangedEvent;
 		ofEvent <int> vertexChangedEvent;
 	
-		void onVerticesChanged(vector<ofVec3f> & vertices);
+		void onVerticesChanged(std::vector<Vec3> & vertices);
 		void onVertexChanged(int & i);
 	
-		vector<BaseSurface *> & getSurfaces(){ return _surfaces; };
+		std::vector<BaseSurface *> & getSurfaces(){ return _surfaces; };
 	
 		SurfaceStack * clone();
 	
 	private:
-		vector<BaseSurface *> _surfaces;
+		std::vector<BaseSurface *> _surfaces;
 };
 
 } // namespace piMapper

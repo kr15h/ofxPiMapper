@@ -11,11 +11,11 @@ class Info {
 	
 		void draw();
 		void toggle();
-		void setText(string text);
+		void setText(std::string text);
 	
 	private:
 		bool _visible;
-		string _text;
+		std::string _text;
 };
 
 } // namespace piMapper

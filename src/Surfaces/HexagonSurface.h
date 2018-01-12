@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "BaseSurface.h"
 #include "SurfaceType.h"
+#include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -15,28 +17,24 @@ class HexagonSurface : public BaseSurface {
 
 		void setup();
 		void setup(
-			vector <ofVec2f> & verts,
-			vector <ofVec2f> & coords,
+			std::vector<Vec3> & verts,
+			std::vector<Vec2> & coords,
 			BaseSource * newSource);
 		void draw();
-	
-		void setVertex(int index, ofVec2f p);
-		void setVertices(vector<ofVec2f> v);
-		void setVertices(vector<ofVec3f> v);
-	
-		void setTexCoord(int index, ofVec2f t);
-		void setTexCoords(vector<ofVec2f> t);
-	
-		void moveBy(ofVec2f v);
+		void setVertex(int index, Vec3 p);
+		void setVertices(std::vector<Vec3> v);
+		void setTexCoord(int index, Vec2 t);
+		void setTexCoords(std::vector<Vec2> t);
+		void moveBy(Vec3 v);
 
 		int getType();
-		bool hitTest(ofVec2f p);
-		ofVec2f getVertex(int index);
-		ofVec2f getTexCoord(int index);
+		bool hitTest(Vec2 p);
+		Vec3 getVertex(int index);
+		Vec2 getTexCoord(int index);
 		ofPolyline getHitArea();
 		ofPolyline getTextureHitArea();
-		vector <ofVec3f> & getVertices();
-		vector <ofVec2f> & getTexCoords();
+		std::vector<Vec3> getVertices();
+		std::vector<Vec2> getTexCoords();
 	
 		BaseSurface * clone();
 };

@@ -8,6 +8,7 @@
 #include "BaseSurface.h"
 #include "ProjectionEditorWidget.h"
 #include "BaseJoint.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -21,7 +22,7 @@ class MvSurfaceVertCmd : public BaseUndoCmd {
 
 	private:
 		int _vertIndex;
-		ofVec2f _prevVertPos;
+		Vec3 _prevVertPos;
 		BaseSurface * _surface;
 
 };

@@ -13,15 +13,16 @@ Info::Info(){
 		" 3. Projection mapping mode\n"
 		"  - Press <,> and <.> to select previous or next surface\n"
 		"  - Press \"<\" and \">\" to select previous or next vertex\n"
-		"  - Press <t> to add new triangle surface\n"
-		"  - Press <q> to add new quad surface\n"
-		"  - Press <p> to toggle perspective warping while quad surface selected\n"
-		"  - Press <g> to add new grid surface\n"
+		"  - Press <t> to add new Triangle surface\n"
+		"  - Press <q> to add new Quad surface\n"
+		"  - Press <r> to add a new ciRcle surface\n"
+		"  - Press <p> to toggle Perspective warping while quad surface selected\n"
+		"  - Press <g> to add new Grid surface\n"
 		"  - Press <[> and <]> to remove or add columns to selected grid surface\n"
 		"  - Press <{> and <}> to remove or add rows to selected grid surface\n"
 		"  - Press <+> and <-> to scale surface up and down\n"
 		"  - Press <9> and <0> to move selected surface one layer up or down\n"
-		"  - Press <l> to hide/show layer panel\n"
+		"  - Press <l> to hide/show Layer panel\n"
 		"  - Press <BACKSPACE> to delete selection\n"
 		"  - Press <SPACE> to play/pause the video\n"
 		"  - Type  <new> to clear composition\n"
@@ -50,7 +51,7 @@ void Info::toggle(){
 	_visible = !_visible;
 }
 
-void Info::setText(string text){
+void Info::setText(std::string text){
 	_text = text;
 }
 

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxPiMapper.h"
 #include "InputHandler.h"
+#include "Vec3.h"
 
 class ofApp : public ofBaseApp {
 	public:

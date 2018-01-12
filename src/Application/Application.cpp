@@ -102,7 +102,7 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 break;
 
 	 case '/':
-		 _shiftKeyDown = !_shiftKeyDown;
+		 toggleShift();
 		 break;
 
 	 case '1':
@@ -132,8 +132,8 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 	 case 'z':
 		 undo();
 		 break;
-
-	 case 'n':
+		 
+	 case 'f':
 		 setNextPreset();
 		 break;
 
@@ -199,7 +199,7 @@ void Application::eraseSurface(int i){
 	}
 }
 
-void Application::setInfoText(string text){
+void Application::setInfoText(std::string text){
 	_info.setText(text);
 }
 
@@ -228,6 +228,11 @@ void Application::setState(ApplicationBaseMode * st){
 }
 
 bool Application::isShiftKeyDown(){
+	return _shiftKeyDown;
+}
+
+bool Application::toggleShift(){
+	_shiftKeyDown = !_shiftKeyDown;
 	return _shiftKeyDown;
 }
 
@@ -265,13 +270,13 @@ void Application::shutdown(){
 	#endif
 }
 
-bool Application::loadXmlSettings(string fileName){
+bool Application::loadXmlSettings(std::string fileName){
 	if(!ofFile::doesFileExist(fileName)){
 		ofLogError("Application::loadXmlSettings()") << fileName << " does not exist";
 		return false;
 	}
 	if(!_surfaceManager.loadXmlSettings(fileName)){
-		ofLogError("Application::loadXmlSettings()") << "Failed to load " << fileName << endl;
+		ofLogError("Application::loadXmlSettings()") << "Failed to load " << fileName << std::endl;
 		return false;
 	}
 	return true;
@@ -356,13 +361,14 @@ void Application::selectPrevTexCoord(){
 	}
 }
 
-void Application::moveSelection(ofVec2f by){
+void Application::moveSelection(Vec3 by){
 	if(_state == ProjectionMappingMode::instance()){
 		getCmdManager()->exec(new MvSelectionCmd(getSurfaceManager(), by));
 	}else if(_state == TextureMappingMode::instance()){
+		Vec2 tcBy(by.x, by.y);
 		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 		if(selectedTexCoord >= 0){
-			moveTexCoord(selectedTexCoord, by);
+			moveTexCoord(selectedTexCoord, tcBy);
 		}
 	}
 }
@@ -463,7 +469,7 @@ void Application::setNextSource(){
 	}
 }
 
-void Application::setFboSource(string sourceId){
+void Application::setFboSource(std::string sourceId){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(
 		 new SetSourceCmd(
@@ -541,7 +547,7 @@ void Application::togglePause(){
 	}
 }
 
-void Application::moveTexCoord(int texCoordIndex, ofVec2f by){
+void Application::moveTexCoord(int texCoordIndex, Vec2 by){
 	if(texCoordIndex >= 0){
 		getCmdManager()->exec(new MvTexCoordCmd(texCoordIndex, by));
 	}else{
@@ -560,6 +566,12 @@ void Application::undo(){
 void Application::deselect(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		getCmdManager()->exec(new DeselectSurfaceCmd(getSurfaceManager()));
+	}
+}
+
+void Application::toggleLayerPanel(){
+	if(getState() == ProjectionMappingMode::instance()){
+		ProjectionMappingMode::instance()->toggleLayerPanel();
 	}
 }
 

@@ -73,7 +73,6 @@ void TextureMappingMode::draw(Application * app){
 }
 
 void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
-	int key = args.key;
 	float moveStep;
 
 	if(app->isShiftKeyDown()){
@@ -85,25 +84,25 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
 
 	 case OF_KEY_LEFT:
-		 moveSelectedTexCoord(app, ofVec2f(-moveStep, 0.0f));
+		 moveSelectedTexCoord(app, Vec2(-moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_RIGHT:
-		 moveSelectedTexCoord(app, ofVec2f(moveStep, 0.0f));
+		 moveSelectedTexCoord(app, Vec2(moveStep, 0.0f));
 		 break;
 
 	 case OF_KEY_UP:
-		 moveSelectedTexCoord(app, ofVec2f(0.0f, -moveStep));
+		 moveSelectedTexCoord(app, Vec2(0.0f, -moveStep));
 		 break;
 
 	 case OF_KEY_DOWN:
-		 moveSelectedTexCoord(app, ofVec2f(0.0f, moveStep));
+		 moveSelectedTexCoord(app, Vec2(0.0f, moveStep));
 		 break;
 
 	 case '>':
 		 app->selectNextTexCoord();
 		 break;
-		 
+			
 	 case '<':
 		 app->selectPrevTexCoord();
 		 break;
@@ -111,7 +110,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	 case ' ':
 		 app->togglePause();
 		 break;
-		 
+			
 	 case OF_KEY_TAB:
 		 app->setNextSource();
 		 break;
@@ -123,7 +122,7 @@ void TextureMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	 case '9': // Prew draw mode
 		 app->getCmdManager()->exec(new SetTexMapDrawModeCmd( this, getPrevDrawMode() ));
 		 break;
-		 
+			
 	}
 }
 
@@ -159,7 +158,7 @@ void TextureMappingMode::onMousePressed(Application * app, ofMouseEventArgs & ar
 	
 	CircleJoint * hitJoint =
 		Gui::instance()->getTextureEditorWidget().hitTestJoints(
-			ofVec2f(args.x, args.y));
+			Vec2(args.x, args.y));
 	
 	if(hitJoint != 0){
 		hitJoint->mousePressed(args);
@@ -220,7 +219,7 @@ void TextureMappingMode::onMouseReleased(Application * app, ofMouseEventArgs & a
 	// create an undoable move tex coord command.
 	int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 	if(selectedTexCoord >= 0){
-		ofVec2f texCoordCurrent =
+		Vec2 texCoordCurrent =
 			app->getSurfaceManager()->getSelectedSurface()->getTexCoords()[selectedTexCoord];
 		
 		if(texCoordCurrent != _texCoordOnClick){
@@ -247,7 +246,8 @@ void TextureMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & ar
 		if(_bCropAreaDrag){
 			ofPoint mousePosition = ofPoint(args.x, args.y);
 			ofPoint distance = mousePosition - _clickPosition;
-			Gui::instance()->getTextureEditorWidget().moveTexCoords(distance);
+			Vec2 d = Vec2(distance.x, distance.y);
+			Gui::instance()->getTextureEditorWidget().moveTexCoords(d);
 			_clickPosition = mousePosition;
 		}
 	}else{
@@ -263,7 +263,7 @@ void TextureMappingMode::drawTexture(Application * app){
 		ofEnableNormalizedTexCoords();
 
 		ofSetColor(255, 255, 255, 255);
-		app->getSurfaceManager()->getSelectedSurface()->drawTexture(ofVec2f(0, 0));
+		app->getSurfaceManager()->getSelectedSurface()->drawTexture(Vec3(0.0f, 0.0f, 0.0f));
 
 		if(!normalizedTexCoords){
 			ofDisableNormalizedTexCoords();
@@ -271,7 +271,7 @@ void TextureMappingMode::drawTexture(Application * app){
 	}
 }
 
-void TextureMappingMode::moveSelectedTexCoord(Application * app, ofVec2f by){
+void TextureMappingMode::moveSelectedTexCoord(Application * app, Vec2 by){
 	if(app->getSurfaceManager()->getSelectedSurface() != 0){
 		int selectedTexCoord = Gui::instance()->getTextureEditorWidget().getSelectedTexCoord();
 		app->moveTexCoord(selectedTexCoord, by);

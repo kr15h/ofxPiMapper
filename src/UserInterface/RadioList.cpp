@@ -8,12 +8,12 @@ RadioList::RadioList(){
 	storedSelectedItem = 0;
 }
 
-RadioList::RadioList(vector <string> & labels, vector <string> & values){
+RadioList::RadioList(std::vector<std::string> & labels, std::vector<std::string> & values){
 	RadioList();
 	setup(labels, values);
 }
 
-RadioList::RadioList(string title, vector <string> & labels, vector <string> & values){
+RadioList::RadioList(std::string title, std::vector<std::string> & labels, std::vector<std::string> & values){
 	RadioList();
 	setup(title, labels, values);
 }
@@ -22,7 +22,7 @@ RadioList::~RadioList(){
 	clear();
 }
 
-void RadioList::setup(vector <string> & labels, vector <string> & values){
+void RadioList::setup(std::vector<std::string> & labels, std::vector<std::string> & values){
 
 	// Copy incomming labels for later use
 	storedLabels = labels;
@@ -42,7 +42,7 @@ void RadioList::setup(vector <string> & labels, vector <string> & values){
 	}
 }
 
-void RadioList::setup(string title, vector <string> & labels, vector <string> & values){
+void RadioList::setup(std::string title, std::vector<std::string> & labels, std::vector<std::string> & values){
 
 	// Store title for later use
 	storedTitle = title;
@@ -54,7 +54,7 @@ void RadioList::draw(){
 	guiGroup.draw();
 }
 
-void RadioList::setTitle(string title){
+void RadioList::setTitle(std::string title){
 	storedTitle = title;
 	guiGroup.setName(title);
 }
@@ -78,14 +78,14 @@ void RadioList::selectItem(int index){
 	toggle->removeListener(this, &RadioList::onToggleClicked);
 	*toggle = true;          // Select the specific radio button
 	toggle->addListener(this, &RadioList::onToggleClicked);
-	//string name = toggle->getName();
+	//std::string name = toggle->getName();
 	// Throw event with value that is image path instead of name
-	string value = storedValues[index];
+	std::string value = storedValues[index];
 	ofNotifyEvent(onRadioSelected, value, this);
 	storedSelectedItem = index;
 }
 
-bool RadioList::selectItemByValue(string itemValue){
+bool RadioList::selectItemByValue(std::string itemValue){
 	if(itemValue == ""){
 		ofLogNotice("RadioList") << "Item value empty";
 		return false;
@@ -123,7 +123,7 @@ void RadioList::enable(){
 	*toggle = true;
 	toggle->addListener(this, &RadioList::onToggleClicked);
 
-	cout << "num items after enable: " << guiGroup.getNumControls() << endl;
+	std::cout << "num items after enable: " << guiGroup.getNumControls() << std::endl;
 }
 
 void RadioList::disable(){
@@ -145,7 +145,6 @@ void RadioList::unselectAll(){
 	int i;
 	for(i = 0; i < guiGroup.getNumControls(); i++){
 		ofxToggle * toggle = static_cast <ofxToggle *>(guiGroup.getControl(i));
-		ofParameter <bool> * paramPtr = static_cast <ofParameter <bool> *>(&toggle->getParameter());
 		toggle->removeListener(this, &RadioList::onToggleClicked);
 		*toggle = false;
 		toggle->addListener(this, &RadioList::onToggleClicked);
@@ -164,11 +163,11 @@ float RadioList::getHeight(){
 	return guiGroup.getHeight();
 }
 
-string RadioList::getTitle(){
+std::string RadioList::getTitle(){
 	return guiGroup.getName();
 }
 
-string RadioList::getItemName(int index){
+std::string RadioList::getItemName(int index){
 	if(index >= guiGroup.getNumControls()){
 		return "";
 	}

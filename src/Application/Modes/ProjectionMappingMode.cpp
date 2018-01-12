@@ -49,9 +49,13 @@ void ProjectionMappingMode::draw(Application * app){
 	Gui::instance()->getSurfaceHighlightWidget().draw();
 }
 
+void ProjectionMappingMode::toggleLayerPanel(){
+	_bDrawLayerPanel = !_bDrawLayerPanel;
+}
+
 void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 	switch(args.key){
-		 
+			
 	 case 't':
 		 app->createSurface(SurfaceType::TRIANGLE_SURFACE);
 		 break;
@@ -59,7 +63,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case 'q':
 		 app->createSurface(SurfaceType::QUAD_SURFACE);
 		 break;
-		 
+			
 	 case 'g':
 		 app->createSurface(SurfaceType::GRID_WARP_SURFACE);
 		 break;
@@ -67,6 +71,10 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case 'h':
 		 app->createSurface(SurfaceType::HEXAGON_SURFACE);
 		 break;
+			
+	 case 'c':
+		app->createSurface(SurfaceType::CIRCLE_SURFACE);
+		break;
 
 	 case OF_KEY_BACKSPACE:
 		 app->eraseSurface(app->getSurfaceManager()->getSelectedSurfaceIndex());
@@ -87,19 +95,19 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case ']':
 		 app->addGridColumn();
 		 break;
-		 
+			
 	 case '[':
 		 app->removeGridColumn();
 		 break;
-		 
+			
 	 case '.':
 		 app->selectNextSurface();
 		 break;
-		 
+			
 	 case ',':
 		 app->selectPrevSurface();
 		 break;
-		 
+			
 	 case '>':
 		 app->selectNextVertex();
 		 break;
@@ -110,40 +118,40 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 
 	 case OF_KEY_UP:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(ofVec2f(0.0f, -10.0f));
+			app->moveSelection(Vec3(0.0f, -10.0f, 0.0f));
 		 }else{
-			app->moveSelection(ofVec2f(0.0f, -1.0f));
+			app->moveSelection(Vec3(0.0f, -1.0f, 0.0f));
 		 }
 		 break;
-		 
+			
 	 case OF_KEY_DOWN:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(ofVec2f(0.0f, 10.0f));
+			app->moveSelection(Vec3(0.0f, 10.0f, 0.0f));
 		 }else{
-			app->moveSelection(ofVec2f(0.0f, 1.0f));
+			app->moveSelection(Vec3(0.0f, 1.0f, 0.0f));
 		 }
 		 break;
-		 
+			
 	 case OF_KEY_LEFT:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(ofVec2f(-10.0f, 0.0f));
+			app->moveSelection(Vec3(-10.0f, 0.0f, 0.0f));
 		 }else{
-			app->moveSelection(ofVec2f(-1.0f, 0.0f));
+			app->moveSelection(Vec3(-1.0f, 0.0f, 0.0f));
 		 }
 		 break;
 	 
 	 case OF_KEY_RIGHT:
 		 if(app->isShiftKeyDown()){
-			app->moveSelection(ofVec2f(10.0f, 0.0f));
+			app->moveSelection(Vec3(10.0f, 0.0f, 0.0f));
 		 }else{
-			app->moveSelection(ofVec2f(1.0f, 0.0f));
+			app->moveSelection(Vec3(1.0f, 0.0f, 0.0f));
 		 }
 		 break;
-		 
+			
 	 case ' ':
 		 app->togglePause();
 		 break;
-		 
+			
 	 case OF_KEY_TAB:
 		 app->setNextSource();
 		 break;
@@ -151,7 +159,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case 'd':
 		 app->duplicateSurface();
 		 break;
-		 
+			
 	 case '0': // Move selected surface up the layer stack
 		 app->moveLayerUp();
 		 break;
@@ -159,7 +167,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 	 case '9': // Move selected surface down the layer stack
 		 app->moveLayerDown();
 		 break;
-		 
+			
 	 case '+': // Scale surface up
 		 app->scaleUp();
 		 break;
@@ -169,7 +177,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 break;
 
 	 case 'l':
-		 _bDrawLayerPanel = !_bDrawLayerPanel;
+		 toggleLayerPanel();
 		 break;
 
 	/*
@@ -177,7 +185,7 @@ void ProjectionMappingMode::onKeyPressed(Application * app, ofKeyEventArgs & arg
 		 app->getSurfaceManager()->setNextPreset();
 		 break;
 	*/
-		 
+			
 	 default:
 		 break;
 	}
@@ -190,8 +198,8 @@ void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs &
 	int hitJointIndex = -1;
 	BaseSurface * hitSurface = 0;
 
-	hitJoint = Gui::instance()->getProjectionEditorWidget().hitTestJoints(ofVec2f(args.x, args.y));
-		
+	hitJoint = Gui::instance()->getProjectionEditorWidget().hitTestJoints(Vec2(args.x, args.y));
+	
 	if(hitJoint){
 		for(int i = Gui::instance()->getProjectionEditorWidget().getJoints()->size() - 1; i >= 0 ; --i){
 			if((*Gui::instance()->getProjectionEditorWidget().getJoints())[i] == hitJoint){
@@ -201,13 +209,13 @@ void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs &
 		}
 	}else{
 		for(int i = app->getSurfaceManager()->size() - 1; i >= 0; --i){
-			if(app->getSurfaceManager()->getSurface(i)->hitTest(ofVec2f(args.x, args.y))){
+			if(app->getSurfaceManager()->getSurface(i)->hitTest(Vec2(args.x, args.y))){
 				hitSurface = app->getSurfaceManager()->getSurface(i);
 				break;
 			}
 		}
 	}
-		
+	
 	if(Gui::instance()->getScaleWidget().inside(args.x, args.y)){
 		//
 	}else if(hitJoint){
@@ -215,7 +223,7 @@ void ProjectionMappingMode::onMousePressed(Application * app, ofMouseEventArgs &
 		hitJoint->startDrag();
 		Gui::instance()->notifyJointPressed(args, hitJointIndex);
 	}else if(hitSurface){
-		_clickPosition = ofVec2f(args.x, args.y); // TODO: redesign this so we can use a kind of
+		_clickPosition = Vec2(args.x, args.y); // TODO: redesign this so we can use a kind of
 												  //       display stack.
 		_bSurfaceDrag = true; // TODO: Should be something like `hitSurface->startDrag()`
 		Gui::instance()->notifySurfacePressed(args, hitSurface);
@@ -230,15 +238,18 @@ void ProjectionMappingMode::onMouseReleased(Application * app, ofMouseEventArgs 
 	Gui::instance()->getProjectionEditorWidget().stopDragJoints();
 }
 
-void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){	
+void ProjectionMappingMode::onMouseDragged(Application * app, ofMouseEventArgs & args){
 	Gui::instance()->onMouseDragged(args);
 	Gui::instance()->getProjectionEditorWidget().mouseDragged(args);
 	
 	// TODO: Handle app->getGui()->clickPosition and app->getGui()->bDrag locally.
 	if(_bSurfaceDrag){
-		ofVec2f mousePosition = ofVec2f(args.x, args.y);
-		ofVec2f distance = mousePosition - _clickPosition;
-		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(distance);
+		Vec2 mousePosition = Vec2(args.x, args.y);
+		Vec2 distance = mousePosition - _clickPosition;
+		Gui::instance()->getProjectionEditorWidget().moveSelectedSurface(Vec3(
+			distance.x,
+			distance.y,
+			0.0f));
 		_clickPosition = mousePosition;
 	}
 }

@@ -7,6 +7,7 @@
 #include "BaseCmd.h"
 #include "BaseSurface.h"
 #include "SurfaceManager.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {

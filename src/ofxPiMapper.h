@@ -6,6 +6,8 @@
 #include "Application.h"
 #include "SurfaceType.h"
 #include "Mode.h"
+#include "Vec2.h"
+#include "Vec3.h"
 
 class ofxPiMapper {
 	public:
@@ -26,18 +28,22 @@ class ofxPiMapper {
 		void registerFboSource(ofx::piMapper::FboSource * fboSource);
 
 		// Application
-		void setInfoText(string text);
+		void setInfoText(std::string text);
 		void toggleInfo();
 		void undo();
 		void deselect();
+		bool toggleShift();
 
 		// Modes
 		void setMode(ofx::piMapper::Mode m);
 		ofx::piMapper::Mode getMode();
+	
+		// Projection mapping mode only
+		void toggleLayerPanel();
 
 		// Project
 		void saveProject();
-		bool loadProject(string filename);
+		bool loadProject(std::string filename);
 
 		// Presets
 		unsigned int getNumPresets();
@@ -66,13 +72,19 @@ class ofxPiMapper {
 		void scaleDown();
 		void togglePauseForSurface(unsigned int i);
 		void togglePause();
-		void moveSelection(ofVec2f by);
+		void moveSelection(ofx::piMapper::Vec3 by);
 		void createSurface(ofx::piMapper::SurfaceType type);
 		void eraseSurface(int i);
+	
+		// Specifically for GridWarpSurface
+		void addGridColumn();
+		void removeGridColumn();
+		void addGridRow();
+		void removeGridRow();
 
 		// Sources, selected surface
 		void setNextSource();
-		void setFboSource(string sourceId);
+		void setFboSource(std::string sourceId);
 
 		// System commands
 		void reboot();

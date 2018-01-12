@@ -17,7 +17,7 @@ class SetSourceCmd : public BaseUndoCmd {
 
 	public:
 		SetSourceCmd(int sourceType,
-					 string sourceId,
+					 std::string sourceId,
 					 BaseSurface * surface,
 					 SourcesEditorWidget * sourcesEditor);
 		void exec();
@@ -25,12 +25,12 @@ class SetSourceCmd : public BaseUndoCmd {
 
 	private:
 		int _sourceType;
-		string _sourceId;
+		std::string _sourceId;
 		BaseSurface * _surface;
 		SourcesEditorWidget * _sourcesEditor;
 
 		int _oldSourceTypeHelper;
-		string _oldSourceId;
+		std::string _oldSourceId;
 
 };
 

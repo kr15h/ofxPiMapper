@@ -1,6 +1,6 @@
 # ofxPiMapper
 
-[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) [![Build status](https://ci.appveyor.com/api/projects/status/j6mn85tt2agk4dk6?svg=true)](https://ci.appveyor.com/project/kr15h/ofxpimapper)
 
 Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
@@ -166,6 +166,7 @@ i | Show info
 t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
+c | Add circle surface
 d | duplicate selected surface
 \+ | Scale surface up
 \- | Scale surface down

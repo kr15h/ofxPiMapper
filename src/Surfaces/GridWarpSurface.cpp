@@ -9,10 +9,6 @@ GridWarpSurface::GridWarpSurface(){
 	createGridMesh();
 }
 
-void GridWarpSurface::setup(){
-	// Nothing here yet
-}
-
 void GridWarpSurface::draw(){
 	if(source->getTexture() == 0){
 		return;
@@ -34,15 +30,14 @@ void GridWarpSurface::draw(){
 	}
 }
 
-void GridWarpSurface::moveBy(ofVec2f v){
-	vector <ofVec3f> & vertices = getVertices();
-	
-	for(int i = 0; i < vertices.size(); i++){
-		vertices[i] += v;
+void GridWarpSurface::moveBy(Vec3 v){
+	for(int i = 0; i < mesh.getVertices().size(); i++){
+		mesh.getVertices()[i] += v.toOf();
 	}
 	
 	setMoved(true);
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 int GridWarpSurface::getType(){
@@ -60,14 +55,16 @@ int GridWarpSurface::getGridCols(){
 int GridWarpSurface::setGridRows(int r){
 	_gridRows = r;
 	createGridMesh();
+	return r;
 }
 
 int GridWarpSurface::setGridCols(int c){
 	_gridCols = c;
 	createGridMesh();
+	return c;
 }
 
-bool GridWarpSurface::hitTest(ofVec2f p){
+bool GridWarpSurface::hitTest(Vec2 p){
 	ofPolyline pl;
 	int vertsPerRow = _gridCols + 1;
 	
@@ -85,7 +82,7 @@ bool GridWarpSurface::hitTest(ofVec2f p){
 			pl.addVertex(mesh.getVertex(d));
 			pl.close();
 			
-			if(pl.inside(p)){
+			if(pl.inside(p.x, p.y)){
 				return true;
 			}
 		}
@@ -127,8 +124,7 @@ ofPolyline GridWarpSurface::getHitArea(){
 
 ofPolyline GridWarpSurface::getTextureHitArea(){
 	ofPolyline line;
-	vector <ofVec2f> & texCoords = mesh.getTexCoords();
-	ofVec2f textureSize = ofVec2f(source->getTexture()->getWidth(), source->getTexture()->getHeight());
+	Vec2 textureSize = Vec2(source->getTexture()->getWidth(), source->getTexture()->getHeight());
 	
 	int vertsPerRow = _gridCols + 1;
 	int vertsPerCol = _gridRows + 1;
@@ -138,72 +134,60 @@ ofPolyline GridWarpSurface::getTextureHitArea(){
 	int c = (_gridRows * vertsPerRow) + (vertsPerRow - 1);
 	int d = (_gridRows * vertsPerRow);
 	
-	line.addVertex(ofPoint(texCoords[a] * textureSize));
-	line.addVertex(ofPoint(texCoords[b] * textureSize));
-	line.addVertex(ofPoint(texCoords[c] * textureSize));
-	line.addVertex(ofPoint(texCoords[d] * textureSize));
+	line.addVertex(ofPoint(mesh.getTexCoords()[a] * textureSize.toOf()));
+	line.addVertex(ofPoint(mesh.getTexCoords()[b] * textureSize.toOf()));
+	line.addVertex(ofPoint(mesh.getTexCoords()[c] * textureSize.toOf()));
+	line.addVertex(ofPoint(mesh.getTexCoords()[d] * textureSize.toOf()));
 	line.close();
 
 	return line;
 }
 
-void GridWarpSurface::setVertex(int index, ofVec2f p){
+void GridWarpSurface::setVertex(int index, Vec3 vert){
 	if(index >= mesh.getVertices().size()){
 		throw runtime_error("Vertex with provided index does not exist");
 	}
 	
-	mesh.setVertex(index, p);
-	ofVec3f v = mesh.getVertex(index);
+	mesh.setVertex(index, vert.toOf());
 	ofNotifyEvent(vertexChangedEvent, index, this);
 }
 
-void GridWarpSurface::setVertices(vector<ofVec2f> v){
+void GridWarpSurface::setVertices(std::vector<Vec3> v){
 	if(v.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of vertices");
 	}
 	
 	for(int i = 0; i < v.size(); ++i){
-		mesh.setVertex(i, v[i]);
+		mesh.setVertex(i, v[i].toOf());
 	}
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
-void GridWarpSurface::setVertices(vector<ofVec3f> v){
-	if(v.size() != mesh.getVertices().size()){
-		throw runtime_error("Wrong number of vertices");
-	}
-	
-	for(int i = 0; i < v.size(); ++i){
-		mesh.setVertex(i, v[i]);
-	}
-	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
-}
-
-void GridWarpSurface::setTexCoord(int index, ofVec2f t){
+void GridWarpSurface::setTexCoord(int index, Vec2 t){
 	if(index >= mesh.getVertices().size()){
 		throw runtime_error("Texture coordinate with provided index does not exist");
 	}
-	mesh.setTexCoord(index, t);
+	mesh.setTexCoord(index, t.toOf());
 }
 
-void GridWarpSurface::setTexCoords(vector<ofVec2f> t){
+void GridWarpSurface::setTexCoords(std::vector<Vec2> t){
 	if(t.size() != mesh.getVertices().size()){
 		throw runtime_error("Wrong number of texture coordinates");
 	}
 	for(int i = 0; i < t.size(); ++i){
-		mesh.setTexCoord(i, t[i]);
+		mesh.setTexCoord(i, t[i].toOf());
 	}
 }
 
 
-vector <ofVec3f> & GridWarpSurface::getVertices(){
-	return mesh.getVertices();
+std::vector<Vec3> GridWarpSurface::getVertices(){
+	return Vec3::fromOf(mesh.getVertices());
 }
 
-vector <ofVec2f> & GridWarpSurface::getTexCoords(){
-	return mesh.getTexCoords();
+std::vector<Vec2> GridWarpSurface::getTexCoords(){
+	return Vec2::fromOf(mesh.getTexCoords());
 }
 
 void GridWarpSurface::createGridMesh(){
@@ -218,10 +202,10 @@ void GridWarpSurface::createGridMesh(){
 	// Add vertices for each col and row
 	for(int iy = 0; iy <= _gridRows; ++iy){
 		for(int ix = 0; ix <= _gridCols; ++ix){
-			mesh.addVertex(
-				ofVec2f(
-					margin + (vertexDistanceX * (float)ix),
-					margin + (vertexDistanceY * (float)iy) ));
+			mesh.addVertex(Vec3(
+				margin + (vertexDistanceX * (float)ix),
+				margin + (vertexDistanceY * (float)iy),
+				0.0f).toOf());
 		}
 	}
 	
@@ -245,11 +229,12 @@ void GridWarpSurface::createGridMesh(){
 		for(int ix = 0; ix <= _gridCols; ++ix){
 			float xc = (ix == 0) ? 0.0f : (float)ix / (float)_gridCols;
 			float yc = (iy == 0) ? 0.0f : (float)iy / (float)_gridRows;
-			mesh.addTexCoord(ofVec2f(xc, yc));
+			mesh.addTexCoord(Vec2(xc, yc).toOf());
 		}
 	}
 	
-	ofNotifyEvent(verticesChangedEvent, mesh.getVertices(), this);
+	std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
 BaseSurface * GridWarpSurface::clone(){

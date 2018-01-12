@@ -7,6 +7,7 @@
 #include "CircleJoint.h"
 #include "SurfaceType.h"
 #include "GuiBaseWidget.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -38,18 +39,18 @@ class TextureEditorWidget : public GuiBaseWidget {
 		void selectNextTexCoord();
 		void selectPrevTexCoord();
 	
-		void moveTexCoords(ofVec2f by);
-		void moveTexCoordTo(int texCoordIndex, ofVec2f position);
+		void moveTexCoords(Vec2 by);
+		void moveTexCoordTo(int texCoordIndex, Vec2 position);
 	
 		void stopDragJoints();
-		void moveSelection(ofVec2f by);
+		void moveSelection(Vec2 by);
 		void constrainJointsToQuad(int selectedJointIndex);
-		CircleJoint * hitTestJoints(ofVec2f pos);
-		vector <CircleJoint *> & getJoints();
+		CircleJoint * hitTestJoints(Vec2 pos);
+		std::vector<CircleJoint *> & getJoints();
 
 	private:
 		BaseSurface * surface;
-		vector <CircleJoint *> joints;
+		std::vector<CircleJoint *> joints;
 	
 		bool bShiftKeyDown;
 		bool _pollCreateJoints;

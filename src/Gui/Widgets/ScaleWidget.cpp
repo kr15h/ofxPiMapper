@@ -1,5 +1,9 @@
 #include "ScaleWidget.h"
 
+#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR > 9
+	#include "glm/geometric.hpp"
+#endif
+
 namespace ofx {
 namespace piMapper {
 
@@ -57,7 +61,11 @@ void ScaleWidget::draw(){
 		_line[1].y -= dy;
 		
 		// Continue
-		float scale = lineLength / _line[0].distance(_line[1]);
+		#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR <= 9
+			float scale = lineLength / _line[0].distance(_line[1]);
+		#else
+			float scale = lineLength / glm::distance(_line[0], _line[1]);
+		#endif
 		
 		_line[1].x = _line[0].x + (_line[1].x - _line[0].x) * scale;
 		_line[1].y = _line[0].y + (_line[1].y - _line[0].y) * scale;
@@ -122,15 +130,19 @@ void ScaleWidget::onMouseDragged(ofMouseEventArgs & args){
 		}
 		
 		ofRectangle box = _surfaceManager->getSelectedSurface()->getBoundingBox();
-		float boxAspect = box.width / box.height;
-		
 		ofPolyline newLine = _line;
 		newLine[1].x = args.x;
 		newLine[1].y = args.y;
 		
-		_scale = _surfaceManager->getSelectedSurface()->getScale() /
-			_line[0].distance(_line[1]) *
-			newLine[0].distance(newLine[1]);
+		#if OF_VERSION_MAJOR == 0 && OF_VERSION_MINOR <= 9
+			_scale = _surfaceManager->getSelectedSurface()->getScale() /
+				_line[0].distance(_line[1]) *
+				newLine[0].distance(newLine[1]);
+		#else
+			_scale = _surfaceManager->getSelectedSurface()->getScale() /
+				glm::distance(_line[0], _line[1]) *
+				glm::distance(newLine[0], newLine[1]);
+		#endif
 		
 		_line = newLine;
 		

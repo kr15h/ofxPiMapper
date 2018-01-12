@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "Vec2.h"
 
 namespace ofx {
 namespace piMapper {
@@ -10,7 +11,7 @@ class BaseJoint {
 	public:
 		BaseJoint();
 
-		ofVec2f position;
+		Vec2 position;
 		bool enabled;
 		bool visible;
 		bool selected;
@@ -22,13 +23,13 @@ class BaseJoint {
 		void stopDrag();
 		void select();
 		void unselect();
-		void setClickDistance(ofVec2f newClickDistance);
+		void setClickDistance(Vec2 newClickDistance);
 		bool isDragged();
 		bool isSelected();
 
 		virtual void update(){}
 		virtual void draw(){}
-		virtual bool hitTest(ofVec2f position){ return false; }
+		virtual bool hitTest(Vec2 position){ return false; }
 
 	protected:
 		ofColor fillColor;
@@ -36,7 +37,7 @@ class BaseJoint {
 		ofColor fillColorSelected;
 		ofColor strokeColorSelected;
 		float strokeWidth;
-		ofVec2f clickDistance; // How far from the center of the joint the user has
+		Vec2 clickDistance; // How far from the center of the joint the user has
 		                       // clicked?
 		bool bDrag;
 

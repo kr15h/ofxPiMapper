@@ -27,7 +27,7 @@ class TextureHighlightWidget : public GuiBaseWidget {
 	private:
 		SurfaceManager * _sm;
 	
-		vector<BaseSurface *> _consumerSurfaces;
+		std::vector<BaseSurface *> _consumerSurfaces;
 };
 
 } // namespace piMapper

@@ -11,7 +11,7 @@ void DeselectTexCoordCmd::exec(){
 	ofLogNotice("DeselectTexCoordCmd", "exec");
 	
 	_selectedTexCoord = -1;
-	vector <CircleJoint *> joints = _textureEditor->getJoints();
+	std::vector<CircleJoint *> joints = _textureEditor->getJoints();
 	for(unsigned int i = 0; i < joints.size(); ++i){
 		if(joints[i]->isSelected()){
 			_selectedTexCoord = i;

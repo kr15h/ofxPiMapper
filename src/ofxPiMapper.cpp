@@ -147,7 +147,7 @@ void ofxPiMapper::togglePause(){
 	_application.togglePause();
 }
 
-void ofxPiMapper::moveSelection(ofVec2f by){
+void ofxPiMapper::moveSelection(ofx::piMapper::Vec3 by){
 	_application.moveSelection(by);
 }
 
@@ -156,17 +156,33 @@ void ofxPiMapper::createSurface(ofx::piMapper::SurfaceType type){
 }
 
 void ofxPiMapper::eraseSurface(int i){
-	cout << "numSurfaces: " << getNumSurfaces() << ", i: " << i << endl;
+	std::cout << "numSurfaces: " << getNumSurfaces() << ", i: " << i << std::endl;
 	if(getNumSurfaces() > 0 && i < getNumSurfaces()){
 		_application.eraseSurface(i);
 	}
+}
+
+void ofxPiMapper::addGridColumn(){
+	_application.addGridColumn();
+}
+
+void ofxPiMapper::removeGridColumn(){
+	_application.removeGridColumn();
+}
+
+void ofxPiMapper::addGridRow(){
+	_application.addGridRow();
+}
+
+void ofxPiMapper::removeGridRow(){
+	_application.removeGridRow();
 }
 
 void ofxPiMapper::setNextSource(){
 	_application.setNextSource();
 }
 
-void ofxPiMapper::setFboSource(string sourceId){
+void ofxPiMapper::setFboSource(std::string sourceId){
 	_application.setFboSource(sourceId);
 }
 
@@ -182,7 +198,7 @@ void ofxPiMapper::saveProject(){
 	_application.saveProject();
 }
 
-bool ofxPiMapper::loadProject(string filename){
+bool ofxPiMapper::loadProject(std::string filename){
 	return _application.loadXmlSettings(filename);
 }
 
@@ -202,7 +218,7 @@ int ofxPiMapper::getSelectedSurface(){
 	return _application.getSurfaceManager()->getSelectedSurfaceIndex();
 }
 
-void ofxPiMapper::setInfoText(string text){
+void ofxPiMapper::setInfoText(std::string text){
 	_application.setInfoText(text);
 }
 
@@ -216,6 +232,10 @@ void ofxPiMapper::undo(){
 
 void ofxPiMapper::deselect(){
 	_application.deselect();
+}
+
+bool ofxPiMapper::toggleShift(){
+	return _application.toggleShift();
 }
 
 void ofxPiMapper::setMode(ofx::piMapper::Mode m){
@@ -243,4 +263,8 @@ ofx::piMapper::Mode ofxPiMapper::getMode(){
 		return ofx::piMapper::SOURCE_MODE;
 	}
 	return ofx::piMapper::PRESENTATION_MODE;
+}
+
+void ofxPiMapper::toggleLayerPanel(){
+	_application.toggleLayerPanel();
 }

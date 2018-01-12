@@ -14,7 +14,7 @@ OMXPlayerCache * OMXPlayerCache::instance(){
 	return _instance;
 }
 
-ofxOMXPlayer * OMXPlayerCache::load(string moviePath){
+ofxOMXPlayer * OMXPlayerCache::load(std::string moviePath){
 	if(_players.find(moviePath) == _players.end()){
 		ofxOMXPlayerSettings settings;
 		settings.videoPath = moviePath;
@@ -34,7 +34,7 @@ ofxOMXPlayer * OMXPlayerCache::load(string moviePath){
 	return _players[moviePath];
 }
 
-void OMXPlayerCache::unload(string moviePath){
+void OMXPlayerCache::unload(std::string moviePath){
 	if(_players.find(moviePath) != _players.end()){
 		_players[moviePath]->setPaused(true);
 	}

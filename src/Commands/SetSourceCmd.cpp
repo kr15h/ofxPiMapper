@@ -4,7 +4,7 @@ namespace ofx {
 namespace piMapper {
 
 SetSourceCmd::SetSourceCmd(int sourceType,
-						   string sourceId,
+						   std::string sourceId,
 						   BaseSurface * surface,
 						   SourcesEditorWidget * sourcesEditor){
 

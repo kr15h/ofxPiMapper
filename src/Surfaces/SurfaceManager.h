@@ -9,6 +9,7 @@
 #include "SourceType.h"
 #include "SurfaceStack.h"
 #include "SurfaceFactory.h"
+#include "Vec2.h"
 
 #include "ofEvents.h"
 #include "ofxXmlSettings.h"
@@ -32,11 +33,11 @@ class SurfaceManager {
 		void removeSurface(int i);
 		void deleteSurface(BaseSurface * surface);
 		void deselectSurface();
-		void saveXmlSettings(string fileName);
+		void saveXmlSettings(std::string fileName);
 		void setMediaServer(MediaServer * newMediaServer);
 		void clearPresets();
 		
-		bool loadXmlSettings(string fileName);
+		bool loadXmlSettings(std::string fileName);
 	
 		BaseSurface * getSurface(int index);
 		BaseSurface * selectSurface(int index);
@@ -50,8 +51,8 @@ class SurfaceManager {
 		void selectPrevVertex();
 		void selectVertex(int i);
 	
-		void moveSelectionBy(ofVec2f v);
-		void moveAllSurfacesBy(ofVec2f v);
+		void moveSelectionBy(Vec3 v);
+		void moveAllSurfacesBy(Vec3 v);
 	
 		int size();
 		int getSelectedVertexIndex();
@@ -60,13 +61,13 @@ class SurfaceManager {
 		unsigned int getNumPresets();
 	
 		ofEvent <int> vertexChangedEvent;
-		ofEvent <vector<ofVec3f>> verticesChangedEvent;
+		ofEvent <std::vector<Vec3>> verticesChangedEvent;
 		ofEvent <int> surfaceSelectedEvent;
 		ofEvent <int> vertexSelectedEvent;
 		ofEvent <int> vertexUnselectedEvent;
 
 		void onVertexChanged(int & i);
-		void onVerticesChanged(vector<ofVec3f> & vertices);
+		void onVerticesChanged(std::vector<Vec3> & vertices);
 
 		SurfaceStack * getActivePreset();
 		SurfaceStack * createPreset();
@@ -86,7 +87,7 @@ class SurfaceManager {
 		int _selectedVertexIndex;
 		int _activePresetIndex;
 	
-		vector <SurfaceStack *> _presets;
+		std::vector<SurfaceStack *> _presets;
 
 };
 

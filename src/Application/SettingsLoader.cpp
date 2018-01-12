@@ -19,47 +19,47 @@ SettingsLoader::SettingsLoader(){
 bool SettingsLoader::load(
 	SurfaceManager & surfaceManager,
 	MediaServer & mediaServer,
-	string fileName){
-	
+	std::string fileName){
+
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
-	string sourceType = "";
-	string sourceName = "";
-	
+	std::string sourceType = "";
+	std::string sourceName = "";
+
 	BaseSource * source = 0;
-	
+
 	if(!xmlSettings->loadFile(fileName)){
 		ofLogWarning("SettingsLoader::load()") << "Could not load XML settings";
 		return false;
 	}
-	
+
 	if(!xmlSettings->tagExists("surfaces")){
 		xmlSettings->addTag("surfaces");
 	}
-	
+
 	// Count <surfaces> tags.
 	unsigned int numPresets = xmlSettings->getNumTags("surfaces");
-	cout << "numPresets: " << numPresets << endl;
-		
+	std::cout << "numPresets: " << numPresets << std::endl;
+
 	// Clear previous presets and surfaces first.
 	surfaceManager.clearPresets();
-		
+
 	// Loop through <surfaces> tags in the XML.
 	for(unsigned int i = 0; i < numPresets; ++i){
-	
+
 		xmlSettings->pushTag("surfaces", i);
-		
+
 		SurfaceStack * surfaces = surfaceManager.createPreset();
 
 		int numSurfaces = xmlSettings->getNumTags("surface");
 		for(int i = 0; i < numSurfaces; i++){
 			if(xmlSettings->tagExists("surface", i)){
-			
+
 				SurfaceType type = SurfaceType::NONE;
 				if(xmlSettings->attributeExists("surface", "type")){
 					type = static_cast<SurfaceType>(
 						xmlSettings->getAttribute("surface", "type", 0, i));
 				}
-			
+
 				xmlSettings->pushTag("surface", i);
 
 				// attempt to load surface source
@@ -79,10 +79,10 @@ bool SettingsLoader::load(
 						}else{
 				
 							// Construct full path
-							string dir = mediaServer.getDefaultMediaDir(typeEnum);
-							stringstream pathss;
+							std::string dir = mediaServer.getDefaultMediaDir(typeEnum);
+							std::stringstream pathss;
 							pathss << ofToDataPath(dir, true) << sourceName;
-							string sourcePath = pathss.str();
+							std::string sourcePath = pathss.str();
 				
 							// Load media by using full path
 							source = mediaServer.loadMedia(sourcePath, typeEnum);
@@ -122,6 +122,13 @@ bool SettingsLoader::load(
 						quadSurface->setSource(source);
 					}
 					surfaces->push_back(quadSurface);
+				}else if(type == SurfaceType::CIRCLE_SURFACE){
+					QuadSurface * base = (QuadSurface*)getQuadSurface(xmlSettings);
+					CircleSurface * circleSurface = new CircleSurface(*base);
+					if(sourceName != "none" && source != 0){
+						circleSurface->setSource(source);
+					}
+					surfaces->push_back(circleSurface);
 				}else if(type == SurfaceType::GRID_WARP_SURFACE){
 					BaseSurface * gridWarpSurface = getGridWarpSurface(xmlSettings);
 					if(sourceName != "none" && source != 0){
@@ -150,7 +157,7 @@ bool SettingsLoader::load(
 }
 
 // TODO: Save all presets, not just the active one.
-bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
+bool SettingsLoader::save(SurfaceManager & surfaceManager, std::string fileName){
 	
 	ofxXmlSettings * xmlSettings = new ofxXmlSettings();
 	
@@ -171,11 +178,11 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->pushTag("surface", i);
 		xmlSettings->addTag("vertices");
 		xmlSettings->pushTag("vertices");
-		vector <ofVec3f> * vertices = &surface->getVertices();
-		for(int j = 0; j < vertices->size(); j++){
+		std::vector<Vec3> vertices = surface->getVertices();
+		for(int j = 0; j < vertices.size(); j++){
 			xmlSettings->addTag("vertex");
 			xmlSettings->pushTag("vertex", j);
-			ofVec3f * vertex = &(*vertices)[j];
+			Vec3 * vertex = &vertices[j];
 			xmlSettings->addValue("x", vertex->x);
 			xmlSettings->addValue("y", vertex->y);
 
@@ -187,11 +194,11 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 
 		xmlSettings->addTag("texCoords");
 		xmlSettings->pushTag("texCoords");
-		vector <ofVec2f> * texCoords = &surface->getTexCoords();
-		for(int j = 0; j < texCoords->size(); j++){
+		std::vector<Vec2> texCoords = surface->getTexCoords();
+		for(int j = 0; j < texCoords.size(); j++){
 			xmlSettings->addTag("texCoord");
 			xmlSettings->pushTag("texCoord", j);
-			ofVec2f * texCoord = &(*texCoords)[j];
+			Vec2 * texCoord = &texCoords[j];
 			xmlSettings->addValue("x", texCoord->x);
 			xmlSettings->addValue("y", texCoord->y);
 			xmlSettings->popTag(); // texCoord
@@ -200,16 +207,17 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 		xmlSettings->addTag("source");
 		xmlSettings->pushTag("source");
 		
-		string sourceTypeName = SourceTypeHelper::GetSourceTypeHelperName(surface->getSource()->getType());
+		std::string sourceTypeName = SourceTypeHelper::GetSourceTypeHelperName(surface->getSource()->getType());
 		
 		xmlSettings->addValue("source-type", sourceTypeName);
-		string sourceName = surface->getSource()->getName();
+		std::string sourceName = surface->getSource()->getName();
 		xmlSettings->addValue("source-name", (sourceName == "") ? "none" : sourceName);
 		xmlSettings->popTag(); // source
 		
 		// Save surface options
 		// For now only if quad surface
-		if(surface->getType() == SurfaceType::QUAD_SURFACE){
+		if (surface->getType() == SurfaceType::QUAD_SURFACE ||
+			surface->getType() == SurfaceType::CIRCLE_SURFACE) {
 			QuadSurface * qs = (QuadSurface *)surface;
 			if(!xmlSettings->tagExists("properties")){
 				xmlSettings->addTag("properties");
@@ -227,74 +235,80 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, string fileName){
 			xmlSettings->addValue("gridRows", gws->getGridRows());
 			xmlSettings->popTag();
 		}
-		
+
 		xmlSettings->popTag(); // surface
 	}
 	xmlSettings->popTag(); // surfaces
-	
+
 	} // for
-	
-	xmlSettings->save(fileName);
+
+	return xmlSettings->save(fileName);
 }
 
-bool SettingsLoader::create(string fileName){
+bool SettingsLoader::create(std::string fileName){
 	ofxXmlSettings xml;
 	xml.addTag("surfaces");
 	return xml.save(fileName);
 }
 
 BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
-	
+	std::vector<Vec3> vertices;
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-	
+
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+				xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
-	
+
 		if(xmlSettings->tagExists("vertex", 1)){
 			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 100.0f),
+				xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 2)){
 			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+				xmlSettings->getValue("y", 100.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <ofVec2f> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
-		
+
 		if(xmlSettings->tagExists("texCoord", 0)){
 			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
-		
+
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 2)){
 			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
@@ -308,90 +322,98 @@ BaseSurface * SettingsLoader::getTriangleSurface(ofxXmlSettings * xmlSettings){
 			SurfaceType::TRIANGLE_SURFACE);
 	triangleSurface->setVertices(vertices);
 	triangleSurface->setTexCoords(texCoords);
-	
+
 	return triangleSurface;
 }
 
 BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
-	
+	std::vector<Vec3> vertices;
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-	
+
 		if(xmlSettings->tagExists("vertex", 0)){
 			xmlSettings->pushTag("vertex", 0);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+	   			xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 1)){
 			xmlSettings->pushTag("vertex", 1);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 100.0f),
+				xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 2)){
 			xmlSettings->pushTag("vertex", 2);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 100.0f),
-							           xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 100.0f),
+				xmlSettings->getValue("y", 100.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("vertex", 3)){
 			xmlSettings->pushTag("vertex", 3);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 100.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+				xmlSettings->getValue("y", 100.0f),
+				0.0f));
 			xmlSettings->popTag();
 		}
 
 		xmlSettings->popTag(); // vertices
 	}
-	
-	vector <ofVec2f> texCoords;
+
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
 
 		if(xmlSettings->tagExists("texCoord", 0)){
 			xmlSettings->pushTag("texCoord", 0);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
-		
+
 		if(xmlSettings->tagExists("texCoord", 1)){
 			xmlSettings->pushTag("texCoord", 1);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 2)){
 			xmlSettings->pushTag("texCoord", 2);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 1.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 1.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
 
 		if(xmlSettings->tagExists("texCoord", 3)){
 			xmlSettings->pushTag("texCoord", 3);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 1.0f)));
 			xmlSettings->popTag();
 		}
 
 		xmlSettings->popTag(); // texCoords
 	}
-	
+
 	// Create and add quad surface
 	BaseSurface * quadSurface =
 		SurfaceFactory::instance()->createSurface(
 			SurfaceType::QUAD_SURFACE);
 	quadSurface->setVertices(vertices);
 	quadSurface->setTexCoords(texCoords);
-	
+
 	// Read properties
 	// Only perspective warping for now
 	bool perspectiveWarping = false;
@@ -402,39 +424,41 @@ BaseSurface * SettingsLoader::getQuadSurface(ofxXmlSettings * xmlSettings){
 	}
 	QuadSurface * qs = (QuadSurface *)quadSurface;
 	qs->setPerspectiveWarping(perspectiveWarping);
-	
+
 	return quadSurface;
 }
 
 BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
-	
+	std::vector<Vec3> vertices;
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-		
+
 		int iv = 0;
-		
+
 		while(xmlSettings->tagExists("vertex", iv)){
 			xmlSettings->pushTag("vertex", iv);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-								       xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+				xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag();
 			++iv;
 		}
 
 		xmlSettings->popTag(); // vertices
 	}
-	
-	vector <ofVec2f> texCoords;
+
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
 
 		int it = 0;
-		
+
 		while(xmlSettings->tagExists("texCoord", it)){
 			xmlSettings->pushTag("texCoord", it);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag();
 			++it;
@@ -442,7 +466,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 
 		xmlSettings->popTag(); // texCoords
 	}
-	
+
 	// Read properties
 	// Only perspective warping for now
 	int gridCols = 0;
@@ -453,7 +477,7 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 		gridRows = xmlSettings->getValue("gridRows", 0);
 		xmlSettings->popTag(); // properties
 	}
-	
+
 	// Create and add quad surface
 	BaseSurface * gridWarpSurface =
 		SurfaceFactory::instance()->createSurface(
@@ -463,21 +487,23 @@ BaseSurface * SettingsLoader::getGridWarpSurface(ofxXmlSettings * xmlSettings){
 	((GridWarpSurface *)gridWarpSurface)->createGridMesh();
 	gridWarpSurface->setVertices(vertices);
 	gridWarpSurface->setTexCoords(texCoords);
-	
+
 	return gridWarpSurface;
 }
 
 BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
-	vector <ofVec2f> vertices;
-	
+	std::vector<Vec3> vertices;
+
 	if(xmlSettings->tagExists("vertices")){
 		xmlSettings->pushTag("vertices");
-		
+
 		unsigned int v = 0;
 		while(xmlSettings->tagExists("vertex", v)){
 			xmlSettings->pushTag("vertex", v);
-			vertices.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
-									   xmlSettings->getValue("y", 0.0f)));
+			vertices.push_back(Vec3(
+				xmlSettings->getValue("x", 0.0f),
+				xmlSettings->getValue("y", 0.0f),
+				0.0f));
 			xmlSettings->popTag(); // vertex
 			v += 1;
 		}
@@ -485,15 +511,15 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 		xmlSettings->popTag(); // vertices
 	}
 
-	vector <ofVec2f> texCoords;
+	std::vector<Vec2> texCoords;
 
 	if(xmlSettings->tagExists("texCoords")){
 		xmlSettings->pushTag("texCoords");
-		
+
 		unsigned int t = 0;
 		while(xmlSettings->tagExists("texCoord", t)){
 			xmlSettings->pushTag("texCoord", t);
-			texCoords.push_back(ofVec2f(xmlSettings->getValue("x", 0.0f),
+			texCoords.push_back(Vec2(xmlSettings->getValue("x", 0.0f),
 										xmlSettings->getValue("y", 0.0f)));
 			xmlSettings->popTag(); // texCoord
 			t += 1;
@@ -508,7 +534,7 @@ BaseSurface * SettingsLoader::getHexagonSurface(ofxXmlSettings * xmlSettings){
 			SurfaceType::HEXAGON_SURFACE);
 	hexagonSurface->setVertices(vertices);
 	hexagonSurface->setTexCoords(texCoords);
-	
+
 	return hexagonSurface;
 }
 

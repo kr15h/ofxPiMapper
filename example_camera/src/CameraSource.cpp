@@ -15,7 +15,7 @@ CameraSource::CameraSource(){
 	
 		_videoGrabber.setup(_omxCameraSettings);
 	#else
-		vector<ofVideoDevice> devices = _videoGrabber.listDevices();
+		std::vector<ofVideoDevice> devices = _videoGrabber.listDevices();
 		_cameraFound = false;
 
 		for(int i = 0; i < devices.size(); i++){

@@ -8,6 +8,8 @@
 #include "SurfaceFactory.h"
 #include "SurfaceType.h"
 #include "SourceTypeHelper.h"
+#include "Vec2.h"
+#include "Vec3.h"
 
 namespace ofx {
 namespace piMapper {
@@ -18,11 +20,11 @@ class SettingsLoader {
 	public:
 		static SettingsLoader * instance();
 	
-		bool load(SurfaceManager & surfaceManager, MediaServer & mediaServer, string fileName);
-		bool save(SurfaceManager & surfaceManager, string fileName);
-		bool create(string fileName);
+		bool load(SurfaceManager & surfaceManager, MediaServer & mediaServer, std::string fileName);
+		bool save(SurfaceManager & surfaceManager, std::string fileName);
+		bool create(std::string fileName);
 	
-		string getLastLoadedFilename(){ return _lastLoadedFilename; };
+		std::string getLastLoadedFilename(){ return _lastLoadedFilename; };
 	
 	private:
 		static SettingsLoader * _instance;
@@ -34,7 +36,7 @@ class SettingsLoader {
 		BaseSurface * getGridWarpSurface(ofxXmlSettings * xmlSettings);
 		BaseSurface * getHexagonSurface(ofxXmlSettings * xmlSettings);
 	
-		string _lastLoadedFilename;
+		std::string _lastLoadedFilename;
 };
 
 } // namespace piMapper

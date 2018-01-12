@@ -6,24 +6,27 @@
 #include "CustomSource.h"
 #include "CrossSource.h"
 #include "VideoSource.h"
+#include "magSlideShowSource.h"
 
-class ofApp : public ofBaseApp {
-	public:
-		void setup();
-		void update();
-		void draw();
-	
-		void keyPressed(int key);
-		void keyReleased(int key);
-	
-		void mousePressed(int x, int y, int button);
-		void mouseReleased(int x, int y, int button);
-		void mouseDragged(int x, int y, int button);
+class ofApp : public ofBaseApp{
+public:
+    void setup();
+    void update();
+    void draw();
 
-		ofxPiMapper piMapper;
+    void keyPressed(int key);
+    void keyReleased(int key);
 
-		// By using a custom source that is derived from FboSource
-		// you will be able to see the source listed in sources editor
-		CustomSource * customSource;
-		CrossSource * crossSource;
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void mouseDragged(int x, int y, int button);
+
+    ofxPiMapper piMapper;
+
+    // By using a custom source that is derived from FboSource
+    // you will be able to see the source listed in sources editor
+    CustomSource *customSource;
+    CrossSource *crossSource;
+    magSlideShowSource *slideShowSource;
+
 };
