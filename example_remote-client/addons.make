@@ -1,0 +1,5 @@
+ofxGui
+ofxJSON
+ofxNetwork
+ofxPiMapper
+ofxXmlSettings
