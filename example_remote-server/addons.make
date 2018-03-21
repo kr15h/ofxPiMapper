@@ -1,0 +1,6 @@
+ofxGui
+ofxJSON
+ofxNetwork
+ofxOpenCv
+ofxPiMapper
+ofxXmlSettings
