@@ -1,6 +1,6 @@
 # Remote Control Server for ofxPiMapper
 
-This example demonstrates a TCP server for ofxPiMapper remote control. The other part of this is the [Remote Control Client](../). What it does is the following.
+This example demonstrates a TCP server for ofxPiMapper remote control. The other part of this is the [Remote Control Client](../example_remote-client). What it does is the following.
 
 - It creates a `TCPServer` singleton.
 - Waits for a client to connect via TCP.
