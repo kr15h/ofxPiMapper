@@ -40,13 +40,13 @@ void MediaServer::setup(){
 
 void MediaServer::update(){
 	for(int i = 0; i < fboSources.size(); ++i){
-		fboSources[i]->updateFbo();
+        if (fboSources[i]->isActive() || fboSources[i]->runsInBackground()) fboSources[i]->updateFbo();
 	}
 }
 
 void MediaServer::draw(){
 	for(int i = 0; i < fboSources.size(); ++i){
-		fboSources[i]->drawFbo();
+        if (fboSources[i]->isActive() || fboSources[i]->runsInBackground()) fboSources[i]->drawFbo();
 	}
 }
 
@@ -366,7 +366,8 @@ BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
 		// Is loaded, increase reference count and return existing
 		loadedSources[fboSourceName]->referenceCount++;
 		ofLogNotice("MediaServer") << "Current " << fboSourceName << "reference count: " << loadedSources[fboSourceName]->referenceCount;
-		return loadedSources[fboSourceName];
+        source->setActive(true);
+        return loadedSources[fboSourceName];
 	}
 	// else
 	// Not loaded, add to loaded sources and activate
@@ -375,7 +376,8 @@ BaseSource * MediaServer::loadFboSource(std::string & fboSourceName){
 	source->referenceCount = 1;
 	ofLogNotice("MediaServer") << "Current " << fboSourceName << " reference count: " << source->referenceCount;
 	loadedSources[fboSourceName] = source;
-	return loadedSources[fboSourceName];
+    source->setActive(true);
+    return loadedSources[fboSourceName];
 }   // loadFboSource
 
 void MediaServer::unloadFboSource(std::string & fboSourceName){
@@ -395,6 +397,7 @@ void MediaServer::unloadFboSource(std::string & fboSourceName){
 	if(source->referenceCount <= 0){
 		ofLogNotice("MediaServer") << fboSourceName << " reference count <= 0, removing from loaded sources";
 		source->referenceCount = 0;
+        source->setActive(false);
 		//source->removeAppListeners();
 		map <std::string, BaseSource *>::iterator it = loadedSources.find(fboSourceName);
 		loadedSources.erase(it);

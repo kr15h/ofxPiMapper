@@ -134,6 +134,12 @@ bool SurfaceManager::loadXmlSettings(std::string fileName){
 		exit(EXIT_FAILURE);
 	}
 	bool success = SettingsLoader::instance()->load(*this, *mediaServer, fileName);
+
+    for (int i=0; i<_presets.size(); i++){
+        setPresetSourcesActiveState(i, false);
+    }
+
+    setPresetSourcesActiveState(_activePresetIndex, true);
 	return success;
 }
 
@@ -451,7 +457,16 @@ void SurfaceManager::setNextPreset(){
 	// TODO: Create command for this.
 }
 
+void SurfaceManager::setPresetSourcesActiveState(unsigned int presetIndex, bool state){
+    // tell sources associated with current preset that they are not displayed any more
+    // this is so that we can optionally update the buffers or not.
+    for (int j=0; j<_presets[presetIndex]->getSurfaces().size(); j++){
+        _presets[presetIndex]->getSurfaces()[j]->getSource()->setActive(state);
+    }
+}
+
 void SurfaceManager::setPreset(unsigned int i){
+    cout << "CALLED IT" << endl;
 	if(_presets.size() <= 1){
 		throw runtime_error("ofxPiMapper: No presets to set.");
 	}
@@ -460,7 +475,14 @@ void SurfaceManager::setPreset(unsigned int i){
 		throw runtime_error("ofxPiMapper: Preset index out of bounds.");
 	}
 	
-	_activePresetIndex = i;
+    //let sources associated with all preset know that they are not being displayed any more
+    setPresetSourcesActiveState(_activePresetIndex, false);
+
+    //change preset
+    _activePresetIndex = i;
+    //let sources associated with NEW preset know that they are now being displayed
+    setPresetSourcesActiveState(_activePresetIndex, true);
+
 
     //when preset it changed, call reset on all sources, if it's defined
     for (int i=0; i<_presets[_activePresetIndex]->getSurfaces().size(); i++){

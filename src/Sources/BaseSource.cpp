@@ -6,6 +6,8 @@ namespace piMapper {
 BaseSource::BaseSource(){
 	//std::cout << "BaseSource" << std::endl;
 	init();
+    runInBackground = false;
+    displayed = false;
 }
 
 BaseSource::BaseSource(ofTexture * newTexture){
@@ -49,9 +51,22 @@ void BaseSource::init(){
 	referenceCount = 1;   // We have one instance on init
 }
 
+void BaseSource::setActive(bool value){
+    displayed = value;
+}
+
+bool BaseSource::isActive(){
+    return displayed;
+}
+
+bool BaseSource::runsInBackground(){
+    return runInBackground;
+}
+
 void BaseSource::setNameFromPath(std::string & fullPath){
 	std::vector<std::string> pathParts;
 	//std::cout << "fullPath: " << fullPath << std::endl;
+
 	pathParts = ofSplitString(fullPath, "/");   // Maybe on win "/" is "\", have to test
 	//std::cout << "lastPathPart: " << pathParts[pathParts.size() - 1] << std::endl;
 	name = pathParts[pathParts.size() - 1];
