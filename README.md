@@ -24,6 +24,13 @@ You can use the example application of the addon for projection mapping projects
     ./bin/example -f
     ```
 
+## Extended Functionality
+
+Examples represent extended functionality of ofxPiMapper. Enter each example separately to find out more.
+
+- [Remote Control Server](example_remote-server) example.
+- [Remote Control Client](example_remote-client) example.
+- Readme's for the rest are cooking.
 
 ## Compiling on Linux
 
