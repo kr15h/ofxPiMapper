@@ -96,7 +96,7 @@ Keeping it simple. Developing ofxPiMapper master branch against the latest stabl
 
 ## Licence
 
-ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details. Just add my name somewhere along your project [Krisjanis Rijnieks](https://rijnieks.com) whenever possible. And join [my workshops](https://ofxpimapper.com/workshops).
+ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details. Just add my name somewhere along your project [Krisjanis Rijnieks](https://rijnieks.com) whenever possible. 
 
 
 ## Dependencies
