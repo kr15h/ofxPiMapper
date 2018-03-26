@@ -19,3 +19,10 @@ JSON is used as the data format between ofxPiMapper remote control server and cl
 ```
 cd openFrameworks/addons
 git clone https://github.com/jeffcrouse/ofxJSON.git
+```
+
+To be able to compile on Arch Linux gcc 7 and latest openFrameworks, use the following.
+
+```
+git clone https://github.com/PTS93/ofxJSON.git
+```
