@@ -14,3 +14,11 @@ The client should know the following.
 
 - The **IP address** of the Raspberry Pi with the server.
 - The port, which is **9999** in this case.
+
+## Dependencies
+
+JSON is used as the data format between ofxPiMapper remote control server and client, therefore additionally [ofxJSON](https://github.com/jeffcrouse/ofxJSON) addon is used. Install it by using the following lines of bash code.
+
+```
+cd openFrameworks/addons
+git clone https://github.com/jeffcrouse/ofxJSON.git
