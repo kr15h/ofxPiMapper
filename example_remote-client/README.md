@@ -10,7 +10,7 @@ This example demonstrates a TCP **client** for ofxPiMapper remote control. The o
 
 In reality this example should be used as the remote control residing on your laptop computa. Set up your Raspberry Pi, connect it to the same network as your laptop and get to know the IP address of the Raspberry Pi. Update `bin/data/config.json` with the IP address of your Raspberry Pi and launch the app!
 
-**Warning!** Sources are not being sent. Click once with the mouse after the application launches to see the borders of the surfaces. There should be a green rectangle visible in the top left corner of the screen if the connection is successful.
+**Warning!** Sources are not being sent. Click once with the mouse after the application launches to see the borders of the surfaces. There should be a green rectangle visible in the top left corner of the screen if the connection is successfull.
 
 ## Dependencies
 
