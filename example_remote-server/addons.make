@@ -4,3 +4,4 @@ ofxNetwork
 ofxOpenCv
 ofxPiMapper
 ofxXmlSettings
+ofxOMXPlayer

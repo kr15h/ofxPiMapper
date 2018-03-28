@@ -3,3 +3,4 @@ ofxJSON
 ofxNetwork
 ofxPiMapper
 ofxXmlSettings
+ofxOMXPlayer
