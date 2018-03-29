@@ -29,8 +29,8 @@
             </texCoord>
         </texCoords>
         <source>
-            <source-type>video</source-type>
-            <source-name>gene-nsynthesis-loop-b.mp4</source-name>
+            <source-type>image</source-type>
+            <source-name>gene-nsynthesis.jpg</source-name>
         </source>
     </surface>
 </surfaces>
