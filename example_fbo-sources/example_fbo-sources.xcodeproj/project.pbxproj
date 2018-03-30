@@ -13,6 +13,7 @@
 		011C1A5E206EAF89005D7848 /* magSlideShowSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011C1A57206EAF89005D7848 /* magSlideShowSource.cpp */; };
 		011C1A5F206EAF89005D7848 /* magSlideTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011C1A59206EAF89005D7848 /* magSlideTransition.cpp */; };
 		011C1A60206EAF89005D7848 /* magSlideTransitionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011C1A5B206EAF89005D7848 /* magSlideTransitionFactory.cpp */; };
+		011C1A65206EF0F5005D7848 /* ScanlineSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 011C1A63206EF0F5005D7848 /* ScanlineSource.cpp */; };
 		01372D7D1FF2E7D4006D41AC /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01372D6B1FF2E7B4006D41AC /* ofxBaseGui.cpp */; };
 		01372D7E1FF2E7D4006D41AC /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01372D751FF2E7B4006D41AC /* ofxButton.cpp */; };
 		01372D801FF2E7D4006D41AC /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 01372D771FF2E7B4006D41AC /* ofxGuiGroup.cpp */; };
@@ -99,7 +100,6 @@
 		39264841192224F90008A7F5 /* tinyxml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483D192224F90008A7F5 /* tinyxml.cpp */; };
 		39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3926483F192224F90008A7F5 /* tinyxmlerror.cpp */; };
 		39264843192224F90008A7F5 /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39264840192224F90008A7F5 /* tinyxmlparser.cpp */; };
-		397EFC821A09047C0009286E /* CustomSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 397EFC801A09047C0009286E /* CustomSource.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -162,6 +162,8 @@
 		011C1A5A206EAF89005D7848 /* magSlideTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = magSlideTransition.h; sourceTree = "<group>"; };
 		011C1A5B206EAF89005D7848 /* magSlideTransitionFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = magSlideTransitionFactory.cpp; sourceTree = "<group>"; };
 		011C1A5C206EAF89005D7848 /* magSlideTransitionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = magSlideTransitionFactory.h; sourceTree = "<group>"; };
+		011C1A63206EF0F5005D7848 /* ScanlineSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScanlineSource.cpp; sourceTree = "<group>"; };
+		011C1A64206EF0F5005D7848 /* ScanlineSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanlineSource.h; sourceTree = "<group>"; };
 		01372D681FF2E7B4006D41AC /* ofxToggle.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		01372D691FF2E7B4006D41AC /* ofxButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxButton.h; sourceTree = "<group>"; };
 		01372D6A1FF2E7B4006D41AC /* ofxSliderGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxSliderGroup.h; sourceTree = "<group>"; };
@@ -341,8 +343,6 @@
 		3926483E192224F90008A7F5 /* tinyxml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml.h; sourceTree = "<group>"; };
 		3926483F192224F90008A7F5 /* tinyxmlerror.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlerror.cpp; sourceTree = "<group>"; };
 		39264840192224F90008A7F5 /* tinyxmlparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxmlparser.cpp; sourceTree = "<group>"; };
-		397EFC801A09047C0009286E /* CustomSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomSource.cpp; sourceTree = "<group>"; };
-		397EFC811A09047C0009286E /* CustomSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSource.h; sourceTree = "<group>"; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -419,6 +419,15 @@
 				011C1A5C206EAF89005D7848 /* magSlideTransitionFactory.h */,
 			);
 			path = SlideShowSource;
+			sourceTree = "<group>";
+		};
+		011C1A62206EF0F5005D7848 /* ScanLineSource */ = {
+			isa = PBXGroup;
+			children = (
+				011C1A63206EF0F5005D7848 /* ScanlineSource.cpp */,
+				011C1A64206EF0F5005D7848 /* ScanlineSource.h */,
+			);
+			path = ScanLineSource;
 			sourceTree = "<group>";
 		};
 		01815DDE1FE7D53700C35E93 /* src */ = {
@@ -820,8 +829,7 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-				397EFC801A09047C0009286E /* CustomSource.cpp */,
-				397EFC811A09047C0009286E /* CustomSource.h */,
+				011C1A62206EF0F5005D7848 /* ScanLineSource */,
 				011C1A54206EAF89005D7848 /* SlideShowSource */,
 			);
 			path = src;
@@ -1001,6 +1009,7 @@
 				011C1A5F206EAF89005D7848 /* magSlideTransition.cpp in Sources */,
 				01815ECD1FE7D59200C35E93 /* BaseSurface.cpp in Sources */,
 				01815ECE1FE7D59200C35E93 /* GridWarpSurface.cpp in Sources */,
+				011C1A65206EF0F5005D7848 /* ScanlineSource.cpp in Sources */,
 				01815ECF1FE7D59200C35E93 /* HexagonSurface.cpp in Sources */,
 				01815ED01FE7D59200C35E93 /* QuadSurface.cpp in Sources */,
 				01815ED11FE7D59200C35E93 /* SurfaceFactory.cpp in Sources */,
@@ -1017,7 +1026,6 @@
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				39264842192224F90008A7F5 /* tinyxmlerror.cpp in Sources */,
 				3926483B192224DA0008A7F5 /* ofxXmlSettings.cpp in Sources */,
-				397EFC821A09047C0009286E /* CustomSource.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
