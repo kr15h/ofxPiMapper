@@ -1,8 +1,0 @@
-*.app
-data/*.jpg
-data/settings.xml
-data/surfaces.xml
-example
-example_debug
-libs
-readMe.txt
