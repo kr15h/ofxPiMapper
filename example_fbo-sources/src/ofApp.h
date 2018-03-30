@@ -2,8 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxPiMapper.h"
-#include "CustomSource.h"
 #include "VideoSource.h"
+#include "ScanlineSource.h"
 #include "magSlideShowSource.h"
 
 class ofApp : public ofBaseApp{
@@ -23,7 +23,7 @@ public:
 
     // By using a custom source that is derived from FboSource
     // you will be able to see the source listed in sources editor
-    CustomSource customSource;
+    ScanlineSource customSource;
     magSlideShowSource slideShowSource;
 
 };

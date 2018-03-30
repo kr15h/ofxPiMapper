@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "FboSource.h"
 
-class CustomSource : public ofx::piMapper::FboSource {
+class ScanlineSource : public ofx::piMapper::FboSource {
 	public:
         void setup();
 		void update();

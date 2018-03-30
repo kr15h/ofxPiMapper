@@ -1,8 +1,8 @@
-#include "CustomSource.h"
+#include "ScanlineSource.h"
 
-void CustomSource::setup(){
+void ScanlineSource::setup(){
 	// Give our source a decent name
-	name = "Custom FBO Source";
+	name = "Scanline Source";
 
 	// Allocate our FBO source, decide how big it should be
 	allocate(500, 500);
@@ -19,7 +19,7 @@ void CustomSource::setup(){
 }
 
 // Don't do any drawing here
-void CustomSource::update(){
+void ScanlineSource::update(){
 	// Move rects
 	for(int i = 0; i < rects.size(); i++){
 		rects[i].y += rectSpeeds[i];
@@ -31,7 +31,7 @@ void CustomSource::update(){
 
 // No need to take care of fbo.begin() and fbo.end() here.
 // All within draw() is being rendered into fbo;
-void CustomSource::draw(){
+void ScanlineSource::draw(){
 	// Fill FBO with our rects
 	ofClear(0);
 	//ofBackground(0);
