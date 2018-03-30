@@ -14,10 +14,12 @@ void ofApp::setup(){
 	piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
 
-	ofSetFullscreen(Settings::instance()->getFullscreen());
-	ofSetEscapeQuitsApp(false);
-    ofSetLogLevel(OF_LOG_VERBOSE);
+	// This will set the app fullscreen if compiled on Raspberry Pi.
+	#ifdef TARGET_RASPBERRY_PI
+		ofSetFullscreen(true);
+	#endif
 
+	// Start slideshow.
     slideShowSource.play();
 }
 
