@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		012CB8C81FFF8BF500F8F880 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8B31FFF8BE800F8F880 /* ofxBaseGui.cpp */; };
 		012CB8CA1FFF8BF500F8F880 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8B51FFF8BE800F8F880 /* ofxButton.cpp */; };
-		012CB8CC1FFF8BF500F8F880 /* ofxColorPicker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8B71FFF8BE800F8F880 /* ofxColorPicker.cpp */; };
 		012CB8CF1FFF8BF500F8F880 /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8BA1FFF8BE800F8F880 /* ofxGuiGroup.cpp */; };
-		012CB8D11FFF8BF500F8F880 /* ofxInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8BC1FFF8BE800F8F880 /* ofxInputField.cpp */; };
 		012CB8D31FFF8BF500F8F880 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8BE1FFF8BE800F8F880 /* ofxLabel.cpp */; };
 		012CB8D51FFF8BF500F8F880 /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8C01FFF8BE800F8F880 /* ofxPanel.cpp */; };
 		012CB8D71FFF8BF500F8F880 /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8C21FFF8BE800F8F880 /* ofxSlider.cpp */; };
@@ -76,10 +74,6 @@
 		012CB9521FFF8BF500F8F880 /* BaseSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8791FFF8BDC00F8F880 /* BaseSource.cpp */; };
 		012CB9541FFF8BF500F8F880 /* FboSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB87B1FFF8BDC00F8F880 /* FboSource.cpp */; };
 		012CB9561FFF8BF500F8F880 /* ImageSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB87D1FFF8BDC00F8F880 /* ImageSource.cpp */; };
-		012CB9581FFF8BF500F8F880 /* magSlide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB87F1FFF8BDC00F8F880 /* magSlide.cpp */; };
-		012CB95A1FFF8BF500F8F880 /* magSlideShowSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8811FFF8BDC00F8F880 /* magSlideShowSource.cpp */; };
-		012CB95C1FFF8BF500F8F880 /* magSlideTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8831FFF8BDC00F8F880 /* magSlideTransition.cpp */; };
-		012CB95E1FFF8BF500F8F880 /* magSlideTransitionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8851FFF8BDC00F8F880 /* magSlideTransitionFactory.cpp */; };
 		012CB9601FFF8BF500F8F880 /* OMXPlayerCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB8871FFF8BDC00F8F880 /* OMXPlayerCache.cpp */; };
 		012CB9641FFF8BF500F8F880 /* VideoSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB88B1FFF8BDC00F8F880 /* VideoSource.cpp */; };
 		012CB9661FFF8BF500F8F880 /* BaseSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 012CB88E1FFF8BDC00F8F880 /* BaseSurface.cpp */; };
@@ -274,14 +268,6 @@
 		012CB87C1FFF8BDC00F8F880 /* FboSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FboSource.h; sourceTree = "<group>"; };
 		012CB87D1FFF8BDC00F8F880 /* ImageSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ImageSource.cpp; sourceTree = "<group>"; };
 		012CB87E1FFF8BDC00F8F880 /* ImageSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageSource.h; sourceTree = "<group>"; };
-		012CB87F1FFF8BDC00F8F880 /* magSlide.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = magSlide.cpp; sourceTree = "<group>"; };
-		012CB8801FFF8BDC00F8F880 /* magSlide.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = magSlide.h; sourceTree = "<group>"; };
-		012CB8811FFF8BDC00F8F880 /* magSlideShowSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = magSlideShowSource.cpp; sourceTree = "<group>"; };
-		012CB8821FFF8BDC00F8F880 /* magSlideShowSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = magSlideShowSource.h; sourceTree = "<group>"; };
-		012CB8831FFF8BDC00F8F880 /* magSlideTransition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = magSlideTransition.cpp; sourceTree = "<group>"; };
-		012CB8841FFF8BDC00F8F880 /* magSlideTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = magSlideTransition.h; sourceTree = "<group>"; };
-		012CB8851FFF8BDC00F8F880 /* magSlideTransitionFactory.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = magSlideTransitionFactory.cpp; sourceTree = "<group>"; };
-		012CB8861FFF8BDC00F8F880 /* magSlideTransitionFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = magSlideTransitionFactory.h; sourceTree = "<group>"; };
 		012CB8871FFF8BDC00F8F880 /* OMXPlayerCache.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OMXPlayerCache.cpp; sourceTree = "<group>"; };
 		012CB8881FFF8BDC00F8F880 /* OMXPlayerCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OMXPlayerCache.h; sourceTree = "<group>"; };
 		012CB8891FFF8BDC00F8F880 /* SourceType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SourceType.h; sourceTree = "<group>"; };
@@ -325,13 +311,9 @@
 		012CB8B41FFF8BE800F8F880 /* ofxBaseGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
 		012CB8B51FFF8BE800F8F880 /* ofxButton.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxButton.cpp; sourceTree = "<group>"; };
 		012CB8B61FFF8BE800F8F880 /* ofxButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxButton.h; sourceTree = "<group>"; };
-		012CB8B71FFF8BE800F8F880 /* ofxColorPicker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxColorPicker.cpp; sourceTree = "<group>"; };
-		012CB8B81FFF8BE800F8F880 /* ofxColorPicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxColorPicker.h; sourceTree = "<group>"; };
 		012CB8B91FFF8BE800F8F880 /* ofxGui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxGui.h; sourceTree = "<group>"; };
 		012CB8BA1FFF8BE800F8F880 /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGuiGroup.cpp; sourceTree = "<group>"; };
 		012CB8BB1FFF8BE800F8F880 /* ofxGuiGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxGuiGroup.h; sourceTree = "<group>"; };
-		012CB8BC1FFF8BE800F8F880 /* ofxInputField.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxInputField.cpp; sourceTree = "<group>"; };
-		012CB8BD1FFF8BE800F8F880 /* ofxInputField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxInputField.h; sourceTree = "<group>"; };
 		012CB8BE1FFF8BE800F8F880 /* ofxLabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLabel.cpp; sourceTree = "<group>"; };
 		012CB8BF1FFF8BE800F8F880 /* ofxLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxLabel.h; sourceTree = "<group>"; };
 		012CB8C01FFF8BE800F8F880 /* ofxPanel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPanel.cpp; sourceTree = "<group>"; };
@@ -597,14 +579,6 @@
 				012CB87C1FFF8BDC00F8F880 /* FboSource.h */,
 				012CB87D1FFF8BDC00F8F880 /* ImageSource.cpp */,
 				012CB87E1FFF8BDC00F8F880 /* ImageSource.h */,
-				012CB87F1FFF8BDC00F8F880 /* magSlide.cpp */,
-				012CB8801FFF8BDC00F8F880 /* magSlide.h */,
-				012CB8811FFF8BDC00F8F880 /* magSlideShowSource.cpp */,
-				012CB8821FFF8BDC00F8F880 /* magSlideShowSource.h */,
-				012CB8831FFF8BDC00F8F880 /* magSlideTransition.cpp */,
-				012CB8841FFF8BDC00F8F880 /* magSlideTransition.h */,
-				012CB8851FFF8BDC00F8F880 /* magSlideTransitionFactory.cpp */,
-				012CB8861FFF8BDC00F8F880 /* magSlideTransitionFactory.h */,
 				012CB8871FFF8BDC00F8F880 /* OMXPlayerCache.cpp */,
 				012CB8881FFF8BDC00F8F880 /* OMXPlayerCache.h */,
 				012CB8891FFF8BDC00F8F880 /* SourceType.h */,
@@ -683,13 +657,9 @@
 				012CB8B41FFF8BE800F8F880 /* ofxBaseGui.h */,
 				012CB8B51FFF8BE800F8F880 /* ofxButton.cpp */,
 				012CB8B61FFF8BE800F8F880 /* ofxButton.h */,
-				012CB8B71FFF8BE800F8F880 /* ofxColorPicker.cpp */,
-				012CB8B81FFF8BE800F8F880 /* ofxColorPicker.h */,
 				012CB8B91FFF8BE800F8F880 /* ofxGui.h */,
 				012CB8BA1FFF8BE800F8F880 /* ofxGuiGroup.cpp */,
 				012CB8BB1FFF8BE800F8F880 /* ofxGuiGroup.h */,
-				012CB8BC1FFF8BE800F8F880 /* ofxInputField.cpp */,
-				012CB8BD1FFF8BE800F8F880 /* ofxInputField.h */,
 				012CB8BE1FFF8BE800F8F880 /* ofxLabel.cpp */,
 				012CB8BF1FFF8BE800F8F880 /* ofxLabel.h */,
 				012CB8C01FFF8BE800F8F880 /* ofxPanel.cpp */,
@@ -931,9 +901,7 @@
 			files = (
 				012CB8C81FFF8BF500F8F880 /* ofxBaseGui.cpp in Sources */,
 				012CB8CA1FFF8BF500F8F880 /* ofxButton.cpp in Sources */,
-				012CB8CC1FFF8BF500F8F880 /* ofxColorPicker.cpp in Sources */,
 				012CB8CF1FFF8BF500F8F880 /* ofxGuiGroup.cpp in Sources */,
-				012CB8D11FFF8BF500F8F880 /* ofxInputField.cpp in Sources */,
 				012CB8D31FFF8BF500F8F880 /* ofxLabel.cpp in Sources */,
 				012CB8D51FFF8BF500F8F880 /* ofxPanel.cpp in Sources */,
 				012CB8D71FFF8BF500F8F880 /* ofxSlider.cpp in Sources */,
@@ -998,10 +966,6 @@
 				012CB9521FFF8BF500F8F880 /* BaseSource.cpp in Sources */,
 				012CB9541FFF8BF500F8F880 /* FboSource.cpp in Sources */,
 				012CB9561FFF8BF500F8F880 /* ImageSource.cpp in Sources */,
-				012CB9581FFF8BF500F8F880 /* magSlide.cpp in Sources */,
-				012CB95A1FFF8BF500F8F880 /* magSlideShowSource.cpp in Sources */,
-				012CB95C1FFF8BF500F8F880 /* magSlideTransition.cpp in Sources */,
-				012CB95E1FFF8BF500F8F880 /* magSlideTransitionFactory.cpp in Sources */,
 				012CB9601FFF8BF500F8F880 /* OMXPlayerCache.cpp in Sources */,
 				012CB9641FFF8BF500F8F880 /* VideoSource.cpp in Sources */,
 				012CB9661FFF8BF500F8F880 /* BaseSurface.cpp in Sources */,

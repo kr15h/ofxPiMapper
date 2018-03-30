@@ -15,7 +15,6 @@
 		1D5F3298C2FA073628012944 /* ofxCvContourFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C76DE5C29BDBD2CAA1DD0021 /* ofxCvContourFinder.cpp */; };
 		1F4453EA1589AD79F4B34493 /* RadioList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4048CA09E6AAB5F673CBD2F0 /* RadioList.cpp */; };
 		21B18AC78EBFC1FD28C614D5 /* TextureMappingMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B16277019B0C4B684E1B063E /* TextureMappingMode.cpp */; };
-		2375406EEFFBF32FC848BCF0 /* magSlideTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 237BC60FA935F4D2EF7333B8 /* magSlideTransition.cpp */; };
 		23963D6D8F0085D5DD2DF394 /* TogglePerspectiveCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 655142313A378162E3929785 /* TogglePerspectiveCmd.cpp */; };
 		250A95BA26587BE85DB0A353 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE9C7160245B19131DAE6128 /* ofxCvColorImage.cpp */; };
 		25F5CD753AF35B53464E56AE /* MvTexCoordCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0739F09627790055C959BBF4 /* MvTexCoordCmd.cpp */; };
@@ -35,7 +34,6 @@
 		4D2D4455339FC8C955091C88 /* TextureEditorWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 413E846B881CCADC897A8A40 /* TextureEditorWidget.cpp */; };
 		580602DA874A9CF9E850DEEE /* AddGridColCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231337763726D333E0B3D56C /* AddGridColCmd.cpp */; };
 		5826FF4F63DC430E90AFDA5E /* RmGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3538B8AF69CAB7C215FA1EF /* RmGridRowCmd.cpp */; };
-		582BDA35793B6C5F719AFFB6 /* magSlideTransitionFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8219246B2D3DCA07840E8006 /* magSlideTransitionFactory.cpp */; };
 		588E33B9B0BD6F5A2E4DF31D /* OMXPlayerCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7B0806EEA8012D629BE363C /* OMXPlayerCache.cpp */; };
 		5A4349E9754D6FA14C0F2A3A /* tinyxmlparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FC5DA1C87211D4F6377DA719 /* tinyxmlparser.cpp */; };
 		5CBB2AB3A60F65431D7B555D /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C88333E71C9457E441C33474 /* ofxButton.cpp */; };
@@ -94,12 +92,10 @@
 		C4D6DA9B890E612343FD059F /* ApplicationBaseMode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9631F04A0875ADEB45970DE8 /* ApplicationBaseMode.cpp */; };
 		C8D7FA44AA0565654A681157 /* DeselectSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6E80EE6FB0CC304A6CA287BB /* DeselectSurfaceCmd.cpp */; };
 		D0758B5E19E04C33E9BF7193 /* CircleSurface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E47BE7E996D01B437B713B9B /* CircleSurface.cpp */; };
-		D2B8EB6B80117D2235CD85FE /* magSlide.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2382B6BE80F965EC5CD2E817 /* magSlide.cpp */; };
 		D3301F6A0B43BB293ED97C1D /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A4DD23693DFAB8EC05FAA5D /* ofxCvShortImage.cpp */; };
 		D61A46C1800537BA43C7884F /* DuplicateSurfaceCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C656C28252AD5E9E09FA2162 /* DuplicateSurfaceCmd.cpp */; };
 		D88BA6D139757ED4E1669796 /* AddGridRowCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A0386460638A781A7AC84 /* AddGridRowCmd.cpp */; };
 		DB8FC60C7512DB810C92625B /* DirectoryWatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 20F9951441118A70E8D55E13 /* DirectoryWatcher.cpp */; };
-		DBD3C91431A9ACF2F980B702 /* magSlideShowSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35097CC7BE3F0F1C9474F901 /* magSlideShowSource.cpp */; };
 		E212C821D1064B92DD953A42 /* ofxCvHaarFinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A16CBF2E8CFE43AF54FE6F5 /* ofxCvHaarFinder.cpp */; };
 		E2564CF7DDB3713772BB682E /* ofxUDPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 35BB9BB90DBABFD3B39F8DB6 /* ofxUDPManager.cpp */; };
 		E327ACE85A208BAFACD1B7C7 /* ScaleSurfaceFromToCmd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 34B45EB44DED0A47FBAD30F4 /* ScaleSurfaceFromToCmd.cpp */; };
@@ -203,8 +199,6 @@
 		229A71F0ABA8739386CDA1B9 /* TCPServer.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TCPServer.h; path = src/TCPServer.h; sourceTree = SOURCE_ROOT; };
 		23118136CC7FFA920626B6C3 /* TriangleSurface.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = TriangleSurface.h; path = ../src/Surfaces/TriangleSurface.h; sourceTree = SOURCE_ROOT; };
 		231337763726D333E0B3D56C /* AddGridColCmd.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = AddGridColCmd.cpp; path = ../src/Commands/AddGridColCmd.cpp; sourceTree = SOURCE_ROOT; };
-		237BC60FA935F4D2EF7333B8 /* magSlideTransition.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = magSlideTransition.cpp; path = ../src/Sources/magSlideTransition.cpp; sourceTree = SOURCE_ROOT; };
-		2382B6BE80F965EC5CD2E817 /* magSlide.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = magSlide.cpp; path = ../src/Sources/magSlide.cpp; sourceTree = SOURCE_ROOT; };
 		23A4F0C9DE47BA73B3E49EDE /* ScaleWidget.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ScaleWidget.h; path = ../src/Gui/Widgets/ScaleWidget.h; sourceTree = SOURCE_ROOT; };
 		2411F6B35DAAAE5083D51167 /* motion_estimators.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = motion_estimators.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/stitching/detail/motion_estimators.hpp; sourceTree = SOURCE_ROOT; };
 		243FFB66CB697A42C5397069 /* TCPServer.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TCPServer.cpp; path = src/TCPServer.cpp; sourceTree = SOURCE_ROOT; };
@@ -220,7 +214,6 @@
 		2C7CF000B7B4F782C187C353 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
 		2D2400AC1A64EDE5E990C56C /* GridWarpSurface.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = GridWarpSurface.cpp; path = ../src/Surfaces/GridWarpSurface.cpp; sourceTree = SOURCE_ROOT; };
 		2E411F99E3AB7154484B4F96 /* kmeans_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = kmeans_index.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/kmeans_index.h; sourceTree = SOURCE_ROOT; };
-		2EEB35CE3E4992705F95E2E3 /* magSlide.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = magSlide.h; path = ../src/Sources/magSlide.h; sourceTree = SOURCE_ROOT; };
 		2F04FFB9BAC4575E214C0DED /* CmdManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = CmdManager.h; path = ../src/Commands/CmdManager.h; sourceTree = SOURCE_ROOT; };
 		2F519EB3B0DCD7378FB86ABE /* ofxUDPManager.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxUDPManager.h; path = ../../ofxNetwork/src/ofxUDPManager.h; sourceTree = SOURCE_ROOT; };
 		3074E4094F76555C299E5D8E /* ClearSurfacesCmd.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ClearSurfacesCmd.h; path = ../src/Commands/ClearSurfacesCmd.h; sourceTree = SOURCE_ROOT; };
@@ -234,7 +227,6 @@
 		33DD6E4350FD51C68B7E65F0 /* SettingsLoader.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SettingsLoader.cpp; path = ../src/Application/SettingsLoader.cpp; sourceTree = SOURCE_ROOT; };
 		33FF03222909C1A0ECE43753 /* cv.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = cv.h; path = ../../ofxOpenCv/libs/opencv/include/opencv/cv.h; sourceTree = SOURCE_ROOT; };
 		34B45EB44DED0A47FBAD30F4 /* ScaleSurfaceFromToCmd.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ScaleSurfaceFromToCmd.cpp; path = ../src/Commands/ScaleSurfaceFromToCmd.cpp; sourceTree = SOURCE_ROOT; };
-		35097CC7BE3F0F1C9474F901 /* magSlideShowSource.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = magSlideShowSource.cpp; path = ../src/Sources/magSlideShowSource.cpp; sourceTree = SOURCE_ROOT; };
 		35BB9BB90DBABFD3B39F8DB6 /* ofxUDPManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxUDPManager.cpp; path = ../../ofxNetwork/src/ofxUDPManager.cpp; sourceTree = SOURCE_ROOT; };
 		35EEEA3F57EFB3D7DE4C0DED /* saturate_cast.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = saturate_cast.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/gpu/device/saturate_cast.hpp; sourceTree = SOURCE_ROOT; };
 		36F0FF7F8D7342D220CC6319 /* dummy.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = dummy.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/dummy.h; sourceTree = SOURCE_ROOT; };
@@ -242,7 +234,6 @@
 		378C962CF2DB945F38DE674A /* ofxPiMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxPiMapper.h; path = ../src/ofxPiMapper.h; sourceTree = SOURCE_ROOT; };
 		37D155721DCC51F3D1DC2E02 /* color_detail.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = color_detail.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/gpu/device/detail/color_detail.hpp; sourceTree = SOURCE_ROOT; };
 		37E7F66B151AB6A0AB6FC244 /* Info.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Info.h; path = ../src/Info/Info.h; sourceTree = SOURCE_ROOT; };
-		38683A925FBE28339A8BDBC0 /* magSlideTransitionFactory.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = magSlideTransitionFactory.h; path = ../src/Sources/magSlideTransitionFactory.h; sourceTree = SOURCE_ROOT; };
 		3ADB4E06C4EDB97E020A778D /* functional.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = functional.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/gpu/device/functional.hpp; sourceTree = SOURCE_ROOT; };
 		3B043509B19E37C383D7CA87 /* PresentationMode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = PresentationMode.h; path = ../src/Application/Modes/PresentationMode.h; sourceTree = SOURCE_ROOT; };
 		3B29C3846BA06080344C1D1E /* SelPrevVertexCmd.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SelPrevVertexCmd.cpp; path = ../src/Commands/SelPrevVertexCmd.cpp; sourceTree = SOURCE_ROOT; };
@@ -340,7 +331,6 @@
 		7F58FFED7FBFC49573FF65E4 /* SetSourceCmd.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SetSourceCmd.cpp; path = ../src/Commands/SetSourceCmd.cpp; sourceTree = SOURCE_ROOT; };
 		7FD330C204479B5A5021D286 /* SourceSelectionMode.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = SourceSelectionMode.h; path = ../src/Application/Modes/SourceSelectionMode.h; sourceTree = SOURCE_ROOT; };
 		802251BAF1B35B1D67B32FD0 /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxSliderGroup.cpp; path = ../../ofxGui/src/ofxSliderGroup.cpp; sourceTree = SOURCE_ROOT; };
-		8219246B2D3DCA07840E8006 /* magSlideTransitionFactory.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = magSlideTransitionFactory.cpp; path = ../src/Sources/magSlideTransitionFactory.cpp; sourceTree = SOURCE_ROOT; };
 		832BDC407620CDBA568B713D /* tinyxmlerror.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = tinyxmlerror.cpp; path = ../../ofxXmlSettings/libs/tinyxmlerror.cpp; sourceTree = SOURCE_ROOT; };
 		836B103542A52C63B004410C /* SurfaceManager.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = SurfaceManager.cpp; path = ../src/Surfaces/SurfaceManager.cpp; sourceTree = SOURCE_ROOT; };
 		84238297E460936905B92D16 /* limits.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = limits.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/gpu/device/limits.hpp; sourceTree = SOURCE_ROOT; };
@@ -354,7 +344,6 @@
 		8DB45DE3BD6BB97E34BDB411 /* nn_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = nn_index.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/nn_index.h; sourceTree = SOURCE_ROOT; };
 		8E79CF8911DFABAFE23EA45B /* ofxCvConstants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxCvConstants.h; path = ../../ofxOpenCv/src/ofxCvConstants.h; sourceTree = SOURCE_ROOT; };
 		8F41EDB76644426680B2FA2B /* MvTexCoordCmd.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MvTexCoordCmd.h; path = ../src/Commands/MvTexCoordCmd.h; sourceTree = SOURCE_ROOT; };
-		8F9A0B3E8F65E3A01D5F598C /* magSlideShowSource.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = magSlideShowSource.h; path = ../src/Sources/magSlideShowSource.h; sourceTree = SOURCE_ROOT; };
 		8FB4573CDB2FB9658ACF87AA /* gpu_test.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = gpu_test.hpp; path = ../../ofxOpenCv/libs/opencv/include/opencv2/ts/gpu_test.hpp; sourceTree = SOURCE_ROOT; };
 		906696B07A716E4057D32B1E /* QuadSurface.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = QuadSurface.h; path = ../src/Surfaces/QuadSurface.h; sourceTree = SOURCE_ROOT; };
 		907C5B5E104864A2D3A25745 /* ofxToggle.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxToggle.cpp; path = ../../ofxGui/src/ofxToggle.cpp; sourceTree = SOURCE_ROOT; };
@@ -362,7 +351,6 @@
 		928068952444E81EF818B25C /* Application.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Application.h; path = ../src/Application/Application.h; sourceTree = SOURCE_ROOT; };
 		933CAE5B2DEC9DDABEA95E34 /* MvLayerUpCmd.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = MvLayerUpCmd.h; path = ../src/Commands/MvLayerUpCmd.h; sourceTree = SOURCE_ROOT; };
 		93C11B810D4F591A2F70C148 /* Vec2.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Vec2.h; path = ../src/Types/Vec2.h; sourceTree = SOURCE_ROOT; };
-		9401251DD4C51CCD32270579 /* magSlideTransition.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = magSlideTransition.h; path = ../src/Sources/magSlideTransition.h; sourceTree = SOURCE_ROOT; };
 		941AD8B39C28D08B9F31077A /* TextureHighlightWidget.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = TextureHighlightWidget.cpp; path = ../src/Gui/Widgets/TextureHighlightWidget.cpp; sourceTree = SOURCE_ROOT; };
 		946187321200AC04E570E6EC /* hierarchical_clustering_index.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = hierarchical_clustering_index.h; path = ../../ofxOpenCv/libs/opencv/include/opencv2/flann/hierarchical_clustering_index.h; sourceTree = SOURCE_ROOT; };
 		94DC897871B221F060A6A70F /* GuiBaseWidget.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = GuiBaseWidget.h; path = ../src/Gui/Widgets/GuiBaseWidget.h; sourceTree = SOURCE_ROOT; };
@@ -930,14 +918,6 @@
 				F05CE9A6503C7CBCC46403C4 /* FboSource.h */,
 				61291E56B7882C9E9B8F119B /* ImageSource.cpp */,
 				E5949E35CC6642F2FDFFAAE5 /* ImageSource.h */,
-				2382B6BE80F965EC5CD2E817 /* magSlide.cpp */,
-				2EEB35CE3E4992705F95E2E3 /* magSlide.h */,
-				35097CC7BE3F0F1C9474F901 /* magSlideShowSource.cpp */,
-				8F9A0B3E8F65E3A01D5F598C /* magSlideShowSource.h */,
-				237BC60FA935F4D2EF7333B8 /* magSlideTransition.cpp */,
-				9401251DD4C51CCD32270579 /* magSlideTransition.h */,
-				8219246B2D3DCA07840E8006 /* magSlideTransitionFactory.cpp */,
-				38683A925FBE28339A8BDBC0 /* magSlideTransitionFactory.h */,
 				F7B0806EEA8012D629BE363C /* OMXPlayerCache.cpp */,
 				3BD72CBAFD427FC6E9F164D2 /* OMXPlayerCache.h */,
 				6595C215972AFFC7EE685F5A /* SourceType.h */,
@@ -1612,10 +1592,6 @@
 				892923A127FC7C57469FD078 /* BaseSource.cpp in Sources */,
 				7702233BBFB6E8D9E8B93CBC /* FboSource.cpp in Sources */,
 				95CB0A22296B3DB402835DCF /* ImageSource.cpp in Sources */,
-				D2B8EB6B80117D2235CD85FE /* magSlide.cpp in Sources */,
-				DBD3C91431A9ACF2F980B702 /* magSlideShowSource.cpp in Sources */,
-				2375406EEFFBF32FC848BCF0 /* magSlideTransition.cpp in Sources */,
-				582BDA35793B6C5F719AFFB6 /* magSlideTransitionFactory.cpp in Sources */,
 				588E33B9B0BD6F5A2E4DF31D /* OMXPlayerCache.cpp in Sources */,
 				A0C1CAB7B9C59DDDC960EB62 /* VideoSource.cpp in Sources */,
 				9F968AD3A115328F4BFE5D71 /* BaseSurface.cpp in Sources */,
