@@ -28,6 +28,7 @@ You can use the example application of the addon for projection mapping projects
 
 Examples represent extended functionality of ofxPiMapper. Enter each example separately to find out more.
 
+- [Basic Example](example_basic).
 - [FBO Sources Example](example_fbo-sources).
 - [Remote Control Server](example_remote-server) example.
 - [Remote Control Client](example_remote-client) example.
