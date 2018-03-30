@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "example.app"
+               BuildableName = "example_fbo-sourcesDebug.app"
                BlueprintName = "example_fbo-sources"
                ReferencedContainer = "container:example_fbo-sources.xcodeproj">
             </BuildableReference>
@@ -34,7 +34,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example.app"
+            BuildableName = "example_fbo-sourcesDebug.app"
             BlueprintName = "example_fbo-sources"
             ReferencedContainer = "container:example_fbo-sources.xcodeproj">
          </BuildableReference>
@@ -58,7 +58,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example.app"
+            BuildableName = "example_fbo-sourcesDebug.app"
             BlueprintName = "example_fbo-sources"
             ReferencedContainer = "container:example_fbo-sources.xcodeproj">
          </BuildableReference>
@@ -77,7 +77,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "example.app"
+            BuildableName = "example_fbo-sourcesDebug.app"
             BlueprintName = "example_fbo-sources"
             ReferencedContainer = "container:example_fbo-sources.xcodeproj">
          </BuildableReference>
