@@ -1,4 +1,4 @@
-# Base Example
+# FBO Sources Example
 
 This example shows how to use custom (FBO) source functionality with ofxPiMapper. Below you can see a list of custom sources and feel free to add your own via pull requests!
 
