@@ -34,11 +34,14 @@ void TCPClient::update(){
 void TCPClient::draw(){
 	if(_tcpClient.isConnected()){
 		ofSetColor(0, 255, 0);
-		ofPushMatrix();
-		ofTranslate(10, 10);
-		ofDrawRectangle(0, 0, 10, 10);
-		ofPopMatrix();
+	}else{
+		ofSetColor(255, 0, 0);
 	}
+	
+	ofPushMatrix();
+	ofTranslate(10, 10);
+	ofDrawRectangle(0, 0, 10, 10);
+	ofPopMatrix();
 }
 
 void TCPClient::send(string message){
