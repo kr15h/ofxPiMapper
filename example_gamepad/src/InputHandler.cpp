@@ -52,7 +52,7 @@ void InputHandler::initialise(){
 		std::cout << "Loaded controllers.xml" << std::endl;
 		
 		// Find the right map for each initialized controller
-		for(int i = 0; i < _joysticks.size(); ++i){
+		for(auto i = 0; i < _joysticks.size(); ++i){
 			
 			// Get controller GUID first
 			SDL_JoystickGUID guid = SDL_JoystickGetDeviceGUID(i);
@@ -275,8 +275,8 @@ std::string InputHandler::controllerCommandToString(ControllerCommand com){
 		return "COMMAND_SELECT";
 	}else if(com == COMMAND_START){
 		return "COMMAND_START";
-	}else{
-		
 	}
+	
+	return "COMMAND_NONE";
 }
 
