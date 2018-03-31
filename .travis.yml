@@ -200,9 +200,7 @@ install:
   - cd ~
   - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
   - cd ~/openFrameworks/addons
-  - git clone --depth=1 https://github.com/kr15h/ofxJSON.git
-  - cd ofxJSON
-  - git checkout of-master-patch
+  - git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON.git
   - cd ~/openFrameworks
   - scripts/ci/addons/install.sh
   - cd ~/openFrameworks/addons/ofxPiMapper
