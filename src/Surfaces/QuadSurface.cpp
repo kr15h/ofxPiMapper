@@ -52,6 +52,9 @@ void QuadSurface::setup(Vec3 p1, Vec3 p2, Vec3 p3, Vec3 p4,
 	mesh.addTexCoord(t2.toOf());
 	mesh.addTexCoord(t3.toOf());
 	mesh.addTexCoord(t4.toOf());
+	
+	_meshCache = mesh;
+	calculateHomography();
 }
 
 void QuadSurface::draw(){
@@ -64,8 +67,20 @@ void QuadSurface::draw(){
 	}
 
 	if(_perspectiveWarping){
-		if(mesh.haveVertsChanged() || mesh.haveTexCoordsChanged()){
+		bool meshChanged = false;
+		
+		if(
+			mesh.getVertices()[0] != _meshCache.getVertices()[0] ||
+			mesh.getVertices()[1] != _meshCache.getVertices()[1] ||
+			mesh.getVertices()[2] != _meshCache.getVertices()[2] ||
+			mesh.getVertices()[3] != _meshCache.getVertices()[3])
+		{
+			meshChanged = true;
+		}
+		
+		if(meshChanged){
 			calculateHomography();
+			_meshCache = mesh;
 		}
 		
 		ofRectangle box = getMeshBoundingBox();

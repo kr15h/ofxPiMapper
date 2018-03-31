@@ -46,6 +46,7 @@ class QuadSurface : public BaseSurface {
 		void calculateHomography();
 		float _matrix[16];
 		bool _perspectiveWarping;
+		ofMesh _meshCache;
 };
 
 } // namespace piMapper
