@@ -204,6 +204,7 @@ install:
   - mv example_simpler/addons.make.norpi example_simpler/addons.make
 
 script:
+  - cd ~/openFrameworks
   - scripts/ci/addons/build.sh
 
 git:
