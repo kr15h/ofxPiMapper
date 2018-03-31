@@ -186,6 +186,16 @@ matrix:
   exclude:
     - compiler: gcc
 
+before_install:
+  - if [ "$TARGET" == "linux64" ]; then
+      sudo apt-get -qq update;
+      sudo apt-get install -y libegl1-mesa-dev;
+      sudo apt-get install -y libgles2-mesa-dev;
+      sudo apt-get install -y libsdl2-dev;
+    elif [ "$TARGET" == "osx" ]; then
+      brew install sdl2;
+    fi
+
 install:
   - cd ~
   - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
@@ -202,11 +212,6 @@ install:
   - mv example_remote-client/addons.make.norpi example_remote-client/addons.make
   - mv example_remote-server/addons.make.norpi example_remote-server/addons.make
   - mv example_simpler/addons.make.norpi example_simpler/addons.make
-  - if [ "$TARGET" == "osx" ]; then
-      brew install sdl2;
-    elif [ "$TARGET" == "linux64" ]; then
-      sudo apt-get install libsdl2-dev;
-    fi
 
 script:
   - cd ~/openFrameworks
