@@ -192,8 +192,6 @@ before_install:
       sudo apt-get install -y libegl1-mesa-dev;
       sudo apt-get install -y libgles2-mesa-dev;
       sudo apt-get install -y libsdl2-dev;
-    elif [ "$TARGET" == "osx" ]; then
-      brew install sdl2;
     fi
 
 install:
@@ -212,6 +210,9 @@ install:
   - mv example_remote-client/addons.make.norpi example_remote-client/addons.make
   - mv example_remote-server/addons.make.norpi example_remote-server/addons.make
   - mv example_simpler/addons.make.norpi example_simpler/addons.make
+  - if [ "$TARGET" == "osx" ]; then
+      brew install sdl2;
+    fi
 
 script:
   - cd ~/openFrameworks
