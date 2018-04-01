@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Custom ofxPiMapper CI install script for VS"
+echo ">> Custom ofxPiMapper CI install script for msys2"
 pwd
 git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON addons/ofxJSON 
 
@@ -15,4 +15,4 @@ rm -rf addons/ofxPiMapper/example_gamepad
 rm -rf addons/ofxPiMapper/example_pocketvj
 rm -rf addons/ofxPiMapper/example_simpler
 rm -rf addons/ofxPiMapper/example_camera
-echo "Custom install script done"
+echo ">> Custom install script done"
