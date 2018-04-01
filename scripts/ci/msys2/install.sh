@@ -2,7 +2,7 @@
 
 echo ">> Custom ofxPiMapper CI install script for msys2"
 pwd
-git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON addons/ofxJSON 
+git clone --depth=1 https://github.com/jeffcrouse/ofxJSON addons/ofxJSON 
 
 # Test only part of examples because uf the 60m time limit on AppVeyor
 mv addons/ofxPiMapper/example_basic/addons.make.norpi addons/ofxPiMapper/example_basic/addons.make
