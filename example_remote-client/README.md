@@ -18,5 +18,5 @@ JSON is used as the data format between ofxPiMapper remote control server and cl
 
 ```
 cd openFrameworks/addons
-git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON.git
+git clone --depth=1 https://github.com/jeffcrouse/ofxJSON
 ```
