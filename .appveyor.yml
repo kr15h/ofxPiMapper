@@ -1,6 +1,10 @@
 version: 1.0.{build}
 os: Visual Studio 2015 RC
 
+branches: 
+  only:
+    - master
+
 environment:
   global:
     APPVEYOR_OS_NAME: windows
@@ -19,7 +23,7 @@ environment:
 
 configuration: Debug
 shallow_clone: true
-clone_depth: 10
+clone_depth: 5
 init:
 - set MSYS2_PATH=c:\msys64
 - set CHERE_INVOKING=1
@@ -29,8 +33,18 @@ init:
 
 install:
 - cd ..
-- git clone --depth=1 --branch=master https://github.com/openframeworks/openFrameworks
+- git clone --depth=1 -b=master https://github.com/openframeworks/openFrameworks
+- git clone --depth=1 -b=of-master-patch https://github.com/kr15h/ofxJSON openFrameworks\addons 
 - call openFrameworks\scripts\ci\addons\install.cmd
+- cd openFrameworks\addons\ofxPiMapper
+- move /y example_basic/addons.make.norpi example_basic/addons.make
+- move /y example_camera/addons.make.norpi example_camera/addons.make
+- move /y example_fbo-sources/addons.make.norpi example_fbo-sources/addons.make
+- move /y example_pocketvj/addons.make.norpi example_pocketvj/addons.make
+- move /y example_remote-client/addons.make.norpi example_remote-client/addons.make
+- move /y example_remote-server/addons.make.norpi example_remote-server/addons.make
+- move /y example_simpler/addons.make.norpi example_simpler/addons.make
+- rd /s example_gamepad
 
 build_script:
 - cd %OF_PATH%
