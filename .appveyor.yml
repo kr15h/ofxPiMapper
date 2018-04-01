@@ -33,8 +33,8 @@ init:
 
 install:
 - cd ..
-- git clone --depth=1 -b=master https://github.com/openframeworks/openFrameworks
-- git clone --depth=1 -b=of-master-patch https://github.com/kr15h/ofxJSON openFrameworks\addons 
+- git clone --depth=1 -b master https://github.com/openframeworks/openFrameworks
+- git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON openFrameworks\addons 
 - call openFrameworks\scripts\ci\addons\install.cmd
 - cd openFrameworks\addons\ofxPiMapper
 - move /y example_basic/addons.make.norpi example_basic/addons.make
