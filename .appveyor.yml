@@ -36,7 +36,7 @@ install:
 - git clone --depth=1 -b master https://github.com/openframeworks/openFrameworks
 - git clone --depth=1 -b of-master-patch https://github.com/kr15h/ofxJSON openFrameworks\addons\ofxJSON 
 - call openFrameworks\scripts\ci\addons\install.cmd
-- cd openFrameworks\addons\ofxPiMapper
+- cd %OF_PATH%\addons\%APPVEYOR_PROJECT_NAME%
 - move /y example_basic/addons.make.norpi example_basic/addons.make
 - move /y example_camera/addons.make.norpi example_camera/addons.make
 - move /y example_fbo-sources/addons.make.norpi example_fbo-sources/addons.make
