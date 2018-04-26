@@ -30,6 +30,7 @@ Examples represent extended functionality of ofxPiMapper. Enter each example sep
 
 - [Basic Example](example_basic).
 - [FBO Sources Example](example_fbo-sources).
+- [Camera Example](example_camera).
 - [Remote Control Server](example_remote-server) example.
 - [Remote Control Client](example_remote-client) example.
 - Readme's for the rest are cooking...
