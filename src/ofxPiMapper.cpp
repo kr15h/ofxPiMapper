@@ -218,6 +218,10 @@ int ofxPiMapper::getSelectedSurface(){
 	return _application.getSurfaceManager()->getSelectedSurfaceIndex();
 }
 
+int ofxPiMapper::getSelectedVertex(){
+	return _application.getSurfaceManager()->getSelectedVertexIndex();
+}
+
 void ofxPiMapper::setInfoText(std::string text){
 	_application.setInfoText(text);
 }

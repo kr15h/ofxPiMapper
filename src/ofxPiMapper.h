@@ -56,6 +56,7 @@ class ofxPiMapper {
 		// Surfaces, active preset
 		unsigned int getNumSurfaces();
 		int getSelectedSurface();
+		int getSelectedVertex();
 		void selectSurface(int i);
 		void togglePerspective();
 		void selectNextSurface();
