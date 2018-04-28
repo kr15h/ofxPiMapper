@@ -12,7 +12,6 @@ environment:
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       platform: x86
       BUILDER: MSYS2
-      CCACHE_DIR: "%APPVEYOR_BUILD_FOLDER%\\.ccache"
 
   #VisualStudio Building
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
@@ -36,17 +35,10 @@ init:
 - '%MSYS2_PATH%\usr\bin\bash -lc "pacman --noconfirm -S --needed unzip rsync"'
 - if "%BUILDER%"=="VS" set PATH=%ProgramFiles(x86)%\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin;%PATH%
 
-cache:
-    - .ccache
-
 install:
 - cd ..
 - git clone --depth=1 --branch=master https://github.com/openframeworks/openFrameworks
 - call openFrameworks\scripts\ci\addons\install.cmd
-
-before_build:
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -z")
-- if "%BUILDER%"=="MSYS2" (%MSYS2_PATH%\usr\bin\bash -lc "ccache -s")
 
 build_script:
 - cd %OF_PATH%
