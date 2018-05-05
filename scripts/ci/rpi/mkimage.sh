@@ -49,10 +49,14 @@ mv "$(ls *.img | head -n 1)" "${IMAGE}"
 # Configure loopback device to expand partition 2
 losetup -f
 loopdev=$(losetup --find --show "${IMAGE}")
+losetup -f
 echo "Created loopback device ${loopdev}"
+
 
 echo "Fake delay to wait for loopdevice partitions."
 sleep 5s
+
+fdisk -lu "${loopdev}"
 
 echo "Mounting filesystem."
 
