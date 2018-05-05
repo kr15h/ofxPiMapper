@@ -19,6 +19,24 @@ matrix:
   # fully specify builds, include can't dynamically expand matrix entries
   # relative order of sudo and env is important so that addons: is recognized
 
+  - os: linux
+    dist: trusty
+    sudo: required
+    env: TARGET="rpi"
+    addons:
+      apt:
+        packages:
+        - qemu
+        - qemu-user-static
+        - binfmt-support
+        - parted
+        - wget
+        - dosfstools
+        - zip
+    script:
+    - sudo bash scripts/ci/
+    - zip opm.img.zip opm.img
+
 # Linux 64bit, OF master
   - os: linux
     dist: trusty
@@ -33,54 +51,11 @@ matrix:
           - g++-4.9
           - gdb
 
-# Linux 64bit, OF stable:  Not supported yet
-#  - os: linux
-#    dist: trusty
-#    sudo: required
-#    env: TARGET="linux64" OF_BRANCH="stable"
-#    addons:
-#      apt:
-#        sources:
-#          - ubuntu-toolchain-r-test
-#        packages:
-#          - gcc-4.9
-#          - g++-4.9
-#          - gdb
-
 # OSX, OF master
   - os: osx
     osx_image: xcode8
     compiler: clang
     env: TARGET="osx" OF_BRANCH="master"
-
-# OSX, OF stable:  Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="osx" OF_BRANCH="stable"
-
-# Linux ARM6, OF master: Uncomment following lines to enable 
-#  - os: linux
-#    sudo: required
-#    dist: trusty
-#    env: TARGET="linuxarmv6l" OF_BRANCH="master"
-
-
-# Linux ARM6, OF stable:  Not supported yet
-#  - os: linux
-#    sudo: required
-#    dist: trusty
-#    env: TARGET="linuxarmv6l" OF_BRANCH="stable"
-
-# Linux ARM7, OF master: Uncomment following lines to enable 
-#  - os: linux
-#    sudo: false
-#    env: TARGET="linuxarmv7l" OF_BRANCH="master"
-#    cache:
-#      directories:
-#        - ~/rpi2_toolchain
-#        - ~/firmware-master
-#        - ~/archlinux
 
 # Linux ARM7, OF stable:  Not supported yet
 #  - os: linux
@@ -92,135 +67,35 @@ matrix:
 #        - ~/firmware-master
 #        - ~/archlinux
 
-
-# Emscripten, OF master: Uncomment following lines to enable 
-#  - os: linux
-#    sudo: false
-#    env: TARGET="emscripten" OF_BRANCH="master"
-#    addons:
-#      apt:
-#        sources:
-#          - ubuntu-toolchain-r-test
-#        packages:
-#          - libstdc++6
-
-
-# Emscripten, OF stable: Not supported yet
-#  - os: linux
-#    sudo: false
-#    env: TARGET="emscripten" OF_BRANCH="stable"
-#    addons:
-#      apt:
-#        sources:
-#          - ubuntu-toolchain-r-test
-#        packages:
-#          - libstdc++6
-
-
-# iOS, OF master: Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="ios" OF_BRANCH="master"
-
-
-# iOS, OF stable: Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="ios" OF_BRANCH="stable"
-
-
-# tvOS, OF master: Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="tvos" OF_BRANCH="master"
-
-
-# tvOS, OF stable: Not supported yet
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="tvos" OF_BRANCH="stable"
-
-
-# Android armv7, OF master: Uncomment following lines to enable 
-#  - os: linux
-#    sudo: false
-#    env: TARGET="android" OPT="armv7" OF_BRANCH="master"
-#    cache:
-#      directories:
-#        - ~/android-ndk-r12b
-
-
-# Android armv7, OF stable: Not supported yet
-#  - os: linux
-#    sudo: false
-#    env: TARGET="android" OPT="armv7" OF_BRANCH="stable"
-#    cache:
-#      directories:
-#        - ~/android-ndk-r12b
-
-
-# Android x86, OF master: Uncomment following lines to enable 
-#  - os: linux
-#    sudo: false
-#    env: TARGET="android" OPT="x86" OF_BRANCH="master"
-#    cache:
-#      directories:
-#        - ~/android-ndk-r12b
-
-
-# Android x86, OF stable: Not supported yet
-#  - os: linux
-#    sudo: false
-#    env: TARGET="android" OPT="x86" OF_BRANCH="stable"
-#    cache:
-#      directories:
-#        - ~/android-ndk-r12b
-
-
   # Exclude the default build that would otherwise be generated
   # see https://github.com/travis-ci/travis-ci/issues/1228
   exclude:
     - compiler: gcc
 
-# Figure out how to get SDL2 working with example_gamepad
-# We will delete if for now before testing
-#before_install:
-#  - if [ "$TARGET" == "linux64" ]; then
-#      sudo apt-get -qq update;
-#      sudo apt-get install -y libegl1-mesa-dev;
-#      sudo apt-get install -y libgles2-mesa-dev;
-#      sudo apt-get install -y libsdl2-dev;
-#    fi
-
 install:
-  - cd ~
-  - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
-  - cd ~/openFrameworks/addons
-  - git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-  - cd ~/openFrameworks
-  - scripts/ci/addons/install.sh
-  - cd ~/openFrameworks/addons/ofxPiMapper
-  - mv example_basic/addons.make.norpi example_basic/addons.make
-  - mv example_camera/addons.make.norpi example_camera/addons.make
-  - mv example_fbo-sources/addons.make.norpi example_fbo-sources/addons.make
-  - mv example_pocketvj/addons.make.norpi example_pocketvj/addons.make
-  - mv example_remote-client/addons.make.norpi example_remote-client/addons.make
-  - mv example_remote-server/addons.make.norpi example_remote-server/addons.make
-  - mv example_simpler/addons.make.norpi example_simpler/addons.make
-# Fix SDL2 and example_gamepad first
-#  - mv example_gamepad/addons.make.norpi example_gamepad/addons.make
-#  - if [ "$TARGET" == "osx" ]; then
-#      brew install sdl2;
-#    fi
-  - rm -rf example_gamepad
+  - |
+    if [ "${TARGET}" == "rpi" ]; then
+      pwd
+      echo "Launch rpi specific install script here."
+      sudo bash ./scripts/ci/rpi/install.sh
+    else
+      cd ~
+      git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
+      cd ~/openFrameworks/addons
+      git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
+      cd ~/openFrameworks
+      scripts/ci/addons/install.sh
+    fi
 
 script:
-  - cd ~/openFrameworks
-  - scripts/ci/addons/build.sh
+  - |
+    if [ "${TARGET}" == "rpi" ]; then
+      pwd
+      sudo bash ./scripts/ci/rpi/mkimage.sh
+    else
+      cd ~/openFrameworks
+      scripts/ci/addons/build.sh
+    fi
 
 git:
   depth: 10
