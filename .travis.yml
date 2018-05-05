@@ -18,7 +18,6 @@ matrix:
         - dosfstools
         - zip
     script:
-    - cd ~
     - sudo bash ./scripts/ci/rpi/mkimage.sh
     - zip ${IMAGE}.zip ${IMAGE}
     deploy:
