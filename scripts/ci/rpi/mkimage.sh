@@ -37,6 +37,9 @@ trap cleanup EXIT
 # Download raspbian arm only if we have not already done so
 [ ! -f "${RPI_ZIP}" ] && wget "${RPI_URL}"
 
+# Clean the existing image files
+(ls *.img >> /dev/null 2>&1 && rm *.img) || echo "no .img files to remove"
+
 # Unzip Raspbian
 # -u  update files, create if necessary
 unzip -u "${RPI_ZIP}"
@@ -44,6 +47,7 @@ unzip -u "${RPI_ZIP}"
 mv "$(ls *.img | head -n 1)" "${IMAGE}"
 
 # Configure loopback device to expand partition 2
+losetup -f
 loopdev=$(losetup --find --show "${IMAGE}")
 echo "Created loopback device ${loopdev}"
 echo "Mounting filesystem."
