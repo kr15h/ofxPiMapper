@@ -16,6 +16,7 @@ fi
 MOUNT="mnt"
 
 echo "Welcome to mkimage.sh script."
+pwd
 
 # Unmount drives and general cleanup on exit, the trap ensures this will always
 # run execpt in the most extream cases.
@@ -61,7 +62,7 @@ mount "${rootdev}" "${MOUNT}"
 mount "${bootdev}" "${MOUNT}/boot"
 
 # Copy our installation script and other artifacts.
-#install -Dm755 "${SCRIPT}" "${MOUNT}/tmp/${SCRIPT}"
+install -Dm755 "${SCRIPT}" "${MOUNT}/tmp/${SCRIPT}"
 
 # Prep the chroot.
 mount --bind /proc "${MOUNT}/proc"
