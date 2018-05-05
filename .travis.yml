@@ -71,16 +71,22 @@ matrix:
     - compiler: gcc
 
 install:
-  - cd ~
-  - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
-  - cd ~/openFrameworks/addons
-  - git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-  - cd ~/openFrameworks
-  - scripts/ci/addons/install.sh
+  - |
+    if ! [ "${TARGET}" == "rpi" ]; then
+      cd ~
+      git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
+      cd ~/openFrameworks/addons
+      git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
+      cd ~/openFrameworks
+      scripts/ci/addons/install.sh
+    fi
 
 script:
-  - cd ~/openFrameworks
-  - scripts/ci/addons/build.sh
+  - |
+    if ! [ "${TARGET}" == "rpi" ]; then
+      cd ~/openFrameworks
+      scripts/ci/addons/build.sh
+    fi
 
 git:
   depth: 1
