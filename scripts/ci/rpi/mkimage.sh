@@ -75,7 +75,7 @@ cp "${MOUNT}/etc/ld.so.preload" "${MOUNT}/etc/_ld.so.preload"
 echo "" > "${MOUNT}/etc/ld.so.preload"
 
 # Run the installation script as if we would be inside the Raspberry Pi.
-#chroot "${MOUNT}" "/tmp/${SCRIPT}"
+chroot "${MOUNT}" "/tmp/${SCRIPT}"
 
 # Put back the old ld.so.preload script.
 mv "${MOUNT}/etc/_ld.so.preload" "${MOUNT}/etc/ld.so.preload"
