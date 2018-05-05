@@ -50,6 +50,10 @@ mv "$(ls *.img | head -n 1)" "${IMAGE}"
 losetup -f
 loopdev=$(losetup --find --show "${IMAGE}")
 echo "Created loopback device ${loopdev}"
+
+echo "Fake delay to wait for loopdevice partitions."
+sleep 5s
+
 echo "Mounting filesystem."
 
 ls /dev/loop*
