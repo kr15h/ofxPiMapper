@@ -46,24 +46,13 @@ unzip -u "${RPI_ZIP}"
 
 mv "$(ls *.img | head -n 1)" "${IMAGE}"
 
-# Configure loopback device to expand partition 2
-losetup -f
+# Configure loopback device.
 loopdev=$(losetup --find --show "${IMAGE}")
-losetup -f
 echo "Created loopback device ${loopdev}"
 
-
-echo "Fake delay to wait for loopdevice partitions."
-sleep 5s
-
-fdisk -lu "${loopdev}"
-
 echo "Mounting filesystem."
-
-ls /dev/loop*
-
-bootdev=$(ls "${loopdev}"*1)
-rootdev=$(ls "${loopdev}"*2)
+bootdev="${loopdev}p1"
+rootdev="${loopdev}p2"
 partprobe "${loopdev}"
 
 [ ! -d "${MOUNT}" ] && mkdir "${MOUNT}"
