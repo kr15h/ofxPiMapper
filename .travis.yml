@@ -6,7 +6,7 @@ matrix:
   - os: linux
     dist: trusty
     sudo: required
-    env: TARGET="rpi" SCRIPT="pisetup.sh" IMAGE="opm${TRAVIS_TAG}.img" RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.0/${RPI_ZIP}"
+    env: TARGET="rpi" SCRIPT="scripts/ci/rpi/pisetup.sh" IMAGE="opm${TRAVIS_TAG}.img" RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.0/${RPI_ZIP}"
     addons:
       apt:
         packages:
