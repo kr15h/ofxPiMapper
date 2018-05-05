@@ -48,6 +48,8 @@ loopdev=$(losetup --find --show "${IMAGE}")
 echo "Created loopback device ${loopdev}"
 echo "Mounting filesystem."
 
+ls /dev/loop*
+
 bootdev=$(ls "${loopdev}"*1)
 rootdev=$(ls "${loopdev}"*2)
 partprobe "${loopdev}"
