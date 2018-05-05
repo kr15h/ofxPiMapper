@@ -10,7 +10,6 @@
 # scripts/ci/$TARGET/install.sh
 #
 
-
 language: c++
 compiler: gcc
 sudo: true
@@ -34,8 +33,7 @@ matrix:
         - dosfstools
         - zip
     script:
-    - sudo bash scripts/ci/
-    - zip opm.img.zip opm.img
+    - sudo bash ./scripts/ci/rpi/mkimage.sh
 
 # Linux 64bit, OF master
   - os: linux
@@ -73,29 +71,16 @@ matrix:
     - compiler: gcc
 
 install:
-  - |
-    if [ "${TARGET}" == "rpi" ]; then
-      pwd
-      echo "Launch rpi specific install script here."
-      sudo bash ./scripts/ci/rpi/install.sh
-    else
-      cd ~
-      git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
-      cd ~/openFrameworks/addons
-      git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-      cd ~/openFrameworks
-      scripts/ci/addons/install.sh
-    fi
+  - cd ~
+  - git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
+  - cd ~/openFrameworks/addons
+  - git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
+  - cd ~/openFrameworks
+  - scripts/ci/addons/install.sh
 
 script:
-  - |
-    if [ "${TARGET}" == "rpi" ]; then
-      pwd
-      sudo bash ./scripts/ci/rpi/mkimage.sh
-    else
-      cd ~/openFrameworks
-      scripts/ci/addons/build.sh
-    fi
+  - cd ~/openFrameworks
+  - scripts/ci/addons/build.sh
 
 git:
-  depth: 10
+  depth: 1
