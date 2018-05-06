@@ -15,4 +15,14 @@ cd ..
 cd ofxPiMapper/example_basic
 make -j$(nproc)
 
+echo "Setting hostname."
+echo "opm" > /etc/hostname
+cat /etc/hostname
+
+echo "Setting up to run on boot."
+crontab -l > mycron
+echo "@reboot /home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin/example_basic" >> mycron
+crontab mycron
+rm mycron
+
 echo "Done!"
