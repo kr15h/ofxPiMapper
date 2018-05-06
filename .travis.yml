@@ -1,6 +1,7 @@
 language: c++
 compiler: gcc
 sudo: true
+cache: false
 matrix:
   include:
   - os: linux
