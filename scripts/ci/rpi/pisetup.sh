@@ -18,4 +18,4 @@ echo "@reboot /home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin/examp
 crontab mycron
 rm mycron
 
-echo "Done!"
+echo "RPi setup done!"
