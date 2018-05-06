@@ -6,7 +6,7 @@ pwd
 
 cd /home/pi/openFrameworks/addons
 git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-git clone --depth=1 https://github.com/jvcleave/ofxOMXPlayer.git
+git clone https://github.com/jvcleave/ofxOMXPlayer.git
 
 if [ -e "ofxOMXPlayer" ]; then
     rm -rf ofxOMXPlayer
