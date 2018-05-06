@@ -5,7 +5,7 @@ echo "Hello! Me is pisetup.sh script."
 pwd
 df -h
 
-cd ofxPiMapper/example_basic
+cd /home/pi/openFrameworks/addons/ofxPiMapper/example_basic
 make -j$(nproc)
 
 echo "Setting hostname."
