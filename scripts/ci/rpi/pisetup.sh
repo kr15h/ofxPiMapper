@@ -11,10 +11,8 @@ if [ -e "ofxOMXPlayer" ]; then
     rm -rf ofxOMXPlayer
 fi
 
-git clone https://github.com/jvcleave/ofxOMXPlayer.git
-#cd ofxOMXPlayer
-#git checkout 0.9.0-compatible
-#cd ..
+git clone https://github.com/kr15h/ofxOMXPlayerLite.git
+mv ofxOMXPlayerLite ofxOMXPlayer
 
 cd ofxPiMapper/example_basic
 make -j$(nproc)
