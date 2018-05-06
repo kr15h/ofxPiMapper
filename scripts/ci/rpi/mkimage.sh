@@ -16,7 +16,6 @@ fi
 MOUNT="mnt"
 
 echo "Welcome to mkimage.sh script."
-cd ..
 pwd
 
 # Unmount drives and general cleanup on exit, the trap ensures this will always
@@ -77,7 +76,8 @@ cp "${MOUNT}/etc/ld.so.preload" "${MOUNT}/etc/_ld.so.preload"
 echo "" > "${MOUNT}/etc/ld.so.preload"
 
 # copy ofxPiMapper to openFrameworks/addons
-cp -r ofxPiMapper "${MOUNT}/home/pi/openFrameworks/addons/"
+mkdir "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper"
+cp -r ./ "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper"
 
 # Run the installation script as if we would be inside the Raspberry Pi.
 chroot "${MOUNT}" "/tmp/${SCRIPT}"

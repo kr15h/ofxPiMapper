@@ -2,6 +2,8 @@
 
 echo "Hello! Me is pisetup.sh script."
 
+pwd
+
 cd /home/pi/openFrameworks/addons
 git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
 
