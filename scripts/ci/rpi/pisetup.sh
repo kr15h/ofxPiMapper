@@ -5,16 +5,6 @@ echo "Hello! Me is pisetup.sh script."
 pwd
 df -h
 
-cd /home/pi/openFrameworks/addons
-git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-
-if [ -e "ofxOMXPlayer" ]; then
-    rm -rf ofxOMXPlayer
-fi
-
-git clone https://github.com/kr15h/ofxOMXPlayerLite.git
-mv ofxOMXPlayerLite ofxOMXPlayer
-
 cd ofxPiMapper/example_basic
 make -j$(nproc)
 

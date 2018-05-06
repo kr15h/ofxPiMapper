@@ -75,6 +75,13 @@ cp /usr/bin/qemu-arm-static "${MOUNT}/usr/bin"
 cp "${MOUNT}/etc/ld.so.preload" "${MOUNT}/etc/_ld.so.preload"
 echo "" > "${MOUNT}/etc/ld.so.preload"
 
+# git clone addons
+git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git /home/pi/openFrameworks/addons/ofxJSON
+git clone https://github.com/jvcleave/ofxOMXPlayer.git /home/pi/openFrameworks/addons/ofxOMXPlayer
+
+#git clone https://github.com/kr15h/ofxOMXPlayerLite.git
+#mv ofxOMXPlayerLite ofxOMXPlayer
+
 # copy ofxPiMapper to openFrameworks/addons
 mkdir "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper"
 cp -r ./src "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper/"
