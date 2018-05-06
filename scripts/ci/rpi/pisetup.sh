@@ -8,6 +8,10 @@ cd /home/pi/openFrameworks/addons
 git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
 git clone --depth=1 https://github.com/jvcleave/ofxOMXPlayer.git
 
+if [ -e "ofxOMXPlayer" ]; then
+    rm -rf ofxOMXPlayer
+fi
+
 cd ofxOMXPlayer
 git checkout 0.9.0-compatible
 cd ..
