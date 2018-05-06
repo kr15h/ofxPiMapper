@@ -77,7 +77,8 @@ echo "" > "${MOUNT}/etc/ld.so.preload"
 
 # copy ofxPiMapper to openFrameworks/addons
 mkdir "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper"
-cp -r ./ "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper"
+cp -r ./src "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper/"
+cp -r ./example* "${MOUNT}/home/pi/openFrameworks/addons/ofxPiMapper/"
 
 # Run the installation script as if we would be inside the Raspberry Pi.
 chroot "${MOUNT}" "/tmp/${SCRIPT}"
