@@ -2,6 +2,8 @@
 
 echo "Hello! Me is pisetup.sh script."
 
+sudo apt-get -yq install usbmount
+
 pwd
 df -h
 
