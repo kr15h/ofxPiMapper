@@ -50,10 +50,10 @@ jobs:
         - zip
     script:
     - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
-    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
     - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
+    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
   - stage: build pass b
     os: linux
@@ -71,10 +71,10 @@ jobs:
         - zip
     script:
     - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
-    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
     - zip "${IMAGE}.zip" "./${IMAGE}"
+    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     deploy:
       provider: releases
       api_key:
