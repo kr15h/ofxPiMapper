@@ -33,7 +33,29 @@ jobs:
     - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
     - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
-  - stage: finalize
+  - stage: finalize pass 1
+    os: linux
+    dist: trusty
+    sudo: required
+    env: IMAGE="opm-${TRAVIS_TAG}.img"
+    addons:
+      apt:
+        packages:
+        - qemu
+        - qemu-user-static
+        - binfmt-support
+        - parted
+        - wget
+        - dosfstools
+        - zip
+    script:
+    - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
+    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
+    - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - sudo bash ./scripts/ci/rpi/finalize.sh
+    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
+    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
+  - stage: finalize pass 2
     os: linux
     dist: trusty
     sudo: required
