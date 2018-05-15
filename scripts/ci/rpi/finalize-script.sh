@@ -3,7 +3,7 @@
 echo "Finalizing OPM RPi image."
 
 cd /home/pi/openFrameworks/addons/ofxPiMapper/example_basic
-make -j
+make -j $(nproc)
 
 echo "Inastalling extra packages."
 sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
