@@ -3,6 +3,7 @@ env:
   - PATH=$HOME/.local/bin:$PATH
   - AWS_BUCKET="ofxpimapper"
   - AWS_SHARED="~/shared"
+  - IMAGE="opm-${TRAVIS_TAG}.img"
 
 git:
   depth: 1
@@ -13,11 +14,11 @@ before_install:
 
 jobs:
   include:
-  - stage: addons
+  - stage: prepare
     os: linux
     dist: trusty
     sudo: required
-    env: IMAGE="opm-${TRAVIS_TAG}.img" RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.2/${RPI_ZIP}"
+    env: RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.2/${RPI_ZIP}"
     addons:
       apt:
         packages:
@@ -29,15 +30,14 @@ jobs:
         - dosfstools
         - zip
     script:
-    - sudo bash ./scripts/ci/rpi/addons.sh
+    - sudo bash ./scripts/ci/rpi/prepare.sh
     - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
     - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
-  - stage: finalize pass 1
+  - stage: build pass a
     os: linux
     dist: trusty
     sudo: required
-    env: IMAGE="opm-${TRAVIS_TAG}.img"
     addons:
       apt:
         packages:
@@ -52,14 +52,13 @@ jobs:
     - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
     - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
-    - sudo bash ./scripts/ci/rpi/finalize.sh
+    - sudo bash ./scripts/ci/rpi/buid.sh
     - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
     - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
-  - stage: finalize pass 2
+  - stage: build pass b
     os: linux
     dist: trusty
     sudo: required
-    env: IMAGE="opm-${TRAVIS_TAG}.img"
     addons:
       apt:
         packages:
@@ -74,7 +73,7 @@ jobs:
     - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
     - aws s3 rm "s3://${AWS_BUCKET}" --recursive
     - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
-    - sudo bash ./scripts/ci/rpi/finalize.sh
+    - sudo bash ./scripts/ci/rpi/build.sh
     - zip "${IMAGE}.zip" "./${IMAGE}"
     deploy:
       provider: releases

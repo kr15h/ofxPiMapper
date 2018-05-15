@@ -1,14 +1,8 @@
 #!/bin/bash
 
-echo "Compiling addons."
+echo "Begin prepare-script.sh"
 
-cd /home/pi/openFrameworks/addons/ofxOMXPlayer/example-basic
-make -j $(nproc)
-
-cd /home/pi/openFrameworks/addons/ofxJSON/example_file_read_write
-make -j $(nproc)
-
-echo "Inastalling extra packages."
+echo "Installing extra packages."
 sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
 
 echo "Setting hostname."
@@ -21,4 +15,4 @@ echo "@reboot /home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin/examp
 crontab mycron
 rm mycron
 
-echo "Compiling addons done!"
+echo "End prepare-script.sh"
