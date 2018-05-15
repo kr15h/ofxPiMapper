@@ -2,7 +2,7 @@
 
 echo "Hello! Me is pisetup.sh script."
 
-sudo apt-get -yq install usbmount
+sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
 
 pwd
 df -h
