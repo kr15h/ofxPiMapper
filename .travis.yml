@@ -1,13 +1,23 @@
-language: c++
-compiler: gcc
-sudo: true
-cache: false
-matrix:
+env:
+  global:
+  - PATH=$HOME/.local/bin:$PATH
+  - AWS_BUCKET="ofxpimapper"
+  - AWS_SHARED="~/shared"
+
+git:
+  depth: 1
+
+before_install:
+- pip install --user awscli
+- mkdir -p "${AWS_SHARED}"
+
+jobs:
   include:
-  - os: linux
+  - stage: addons
+    os: linux
     dist: trusty
     sudo: required
-    env: TARGET="rpi" SCRIPT="scripts/ci/rpi/pisetup.sh" IMAGE="opm-${TRAVIS_TAG}.img" RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.2/${RPI_ZIP}"
+    env: IMAGE="opm-${TRAVIS_TAG}.img" RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.2/${RPI_ZIP}"
     addons:
       apt:
         packages:
@@ -19,8 +29,31 @@ matrix:
         - dosfstools
         - zip
     script:
-    - sudo bash ./scripts/ci/rpi/mkimage.sh
-    - zip ${IMAGE}.zip ${IMAGE}
+    - sudo bash ./scripts/ci/rpi/addons.sh
+    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
+    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
+    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
+  - stage: finalize
+    os: linux
+    dist: trusty
+    sudo: required
+    env: IMAGE="opm-${TRAVIS_TAG}.img"
+    addons:
+      apt:
+        packages:
+        - qemu
+        - qemu-user-static
+        - binfmt-support
+        - parted
+        - wget
+        - dosfstools
+        - zip
+    script:
+    - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
+    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
+    - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - sudo bash ./scripts/ci/rpi/finalize.sh
+    - zip "${IMAGE}.zip" "./${IMAGE}"
     deploy:
       provider: releases
       api_key:
@@ -31,39 +64,40 @@ matrix:
       on:
         tags: true
 
-  - os: linux
-    dist: trusty
-    sudo: required
-    env: TARGET="linux64" OF_BRANCH="master"
-    addons:
-      apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - gcc-4.9
-        - g++-4.9
-        - gdb
-  - os: osx
-    osx_image: xcode8
-    compiler: clang
-    env: TARGET="osx" OF_BRANCH="master"
-  exclude:
-  - compiler: gcc
-install:
-- |
-  if ! [ "${TARGET}" == "rpi" ]; then
-    cd ~
-    git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
-    cd ~/openFrameworks/addons
-    git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-    cd ~/openFrameworks
-    scripts/ci/addons/install.sh
-  fi
-script:
-- |
-  if ! [ "${TARGET}" == "rpi" ]; then
-    cd ~/openFrameworks
-    scripts/ci/addons/build.sh
-  fi
-git:
-  depth: 1
+#matrix:
+#  include:
+#  - os: linux
+#    dist: trusty
+#    sudo: required
+#    env: TARGET="linux64" OF_BRANCH="master"
+#    addons:
+#      apt:
+#        sources:
+#        - ubuntu-toolchain-r-test
+#        packages:
+#        - gcc-4.9
+#        - g++-4.9
+#        - gdb
+#  - os: osx
+#    osx_image: xcode8
+#    compiler: clang
+#    env: TARGET="osx" OF_BRANCH="master"
+#  exclude:
+#  - compiler: gcc
+#install:
+#- |
+#  if ! [ "${TARGET}" == "rpi" ]; then
+#    cd ~
+#    git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
+#    cd ~/openFrameworks/addons
+#    git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
+#    cd ~/openFrameworks
+#    scripts/ci/addons/install.sh
+#  fi
+#script:
+#- |
+#  if ! [ "${TARGET}" == "rpi" ]; then
+#    cd ~/openFrameworks
+#    scripts/ci/addons/build.sh
+#  fi
+#

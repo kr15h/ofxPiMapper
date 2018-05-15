@@ -1,14 +1,12 @@
 #!/bin/bash
 
-echo "Hello! Me is pisetup.sh script."
-
-sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
-
-pwd
-df -h
+echo "Finalizing OPM RPi image."
 
 cd /home/pi/openFrameworks/addons/ofxPiMapper/example_basic
-make -j$(nproc)
+make -j
+
+echo "Inastalling extra packages."
+sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
 
 echo "Setting hostname."
 echo "opm" > /etc/hostname
@@ -20,4 +18,4 @@ echo "@reboot /home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin/examp
 crontab mycron
 rm mycron
 
-echo "RPi setup done!"
+echo "OPM RPi image setup done!"
