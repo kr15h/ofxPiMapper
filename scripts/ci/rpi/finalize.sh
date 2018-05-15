@@ -52,7 +52,7 @@ mount "${rootdev}" "${MOUNT}"
 mount "${bootdev}" "${MOUNT}/boot"
 
 # Copy our installation script and other artifacts.
-install -Dm755 "${SCRIPT}" "${MOUNT}/tmp/${SCRIPT}"
+install -Dm755 "./scripts/ci/rpi/${SCRIPT}" "${MOUNT}/tmp/${SCRIPT}"
 
 # Prep the chroot.
 mount --bind /proc "${MOUNT}/proc"
