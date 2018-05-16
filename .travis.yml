@@ -18,7 +18,7 @@ jobs:
     os: linux
     dist: trusty
     sudo: required
-    env: RPI_ZIP="raspbian_lite-2017-07-05-of_v0.9.8.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.2/${RPI_ZIP}"
+    env: RPI_ZIP="raspbian_lite-2017-07-05-of_v0.10.0.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.3/${RPI_ZIP}"
     addons:
       apt:
         packages:
@@ -73,14 +73,15 @@ jobs:
     - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
     - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
-    - zip "${IMAGE}.zip" "./${IMAGE}"
+    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
     - aws s3 rm "s3://${AWS_BUCKET}" --recursive
+    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
     deploy:
       provider: releases
       api_key:
         secure: Z1+IhOaCxrlKGqO3sw2Mz4gD7XaFykI+YA559V+FvynxHilu04jQtnGWUReTr2eHFFzZDzC80Ydk+ORDEIFEtA3VsM/BFJRm9jqtxcY+wtKmXLbh4k6fdgjKFH2QNOScoPj3acuuzV/5/RBXN+avLH53xx8uZkMNPPRpAyVvtZjZ0OSi1nEL5qg/Vnu+RhUM4ISy8r5JMcDghtFTo9hmy3sTPOSS9OSndi/guOgFHBo4x2mVtOKkIa2H/aKf1QR9h+KUK8CG/SYYSMf8gLZ/TZq9LO6wqaBPgqd2DZVPZvxCZ4JmUc7ZlnpBX2zo/WjUXKJyn3dqA/4sr8A74DqbNsZc6Xw4/DEeDGszmX5rudlp07kSXQudUgKILu72SLKMsMmmZ7FBjVS5k6ON7Euo8LlFGjAJhDkMDfzkUY86YkEAPZcerhvxqI4DdfAEhv36g+R2njdbJWjh1t5cHlG2IzJ9Hs4E5EhoY3iSOJoxTK44Q2wlTfFgtVzPv1QnGGDIWfKArlgPQWk0QsYgVoXzTRzAHhbkY/FsfagRG3wmq5BUb5bzR5bgzE/HI3wdqBfg6FwshHD+Y7S9YIPpEIzUCaP61bde2khSUSyWwt/lDMdvHKzwsf+gXyUWfNEivkdZhbZi+q0UlYdsQPEor+o7X5Sp3SrSe6hkcNltroGC65c=
       file: 
-        - "${IMAGE}.zip"
+        - "${AWS_SHARED}/${IMAGE}.zip"
       skip_cleanup: true
       on:
         tags: true
