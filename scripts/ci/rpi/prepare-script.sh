@@ -3,7 +3,7 @@
 echo "Begin prepare-script.sh"
 
 echo "Installing extra packages."
-sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils
+sudo apt-get -yq install usbmount dosfstools exfat-fuse exfat-utils timelimit
 
 echo "Setting hostname."
 echo "opm" > /etc/hostname
