@@ -12,7 +12,7 @@ git:
 
 cache:
   directories:
-    ${CACHE_DIR}
+    - ${CACHE_DIR}
 
 jobs:
   include:
