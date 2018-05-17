@@ -4,7 +4,7 @@ sudo: required
 
 env:
   global:
-  - CACHE_DIR="~/cache"
+  - CACHE_DIR="cache"
   - IMAGE="opm-${TRAVIS_TAG}.img"
 
 git:
