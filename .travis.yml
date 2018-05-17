@@ -4,14 +4,11 @@ env:
   - AWS_BUCKET="ofxpimapper"
   - AWS_SHARED="~/shared"
   - IMAGE="opm-${TRAVIS_TAG}.img"
-
 git:
   depth: 1
-
 before_install:
 - pip install --user awscli
 - mkdir -p "${AWS_SHARED}"
-
 jobs:
   include:
   - stage: prepare
@@ -79,47 +76,9 @@ jobs:
     deploy:
       provider: releases
       api_key:
-        secure: Z1+IhOaCxrlKGqO3sw2Mz4gD7XaFykI+YA559V+FvynxHilu04jQtnGWUReTr2eHFFzZDzC80Ydk+ORDEIFEtA3VsM/BFJRm9jqtxcY+wtKmXLbh4k6fdgjKFH2QNOScoPj3acuuzV/5/RBXN+avLH53xx8uZkMNPPRpAyVvtZjZ0OSi1nEL5qg/Vnu+RhUM4ISy8r5JMcDghtFTo9hmy3sTPOSS9OSndi/guOgFHBo4x2mVtOKkIa2H/aKf1QR9h+KUK8CG/SYYSMf8gLZ/TZq9LO6wqaBPgqd2DZVPZvxCZ4JmUc7ZlnpBX2zo/WjUXKJyn3dqA/4sr8A74DqbNsZc6Xw4/DEeDGszmX5rudlp07kSXQudUgKILu72SLKMsMmmZ7FBjVS5k6ON7Euo8LlFGjAJhDkMDfzkUY86YkEAPZcerhvxqI4DdfAEhv36g+R2njdbJWjh1t5cHlG2IzJ9Hs4E5EhoY3iSOJoxTK44Q2wlTfFgtVzPv1QnGGDIWfKArlgPQWk0QsYgVoXzTRzAHhbkY/FsfagRG3wmq5BUb5bzR5bgzE/HI3wdqBfg6FwshHD+Y7S9YIPpEIzUCaP61bde2khSUSyWwt/lDMdvHKzwsf+gXyUWfNEivkdZhbZi+q0UlYdsQPEor+o7X5Sp3SrSe6hkcNltroGC65c=
-      file: 
-        - "${AWS_SHARED}/${IMAGE}.zip"
+        secure: iUBL9x2cKUWfKEz3S06nOPXwhjXoLCXhlmxdAX+hZCNttZxi3QulKiRP/s9oDjWthnx7peSEongdviUR8ueKlS0PCw8U6i2urz+8EDGaU1ZbZ/jz2c6440JswLdEtWc42eYjDz+vumNHYdVZLf7IZv2aXy4nfD14IhDA6N3KzwOyiN2tefwPq7UTLxjDu31dOVv/6Adasny/lELN03kHneVW6DFGv2LDrR4S8OQ8QYbcKYouDiD67awL3tflmcHamVyOQX4nu2JD3530QqwdOWMdd7lCnfcu/R37vQU2HcYYInYXLRBD2mieEkRJX8qd2FIJA8Daz8309gT+ja0KMuK2iP3QQ7J1T3t2nyDz7tABC96yeqetPRIe9p7blXfS/VTCVFN7x/97MdK8Vr7EpJjHC26HZH+hvuD58R2mzb6Z9T5foDRIunNRK8qtU8GMP2wajBGjJtlkU2ZLvqs8pU/ScdLNO7kugNn+LYdY7XsZul3nGT2H/W5dnGJctzm7B8LTjmte9HQ1Kn3BslnkasNxUiEjYBD/sgyt+IdDknrgV+QpvccnAIIHWzcq+65YQ0KEy3uleb+rcns0NyXlHZSqhlMU9sSagTpztIuerJqDN08BmyDXUbZfnVMgzsyZKuUpZIdo2PwX6dyzjia2sDSl5UjqzwO/PytKoujeW3Q=
+      file:
+      - "${AWS_SHARED}/${IMAGE}.zip"
       skip_cleanup: true
       on:
         tags: true
-
-#matrix:
-#  include:
-#  - os: linux
-#    dist: trusty
-#    sudo: required
-#    env: TARGET="linux64" OF_BRANCH="master"
-#    addons:
-#      apt:
-#        sources:
-#        - ubuntu-toolchain-r-test
-#        packages:
-#        - gcc-4.9
-#        - g++-4.9
-#        - gdb
-#  - os: osx
-#    osx_image: xcode8
-#    compiler: clang
-#    env: TARGET="osx" OF_BRANCH="master"
-#  exclude:
-#  - compiler: gcc
-#install:
-#- |
-#  if ! [ "${TARGET}" == "rpi" ]; then
-#    cd ~
-#    git clone --depth=1 --branch=$OF_BRANCH https://github.com/openframeworks/openFrameworks
-#    cd ~/openFrameworks/addons
-#    git clone --depth=1 https://github.com/jeffcrouse/ofxJSON.git
-#    cd ~/openFrameworks
-#    scripts/ci/addons/install.sh
-#  fi
-#script:
-#- |
-#  if ! [ "${TARGET}" == "rpi" ]; then
-#    cd ~/openFrameworks
-#    scripts/ci/addons/build.sh
-#  fi
-#
