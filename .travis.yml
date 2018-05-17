@@ -1,20 +1,22 @@
+os: linux
+dist: trusty
+sudo: required
+
 env:
   global:
-  - PATH=$HOME/.local/bin:$PATH
-  - AWS_BUCKET="ofxpimapper"
-  - AWS_SHARED="~/shared"
+  - CACHE_DIR="~/cache"
   - IMAGE="opm-${TRAVIS_TAG}.img"
+
 git:
   depth: 1
-before_install:
-- pip install --user awscli
-- mkdir -p "${AWS_SHARED}"
+
+cache:
+  directories:
+    ${CACHE_DIR}
+
 jobs:
   include:
   - stage: prepare
-    os: linux
-    dist: trusty
-    sudo: required
     env: RPI_ZIP="raspbian_lite-2017-07-05-of_v0.10.0.img.zip" RPI_URL="https://github.com/kr15h/openframeworks-rpi-image/releases/download/v1.0.3/${RPI_ZIP}"
     addons:
       apt:
@@ -28,13 +30,9 @@ jobs:
         - zip
     script:
     - sudo bash ./scripts/ci/rpi/prepare.sh
-    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
-    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
-    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
+    - if [ -a "${CACHE_DIR}/${IMAGE}.zip" ]; then rm "${CACHE_DIR}/${IMAGE}.zip"; fi
+    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
   - stage: build pass a
-    os: linux
-    dist: trusty
-    sudo: required
     addons:
       apt:
         packages:
@@ -46,16 +44,10 @@ jobs:
         - dosfstools
         - zip
     script:
-    - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
-    - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - mv "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
-    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
-    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
-    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
+    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
   - stage: build pass b
-    os: linux
-    dist: trusty
-    sudo: required
     addons:
       apt:
         packages:
@@ -67,18 +59,15 @@ jobs:
         - dosfstools
         - zip
     script:
-    - aws s3 sync "s3://${AWS_BUCKET}" "${AWS_SHARED}"
-    - mv "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - mv "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
-    - zip "${AWS_SHARED}/${IMAGE}.zip" "./${IMAGE}"
-    - aws s3 rm "s3://${AWS_BUCKET}" --recursive
-    - aws s3 sync "${AWS_SHARED}" "s3://${AWS_BUCKET}"
+    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
     deploy:
       provider: releases
       api_key:
         secure: iUBL9x2cKUWfKEz3S06nOPXwhjXoLCXhlmxdAX+hZCNttZxi3QulKiRP/s9oDjWthnx7peSEongdviUR8ueKlS0PCw8U6i2urz+8EDGaU1ZbZ/jz2c6440JswLdEtWc42eYjDz+vumNHYdVZLf7IZv2aXy4nfD14IhDA6N3KzwOyiN2tefwPq7UTLxjDu31dOVv/6Adasny/lELN03kHneVW6DFGv2LDrR4S8OQ8QYbcKYouDiD67awL3tflmcHamVyOQX4nu2JD3530QqwdOWMdd7lCnfcu/R37vQU2HcYYInYXLRBD2mieEkRJX8qd2FIJA8Daz8309gT+ja0KMuK2iP3QQ7J1T3t2nyDz7tABC96yeqetPRIe9p7blXfS/VTCVFN7x/97MdK8Vr7EpJjHC26HZH+hvuD58R2mzb6Z9T5foDRIunNRK8qtU8GMP2wajBGjJtlkU2ZLvqs8pU/ScdLNO7kugNn+LYdY7XsZul3nGT2H/W5dnGJctzm7B8LTjmte9HQ1Kn3BslnkasNxUiEjYBD/sgyt+IdDknrgV+QpvccnAIIHWzcq+65YQ0KEy3uleb+rcns0NyXlHZSqhlMU9sSagTpztIuerJqDN08BmyDXUbZfnVMgzsyZKuUpZIdo2PwX6dyzjia2sDSl5UjqzwO/PytKoujeW3Q=
       file:
-      - "${AWS_SHARED}/${IMAGE}.zip"
+      - "${CACHE_DIR}/${IMAGE}.zip"
       skip_cleanup: true
       on:
         tags: true
