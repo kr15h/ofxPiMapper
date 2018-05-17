@@ -44,6 +44,8 @@ jobs:
         - dosfstools
         - zip
     script:
+    - ls -l
+    - ls -l "${CACHE_DIR}"
     - mv "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
     - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
