@@ -1,19 +1,15 @@
 os: linux
 dist: trusty
 sudo: required
+cache:
+  timeout: 500
+  directories:
+    - cachedir
 
 env:
   global:
   - IMAGE="opm-${TRAVIS_TAG}.img"
-  - CACHE_DIR=$HOME/.cache
-
-git:
-  depth: 1
-
-cache:
-  timeout: 500
-  directories:
-    - ${CACHE_DIR}
+  - CACHE_DIR="cachedir"
 
 jobs:
   include:
