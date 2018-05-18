@@ -4,7 +4,6 @@ sudo: required
 
 env:
   global:
-  - CACHE_DIR="cache"
   - IMAGE="opm-${TRAVIS_TAG}.img"
 
 git:
@@ -12,7 +11,7 @@ git:
 
 cache:
   directories:
-    - ${CACHE_DIR}
+    - cache
 
 jobs:
   include:
@@ -30,8 +29,8 @@ jobs:
         - zip
     script:
     - sudo bash ./scripts/ci/rpi/prepare.sh
-    - if [ -a "${CACHE_DIR}/${IMAGE}.zip" ]; then rm "${CACHE_DIR}/${IMAGE}.zip"; fi
-    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
+    - if [ -a "cache/${IMAGE}.zip" ]; then rm "cache/${IMAGE}.zip"; fi
+    - zip "cache/${IMAGE}.zip" "./${IMAGE}"
   - stage: build pass a
     addons:
       apt:
@@ -45,10 +44,10 @@ jobs:
         - zip
     script:
     - ls -l
-    - ls -l "${CACHE_DIR}"
-    - mv "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - ls -l "cache"
+    - mv "cache/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
-    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
+    - zip "cache/${IMAGE}.zip" "./${IMAGE}"
   - stage: build pass b
     addons:
       apt:
@@ -61,15 +60,15 @@ jobs:
         - dosfstools
         - zip
     script:
-    - mv "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}.zip"
+    - mv "cache/${IMAGE}.zip" "./${IMAGE}.zip"
     - sudo bash ./scripts/ci/rpi/build.sh
-    - zip "${CACHE_DIR}/${IMAGE}.zip" "./${IMAGE}"
+    - zip "cache/${IMAGE}.zip" "./${IMAGE}"
     deploy:
       provider: releases
       api_key:
         secure: iUBL9x2cKUWfKEz3S06nOPXwhjXoLCXhlmxdAX+hZCNttZxi3QulKiRP/s9oDjWthnx7peSEongdviUR8ueKlS0PCw8U6i2urz+8EDGaU1ZbZ/jz2c6440JswLdEtWc42eYjDz+vumNHYdVZLf7IZv2aXy4nfD14IhDA6N3KzwOyiN2tefwPq7UTLxjDu31dOVv/6Adasny/lELN03kHneVW6DFGv2LDrR4S8OQ8QYbcKYouDiD67awL3tflmcHamVyOQX4nu2JD3530QqwdOWMdd7lCnfcu/R37vQU2HcYYInYXLRBD2mieEkRJX8qd2FIJA8Daz8309gT+ja0KMuK2iP3QQ7J1T3t2nyDz7tABC96yeqetPRIe9p7blXfS/VTCVFN7x/97MdK8Vr7EpJjHC26HZH+hvuD58R2mzb6Z9T5foDRIunNRK8qtU8GMP2wajBGjJtlkU2ZLvqs8pU/ScdLNO7kugNn+LYdY7XsZul3nGT2H/W5dnGJctzm7B8LTjmte9HQ1Kn3BslnkasNxUiEjYBD/sgyt+IdDknrgV+QpvccnAIIHWzcq+65YQ0KEy3uleb+rcns0NyXlHZSqhlMU9sSagTpztIuerJqDN08BmyDXUbZfnVMgzsyZKuUpZIdo2PwX6dyzjia2sDSl5UjqzwO/PytKoujeW3Q=
       file:
-      - "${CACHE_DIR}/${IMAGE}.zip"
+      - "cache/${IMAGE}.zip"
       skip_cleanup: true
       on:
         tags: true
