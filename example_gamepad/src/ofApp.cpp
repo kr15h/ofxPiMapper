@@ -2,6 +2,11 @@
 
 void ofApp::setup(){
 	ofBackground(0);
+
+#ifdef TARGET_RASPBERRY_PI
+	ofSetFullscreen(true);
+#endif
+
 	mapper.setup();
 	InputHandler::instance()->initialise();
 }
