@@ -51,4 +51,21 @@
     <start>b9</start>
   </controller>
 
+  <controller>
+    <name>Exlene USB Game Controller</name>
+    <guid_osx></guid_osx>
+    <guid_linux>030000001008000001e5000010010000</guid_linux>
+    <guid_windows></guid_windows>
+    <left>a0</left>
+    <right>a0</right>
+    <up>a1</up>
+    <down>a1</down>
+    <a>b2</a>
+    <b>b1</b>
+    <x>b3</x>
+    <y>b0</y>
+    <select>b8</select>
+    <start>b9</start>
+  </controller>
+
 </controllers>
