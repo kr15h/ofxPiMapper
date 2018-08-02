@@ -482,6 +482,29 @@ void Application::setFboSource(std::string sourceId){
 	}
 }
 
+void Application::setVideoSource(std::string fileName){
+	vector<std::string> loadedVideos = getMediaServer()->getVideoNames();
+	for(auto i = 0; i < loadedVideos.size(); i++){
+		if(ofIsStringInString(loadedVideos[i], fileName)){
+			if(getSurfaceManager()->getSelectedSurface() != 0){
+				BaseSource * source = getSurfaceManager()->getSelectedSurface()->getSource();
+				VideoSource * video = dynamic_cast<VideoSource *>(source);
+				video->stop();
+			
+				getCmdManager()->exec(
+		 			new SetSourceCmd(
+						SourceType::SOURCE_TYPE_VIDEO,
+						getMediaServer()->getVideoPaths()[i],
+		  				getSurfaceManager()->getSelectedSurface(),
+		  				&Gui::instance()->getSourcesEditorWidget()));
+			}else{
+				getCmdManager()->exec(new SelNextSurfaceCmd(getSurfaceManager()));
+			}
+			break;
+		}
+	}
+}
+
 void Application::addGridRow(){
 	if(getSurfaceManager()->getSelectedSurface() != 0){
 		if(getSurfaceManager()->getSelectedSurface()->getType() ==

@@ -186,6 +186,10 @@ void ofxPiMapper::setFboSource(std::string sourceId){
 	_application.setFboSource(sourceId);
 }
 
+void ofxPiMapper::setVideoSource(std::string fileName){
+	_application.setVideoSource(fileName);
+}
+
 void ofxPiMapper::reboot(){
 	_application.reboot();
 }
