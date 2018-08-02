@@ -26,6 +26,7 @@ class VideoSource : public BaseSource {
 		void loadVideo(std::string & path);
 		void clear();
         void togglePause();
+        void stop();
 
 		#ifndef TARGET_RASPBERRY_PI
 			void update(ofEventArgs & args);

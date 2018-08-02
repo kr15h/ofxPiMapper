@@ -58,6 +58,14 @@ void VideoSource::togglePause(){
     #endif
 }
 
+void VideoSource::stop(){
+	#ifdef TARGET_RASPBERRY_PI
+        _omxPlayer->setPaused(true);
+    #else
+        _videoPlayer->setPaused(true);
+    #endif
+}
+
 #ifndef TARGET_RASPBERRY_PI
 	void VideoSource::update(ofEventArgs & args){
 		if(_videoPlayer != 0){
