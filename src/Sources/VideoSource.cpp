@@ -9,6 +9,7 @@ bool VideoSource::useHDMIForAudio = false;
 VideoSource::VideoSource(){
 	loadable = true;
 	loaded = false;
+	_loop = true;
 	type = SourceType::SOURCE_TYPE_VIDEO;
 	#ifdef TARGET_RASPBERRY_PI
 		_omxPlayer = 0;
@@ -37,6 +38,7 @@ void VideoSource::loadVideo(std::string & filePath){
 }
 
 void VideoSource::setLoop(bool loop){
+	_loop = loop;
 	#ifdef TARGET_RASPBERRY_PI
 		if(_omxPlayer == 0) return;
 		if(loop) _omxPlayer->enableLooping();
@@ -88,6 +90,14 @@ void VideoSource::stop(){
 				}
 			}
 			_videoPlayer->update();
+		}
+	}
+#else
+	void VideoSource::update(ofEventArgs & args){
+		if(!_loop && _omxPlayer != 0){
+			if(_omxPlayer->getGurrentFrame() >= _omxPlayer->getTotalNumFrames() - 1){
+				_omxPlayer->setPaused(true);
+			}
 		}
 	}
 #endif

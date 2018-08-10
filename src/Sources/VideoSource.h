@@ -41,6 +41,8 @@ class VideoSource : public BaseSource {
 			unique_ptr<ofVideoPlayer> _videoPlayer;
 			bool _initialVolumeSet;
 		#endif
+	
+		bool _loop;
 
 };
 
