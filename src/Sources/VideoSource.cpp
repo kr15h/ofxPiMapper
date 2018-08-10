@@ -41,11 +41,7 @@ void VideoSource::loadVideo(std::string & filePath){
 
 void VideoSource::setLoop(bool loop){
 	_loop = loop;
-	#ifdef TARGET_RASPBERRY_PI
-		if(_omxPlayer == 0) return;
-		if(loop) _omxPlayer->enableLooping();
-		else _omxPlayer->disableLooping();
-	#else
+	#ifndef TARGET_RASPBERRY_PI
 		if(_videoPlayer == 0) return;
 		if(loop) _videoPlayer->setLoopState(OF_LOOP_NORMAL);
 		else _videoPlayer->setLoopState(OF_LOOP_NONE);
@@ -54,15 +50,17 @@ void VideoSource::setLoop(bool loop){
 
 void VideoSource::clear(){
 	texture = 0;
+	
 	#ifdef TARGET_RASPBERRY_PI
 		OMXPlayerCache::instance()->unload(path);
 	#else
-		ofRemoveListener(ofEvents().update, this, &VideoSource::update);
 		_videoPlayer->stop();
 		_videoPlayer->close();
 		_videoPlayer.reset();
 		_videoPlayer = 0;
 	#endif
+	
+	ofRemoveListener(ofEvents().update, this, &VideoSource::update);
 	loaded = false;
 }
 
@@ -98,11 +96,6 @@ void VideoSource::stop(){
 	void VideoSource::update(ofEventArgs & args){
 		if(!_loop && _omxPlayer != 0){
 			if(_omxPlayer->getCurrentFrame() >= _omxPlayer->getTotalNumFrames() - 1){
-				_omxPlayer->setPaused(true);
-			}
-			
-			// Make it double safe and pause for sure
-			if((float)_omxPlayer->getMediaTime() >= (float)_omxPlayer->getDurationInSeconds()){
 				_omxPlayer->setPaused(true);
 			}
 		}
