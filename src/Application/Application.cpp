@@ -19,6 +19,7 @@ Application::Application(){
 
 	_lastSaveTime = 0.0f;
 	_autoSaveInterval = 60.0f;
+	_drawGui = true;
 }
 
 void Application::setup(){
@@ -66,7 +67,13 @@ ApplicationBaseMode * Application::getState(){
 
 void Application::draw(){
 	_mediaServer.draw();
-	_state->draw(this);
+	
+	if(_drawGui){
+		_state->draw(this);
+	}else{
+		PresentationMode::instance()->draw(this);
+	}
+	
 	_info.draw();
 }
 
@@ -532,6 +539,10 @@ void Application::setImageSource(std::string fileName){
 			break;
 		}
 	}
+}
+
+void Application::setDrawGui(bool drawGui){
+	_drawGui = drawGui;
 }
 
 void Application::addGridRow(){

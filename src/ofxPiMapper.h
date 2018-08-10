@@ -88,6 +88,7 @@ class ofxPiMapper {
 		void setFboSource(std::string sourceId);
 		void setVideoSource(std::string fileName, bool loop);
 		void setImageSource(std::string fileName);
+		void setDrawGui(bool drawGui);
 
 		// System commands
 		void reboot();

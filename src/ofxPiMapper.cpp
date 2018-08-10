@@ -194,6 +194,10 @@ void ofxPiMapper::setImageSource(std::string fileName){
 	_application.setImageSource(fileName);
 }
 
+void ofxPiMapper::setDrawGui(bool drawGui){
+	_application.setDrawGui(drawGui);
+}
+
 void ofxPiMapper::reboot(){
 	_application.reboot();
 }

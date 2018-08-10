@@ -133,6 +133,7 @@ class Application {
 		void setFboSource(std::string sourceId);
 		void setVideoSource(std::string fileName, bool loop);
 		void setImageSource(std::string fileName);
+		void setDrawGui(bool drawGui);
 		void addGridRow();
 		void addGridColumn();
 		void removeGridRow();
@@ -167,6 +168,7 @@ class Application {
 		Info _info;
 
 		bool _shiftKeyDown;
+		bool _drawGui;
 
 		float _lastSaveTime;
 		float _autoSaveInterval;
