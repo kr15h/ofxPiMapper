@@ -40,6 +40,7 @@
 #include "SelNextTexCoordCmd.h"
 #include "SelPrevTexCoordCmd.h"
 #include "DeselectSurfaceCmd.h"
+#include "SetVideoSourceCmd.h"
 
 // Modes
 #include "ApplicationBaseMode.h"
@@ -130,7 +131,7 @@ class Application {
 		void duplicateSurface();
 		void setNextSource();
 		void setFboSource(std::string sourceId);
-		void setVideoSource(std::string fileName);
+		void setVideoSource(std::string fileName, bool loop);
 		void setImageSource(std::string fileName);
 		void addGridRow();
 		void addGridColumn();

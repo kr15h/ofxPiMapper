@@ -36,6 +36,18 @@ void VideoSource::loadVideo(std::string & filePath){
 	loaded = true;
 }
 
+void VideoSource::setLoop(bool loop){
+	#ifdef TARGET_RASPBERRY_PI
+		if(_omxPlayer == 0) return;
+		if(loop) _omxPlayer->enableLooping();
+		else _omxPlayer->disableLooping();
+	#else
+		if(_videoPlayer == 0) return;
+		if(loop) _videoPlayer->setLoopState(OF_LOOP_NORMAL);
+		else _videoPlayer->setLoopState(OF_LOOP_NONE);
+	#endif
+}
+
 void VideoSource::clear(){
 	texture = 0;
 	#ifdef TARGET_RASPBERRY_PI

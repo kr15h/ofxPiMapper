@@ -24,6 +24,7 @@ class VideoSource : public BaseSource {
 
 		std::string & getPath();
 		void loadVideo(std::string & path);
+		void setLoop(bool loop);
 		void clear();
         void togglePause();
         void stop();

@@ -482,7 +482,7 @@ void Application::setFboSource(std::string sourceId){
 	}
 }
 
-void Application::setVideoSource(std::string fileName){
+void Application::setVideoSource(std::string fileName, bool loop){
 	vector<std::string> loadedVideos = getMediaServer()->getVideoNames();
 	for(auto i = 0; i < loadedVideos.size(); i++){
 		if(ofIsStringInString(loadedVideos[i], fileName)){
@@ -495,9 +495,9 @@ void Application::setVideoSource(std::string fileName){
 				}
 				
 				getCmdManager()->exec(
-		 			new SetSourceCmd(
-						SourceType::SOURCE_TYPE_VIDEO,
+		 			new SetVideoSourceCmd(
 						getMediaServer()->getVideoPaths()[i],
+						loop,
 		  				getSurfaceManager()->getSelectedSurface(),
 		  				&Gui::instance()->getSourcesEditorWidget()));
 			}else{
