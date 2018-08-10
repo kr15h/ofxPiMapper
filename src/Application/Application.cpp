@@ -543,6 +543,9 @@ void Application::setImageSource(std::string fileName){
 
 void Application::setDrawGui(bool drawGui){
 	_drawGui = drawGui;
+	if(!_drawGui){
+		ofHideCursor();
+	}
 }
 
 void Application::addGridRow(){
