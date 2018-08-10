@@ -131,6 +131,7 @@ class Application {
 		void setNextSource();
 		void setFboSource(std::string sourceId);
 		void setVideoSource(std::string fileName);
+		void setImageSource(std::string fileName);
 		void addGridRow();
 		void addGridColumn();
 		void removeGridRow();

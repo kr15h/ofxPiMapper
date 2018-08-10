@@ -190,6 +190,10 @@ void ofxPiMapper::setVideoSource(std::string fileName){
 	_application.setVideoSource(fileName);
 }
 
+void ofxPiMapper::setImageSource(std::string fileName){
+	_application.setImageSource(fileName);
+}
+
 void ofxPiMapper::reboot(){
 	_application.reboot();
 }
