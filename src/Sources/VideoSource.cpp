@@ -48,6 +48,10 @@ void VideoSource::setLoop(bool loop){
 	#endif
 }
 
+bool VideoSource::getLoop(){
+	return _loop;
+}
+
 void VideoSource::clear(){
 	texture = 0;
 	

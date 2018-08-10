@@ -86,6 +86,13 @@ bool SettingsLoader::load(
 				
 							// Load media by using full path
 							source = mediaServer.loadMedia(sourcePath, typeEnum);
+							
+							if(typeEnum == SourceType::SOURCE_TYPE_VIDEO){
+								// Attempt to set loop for this type of source
+								bool loop = xmlSettings->getValue("source-loop", true);
+								VideoSource * vid = dynamic_cast<VideoSource *>(source);
+								vid->setLoop(loop);
+							}
 						}
 					}
 		
@@ -212,6 +219,12 @@ bool SettingsLoader::save(SurfaceManager & surfaceManager, std::string fileName)
 		xmlSettings->addValue("source-type", sourceTypeName);
 		std::string sourceName = surface->getSource()->getName();
 		xmlSettings->addValue("source-name", (sourceName == "") ? "none" : sourceName);
+		
+		if(surface->getSource()->getType() == SOURCE_TYPE_VIDEO){
+			VideoSource * vid = dynamic_cast<VideoSource *>(surface->getSource());
+			xmlSettings->addValue("source-loop", vid->getLoop());
+		}
+		
 		xmlSettings->popTag(); // source
 		
 		// Save surface options
