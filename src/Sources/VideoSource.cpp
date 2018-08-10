@@ -98,6 +98,10 @@ void VideoSource::stop(){
 			if(_omxPlayer->getCurrentFrame() >= _omxPlayer->getTotalNumFrames() - 1){
 				_omxPlayer->setPaused(true);
 			}
+			
+			if((float)_omxPlayer->getMediaTime() >= (float)_omxPlayer->getDurationInSeconds() - 1.0f){
+				_omxPlayer->setPaused(true);
+			}
 		}
 	}
 #endif
