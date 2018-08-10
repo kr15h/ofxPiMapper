@@ -95,7 +95,7 @@ void VideoSource::stop(){
 #else
 	void VideoSource::update(ofEventArgs & args){
 		if(!_loop && _omxPlayer != 0){
-			if(_omxPlayer->getGurrentFrame() >= _omxPlayer->getTotalNumFrames() - 1){
+			if(_omxPlayer->getCurrentFrame() >= _omxPlayer->getTotalNumFrames() - 1){
 				_omxPlayer->setPaused(true);
 			}
 		}
