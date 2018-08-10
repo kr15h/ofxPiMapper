@@ -22,6 +22,7 @@ VideoSource::VideoSource(){
 void VideoSource::loadVideo(std::string & filePath){
 	path = filePath;
 	setNameFromPath(filePath);
+	
 	#ifdef TARGET_RASPBERRY_PI
 		_omxPlayer = OMXPlayerCache::instance()->load(filePath);
 		texture = &(_omxPlayer->getTextureReference());
@@ -32,8 +33,9 @@ void VideoSource::loadVideo(std::string & filePath){
 		_videoPlayer->play();
 		_videoPlayer->setVolume(VideoSource::enableAudio ? 1.0f : 0.0f);
 		texture = &(_videoPlayer->getTexture());
-		ofAddListener(ofEvents().update, this, &VideoSource::update);
 	#endif
+	
+	ofAddListener(ofEvents().update, this, &VideoSource::update);
 	loaded = true;
 }
 
@@ -99,7 +101,8 @@ void VideoSource::stop(){
 				_omxPlayer->setPaused(true);
 			}
 			
-			if((float)_omxPlayer->getMediaTime() >= (float)_omxPlayer->getDurationInSeconds() - 1.0f){
+			// Make it double safe and pause for sure
+			if((float)_omxPlayer->getMediaTime() >= (float)_omxPlayer->getDurationInSeconds()){
 				_omxPlayer->setPaused(true);
 			}
 		}
