@@ -6,6 +6,29 @@ Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Helsinki Media Lab](https://medialab.aalto.fi/). Currently undergoing changes. Expect the API to be incompatible with your projects from the past or present-day.
 
+## Notes on Video Encoding
+
+Easiest way to achieve success is to use [HandBrake](https://handbrake.fr/) with the following settings. This will produce a `.mkv` file with 16bit FLAC audio with 22.05KHz sampling rate.
+
+```
+Preset: Fast 720p30
+Summary / Format: MKV File
+Video / Framerate: Same as source
+Video / Profile: Baseline
+Audio / Codec: FLAC 16-bit
+Audio / Samplerate: 22.05
+```
+
+If you are familiar with [ffmpeg](http://ffmpeg.org/), use the following. It will produce a `.mov` file. PCM audio codec with 22KHz sampling rate is used.
+
+```
+ffmpeg -i input-video.mp4 -s 1280x720 -aspect 16:9 \
+  -c:v libx264 -profile:v baseline \
+  -c:a pcm_s16le -ar 22000 -ac 2 \
+  output-video.mov
+```
+
+These two settings have shown the best results so far. Audio problems and video playback at the beginning of longer video files was the main issue in most cases. Please open an issue if you have better suggestions.
 
 ## Running the Example
 
