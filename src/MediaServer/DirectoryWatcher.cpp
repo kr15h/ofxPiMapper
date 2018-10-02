@@ -14,6 +14,7 @@ DirectoryWatcher::DirectoryWatcher(std::string path, int watcherMediaType){
 		_directory.allowExt("avi");
 		_directory.allowExt("ogv");
 		_directory.allowExt("mpeg");
+		_directory.allowExt("mkv");
 	}else if(_mediaType == SourceType::SOURCE_TYPE_IMAGE){
 		_directory.allowExt("png");
 		_directory.allowExt("jpg");
