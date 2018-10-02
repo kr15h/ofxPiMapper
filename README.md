@@ -34,7 +34,7 @@ These two settings have shown the best results so far. Audio problems and video 
 
 You can use the example application of the addon for projection mapping projects where static images or videos have to be projection mapped. Make sure you are using the **latest stable** version of openFrameworks.
 
-1. Put your own sources in the `example/bin/data/sources` directory. Use [Handbrake](https://handbrake.fr/) with the **Fast 720p30** preset to encode your videos. 
+1. Put your own sources in the `example/bin/data/sources` directory.
 
 2. Compile and run the example project.
     ```bash
