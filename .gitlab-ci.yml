@@ -1,0 +1,8 @@
+build:
+  script:
+  - touch about.txt
+  - echo "This is about.txt" >> about.txt
+  - zip about.txt.zip about.txt
+  artifacts:
+    paths:
+    - about.txt.zip
