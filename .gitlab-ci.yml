@@ -2,7 +2,7 @@ image: debian:stretch
 
 before_script:
   - apt-get update
-  - apt-get install zip
+  - apt-get -y install zip
 
 build:
   script:
