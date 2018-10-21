@@ -1,3 +1,6 @@
+before_script:
+  - apt-get install zip
+
 build:
   script:
   - touch about.txt
