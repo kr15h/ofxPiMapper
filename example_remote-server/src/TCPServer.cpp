@@ -77,10 +77,12 @@ void TCPServer::draw(){
 	int clientsConnected = 0;
 	for(auto i = 0; i < numClients; ++i){
 		if(_tcpServer.isClientConnected(i)){
-			ofSetColor(0, 255, 0);
 			ofPushMatrix();
-			ofTranslate(10, 10);
-			ofDrawRectangle(clientsConnected * 20, 0, 10, 10);
+				ofTranslate(10, 10);
+				ofPushStyle();
+					ofSetColor(0, 255, 0);
+					ofDrawRectangle(clientsConnected * 20, 0, 10, 10);
+				ofPopStyle();
 			ofPopMatrix();
 			clientsConnected++;
 		}
