@@ -30,9 +30,8 @@ void SurfaceStack::draw(){
 		if(_surfaces[i]->getSource()->getType() == SourceType::SOURCE_TYPE_FBO){
 			glEnable(GL_BLEND);
 			glBlendFuncSeparate(GL_ONE, GL_ZERO, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
-		}else{
-			ofEnableAlphaBlending();
 		}
+		ofEnableAlphaBlending();
 		
 		_surfaces[i]->draw();
 	}
