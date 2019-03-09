@@ -84,6 +84,12 @@ bool SettingsLoader::load(
 							pathss << ofToDataPath(dir, true) << sourceName;
 							std::string sourcePath = pathss.str();
 				
+							// Check if file exists
+							// Continue for loop if not
+							if(!ofFile::doesFileExist(sourcePath)){
+								continue;
+							}
+				
 							// Load media by using full path
 							source = mediaServer.loadMedia(sourcePath, typeEnum);
 							
