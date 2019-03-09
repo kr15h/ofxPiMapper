@@ -1,25 +1,38 @@
 #!/bin/bash
 
-PROCESS_DIR="/home/pi/openFrameworks/addons/ofxPiMapper/example/bin"
-PROCESS_NAME="example"
+OFX_DIR="ofx"
 
-case "$(pidof $PROCESS_NAME | wc -w)" in
+cd /home/pi/${OFX_DIR}/addons/ofxPiMapper/example_basic/bin/data/sources
 
-0)  echo "Restarting $PROCESS_NAME: $(date)" >> "/var/log/$PROCESS_NAME.txt"
-    
-    for i in {5..1};
-    do
-      echo -en "\rLaunching ofxPiMapper in $i"
-      sleep 1;
-    done
+# Create temp dirs for default sources
+mkdir videos_temp
+mkdir images_temp
 
-    echo -e "\r"
+# Move default sources to temp dirs
+mv videos/gene* videos_temp/
+mv images/gene* images_temp/
 
-    "$PROCESS_DIR/$PROCESS_NAME" &
-    ;;
-1)  # all ok
-    ;;
-*)  echo "Removed double $PROCESS_NAME: $(date)" >> "/var/log/$PROCESS_NAME.txt"
-    kill $(pidof $PROCESS_NAME | awk '{print $1}')
-    ;;
-esac
+# Delete non-default sources
+rm videos/*
+rm images/*
+
+# Move default sources back
+mv videos_temp/* videos/
+mv images_temp/* images/
+
+# Clean temp dirs
+rmdir videos_temp
+rmdir images_temp
+
+# Copy valid video sources
+cp /media/usb*/*.mp4 videos/
+cp /media/usb*/*.mov videos/
+cp /media/usb*/*.mkv videos/
+
+# Copy valid image source
+cp /media/usb*/*.jpg images/
+cp /media/usb*/*.jpeg images/
+cp /media/usb*/*.png images/
+
+# Finally, launch mapper
+/home/pi/${OFX_DIR}/addons/ofxPiMapper/example_basic/bin/example_basic
