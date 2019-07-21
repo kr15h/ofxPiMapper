@@ -124,6 +124,14 @@ Keeping it simple. Developing ofxPiMapper master branch against the latest stabl
 ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details. Just add my name somewhere along your project [Krisjanis Rijnieks](https://rijnieks.com) whenever possible. 
 
 
+## Supporters
+
+You can become a supporter by donating BitCoins, via PayPal or becoming a Patreon. Please check https://ofxpimapper.com for details. List of supporters below.
+
+- [Marc-André Gasser](https://www.magdesign.ch/)
+- Manuel Meißner
+
+
 ## Dependencies
 
 Before moving on, make sure that you have all the dependencies installed. 
