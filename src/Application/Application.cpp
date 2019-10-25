@@ -641,5 +641,17 @@ void Application::toggleLayerPanel(){
 	}
 }
 
+void Application::restart(){
+	_mediaServer.restart();
+}
+
+void Application::pause(){
+	_mediaServer.pause();
+}
+
+void Application::resume(){
+	_mediaServer.resume();
+}
+
 } // namespace piMapper
 } // namespace ofx

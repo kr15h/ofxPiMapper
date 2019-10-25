@@ -50,6 +50,32 @@ void MediaServer::draw(){
 	}
 }
 
+void MediaServer::restart() {
+    typedef map <std::string, BaseSource *>::iterator it_type;
+    for(it_type i = loadedSources.begin(); i != loadedSources.end(); i++){
+        if(i->second->getType() == SourceType::SOURCE_TYPE_VIDEO){
+            static_cast <VideoSource *>(i->second)->restart();
+        }
+    }
+}
+void MediaServer::pause() {
+    typedef map <std::string, BaseSource *>::iterator it_type;
+    for(it_type i = loadedSources.begin(); i != loadedSources.end(); i++){
+        if(i->second->getType() == SourceType::SOURCE_TYPE_VIDEO){
+            static_cast <VideoSource *>(i->second)->pause();
+        }
+    }
+}
+void MediaServer::resume() {
+    typedef map <std::string, BaseSource *>::iterator it_type;
+    for(it_type i = loadedSources.begin(); i != loadedSources.end(); i++){
+        if(i->second->getType() == SourceType::SOURCE_TYPE_VIDEO){
+            static_cast <VideoSource *>(i->second)->resume();
+        }
+    }
+}
+
+
 int MediaServer::getNumImages(){
 	
 	return imageWatcher.getFilePaths().size();

@@ -284,3 +284,15 @@ ofx::piMapper::Mode ofxPiMapper::getMode(){
 void ofxPiMapper::toggleLayerPanel(){
 	_application.toggleLayerPanel();
 }
+
+void ofxPiMapper::restart() {
+	_application.restart();
+}
+
+void ofxPiMapper::pause() {
+	_application.pause();
+}
+
+void ofxPiMapper::resume() {
+	_application.resume();
+}

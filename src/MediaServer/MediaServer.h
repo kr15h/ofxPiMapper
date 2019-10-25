@@ -52,6 +52,10 @@ class MediaServer {
 		void update();
 		void draw();
 
+		void restart();
+		void pause();
+		void resume();
+
 		int getNumVideos();
 		int getNumImages();
 		int getNumFboSources(); // new
