@@ -151,10 +151,9 @@ void CircleSurface::draw() {
 //	if (source->getType() == SOURCE_TYPE_FBO ||
 //		source->getType() == SOURCE_TYPE_VIDEO ||
 //			lastSourceTextureId == UINT_MAX) {
-	if (true) {
-		lastSourceTextureId = sourceTexId;
-		drawMaskForSource(sourceTex);
-	}
+
+	lastSourceTextureId = sourceTexId;
+	drawMaskForSource(sourceTex);
 
 	// Swap the texture id of the source with the one of our
 	// newly drawn outputFbo:
@@ -202,7 +201,8 @@ void CircleSurface::drawMaskForSource(ofTexture &sourceTex) {
 		sourceTex.unbind();
 		// Masking without shaders...
 		ofPushStyle();
-		ofEnableBlendMode(OF_BLENDMODE_MULTIPLY);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE_MINUS_SRC_ALPHA, GL_SRC_ALPHA);
 		ofSetColor(255);
 		ofFill();
 		ofDisableNormalizedTexCoords();
@@ -241,7 +241,7 @@ void CircleSurface::setupTextures() {
 	maskFbo.begin(false);
 	ofPushStyle();
 	ofSetupScreenOrtho(w, h, -1, 1);
-	ofClear(0, 0, 0, 255);
+	ofClear(0, 0, 0, 0);
 	ofFill();
 	ofSetColor(255);
 	ofSetCircleResolution(300);
@@ -251,7 +251,7 @@ void CircleSurface::setupTextures() {
 
 	outputFbo.allocate(w, h);
 	outputFbo.begin();
-	ofClear(0, 0, 0, 255);
+	ofClear(0, 0, 0, 0);
 	outputFbo.end();
 
 //	scaledSourceFbo.allocate(w, h);
