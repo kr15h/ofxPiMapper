@@ -51,6 +51,7 @@ class SurfaceManager {
 		void selectPrevVertex();
 		void selectVertex(int i);
 	
+        void fullscreenSurface();
 		void moveSelectionBy(Vec3 v);
 		void moveAllSurfacesBy(Vec3 v);
 	

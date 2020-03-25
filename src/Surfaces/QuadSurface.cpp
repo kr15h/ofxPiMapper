@@ -177,6 +177,17 @@ void QuadSurface::moveBy(Vec3 v){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
+void QuadSurface::fullScreen(){
+    mesh.getVertices()[0] = Vec3(0, 0, 0.0f).toOf();
+    mesh.getVertices()[1] = Vec3((float)ofGetWidth(), 0, 0.0f).toOf();
+    mesh.getVertices()[2] = Vec3((float)ofGetWidth(), (float)ofGetHeight(), 0.0f).toOf();
+    mesh.getVertices()[3] = Vec3(0, (float)ofGetHeight(), 0.0f).toOf();
+
+    setMoved(true);
+    std::vector<Vec3> vertices = Vec3::fromOf(mesh.getVertices());
+    ofNotifyEvent(verticesChangedEvent, vertices, this);
+}
+
 int QuadSurface::getType(){
 	return SurfaceType::QUAD_SURFACE;
 }

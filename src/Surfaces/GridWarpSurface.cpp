@@ -40,6 +40,10 @@ void GridWarpSurface::moveBy(Vec3 v){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
+void GridWarpSurface::fullScreen(){
+
+}
+
 int GridWarpSurface::getType(){
 	return SurfaceType::GRID_WARP_SURFACE;
 }

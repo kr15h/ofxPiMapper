@@ -144,6 +144,10 @@ void Application::onKeyPressed(ofKeyEventArgs & args){
 		 setNextPreset();
 		 break;
 
+    case 'F':
+        setFullscreenSurface();
+        break;
+
 	 default:
 		 // All the other keypresses are handled by the application state onKeyPressed
 		 _state->onKeyPressed(this, args);
@@ -463,6 +467,13 @@ void Application::duplicateSurface(){
 		  getSurfaceManager()->getSelectedSurface(),
 		  getSurfaceManager()));
 	}
+}
+
+void Application::setFullscreenSurface(){
+    if(getSurfaceManager()->getSelectedSurface() != 0){
+        getCmdManager()->exec(
+         new FullscreenSurfaceCmd(getSurfaceManager()->getSelectedSurface()));
+    }
 }
 
 void Application::setNextSource(){

@@ -156,6 +156,10 @@ void HexagonSurface::moveBy(Vec3 v){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
+void HexagonSurface::fullScreen(){
+
+}
+
 int HexagonSurface::getType(){
 	return SurfaceType::HEXAGON_SURFACE;
 }

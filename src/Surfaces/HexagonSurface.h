@@ -26,6 +26,7 @@ class HexagonSurface : public BaseSurface {
 		void setTexCoord(int index, Vec2 t);
 		void setTexCoords(std::vector<Vec2> t);
 		void moveBy(Vec3 v);
+        void fullScreen();
 
 		int getType();
 		bool hitTest(Vec2 p);
