@@ -24,6 +24,7 @@ class BaseSurface {
 		virtual void setTexCoord(int index, Vec2 t) = 0;
 		virtual void setTexCoords(std::vector<Vec2> t) = 0;
 		virtual void moveBy(Vec3 v) = 0;
+        virtual void fullScreen() = 0;
         virtual int getType() = 0;
 		virtual bool hitTest(Vec2 p) = 0;
 		virtual ofPolyline getHitArea() = 0;

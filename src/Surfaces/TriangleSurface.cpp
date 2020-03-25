@@ -115,6 +115,10 @@ void TriangleSurface::moveBy(Vec3 v){
 	ofNotifyEvent(verticesChangedEvent, vertices, this);
 }
 
+void TriangleSurface::fullScreen(){
+
+}
+
 int TriangleSurface::getType(){
 	return SurfaceType::TRIANGLE_SURFACE;
 }

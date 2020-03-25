@@ -22,6 +22,7 @@
 #include "MvLayerUpCmd.h"
 #include "MvLayerDnCmd.h"
 #include "DuplicateSurfaceCmd.h"
+#include "FullscreenSurfaceCmd.h"
 #include "TogglePerspectiveCmd.h"
 #include "SetNextSourceCmd.h"
 #include "ScaleSurfaceFromToCmd.h"
@@ -129,6 +130,7 @@ class Application {
 		void scaleUp();
 		void scaleDown();
 		void duplicateSurface();
+        void setFullscreenSurface();
 		void setNextSource();
 		void setFboSource(std::string sourceId);
 		void setVideoSource(std::string fileName, bool loop);
