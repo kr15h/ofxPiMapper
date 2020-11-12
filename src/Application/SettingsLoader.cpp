@@ -78,10 +78,16 @@ bool SettingsLoader::load(
 							source = mediaServer.loadMedia(sourceName, typeEnum);
 						}else{
 				
+							// relative pathss as default, absolute Paths for RASPI
+							bool absolutePathSwitch = false;
+							#ifdef TARGET_RASPBERRY_PI
+								absolutePathSwitch = true;
+							#endif
+
 							// Construct full path
 							std::string dir = mediaServer.getDefaultMediaDir(typeEnum);
 							std::stringstream pathss;
-							pathss << ofToDataPath(dir, true) << sourceName;
+							pathss << ofToDataPath(dir, absolutePathSwitch) << sourceName;
 							std::string sourcePath = pathss.str();
 				
 							// Check if file exists
