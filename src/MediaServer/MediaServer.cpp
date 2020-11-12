@@ -1,15 +1,14 @@
 #include "MediaServer.h"
 
 
-
-
 namespace ofx {
 namespace piMapper {
 
 	// relative pathss as default, absolute Paths for RASPI
-	bool absolutePathSwitch = false;
 	#ifdef TARGET_RASPBERRY_PI
-		absolutePathSwitch = true;
+		bool absolutePathSwitch = true;
+	#else
+		bool absolutePathSwitch = false;
 	#endif
 	MediaServer::MediaServer() :
 		piVideoWatcher(PI_IMAGES_DIR, SourceType::SOURCE_TYPE_VIDEO),
