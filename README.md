@@ -1,5 +1,7 @@
 # ofxPiMapper
 
+![Ubuntu Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/ubuntu/badge.svg)
+
 Projection mapping addon for openFrameworks that runs on the Raspberry Pi. There is a Raspberry Pi disk image available via the [ofxPiMapper website](https://ofxpimapper.com/).
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
