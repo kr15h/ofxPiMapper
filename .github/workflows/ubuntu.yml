@@ -45,6 +45,12 @@ jobs:
       - name: Compile example_pocketvj
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_pocketvj
         run: mv addons.make.norpi addons.make && make
+      - name: Install ofxJSON dependency
+        uses: actions/checkout@v2
+          with:
+            fetch-depth: 1
+            repository: jeffcrouse/ofxJSON
+            path: openFrameworks/addons/
       - name: Compile example_remote-client
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_remote-client
         run: mv addons.make.norpi addons.make && make
