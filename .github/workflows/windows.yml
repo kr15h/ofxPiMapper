@@ -13,5 +13,5 @@ jobs:
       - run: mkdir ../.ofxPiMapper
       - run: cp ./* ../.ofxPiMapper/
       - run: curl --help
-      - run: curl --location --progress-bar https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
-      - run: pwd && ls -al
+      - run: curl --location --progress-bar --output openFrameworks.zip https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
+      - run: pwd && ls
