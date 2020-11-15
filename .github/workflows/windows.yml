@@ -3,14 +3,13 @@ on: [push]
 jobs:
   compile:
     runs-on: windows-latest
-    env:
-      OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
+      - run: OF_URL="https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip"
       - run: mkdir ../.ofxPiMapper
       - run: cp ./* ../.ofxPiMapper/
       - run: curl --help
-      - run: curl --location --progress-bar $OF_URL
+      - run: curl --location --progress-bar ${OF_URL}
       - run: pwd && ls -al
