@@ -6,6 +6,23 @@ Projection mapping addon for openFrameworks that runs on the Raspberry Pi. There
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
 
+## Installation
+
+Clone or download the repository to your openFrameworks addons folder. Make sure that default openFrameworks examples compile and run before trying ofxPiMapper examples. There are a few things that you should do depending on if you are compiling on the Raspberry Pi or not.
+
+- Raspberry Pi  
+  Please install the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) addon before compiling. 
+- Other platforms  
+  Please rename the `addons.make.rpi` file to `addons.make`.
+  
+To test, use Terminal to change the directory to `example_basic`, compile and run.
+
+```
+cd path/to/openFrameworks/addons/ofxPiMapper/example_basic
+make
+cd bin
+./example_basic
+```
 ## Notes on Video Encoding
 
 Easiest way to achieve success is to use [HandBrake](https://handbrake.fr/) with the following settings. This will produce a `.mkv` file with 16bit FLAC audio with 22.05KHz sampling rate.
@@ -57,15 +74,6 @@ Examples represent extended functionality of ofxPiMapper. Enter each example sep
 - [Remote Control Server](example_remote-server) example.
 - [Remote Control Client](example_remote-client) example.
 - Readme's for the rest are cooking...
-
-## Compiling on Linux
-
-There might be issues with compiling because `ofxOMXPlayer` and `ofxRPiCameraVideoGrabber` addons do not exist on Linux and also other non-RPi platforms. To avoid the issues, do the following.
-
-1. Open `example/addons.make` and remove ofxOMXPlayer line.
-2. Open `example-camera/addons.make` and remove ofxRPiCameraVideoGrabber line.
-3. Compile one or both examples by using make.
-
 
 ## Problems with Audio
 
