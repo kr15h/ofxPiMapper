@@ -17,7 +17,7 @@ jobs:
           OF_ARCHIVE_NAME=$(basename -- "$OF_URL")
           tar -xvf ${OF_ARCHIVE_NAME}
           rm ${OF_ARCHIVE_NAME}
-          OF_EXTRACT_NAME="${OF_ARCHIVE_NAME%.*}"
+          OF_EXTRACT_NAME="${OF_ARCHIVE_NAME##*/}"
           mv ${OF_EXTRACT_NAME} openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - run: |
