@@ -1,7 +1,5 @@
 # ofxPiMapper
 
-[![Join the chat at https://gitter.im/kr15h/ofxPiMapper](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kr15h/ofxPiMapper?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/kr15h/ofxPiMapper.svg?branch=master)](https://travis-ci.org/kr15h/ofxPiMapper) [![Build status](https://ci.appveyor.com/api/projects/status/j6mn85tt2agk4dk6?svg=true)](https://ci.appveyor.com/project/kr15h/ofxpimapper)
-
 Projection mapping addon for openFrameworks that runs on the Raspberry Pi. There is a Raspberry Pi disk image available via the [ofxPiMapper website](https://ofxpimapper.com/).
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
@@ -11,10 +9,10 @@ The project started as master's thesis project by [Krisjanis Rijnieks](https://r
 Clone or download the repository to your openFrameworks addons folder. Make sure that default openFrameworks examples compile and run before trying ofxPiMapper examples. There are a few things that you should do depending on if you are compiling on the Raspberry Pi or not.
 
 - Raspberry Pi  
-  Please install the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) addon before compiling. 
+  Please install the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) addon before compiling.
 - Other platforms  
   Please rename the `addons.make.rpi` file to `addons.make`.
-  
+
 To test, use Terminal to change the directory to `example_basic`, compile and run.
 
 ```
@@ -124,12 +122,12 @@ Launch ofxPiMapper example, select a surface and set a video source with audio. 
 
 ## Development
 
-Keeping it simple. Developing ofxPiMapper master branch against the latest stable release version of openFrameworks. 
+Keeping it simple. Developing ofxPiMapper master branch against the latest stable release version of openFrameworks.
 
 
 ## Licence
 
-ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details. Just add my name somewhere along your project [Krisjanis Rijnieks](https://rijnieks.com) whenever possible. 
+ofxPiMapper is distributed under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). See the [LICENSE](LICENSE.md) file for further details. Just add my name somewhere along your project [Krisjanis Rijnieks](https://rijnieks.com) whenever possible.
 
 
 ## Supporters
@@ -142,7 +140,7 @@ You can become a supporter by donating BitCoins, via PayPal or becoming a Patreo
 
 ## Dependencies
 
-Before moving on, make sure that you have all the dependencies installed. 
+Before moving on, make sure that you have all the dependencies installed.
 
  - ofxGui (available in oF by default)
  - ofxXmlSettings (available in oF by default)
@@ -203,7 +201,7 @@ After you select a surface in surface editing mode, activate this mode to be abl
 
 ### Other shortcuts
 
-These other shortcuts that you can use while using the example app. 
+These other shortcuts that you can use while using the example app.
 
 Key | Function
 :--- | :---
