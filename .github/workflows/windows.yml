@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - run: mkdir ../ofxPiMapper
-      - run: cp ./* ../ofxPiMapper/
+      - run: mkdir ../.ofxPiMapper
+      - run: cp ./* ../.ofxPiMapper/
       - run: wget ${OF_URL} --tries=10 --quiet
       - run: pwd && ls -al
