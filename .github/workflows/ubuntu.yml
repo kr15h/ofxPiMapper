@@ -6,46 +6,49 @@ jobs:
     env:
       OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz
     steps:
-      - uses: actions/checkout@v2
+      - name: Download openFrameworks
+        uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - run: mkdir .ofxPiMapper
-      - run: mv ./* .ofxPiMapper/
-      - run: wget ${OF_URL} --tries=10 --quiet
-      - run: |
+        run: mkdir .ofxPiMapper
+        run: mv ./* .ofxPiMapper/
+        run: wget ${OF_URL} --tries=10 --quiet
+        run: |
+          echo "Unarchive openFrameworks"
           OF_ARCHIVE_NAME=$(basename -- "$OF_URL")
           tar -xf ${OF_ARCHIVE_NAME}
           rm ${OF_ARCHIVE_NAME}
           OF_EXTRACT_NAME=$(basename ${OF_ARCHIVE_NAME} .tar.gz)
           mv ${OF_EXTRACT_NAME} openFrameworks
-      - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
-      - run: |
-          cd openFrameworks/scripts/linux/ubuntu
-          sudo ./install_dependencies.sh -y
-      - run: |
-          cd openFrameworks/scripts/linux
-          ./compileOF.sh
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_basic
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_camera
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_fbo-sources
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_gamepad
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_pocketvj
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_remote-client
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_remote-server
-          mv addons.make.norpi addons.make && make
-      - run: |
-          cd openFrameworks/addons/ofxPiMapper/example_simpler
-          mv addons.make.norpi addons.make && make
+        run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
+      - name: Install openFrameworks Dependencies
+        working-directory: ./openFrameworks/scripts/linux/ubuntu
+        run: sudo ./install_dependencies.sh -y
+      - name: Compile openFrameworks
+        working-directory: ./openFrameworks/scripts/linux
+        run: ./compileOF.sh
+      - name: Compile example_basic
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_basic
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_camera
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_camera
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_fbo-sources
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_fbo-sources
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_gamepad
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_gamepad
+        run: sudo apt install libsdl2-dev -y
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_pocketvj
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_pocketvj
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_remote-client
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_remote-client
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_remote-server
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_remote-server
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_simpler
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_simpler
+        run: mv addons.make.norpi addons.make && make
