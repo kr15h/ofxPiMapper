@@ -15,4 +15,5 @@ jobs:
       - run: mv of_v0.11.0_linux64gcc6_release openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - run: cd openFrameworks/scripts/linux/ubuntu
+      - run: pwd && ls -al
       - run: ./install_dependencies.sh
