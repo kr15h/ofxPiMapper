@@ -39,8 +39,9 @@ jobs:
         run: mv addons.make.norpi addons.make && make
       - name: Compile example_gamepad
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_gamepad
-        run: sudo apt install libsdl2-dev -y
-        run: mv addons.make.norpi addons.make && make
+        run: |
+          sudo apt install libsdl2-dev -y
+          mv addons.make.norpi addons.make && make
       - name: Compile example_pocketvj
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_pocketvj
         run: mv addons.make.norpi addons.make && make
