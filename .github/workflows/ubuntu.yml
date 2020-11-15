@@ -3,16 +3,20 @@ on: [push]
 jobs:
   compile:
     runs-on: ubuntu-latest
+    env:
+      OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz
+      OF_ARCH_NAME: $(basename -- "$OF_URL")
+      OF_FILE_NAME: "${OF_ARCH_NAME%.*}"
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - run: mkdir .ofxPiMapper
       - run: mv ./* .ofxPiMapper/
-      - run: wget https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz --tries=10
-      - run: tar -xvf of_v0.11.0_linux64gcc6_release.tar.gz
-      - run: rm of_v0.11.0_linux64gcc6_release.tar.gz
-      - run: mv of_v0.11.0_linux64gcc6_release openFrameworks
+      - run: wget ${OF_URL} --tries=10
+      - run: tar -xvf ${OF_ARCH_NAME}
+      - run: rm ${OF_ARCH_NAME}
+      - run: mv ${OF_FILE_NAME} openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - run: |
           echo "Install openFrameworks Dependencies"
