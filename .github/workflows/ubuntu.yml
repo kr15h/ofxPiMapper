@@ -7,13 +7,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - run: mkdir .ofxPiMapper
-      - run: mv ./* .ofxPiMapper/
+      - run: mkdir .ofxPiMapper && mv ./* .ofxPiMapper/
       - run: wget https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz --tries=10
-      - run: tar -xvf of_v0.11.0_linux64gcc6_release.tar.gz
-      - run: rm of_v0.11.0_linux64gcc6_release.tar.gz
+      - run: tar -xvf of_v0.11.0_linux64gcc6_release.tar.gz && rm of_v0.11.0_linux64gcc6_release.tar.gz
       - run: mv of_v0.11.0_linux64gcc6_release openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
-      - run: cd openFrameworks/scripts/linux/ubuntu
-      - run: pwd && ls -al
-      - run: ./install_dependencies.sh
+      - run: cd openFrameworks/scripts/linux/ubuntu && ./install_dependencies.sh
