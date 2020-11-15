@@ -2,9 +2,15 @@
 
 [![Ubuntu Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/ubuntu/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Aubuntu)
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi. There is a Raspberry Pi disk image available via the [ofxPiMapper website](https://ofxpimapper.com/).
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi.
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
+
+## Introduction
+
+This repository contains the addon for [openFrameworks](https://openframeworks.cc). It is expected to be used as an extension for your custom openFrameworks project where you create a custom [FBO source](example_fbo-sources) that is being animated by an advanced process rather than a plain video.
+
+If you are planning to use videos and images only, consider using the precompiled Raspberry Pi image available from the [ofxPiMapper website](https://ofxpimapper.com). It is based on a recent Raspberry Pi OS disk image and contains compiled installation of openFrameworks along with all the scripts and services that make Pi Mapper start automatically.
 
 ## Installation
 
