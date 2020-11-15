@@ -1,0 +1,14 @@
+name: ubuntu
+on: [push]
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - run: ls -al
+      - run: wget https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz
+      - run: tar -xvf of_v0.11.0_linux64gcc6_release.tar.gz
+      - run: mv of_v0.11.0_linux64gcc6_release of
+      - run: ls -al
