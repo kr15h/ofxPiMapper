@@ -11,5 +11,5 @@ jobs:
           fetch-depth: 1
       - run: mkdir ../.ofxPiMapper
       - run: cp ./* ../.ofxPiMapper/
-      - run: curl -o openFrameworks.tar.gz $OF_URL
+      - run: curl ${OF_URL}
       - run: pwd && ls -al
