@@ -1,0 +1,15 @@
+name: windows
+on: [push]
+jobs:
+  compile:
+    runs-on: windows-latest
+    env:
+      OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - run: mkdir .ofxPiMapper
+      - run: mv ./* .ofxPiMapper/
+      - run: wget ${OF_URL} --tries=10 --quiet
+      - run: pwd && ls -al
