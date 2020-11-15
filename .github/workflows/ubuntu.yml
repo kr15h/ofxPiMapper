@@ -15,5 +15,15 @@ jobs:
       - run: mv of_v0.11.0_linux64gcc6_release openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - run: |
+          echo "Install openFrameworks Dependencies"
           cd openFrameworks/scripts/linux/ubuntu
-          sudo ./install_dependencies.sh
+          sudo ./install_dependencies.sh -y
+      - run: |
+          echo "Compile openFrameworks"
+          cd openFrameworks/scripts/linux
+          ./compileOF.sh
+      - run: |
+          echo "Compile ofxPiMapper/example_basic"
+          cd openFrameworks/addons/ofxPiMapper/example_basic
+          mv addons.make.norpi addons.make
+          make
