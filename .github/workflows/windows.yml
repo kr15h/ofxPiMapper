@@ -10,6 +10,6 @@ jobs:
         with:
           fetch-depth: 1
       - run: mkdir .ofxPiMapper
-      - run: cp --recursive ./* .ofxPiMapper/
+      - run: cp ./* .ofxPiMapper/
       - run: wget ${OF_URL} --tries=10 --quiet
       - run: pwd && ls -al
