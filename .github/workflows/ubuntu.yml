@@ -11,8 +11,14 @@ jobs:
           fetch-depth: 1
       - run: mkdir .ofxPiMapper
       - run: mv ./* .ofxPiMapper/
-      - run: wget -O openFrameworks.tar.gz ${OF_URL} --tries=10 --quiet
-      - run: tar -xf openFrameworks.tar.gz && rm openFrameworks.tar.gz
+      - run: wget ${OF_URL} --tries=10 --quiet
+      - run: |
+          echo "Unarchive openFrameworks"
+          OF_ARCHIVE_NAME=$(basename -- "$OF_URL")
+          tar -xf ${OF_ARCHIVE_NAME}
+          rm ${OF_ARCHIVE_NAME}
+          OF_EXTRACT_NAME=$(basename ${OF_ARCHIVE_NAME} .tar.gz)
+          mv ${OF_EXTRACT_NAME} openFrameworks
       - run: mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - run: |
           echo "Install openFrameworks Dependencies"
