@@ -9,9 +9,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - run: echo ${OF_URL}
+      - run: echo $Env.OF_URL
       - run: mkdir ../.ofxPiMapper
       - run: cp ./* ../.ofxPiMapper/
       - run: curl --help
       - run: curl --location --progress-bar --output openFrameworks.zip https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
       - run: pwd && ls
+      - run: unzip openFrameworks.zip
