@@ -29,6 +29,11 @@ make
 cd bin
 ./example_basic
 ```
+
+If you plan to use `example_gamepad`, make sure you have [SDL2](https://www.libsdl.org/) development files installed on your system.
+
+If you plan to use `example_remote-server` and `example_remote-client`, make sure that you have added [ofxJSON](https://github.com/jeffcrouse/ofxJSON) dependency to your `openFrameworks/addons` folder prior compilation.
+
 ## Notes on Video Encoding
 
 Easiest way to achieve success is to use [HandBrake](https://handbrake.fr/) with the following settings. This will produce a `.mkv` file with 16bit FLAC audio with 22.05KHz sampling rate.
