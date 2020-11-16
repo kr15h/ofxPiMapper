@@ -13,7 +13,12 @@ jobs:
         with:
           fetch-depth: 1
       - run: Get-ExecutionPolicy
-      - run: echo $Env.OF_URL
+      - run: $HOME
+      - run: $Host
+      - run: $IsWindows
+      - run: $PSHOME
+      - run: $PWD
+      - run: $Env:OF_URL
       - run: mkdir ../.ofxPiMapper
       - run: cp ./* ../.ofxPiMapper/
       - run: curl --help
