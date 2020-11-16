@@ -16,7 +16,10 @@ jobs:
         run: |
           New-Item -Path "../" -Name "Temp" -ItemType "directory"
           Move-Item -Path "./*" -Destination "../Temp/"
-      - run: curl --help
-      - run: curl --location --progress-bar $Env:OF_URL
-      - run: ls
-      - run: unzip openFrameworks.zip
+          Get-ChildItem -Path "../Temp"
+          Get-ChildItem -Path "./"
+      - name: Download and unzip openFrameworks
+        run: |
+          curl --help
+          curl --location --progress-bar openFrameworks.zip $Env:OF_URL
+          unzip openFrameworks.zip
