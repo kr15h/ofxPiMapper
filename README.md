@@ -227,18 +227,19 @@ t | Add triangle surface
 q | Add quad surface
 g | Add grid warp surface
 c | Add circle surface
-d | duplicate selected surface
+d | Duplicate selected surface
 \+ | Scale surface up
 \- | Scale surface down
-p | toggle perspective warping (quad surfaces only)
-] | add columns to grid surface (grid warp surfaces only)
-[ | remove columns from grid surface (grid warp surfaces only)
-} | add rows to grid surface (grid warp surfaces only)
-{ | remove rows from grid surface (grid warp surfaces only)
-. | select next surface (projection mapping mode only)
-, | select previous surface (projection mapping mode only)
-\> | select next vertex
-\< | select previous vertex
+p | Toggle perspective warping (quad surfaces only)
+F | Expand selected surface to fill the screen (quad surfaces only)
+] | Add columns to grid surface (grid warp surfaces only)
+[ | Remove columns from grid surface (grid warp surfaces only)
+} | Add rows to grid surface (grid warp surfaces only)
+{ | Remove rows from grid surface (grid warp surfaces only)
+. | Select next surface (projection mapping mode only)
+, | Select previous surface (projection mapping mode only)
+\> | Select next vertex
+\< | Select previous vertex
 0 | Move selected surface one layer up
 9 | Move selected surface one layer down
 s | Save composition
