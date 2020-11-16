@@ -8,20 +8,20 @@ jobs:
     runs-on: windows-latest
     env:
       OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: base-devel git
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - name: Move files to temporary location
-        run: |
-          New-Item -Path "../" -Name "Temp" -ItemType "directory"
-          Move-Item -Path "./*" -Destination "../Temp/"
-          Get-ChildItem -Path "../Temp"
-          Get-ChildItem -Path "./"
-      - name: Test MSys2
-        run: bash.exe
+        run: pwd && whoami
       - name: Download and unzip openFrameworks
         run: |
           curl --help
-          curl --location --progress-bar --output openFrameworks.zip $Env:OF_URL
-          unzip openFrameworks.zip
+          echo ${OF_URL}
