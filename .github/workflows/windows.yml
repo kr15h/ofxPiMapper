@@ -15,7 +15,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: base-devel git unzip
+          install: unzip
           msystem: MINGW64
       - uses: actions/checkout@v2
         with:
@@ -34,4 +34,4 @@ jobs:
           mv .ofxPiMapper openFrameworks/addons/ofxPiMapper
       - name: Install openFrameworks Dependencies
         working-directory: ./openFrameworks/scripts/msys2
-        run: ./install_dependencies.sh
+        run: ./install_dependencies.sh -y
