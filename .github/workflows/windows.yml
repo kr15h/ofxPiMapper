@@ -18,6 +18,8 @@ jobs:
           Move-Item -Path "./*" -Destination "../Temp/"
           Get-ChildItem -Path "../Temp"
           Get-ChildItem -Path "./"
+      - name: Test MSys2
+        run: bash.exe
       - name: Download and unzip openFrameworks
         run: |
           curl --help
