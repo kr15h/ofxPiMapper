@@ -1,5 +1,8 @@
 name: windows
-on: [push]
+on:
+  push:
+    branches:
+      - gitlab-actions-windows
 jobs:
   compile:
     runs-on: windows-latest

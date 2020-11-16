@@ -1,5 +1,8 @@
 name: ubuntu
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   compile:
     runs-on: ubuntu-latest
