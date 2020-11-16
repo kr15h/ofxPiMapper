@@ -17,6 +17,7 @@ Info::Info(){
 		"  - Press <q> to add new Quad surface\n"
 		"  - Press <r> to add a new ciRcle surface\n"
 		"  - Press <p> to toggle Perspective warping while quad surface selected\n"
+		"  - Press <F> to expand selected quad surface to fill screen\n"
 		"  - Press <g> to add new Grid surface\n"
 		"  - Press <[> and <]> to remove or add columns to selected grid surface\n"
 		"  - Press <{> and <}> to remove or add rows to selected grid surface\n"
@@ -30,10 +31,10 @@ Info::Info(){
 		"  - Type  <rbt> to reboot\n"
 		"  - Type  <sdn> to shutdown\n"
 		" 4. Source selection mode\n\n"
-		
+
 		"You can switch between the modes by using <1>, <2>, <3> and <4> "
 		"keys on the keyboard.\n\n"
-		
+
 		"Press <s> to save the composition\n"
 		"Press <z> to undo\n"
 		"Press <i> to hide this message";
