@@ -15,7 +15,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: unzip
+          install: unzip mingw-w64-SDL2
           msystem: MINGW64
       - uses: actions/checkout@v2
         with:
@@ -35,3 +35,33 @@ jobs:
       - name: Install openFrameworks Dependencies
         working-directory: ./openFrameworks/scripts/msys2
         run: ./install_dependencies.sh --noconfirm
+      - name: Compile openFrameworks
+        working-directory: ./openFrameworks/scripts/msys2
+        run: ./compileOF.sh
+      - name: Compile example_basic
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_basic
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_camera
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_camera
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_fbo-sources
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_fbo-sources
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_gamepad
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_gamepad
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_pocketvj
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_pocketvj
+        run: mv addons.make.norpi addons.make && make
+      - name: Install ofxJSON dependency
+        working-directory: ./openFrameworks/addons/
+        run: git clone https://github.com/jeffcrouse/ofxJSON.git --depth 1
+      - name: Compile example_remote-client
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_remote-client
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_remote-server
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_remote-server
+        run: mv addons.make.norpi addons.make && make
+      - name: Compile example_simpler
+        working-directory: ./openFrameworks/addons/ofxPiMapper/example_simpler
+        run: mv addons.make.norpi addons.make && make
