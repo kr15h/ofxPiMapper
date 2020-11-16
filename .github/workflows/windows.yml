@@ -2,7 +2,7 @@ name: windows
 on:
   push:
     branches:
-      - gitlab-actions-windows
+      - windows-workflow
 jobs:
   compile:
     runs-on: windows-latest
