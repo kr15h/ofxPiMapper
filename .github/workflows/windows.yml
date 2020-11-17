@@ -40,11 +40,9 @@ jobs:
         run: |
           sed -i 's/typedef struct ALCdevice_struct ALCdevice/struct ALCdevice/g' ofOpenALSoundPlayer.h
           sed -i 's/typedef struct ALCcontext_struct ALCcontext/struct ALCcontext/g' ofOpenALSoundPlayer.h
-      - name: Apply makefile common patch
-        working-directory: ./openFrameworks/libs/openFrameworksCompiled/project/makefileCommon
-        run: |
-          function sedeasy { sed -i "s/$(echo $1 | sed -e 's/\([[\/.*]\|\]\)/\\&/g')/$(echo $2 | sed -e 's/[\/&]/\\&/g')/g" $3 }
-          sedeasy "$(foreach var_line, $(subst $(space),?,$(shell cat $(addon)/addon_config.mk | tr '\n' '\t'))," "$(foreach var_line, $(shell cat $(addon)/addon_config.mk | tr '\n ' '\t?')," config.addons.mk
+      - name: Apply makefileCommon patch
+        working-directory: ./openFrameworks/addons/ofxPiMapper/
+        run: cp --force ./ofpatch/libs/openFrameworksCompiled/project/makefileCommon/config.addons.make ../../libs/openFrameworksCompiled/project/makefileCommon/config.addons.make
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/msys2
         run: ./compileOF.sh
