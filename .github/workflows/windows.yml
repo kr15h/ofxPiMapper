@@ -36,10 +36,8 @@ jobs:
         working-directory: ./openFrameworks/scripts/msys2
         run: ./install_dependencies.sh --noconfirm
       - name: Apply Open AL Sound Player patch
-        working-directory: ./openFrameworks/libs/openFrameworks/sound
-        run: |
-          sed -i 's/typedef struct ALCdevice_struct ALCdevice/struct ALCdevice/g' ofOpenALSoundPlayer.h
-          sed -i 's/typedef struct ALCcontext_struct ALCcontext/struct ALCcontext/g' ofOpenALSoundPlayer.h
+        working-directory: ./openFrameworks/addons/ofxPiMapper/
+        run: cp --force ./ofpatch/msys2/sound/ofOpenALSoundPlayer.* ../../libs/openFrameworks/sound/
       - name: Apply makefileCommon patch
         working-directory: ./openFrameworks/addons/ofxPiMapper/
         run: cp --force ./ofpatch/msys2/makefileCommon/config.addons.mk ../../libs/openFrameworksCompiled/project/makefileCommon/config.addons.mk
