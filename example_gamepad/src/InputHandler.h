@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 
@@ -40,17 +40,17 @@ struct ControllerItem{
 class InputHandler{
 	public:
 		static InputHandler * instance();
-	
+
 		void initialise();
 		void update();
 		void clean();
-	
+
 		bool initialised();
-	
+
 		ControllerItem getControllerItem(std::string code);
 		ControllerCommand getControllerCommand(int controllerIndex, ControllerItem & item);
 		std::string controllerCommandToString(ControllerCommand com);
-	
+
 	private:
 		InputHandler(){}
 		~InputHandler(){}
