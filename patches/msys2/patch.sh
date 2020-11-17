@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 
 echo "This script should be run from the patches/msys2 directory"
 
