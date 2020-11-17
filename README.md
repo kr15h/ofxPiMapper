@@ -230,6 +230,7 @@ c | Add circle surface
 d | duplicate selected surface
 \+ | Scale surface up
 \- | Scale surface down
+F | set quad to full screen
 p | toggle perspective warping (quad surfaces only)
 ] | add columns to grid surface (grid warp surfaces only)
 [ | remove columns from grid surface (grid warp surfaces only)
