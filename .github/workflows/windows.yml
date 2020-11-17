@@ -42,7 +42,7 @@ jobs:
           sed -i 's/typedef struct ALCcontext_struct ALCcontext/struct ALCcontext/g' ofOpenALSoundPlayer.h
       - name: Apply makefileCommon patch
         working-directory: ./openFrameworks/addons/ofxPiMapper/
-        run: cp --force ./ofpatch/libs/openFrameworksCompiled/project/makefileCommon/config.addons.make ../../libs/openFrameworksCompiled/project/makefileCommon/config.addons.make
+        run: cp --force ./ofpatch/msys2/makefileCommon/config.addons.mk ../../libs/openFrameworksCompiled/project/makefileCommon/config.addons.mk
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/msys2
         run: ./compileOF.sh
