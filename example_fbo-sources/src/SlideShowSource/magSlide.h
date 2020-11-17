@@ -14,7 +14,7 @@ class magSlide
 public:
 	magSlide(std::string type);
 //    ~magSlide();
-	virtual void update(u_int64_t deltaTime);
+	virtual void update(uint64_t deltaTime);
 	virtual void draw();
 
 	/**
@@ -22,7 +22,7 @@ public:
 	 * called before displaying the slide.
 	 * @param startTime
 	 */
-	void start(u_int64_t startTime);
+	void start(uint64_t startTime);
 
 	enum ResizeOptions : short
 	{
@@ -96,7 +96,7 @@ public:
 	 */
 	virtual void setSize(float w, float h);
 
-	u_int64_t getDuration()
+	uint64_t getDuration()
 	{
 		return duration;
 	}
@@ -106,7 +106,7 @@ public:
 	 * builds (in or out)
 	 * @param duration in milliseconds.
 	 */
-	void setDuration(u_int64_t duration);
+	void setDuration(uint64_t duration);
 
 	/**
 	 * Sets the duration of the buildIn and buildOut
@@ -114,7 +114,7 @@ public:
 	 * duration of the slide.
 	 * @param tDuration in milliseconds.
 	 */
-	void setTransitionDuration(u_int64_t tDuration);
+	void setTransitionDuration(uint64_t tDuration);
 
 	ResizeOptions getResizeOption() const;
 	void setResizeOption(ResizeOptions resizeOption);
@@ -182,41 +182,41 @@ protected:
 	/**
 	 * The duration of the slide in millis, not counting builds
 	 */
-	u_int64_t duration;
+	uint64_t duration;
 
 	/**
 	* The start time of the slide in milliseconds, in "local time".
 	 * In practice, this means that the start time is always 0.
 	*/
-	u_int64_t startTime;
+	uint64_t startTime;
 
 	/**
 	 * The end time of the slide in milliseconds, in "local time".
 	 * The endTime is startTime + buildInDuration + duration + buildOutDuration.
 	 */
-	u_int64_t endTime;
+	uint64_t endTime;
 
 	/**
 	 * The duration of the build in transition or effect, in milliseconds.
 	 */
-//	u_int64_t buildInDuration;
+//	uint64_t buildInDuration;
 
 	/**
 	 * The duration of the build out transition or effect, in milliseconds.
 	 */
-	u_int64_t buildOutDuration;
+	uint64_t buildOutDuration;
 
 	/**
 	 * The "local time" start of the build out transition. This time should also
 	 * signal the enqueuing of the next slide, if applicable.
 	 */
-	u_int64_t buildOutStartTime;
+	uint64_t buildOutStartTime;
 
 	/**
 	 * The amount of time the slide has been displayed, in milliseconds.
 	 * This constitutes the "local time" of the slide.
 	 */
-	u_int64_t runningTime;
+	uint64_t runningTime;
 
 	void setState(SlideState state);
 

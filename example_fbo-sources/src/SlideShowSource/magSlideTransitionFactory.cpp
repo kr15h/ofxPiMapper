@@ -56,7 +56,7 @@ magSlideTransitionFactory* magSlideTransitionFactory::instance()
 
 std::shared_ptr<magSlideTransition>
 magSlideTransitionFactory::createTransition(std::string transitionName, std::shared_ptr<magSlide> slide,
-											ofParameterGroup &settings, u_int64_t duration)
+											ofParameterGroup &settings, uint64_t duration)
 {
 	std::shared_ptr<magSlideTransition> transition;
 

@@ -180,12 +180,12 @@ bool magSlideShowSource::createFromFolderContents(std::string path) {
 	ofImage tempImage;
 	for(ofFile &file : files){
 		if (tempImage.load(file.getFileName())){
-			
+
 			// make a new image slide
 			auto slide = std::make_shared<magImageSlide>();
 			slide->setup(tempImage);
-			slide->setDuration(static_cast<u_int64_t>(settings.slideDuration*1000));
-			slide->setTransitionDuration(static_cast<u_int64_t>(settings.transitionDuration*1000));
+			slide->setDuration(static_cast<uint64_t>(settings.slideDuration*1000));
+			slide->setTransitionDuration(static_cast<uint64_t>(settings.transitionDuration*1000));
 //            if (settings.transitionName == "")
 			addSlide(slide);
 		}else{
@@ -361,7 +361,7 @@ void magSlideShowSource::addSlide(std::shared_ptr<magSlide> slide) {
 		case magSlide::Fit:
 			slide->setSize(getWidth(), getHeight());
 			break;
-			
+
 		default:
 			break;
 	}
@@ -495,7 +495,7 @@ void magSlideShowSource::playSlide(int slideIndex) {
 	playNextSlide();
 }
 
-void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t startTime) {
+void magSlideShowSource::enqueueSlide(std::shared_ptr<magSlide> slide, uint64_t startTime) {
 //	ofLogVerbose() << "Enqueuing slide " << currentSlideIndex << " slide id: " << slide->getId();
 	slide->start(startTime);
 	activeSlides.insert(activeSlides.begin(), slide);
@@ -527,5 +527,3 @@ void magSlideShowSource::fileAddedListener(const void *sender) {
 void magSlideShowSource::fileRemovedListener(const void *sender) {
 	doInit = true;
 }
-
-

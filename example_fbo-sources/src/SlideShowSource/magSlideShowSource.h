@@ -145,11 +145,11 @@ class magSlideShowSource : public ofx::piMapper::FboSource {
 	private:
 //    std::shared_ptr<magSlide> currentSlide;
 		std::vector<std::shared_ptr<magSlide>> activeSlides;
-		void enqueueSlide(std::shared_ptr<magSlide> slide, u_int64_t startTime);
+		void enqueueSlide(std::shared_ptr<magSlide> slide, uint64_t startTime);
 
-		u_int64_t lastTime;
-		u_int64_t deltaTime;
-		u_int64_t runningTime;
+		uint64_t lastTime;
+		uint64_t deltaTime;
+		uint64_t runningTime;
 
 		bool isInitialized = false;
 		bool isPlaying = false;

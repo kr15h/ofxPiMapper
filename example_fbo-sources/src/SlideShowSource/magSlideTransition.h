@@ -54,7 +54,7 @@ public:
 	 * If you need to override update, make sure to call this implementation
 	 * in your subclass.
 	 */
-	virtual void update(u_int64_t timeDelta);
+	virtual void update(uint64_t timeDelta);
 
 	/**
 	 * Draws the transition. Default implementation does nothing.
@@ -65,9 +65,9 @@ public:
 
 	/**
 	 * Current running time in milliseconds.
-	 * @return u_int64_t
+	 * @return uint64_t
 	 */
-	u_int64_t getRunningTime();
+	uint64_t getRunningTime();
 
 	/**
 	 * Returns the current time in normalized form.
@@ -101,9 +101,9 @@ protected:
 	std::shared_ptr<magSlide> slide;
 	std::shared_ptr<magSlide> nextSlide;
 
-	u_int64_t runningTime;
-	u_int64_t duration;
-	u_int64_t endTime;
+	uint64_t runningTime;
+	uint64_t duration;
+	uint64_t endTime;
 	bool active = false;
 
 

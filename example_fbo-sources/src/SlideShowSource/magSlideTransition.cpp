@@ -13,7 +13,7 @@ void magSlideTransition::start(std::shared_ptr<magSlide> nextSlide)
 	this->nextSlide = nextSlide;
 }
 
-void magSlideTransition::update(u_int64_t timeDelta)
+void magSlideTransition::update(uint64_t timeDelta)
 {
 	if (!active) return;
 
@@ -30,7 +30,7 @@ void magSlideTransition::update(u_int64_t timeDelta)
 
 }
 
-u_int64_t magSlideTransition::getRunningTime()
+uint64_t magSlideTransition::getRunningTime()
 {
 	return runningTime;
 }

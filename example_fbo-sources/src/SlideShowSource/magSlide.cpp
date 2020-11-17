@@ -19,7 +19,7 @@ magSlide::magSlide(std::string type)
     magSlide::idCount++;
 }
 
-void magSlide::update(u_int64_t deltaTime)
+void magSlide::update(uint64_t deltaTime)
 {
 	transition->update(deltaTime);
     runningTime += deltaTime;
@@ -65,7 +65,7 @@ magSlide::ResizeOptions magSlide::getResizeOption() const
 	return resizeOption;
 }
 
-void magSlide::setDuration(u_int64_t duration)
+void magSlide::setDuration(uint64_t duration)
 {
     this->duration = duration;
 }
@@ -86,7 +86,7 @@ void magSlide::setState(SlideState state)
     }
 }
 
-void magSlide::setTransitionDuration(u_int64_t tDuration)
+void magSlide::setTransitionDuration(uint64_t tDuration)
 {
     buildOutDuration = tDuration;
 }
@@ -110,7 +110,7 @@ const std::string magSlide::getSlideStateName()
     return "unknown";
 }
 
-void magSlide::start(u_int64_t startTime)
+void magSlide::start(uint64_t startTime)
 {
 	this->startTime = startTime;
 	runningTime = 0;
@@ -197,6 +197,5 @@ void magVideoSlide::draw()
 
 void magVideoSlide::useVideoForDuration()
 {
-    duration = u_int64_t((videoPlayer.getDuration()*1000)) - buildOutDuration;
+    duration = uint64_t((videoPlayer.getDuration()*1000)) - buildOutDuration;
 }
-
