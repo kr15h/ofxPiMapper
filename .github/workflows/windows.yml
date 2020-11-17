@@ -37,7 +37,7 @@ jobs:
         run: ./install_dependencies.sh --noconfirm
       - name: Apply patches
         working-directory: ./openFrameworks/addons/ofxPiMapper/patches/msys2
-        run: echo $SHELL && ./patch.sh
+        run: ./patch.sh
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/msys2
         run: ./compileOF.sh
