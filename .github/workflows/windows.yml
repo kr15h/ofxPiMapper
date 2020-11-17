@@ -42,7 +42,8 @@ jobs:
           sed -i 's/typedef struct ALCcontext_struct ALCcontext/struct ALCcontext/g' ofOpenALSoundPlayer.h
       - name: Apply makefile common patch
         working-directory: ./openFrameworks/libs/openFrameworksCompiled/project/makefileCommon
-        run: sed -i "s#$(foreach var_line, $(subst $(space),?,$(shell cat $(addon)/addon_config.mk | tr '\n' '\t'))#$(foreach var_line, $(shell cat $(addon)/addon_config.mk | tr '\n ' '\t?')#g" config.addons.mk
+        run: |
+          sed -i 's+\$(foreach var_line, \$(subst $(space),\?,\$(shell cat \$(addon)/addon_config.mk | tr \'\n\' \'\t\')),+\$(foreach var_line, \$(shell cat \$(addon)/addon_config.mk | tr \'\n \' \'\t?\'),+g' config.addons.mk
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/msys2
         run: ./compileOF.sh
