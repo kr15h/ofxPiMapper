@@ -15,11 +15,15 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: unzip mingw64/mingw-w64-x86_64-SDL2
+          install: unzip
           msystem: MINGW64
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
+      - name: Print a few variables
+        run: |
+          env | grep MSYSTEM
+          env | grep MINGW
       - name: Download openFrameworks and add ofxPiMapper to addons
         run: |
           mkdir .ofxPiMapper
@@ -49,9 +53,6 @@ jobs:
         run: mv addons.make.norpi addons.make && make
       - name: Compile example_fbo-sources
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_fbo-sources
-        run: mv addons.make.norpi addons.make && make
-      - name: Compile example_gamepad
-        working-directory: ./openFrameworks/addons/ofxPiMapper/example_gamepad
         run: mv addons.make.norpi addons.make && make
       - name: Compile example_pocketvj
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_pocketvj
