@@ -31,12 +31,10 @@ jobs:
           brew update
           brew install gdb
           brew install coreutils
-      - name: Download libs
-        working-directory: ./openFrameworks/scripts/osx
-        run: ./download_libs.sh
+          xcode-select --install
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/templates/osx
-        run: xcodebuild -configuration Release -target emptyExample -project "emptyExample.xcodeproj"
+        run: make
       - name: Compile example_basic
         working-directory: ./openFrameworks/addons/ofxPiMapper/example_basic
         run: mv addons.make.norpi addons.make && make
