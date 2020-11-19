@@ -30,7 +30,6 @@ jobs:
           set -ev
           brew update
           brew install gdb
-          brew install ccache
           brew upgrade coreutils
       - name: Download libs
         working-directory: ./openFrameworks/scripts/osx
