@@ -1,6 +1,7 @@
 # ofxPiMapper
 
 [![Ubuntu Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/ubuntu/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Aubuntu)
+[![Windows Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/windows/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Awindows)
 
 Projection mapping addon for openFrameworks that runs on the Raspberry Pi. It is being developed and tested against the latest stable openFrameworks version.
 
