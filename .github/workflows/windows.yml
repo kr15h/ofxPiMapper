@@ -2,7 +2,7 @@ name: windows
 on:
   push:
     branches:
-      - windows-workflow
+      - master
 jobs:
   compile:
     runs-on: windows-latest
@@ -20,10 +20,6 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - name: Print a few variables
-        run: |
-          env | grep MSYSTEM
-          env | grep MINGW
       - name: Download openFrameworks and add ofxPiMapper to addons
         run: |
           mkdir .ofxPiMapper
