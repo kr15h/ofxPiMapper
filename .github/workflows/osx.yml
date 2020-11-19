@@ -2,7 +2,7 @@ name: osx
 on:
   push:
     branches:
-      - osx-workflow
+      - master
 jobs:
   compile:
     runs-on: macos-latest
