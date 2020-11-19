@@ -1,6 +1,6 @@
 # ofxPiMapper
 
-[![Ubuntu Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/ubuntu/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Aubuntu)
+[![Ubuntu Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/linux/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Alinux)
 [![Windows Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/windows/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Awindows)
 [![OSX Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/osx/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Aosx)
 
