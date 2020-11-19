@@ -31,7 +31,6 @@ jobs:
           brew update
           brew install gdb
           brew install coreutils
-          xcode-select --install
       - name: Compile openFrameworks
         working-directory: ./openFrameworks/scripts/templates/osx
         run: make
