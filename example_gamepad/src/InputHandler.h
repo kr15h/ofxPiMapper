@@ -7,9 +7,9 @@
 #include <string>
 #include <sstream>
 #include <iostream>
-#include <SDL2/SDL.h>
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
+#include <SDL2/SDL.h>
 
 enum ControllerItemType{
 	CONTROLLER_BUTTON,
