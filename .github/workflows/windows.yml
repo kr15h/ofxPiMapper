@@ -15,7 +15,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: unzip
+          install: unzip git
           msystem: MINGW64
       - uses: actions/checkout@v2
         with:
