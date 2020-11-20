@@ -16,9 +16,9 @@
 
 meta:
 ADDON_NAME = ofxPiMapper
-ADDON_DESCRIPTION = Projection Mapping Addon optimized for the Raspberry Pi
+ADDON_DESCRIPTION = Projection mapping addon for openFrameworks
 ADDON_AUTHOR = @kr15h
-ADDON_TAGS = "addon" "raspberrypi" "projectionmapping"
+ADDON_TAGS = "addon" "rpi" "mapping"
 ADDON_URL = http://github.com/kr15h/ofxPiMapper
 
 common:
