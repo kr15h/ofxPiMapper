@@ -22,10 +22,10 @@ Clone or download the repository to your openFrameworks addons folder. Make sure
 
 - Raspberry Pi  
   Please install the [ofxOMXPlayer](https://github.com/jvcleave/ofxOMXPlayer) addon before compiling.
-- Other platforms  
-  Please rename the `addons.make.rpi` file to `addons.make`.
 - Windows MSYS2  
   Go to `patches/msys2` directory and run `./patch.sh`
+- Other platforms  
+  Please rename the `addons.make.rpi` file to `addons.make`.
 
 To test, use Terminal to change the directory to `example_basic`, compile and run.
 
