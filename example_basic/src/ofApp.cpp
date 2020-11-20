@@ -4,9 +4,9 @@ void ofApp::setup(){
 	ofBackground(0);
 	mapper.setup();
 
-    #ifdef TARGET_RASPBERRY_PI
-        ofSetFullscreen(true);
-    #endif
+	#ifdef TARGET_RASPBERRY_PI
+  	ofSetFullscreen(true);
+  #endif
 }
 
 void ofApp::update(){
