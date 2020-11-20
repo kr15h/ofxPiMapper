@@ -8,7 +8,7 @@ Projection mapping addon for openFrameworks that runs on the Raspberry Pi. It is
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
 
-Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images are used with 64bit environments. 
+Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images with 64bit environments are used. 
 
 ## Introduction
 
