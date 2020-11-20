@@ -40,6 +40,86 @@ If you plan to use `example_gamepad`, make sure you have [SDL2](https://www.libs
 
 If you plan to use `example_remote-server` and `example_remote-client`, make sure that you have added [ofxJSON](https://github.com/jeffcrouse/ofxJSON) dependency to your `openFrameworks/addons` folder prior compilation.
 
+## Usage
+
+Currently a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
+
+
+### Modes
+
+PiMapper has 4 modes:
+
+1. Presentation mode
+2. Texture mapping mode
+3. Surface editing mode
+4. Source assignment mode
+
+You can access these modes by pressing 1, 2, 3 or 4 respectively.
+
+
+#### Presentation mode
+
+This mode is activated once the application starts up. It does not show anything else except the final projection mapping as it was saved previously.
+
+
+#### Texture mapping mode
+
+In this mode you can adjust the texture coordinates of the surface you have selected in the surface editing mode.
+
+
+#### Surface editing mode
+
+Here you can select, move and distort the surfaces you have created.
+
+
+#### Source assignment mode
+
+After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
+
+
+### Other shortcuts
+
+These other shortcuts that you can use while using the example app.
+
+Key | Function
+:--- | :---
+1 | Presentation mode
+2 | Texture editing mode
+3 | Projection mapping mode, use this to select a surface first
+4 | Source selection mode
+i | Show info
+t | Add triangle surface
+q | Add quad surface
+g | Add grid warp surface
+c | Add circle surface
+d | Duplicate selected surface
+\+ | Scale surface up
+\- | Scale surface down
+p | Toggle perspective warping (quad surfaces only)
+F | Expand selected surface to fill the screen (quad surfaces only)
+] | Add columns to grid surface (grid warp surfaces only)
+[ | Remove columns from grid surface (grid warp surfaces only)
+} | Add rows to grid surface (grid warp surfaces only)
+{ | Remove rows from grid surface (grid warp surfaces only)
+. | Select next surface (projection mapping mode only)
+, | Select previous surface (projection mapping mode only)
+\> | Select next vertex
+\< | Select previous vertex
+0 | Move selected surface one layer up
+9 | Move selected surface one layer down
+s | Save composition
+l | Hide/show layer panel
+z | Undo
+rbt | Reboot (Raspberry Pi only)
+sdn | Shutdown (Raspberry Pi only)
+new | Clear composition (remove all surfaces)
+ext | Exit application and return to command line
+BACKSPACE ('\' via SSH) | Delete surface.
+SPACE | Toggle pause for video sources (texture and projection mapping modes)
+TAB | Select next source (no need to use the source selection interface)
+Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
+\/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi
+
 ## Notes on Video Encoding
 
 Easiest way to achieve success is to use [HandBrake](https://handbrake.fr/) with the following settings. This will produce a `.mkv` file with 16bit FLAC audio with 22.05KHz sampling rate.
@@ -162,84 +242,3 @@ git checkout 0.9.0-compatible
 ```
 
 You can check the latest releases on the [ofxOMXPlayer GitHub repository](https://github.com/jvcleave/ofxOMXPlayer/releases).
-
-
-## Usage
-
-Currently a keyboard and a mouse has to be used in order to do the mapping with ofxPiMapper.
-
-
-### Modes
-
-PiMapper has 4 modes:
-
-1. Presentation mode
-2. Texture mapping mode
-3. Surface editing mode
-4. Source assignment mode
-
-You can access these modes by pressing 1, 2, 3 or 4 respectively.
-
-
-#### Presentation mode
-
-This mode is activated once the application starts up. It does not show anything else except the final projection mapping as it was saved previously.
-
-
-#### Texture mapping mode
-
-In this mode you can adjust the texture coordinates of the surface you have selected in the surface editing mode.
-
-
-#### Surface editing mode
-
-Here you can select, move and distort the surfaces you have created.
-
-
-#### Source assignment mode
-
-After you select a surface in surface editing mode, activate this mode to be able to choose a source for the surface. Afterwards you might want to go to the texture mapping mode to adjust texture coordinates.
-
-
-### Other shortcuts
-
-These other shortcuts that you can use while using the example app.
-
-Key | Function
-:--- | :---
-1 | Presentation mode
-2 | Texture editing mode
-3 | Projection mapping mode, use this to select a surface first
-4 | Source selection mode
-i | Show info
-t | Add triangle surface
-q | Add quad surface
-g | Add grid warp surface
-c | Add circle surface
-d | Duplicate selected surface
-\+ | Scale surface up
-\- | Scale surface down
-p | Toggle perspective warping (quad surfaces only)
-F | Expand selected surface to fill the screen (quad surfaces only)
-] | Add columns to grid surface (grid warp surfaces only)
-[ | Remove columns from grid surface (grid warp surfaces only)
-} | Add rows to grid surface (grid warp surfaces only)
-{ | Remove rows from grid surface (grid warp surfaces only)
-. | Select next surface (projection mapping mode only)
-, | Select previous surface (projection mapping mode only)
-\> | Select next vertex
-\< | Select previous vertex
-0 | Move selected surface one layer up
-9 | Move selected surface one layer down
-s | Save composition
-l | Hide/show layer panel
-z | Undo
-rbt | Reboot (Raspberry Pi only)
-sdn | Shutdown (Raspberry Pi only)
-new | Clear composition (remove all surfaces)
-ext | Exit application and return to command line
-BACKSPACE ('\' via SSH) | Delete surface.
-SPACE | Toggle pause for video sources (texture and projection mapping modes)
-TAB | Select next source (no need to use the source selection interface)
-Arrow keys | Move selection. If no surface is selected in the projection mapping mode, all surfaces are moved.
-\/ | Toggle 1px/10px steps for keyboard moves on Raspberry Pi
