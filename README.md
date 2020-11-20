@@ -8,7 +8,7 @@ Projection mapping addon for openFrameworks that runs on the Raspberry Pi. It is
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
 
-Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images with 64bit environments are used. 
+Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images with 64bit environments are used.
 
 ## Introduction
 
@@ -63,23 +63,6 @@ ffmpeg -i input-video.mp4 -s 1280x720 -aspect 16:9 \
 ```
 
 These two settings have shown the best results so far. Audio problems and video playback at the beginning of longer video files was the main issue in most cases. Please open an issue if you have better suggestions.
-
-## Running the Example
-
-You can use the example application of the addon for projection mapping projects where static images or videos have to be projection mapped. Make sure you are using the **latest stable** version of openFrameworks.
-
-1. Put your own sources in the `example/bin/data/sources` directory.
-
-2. Compile and run the example project.
-    ```bash
-    cd openFrameworks/addons/ofxPiMapper/example
-    make && ./bin/example
-    ```
-
-3. Use the `-f` flag to launch it fullscreen.
-    ```bash
-    ./bin/example -f
-    ```
 
 ## Extended Functionality
 
