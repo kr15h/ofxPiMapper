@@ -106,5 +106,29 @@ void VideoSource::stop(){
 	}
 #endif
 
+void VideoSource::restart(){
+	#ifdef TARGET_RASPBERRY_PI
+		_omxPlayer->restartMovie();
+	#else
+		_videoPlayer->setPosition(0);
+		_videoPlayer->play();
+	#endif
+}
+
+void VideoSource::pause() {
+	#ifdef TARGET_RASPBERRY_PI
+		_omxPlayer->setPaused(true);
+	#else
+		_videoPlayer->setPaused(true);
+	#endif
+}
+void VideoSource::resume() {
+	#ifdef TARGET_RASPBERRY_PI
+		_omxPlayer->setPaused(false);
+	#else
+		_videoPlayer->setPaused(false);
+	#endif
+}
+
 } // namespace piMapper
 } // namespace ofx

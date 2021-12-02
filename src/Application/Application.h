@@ -155,6 +155,11 @@ class Application {
 		void reboot();
 		void shutdown();
 
+		// video play control
+		void restart();
+		void pause();
+		void resume();
+
 	protected:
 		void setState(ApplicationBaseMode * st);
 
