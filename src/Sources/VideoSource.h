@@ -30,6 +30,9 @@ class VideoSource : public BaseSource {
         void togglePause();
         void stop();
 		void update(ofEventArgs & args);
+		void restart();
+		void pause();
+		void resume();
 
 	private:
 

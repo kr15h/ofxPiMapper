@@ -94,6 +94,11 @@ class ofxPiMapper {
 		void reboot();
 		void shutdown();
 
+		// video play control
+		void restart();
+		void pause();
+		void resume();
+
 	private:
 		ofx::piMapper::Application _application;
 };
