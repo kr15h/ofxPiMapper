@@ -10,8 +10,12 @@ void ofApp::setup(){
 
 	// Register our sources.
 	// This should be done before mapper.setup().
-	piMapper.registerFboSource(customSource);
-	piMapper.registerFboSource(slideShowSource);
+	piMapper.registerFboSource(ScanLSource);
+	piMapper.registerFboSource(QuadiSource);
+	piMapper.registerFboSource(CircLSource);
+	piMapper.registerFboSource(BricksSource);
+	//piMapper.registerFboSource(SyphonClient);
+	//piMapper.registerFboSource(slideShowSource);
 	piMapper.setup();
 
 	// This will set the app fullscreen if compiled on Raspberry Pi.
@@ -20,7 +24,7 @@ void ofApp::setup(){
 	#endif
 
 	// Start slideshow.
-    slideShowSource.play();
+    //slideShowSource.play();
 }
 
 void ofApp::update(){
@@ -40,6 +44,7 @@ void ofApp::keyReleased(int key){
 }
 
 void ofApp::mousePressed(int x, int y, int button){
+
 	piMapper.mousePressed(x, y, button);
 }
 
