@@ -4,6 +4,10 @@
 #include "ofxPiMapper.h"
 #include "VideoSource.h"
 #include "ScanlineSource.h"
+#include "CircleSource.h"
+#include "QuadSource.h"
+#include "BrickSource.h"
+//#include "SyphonSource.h"
 #include "magSlideShowSource.h"
 
 class ofApp : public ofBaseApp{
@@ -23,7 +27,11 @@ public:
 
     // By using a custom source that is derived from FboSource
     // you will be able to see the source listed in sources editor
-    ScanlineSource customSource;
+    ScanlineSource ScanLSource;
+    QuadSource QuadiSource;
+    CircleSource CircLSource;
+    BrickSource BricksSource;
+    //SyphonSource SyphonClient;
     magSlideShowSource slideShowSource;
 
 };
