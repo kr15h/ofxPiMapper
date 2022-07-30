@@ -7,7 +7,7 @@ jobs:
   compile:
     runs-on: ubuntu-latest
     env:
-      OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_linux64gcc6_release.tar.gz
+      OF_URL: https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
     steps:
       - name: Fetch ofxPiMapper
         uses: actions/checkout@v2

@@ -7,7 +7,7 @@ jobs:
   compile:
     runs-on: windows-latest
     env:
-      OF_URL: https://openframeworks.cc/versions/v0.11.0/of_v0.11.0_msys264_release.zip
+      OF_URL: https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_msys2_mingw64_release.zip
     defaults:
       run:
         shell: msys2 {0}
