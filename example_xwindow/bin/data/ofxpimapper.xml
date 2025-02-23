@@ -2,20 +2,20 @@
     <surface type="1">
         <vertices>
             <vertex>
-                <x>22.144531250</x>
-                <y>111.936401367</y>
+                <x>50.000000000</x>
+                <y>50.000000000</y>
             </vertex>
             <vertex>
-                <x>908.855957031</x>
-                <y>111.936401367</y>
+                <x>750.000000000</x>
+                <y>50.000000000</y>
             </vertex>
             <vertex>
-                <x>908.855957031</x>
-                <y>376.062988281</y>
+                <x>750.000000000</x>
+                <y>400.000000000</y>
             </vertex>
             <vertex>
-                <x>22.144531250</x>
-                <y>376.062988281</y>
+                <x>50.000000000</x>
+                <y>400.000000000</y>
             </vertex>
         </vertices>
         <texCoords>
@@ -37,8 +37,8 @@
             </texCoord>
         </texCoords>
         <source>
-            <source-type>fbo</source-type>
-            <source-name>Mozilla Firefox</source-name>
+            <source-type>image</source-type>
+            <source-name>image4.jpg</source-name>
         </source>
         <properties>
             <perspectiveWarping>1</perspectiveWarping>
