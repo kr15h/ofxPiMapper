@@ -4,6 +4,7 @@
 #include "FboSource.h"
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include "ofGstVideoPlayer.h"
 
 class XSource : public ofx::piMapper::FboSource {
 	public:
@@ -21,5 +22,6 @@ class XSource : public ofx::piMapper::FboSource {
 		XImage *image;
 		ofTexture xFrame;
 		XWindowAttributes windowAttributes;
+		ofGstVideoPlayer videoPlayer;
 		
 };

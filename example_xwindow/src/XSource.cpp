@@ -11,13 +11,20 @@ XSource::XSource(Display* d, Window win, const std::string& windowName) {
 
 void XSource::setup(){
     allocate(windowAttributes.width, windowAttributes.height); 
+
+    // Generate rects to be rendered into the FBO
+    XImage * image = XGetImage(display, targetWindow, 0, 0, windowAttributes.width, windowAttributes.height, AllPlanes, ZPixmap);
+
     xFrame.allocate(windowAttributes.width, windowAttributes.height, GL_RGBA);
-    image = XGetImage(display, targetWindow, 0, 0, windowAttributes.width, windowAttributes.height, AllPlanes, ZPixmap);
+    xFrame.loadData((unsigned char*)image->data, windowAttributes.width, windowAttributes.height, GL_BGRA);  
+
+    XDestroyImage(image);
+
 }
 
 // Don't do any drawing here
 void XSource::update(){
-    xFrame.loadData((unsigned char*)image->data, windowAttributes.width, windowAttributes.height, GL_BGRA);
+    //xFrame.loadData((unsigned char*)image->data, windowAttributes.width, windowAttributes.height, GL_BGRA);  
 }
 
 // No need to take care of fbo.begin() and fbo.end() here.
