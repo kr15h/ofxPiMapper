@@ -50,7 +50,8 @@ void ofApp::setup(){
 
 	piMapper.setup();
 	
-	ofSetFullscreen(Settings::instance()->getFullscreen());
+	ofSetFullscreen(false);
+	ofSetFullscreen(true);
 
 	ofSetEscapeQuitsApp(false);
 

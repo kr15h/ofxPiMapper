@@ -1,8 +1,6 @@
-#include "ofMain.h"
 #include "ofApp.h"
 #include <string>
 #include <vector>
-#include "Settings.h"
 
 int main(int argc, char * argv[]){
 	bool fullscreen = false;
@@ -14,9 +12,13 @@ int main(int argc, char * argv[]){
 			break;
 		}
 	}
-	
-	Settings::instance()->setFullscreen(fullscreen);
 
-	ofSetupOpenGL(1600, 500, OF_WINDOW);
+	if(fullscreen){
+		ofSetupOpenGL(1920, 1080, OF_FULLSCREEN);
+	}else{
+		ofSetupOpenGL(800, 450, OF_WINDOW);
+	}
+
+	
 	ofRunApp(new ofApp());
 }

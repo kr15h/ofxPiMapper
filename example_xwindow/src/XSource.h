@@ -20,12 +20,8 @@ class XSource : public ofx::piMapper::FboSource {
 	private:
 		Display *display;
 		Window targetWindow;
-		XImage *image;
-		ofTexture xFrame;
-		XWindowAttributes windowAttributes;
-		ofGstVideoPlayer videoPlayer;
-		ofGstVideoUtils videoUtils; // Handles GStreamer video
-		ofTexture videoTexture;     // Texture to store video frames
-		ofPixels videoPixels;       // Pixel buffer for texture updates
+		ofGstVideoUtils videoUtils;
+		ofTexture videoTexture;
+		ofPixels videoPixels;
 		
 };

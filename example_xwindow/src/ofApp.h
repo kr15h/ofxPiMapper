@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "Settings.h"
 #include "ofxPiMapper.h"
 #include "XSource.h"
 #include "VideoSource.h"
