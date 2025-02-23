@@ -19,7 +19,7 @@ class XSource : public ofx::piMapper::FboSource {
 		Display *display;
 		Window targetWindow;
 		XImage *image;
-		int screen;
-		GLuint textureID;
+		ofTexture xFrame;
+		XWindowAttributes windowAttributes;
 		
 };
