@@ -4,6 +4,9 @@
 #include "ofxPiMapper.h"
 #include "XSource.h"
 #include "VideoSource.h"
+#include <X11/Xatom.h>
+#include "SettingsLoader.h"
+
 
 class ofApp : public ofBaseApp {
 	public:
@@ -19,4 +22,8 @@ class ofApp : public ofBaseApp {
 		void mouseDragged(int x, int y, int button);
 
 		ofxPiMapper piMapper;
+	
+	private:
+		void getXWindowNames();
+		void filterInvalidSurfaces(const vector<string>& windowNameList);
 };
