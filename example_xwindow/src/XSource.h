@@ -5,6 +5,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include "ofGstVideoPlayer.h"
+#include "ofGstUtils.h"
 
 class XSource : public ofx::piMapper::FboSource {
 	public:
@@ -23,5 +24,8 @@ class XSource : public ofx::piMapper::FboSource {
 		ofTexture xFrame;
 		XWindowAttributes windowAttributes;
 		ofGstVideoPlayer videoPlayer;
+		ofGstVideoUtils videoUtils; // Handles GStreamer video
+		ofTexture videoTexture;     // Texture to store video frames
+		ofPixels videoPixels;       // Pixel buffer for texture updates
 		
 };
