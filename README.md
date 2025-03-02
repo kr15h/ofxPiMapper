@@ -4,11 +4,17 @@
 [![Windows Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/windows/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Awindows)
 [![OSX Workflow Badge](https://github.com/kr15h/ofxPiMapper/workflows/osx/badge.svg)](https://github.com/kr15h/ofxPiMapper/actions?query=workflow%3Aosx)
 
-Projection mapping addon for openFrameworks that runs on the Raspberry Pi. It is being developed and tested against the latest stable openFrameworks version (0.11.0).
+Projection mapping addon for openFrameworks that runs on the Raspberry Pi. It has been tested against openFrameworks version (0.11.0).
 
 The project started as master's thesis project by [Krisjanis Rijnieks](https://rijnieks.com) at the [Aalto Media Lab](https://www.aalto.fi/en/aalto-media-lab). Currently being developed during free time. Please [donate](https://ofxpimapper.com/) to create more free time.
 
-Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images with 64bit environments are used.
+Note on build status: GitHub Actions ubuntu-latest, windows-latest and osx-latest images with 64bit environments are used. To be reviewed.
+
+## Disk Image
+
+For those not using openFrameworks, there is a precompiled disk image available via [ofxPiMapper website](https://ofxpimapper.com). It works with Raspberry Pi up until version 3B+ (with the older BCM2837 chip). Given the recent growing interest in the project, some effort is being put into figuring out how to make the disk image to work on Pi 4 and Pi 5 (and Pi 3B+ with the more recent BCM2837B0 chip). Please [donate](https://ofxpimapper.com/) to increase the frequency and duration of these efforts.
+
+> **Warning!** It does not work on the latest generation of Raspberry Pi 3B+ with the BCM2837B0 chip. Make sure the Pi has the older BCM2837 chip when purchasing.
 
 ## Introduction
 
