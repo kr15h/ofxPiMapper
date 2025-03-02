@@ -29,11 +29,11 @@ void RadioList::setup(std::vector<std::string> & labels, std::vector<std::string
 	storedValues = values;
 
 	// Create toggles with labels from the labels arg
-	int i;
+	size_t i;
 	for(i = 0; i < labels.size(); i++){
-		ofxToggle * toggle = new ofxToggle();
-		toggle->setup(false);
-		toggle->setName(labels[i]);
+		ofParameter<bool> toggleParam;  
+		toggleParam.set(labels[i], false);
+		ofxToggle* toggle = new ofxToggle(toggleParam);
 		toggle->addListener(this, &RadioList::onToggleClicked);
 		guiGroup.add(toggle);
 		#if OF_VERSION_MAJOR == 0 && (OF_VERSION_MINOR >= 8 && OF_VERSION_PATCH >= 2) || (OF_VERSION_MINOR >= 9 && OF_VERSION_PATCH >= 0)
@@ -67,7 +67,7 @@ void RadioList::setPosition(float x, float y){
 	guiGroup.setPosition(x, y);
 }
 
-void RadioList::selectItem(int index){
+void RadioList::selectItem(size_t index){
 	if(index >= guiGroup.getNumControls()){
 		return;
 	}
@@ -92,7 +92,7 @@ bool RadioList::selectItemByValue(std::string itemValue){
 	}
 	unselectAll();
 	int itemIndex = -1;
-	for(int i = 0; i < storedValues.size(); i++){
+	for(size_t i = 0; i < storedValues.size(); i++){
 		if(itemValue == storedValues[i]){
 			itemIndex = i;
 			break;
@@ -132,7 +132,7 @@ void RadioList::disable(){
 }
 
 void RadioList::clear(){
-	int i;
+	size_t i;
 	for(i = 0; i < guiGroup.getNumControls(); i++){
 		ofxToggle * toggle = static_cast <ofxToggle *>(guiGroup.getControl(i));
 		toggle->removeListener(this, &RadioList::onToggleClicked);
@@ -142,7 +142,7 @@ void RadioList::clear(){
 }
 
 void RadioList::unselectAll(){
-	int i;
+	size_t i;
 	for(i = 0; i < guiGroup.getNumControls(); i++){
 		ofxToggle * toggle = static_cast <ofxToggle *>(guiGroup.getControl(i));
 		toggle->removeListener(this, &RadioList::onToggleClicked);
@@ -184,7 +184,7 @@ void RadioList::onToggleClicked(bool & toggleValue){
 	unselectAll();
 
 	// Search for the actual toggle triggering the event
-	int i;
+	size_t i;
 	for(i = 0; i < guiGroup.getNumControls(); i++){
 		ofxToggle * toggle = static_cast <ofxToggle *>(guiGroup.getControl(i));
 		ofParameter <bool> * paramPtr = static_cast <ofParameter <bool> *>(&toggle->getParameter());

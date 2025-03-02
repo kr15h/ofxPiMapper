@@ -21,7 +21,7 @@ class RadioList {
 		void setTitle(std::string title);
 		void setPosition(ofPoint p);
 		void setPosition(float x, float y);
-		void selectItem(int index);
+		void selectItem(size_t index);
 		bool selectItemByValue(std::string itemValue);
 		void enable();
 		void disable();

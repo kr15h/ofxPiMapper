@@ -31,7 +31,7 @@ void GridWarpSurface::draw(){
 }
 
 void GridWarpSurface::moveBy(Vec3 v){
-	for(int i = 0; i < mesh.getVertices().size(); i++){
+	for(size_t i = 0; i < mesh.getVertices().size(); i++){
 		mesh.getVertices()[i] += v.toOf();
 	}
 	
@@ -131,7 +131,6 @@ ofPolyline GridWarpSurface::getTextureHitArea(){
 	Vec2 textureSize = Vec2(source->getTexture()->getWidth(), source->getTexture()->getHeight());
 	
 	int vertsPerRow = _gridCols + 1;
-	int vertsPerCol = _gridRows + 1;
 	
 	int a = 0;
 	int b = _gridCols;
