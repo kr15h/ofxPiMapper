@@ -4,7 +4,6 @@
 #include "FboSource.h"
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include "ofGstVideoPlayer.h"
 #include "ofGstUtils.h"
 
 class XSource : public ofx::piMapper::FboSource {

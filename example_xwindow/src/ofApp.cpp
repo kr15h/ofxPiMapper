@@ -2,7 +2,9 @@
 
 void ofApp::setup(){
 	ofBackground(0);
-	
+	//ofSetFrameRate(30);
+	//ofSetVerticalSync(false);
+
 	getXWindowNames();
 
 	piMapper.setup();
@@ -49,12 +51,14 @@ void ofApp::getXWindowNames(){
         return;
     }
 
+	Atom netWmName = XInternAtom(display, "_OB_APP_TITLE", false);
 	Atom property = XInternAtom(display, "_NET_CLIENT_LIST", true);
     Atom actualType;
     int actualFormat;
     unsigned long numItems, bytesAfter;
     unsigned char *data = nullptr;
 	vector<string> windowNameList;
+	std::unordered_map<string, int> nameCounts;
 
 	if (XGetWindowProperty(display, DefaultRootWindow(display), property, 0, 1024, false,
 		XA_WINDOW, &actualType, &actualFormat, &numItems, &bytesAfter, &data) == Success && data) {
@@ -67,16 +71,29 @@ void ofApp::getXWindowNames(){
 		for (unsigned long i = 0; i < numItems; i++) {
 			// Get window name
 			char *name = nullptr;
-			if (XFetchName(display, windows[i], &name) > 0) {
-				if (name) {
-					ofLog() << "Window ID: " << windows[i] << " | Name: " << name;
-					piMapper.registerFboSource(new XSource(display, windows[i], name));
-					windowNameList.push_back(name);
-					XFree(name);
-				}
-			} else {
-				ofLog() << "Window ID: " << windows[i] << " | (Unnamed Window)";
-			}
+			XTextProperty prop;
+			bool usedXFetchName = false;
+
+			if (XGetTextProperty(display, windows[i], &prop, netWmName) && prop.nitems) {
+                name = (char *)prop.value;
+            }
+			if (!name) {
+                XFetchName(display, windows[i], &name);
+				usedXFetchName = true;
+            }
+			
+			int count = name ? nameCounts[std::string(name)]++ : 0;
+            string uniqueName = name ? std::string(name) + " " + std::to_string(count) : "Unnamed Window " + std::to_string(windows[i]); 
+			ofLog() << "Window ID: " << windows[i] << " | Name: " << uniqueName;
+			piMapper.registerFboSource(new XSource(display, windows[i], uniqueName));
+			windowNameList.push_back(uniqueName);
+
+			if (usedXFetchName && name) {
+                XFree(name); // Free only if XFetchName() was used
+            } else if (prop.nitems) {
+                XFree(prop.value); // Free XGetTextProperty() result
+            }
+
 		}
 		XFree(data);
 	} else {
