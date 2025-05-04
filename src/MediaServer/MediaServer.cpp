@@ -112,7 +112,7 @@ std::vector<std::string> MediaServer::getImageNames(){
 
 std::vector<std::string> MediaServer::getFboSourceNames(){
 	std::vector<std::string> fboSourceNames;
-	for(int i = 0; i < fboSources.size(); i++){
+	for(size_t i = 0; i < fboSources.size(); i++){
 		fboSourceNames.push_back(fboSources[i]->getName());
 	}
 	return fboSourceNames;
