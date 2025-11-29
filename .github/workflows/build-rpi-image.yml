@@ -1,0 +1,149 @@
+name: Build Raspberry Pi Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version tag for the image (e.g., v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+      create_release:
+        description: 'Create GitHub release with the image'
+        required: true
+        type: boolean
+        default: false
+  push:
+    tags:
+      - 'v*'
+
+env:
+  IMAGE_NAME: ofxpimapper-rpi4
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Free up disk space
+      run: |
+        echo "Disk space before cleanup:"
+        df -h
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /usr/local/lib/android
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo docker image prune --all --force
+        echo "Disk space after cleanup:"
+        df -h
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          qemu-user-static \
+          binfmt-support \
+          kpartx \
+          parted \
+          wget \
+          xz-utils \
+          zip \
+          dosfstools
+
+    - name: Set up QEMU for ARM emulation
+      run: |
+        sudo systemctl restart systemd-binfmt.service
+        sudo update-binfmts --enable qemu-arm
+        sudo update-binfmts --enable qemu-aarch64
+
+    - name: Determine version
+      id: version
+      run: |
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          VERSION="${{ github.event.inputs.version }}"
+        else
+          VERSION="${GITHUB_REF#refs/tags/}"
+        fi
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Building version: $VERSION"
+
+    - name: Build Raspberry Pi image
+      env:
+        FINAL_IMAGE_NAME: ${{ env.IMAGE_NAME }}-${{ steps.version.outputs.version }}
+      run: |
+        cd scripts/image-builder
+        sudo bash build-image.sh
+
+    - name: Upload image artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ env.IMAGE_NAME }}-${{ steps.version.outputs.version }}
+        path: |
+          scripts/image-builder/output/*.img.zip
+          scripts/image-builder/output/*.sha256
+        retention-days: 30
+
+    - name: Create Release
+      if: |
+        github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') ||
+        (github.event_name == 'workflow_dispatch' && github.event.inputs.create_release == 'true')
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        name: Release ${{ steps.version.outputs.version }}
+        body: |
+          # ofxPiMapper Raspberry Pi 4/5 Disk Image
+
+          ## What's included
+          - Raspberry Pi OS Lite (64-bit)
+          - openFrameworks 0.11.2
+          - ofxPiMapper with example_basic
+          - Automatic startup on boot
+          - USB media support
+          - Optimized for projection mapping
+
+          ## Installation
+          1. Download the `.img.zip` file
+          2. Extract the `.img` file
+          3. Flash to SD card (16GB+ recommended) using:
+             - Raspberry Pi Imager (recommended)
+             - balenaEtcher
+             - `dd` command
+          4. Insert SD card into Raspberry Pi 4/5
+          5. Power on - ofxPiMapper starts automatically!
+
+          ## Default Credentials
+          - Username: `pi`
+          - Password: `raspberry`
+
+          **⚠️ IMPORTANT: Change the default password after first boot!**
+
+          ## Verification
+          Verify the download using SHA256 checksum:
+          ```bash
+          sha256sum -c ${{ env.IMAGE_NAME }}-${{ steps.version.outputs.version }}.img.zip.sha256
+          ```
+
+          ## Supported Hardware
+          - Raspberry Pi 4 (all variants)
+          - Raspberry Pi 5
+          - Raspberry Pi 400
+
+          ## Documentation
+          - [ofxPiMapper Documentation](https://github.com/kr15h/ofxPiMapper)
+          - [Image Building Instructions](https://github.com/kr15h/ofxPiMapper/tree/master/scripts/image-builder)
+
+          ## Support
+          - [Report Issues](https://github.com/kr15h/ofxPiMapper/issues)
+          - [Website](https://ofxpimapper.com)
+        files: |
+          scripts/image-builder/output/*.img.zip
+          scripts/image-builder/output/*.sha256
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

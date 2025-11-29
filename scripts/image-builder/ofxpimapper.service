@@ -1,0 +1,39 @@
+[Unit]
+Description=ofxPiMapper Projection Mapping
+After=network.target sound.target graphical.target
+Wants=graphical.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+WorkingDirectory=/home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=/home/pi/.Xauthority"
+
+# Load media from USB if available before starting
+ExecStartPre=/usr/local/bin/load-media.sh
+
+# Start ofxPiMapper
+ExecStart=/home/pi/openFrameworks/addons/ofxPiMapper/example_basic/bin/example_basic
+
+# Restart on failure
+Restart=always
+RestartSec=5
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ofxpimapper
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Performance settings
+Nice=-10
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=80
+
+[Install]
+WantedBy=graphical.target
