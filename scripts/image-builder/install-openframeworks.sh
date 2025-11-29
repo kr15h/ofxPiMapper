@@ -62,15 +62,18 @@ apt-get install -y \
     libavformat-dev \
     libavutil-dev \
     libswscale-dev \
-    libavresample-dev
+    libswresample-dev
 
 # For USB automount support
+# Note: usbmount is deprecated, but we install filesystem support
 apt-get install -y \
-    usbmount \
     pmount \
     exfat-fuse \
     exfat-utils \
     ntfs-3g
+
+# Try to install usbmount if available (may not be in all repos)
+apt-get install -y usbmount || echo "usbmount not available, using custom mount script instead"
 
 echo "Downloading openFrameworks ${OF_VERSION}..."
 cd /home/pi
